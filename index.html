@@ -1,5 +1,6 @@
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Onur Can Mığırdağı</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>:root{
@@ -99,6 +100,32 @@ body{
 .plainlink:hover{color:#4A3405; border-color:var(--gold-dk); background:var(--gold);}
 
 /* ---------- map ---------- */
+
+.mapbox svg.mapmob{display:none;}
+.mapmob .ring{fill:url(#gg2);}
+.mapmob .node.done .disc{fill:url(#gg2);}
+@media (max-width:620px){
+  .mapbox svg.mapdesk{display:none;}
+  .mapbox svg.mapmob{display:block;}
+  .wrap{padding:0 14px 60px;}
+  #hud{gap:9px; padding:16px 0 18px;}
+  .medal{width:48px; height:48px;}
+  .plaque{flex:1 1 140px; padding:8px 14px;}
+  .plaque b{font-size:16px;}
+  .plaque span{font-size:9px; letter-spacing:.14em;}
+  .counter{padding:7px 13px;} .counter b{font-size:17px;}
+  .langbtn{padding:7px 12px;}
+  .plainlink{padding:7px 10px;}
+  .sheet{padding:22px 18px 24px;}
+  .pbar{gap:6px; padding:0 0 14px;}
+  .tab{font-size:10px; padding:7px 11px;}
+  .pop .inner{padding:26px 20px 24px;}
+  .pop h2{font-size:22px;}
+  .btn{font-size:15.5px; padding:13px 26px;}
+}
+@media (max-width:420px){
+  .mapmob .nm{font-size:19px;}
+}
 .mapbox{position:relative; padding:6px 0 10px;}
 .mapbox svg{display:block; width:100%; height:auto; overflow:visible;}
 .lvpath{fill:none; stroke:rgba(8,34,84,.35); stroke-width:18; stroke-linecap:round;}
@@ -120,6 +147,7 @@ body{
 .node.locked .ico{fill:#A8C8EE;} .node.locked .ico-l{stroke:#A8C8EE;}
 .node .nm{fill:#DCE9FA; font-family:"JetBrains Mono",monospace; font-size:12.5px;
   letter-spacing:.04em;}
+.mapmob .nm{font-size:16px;}
 .bdot{stroke:none;} .bdot.on{fill:var(--gold);} .bdot.off{fill:rgba(255,255,255,.28);}
 
 .node.locked{cursor:default;}
@@ -360,7 +388,7 @@ figure.pipe img{display:block; width:100%; height:auto; margin-top:-16.02%;}
 
   <section class="view" id="v-map">
     <div class="mapbox">
-      <svg viewBox="0 0 1000 580" role="img" aria-label="Level map with five projects. Badges show what each one shipped, measured and still runs.">
+      <svg class="mapdesk" viewBox="0 0 1000 580" role="img" aria-label="Level map with five projects. Badges show what each one shipped, measured and still runs.">
         <defs><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="#FFE59B"/><stop offset="1" stop-color="#A97213"/>
         </linearGradient></defs>
@@ -439,6 +467,97 @@ figure.pipe img{display:block; width:100%; height:auto; margin-top:-16.02%;}
           <text class="nm" x="862" y="268" text-anchor="middle" data-i18n="t82">Dinlesen Yeter</text>
           <path class="lock" transform="translate(862,175) scale(1.18)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
           <g class="badges-g"><circle class="bdot on" cx="846" cy="240" r="6"></circle><circle class="bdot off" cx="862" cy="240" r="6"></circle><circle class="bdot off" cx="878" cy="240" r="6"></circle><g class="tick" transform="translate(893,147)"><circle r="14" fill="#63C832" stroke="#255C08" stroke-width="2.5"/><path d="M-6 0 L-2 4 L6-4" fill="none" stroke="#F6FFE9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+        </g>
+      </svg>
+      <svg class="mapmob" viewBox="0 0 400 990" role="img" aria-label="Bölüm haritası">
+        <defs><linearGradient id="gg2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FFE08F"/><stop offset="1" stop-color="#D19412"/>
+        </linearGradient></defs>
+        <path class="lvpath" d="M95 100 C 95 200, 305 200, 305 300 S 95 400, 95 500 S 305 600, 305 700 S 95 800, 95 900"></path>
+        <path class="lvpath2" d="M95 100 C 95 200, 305 200, 305 300 S 95 400, 95 500 S 305 600, 305 700 S 95 800, 95 900"></path>
+        <path class="lvfill" id="lvfillm" d="M95 100 C 95 200, 305 200, 305 300 S 95 400, 95 500 S 305 600, 305 700 S 95 800, 95 900"></path>
+        <g class="node" data-open="karinca" role="button" tabindex="0">
+          <circle class="halo" cx="95" cy="100" r="49"></circle>
+          <circle class="ring" cx="95" cy="100" r="42"></circle>
+          <circle class="disc" cx="95" cy="100" r="33"></circle>
+          <g class="icog" transform="translate(95,100) scale(0.86)">
+            <ellipse class="ico" cx="0" cy="9.5" rx="6.4" ry="8.4"/>
+            <circle class="ico" cx="0" cy="-2" r="4.5"/>
+            <circle class="ico" cx="0" cy="-11.5" r="4.9"/>
+            <path class="ico-l" d="M-3.2 -15.2 L-8.4 -20.6 M3.2 -15.2 L8.4 -20.6"/>
+            <path class="ico-l" d="M-4 -5 L-11.5 -9 M-4 -2 L-12.5 -1.5 M-4 1 L-11.5 5
+                                    M4 -5 L11.5 -9 M4 -2 L12.5 -1.5 M4 1 L11.5 5"/>
+          </g>
+          <text class="nm" x="153" y="98" text-anchor="start" data-i18n="t78">Karınca</text>
+          <g class="badges-g"><circle class="bdot on" cx="165" cy="126" r="6"></circle><circle class="bdot on" cx="183" cy="126" r="6"></circle><circle class="bdot on" cx="201" cy="126" r="6"></circle></g>
+          <path class="lock" transform="translate(95,101) scale(1.15)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
+          <g class="tick" transform="translate(129,66)"><circle r="13" fill="#4FCB3F" stroke="#237A18" stroke-width="2.5"/>
+            <path d="M-6 0 L-2 4 L6-4" fill="none" stroke="#F6FFE9" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </g>
+        <g class="node" data-open="pipeline" role="button" tabindex="0">
+          <circle class="halo" cx="305" cy="300" r="49"></circle>
+          <circle class="ring" cx="305" cy="300" r="42"></circle>
+          <circle class="disc" cx="305" cy="300" r="33"></circle>
+          <g class="icog" transform="translate(305,300) scale(0.86)">
+            <circle class="ico" cx="-13" cy="0" r="3.3"/>
+            <circle class="ico" cx="0" cy="0" r="5.4"/>
+            <circle class="ico" cx="13.5" cy="-9.5" r="3.3"/>
+            <circle class="ico" cx="13.5" cy="9.5" r="3.3"/>
+            <path class="ico-l" d="M-9.7 0 L-5.4 0 M4.6 -2.4 C 9 -7.4, 10 -9.5, 10.2 -9.5
+                                    M4.6 2.4 C 9 7.4, 10 9.5, 10.2 9.5"/>
+          </g>
+          <text class="nm" x="247" y="298" text-anchor="end" data-i18n="t79">Regulatory Pipeline</text>
+          <g class="badges-g"><circle class="bdot on" cx="235" cy="326" r="6"></circle><circle class="bdot on" cx="217" cy="326" r="6"></circle><circle class="bdot on" cx="199" cy="326" r="6"></circle></g>
+          <path class="lock" transform="translate(305,301) scale(1.15)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
+          <g class="tick" transform="translate(339,266)"><circle r="13" fill="#4FCB3F" stroke="#237A18" stroke-width="2.5"/>
+            <path d="M-6 0 L-2 4 L6-4" fill="none" stroke="#F6FFE9" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </g>
+        <g class="node" data-open="reporting" role="button" tabindex="0">
+          <circle class="halo" cx="95" cy="500" r="49"></circle>
+          <circle class="ring" cx="95" cy="500" r="42"></circle>
+          <circle class="disc" cx="95" cy="500" r="33"></circle>
+          <g class="icog" transform="translate(95,500) scale(0.86)">
+            <rect class="ico-l" x="-11" y="-14.5" width="22" height="29" rx="3.5"/>
+            <path class="ico-l" d="M-5.5 -7 H5.5 M-5.5 -0.5 H5.5 M-5.5 6 H1.5"/>
+          </g>
+          <text class="nm" x="153" y="498" text-anchor="start" data-i18n="t80">Marketplace Reporting</text>
+          <g class="badges-g"><circle class="bdot on" cx="165" cy="526" r="6"></circle><circle class="bdot on" cx="183" cy="526" r="6"></circle><circle class="bdot on" cx="201" cy="526" r="6"></circle></g>
+          <path class="lock" transform="translate(95,501) scale(1.15)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
+          <g class="tick" transform="translate(129,466)"><circle r="13" fill="#4FCB3F" stroke="#237A18" stroke-width="2.5"/>
+            <path d="M-6 0 L-2 4 L6-4" fill="none" stroke="#F6FFE9" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </g>
+        <g class="node" data-open="sms" role="button" tabindex="0">
+          <circle class="halo" cx="305" cy="700" r="49"></circle>
+          <circle class="ring" cx="305" cy="700" r="42"></circle>
+          <circle class="disc" cx="305" cy="700" r="33"></circle>
+          <g class="icog" transform="translate(305,700) scale(0.86)">
+            <rect class="ico-l" x="-13" y="-12" width="26" height="19.5" rx="5"/>
+            <path class="ico" d="M-6.5 7 L1.5 7 L-4.5 14.5 Z"/>
+            <circle class="ico" cx="-6.2" cy="-2.2" r="1.9"/>
+            <circle class="ico" cx="0" cy="-2.2" r="1.9"/>
+            <circle class="ico" cx="6.2" cy="-2.2" r="1.9"/>
+          </g>
+          <text class="nm" x="247" y="698" text-anchor="end" data-i18n="t81">SMS Relay</text>
+          <g class="badges-g"><circle class="bdot on" cx="235" cy="726" r="6"></circle><circle class="bdot on" cx="217" cy="726" r="6"></circle><circle class="bdot on" cx="199" cy="726" r="6"></circle></g>
+          <path class="lock" transform="translate(305,701) scale(1.15)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
+          <g class="tick" transform="translate(339,666)"><circle r="13" fill="#4FCB3F" stroke="#237A18" stroke-width="2.5"/>
+            <path d="M-6 0 L-2 4 L6-4" fill="none" stroke="#F6FFE9" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </g>
+        <g class="node" data-open="dinlesen" role="button" tabindex="0">
+          <circle class="halo" cx="95" cy="900" r="49"></circle>
+          <circle class="ring" cx="95" cy="900" r="42"></circle>
+          <circle class="disc" cx="95" cy="900" r="33"></circle>
+          <g class="icog" transform="translate(95,900) scale(0.86)">
+            <ellipse class="ico" cx="-7" cy="10" rx="5.2" ry="4"/>
+            <ellipse class="ico" cx="9.2" cy="7" rx="5.2" ry="4"/>
+            <path class="ico-l" d="M-1.8 10 V-11 M14.4 7 V-14.2" style="stroke-width:2.6"/>
+            <path class="ico" d="M-1.8 -11.2 L14.4 -14.4 L14.4 -9.2 L-1.8 -6 Z"/>
+          </g>
+          <text class="nm" x="153" y="898" text-anchor="start" data-i18n="t82">Dinlesen Yeter</text>
+          <g class="badges-g"><circle class="bdot on" cx="165" cy="926" r="6"></circle><circle class="bdot on" cx="183" cy="926" r="6"></circle><circle class="bdot on" cx="201" cy="926" r="6"></circle></g>
+          <path class="lock" transform="translate(95,901) scale(1.15)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
+          <g class="tick" transform="translate(129,866)"><circle r="13" fill="#4FCB3F" stroke="#237A18" stroke-width="2.5"/>
+            <path d="M-6 0 L-2 4 L6-4" fill="none" stroke="#F6FFE9" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></g>
         </g>
       </svg>
     </div>
@@ -1193,32 +1312,35 @@ figure.pipe img{display:block; width:100%; height:auto; margin-top:-16.02%;}
   function nextOpen(){ for(var i=0;i<ORDER.length;i++) if(!done[ORDER[i]]) return i; return ORDER.length; }
   function unlocked(id){ var i=ORDER.indexOf(id); return i>=0 && i<=nextOpen(); }
 
-  function measurePath(){
-    var f=$("lvfill"); if(!f || !f.getTotalLength) return null;
+  // iki harita var: genis ekranda yatay, telefonda dikey. Her birini ayri olc.
+  function measureOne(fillId, scope){
+    var f=$(fillId); if(!f || !f.getTotalLength) return null;
     var L=f.getTotalLength(), pts=[], out=[];
     for(var t=0;t<=1.0001;t+=0.002) pts.push({ l:t*L, p:f.getPointAtLength(t*L) });
-    Array.prototype.forEach.call(document.querySelectorAll(".node .ring"), function(c){
+    Array.prototype.forEach.call(document.querySelectorAll(scope+" .node .ring"), function(c){
       var cx=+c.getAttribute("cx"), cy=+c.getAttribute("cy"), best=0, bd=1e9;
       pts.forEach(function(q){ var d=(q.p.x-cx)*(q.p.x-cx)+(q.p.y-cy)*(q.p.y-cy);
         if(d<bd){ bd=d; best=q.l; } });
       out.push(best);
     });
-    return { L:L, at:out };
+    return { L:L, at:out, el:f };
+  }
+  function measurePath(){
+    return [ measureOne("lvfill", ".mapdesk"), measureOne("lvfillm", ".mapmob") ];
   }
 
   function paintMap(){
-    var f=$("lvfill");
-    if(f){
-      if(!lenAt) lenAt = measurePath();
-      if(lenAt){
-        var n=doneCount(), reach = n>0 ? lenAt.at[n-1] : 0;
-        f.style.strokeDasharray = lenAt.L;
-        f.style.strokeDashoffset = lenAt.L - reach;
-      }
-    }
+    if(!lenAt) lenAt = measurePath();
+    var n = doneCount();
+    (lenAt||[]).forEach(function(m){
+      if(!m) return;
+      var reach = n>0 ? m.at[n-1] : 0;
+      m.el.style.strokeDasharray = m.L;
+      m.el.style.strokeDashoffset = m.L - reach;
+    });
     var nx = nextOpen();
-    Array.prototype.forEach.call(document.querySelectorAll(".node"), function(g,i){
-      var id=g.getAttribute("data-open"), isDone=!!done[id];
+    Array.prototype.forEach.call(document.querySelectorAll(".node"), function(g){
+      var id = g.getAttribute("data-open"), i = ORDER.indexOf(id), isDone = !!done[id];
       g.classList.toggle("done", isDone);
       g.classList.toggle("current", !isDone && i===nx);
       g.classList.toggle("locked", i>nx);
@@ -1230,7 +1352,7 @@ figure.pipe img{display:block; width:100%; height:auto; margin-top:-16.02%;}
       b.classList.toggle("locked", !unlocked(id));
       b.disabled = !unlocked(id);
     });
-    var c=$("ct"); if(c) c.textContent = doneCount();
+    var c=$("ct"); if(c) c.textContent = n;
   }
 
   function view(id){ return $("v-"+id); }
@@ -1251,11 +1373,11 @@ figure.pipe img{display:block; width:100%; height:auto; margin-top:-16.02%;}
       to.hidden=false;
       if(!reduce){ to.classList.remove("out"); to.classList.add("in"); }
       paintTabs(id);
+      if(id==="map"){ paintMap(); setTimeout(celebrate, 260); }
       window.scrollTo({top:0, behavior: reduce ? "auto" : "smooth"});
       current=id;
-      if(id==="map"){ paintMap(); setTimeout(celebrate, 260); }
       setTimeout(function(){ busy=false;
-        if(pending){ var p=pending; pending=null; if(p!==current) swap(p); } }, reduce?0:400);
+        if(pending){ var pz=pending; pending=null; if(pz!==current) swap(pz); } }, reduce?0:400);
     }
     if(from && !reduce){
       from.classList.remove("in"); from.classList.add("out");
@@ -1264,6 +1386,7 @@ figure.pipe img{display:block; width:100%; height:auto; margin-top:-16.02%;}
   }
   function go(id, push){
     if(ORDER.indexOf(id)<0 && id!=="map" && id!=="plain") id="map";
+    if(ORDER.indexOf(id)>=0 && !unlocked(id)) id="map";
     if(push!==false){
       var h = (id==="map") ? " " : "#"+id;
       if(history.pushState) history.pushState({v:id}, "", h); else location.hash = (id==="map")?"":id;
@@ -1278,7 +1401,7 @@ figure.pipe img{display:block; width:100%; height:auto; margin-top:-16.02%;}
   addEventListener("resize", fitc); fitc();
   function burst(){
     if(!ctx || reduce) return;
-    var cols=["#FFD23F","#E8B33C","#63C832","#E2452F","#FFF3DD","#2E7BD4"];
+    var cols=["#FFD23F","#FFC53D","#4FCB3F","#F2573A","#FFF7E6","#3D86E0"];
     for(var i=0;i<150;i++){
       bits.push({ x:innerWidth/2 + (Math.random()-.5)*160, y:innerHeight/2 - 40,
         vx:(Math.random()-.5)*13, vy:-7-Math.random()*11, g:.36+Math.random()*.2,
@@ -1299,7 +1422,6 @@ figure.pipe img{display:block; width:100%; height:auto; margin-top:-16.02%;}
     else { craf=null; ctx.clearRect(0,0,cvs.width,cvs.height); }
   }
 
-  /* ---- popup ---- */
   function openCard(id){
     var m=M(id); if(!m) return;
     if(!unlocked(id)) return;
@@ -1355,10 +1477,11 @@ figure.pipe img{display:block; width:100%; height:auto; margin-top:-16.02%;}
     if(!justDone) return;
     var id=justDone; justDone=null;
     paintMap();
-    var g=document.querySelector('.node[data-open="'+id+'"]');
-    if(g && !reduce){
-      g.classList.add("justdone");
-      setTimeout(function(){ g.classList.remove("justdone"); }, 700);
+    if(!reduce){
+      Array.prototype.forEach.call(document.querySelectorAll('.node[data-open="'+id+'"]'), function(g){
+        g.classList.add("justdone");
+        setTimeout(function(){ g.classList.remove("justdone"); }, 700);
+      });
     }
     burst();
   }
