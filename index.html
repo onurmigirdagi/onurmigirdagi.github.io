@@ -113,7 +113,11 @@ body{
 .node:hover .disc{fill:#1A61C4;}
 .node:focus{outline:none;}
 .node:focus-visible .ring{stroke:var(--gold); stroke-width:2.5;}
-.node .num{fill:#FFF7E6; font-family:Outfit,sans-serif; font-size:29px; font-weight:700;}
+.node .ico{fill:#FFF7E6;}
+.node .ico-l{stroke:#FFF7E6; stroke-width:2.2; fill:none; stroke-linecap:round; stroke-linejoin:round;}
+.node.done .ico{fill:#4A3405;} .node.done .ico-l{stroke:#4A3405;}
+.node.current .ico{fill:#FFF7E6;} .node.current .ico-l{stroke:#FFF7E6;}
+.node.locked .ico{fill:#A8C8EE;} .node.locked .ico-l{stroke:#A8C8EE;}
 .node .nm{fill:#DCE9FA; font-family:"JetBrains Mono",monospace; font-size:12.5px;
   letter-spacing:.04em;}
 .bdot{stroke:none;} .bdot.on{fill:var(--gold);} .bdot.off{fill:rgba(255,255,255,.28);}
@@ -122,11 +126,12 @@ body{
 .node.locked .disc{fill:#0D3672;}
 .node.locked .ring{fill:#2C60A8; stroke:#1A4682;}
 .node.locked .nm{fill:#87A8D4;}
-.node.locked .num,.node.locked .badges-g{display:none;}
+.node.locked .badges-g{display:none;}
 .node.locked .lock{display:block;}
-.node .lock{display:none; fill:#8FB2DE;}
+.node .lock{display:none; fill:#FFFFFF; fill-opacity:.45;
+  stroke:rgba(8,34,84,.5); stroke-width:1.1; paint-order:stroke;}
 .node.done .disc{fill:url(#gg);}
-.node.done .num{fill:#4A3405;}
+
 .node.done .nm{fill:var(--gold-lt);}
 .node .badges-g{opacity:0; transition:opacity .5s ease;}
 .node.done .badges-g{opacity:1;}
@@ -136,7 +141,7 @@ body{
 .node.current .ring{stroke:#FFF3CF; stroke-width:3.5;}
 .node.current .halo{opacity:1; stroke:var(--gold-lt); stroke-width:3; animation:lvpulse 2.1s ease-in-out infinite;}
 .node.current .disc{fill:#1A61C4;}
-.node.current .num{fill:#FFF7E6;}
+
 .node .halo{fill:none; stroke:transparent; stroke-width:1.5; opacity:0;}
 @keyframes lvpop{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
 .node.justdone{animation:lvpop .6s cubic-bezier(.3,1.4,.5,1) both; transform-box:fill-box;
@@ -366,45 +371,73 @@ figure.pipe img{display:block; width:100%; height:auto; margin-top:-16.02%;}
           <circle class="halo" cx="150" cy="470" r="52"></circle>
           <circle class="ring" cx="150" cy="470" r="44"></circle>
           <circle class="disc" cx="150" cy="470" r="35"></circle>
-          <text class="num" x="150" y="480" text-anchor="middle">1</text>
+          <g class="icog" transform="translate(150,470) scale(0.92)">
+            <ellipse class="ico" cx="0" cy="9.5" rx="6.4" ry="8.4"/>
+            <circle class="ico" cx="0" cy="-2" r="4.5"/>
+            <circle class="ico" cx="0" cy="-11.5" r="4.9"/>
+            <path class="ico-l" d="M-3.2 -15.2 L-8.4 -20.6 M3.2 -15.2 L8.4 -20.6"/>
+            <path class="ico-l" d="M-4 -5 L-11.5 -9 M-4 -2 L-12.5 -1.5 M-4 1 L-11.5 5
+                                    M4 -5 L11.5 -9 M4 -2 L12.5 -1.5 M4 1 L11.5 5"/>
+          </g>
           <text class="nm" x="150" y="560" text-anchor="middle" data-i18n="t78">Karınca</text>
-          <path class="lock" transform="translate(150,464) scale(1.5)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
+          <path class="lock" transform="translate(150,467) scale(1.18)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
           <g class="badges-g"><circle class="bdot off" cx="134" cy="532" r="6"></circle><circle class="bdot on" cx="150" cy="532" r="6"></circle><circle class="bdot on" cx="166" cy="532" r="6"></circle><g class="tick" transform="translate(181,439)"><circle r="14" fill="#63C832" stroke="#255C08" stroke-width="2.5"/><path d="M-6 0 L-2 4 L6-4" fill="none" stroke="#F6FFE9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
         </g>
         <g class="node" data-open="pipeline" role="button" tabindex="0" aria-label="Level 2: Regulatory Pipeline">
           <circle class="halo" cx="348" cy="340" r="52"></circle>
           <circle class="ring" cx="348" cy="340" r="44"></circle>
           <circle class="disc" cx="348" cy="340" r="35"></circle>
-          <text class="num" x="348" y="350" text-anchor="middle">2</text>
+          <g class="icog" transform="translate(348,340) scale(0.92)">
+            <circle class="ico" cx="-13" cy="0" r="3.3"/>
+            <circle class="ico" cx="0" cy="0" r="5.4"/>
+            <circle class="ico" cx="13.5" cy="-9.5" r="3.3"/>
+            <circle class="ico" cx="13.5" cy="9.5" r="3.3"/>
+            <path class="ico-l" d="M-9.7 0 L-5.4 0 M4.6 -2.4 C 9 -7.4, 10 -9.5, 10.2 -9.5
+                                    M4.6 2.4 C 9 7.4, 10 9.5, 10.2 9.5"/>
+          </g>
           <text class="nm" x="348" y="430" text-anchor="middle" data-i18n="t79">Regulatory Pipeline</text>
-          <path class="lock" transform="translate(348,334) scale(1.5)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
+          <path class="lock" transform="translate(348,337) scale(1.18)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
           <g class="badges-g"><circle class="bdot on" cx="332" cy="402" r="6"></circle><circle class="bdot on" cx="348" cy="402" r="6"></circle><circle class="bdot on" cx="364" cy="402" r="6"></circle><g class="tick" transform="translate(379,309)"><circle r="14" fill="#63C832" stroke="#255C08" stroke-width="2.5"/><path d="M-6 0 L-2 4 L6-4" fill="none" stroke="#F6FFE9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
         </g>
         <g class="node" data-open="reporting" role="button" tabindex="0" aria-label="Level 3: Marketplace Reporting">
           <circle class="halo" cx="520" cy="440" r="52"></circle>
           <circle class="ring" cx="520" cy="440" r="44"></circle>
           <circle class="disc" cx="520" cy="440" r="35"></circle>
-          <text class="num" x="520" y="450" text-anchor="middle">3</text>
+          <g class="icog" transform="translate(520,440) scale(0.92)">
+            <rect class="ico-l" x="-11" y="-14.5" width="22" height="29" rx="3.5"/>
+            <path class="ico-l" d="M-5.5 -7 H5.5 M-5.5 -0.5 H5.5 M-5.5 6 H1.5"/>
+          </g>
           <text class="nm" x="520" y="530" text-anchor="middle" data-i18n="t80">Marketplace Reporting</text>
-          <path class="lock" transform="translate(520,434) scale(1.5)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
+          <path class="lock" transform="translate(520,437) scale(1.18)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
           <g class="badges-g"><circle class="bdot on" cx="504" cy="502" r="6"></circle><circle class="bdot on" cx="520" cy="502" r="6"></circle><circle class="bdot on" cx="536" cy="502" r="6"></circle><g class="tick" transform="translate(551,409)"><circle r="14" fill="#63C832" stroke="#255C08" stroke-width="2.5"/><path d="M-6 0 L-2 4 L6-4" fill="none" stroke="#F6FFE9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
         </g>
         <g class="node" data-open="sms" role="button" tabindex="0" aria-label="Level 4: SMS Relay">
           <circle class="halo" cx="700" cy="312" r="52"></circle>
           <circle class="ring" cx="700" cy="312" r="44"></circle>
           <circle class="disc" cx="700" cy="312" r="35"></circle>
-          <text class="num" x="700" y="322" text-anchor="middle">4</text>
+          <g class="icog" transform="translate(700,312) scale(0.92)">
+            <rect class="ico-l" x="-13" y="-12" width="26" height="19.5" rx="5"/>
+            <path class="ico" d="M-6.5 7 L1.5 7 L-4.5 14.5 Z"/>
+            <circle class="ico" cx="-6.2" cy="-2.2" r="1.9"/>
+            <circle class="ico" cx="0" cy="-2.2" r="1.9"/>
+            <circle class="ico" cx="6.2" cy="-2.2" r="1.9"/>
+          </g>
           <text class="nm" x="700" y="402" text-anchor="middle" data-i18n="t81">SMS Relay</text>
-          <path class="lock" transform="translate(700,306) scale(1.5)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
+          <path class="lock" transform="translate(700,309) scale(1.18)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
           <g class="badges-g"><circle class="bdot on" cx="684" cy="374" r="6"></circle><circle class="bdot on" cx="700" cy="374" r="6"></circle><circle class="bdot on" cx="716" cy="374" r="6"></circle><g class="tick" transform="translate(731,281)"><circle r="14" fill="#63C832" stroke="#255C08" stroke-width="2.5"/><path d="M-6 0 L-2 4 L6-4" fill="none" stroke="#F6FFE9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
         </g>
         <g class="node" data-open="dinlesen" role="button" tabindex="0" aria-label="Level 5: Dinlesen Yeter">
           <circle class="halo" cx="862" cy="178" r="52"></circle>
           <circle class="ring" cx="862" cy="178" r="44"></circle>
           <circle class="disc" cx="862" cy="178" r="35"></circle>
-          <text class="num" x="862" y="188" text-anchor="middle">5</text>
+          <g class="icog" transform="translate(862,178) scale(0.92)">
+            <ellipse class="ico" cx="-7" cy="10" rx="5.2" ry="4"/>
+            <ellipse class="ico" cx="9.2" cy="7" rx="5.2" ry="4"/>
+            <path class="ico-l" d="M-1.8 10 V-11 M14.4 7 V-14.2" style="stroke-width:2.6"/>
+            <path class="ico" d="M-1.8 -11.2 L14.4 -14.4 L14.4 -9.2 L-1.8 -6 Z"/>
+          </g>
           <text class="nm" x="862" y="268" text-anchor="middle" data-i18n="t82">Dinlesen Yeter</text>
-          <path class="lock" transform="translate(862,172) scale(1.5)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
+          <path class="lock" transform="translate(862,175) scale(1.18)" d="M-6-2v-3a6 6 0 0 1 12 0v3h2v11h-16V-2z M-3-2h6v-3a3 3 0 0 0-6 0z"></path>
           <g class="badges-g"><circle class="bdot on" cx="846" cy="240" r="6"></circle><circle class="bdot off" cx="862" cy="240" r="6"></circle><circle class="bdot off" cx="878" cy="240" r="6"></circle><g class="tick" transform="translate(893,147)"><circle r="14" fill="#63C832" stroke="#255C08" stroke-width="2.5"/><path d="M-6 0 L-2 4 L6-4" fill="none" stroke="#F6FFE9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g></g>
         </g>
       </svg>
