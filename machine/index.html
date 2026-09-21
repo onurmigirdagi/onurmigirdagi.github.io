@@ -519,26 +519,31 @@ html[data-theme=night] #thbtn i{background:var(--sig); border-color:var(--sig);
   text-shadow:0 1px 4px rgba(0,0,0,.9);
   opacity:0; transition:opacity 1.4s ease .6s;}
 html[data-theme=night] #credit{opacity:1;}
-body.mob #credit{display:none;}
+body.phone #credit{display:none;}
 
 /* ---------- phone ----------
-   The phone gets the sky, not the machinery. The nebula and the star field
-   are painted once and then nothing moves: no orbit, no twinkle, no meteor,
-   no animation frame at all. #sys, which is the solar system, stays off
-   because a list of folders has nothing to orbit.
-
-   The sky is fixed rather than absolute so it does not slide when the list
-   scrolls: the sky should sit still while the content moves over it. */
-body.mob #sys,body.mob #mwc,body.mob .neb,body.mob .dgrid{display:none;}
-body.mob #space{position:fixed; top:30px; left:0; right:0; bottom:34px;
-  transition:opacity .9s ease;}
-body.mob .vig{background:radial-gradient(130% 70% at 50% 24%,
-  rgba(0,0,0,0) 42%, rgba(2,3,8,.22) 74%, rgba(2,3,8,.52) 100%);}
-/* the list sits on the sky, so the tiles need a little more body under them */
-html[data-theme=night] body.mob .ico{background:rgba(14,18,28,.58);
-  -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
-  border-color:rgba(168,192,238,.13);}
-html[data-theme=night] body.mob .win{background:rgba(12,15,24,.94);}
+   The phone runs the same machine as the desktop: the orbit, the seven
+   stars, the telescope, and at night the solar system under the real sky.
+   Only the windows change, because a floating window does not fit a phone:
+   they open full screen and close back to the desk.
+   src.html marks a phone with a class that turns the desk into a list. The
+   night build marks it with body.phone instead, so none of the list rules
+   apply, and the few phone rules still wanted are restated here. */
+body.phone #top{gap:10px; padding:0 11px;}
+body.phone #top .brand{white-space:nowrap; font-size:10px; letter-spacing:.13em;}
+body.phone .dk{display:none;}
+body.phone .mb{display:inline;}
+body.phone .win{position:fixed !important; inset:30px 0 34px 0 !important;
+  width:auto !important; height:auto !important; border-radius:0; border-left:none; border-right:none;}
+body.phone .rz{display:none;}
+body.phone .tbar .ctl button.mn,body.phone .tbar .ctl button.mx{display:none;}
+body.phone #tasks{display:none;}
+body.phone .doc{padding:18px 16px 26px;}
+/* a double tap on the planet opens the readme, it should not zoom the page */
+body.phone #desk{touch-action:manipulation;}
+/* the planet is smaller on a phone, and so is the word on it */
+body.phone .planet .cap{font-size:8.5px; letter-spacing:.18em;}
+html[data-theme=night] body.phone .win{background:rgba(12,15,24,.94);}
 
 /* In night the desk is a sky, and a sky is not labelled. Every name waits for
    the pointer. The palette and the readme still list everything by name, and
@@ -555,7 +560,10 @@ html[data-theme=night] body.sysgl .planet:focus .cap{opacity:1;}
 html[data-theme=night] body.sysgl .planet .lbl{display:none;}
 html[data-theme=night] body.sysgl #sky text.ct{opacity:0; transition:opacity .4s ease;}
 html[data-theme=night] body.sysgl #sky.near text.ct{opacity:1;}
-body.mob .ico span{opacity:1 !important;}
+/* a phone has no hover, so there every name stays up */
+body.phone .ico span{opacity:1 !important;}
+html[data-theme=night] body.phone.sysgl .planet .cap{opacity:1;}
+html[data-theme=night] body.phone.sysgl #sky text.ct{opacity:1;}
 
 /* ---------- the telescope ----------
    The night side is the best thing on this desk, and a button in the corner
@@ -569,10 +577,10 @@ body.mob .ico span{opacity:1 !important;}
 #scope svg{width:30px; height:30px; display:block; overflow:visible;
   transition:transform .4s cubic-bezier(.2,1,.3,1), filter .4s ease;}
 #scope:hover svg{transform:translateY(-2px); filter:drop-shadow(0 0 5px rgba(255,154,60,.45));}
-#scope .g,#scopeb .g{fill:none; stroke:#F0800C; stroke-width:1.8;
+#scope .g{fill:none; stroke:#F0800C; stroke-width:1.8;
   stroke-linecap:round; stroke-linejoin:round; transition:stroke .7s ease;}
 /* the tube pivots on its mount, so a hover lifts it a few degrees */
-#scope .aim,#scopeb .aim{transform-box:view-box; transform-origin:0 0;
+#scope .aim{transform-box:view-box; transform-origin:0 0;
   transform:translate(2px,-2.5px) rotate(33deg); transition:transform .6s cubic-bezier(.2,1,.3,1);}
 #scope:hover .aim{transform:translate(2px,-2.5px) rotate(26deg);}
 
@@ -580,11 +588,11 @@ body.mob .ico span{opacity:1 !important;}
    the telescope catches a little of its light each time. It waits for
    .live, which arrives when the boot screen goes, so the first flare is one
    somebody can see. A hover holds it lit. */
-#scope .spk,#scopeb .spk{opacity:0; transform-box:fill-box; transform-origin:center;
+#scope .spk{opacity:0; transform-box:fill-box; transform-origin:center;
   filter:drop-shadow(0 0 2.2px rgba(255,140,40,.95));}
-#scope .spk .ray,#scopeb .spk .ray{fill:#FF9A3C;}
-#scope .spk .core,#scopeb .spk .core{fill:#FFF4E6;}
-#scope.live .spk,#scopeb.live .spk{animation:spark 6.5s ease-in-out 1.2s infinite;}
+#scope .spk .ray{fill:#FF9A3C;}
+#scope .spk .core{fill:#FFF4E6;}
+#scope.live .spk{animation:spark 6.5s ease-in-out 1.2s infinite;}
 #scope.live svg{animation:sglow 6.5s ease-in-out 1.2s infinite;}
 @keyframes spark{
   0%{opacity:0; transform:scale(.15) rotate(-30deg);}
@@ -602,21 +610,12 @@ body.mob .ico span{opacity:1 !important;}
 
 /* at night the telescope glows like every other instrument in the dark,
    and the star stops calling: the visitor is already where it pointed */
-html[data-theme=night] #scope .g,html[data-theme=night] #scopeb .g{stroke:#FFAE5E;}
-html[data-theme=night] #scope svg,html[data-theme=night] #scopeb svg{
+html[data-theme=night] #scope .g{stroke:#FFAE5E;}
+html[data-theme=night] #scope svg{
   filter:drop-shadow(0 0 5px rgba(255,150,50,.42));}
 html[data-theme=night] #scope:hover svg{filter:drop-shadow(0 0 8px rgba(255,150,50,.62));}
 html[data-theme=night] #scope.live svg,
-html[data-theme=night] #scope.live .spk,html[data-theme=night] #scopeb.live .spk{animation:none;}
-
-/* on the phone the desk is a list under a full-screen window, so the
-   telescope moves into the taskbar, next to the clock, where it is always
-   in view */
-#scopeb{display:none;}
-body.mob #scope{display:none;}
-body.mob #scopeb{display:flex; align-items:center; margin-left:auto; padding:3px 8px; border-radius:5px;}
-body.mob #scopeb + #clock{margin-left:0;}
-#scopeb svg{width:24px; height:24px; display:block; overflow:visible;}
+html[data-theme=night] #scope.live .spk{animation:none;}
 
 @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important;} }
 </style>
@@ -763,9 +762,9 @@ body.mob #scopeb + #clock{margin-left:0;}
       +   '&rsaquo; press <b>⌘K</b> to search everything'
       + '</span>'
       + '<span class="mb">'
-      +   '&rsaquo; tap a project to open it<br>'
-      +   '&rsaquo; close the window to see the whole list<br>'
-      +   '&rsaquo; on a desktop the projects orbit a planet you can pull apart'
+      +   '&rsaquo; five projects orbit the planet, my own files sit in the seven stars<br>'
+      +   '&rsaquo; tap anything to open it, or drag it out of orbit and let go<br>'
+      +   '&rsaquo; close a window to go back to the desk'
       + '</span>'
       + '<div class="hr"></div>'
       + '<b>what I have not done yet</b><br>'
@@ -871,12 +870,11 @@ body.mob #scopeb + #clock{margin-left:0;}
   var winsEl = $("wins"), deskEl = $("desk"), tasksEl = $("tasks"), ghost = $("ghost");
   var open = {}, zTop = 10, focused = null, cascade = 0;
   var MOB = false;
-  function measure(){ MOB = innerWidth < 760; document.body.classList.toggle("mob", MOB); }
+  function measure(){ MOB = innerWidth < 760; document.body.classList.toggle("phone", MOB); }
   measure();
   addEventListener("resize", function(){
     measure();
     NIGHT.resize();
-    if(MOB){ layoutIcons(); return; }
     glide(measureSky, 560);
   });
 
@@ -1140,8 +1138,10 @@ body.mob #scopeb + #clock{margin-left:0;}
 
   function measureSky(){
     var b = bounds();
+    if(MOB){ measurePhone(b); return; }
     var RA = Math.max(118, Math.min(b.w*0.232, (b.h*0.40)/SQ));
     var A = SYS[0], B = SYS[1];
+    A.box = 176; A.el.style.width = A.el.style.height = "";
     A.r = RA;
     A.cx = Math.max(Math.round(RA + 56), Math.round(b.w*0.355));
     A.cy = Math.max(Math.round(RA*SQ + 46), Math.round(b.h*0.455));
@@ -1155,6 +1155,34 @@ body.mob #scopeb + #clock{margin-left:0;}
     B.cx = Math.max(B.cx, Math.round(-NXMIN*B.r + 58));
     B.cy = Math.min(Math.round(b.h - NYMAX*B.r*CSQ - 96), Math.round(b.h*0.500));
     B.cy = Math.max(B.cy, Math.round(-NYMIN*B.r*CSQ + 56));
+  }
+
+  /* a phone gets the same machine, stacked for a tall screen: the orbit on
+     top, the seven stars under it, the telescope in the corner. Sizes come
+     from the width; if the screen is short, both shrink together until the
+     stack fits, and whatever height is left over becomes breathing room. */
+  function measurePhone(b){
+    var A = SYS[0], B = SYS[1];
+    var RA = Math.min(b.w*0.36, 150), BR = Math.min(b.w*0.385, 165);
+    var CT = 29, CB = 51, FIX = ICH + CT + CB + 34;   /* overhangs and minimum gaps */
+    var v = 2*RA*SQ + (NYMAX - NYMIN)*BR*CSQ;
+    if(v + FIX > b.h){
+      var k = Math.max(0.6, (b.h - FIX)/v);
+      RA *= k; BR *= k; v *= k;
+    }
+    var spare = Math.max(0, b.h - FIX - v);
+    A.r = RA;
+    A.box = Math.round(Math.max(96, Math.min(150, RA*0.86)));
+    A.el.style.width = A.el.style.height = A.box + "px";
+    A.cx = Math.round(b.w/2);
+    A.cy = Math.round(10 + spare*0.30 + RA*SQ + ICH/2);
+    A.circ.setAttribute("r", A.r.toFixed(1));
+    A.ring.setAttribute("transform", "translate("+A.cx+","+A.cy+") scale(1,"+SQ+")");
+    A.el.style.left = (A.cx - A.box/2)+"px";
+    A.el.style.top  = (A.cy - A.box/2)+"px";
+    B.r = BR;
+    B.cx = Math.round(b.w/2 - (NXMAX + NXMIN)/2*BR);
+    B.cy = Math.round(A.cy + RA*SQ + ICH/2 + 12 + spare*0.35 + CT - NYMIN*BR*CSQ);
   }
 
   function vertPt(v, t){
@@ -1248,7 +1276,6 @@ body.mob #scopeb + #clock{margin-left:0;}
 
   function frame(now){
     requestAnimationFrame(frame);
-    if(MOB) return;
     NOW = now;
     if(!lastT) lastT = now;
     var dt = Math.min(70, now - lastT); lastT = now;
@@ -1265,17 +1292,11 @@ body.mob #scopeb + #clock{margin-left:0;}
     paintCon();
   }
   function layoutIcons(){
-    if(MOB){
-      Array.prototype.forEach.call(iconsEl.children, function(el){
-        el.style.transform=""; el.style.opacity=""; el.style.zIndex="";
-      });
-      return;
-    }
     measureSky(); placeAll();
   }
   document.addEventListener("visibilitychange", function(){
     lastT = 0;
-    if(document.visibilityState==="visible" && !MOB) placeAll();
+    if(document.visibilityState==="visible") placeAll();
   });
 
   function selectOnly(el){
@@ -1284,12 +1305,12 @@ body.mob #scopeb + #clock{margin-left:0;}
   }
 
   /* one drag at a time, tracked on the window so a pointerup can never be missed */
-  var grab = null;
+  var grab = null, grabT = 0;
 
   function grabEnd(ev){
     var D = grab; if(!D) return;
     if(ev && ev.pointerId != null && ev.pointerId !== D.pid) return;
-    grab = null; dragging = false;
+    grab = null; dragging = false; grabT = performance.now();
     var st = D.st;
     st.el.classList.remove("moving");
     try{ st.el.releasePointerCapture(D.pid); }catch(_){}
@@ -1303,7 +1324,7 @@ body.mob #scopeb + #clock{margin-left:0;}
     if(ev.buttons === 0){ grabEnd(ev); return; }   /* released outside the page */
     var dx = ev.clientX - D.sx, dy = ev.clientY - D.sy;
     D.moved = Math.max(D.moved, Math.abs(dx) + Math.abs(dy));
-    if(D.moved > 4){ D.st.drag = true; D.st.el.classList.add("moving"); }
+    if(D.moved > (MOB ? 10 : 4)){ D.st.drag = true; D.st.el.classList.add("moving"); }
     D.st.dx = dx; D.st.dy = dy;
   }
   addEventListener("pointermove", grabMove, true);
@@ -1318,7 +1339,7 @@ body.mob #scopeb + #clock{margin-left:0;}
     el.addEventListener("pointerleave", function(){ if(!MOB) hoverN = Math.max(0, hoverN-1); });
     el.addEventListener("dragstart", function(e){ e.preventDefault(); });
     el.addEventListener("pointerdown", function(e){
-      if(MOB || e.button === 2) return;
+      if(e.button === 2) return;
       if(grab) grabEnd(null);
       hideMenu();
       st.off = null; el.classList.remove("ret");
@@ -1328,7 +1349,7 @@ body.mob #scopeb + #clock{margin-left:0;}
       try{ el.setPointerCapture(e.pointerId); }catch(_){}
       e.preventDefault();
     });
-    el.addEventListener("click", function(){ if(MOB){ launch(id); } });
+    el.addEventListener("click", function(){ if(MOB && performance.now() - grabT > 450){ launch(id); } });
     el.addEventListener("keydown", function(e){
       if(e.key!=="Enter" && e.key!==" ") return;
       e.preventDefault(); launch(id);
@@ -1503,81 +1524,10 @@ body.mob #scopeb + #clock{margin-left:0;}
       }
     }
 
-    /* on a phone the asterism cannot hang off the folders, because the folders
-       are a list. So the sky gets its own frame: the same projection, placed
-       by hand in the upper third where nothing else lives. */
-    var MB = { cx:0, cy:0, r:0 };
-    function frameB(){ return MOB ? MB : SYS[1]; }
+    /* the asterism hangs off the folders on every screen, phones included */
+    function frameB(){ return SYS[1]; }
     function sx(nx){ var B = frameB(); return B.cx + nx*B.r; }
     function sy(ny){ var B = frameB(); return B.cy + ny*B.r*CSQ; }
-
-    /* the phone version: field, figures and the seven, all on one static
-       canvas, so the page can then sit perfectly still. No loop runs behind
-       it, which is the only way a background like this belongs on a battery. */
-    function paintMobileSky(){
-      /* scaled so the catalogue actually reaches all four edges: the field
-         runs to 4.4 units either side of the asterism, so the radius has to
-         be a little over an eighth of the screen height to cover it. */
-      MB.r  = Math.round(Math.min(W*0.30, H*0.135));
-      MB.cx = Math.round(W*0.58);
-      MB.cy = Math.round(H*0.46);
-      fine.width = Math.round(W*DPR); fine.height = Math.round(H*DPR);
-      fctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-      fctx.clearRect(0, 0, W, H);
-      fctx.globalCompositeOperation = "lighter";
-      var i, j, k;
-      for(i=0;i<field.length;i++){
-        var s = field[i], x = sx(s.x), y = sy(s.y);
-        if(x < -20 || x > W+20 || y < -20 || y > H+20) continue;
-        var d = starSize(s.mag)*4.4;
-        fctx.globalAlpha = starAlpha(s.mag);
-        fctx.drawImage(s.img, x - d/2, y - d/2, d, d);
-      }
-      fctx.globalAlpha = 1;
-      fctx.globalCompositeOperation = "source-over";
-      fctx.lineCap = "round"; fctx.lineJoin = "round";
-      fctx.strokeStyle = "rgba(174,202,248,.14)"; fctx.lineWidth = 0.8;
-      for(i=0;i<figs.length;i++){
-        var f = figs[i];
-        if(f.id === "UMa") continue;
-        for(j=0;j<f.poly.length;j++){
-          var pts = f.poly[j];
-          fctx.beginPath();
-          for(k=0;k<pts.length;k++){
-            var ax = sx(pts[k][0]), ay = sy(pts[k][1]);
-            if(k) fctx.lineTo(ax, ay); else fctx.moveTo(ax, ay);
-          }
-          fctx.stroke();
-        }
-      }
-      /* the plough, from the same vertices the desktop hangs its folders on */
-      fctx.strokeStyle = "rgba(206,226,255,.52)"; fctx.lineWidth = 1.1;
-      for(i=0;i<LINES.length;i++){
-        fctx.beginPath();
-        for(j=0;j<LINES[i].length;j++){
-          var v = VERT[LINES[i][j]], vx = sx(v.nx), vy = sy(v.ny);
-          if(j) fctx.lineTo(vx, vy); else fctx.moveTo(vx, vy);
-        }
-        fctx.stroke();
-      }
-      fctx.globalCompositeOperation = "lighter";
-      for(i=0;i<VERT.length;i++){
-        var vv = VERT[i];
-        if(!vv.img) vv.img = sprite(bv2rgb(vv.bv), true);
-        var vd = starSize(vv.mag)*6.2;
-        fctx.globalAlpha = clamp(starAlpha(vv.mag), 0, 1);
-        fctx.drawImage(vv.img, sx(vv.nx) - vd/2, sy(vv.ny) - vd/2, vd, vd);
-      }
-      if(SKYDATA.alcor){
-        var A = SKYDATA.alcor;
-        if(!alcImg) alcImg = sprite(bv2rgb(A[3]), false);
-        var ad2 = starSize(A[2])*4.6;
-        fctx.globalAlpha = clamp(starAlpha(A[2]), 0, 1);
-        fctx.drawImage(alcImg, sx(A[0]) - ad2/2, sy(A[1]) - ad2/2, ad2, ad2);
-      }
-      fctx.globalAlpha = 1;
-      fctx.globalCompositeOperation = "source-over";
-    }
 
     /* the faint field never changes, so it is painted once per layout */
     function paintFine(){
@@ -2064,10 +2014,13 @@ body.mob #scopeb + #clock{margin-left:0;}
       bgl.clearColor(0, 0, 0, 0);
       bgl.clear(bgl.COLOR_BUFFER_BIT);
       var S = SYS[0], t = reduce ? 40 : now/1000;
+      /* the sun matches the planet it stands in for, which is smaller on a
+         phone; the worlds shrink less, so they stay readable next to it */
+      var ks = (S.box || 176)/176, kp = Math.sqrt(ks);
 
       /* the star first: nothing on this orbit ever passes in front of it */
       var sunB = BODY.readme;
-      drawBody(sunB, S.cx, S.cy, sunB.rad*(sunHot ? 1.05 : 1),
+      drawBody(sunB, S.cx, S.cy, sunB.rad*ks*(sunHot ? 1.05 : 1),
                [0,0,1], t*sunB.spin, SUNTINT, 1);
 
       /* then the planets, far side first, so a nearer one can cover it */
@@ -2083,7 +2036,7 @@ body.mob #scopeb + #clock{margin-left:0;}
         var s2 = ord[i], b = BODY[s2.id];
         var sc = 1 + (s2.dep || 0)*0.07;
         var cy = s2.py + s2.toff*sc;
-        drawBody(b, s2.px, cy, b.rad*sc,
+        drawBody(b, s2.px, cy, b.rad*kp*sc,
                  lightFor(s2.px - S.cx, s2.py - S.cy), t*b.spin + b.seed, null, 1);
       }
     }
@@ -2168,7 +2121,7 @@ body.mob #scopeb + #clock{margin-left:0;}
     }
 
     function tick(now){
-      if(!on || MOB || !W) return;
+      if(!on || !W) return;
       var ign = reduce ? 1 : clamp((now - t0)/1400, 0, 1);
       curIgn = ign;
       px += (mx - px)*0.06; py += (my - py)*0.06;
@@ -2198,7 +2151,7 @@ body.mob #scopeb + #clock{margin-left:0;}
     function repaintSky(){
       if(!W) return;
       parseSky();
-      if(MOB) paintMobileSky(); else paintFine();
+      paintFine();
       if(SKY === "photo") return;
       if(!glPaint()){ clearTimeout(rzT); rzT = setTimeout(mwStart, 200); }
     }
@@ -2222,7 +2175,7 @@ body.mob #scopeb + #clock{margin-left:0;}
       stc.width = Math.round(W*DPR); stc.height = Math.round(H*DPR);
       still = false;
       parseSky();
-      if(!MOB) measureTiles();
+      measureTiles();
       if(on){ clearTimeout(rzT); rzT = setTimeout(repaintSky, 180); }
     }
 
@@ -2249,7 +2202,7 @@ body.mob #scopeb + #clock{margin-left:0;}
 
     if(SKY === "photo") document.body.classList.add("photosky");
     if(SKY !== "photo") glInit();
-    if(!MOB) bInit();
+    bInit();
     /* a gpu reset would otherwise leave the galaxy blank until the next resize */
     if(sys){
       sys.addEventListener("webglcontextlost", function(e){
@@ -2264,7 +2217,7 @@ body.mob #scopeb + #clock{margin-left:0;}
     gal.addEventListener("webglcontextlost", function(e){ e.preventDefault(); glOK = false; });
     gal.addEventListener("webglcontextrestored", function(){
       glOK = false; gl = null;
-      if(glInit() && on && !MOB) repaintSky();
+      if(glInit() && on) repaintSky();
     });
 
     btn.addEventListener("click", function(){ toggle(btn); });
@@ -2289,7 +2242,7 @@ body.mob #scopeb + #clock{margin-left:0;}
     /* ---------- the telescope ---------------------------------------------
        The night side sits behind one small button in the menu bar, and a
        visitor who is skimming never presses it. So the desk gets a telescope
-       in its bottom right corner (in the taskbar on a phone), drawn in the
+       in its bottom right corner, on a phone as well, drawn in the
        same orange as the icons but with no box and no label. Every few
        seconds a star flares where it points; pressing it is the same switch
        as N. */
@@ -2311,18 +2264,12 @@ body.mob #scopeb + #clock{margin-left:0;}
     scopeEl.innerHTML = SCOPE_SVG;
     deskEl.insertBefore(scopeEl, $("grid"));
 
-    var scopeB = document.createElement("button");
-    scopeB.type = "button"; scopeB.id = "scopeb";
-    scopeB.innerHTML = SCOPE_SVG;
-    var clockEl = $("clock");
-    clockEl.parentNode.insertBefore(scopeB, clockEl);
 
     /* no visible label, but a screen reader still hears what it does */
     function scopeLabel(){
       if(!scopeEl) return;
       var s = on ? "back to day" : "look through the telescope: switch to the night sky";
       scopeEl.setAttribute("aria-label", s);
-      scopeB.setAttribute("aria-label", s);
     }
 
     /* every way in goes through here: the telescope, the menu bar button,
@@ -2333,11 +2280,9 @@ body.mob #scopeb + #clock{margin-left:0;}
     function ready(){
       scopeLabel();
       scopeEl.classList.add("live");
-      scopeB.classList.add("live");
     }
 
     scopeEl.addEventListener("click", toggle);
-    scopeB.addEventListener("click", toggle);
     scopeLabel();
 
     lbl.textContent = on ? "DAY" : "NIGHT";
@@ -2465,10 +2410,9 @@ body.mob #scopeb + #clock{margin-left:0;}
     NIGHT.resize();
     if(NIGHT.isOn()) NIGHT.apply("night");
     NIGHT.ready();
-    if(!MOB && !reduce) bloom();
-    if(!MOB) placeAll();
-    var had = restore();
-    if(!had && MOB) launch("readme");
+    if(!reduce) bloom();
+    placeAll();
+    restore();
   }
   requestAnimationFrame(frame);
   if(reduce){ start(); }
