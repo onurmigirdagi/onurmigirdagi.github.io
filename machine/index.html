@@ -1,0 +1,2484 @@
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Onur Can Mığırdağı</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --chassis:#E9EAEE; --deck:#FFFFFF; --panel:#FFFFFF; --panel2:#F5F6F8;
+  --line:rgba(24,26,32,.10); --line2:rgba(24,26,32,.15); --line3:rgba(24,26,32,.26);
+  --txt:#22242A; --dim:#5D616A; --faint:#93979E;
+  --sig:#FF9A3C; --sig-ink:#B9640A; --sig-dim:#D69355; --sig-soft:rgba(255,154,60,.15);
+  --shadow:rgba(26,30,38,.22);
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ui:Archivo,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0; padding:0; height:100%; overflow:hidden;}
+body{
+  background:var(--chassis); color:var(--txt); font-family:var(--ui); font-size:15px;
+  -webkit-font-smoothing:antialiased; user-select:none;
+}
+button{font:inherit; color:inherit; background:none; border:none; cursor:pointer;}
+::selection{background:var(--sig); color:#1A1206;}
+
+/* ============ boot ============ */
+#boot{position:fixed; inset:0; z-index:100; background:var(--deck);
+  display:grid; place-items:center; font-family:var(--mono);}
+#boot .lines{width:min(360px,84vw); font-size:12.5px; line-height:2.1; color:var(--dim);}
+#boot .lines b{color:var(--sig-ink); font-weight:500;}
+#boot .lines div{opacity:0;}
+#boot .lines div.on{opacity:1;}
+#boot .cur{display:inline-block; width:8px; height:15px; background:var(--sig);
+  vertical-align:-2px; animation:blink 1s steps(1) infinite;}
+@keyframes blink{50%{opacity:0;}}
+#boot.gone{opacity:0; pointer-events:none; transition:opacity .34s ease;}
+#boot .skip{position:absolute; bottom:22px; left:0; right:0; text-align:center;
+  font-size:10.5px; letter-spacing:.18em; color:var(--faint);}
+
+/* ============ shell ============ */
+#os{position:fixed; inset:0; display:flex; flex-direction:column; opacity:0;}
+#os.up{opacity:1; transition:opacity .3s ease;}
+
+#top{flex:none; height:30px; display:flex; align-items:center; gap:16px;
+  padding:0 14px; background:var(--deck); border-bottom:1px solid var(--line);
+  font-family:var(--mono); font-size:11px; letter-spacing:.09em; color:var(--dim);}
+#top .brand{color:var(--txt); font-weight:700; letter-spacing:.22em;}
+#top .brand i{font-style:normal; color:var(--sig-ink);}
+#top .right{margin-left:auto; display:flex; align-items:center; gap:12px;}
+#top .led{width:6px; height:6px; border-radius:50%; background:var(--sig);
+  box-shadow:0 0 7px var(--sig);}
+#top button{font-family:var(--mono); font-size:11px; letter-spacing:.09em; color:var(--dim);
+  padding:3px 8px; border-radius:4px;}
+#top button:hover{color:var(--txt); background:rgba(24,26,32,.05);}
+
+#desk{position:relative; flex:1 1 auto; overflow:hidden;
+  background:
+    radial-gradient(86% 60% at 15% -10%, rgba(255,255,255,.42) 0%, transparent 58%),
+    radial-gradient(74% 56% at 100% 108%, rgba(96,101,112,.14) 0%, transparent 58%),
+    linear-gradient(168deg,#E4E6EA 0%, #D8DBE1 46%, #CCD0D6 100%);}
+#grid{position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(24,26,32,.038) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24,26,32,.038) 1px, transparent 1px);
+  background-size:26px 26px;}
+
+/* ============ orbital system ============ */
+#sky{position:absolute; inset:0; z-index:0; pointer-events:none;}
+#sky svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible; display:block;}
+#sky circle.ra{fill:none; stroke:rgba(30,34,42,.24); stroke-width:1; stroke-dasharray:2 10;}
+#sky .cl{fill:none; stroke:rgba(38,42,50,.40); stroke-width:1; stroke-linecap:round;
+  stroke-linejoin:round;}
+#sky .cd{stroke:none; fill:rgba(38,42,50,.5); animation:tw 3.6s ease-in-out infinite;}
+#sky .cd:nth-of-type(2){animation-duration:5.1s; animation-delay:.9s;}
+#sky .cd:nth-of-type(3){animation-duration:4.2s; animation-delay:1.7s;}
+@keyframes tw{0%,100%{opacity:.45} 50%{opacity:1}}
+#sky text{font-family:var(--mono); text-anchor:middle;}
+#sky text.ct{font-size:10px; letter-spacing:.28em; fill:#3D424A;}
+
+.planet{position:absolute; left:-999px; top:0; z-index:3; pointer-events:auto;
+  cursor:pointer; touch-action:none; transition:transform .36s cubic-bezier(.2,1,.3,1);}
+.planet:hover{transform:scale(1.035);}
+#coreA{width:176px; height:176px;}
+.planet svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible; display:block;}
+.planet .rg{fill:none; stroke:var(--sig); stroke-width:2; opacity:.78;}
+.planet .rf{fill:none; stroke:var(--sig); stroke-width:2.1; opacity:.9;
+  filter:drop-shadow(0 1px 2px rgba(26,30,38,.28));}
+.planet .rg2{stroke-width:1.1; opacity:.4; stroke-dasharray:3 7;
+  animation:drift 60s linear infinite;}
+@keyframes drift{to{stroke-dashoffset:-200;}}
+.planet .halo{position:absolute; left:50%; top:50%; width:86%; height:86%;
+  transform:translate(-50%,-50%); border-radius:50%; pointer-events:none;
+  background:radial-gradient(circle, rgba(255,154,60,.17) 0%, rgba(255,154,60,0) 66%);
+  animation:rim 5.5s ease-in-out infinite;}
+@keyframes rim{0%,100%{opacity:.55} 50%{opacity:1}}
+.planet .orb{position:absolute; left:50%; top:50%; width:59%; height:59%;
+  margin-left:-29.5%; margin-top:-29.5%; border-radius:50%;
+  display:grid; place-items:center; pointer-events:none;
+  background:radial-gradient(circle at 31% 25%, #FFFFFF 0%, #F4F5F8 44%, #D6DAE1 100%);
+  box-shadow:0 16px 32px rgba(26,30,38,.22), inset 0 0 0 1px rgba(255,255,255,.95),
+             inset -10px -12px 26px rgba(20,22,28,.13);}
+.planet .cap{font-family:var(--mono); color:#3B3E45; display:block;
+  font-size:10.5px; letter-spacing:.24em;}
+.planet .lbl{position:absolute; left:-24px; right:-24px; bottom:-3px; text-align:center;
+  font-family:var(--mono); font-size:9px; letter-spacing:.24em; color:var(--sig-ink);
+  opacity:0; transition:opacity .26s ease;}
+.planet:hover .lbl{opacity:1;}
+
+/* ============ context menu ============ */
+#menu{position:fixed; z-index:75; min-width:208px; padding:5px; display:none;
+  background:var(--panel); border:1px solid var(--line2); border-radius:8px;
+  box-shadow:0 20px 48px rgba(26,30,38,.24); font-family:var(--mono); font-size:11.5px;}
+#menu.on{display:block; animation:mpop .13s cubic-bezier(.2,1,.3,1) both;}
+@keyframes mpop{from{opacity:0; transform:translateY(-5px) scale(.97)} to{opacity:1; transform:none}}
+#menu button{display:flex; width:100%; align-items:center; gap:16px; padding:7px 10px;
+  border-radius:5px; color:var(--dim); letter-spacing:.05em; text-align:left;}
+#menu button:hover{background:var(--sig-soft); color:var(--sig-ink);}
+#menu button s{margin-left:auto; text-decoration:none; color:var(--faint); font-size:10px;}
+#menu button:hover s{color:var(--sig-ink); opacity:.7;}
+#menu hr{border:none; border-top:1px solid var(--line); margin:5px 8px;}
+
+/* ============ desktop icons ============ */
+#icons{position:absolute; inset:0; z-index:1; pointer-events:none;}
+.ico{position:absolute; left:0; top:0; width:104px; pointer-events:auto; touch-action:none;
+  display:flex; flex-direction:column; align-items:center; gap:6px; padding:9px 4px 8px;
+  border-radius:8px; border:1px solid transparent; cursor:grab; text-align:center;
+  will-change:transform;}
+.ico.moving{cursor:grabbing;}
+.ico.moving .tile{box-shadow:0 14px 26px rgba(26,30,38,.30), 0 0 0 2px rgba(255,154,60,.55);}
+.ico.ret .tile{box-shadow:0 9px 20px rgba(26,30,38,.24), 0 0 0 2px rgba(255,154,60,.34);}
+.ico:hover{background:rgba(255,255,255,.62);}
+.ico.sel{background:rgba(255,255,255,.82); border-color:rgba(255,154,60,.55);}
+.ico .tile{width:40px; height:40px; border-radius:11px; background:var(--deck);
+  border:1px solid rgba(24,26,32,.09); box-shadow:0 4px 12px rgba(26,30,38,.20);
+  display:grid; place-items:center;}
+.ico.sel .tile{border-color:var(--sig);}
+.ico svg{width:23px; height:23px; display:block;}
+.ico .g{fill:none; stroke:#F0800C; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+.ico .gf{fill:#F0800C; stroke:none;}
+.ico span{font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; color:#33363C;
+  line-height:1.3; word-break:break-word; text-shadow:0 1px 0 rgba(255,255,255,.7);}
+.ico.sel span{color:var(--txt);}
+
+/* ============ windows ============ */
+#wins{position:absolute; inset:0;}
+.win{position:absolute; display:flex; flex-direction:column; background:var(--panel);
+  border:1px solid var(--line2); border-radius:9px; overflow:hidden;
+  box-shadow:0 12px 34px rgba(26,30,38,.20); min-width:300px; min-height:180px;}
+.win.on{border-color:var(--line2); box-shadow:0 22px 56px rgba(26,30,38,.28), 0 0 0 1px rgba(255,154,60,.42);}
+.win.pop{animation:wpop .17s cubic-bezier(.2,.9,.3,1) both;}
+@keyframes wpop{from{opacity:0; transform:scale(.965);} to{opacity:1; transform:none;}}
+.win.min{animation:wmin .18s ease forwards;}
+@keyframes wmin{to{opacity:0; transform:scale(.9) translateY(28px);}}
+.tbar{flex:none; height:31px; display:flex; align-items:center; gap:9px; padding:0 6px 0 11px;
+  background:var(--panel2); border-bottom:1px solid var(--line); cursor:default;}
+.tbar .nm{font-family:var(--mono); font-size:11.5px; letter-spacing:.07em; color:var(--faint);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.win.on .tbar .nm{color:var(--sig-ink);}
+.tbar .sp{flex:1 1 auto; min-width:8px;}
+.tbar .ctl{display:flex; gap:1px;}
+.tbar .ctl button{width:26px; height:22px; border-radius:4px; font-family:var(--mono);
+  font-size:12px; color:var(--faint); line-height:1;}
+.tbar .ctl button:hover{color:var(--txt); background:rgba(24,26,32,.07);}
+.tbar .ctl button.x:hover{color:#fff; background:var(--sig);}
+.body{flex:1 1 auto; overflow:auto; overscroll-behavior:contain; user-select:text;}
+.rz{position:absolute; z-index:3;}
+.rz.e{top:0; right:0; width:6px; height:100%; cursor:ew-resize;}
+.rz.s{left:0; bottom:0; height:6px; width:100%; cursor:ns-resize;}
+.rz.se{right:0; bottom:0; width:15px; height:15px; cursor:nwse-resize;}
+.rz.se::after{content:""; position:absolute; right:3px; bottom:3px; width:7px; height:7px;
+  border-right:1.5px solid var(--line3); border-bottom:1.5px solid var(--line3);}
+#ghost{position:absolute; border:1px solid var(--sig); background:var(--sig-soft);
+  border-radius:9px; pointer-events:none; opacity:0; transition:opacity .12s ease; z-index:2;}
+#ghost.on{opacity:1;}
+
+.body::-webkit-scrollbar{width:9px; height:9px;}
+.body::-webkit-scrollbar-track{background:transparent;}
+.body::-webkit-scrollbar-thumb{background:rgba(24,26,32,.16); border-radius:9px;}
+.body::-webkit-scrollbar-thumb:hover{background:rgba(24,26,32,.28);}
+
+/* ============ taskbar ============ */
+#bar{flex:none; height:34px; display:flex; align-items:center; gap:7px; padding:0 10px;
+  background:var(--deck); border-top:1px solid var(--line); font-family:var(--mono); font-size:11px;}
+#bar .k{padding:5px 9px; border-radius:5px; color:var(--dim); letter-spacing:.07em;
+  border:1px solid transparent; white-space:nowrap; display:flex; align-items:center; gap:7px;
+  text-decoration:none;}
+#bar .lnk svg{width:13px; height:13px; fill:currentColor; display:block;}
+#bar .lnk:hover{color:var(--sig-ink); background:var(--sig-soft);}
+#bar .lnk{border-left:1px solid var(--line); border-radius:0 5px 5px 0; padding-left:12px;
+  margin-left:3px;}
+#bar .k:hover{color:var(--txt); background:rgba(24,26,32,.05);}
+#tasks{display:flex; gap:5px; align-items:center; overflow:hidden; flex:1 1 auto;}
+.tk{display:flex; align-items:center; gap:7px; padding:5px 10px; border-radius:5px;
+  border:1px solid var(--line); color:var(--dim); letter-spacing:.06em; max-width:190px;}
+.tk:hover{color:var(--txt); background:rgba(24,26,32,.05);}
+.tk.on{color:var(--sig-ink); border-color:rgba(255,154,60,.55); background:var(--sig-soft);}
+.tk i{width:5px; height:5px; border-radius:50%; background:currentColor; flex:none; opacity:.7;}
+.tk span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+#clock{margin-left:auto; color:var(--dim); letter-spacing:.1em; font-variant-numeric:tabular-nums;
+  padding-left:10px; border-left:1px solid var(--line);}
+
+/* ============ command palette ============ */
+#pal{position:fixed; inset:0; z-index:60; background:rgba(44,48,56,.30);
+  display:grid; place-items:start center; padding-top:13vh; opacity:0; pointer-events:none;
+  transition:opacity .16s ease;}
+#pal.on{opacity:1; pointer-events:auto;}
+#palbox{width:min(520px,92vw); background:var(--panel); border:1px solid var(--line2);
+  border-radius:10px; box-shadow:0 26px 62px rgba(26,30,38,.30); overflow:hidden;
+  transform:translateY(-8px) scale(.985); transition:transform .18s cubic-bezier(.2,1,.35,1);}
+#pal.on #palbox{transform:none;}
+#palin{width:100%; padding:14px 16px; background:none; border:none; outline:none;
+  font-family:var(--mono); font-size:13.5px; color:var(--txt); letter-spacing:.04em;
+  border-bottom:1px solid var(--line);}
+#palin::placeholder{color:var(--faint);}
+#pallist{max-height:44vh; overflow:auto; padding:6px;}
+#pallist div{display:flex; align-items:center; gap:11px; padding:9px 11px; border-radius:6px;
+  font-family:var(--mono); font-size:12px; color:var(--dim); cursor:pointer; letter-spacing:.05em;}
+#pallist div em{font-style:normal; margin-left:auto; color:var(--faint); font-size:10px;}
+#pallist div.cur{background:var(--sig-soft); color:var(--sig-ink);}
+#pallist div.cur em{color:var(--sig-ink); opacity:.65;}
+
+/* ============ window content ============ */
+.doc{padding:22px 26px 28px; max-width:none;}
+.doc.mono{font-family:var(--mono); font-size:12.5px; line-height:1.85; color:var(--dim);}
+.doc.mono b{color:var(--txt); font-weight:500;}
+.doc.mono .hr{height:1px; background:var(--line); margin:16px 0;}
+.doc.mono a{color:var(--sig-ink); text-decoration:none; border-bottom:1px solid rgba(185,100,10,.35);}
+.doc h1{font-family:var(--ui); font-size:23px; font-weight:700; letter-spacing:-.01em;
+  margin:0 0 4px; color:var(--txt);}
+.doc .meta{font-family:var(--mono); font-size:11px; color:var(--faint); letter-spacing:.08em;
+  margin:0 0 16px;}
+.doc .lede{font-size:15.5px; color:var(--dim); margin:0 0 20px; max-width:62ch; line-height:1.6;}
+.doc p{margin:0 0 13px; max-width:66ch; line-height:1.68; color:var(--dim);}
+.doc .rail{margin:20px 0 0; border:1px solid var(--line); border-radius:8px; padding:15px 16px;
+  background:rgba(24,26,32,.032);}
+.doc .rail h3{font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--faint); margin:0 0 11px; font-weight:500;}
+.doc .rail ol{margin:0; padding:0; list-style:none; counter-reset:s;}
+.doc .rail li{font-family:var(--mono); font-size:11.5px; line-height:1.6; color:var(--dim);
+  padding:0 0 6px 26px; position:relative; counter-increment:s;}
+.doc .rail li::before{content:counter(s,decimal-leading-zero); position:absolute; left:0;
+  color:var(--sig-ink); font-size:10px; opacity:.6;}
+.doc .rail li b{color:var(--sig-ink); font-weight:500;}
+.doc .tags{display:flex; flex-wrap:wrap; gap:6px; margin:18px 0 0;}
+.doc .tags span{font-family:var(--mono); font-size:10px; letter-spacing:.06em; color:var(--dim);
+  border:1px solid var(--line); border-radius:5px; padding:4px 8px;}
+.doc .badges{display:flex; flex-wrap:wrap; gap:7px; margin:0 0 18px;}
+.doc .badges span{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  border:1px solid var(--line); border-radius:5px; padding:5px 9px; color:var(--faint);}
+.doc .badges span.on{color:var(--sig-ink); border-color:rgba(255,154,60,.55); background:var(--sig-soft);}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:18px;}
+.grid2 h4{font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--faint); margin:0 0 7px; font-weight:500;}
+.grid2 p{font-size:14px; margin:0; color:var(--dim);}
+.card{display:flex; gap:16px; align-items:center; padding:22px 26px;}
+.card img{width:74px; height:74px; border-radius:16px; object-fit:cover; border:1px solid var(--line2);}
+.card b{display:block; font-family:var(--ui); font-size:18px; font-weight:600; color:var(--txt);}
+.card .r{font-family:var(--mono); font-size:11px; color:var(--faint); letter-spacing:.09em;
+  margin-top:3px;}
+.links{padding:0 26px 24px; display:flex; flex-direction:column; gap:7px;}
+.links a{font-family:var(--mono); font-size:12px; color:var(--sig-ink); text-decoration:none;
+  border-bottom:1px solid rgba(185,100,10,.3); align-self:flex-start;}
+
+/* ============ mobile ============ */
+body.mob #icons{position:static; inset:auto; width:auto; padding:14px; height:auto;
+  display:flex; flex-direction:column; gap:8px; pointer-events:auto;}
+body.mob .ico{position:static; width:auto; touch-action:auto;}
+body.mob .ico{flex-direction:row; align-items:center; gap:13px; text-align:left;
+  padding:12px 13px; border:1px solid var(--line); background:var(--deck);}
+body.mob .ico span{font-size:12.5px;}
+body.mob #desk{overflow:auto;}
+body.mob #grid,body.mob #sky,body.mob .planet{display:none;}
+body.mob #top{gap:10px; padding:0 11px;}
+body.mob #top .brand{white-space:nowrap; font-size:10px; letter-spacing:.13em;}
+.mb{display:none;}
+body.mob .dk{display:none;}
+body.mob .mb{display:inline;}
+body.mob .ico{transform:none!important; opacity:1!important;}
+body.mob .win{position:fixed !important; inset:30px 0 34px 0 !important;
+  width:auto !important; height:auto !important; border-radius:0; border-left:none; border-right:none;}
+body.mob .rz{display:none;}
+body.mob .tbar .ctl button.mn,body.mob .tbar .ctl button.mx{display:none;}
+body.mob #tasks{display:none;}
+body.mob .doc{padding:18px 16px 26px;}
+
+/* =====================================================================
+   NIGHT SKY
+   The whole scene lives in #space, one layer stack under the desk:
+   dome (sky gradient) -> nebulae -> milky way -> stars -> coordinate grid.
+   Day mode never paints any of it.
+
+   Techniques adapted from two MIT-licensed projects:
+     CK42BB/procedural-stars-threejs (MIT, (c) 2026 Kingsley)
+       magnitude to brightness, multi-frequency twinkle, the core+glow star
+       profile, milky way as band * fbm * (1 - dust) + core, sky dome with
+       a horizon glow term for light pollution.
+     H0rn0chse/NightSky (MIT, (c) 2022 H0rn0chse)
+       star density scaled to viewport area, stars split into parallax layers.
+   Both are GLSL / generated-CSS originally. This is a 2D canvas rewrite.
+   ===================================================================== */
+
+#space{position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0;
+  opacity:0; visibility:hidden;
+  transition:opacity 1.15s ease, visibility 0s linear 1.15s;}
+html[data-theme=night] #space{opacity:1; visibility:visible;
+  transition:opacity 1.15s ease, visibility 0s linear 0s;}
+#space > *{position:absolute;}
+#space canvas{inset:0; width:100%; height:100%; display:block;}
+
+/* the sky itself. Zenith at the top, and a warm haze at the horizon: that is
+   light pollution, and it is painted in the signature orange so the scene
+   stays on brand instead of going generic-space-blue. */
+.dome{inset:0;
+  background:
+    radial-gradient(120% 48% at 46% 110%, rgba(255,154,60,.085) 0%, rgba(255,154,60,0) 60%),
+    radial-gradient(92% 60% at 20% 6%, rgba(58,80,142,.16) 0%, transparent 66%),
+    linear-gradient(177deg,#03040A 0%,#05070E 36%,#070A14 68%,#0B1020 100%);}
+
+/* a reflection nebula: dust scattering starlight, so blue dominates. Chosen
+   over an emission nebula because vivid pink would fight the interface. */
+.neb{display:none;}   /* the shader carries the colour; these are kept for the photo mode */
+.neb.n1{left:-16%; top:-20%; width:64%; height:76%;
+  background:radial-gradient(circle, rgba(68,136,221,.10) 0%, rgba(68,136,221,0) 66%);
+  animation:nd1 124s ease-in-out infinite;}
+.neb.n2{left:22%; top:30%; width:72%; height:84%;
+  background:radial-gradient(circle, rgba(104,150,206,.10) 0%, rgba(118,92,190,.07) 42%, rgba(104,150,206,0) 72%);
+  animation:nd2 168s ease-in-out infinite;}
+.neb.n3{left:-10%; bottom:-34%; width:84%; height:64%;
+  background:radial-gradient(circle, rgba(255,154,60,.12) 0%, rgba(255,154,60,0) 64%);
+  animation:nd3 98s ease-in-out infinite;}
+@keyframes nd1{0%,100%{transform:translate(0,0)}50%{transform:translate(4%,3%)}}
+@keyframes nd2{0%,100%{transform:translate(0,0)}50%{transform:translate(-5%,-2.5%)}}
+@keyframes nd3{0%,100%{transform:translate(0,0)}50%{transform:translate(3%,-2%)}}
+
+/* ---------- the photograph ----------
+   NASA, ESA, CSA, STScI. JWST NIRCam and MIRI, the Crab Nebula (M1), the
+   wreckage of the supernova Chinese astronomers recorded in 1054.
+   The texture is even across the frame, so the scrims below darken evenly
+   rather than knocking back one edge. 2958px wide, 521KB webp. */
+.photo{left:-24px; top:-24px; width:calc(100% + 48px); height:calc(100% + 48px);
+  background:none center center / cover no-repeat;
+  opacity:0; transition:opacity 2.2s ease .18s; will-change:transform;}
+html[data-theme=night] body.photosky .photo{opacity:1;}
+/* the plate is the backdrop, not the subject: knock the lit ridge back, cool
+   the blue toward the interface navy, and keep the middle readable */
+.scrim{inset:0; background:
+  linear-gradient(to top, rgba(3,4,10,.40) 0%, rgba(3,4,10,.16) 14%, transparent 34%),
+  linear-gradient(to bottom, rgba(6,9,19,.28) 0%, rgba(6,9,19,.06) 20%, transparent 36%),
+  radial-gradient(72% 60% at 83% 30%, rgba(4,6,14,.30) 0%, rgba(4,6,14,0) 74%),
+  radial-gradient(118% 92% at 44% 46%, rgba(5,8,17,0) 0%, rgba(4,6,14,.46) 100%),
+  linear-gradient(rgba(8,11,22,.22), rgba(8,11,22,.22));}
+body.photosky #gal,body.photosky #mwc,body.photosky .neb{display:none;}
+html:not([data-theme=night]) .scrim{opacity:0;}
+.scrim{opacity:0; transition:opacity 2.2s ease .18s;}
+html[data-theme=night] body.photosky .scrim{opacity:1;}
+
+/* the galaxy, drawn by a fragment shader at full device resolution.
+   Oversized so the parallax shift never exposes an edge. */
+#gal{left:-20px; top:-20px; width:calc(100% + 40px); height:calc(100% + 40px);
+  opacity:0; transition:opacity 2.2s ease .25s; will-change:transform;}
+html[data-theme=night] #gal{opacity:1;}
+
+/* the faint field: thousands of stars, painted once, moved as a whole */
+#fine{opacity:0; transition:opacity 1.7s ease .12s;}
+html[data-theme=night] #fine{opacity:1;}
+
+/* the 2d galaxy, used only where webgl is missing */
+#mwc{left:-14px; top:-14px; width:calc(100% + 28px); height:calc(100% + 28px);
+  opacity:0; transition:opacity 2.1s ease .3s; will-change:transform;}
+html[data-theme=night] #mwc{opacity:1;}
+
+/* depth: the corners fall away from the eye */
+.vig{inset:0; background:radial-gradient(132% 96% at 48% 44%,
+  rgba(0,0,0,0) 52%, rgba(2,3,8,.12) 78%, rgba(2,3,8,.34) 100%);}
+
+/* the millimetre paper of day becomes a coordinate grid at night */
+.dgrid{inset:0;
+  background-image:
+    linear-gradient(rgba(150,180,255,.040) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(150,180,255,.040) 1px, transparent 1px);
+  background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(118% 96% at 50% 48%, #000 14%, transparent 76%);
+  mask-image:radial-gradient(118% 96% at 50% 48%, #000 14%, transparent 76%);}
+#grid{transition:opacity .9s ease;}
+html[data-theme=night] #grid{opacity:0;}
+
+/* ---------- night tokens ---------- */
+html[data-theme=night]{
+  --chassis:#080A10; --deck:#0C0F18; --panel:#141824; --panel2:#1A1F2C;
+  --line:rgba(158,180,224,.10); --line2:rgba(158,180,224,.19); --line3:rgba(158,180,224,.31);
+  --txt:#E6EAF4; --dim:#9AA4BA; --faint:#6C758E;
+  --sig:#FFA24D; --sig-ink:#FFB066; --sig-dim:#C07B33; --sig-soft:rgba(255,162,77,.15);
+  --shadow:rgba(0,0,0,.62);
+}
+html[data-theme=night] ::selection{background:var(--sig); color:#160E04;}
+
+/* ---------- chrome ---------- */
+html[data-theme=night] #top,
+html[data-theme=night] #bar{background:rgba(9,12,20,.46);
+  -webkit-backdrop-filter:blur(20px) saturate(1.2); backdrop-filter:blur(20px) saturate(1.2);}
+html[data-theme=night] #top button:hover,
+html[data-theme=night] #bar .k:hover,
+html[data-theme=night] .tbar .ctl button:hover{background:rgba(180,200,255,.09);}
+html[data-theme=night] #desk{background:#05060B;}
+html[data-theme=night] .body::-webkit-scrollbar-thumb{background:rgba(170,190,235,.17);}
+html[data-theme=night] .body::-webkit-scrollbar-thumb:hover{background:rgba(170,190,235,.30);}
+html[data-theme=night] #pal{background:rgba(4,6,12,.55);
+  -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px);}
+html[data-theme=night] #palbox,
+html[data-theme=night] #menu{background:rgba(20,24,36,.92);
+  -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
+  box-shadow:0 26px 62px rgba(0,0,0,.66);}
+
+/* ---------- orbit and asterism ---------- */
+html[data-theme=night] #sky circle.ra{stroke:rgba(178,200,255,.22);}
+html[data-theme=night] #sky .cl{stroke:rgba(206,226,255,.62); stroke-width:1.15;}
+html[data-theme=night] #sky .cd{opacity:0;}        /* the canvas draws these instead */
+html[data-theme=night] #sky text.ct{fill:#B9C6E2;}
+#sky text.ct,#sky circle.ra,#sky .cl{transition:fill .7s ease, stroke .7s ease;}
+#sky text.cal{font-size:8px; letter-spacing:.24em; fill:#79839C; opacity:0;}
+html:not([data-theme=night]) #sky text.cal{opacity:0 !important;}
+
+/* ---------- the planet ---------- */
+.planet .cap{position:relative; z-index:1;}
+.planet .orb{transition:box-shadow 1.15s ease;}
+/* the night surface fades in on a pseudo element, because a gradient swap
+   cannot be transitioned and the planet must not snap while the sky fades */
+.planet .orb::before{content:""; position:absolute; inset:0; border-radius:50%;
+  opacity:0; transition:opacity 1.15s ease;
+  background:
+    radial-gradient(circle at 74% 79%, rgba(255,162,77,.52) 0%, rgba(255,162,77,0) 33%),
+    radial-gradient(circle at 33% 25%, #8B98B6 0%, #5B6580 25%, #353D55 51%, #1C2130 74%, #0D1018 100%);
+  box-shadow:inset -16px -14px 36px rgba(0,0,0,.72),
+             inset 11px 9px 26px rgba(152,178,228,.11);}
+html[data-theme=night] .planet .orb::before{opacity:1;}
+/* the shader planet, when the gpu can draw one. It sits proud of the orb so
+   the atmosphere has somewhere to glow. */
+/* ---------- the solar system ----------
+   body.sysgl is set only when the gpu actually drew the bodies, so a machine
+   without webgl keeps the css sphere and the ordinary folder tiles. */
+#sys{opacity:0; transition:opacity 1.2s ease .28s;}
+html[data-theme=night] #sys{opacity:1;}
+
+/* the centre is a star now, and a star does not wear a ring */
+#coreA .lb,#coreA .lf,#coreA .halo{transition:opacity .9s ease;}
+html[data-theme=night] body.sysgl #coreA .lb,
+html[data-theme=night] body.sysgl #coreA .lf,
+html[data-theme=night] body.sysgl #coreA .halo{opacity:0;}
+html[data-theme=night] body.sysgl .planet .orb{background:none; box-shadow:none;}
+html[data-theme=night] body.sysgl .planet .orb::before{opacity:0;}
+html[data-theme=night] body.sysgl .planet:hover{transform:none;}
+/* the label steps off the star and sits under it, like every other body */
+html[data-theme=night] body.sysgl .planet .cap{position:absolute; left:-46px; right:-46px;
+  top:calc(100% + 13px); text-align:center; color:#EBC896;
+  text-shadow:0 1px 4px rgba(0,0,0,.95), 0 0 10px rgba(0,0,0,.7);}
+
+/* each orbiting folder is a world, so its tile stops being a tile. Not on
+   the phone layout: a window narrowed below 760px turns the orbit back into
+   a list, and a list row with no icon is just a word. */
+html[data-theme=night] body.sysgl:not(.mob) .ico.sys .tile,
+html[data-theme=night] body.sysgl:not(.mob) .ico.con .tile{background:none; border-color:transparent;
+  box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none;}
+html[data-theme=night] body.sysgl:not(.mob) .ico.sys .tile svg,
+html[data-theme=night] body.sysgl:not(.mob) .ico.con .tile svg{opacity:0;}
+html[data-theme=night] body.sysgl:not(.mob) .ico.con.moving .tile,
+html[data-theme=night] body.sysgl:not(.mob) .ico.con.ret .tile{box-shadow:none;}
+html[data-theme=night] body.sysgl:not(.mob) .ico.con.sel .tile{box-shadow:0 0 0 2px rgba(255,162,77,.55);}
+html[data-theme=night] body.sysgl:not(.mob) .ico.sys.moving .tile,
+html[data-theme=night] body.sysgl:not(.mob) .ico.sys.ret .tile{box-shadow:none;}
+html[data-theme=night] body.sysgl:not(.mob) .ico.sys.sel .tile{box-shadow:0 0 0 2px rgba(255,162,77,.55);}
+html[data-theme=night] .planet .orb{
+  box-shadow:0 0 0 1px rgba(186,208,255,.10), 0 0 72px rgba(108,144,226,.17);}
+html[data-theme=night] .planet .cap{color:#EDF1F8;
+  text-shadow:0 1px 3px rgba(0,0,0,.95), 0 0 12px rgba(0,0,0,.85), 0 0 22px rgba(0,0,0,.6);}
+html[data-theme=night] .planet .halo{width:120%; height:120%;
+  background:radial-gradient(circle, rgba(122,162,255,.19) 0%, rgba(122,162,255,0) 62%);}
+html[data-theme=night] .planet .rf{filter:drop-shadow(0 0 5px rgba(255,162,77,.6));}
+
+/* ---------- icons read as instruments floating in the dark ---------- */
+html[data-theme=night] .ico .tile{background:rgba(26,31,45,.62);
+  -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px);
+  border-color:rgba(176,198,246,.13);
+  box-shadow:0 6px 20px rgba(0,0,0,.55), inset 0 1px 0 rgba(200,220,255,.07);}
+html[data-theme=night] .ico .g{stroke:#FFAE5E;}
+html[data-theme=night] .ico .gf{fill:#FFAE5E;}
+html[data-theme=night] .ico svg{filter:drop-shadow(0 0 5px rgba(255,150,50,.42));}
+html[data-theme=night] .ico span{color:#C3CBDD; text-shadow:0 1px 4px rgba(0,0,0,.9);}
+html[data-theme=night] .ico:hover{background:rgba(180,205,255,.07);}
+html[data-theme=night] .ico.sel{background:rgba(180,205,255,.11); border-color:rgba(255,162,77,.5);}
+html[data-theme=night] .ico.sel span{color:var(--txt);}
+html[data-theme=night] .ico.moving .tile{box-shadow:0 16px 30px rgba(0,0,0,.6), 0 0 0 2px rgba(255,162,77,.55);}
+html[data-theme=night] .ico.ret .tile{box-shadow:0 10px 24px rgba(0,0,0,.5), 0 0 0 2px rgba(255,162,77,.34);}
+.ico .tile,.ico span,.ico svg{transition:background-color .7s ease, color .7s ease,
+  border-color .7s ease, box-shadow .7s ease, filter .7s ease;}
+
+/* ---------- windows read as glass held up against the sky ---------- */
+html[data-theme=night] .win{background:rgba(17,21,32,.88);
+  -webkit-backdrop-filter:blur(18px) saturate(1.15); backdrop-filter:blur(18px) saturate(1.15);
+  box-shadow:0 18px 52px rgba(0,0,0,.62);}
+html[data-theme=night] .win.on{box-shadow:0 28px 72px rgba(0,0,0,.7), 0 0 0 1px rgba(255,162,77,.4);}
+html[data-theme=night] .tbar{background:rgba(27,32,46,.72);}
+html[data-theme=night] .doc .rail{background:rgba(160,185,240,.045);}
+html[data-theme=night] .doc.mono a,
+html[data-theme=night] .links a{border-bottom-color:rgba(255,176,102,.38);}
+.win,.tbar{transition:background-color .7s ease, box-shadow .7s ease, border-color .7s ease;}
+body,#desk{transition:background-color .7s ease, color .7s ease;}
+
+/* ---------- the toggle ---------- */
+#thbtn{letter-spacing:.15em; display:flex; align-items:center; gap:6px;}
+#thbtn i{display:block; width:7px; height:7px; border-radius:50%; font-style:normal;
+  border:1px solid currentColor; transition:box-shadow .5s ease, background .5s ease;}
+html[data-theme=night] #thbtn i{background:var(--sig); border-color:var(--sig);
+  box-shadow:0 0 8px var(--sig);}
+
+/* the sky is drawn from a real catalogue, and the catalogue gets its line.
+   Faint, technical, out of the way: bottom left, because the bottom right
+   belongs to the telescope. */
+#credit{position:absolute; left:14px; bottom:10px; z-index:2; pointer-events:none;
+  font-family:var(--mono); font-size:8.5px; letter-spacing:.22em; color:#9AA4BA;
+  text-shadow:0 1px 4px rgba(0,0,0,.9);
+  opacity:0; transition:opacity 1.4s ease .6s;}
+html[data-theme=night] #credit{opacity:1;}
+body.mob #credit{display:none;}
+
+/* ---------- phone ----------
+   The phone gets the sky, not the machinery. The nebula and the star field
+   are painted once and then nothing moves: no orbit, no twinkle, no meteor,
+   no animation frame at all. #sys, which is the solar system, stays off
+   because a list of folders has nothing to orbit.
+
+   The sky is fixed rather than absolute so it does not slide when the list
+   scrolls: the sky should sit still while the content moves over it. */
+body.mob #sys,body.mob #mwc,body.mob .neb,body.mob .dgrid{display:none;}
+body.mob #space{position:fixed; top:30px; left:0; right:0; bottom:34px;
+  transition:opacity .9s ease;}
+body.mob .vig{background:radial-gradient(130% 70% at 50% 24%,
+  rgba(0,0,0,0) 42%, rgba(2,3,8,.22) 74%, rgba(2,3,8,.52) 100%);}
+/* the list sits on the sky, so the tiles need a little more body under them */
+html[data-theme=night] body.mob .ico{background:rgba(14,18,28,.58);
+  -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+  border-color:rgba(168,192,238,.13);}
+html[data-theme=night] body.mob .win{background:rgba(12,15,24,.94);}
+
+/* In night the desk is a sky, and a sky is not labelled. Every name waits for
+   the pointer. The palette and the readme still list everything by name, and
+   on mobile, where there is no hover, the labels stay put. */
+html[data-theme=night] body.sysgl .ico span{opacity:0; transition:opacity .22s ease;}
+html[data-theme=night] body.sysgl .ico:hover span,
+html[data-theme=night] body.sysgl .ico:focus span,
+html[data-theme=night] body.sysgl .ico:focus-within span,
+html[data-theme=night] body.sysgl .ico.sel span,
+html[data-theme=night] body.sysgl .ico.moving span{opacity:1;}
+html[data-theme=night] body.sysgl .planet .cap{opacity:0; transition:opacity .22s ease;}
+html[data-theme=night] body.sysgl .planet:hover .cap,
+html[data-theme=night] body.sysgl .planet:focus .cap{opacity:1;}
+html[data-theme=night] body.sysgl .planet .lbl{display:none;}
+html[data-theme=night] body.sysgl #sky text.ct{opacity:0; transition:opacity .4s ease;}
+html[data-theme=night] body.sysgl #sky.near text.ct{opacity:1;}
+body.mob .ico span{opacity:1 !important;}
+
+/* ---------- the telescope ----------
+   The night side is the best thing on this desk, and a button in the corner
+   of the menu bar is easy to miss. So the desk gets a telescope in its own
+   corner: the desk's own orange, no box, no label, standing straight on the
+   desk. Every few seconds a star flares where it points, and that is the
+   whole invitation. The button is padded past the drawing so it is still
+   an easy target. */
+#scope{position:absolute; right:24px; bottom:20px; z-index:1; padding:6px; border-radius:10px;}
+#scope:focus-visible{outline:2px solid var(--sig); outline-offset:1px;}
+#scope svg{width:30px; height:30px; display:block; overflow:visible;
+  transition:transform .4s cubic-bezier(.2,1,.3,1), filter .4s ease;}
+#scope:hover svg{transform:translateY(-2px); filter:drop-shadow(0 0 5px rgba(255,154,60,.45));}
+#scope .g,#scopeb .g{fill:none; stroke:#F0800C; stroke-width:1.8;
+  stroke-linecap:round; stroke-linejoin:round; transition:stroke .7s ease;}
+/* the tube pivots on its mount, so a hover lifts it a few degrees */
+#scope .aim,#scopeb .aim{transform-box:view-box; transform-origin:0 0;
+  transform:translate(2px,-2.5px) rotate(33deg); transition:transform .6s cubic-bezier(.2,1,.3,1);}
+#scope:hover .aim{transform:translate(2px,-2.5px) rotate(26deg);}
+
+/* the star: twice a flare, then dark for five seconds, over and over, and
+   the telescope catches a little of its light each time. It waits for
+   .live, which arrives when the boot screen goes, so the first flare is one
+   somebody can see. A hover holds it lit. */
+#scope .spk,#scopeb .spk{opacity:0; transform-box:fill-box; transform-origin:center;
+  filter:drop-shadow(0 0 2.2px rgba(255,140,40,.95));}
+#scope .spk .ray,#scopeb .spk .ray{fill:#FF9A3C;}
+#scope .spk .core,#scopeb .spk .core{fill:#FFF4E6;}
+#scope.live .spk,#scopeb.live .spk{animation:spark 6.5s ease-in-out 1.2s infinite;}
+#scope.live svg{animation:sglow 6.5s ease-in-out 1.2s infinite;}
+@keyframes spark{
+  0%{opacity:0; transform:scale(.15) rotate(-30deg);}
+  5%{opacity:1; transform:scale(1.6) rotate(0deg);}
+  10%{opacity:.85; transform:scale(.95) rotate(12deg);}
+  15%{opacity:1; transform:scale(1.25) rotate(22deg);}
+  24%,100%{opacity:0; transform:scale(.2) rotate(45deg);}
+}
+@keyframes sglow{
+  0%,24%,100%{filter:drop-shadow(0 0 0 rgba(255,154,60,0));}
+  6%{filter:drop-shadow(0 0 5px rgba(255,154,60,.55));}
+}
+#scope:hover .spk{animation:none; opacity:1; transform:none;}
+#scope:hover svg{animation:none;}
+
+/* at night the telescope glows like every other instrument in the dark,
+   and the star stops calling: the visitor is already where it pointed */
+html[data-theme=night] #scope .g,html[data-theme=night] #scopeb .g{stroke:#FFAE5E;}
+html[data-theme=night] #scope svg,html[data-theme=night] #scopeb svg{
+  filter:drop-shadow(0 0 5px rgba(255,150,50,.42));}
+html[data-theme=night] #scope:hover svg{filter:drop-shadow(0 0 8px rgba(255,150,50,.62));}
+html[data-theme=night] #scope.live svg,
+html[data-theme=night] #scope.live .spk,html[data-theme=night] #scopeb.live .spk{animation:none;}
+
+/* on the phone the desk is a list under a full-screen window, so the
+   telescope moves into the taskbar, next to the clock, where it is always
+   in view */
+#scopeb{display:none;}
+body.mob #scope{display:none;}
+body.mob #scopeb{display:flex; align-items:center; margin-left:auto; padding:3px 8px; border-radius:5px;}
+body.mob #scopeb + #clock{margin-left:0;}
+#scopeb svg{width:24px; height:24px; display:block; overflow:visible;}
+
+@media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important;} }
+</style>
+
+<script>
+/* the theme is resolved before the first paint, so night never opens with a white flash */
+(function(){
+  var t = null;
+  try{ t = localStorage.getItem("desk_theme"); }catch(e){}
+  if(t !== "night" && t !== "day"){
+    t = matchMedia("(prefers-color-scheme: dark)").matches ? "night" : "day";
+  }
+  document.documentElement.setAttribute("data-theme", t);
+})();
+</script>
+
+<div id="boot">
+  <div class="lines">
+    <div id="b1">system online</div>
+    <div id="b2">content pipeline <b>ready</b></div>
+    <div id="b3">onur can mığırdağı</div>
+    <div id="b4">ai content producer <span class="cur"></span></div>
+  </div>
+  <div class="skip">PRESS ANY KEY TO SKIP</div>
+</div>
+
+<div id="os">
+  <div id="top">
+    <span class="brand">onur can<i>&nbsp;mığırdağı</i></span>
+    <span class="right">
+      <button id="palbtn">&#8984;K</button>
+      <button id="thbtn" title="night sky (N)" aria-label="toggle night sky"><i></i><span>NIGHT</span></button>
+      <span class="led"></span>
+    </span>
+  </div>
+
+  <div id="desk">
+    <div id="space" aria-hidden="true">
+      <div class="dome"></div>
+      <div class="photo"></div>
+      <div class="scrim"></div>
+      <div class="neb n1"></div>
+      <div class="neb n2"></div>
+      <div class="neb n3"></div>
+      <canvas id="gal"></canvas>
+      <canvas id="mwc"></canvas>
+      <canvas id="fine"></canvas>
+      <canvas id="stc"></canvas>
+      <div class="dgrid"></div>
+      <canvas id="sys"></canvas>
+      <div class="vig"></div>
+    </div>
+    <div id="credit" aria-hidden="true">YALE BSC5 &middot; HIPPARCOS</div>
+    <div id="grid"></div>
+    <div id="sky"><svg>
+      <g id="ringA"><circle class="ra"/></g>
+      <g id="conB"></g>
+    </svg></div>
+
+    <div id="coreA" class="planet" role="button" tabindex="0" aria-label="open the readme">
+      <span class="halo"></span>
+      <svg class="lb" viewBox="-100 -100 200 200" aria-hidden="true"><g transform="rotate(-17)">
+        <ellipse class="rg" rx="99" ry="44"/>
+        <ellipse class="rg rg2" rx="114" ry="51"/>
+      </g></svg>
+      <span class="orb"><span class="cap">projects</span></span>
+      <svg class="lf" viewBox="-100 -100 200 200" aria-hidden="true">
+        <defs><clipPath id="clipA"><circle r="56"/></clipPath></defs>
+        <g clip-path="url(#clipA)" transform="rotate(-17)">
+          <path class="rf" d="M-99 0 A 99 44 0 0 0 99 0"/>
+        </g>
+      </svg>
+      <span class="lbl">readme</span>
+    </div>
+
+    <div id="icons"></div>
+    <div id="wins"></div>
+    <div id="ghost"></div>
+  </div>
+
+  <div id="bar">
+    <button class="k" id="barpal">SEARCH</button>
+    <a class="k lnk" href="https://www.linkedin.com/in/onurmigirdagi" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+      linkedin</a>
+    <div id="tasks"></div>
+    <span id="clock">--:--</span>
+  </div>
+</div>
+
+<div id="menu"></div>
+
+<div id="pal">
+  <div id="palbox">
+    <input id="palin" placeholder="open a project, a document, a tool..." autocomplete="off" spellcheck="false">
+    <div id="pallist"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(i){ return document.getElementById(i); };
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- icon art ---------- */
+  var ART = {
+    readme:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-9" y="-12" width="18" height="24" rx="2.5"/><path class="g" d="M-5 -6 H5 M-5 -1 H5 M-5 4 H1"/></svg>',
+    karinca:'<svg viewBox="-16 -16 32 32"><ellipse class="gf" cx="0" cy="7" rx="4.6" ry="6"/><circle class="gf" cx="0" cy="-1.5" r="3.3"/><circle class="gf" cx="0" cy="-8.5" r="3.5"/><path class="g" d="M-2.4 -11.2 L-6 -15 M2.4 -11.2 L6 -15 M-3 -4 L-8.5 -6.5 M-3 -1.5 L-9 -1 M-3 1 L-8.5 3.6 M3 -4 L8.5 -6.5 M3 -1.5 L9 -1 M3 1 L8.5 3.6"/></svg>',
+    pipeline:'<svg viewBox="-16 -16 32 32"><circle class="gf" cx="-9.5" cy="0" r="2.4"/><circle class="gf" cx="0" cy="0" r="3.9"/><circle class="gf" cx="9.8" cy="-7" r="2.4"/><circle class="gf" cx="9.8" cy="7" r="2.4"/><path class="g" d="M-7 0 H-4 M3.4 -1.7 C6.5 -5.4, 7.2 -7, 7.4 -7 M3.4 1.7 C6.5 5.4, 7.2 7, 7.4 7"/></svg>',
+    reporting:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-9" y="-11" width="18" height="22" rx="2.5"/><path class="g" d="M-4.5 -5 H4.5 M-4.5 0 H4.5 M-4.5 5 H1"/></svg>',
+    sms:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-10.5" y="-9" width="21" height="14.5" rx="3.5"/><path class="gf" d="M-5 5 L1.5 5 L-3.5 11 Z"/><circle class="gf" cx="-4.6" cy="-1.8" r="1.5"/><circle class="gf" cx="0" cy="-1.8" r="1.5"/><circle class="gf" cx="4.6" cy="-1.8" r="1.5"/></svg>',
+    dinlesen:'<svg viewBox="-16 -16 32 32"><ellipse class="gf" cx="-5.5" cy="7.5" rx="3.9" ry="3"/><ellipse class="gf" cx="6.8" cy="5.2" rx="3.9" ry="3"/><path class="g" d="M-1.6 7.5 V-8 M10.7 5.2 V-10.4" style="stroke-width:2"/><path class="gf" d="M-1.6 -8.2 L10.7 -10.6 L10.7 -6.7 L-1.6 -4.3 Z"/></svg>',
+    tools:'<svg viewBox="-16 -16 32 32"><path class="g" d="M-10 -4 H10 M-10 4 H10"/><circle class="gf" cx="-4" cy="-4" r="2.6"/><circle class="gf" cx="5" cy="4" r="2.6"/></svg>',
+    plain:'<svg viewBox="-16 -16 32 32"><path class="g" d="M-9 -12 H4 L9 -7 V12 H-9 Z M4 -12 V-7 H9"/><path class="g" d="M-5 -1 H5 M-5 4 H5"/></svg>',
+    contact:'<svg viewBox="-16 -16 32 32"><circle class="g" cx="0" cy="-4" r="4.6"/><path class="g" d="M-8.5 11 C-8.5 4.8, 8.5 4.8, 8.5 11"/></svg>'
+  };
+
+  /* ---------- window contents ---------- */
+  function proj(name, meta, lede, badges, paras, railTitle, rail, tags){
+    return '<div class="doc"><h1>'+name+'</h1><p class="meta">'+meta+'</p>'
+      + '<div class="badges">'+badges.map(function(b){ return '<span class="'+(b[1]?'on':'')+'">'+b[0]+'</span>'; }).join('')+'</div>'
+      + '<p class="lede">'+lede+'</p>'
+      + paras.map(function(p){ return '<p>'+p+'</p>'; }).join('')
+      + '<div class="rail"><h3>'+railTitle+'</h3><ol>'+rail.map(function(r){ return '<li>'+r+'</li>'; }).join('')+'</ol></div>'
+      + '<div class="tags">'+tags.map(function(t){ return '<span>'+t+'</span>'; }).join('')+'</div></div>';
+  }
+
+  var APPS = {
+    readme:{ t:"README.txt", w:560, h:430, html:
+      '<div class="doc mono">'
+      + '<b>Onur Can Mığırdağı</b><br>AI Content Producer &middot; Istanbul, Türkiye'
+      + '<div class="hr"></div>'
+      + 'I make content, and I build the machine that makes it.<br>'
+      + 'Every project on this desktop has an output and a pipeline.<br>'
+      + 'The pipeline is usually the part I am prouder of.'
+      + '<div class="hr"></div>'
+      + '<b>how to use</b><br>'
+      + '<span class="dk">'
+      +   '&rsaquo; five projects orbit the planet, my own files sit in the seven stars<br>'
+      +   '&rsaquo; click anything to open it, or drag it out of orbit and let go<br>'
+      +   '&rsaquo; right click the desktop for the system menu<br>'
+      +   '&rsaquo; drag a window to the screen edge to snap it<br>'
+      +   '&rsaquo; press <b>⌘K</b> to search everything'
+      + '</span>'
+      + '<span class="mb">'
+      +   '&rsaquo; tap a project to open it<br>'
+      +   '&rsaquo; close the window to see the whole list<br>'
+      +   '&rsaquo; on a desktop the projects orbit a planet you can pull apart'
+      + '</span>'
+      + '<div class="hr"></div>'
+      + '<b>what I have not done yet</b><br>'
+      + 'I have not produced with Veo, Sora, Kling or Runway.<br>'
+      + 'Everything here is audio, image, code and pipeline work.<br>'
+      + 'Every tool on this desktop was learned against a real project with something at stake.'
+      + '<div class="hr"></div>'
+      + '<a href="mailto:onurmigirdagi@gmail.com">onurmigirdagi@gmail.com</a>'
+      + '</div>' },
+
+    karinca:{ t:"karinca", w:620, h:520, html: proj(
+      "Karınca", "2025 to 2026 &middot; Android, ~140 Kotlin files",
+      "A spaced repetition study app with a full virtual economy underneath it.",
+      [["shipped",0],["measured",1],["running",1]],
+      ["Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. It runs an Anki style repetition engine with dynamic question generation, but the part I care about is the economy layered on top: XP, coins, levels, streaks, a theme shop and a paywall.",
+       "That is a game designer's problem wearing a study app's clothes. What makes someone open it tomorrow is not the flashcards, it is whether the loop gave them a reason to come back.",
+       "I wrote a UI specification targeting 60fps and WCAG 2.1 AA, then commissioned a full technical audit of my own codebase and worked from its findings rather than from my own opinion of the code. It scored 6.8 out of 10 and was blunt about weak test coverage, which is exactly what made it useful."],
+      "Stack", ["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM and Clean Architecture","Hilt dependency injection","Room local, <b>Supabase</b> sync","Spaced repetition engine","Self commissioned <b>audit</b>, 6.8/10"],
+      ["Kotlin","Jetpack Compose","Supabase","Game economy"]) },
+
+    pipeline:{ t:"pipeline", w:640, h:500, html: proj(
+      "Regulatory Monitoring Pipeline", "2026 &middot; BTS &amp; Partners",
+      "An autonomous agent pipeline watching 107 public and regulatory sources, running unattended in production.",
+      [["shipped",1],["measured",1],["running",1]],
+      ["A collector agent retrieves every item, produces a summary with a relevance score and a topic tag, and writes it to a central database. Two publisher agents distribute the legislation and news bulletins by corporate email. Nobody touches it day to day.",
+       "I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.",
+       "Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison."],
+      "Built with", ["Python, scheduled <b>agents</b>","<b>Supabase</b> central store","Streamlit for inspection","<b>Microsoft Graph</b> for delivery","Benchmarked against <b>Power Automate</b>","Relevance scoring and tagging"],
+      ["Python","AI agents","Supabase","Microsoft Graph"]) },
+
+    reporting:{ t:"reporting", w:620, h:470, html: proj(
+      "Marketplace Reporting", "2025 &middot; Tradist Distribution",
+      "Five marketplace APIs, five different response shapes, one report the company actually reads.",
+      [["shipped",1],["measured",1],["running",1]],
+      ["Sales lived in five separate marketplace back offices. Every month somebody opened each one, exported what it offered in whatever format it offered, and pasted the pieces together by hand. The formats did not agree with each other: different field names, different date handling, different ideas of what counts as a return.",
+       "I pulled each channel through its own API, normalized the responses into one schema, and generated a single monthly report laid out the way the company reads it rather than the way any marketplace exports it. It removed more than five hours of manual gathering per month and, more usefully, removed the copy and paste errors that came with it."],
+      "What it does", ["Five <b>marketplace APIs</b>, pulled on schedule","Field mapping to <b>one schema</b>","Currency, date and return normalization","Company specific layout, not vendor layout","One monthly report, <b>5+ hours saved</b>"],
+      ["Python","Apps Script","API integration"]) },
+
+    sms:{ t:"sms-relay", w:600, h:460, html: proj(
+      "SMS Verification Relay", "2025 &middot; Tradist Distribution",
+      "Verification codes arriving on four phone lines, readable by the whole team without anyone holding a phone.",
+      [["shipped",1],["measured",1],["running",1]],
+      ["Marketplace back offices send a verification code by SMS every time somebody signs in. The phones sat in a drawer. Whoever needed to log in had to find the right handset, unlock it, read the code out loud, and hope it had not expired by the time they typed it.",
+       "I wrote an Android background service that listens for incoming messages, extracts the code, and writes it to a shared sheet the moment it lands. The service survives a device restart. Everyone reads the same row at the same time, which is the whole point: the code stopped being something one person physically possessed.",
+       "It saved each person around twenty minutes a day. I found the need myself and built it on my own initiative; it was still running after I left."],
+      "How it works", ["Android <b>background service</b>","Listens for incoming SMS","Extracts the code by pattern","Writes to <b>shared sheet</b> in real time","Survives device restart","Whole team reads the same row"],
+      ["Android","Kotlin","Sheets API"]) },
+
+    dinlesen:{ t:"dinlesen-yeter", w:600, h:450, html: proj(
+      "Dinlesen Yeter", "2024 &middot; generative music, trial project",
+      "Turkish literature and Ottoman history rewritten as songs for students preparing for the university entrance exam.",
+      [["shipped",1],["measured",0],["running",0]],
+      ["An experiment in producing generative content end to end, alone. I wrote each set of lyrics as a structured prompt for a generative music model, then iterated on takes until one held together as a song rather than a demo. Vocals and instrumentals were separated into stems so the mix could be corrected, cover art was generated and finished in Photoshop, and the video was cut and subtitled in Premiere Pro.",
+       "The tooling is the part worth showing. Generative models do not hold a metre, and checking syllable counts by hand does not scale past the second song, so I wrote a Turkish syllable counter and a small PyQt workspace around it, then wrote the lyrics against that instead.",
+       "Two tracks were published and three more were finished but never released. I stopped the project in 2024. The workflow it taught me is the one I still work in."],
+      "Production chain", ["Source text to <b>structured lyric prompt</b>","Generative model, iterate takes","<b>Syllable counter</b> (Python) for metre","Vocal and instrumental <b>stem separation</b>","Cover art, finished in <b>Photoshop</b>","Edit and subtitle in <b>Premiere Pro</b>"],
+      ["Generative audio","Premiere Pro","Photoshop","Python"]) },
+
+    tools:{ t:"tools", w:560, h:330, html:
+      '<div class="doc"><h1>Tools</h1><p class="meta">what I actually work in</p><div class="grid2">'
+      + '<div><h4>Creative</h4><p>Premiere Pro, Photoshop, generative audio and image models, stem separation, subtitling, cover art</p></div>'
+      + '<div><h4>Automation</h4><p>Python, PyQt, Kotlin, n8n, Power Automate, Google Apps Script, Supabase, SQL</p></div>'
+      + '<div><h4>AI</h4><p>Prompt engineering, agent pipelines, LLM evaluation and benchmarking, output quality control, tool comparison</p></div>'
+      + '<div><h4>Games I keep going back to</h4><p>Hearthstone, Polytopia, Balatro. All three for the same reason, which is the system underneath</p></div>'
+      + '</div></div>' },
+
+    plain:{ t:"PLAIN.txt", w:560, h:380, html:
+      '<div class="doc mono"><b>plain document</b><div class="hr"></div>'
+      + 'In the finished build this window holds every project as one<br>'
+      + 'scrollable text document, with no interface around it, for<br>'
+      + 'anyone who would rather just read.<div class="hr"></div>'
+      + '<a href="mailto:onurmigirdagi@gmail.com">onurmigirdagi@gmail.com</a></div>' },
+
+    contact:{ t:"contact", w:420, h:280, html:
+      '<div class="card"><img src="data:image/jpeg;base64,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" alt=""><div>'
+      + '<b>Onur Can Mığırdağı</b>'
+      + '<div class="r">AI CONTENT PRODUCER</div>'
+      + '<div class="r">ISTANBUL, TÜRKİYE</div></div></div>'
+      + '<div class="links">'
+      + '<a href="mailto:onurmigirdagi@gmail.com">onurmigirdagi@gmail.com</a>'
+      + '<a href="https://www.linkedin.com/in/onurmigirdagi">linkedin.com/in/onurmigirdagi</a>'
+      + '<a href="https://www.youtube.com/@DinlesenYeter">youtube.com/@DinlesenYeter</a>'
+      + '</div>' },
+  };
+
+  var DESK = ["readme","karinca","pipeline","reporting","sms","dinlesen","tools","plain","contact"];
+  var ORB  = ["karinca","pipeline","reporting","sms","dinlesen","tools","plain","contact"];
+  var RING = { karinca:0, pipeline:0, reporting:0, sms:0, dinlesen:0, tools:1, plain:1, contact:1 };
+  var LABEL = { readme:"README.txt", karinca:"karinca", pipeline:"pipeline", reporting:"reporting",
+                sms:"sms-relay", dinlesen:"dinlesen", tools:"tools", plain:"PLAIN.txt", contact:"contact" };
+
+  /* ---------- desktop icons ---------- */
+  var iconsEl = $("icons");
+  ORB.forEach(function(id){
+    var b = document.createElement("div");
+    b.className = "ico"; b.setAttribute("data-app", id); b.tabIndex = 0;
+    b.innerHTML = '<span class="tile">'+ART[id]+'</span><span>'+LABEL[id]+'</span>';
+    iconsEl.appendChild(b);
+  });
+
+  /* ---------- window manager ---------- */
+  var winsEl = $("wins"), deskEl = $("desk"), tasksEl = $("tasks"), ghost = $("ghost");
+  var open = {}, zTop = 10, focused = null, cascade = 0;
+  var MOB = false;
+  function measure(){ MOB = innerWidth < 760; document.body.classList.toggle("mob", MOB); }
+  measure();
+  addEventListener("resize", function(){
+    measure();
+    NIGHT.resize();
+    if(MOB){ layoutIcons(); return; }
+    glide(measureSky, 560);
+  });
+
+  function bounds(){ var r = deskEl.getBoundingClientRect(); return { w:r.width, h:r.height }; }
+
+  function focus(id){
+    if(focused && open[focused]) open[focused].el.classList.remove("on");
+    focused = id;
+    var w = open[id]; if(!w) return;
+    w.el.classList.add("on");
+    w.el.style.zIndex = ++zTop;
+    paintTasks();
+  }
+
+  function paintTasks(){
+    tasksEl.innerHTML = "";
+    Object.keys(open).forEach(function(id){
+      var b = document.createElement("button");
+      b.className = "tk" + (id===focused && !open[id].mini ? " on" : "");
+      b.innerHTML = '<i></i><span>'+APPS[id].t+'</span>';
+      b.addEventListener("click", function(){
+        var w = open[id];
+        if(w.mini){ w.mini=false; w.el.style.display="flex"; focus(id); }
+        else if(id===focused){ minimize(id); }
+        else focus(id);
+      });
+      tasksEl.appendChild(b);
+    });
+  }
+
+  function minimize(id){
+    var w = open[id]; if(!w || MOB) return;
+    w.el.classList.add("min");
+    setTimeout(function(){ w.el.classList.remove("min"); w.el.style.display="none"; w.mini=true;
+      if(focused===id){ focused=null; }
+      paintTasks();
+    }, reduce?0:170);
+  }
+
+  function close(id){
+    var w = open[id]; if(!w) return;
+    w.el.remove(); delete open[id];
+    if(focused===id) focused=null;
+    var rest = Object.keys(open);
+    if(rest.length) focus(rest[rest.length-1]);
+    paintTasks(); save();
+  }
+
+  function maxToggle(id){
+    var w = open[id]; if(!w || MOB) return;
+    var b = bounds();
+    if(w.maxed){ set(w, w.prev); w.maxed=false; }
+    else { w.prev = { x:w.x, y:w.y, w:w.w, h:w.h };
+           set(w, { x:0, y:0, w:b.w, h:b.h }); w.maxed=true; }
+    save();
+  }
+
+  function set(w, r){
+    w.x=r.x; w.y=r.y; w.w=r.w; w.h=r.h;
+    w.el.style.left=r.x+"px"; w.el.style.top=r.y+"px";
+    w.el.style.width=r.w+"px"; w.el.style.height=r.h+"px";
+  }
+
+  function launch(id, rect){
+    if(open[id]){ var w0=open[id];
+      if(w0.mini){ w0.mini=false; w0.el.style.display="flex"; }
+      focus(id); return; }
+    var a = APPS[id]; if(!a) return;
+    var b = bounds();
+    var el = document.createElement("div");
+    el.className = "win" + (reduce ? "" : " pop");
+    el.innerHTML =
+      '<div class="tbar"><span class="nm">'+a.t+'</span><span class="sp"></span>'
+      + '<span class="ctl"><button class="mn" title="minimize">&#8211;</button>'
+      + '<button class="mx" title="maximize">&#9744;</button>'
+      + '<button class="x" title="close">&#10005;</button></span></div>'
+      + '<div class="body">'+a.html+'</div>'
+      + '<div class="rz e"></div><div class="rz s"></div><div class="rz se"></div>';
+    winsEl.appendChild(el);
+
+    var ww = Math.min(a.w, b.w-40), wh = Math.min(a.h, b.h-40);
+    var r = rect || { x: Math.max(16, Math.round((b.w-ww)/2) + cascade*26 - 52),
+                      y: Math.max(14, Math.round((b.h-wh)/2) + cascade*20 - 34),
+                      w: ww, h: wh };
+    r.x = Math.max(0, Math.min(r.x, Math.max(0, b.w-160)));
+    r.y = Math.max(0, Math.min(r.y, Math.max(0, b.h-46)));
+    cascade = (cascade+1) % 5;
+
+    var w = { el:el, id:id, x:0,y:0,w:0,h:0, mini:false, maxed:false, prev:null };
+    open[id] = w; set(w, r);
+
+    el.querySelector(".mn").addEventListener("click", function(e){ e.stopPropagation(); minimize(id); });
+    el.querySelector(".mx").addEventListener("click", function(e){ e.stopPropagation(); maxToggle(id); });
+    el.querySelector(".x").addEventListener("click", function(e){ e.stopPropagation(); close(id); });
+    el.addEventListener("pointerdown", function(){ focus(id); }, true);
+    var tb = el.querySelector(".tbar");
+    tb.addEventListener("dblclick", function(){ maxToggle(id); });
+    drag(w, tb);
+    ["e","s","se"].forEach(function(k){ resize(w, el.querySelector(".rz."+k), k); });
+
+    focus(id); paintTasks(); save();
+    if(!reduce) setTimeout(function(){ el.classList.remove("pop"); }, 200);
+  }
+
+  /* ---------- drag with snap ---------- */
+  function drag(w, handle){
+    handle.addEventListener("pointerdown", function(e){
+      if(MOB || e.target.closest("button")) return;
+      var b = bounds(), sx = e.clientX, sy = e.clientY, ox = w.x, oy = w.y;
+      var zone = null;
+      handle.setPointerCapture && (function(){ try{ handle.setPointerCapture(e.pointerId); }catch(_){} })();
+      function mv(ev){
+        if(w.maxed){ w.maxed=false; var p=w.prev||{w:w.w,h:w.h};
+          set(w,{x:ev.clientX-p.w/2, y:Math.max(0,ev.clientY-deskEl.getBoundingClientRect().top-15), w:p.w, h:p.h});
+          ox=w.x; oy=w.y; sx=ev.clientX; sy=ev.clientY; }
+        var nx = ox + (ev.clientX-sx), ny = oy + (ev.clientY-sy);
+        nx = Math.max(-w.w+120, Math.min(b.w-120, nx));
+        ny = Math.max(0, Math.min(b.h-32, ny));
+        w.el.style.left = nx+"px"; w.el.style.top = ny+"px"; w.x=nx; w.y=ny;
+        var dx = ev.clientX - deskEl.getBoundingClientRect().left;
+        var dy = ev.clientY - deskEl.getBoundingClientRect().top;
+        var nz = null;
+        if(dx < 26) nz = "l"; else if(dx > b.w-26) nz = "r"; else if(dy < 12) nz = "t";
+        if(nz !== zone){
+          zone = nz;
+          if(!zone){ ghost.classList.remove("on"); }
+          else {
+            var g = zone==="l" ? {x:0,y:0,w:b.w/2,h:b.h}
+                  : zone==="r" ? {x:b.w/2,y:0,w:b.w/2,h:b.h}
+                  : {x:0,y:0,w:b.w,h:b.h};
+            ghost.style.left=g.x+"px"; ghost.style.top=g.y+"px";
+            ghost.style.width=g.w+"px"; ghost.style.height=g.h+"px";
+            ghost.classList.add("on");
+          }
+        }
+      }
+      function up(){
+        handle.removeEventListener("pointermove", mv);
+        handle.removeEventListener("pointerup", up);
+        ghost.classList.remove("on");
+        if(zone){
+          if(!w.maxed) w.prev = { x:ox, y:oy, w:w.w, h:w.h };
+          var b2 = bounds();
+          if(zone==="t"){ set(w,{x:0,y:0,w:b2.w,h:b2.h}); w.maxed=true; }
+          else set(w, zone==="l" ? {x:0,y:0,w:Math.round(b2.w/2),h:b2.h}
+                                 : {x:Math.round(b2.w/2),y:0,w:Math.round(b2.w/2),h:b2.h});
+        }
+        save();
+      }
+      handle.addEventListener("pointermove", mv);
+      handle.addEventListener("pointerup", up);
+      e.preventDefault();
+    });
+  }
+
+  function resize(w, handle, kind){
+    handle.addEventListener("pointerdown", function(e){
+      if(MOB) return;
+      var b = bounds(), sx=e.clientX, sy=e.clientY, ow=w.w, oh=w.h;
+      handle.setPointerCapture && (function(){ try{ handle.setPointerCapture(e.pointerId); }catch(_){} })();
+      function mv(ev){
+        var nw = ow, nh = oh;
+        if(kind!=="s") nw = Math.max(300, Math.min(b.w - w.x, ow + (ev.clientX-sx)));
+        if(kind!=="e") nh = Math.max(180, Math.min(b.h - w.y, oh + (ev.clientY-sy)));
+        w.w=nw; w.h=nh; w.el.style.width=nw+"px"; w.el.style.height=nh+"px";
+        w.maxed=false;
+      }
+      function up(){ handle.removeEventListener("pointermove",mv); handle.removeEventListener("pointerup",up); save(); }
+      handle.addEventListener("pointermove", mv);
+      handle.addEventListener("pointerup", up);
+      e.preventDefault(); e.stopPropagation();
+    });
+  }
+
+  /* ---------- session memory ---------- */
+  function save(){
+    try{
+      var o = Object.keys(open).map(function(id){ var w=open[id];
+        return { id:id, x:w.x, y:w.y, w:w.w, h:w.h, mini:w.mini, maxed:w.maxed }; });
+      localStorage.setItem("desk_session", JSON.stringify(o));
+    }catch(e){}
+  }
+  function restore(){
+    var o = null;
+    try{ o = JSON.parse(localStorage.getItem("desk_session")||"null"); }catch(e){}
+    if(!o || !o.length) return false;
+    var b = bounds();
+    o.forEach(function(s){
+      if(!APPS[s.id]) return;
+      var ww = Math.max(300, Math.min(s.w, b.w-20)), wh = Math.max(180, Math.min(s.h, b.h-20));
+      launch(s.id, MOB ? null : {
+        x: Math.max(0, Math.min(s.x, Math.max(0, b.w-160))),
+        y: Math.max(0, Math.min(s.y, Math.max(0, b.h-46))),
+        w: ww, h: wh });
+      if(open[s.id] && s.mini) minimize(s.id);
+    });
+    return true;
+  }
+
+  /* ---------- the system: one orbit, one constellation ---------- */
+  var ICW = 104, ICH = 78, SQ = .70;
+  var SYS = [
+    { kind:"orb", el:$("coreA"), ring:$("ringA"), box:176, spd:0.040, cx:0, cy:0, r:0 },
+    { kind:"con", el:null,       ring:$("conB"),  box:0,   spd:0,     cx:0, cy:0, r:0 }
+  ];
+  SYS[0].circ = SYS[0].ring.firstElementChild;
+
+  /* Ursa Major. The seven positions come from the real right ascension and
+     declination of the stars, projected flat, so the shape is the shape in the
+     sky. Dubhe and Merak are the pointers that find Polaris, which is why the
+     contact card sits on Dubhe. Mizar reads as one star and is really two. */
+  var CSQ = 1.0;
+  var VERT = [
+    { nx: 0.8588, ny:-0.5269, ph:0.0, id:"contact", star:"dubhe", mag:1.81, bv: 1.061 },
+    { nx: 1.0127, ny:-0.0939, ph:1.1, id:null,     star:"merak", mag:2.34, bv: 0.033 },
+    { nx: 0.4376, ny: 0.2548, ph:2.2, id:"tools",  star:"phecda", mag:2.41, bv: 0.044 },
+    { nx: 0.1593, ny:-0.0098, ph:3.3, id:null,     star:"megrez", mag:3.32, bv: 0.077 },
+    { nx:-0.2953, ny: 0.0621, ph:4.4, id:null,     star:"alioth", mag:1.76, bv:-0.022 },
+    { nx:-0.6652, ny: 0.0898, ph:5.5, id:"plain",  star:"mizar", mag:2.23, bv: 0.057 },
+    { nx:-1.0868, ny: 0.4759, ph:6.6, id:null,     star:"alkaid", mag:1.85, bv:-0.099 }
+  ];
+  var LINES = [[0,1,2,3,0],[3,4,5,6]];
+  var NXMAX=-9, NXMIN=9, NYMAX=-9, NYMIN=9;
+  VERT.forEach(function(v){
+    if(v.nx>NXMAX) NXMAX=v.nx; if(v.nx<NXMIN) NXMIN=v.nx;
+    if(v.ny>NYMAX) NYMAX=v.ny; if(v.ny<NYMIN) NYMIN=v.ny;
+  });
+
+  var skyEl = $("sky");
+  var SAT = [], byId = {}, hoverN = 0, spd = 1, tNow = 0, lastT = 0, NOW = 0, dragging = false;
+  function nowT(){ return NOW || performance.now(); }
+
+  /* build the constellation svg */
+  var conG = SYS[1].ring, NS = "http://www.w3.org/2000/svg";
+  var lineEls = LINES.map(function(){
+    var e = document.createElementNS(NS,"polyline"); e.setAttribute("class","cl");
+    conG.appendChild(e); return e;
+  });
+  VERT.forEach(function(v){
+    if(v.id) return;
+    v.el = document.createElementNS(NS,"circle");
+    v.el.setAttribute("class","cd"); v.el.setAttribute("r","2.5");
+    conG.appendChild(v.el);
+  });
+  var conLbl = document.createElementNS(NS,"text");
+  conLbl.setAttribute("class","ct"); conLbl.textContent = "about";
+  conG.appendChild(conLbl);
+
+  Array.prototype.forEach.call(iconsEl.children, function(el){
+    var id = el.getAttribute("data-app"), si = RING[id] || 0;
+    var st = { id:id, el:el, sys:si, off:null, dx:0, dy:0, drag:false,
+               nx:0, ny:0, arc:0, t0:0, dur:0, px:0, py:0 };
+    if(si === 0){
+      var kin = ORB.filter(function(x){ return (RING[x]||0) === 0; });
+      st.a0 = -Math.PI/2 + (kin.indexOf(id)/kin.length)*Math.PI*2;
+    } else {
+      for(var i=0; i<VERT.length; i++) if(VERT[i].id === id) st.vert = VERT[i];
+    }
+    SAT.push(st); byId[id] = st;
+  });
+
+  function measureSky(){
+    var b = bounds();
+    var RA = Math.max(118, Math.min(b.w*0.232, (b.h*0.40)/SQ));
+    var A = SYS[0], B = SYS[1];
+    A.r = RA;
+    A.cx = Math.max(Math.round(RA + 56), Math.round(b.w*0.355));
+    A.cy = Math.max(Math.round(RA*SQ + 46), Math.round(b.h*0.455));
+    A.circ.setAttribute("r", A.r.toFixed(1));
+    A.ring.setAttribute("transform", "translate("+A.cx+","+A.cy+") scale(1,"+SQ+")");
+    A.el.style.left = (A.cx - A.box/2)+"px";
+    A.el.style.top  = (A.cy - A.box/2)+"px";
+
+    B.r = RA*0.50;
+    B.cx = Math.min(Math.round(b.w - NXMAX*B.r - 58), Math.round(b.w*0.785));
+    B.cx = Math.max(B.cx, Math.round(-NXMIN*B.r + 58));
+    B.cy = Math.min(Math.round(b.h - NYMAX*B.r*CSQ - 96), Math.round(b.h*0.500));
+    B.cy = Math.max(B.cy, Math.round(-NYMIN*B.r*CSQ + 56));
+  }
+
+  function vertPt(v, t){
+    var B = SYS[1];
+    return { x: B.cx + v.nx*B.r + Math.sin(t*0.42 + v.ph)*4.5,
+             y: B.cy + v.ny*B.r*CSQ + Math.cos(t*0.33 + v.ph*1.7)*3.5, d: 0 };
+  }
+  function orbPt(st, t){
+    var S = SYS[0], a = st.a0 + S.spd*t;
+    return { x: S.cx + Math.cos(a)*S.r, y: S.cy + Math.sin(a)*S.r*SQ, d: Math.sin(a) };
+  }
+  function basePt(st, t){ return st.sys ? vertPt(st.vert, t) : orbPt(st, t); }
+
+  function sendTo(st, ox, oy, dur){
+    var d = Math.hypot(ox, oy) || 1;
+    st.off = { x:ox, y:oy };
+    st.nx = -oy/d; st.ny = ox/d;
+    st.arc = Math.min(115, d*0.30) * (ox < 0 ? -1 : 1);
+    st.t0 = nowT(); st.dur = dur || 880;
+    st.el.classList.add("ret");
+  }
+
+  function glide(fn, dur, stagger){
+    var pre = SAT.map(function(st){ return basePt(st, tNow); });
+    if(fn) fn();
+    SAT.forEach(function(st, i){
+      var p = basePt(st, tNow);
+      sendTo(st, pre[i].x - p.x, pre[i].y - p.y, dur);
+      if(stagger) st.t0 += i*stagger;
+    });
+  }
+
+  function bloom(){
+    SAT.forEach(function(st, i){
+      var S = SYS[st.sys], p = basePt(st, tNow);
+      sendTo(st, S.cx - p.x, S.cy - p.y, 1000);
+      st.arc = (i%2 ? 1 : -1) * 26;
+      st.t0 += 60 + i*72;
+    });
+  }
+
+  function targetSpeed(){
+    if(dragging) return 0;
+    if(hoverN > 0) return .05;
+    var n = 0; for(var k in open){ if(!open[k].mini) n++; }
+    return n ? .42 : 1;
+  }
+
+  function place(st, now){
+    var p = basePt(st, tNow), ox = 0, oy = 0;
+    st.dep = p.d;
+    var sc = st.sys ? 1 : 1 + p.d*.07;
+    var op = st.sys ? 1 : .86 + (p.d+1)/2*.14;
+    if(st.drag){ ox = st.dx; oy = st.dy; sc = 1.08; op = 1; }
+    else if(st.off){
+      var k = (now - st.t0)/st.dur;
+      if(k >= 1){ st.off = null; st.el.classList.remove("ret"); }
+      else{
+        if(k < 0) k = 0;
+        var e = 1 - Math.pow(2, -9*k)*Math.cos(k*5.2), f = 1 - e;
+        var arc = Math.sin(Math.min(1,k)*Math.PI)*st.arc;
+        ox = st.off.x*f + st.nx*arc;
+        oy = st.off.y*f + st.ny*arc;
+      }
+    }
+    st.px = p.x + ox; st.py = p.y + oy;
+    var yoff = st.sys ? 29 : ICH/2;   /* constellation folders hang from the tile centre */
+    st.el.style.transform = "translate3d("+(st.px-ICW/2).toFixed(1)+"px,"
+                          + (st.py-yoff).toFixed(1)+"px,0) scale("+sc.toFixed(3)+")";
+    st.el.style.opacity = op.toFixed(3);
+    st.el.style.zIndex = st.drag ? 40 : (14 + Math.round(p.d*8));
+  }
+
+  /* the lines follow the folders, so pulling a star stretches the asterism */
+  function paintCon(){
+    var B = SYS[1];
+    VERT.forEach(function(v){
+      var q = v.id ? byId[v.id] : null;
+      if(q){ v.cx = q.px; v.cy = q.py; }
+      else { var pt = vertPt(v, tNow); v.cx = pt.x; v.cy = pt.y;
+             v.el.setAttribute("cx", v.cx.toFixed(1)); v.el.setAttribute("cy", v.cy.toFixed(1)); }
+    });
+    LINES.forEach(function(ix, i){
+      lineEls[i].setAttribute("points", ix.map(function(j){
+        return VERT[j].cx.toFixed(1)+","+VERT[j].cy.toFixed(1);
+      }).join(" "));
+    });
+    var ly = B.cy + NYMAX*B.r*CSQ + 48;
+    conLbl.setAttribute("x", B.cx); conLbl.setAttribute("y", ly.toFixed(0));
+  }
+
+  function frame(now){
+    requestAnimationFrame(frame);
+    if(MOB) return;
+    NOW = now;
+    if(!lastT) lastT = now;
+    var dt = Math.min(70, now - lastT); lastT = now;
+    spd += (targetSpeed() - spd)*.085;
+    tNow += (dt/1000)*spd;
+    for(var i=0; i<SAT.length; i++) place(SAT[i], now);
+    paintCon();
+    NIGHT.tick(now);
+  }
+
+  function placeAll(){
+    var now = nowT();
+    for(var i=0; i<SAT.length; i++) place(SAT[i], now);
+    paintCon();
+  }
+  function layoutIcons(){
+    if(MOB){
+      Array.prototype.forEach.call(iconsEl.children, function(el){
+        el.style.transform=""; el.style.opacity=""; el.style.zIndex="";
+      });
+      return;
+    }
+    measureSky(); placeAll();
+  }
+  document.addEventListener("visibilitychange", function(){
+    lastT = 0;
+    if(document.visibilityState==="visible" && !MOB) placeAll();
+  });
+
+  function selectOnly(el){
+    Array.prototype.forEach.call(iconsEl.children, function(c){ c.classList.remove("sel"); });
+    if(el) el.classList.add("sel");
+  }
+
+  /* one drag at a time, tracked on the window so a pointerup can never be missed */
+  var grab = null;
+
+  function grabEnd(ev){
+    var D = grab; if(!D) return;
+    if(ev && ev.pointerId != null && ev.pointerId !== D.pid) return;
+    grab = null; dragging = false;
+    var st = D.st;
+    st.el.classList.remove("moving");
+    try{ st.el.releasePointerCapture(D.pid); }catch(_){}
+    if(!st.drag){ launch(D.id); return; }
+    st.drag = false;
+    sendTo(st, st.dx, st.dy, 900);
+    st.dx = 0; st.dy = 0;
+  }
+  function grabMove(ev){
+    var D = grab; if(!D || ev.pointerId !== D.pid) return;
+    if(ev.buttons === 0){ grabEnd(ev); return; }   /* released outside the page */
+    var dx = ev.clientX - D.sx, dy = ev.clientY - D.sy;
+    D.moved = Math.max(D.moved, Math.abs(dx) + Math.abs(dy));
+    if(D.moved > 4){ D.st.drag = true; D.st.el.classList.add("moving"); }
+    D.st.dx = dx; D.st.dy = dy;
+  }
+  addEventListener("pointermove", grabMove, true);
+  addEventListener("pointerup", grabEnd, true);
+  addEventListener("pointercancel", grabEnd, true);
+  addEventListener("blur", function(){ if(grab) grabEnd(null); });
+
+  SAT.forEach(function(st){
+    var el = st.el, id = st.id;
+    el.setAttribute("draggable", "false");
+    el.addEventListener("pointerenter", function(){ if(!MOB) hoverN++; });
+    el.addEventListener("pointerleave", function(){ if(!MOB) hoverN = Math.max(0, hoverN-1); });
+    el.addEventListener("dragstart", function(e){ e.preventDefault(); });
+    el.addEventListener("pointerdown", function(e){
+      if(MOB || e.button === 2) return;
+      if(grab) grabEnd(null);
+      hideMenu();
+      st.off = null; el.classList.remove("ret");
+      st.dx = 0; st.dy = 0;
+      grab = { st:st, id:id, pid:e.pointerId, sx:e.clientX, sy:e.clientY, moved:0 };
+      dragging = true;
+      try{ el.setPointerCapture(e.pointerId); }catch(_){}
+      e.preventDefault();
+    });
+    el.addEventListener("click", function(){ if(MOB){ launch(id); } });
+    el.addEventListener("keydown", function(e){
+      if(e.key!=="Enter" && e.key!==" ") return;
+      e.preventDefault(); launch(id);
+    });
+  });
+
+  var pA = SYS[0].el;
+  pA.addEventListener("pointerenter", function(){ if(!MOB) hoverN++; });
+  pA.addEventListener("pointerleave", function(){ if(!MOB) hoverN = Math.max(0, hoverN-1); });
+  pA.addEventListener("click", function(){ hideMenu(); launch("readme"); });
+  pA.addEventListener("keydown", function(e){
+    if(e.key!=="Enter" && e.key!==" ") return;
+    e.preventDefault(); launch("readme");
+  });
+
+  /* ---------- the real sky ------------------------------------------------
+     Star positions, magnitudes and colour indices, and the constellation
+     figures, from ofrohn/d3-celestial (BSD-3-Clause, (c) 2015 Olaf Frohn),
+     which packages the Yale Bright Star and Hipparcos data as GeoJSON.
+
+     Everything here is a stereographic projection about the centre of the
+     Plough, fitted by a similarity transform onto the coordinates this layout
+     already used, so the three folders still land on Dubhe, Phecda and Mizar
+     while every other star falls exactly where it does in the sky.
+
+     Packed as integers: x*1000, y*1000, magnitude*20, B-V*50.
+     ---------------------------------------------------------------------- */
+  var SKYDATA = {
+    stars: "225,-4346,113,4 241,-4358,108,-3 157,-3481,112,5 143,-3236,85,61 291,-3856,112,0 618,-3987,105,17 674,-4090,104,48 109,-2950,39,32 1040,-4255,103,45 561,-3539,116,65 745,-3641,110,78 624,-3481,118,7 1117,-3974,97,2 911,-3709,109,11 427,-3212,112,45 1869,-4211,116,17 1570,-3978,108,5 2037,-4275,88,94 2239,-4398,116,9 1536,-3945,92,3 2308,-4329,99,-4 1838,-3966,118,77 337,-3063,117,20 817,-3356,102,29 2531,-4171,114,-6 2929,-4336,114,55 2231,-3993,105,41 2665,-4159,108,75 3094,-4324,118,6 837,-3293,108,59 585,-3163,110,-5 627,-3178,109,43 3419,-4264,116,6 1587,-3593,119,15 2379,-3863,118,0 3543,-4163,101,54 3501,-4151,107,17 4079,-4264,113,0 3899,-4186,117,1 3183,-3941,106,12 1311,-3379,119,14 4066,-4072,113,51 2506,-3715,109,78 2231,-3620,85,0 3364,-3872,110,1 3624,-3904,115,5 3532,-3868,89,-1 852,-3165,102,65 2846,-3651,81,46 3003,-3643,104,-4 2778,-3599,120,69 3789,-3748,100,17 1538,-3290,109,-5 1610,-3264,116,-1 2653,-3410,113,86 1054,-3127,102,25 3181,-3424,105,-1 2623,-3293,109,85 3515,-3246,115,84 2369,-3145,112,62 4000,-3078,109,2 3337,-3101,119,8 3373,-2978,99,3 2948,-3001,104,0 3967,-2849,118,60 3514,-2897,74,50 4177,-2792,114,0 4063,-2795,120,72 3028,-2802,107,55 4061,-2620,116,5 2360,-2839,107,67 2914,-2744,107,67 2762,-2738,100,92 2009,-2816,95,1 3004,-2681,89,2 3548,-2552,107,22 3955,-2410,98,95 3255,-2543,111,12 3046,-2579,104,77 4194,-2254,118,72 3060,-2524,117,47 3165,-2406,117,0 2724,-2510,119,45 1180,-2770,115,74 1758,-2677,118,61 2892,-2363,97,4 1032,-2766,109,26 3103,-2295,107,48 3895,-2028,104,57 3236,-2236,111,0 2126,-2512,103,-8 2868,-2282,107,34 1999,-2518,102,-6 4081,-1795,117,-4 4038,-1805,118,55 2946,-2202,87,42 4185,-1731,98,1 1255,-2656,91,68 1809,-2505,114,67 3498,-1744,109,82 3855,-1530,111,29 2757,-2027,104,54 3409,-1715,119,63 3638,-1588,100,4 3991,-1354,115,17 3101,-1777,116,-4 3382,-1605,116,80 3600,-1461,92,0 3672,-1382,114,-5 3536,-1437,107,24 1935,-2207,113,55 738,-2673,98,82 3778,-1172,113,78 2975,-1630,119,56 3549,-1284,119,11 332,-2799,101,80 3575,-1206,112,51 2693,-1694,99,5 3362,-1285,106,0 2124,-1958,119,59 3500,-993,109,73 1391,-2232,107,71 2552,-1522,116,21 934,-2454,108,-2 3073,-1041,96,2 2554,-1394,118,68 1767,-1898,107,52 2660,-1258,118,51 2402,-1391,113,9 2177,-1538,115,45 1188,-2219,111,45 2516,-1265,118,21 1437,-2046,120,77 3531,-362,85,78 2812,-969,110,6 1770,-1718,118,49 2233,-1344,67,43 3760,115,118,55 1895,-1563,109,10 3842,251,115,3 4028,562,119,56 2668,-831,113,48 1876,-1523,113,31 2705,-778,118,58 1917,-1475,92,59 3140,-315,107,50 4151,984,81,50 3142,-49,103,49 3245,74,120,63 3040,-155,119,62 3823,776,113,11 4076,1098,119,43 1983,-1233,114,15 3911,943,108,52 4047,1170,105,50 3297,253,118,19 1791,-1375,111,44 2965,-128,114,56 3727,798,109,9 2791,-270,62,11 3714,869,105,46 3146,185,79,23 3694,904,118,4 1562,-1527,95,77 4122,1546,109,-2 2792,-164,71,0 2367,-649,115,2 2691,-242,110,24 3257,494,91,52 3731,1189,108,44 1573,-1443,103,76 3886,1444,119,33 3480,867,119,29 2474,-423,89,14 4129,1835,103,48 1544,-1448,96,24 1758,-1208,93,19 2888,220,106,-6 1855,-1046,104,30 3336,882,120,42 2110,-718,106,78 1162,-1798,119,9 2260,-527,96,10 2643,-6,119,3 3246,860,119,9 3163,753,76,3 3256,964,63,78 2057,-670,116,76 3615,1670,89,61 2566,185,108,50 3134,1124,117,52 1626,-1047,73,18 3050,1017,108,77 3637,2023,86,77 4193,3091,100,52 2206,-226,63,24 2943,942,91,46 1241,-1502,91,39 2165,-238,89,1 1109,-1665,115,26 2774,697,96,50 2949,1002,108,38 3152,1387,111,80 3834,2665,115,61 588,-2290,86,74 2696,680,106,11 1345,-1299,119,76 4038,3333,70,26 3061,1426,118,79 2664,750,112,48 1225,-1425,114,57 1063,-1636,103,51 3086,1553,113,6 3794,2964,107,80 3318,2103,59,40 4055,3705,116,82 3829,3203,113,74 1792,-527,102,80 2284,321,102,31 1658,-640,76,15 3171,2108,106,11 1876,-263,91,2 3086,1977,78,61 3895,3861,118,83 2024,83,105,4 3707,3588,117,56 1671,-482,119,45 2371,780,102,24 3524,3262,105,-2 948,-1623,117,58 2808,1729,115,53 1671,-420,110,74 3649,3714,94,79 2691,1550,107,34 3049,2425,114,-9 1745,-170,114,25 3149,2938,70,-2 2450,1327,90,10 3386,3591,88,72 3302,3403,27,-4 2305,1178,117,64 3456,4180,115,59 2512,1894,110,1 2710,2404,119,33 3045,3305,108,82 2710,2412,69,15 2642,2240,117,60 2010,772,69,1 2709,2445,116,25 1157,-960,115,8 1778,350,120,51 2781,2793,96,23 2764,2761,40,56 989,-1229,118,12 1994,942,115,27 1982,921,61,80 2229,1554,118,7 1090,-970,99,-3 2217,1578,110,59 3002,3858,112,82 2184,1583,94,13 1900,946,120,8 2055,1352,84,45 318,-2427,110,12 1946,1182,116,4 1374,-190,96,27 385,-2289,105,20 2124,1743,118,6 2672,3387,109,85 2800,3863,77,-7 1849,1077,94,11 2014,1533,111,1 2819,4114,101,46 2765,3945,113,3 636,-1734,97,48 1288,-256,103,17 2011,1821,94,41 1353,34,111,64 1831,1321,117,30 851,-1135,115,66 940,-917,102,60 2089,2340,110,8 821,-1182,100,70 2662,4399,115,58 2167,2623,102,2 1520,660,104,16 1191,-229,116,-2 860,-1043,119,100 1916,1976,107,-2 2218,3035,110,57 2340,3478,110,45 2365,3850,106,2 1127,-149,113,57 1047,-370,111,58 1689,1712,76,52 722,-1216,118,50 1155,22,102,68 1450,959,93,-2 1664,1736,115,52 1877,2554,86,1 1663,1785,100,55 2301,4329,118,63 1433,1215,101,31 1534,1583,120,80 1299,793,109,73 2183,4364,100,8 1440,1324,101,13 1840,3005,88,3 2048,4260,92,17 1609,2628,114,4 1361,1608,114,70 1211,1024,118,78 1184,916,60,57 1808,4230,116,56 1577,3029,51,6 1669,3508,67,0 1507,2798,91,83 1669,3719,106,59 982,526,118,55 1294,2057,76,30 1261,1922,70,70 1157,1485,95,6 1004,1048,100,50 1523,4025,80,21 1483,3940,116,69 1391,3456,112,20 746,21,115,49 973,1419,106,1 610,-466,117,19 1313,3570,115,69 1252,3289,111,53 891,1096,119,26 460,-1095,76,81 589,-401,109,26 1179,3455,119,-8 655,131,113,52 426,-1088,104,49 1004,2449,116,12 764,1078,111,17 1197,4313,105,75 989,3046,105,49 835,1895,106,36 854,2112,115,22 412,-861,106,63 1025,4319,97,9 600,742,74,59 502,82,105,64 960,4327,106,2 845,3169,90,27 886,3733,118,15 873,3706,43,4 672,1850,115,23 780,4322,112,47 711,3616,111,6 387,12,117,55 512,2021,119,58 451,1772,112,51 401,1169,104,14 482,3082,118,12 525,4308,82,48 160,-1716,116,51 110,-2139,120,81 305,2685,113,70 315,3175,112,48 122,-1777,103,18 317,4163,117,13 129,-1132,114,59 244,3711,102,3 186,1384,114,79 217,2863,99,48 195,2046,100,57 142,316,116,66 184,2412,114,8 95,-1561,109,3 117,674,106,81 131,2621,110,55 131,3437,94,50 96,-79,111,73 87,2692,96,26 59,455,95,44 51,2669,103,4 48,13,116,81 26,1527,100,48 9,2563,98,14 -1,2473,87,56 -3,2603,100,4 17,103,114,79 -43,2685,106,-3 -57,2849,109,22 -67,3145,114,5 -5,-126,107,10 17,-1046,100,81 -88,2807,109,3 -7,-1097,77,-6 -120,2028,108,51 -99,1323,85,29 -15,-1117,99,66 -174,2982,96,1 -192,3378,101,58 -182,3051,117,62 -237,3499,114,72 -271,3124,110,49 -380,4161,98,4 -293,1493,119,28 -258,964,108,100 -494,4225,113,49 -460,3537,102,67 -165,-507,118,11 -135,-848,109,78 -198,-300,117,23 -527,3770,114,1 5,-2295,118,1 4,-2295,108,2 -447,2518,115,3 -393,1638,117,8 -496,2516,99,34 -576,3088,98,45 -389,802,115,73 -216,-740,105,15 -486,1560,112,17 -487,1559,58,-6 -341,216,117,10 -124,-1602,120,52 -733,3436,95,78 -241,-844,107,64 -634,2210,98,58 -370,18,99,18 -786,3458,119,49 -870,4054,57,47 -681,1758,104,-3 -570,945,113,57 -860,3067,120,20 -844,2932,111,73 -803,2475,96,74 -1052,4128,116,51 -986,3462,118,72 -982,3397,86,23 -722,1513,118,15 -893,2440,85,29 -1115,3967,115,75 -760,1362,99,53 -1165,3983,113,76 -779,1297,115,10 -1245,4165,104,29 -1199,3744,107,65 -816,1315,94,15 -683,543,103,-2 -930,1871,116,68 -868,1343,112,60 -1221,2760,115,4 -680,81,80,8 -338,-1372,116,83 -859,826,118,49 -203,-1903,115,38 -1461,3693,99,36 -618,-339,108,0 -1530,3980,113,53 -778,26,112,-1 -916,549,94,7 -1163,1546,98,20 -1453,2642,114,80 -437,-1296,110,61 -1227,1611,96,12 -897,208,109,6 -1783,3941,111,17 -1625,3052,115,1 -871,59,93,82 -1580,2816,113,50 -632,-776,117,4 -149,-2269,118,50 -285,-1874,118,50 -1347,1701,120,43 -1266,1166,118,11 -1329,1384,118,47 -947,59,114,-2 -1629,2497,119,26 -1339,1378,110,52 -1824,3253,90,25 -1540,2002,112,52 -1911,3398,81,76 -1792,2885,98,72 -796,-528,119,49 -1503,1689,118,82 -721,-796,92,79 -1520,1704,95,81 -1687,2202,118,10 -1946,3176,114,42 -1052,88,114,-2 -1968,3124,54,29 -1782,2285,100,72 -1972,2795,115,0 -2360,4005,120,4 -844,-810,73,-2 -1525,829,103,75 -1359,370,105,82 -416,-1877,96,68 -2123,2414,96,27 -731,-1239,104,80 -1350,155,91,12 -2558,3517,111,27 -2661,3793,106,50 -2409,2916,-1,62 -1398,175,95,12 -1577,599,84,4 -2569,3271,117,84 -1946,1462,96,53 -2680,3475,108,19 -2589,3155,97,61 -2922,3894,97,0 -2945,3910,119,3 -3026,4156,102,6 -1492,88,81,25 -2644,2831,108,12 -575,-1774,85,72 -1609,226,112,43 -2367,1799,71,65 -2084,1132,61,10 -2509,2115,120,12 -1443,-231,115,76 -2669,2505,118,20 -1704,227,115,78 -2443,1830,89,18 -1976,656,115,74 -2934,2819,118,55 -1562,-158,117,0 -1955,591,108,2 -3166,3246,119,12 -3059,2972,90,0 -3169,3224,76,2 -3388,3768,97,50 -3260,3419,111,47 -2730,2035,96,84 -2185,870,114,70 -2739,1974,47,48 -3139,2880,92,49 -3230,3044,116,67 -3744,4379,75,0 -2030,381,115,24 -1923,176,114,25 -2772,1798,116,2 -2970,2203,117,29 -332,-2340,113,34 -2422,1073,109,52 -760,-1728,41,73 -3190,2624,91,36 -1472,-636,110,68 -3231,2600,120,42 -3490,3010,118,-2 -1966,58,113,27 -3430,2817,114,48 -1208,-1158,93,80 -3985,3962,118,81 -2479,836,113,17 -1521,-763,118,5 -2463,727,70,48 -3159,1992,96,75 -4185,4187,88,51 -2718,1129,110,51 -2151,151,97,32 -3117,1802,90,62 -2148,100,112,0 -1846,-382,105,48 -3267,1951,99,21 -3222,1816,113,62 -3282,1917,116,62 -3640,2421,118,71 -3065,1299,120,78 -3200,1511,106,3 -1255,-1346,103,28 -4380,3745,106,55 -3015,1161,69,48 -4615,4227,112,9 -1020,-1666,100,68 -3697,2205,114,49 -4727,4288,118,75 -4643,4033,101,27 -2129,-299,113,6 -3279,1413,110,51 -1039,-1683,60,3 -4741,4126,107,60 -3140,1125,108,-3 -1606,-1027,120,-2 -2810,596,111,81 -1534,-1116,114,66 -3300,1324,100,29 -2953,746,86,15 -1797,-830,66,58 -4115,2584,103,82 -3141,965,109,70 -3443,1368,73,16 -1727,-968,118,72 -4891,3907,103,12 -2864,416,101,79 -1546,-1227,115,49 -753,-2088,100,77 -2872,403,100,4 -3412,1127,83,-6 -5170,4183,110,55 -3697,1484,44,2 -4583,2933,76,13 -3026,507,103,82 -2182,-564,119,59 -2147,-618,115,3 -4316,2383,119,18 -4653,2961,105,46 -2170,-623,117,55 -1284,-1599,113,69 -2988,379,105,44 -2626,-93,115,18 -2419,-351,117,42 -3222,641,93,-5 -4420,2331,120,45 -4225,1997,90,3 -4619,2616,107,2 -4301,2099,116,10 -3869,1417,76,1 -2351,-524,110,-2 -3532,903,111,54 -5268,3623,117,34 -767,-2160,86,2 -5048,3211,53,58 -5133,3295,111,2 -5576,4069,108,-2 -4569,2314,73,4 -5048,3085,88,30 -2200,-766,119,70 -1759,-1229,104,3 -4671,2419,114,5 -2215,-768,117,12 -4711,2436,120,64 -3866,1190,118,30 -4464,2033,82,81 -5777,4259,111,6 -4009,1346,92,40 -5773,4204,71,-2 -5454,3565,104,51 -5331,3315,74,7 -3460,574,96,50 -5801,4140,102,7 -4346,1750,95,77 -2230,-839,116,49 -3066,62,92,28 -4454,1760,109,79 -3049,-8,107,82 -3096,22,115,-5 -3387,349,109,18 -4780,2143,77,24 -4875,2245,111,57 -4104,1171,83,62 -2350,-819,99,13 -3515,405,112,76 -5595,3165,116,50 -3758,625,108,31 -4747,1878,102,50 -3984,883,100,-2 -2136,-1096,80,26 -2509,-743,119,75 -4449,1436,96,3 -2965,-299,94,-5 -3579,350,116,29 -898,-2175,115,3 -1540,-1682,109,-1 -5406,2507,113,10 -4941,1840,100,47 -5517,2625,114,79 -3107,-294,85,-2 -3670,286,95,51 -5871,3133,119,74 -5679,2828,119,49 -6364,3886,108,72 -988,-2156,110,-5 -4581,1238,115,76 -3315,-159,118,73 -3715,253,112,68 -5875,2897,109,74 -6511,3835,55,79 -3931,397,105,30 -4974,1568,114,56 -6879,4382,110,33 -4286,716,116,3 -2172,-1302,107,78 -1018,-2179,99,20 -6699,3882,65,48 -2941,-680,119,68 -3138,-515,78,-8 -3601,-84,110,20 -1526,-1855,105,56 -5080,1432,75,15 -6391,3163,96,17 -4251,505,97,48 -4049,291,104,82 -4058,296,108,76 -2078,-1469,113,48 -2093,-1461,55,46 -6012,2509,117,1 -2552,-1108,115,0 -3837,-3,111,9 -5522,1818,91,0 -798,-2375,111,12 -7200,4064,105,86 -7261,4161,92,9 -1580,-1878,99,-3 -6595,3082,108,73 -3556,-345,97,64 -5070,1098,56,47 -5152,1174,105,64 -6558,2894,76,1 -5037,1024,115,80 -3320,-621,112,6 -2199,-1498,118,2 -6329,2495,113,-2 -5872,1918,97,75 -3579,-455,84,-1 -3291,-739,117,52 -2820,-1103,111,-3 -2819,-1105,101,-1 -7046,3264,115,41 -7733,4265,51,2 -2600,-1295,106,53 -3142,-907,97,78 -6636,2469,115,0 -1963,-1766,97,61 -4492,152,56,32 -4859,481,118,20 -6911,2767,115,17 -3950,-359,70,46 -953,-2378,120,22 -2595,-1413,97,19 -5813,1297,112,82 -6407,1933,103,77 -591,-2579,84,45 -3745,-629,117,75 -6731,2218,104,0 -3471,-875,96,4 -6104,1428,118,1 -8167,4031,93,24 -6625,1968,110,5 -4773,118,115,81 -7169,2559,110,3 -5208,467,101,62 -4654,-51,107,16 -3396,-1010,120,66 -6463,1615,88,-4 -7908,3334,105,55 -5568,686,108,48 -5789,877,107,70 -1995,-1918,98,24 -6614,1610,64,58 -4821,-128,78,-1 -5534,440,114,67 -7926,2955,96,74 -4618,-323,105,1 -5310,205,115,51 -6318,1074,99,80 -6372,1104,118,0 -7586,2302,120,29 -2920,-1525,98,24 -6485,1141,98,6 -7743,2470,113,5 -5673,374,111,65 -4500,-580,108,15 -2003,-2052,63,-6 -4104,-884,101,64 -8801,3540,109,23 -9337,4265,49,3 -6835,1170,106,80 -2259,-1972,111,11 -6524,795,56,58 -5570,-1,62,4 -4507,-753,63,72 -9399,3974,120,55 -5680,61,120,67 -7836,1978,118,1 -8003,2153,94,56 -4861,-577,96,-8 -4494,-827,93,2 -6315,483,120,1 -4368,-923,119,51 -6941,1002,101,77 -5265,-342,114,49 -798,-2622,115,75 -5585,-155,107,3 -6287,376,100,83 -3734,-1336,110,79 -4960,-603,108,31 -9410,3584,86,2 -5693,-100,103,0 -4299,-1043,111,33 -3118,-1683,114,73 -4573,-925,83,-1 -7255,1050,115,63 -5887,-63,114,11 -6532,415,115,4 -2563,-1997,113,1 -7793,1427,87,74 -8768,2422,91,19 -3606,-1526,117,6 -4831,-847,119,-1 -6207,79,110,-6 -8251,1755,108,12 -8442,1862,106,36 -3272,-1751,56,48 -5687,-416,88,72 -201,-2827,116,12 -5209,-727,113,48 -8061,1441,111,42 -5482,-582,113,0 -1876,-2334,101,54 -3025,-1889,98,13 -236,-2821,87,1 -3026,-1889,97,14 -4293,-1302,114,54 -6399,-13,113,25 -9045,2313,112,9 -6699,196,114,50 -7411,717,116,2 -7108,459,42,8 -2441,-2161,105,30 -3648,-1688,107,57 -1834,-2393,95,22 -1505,-2498,117,51 -5961,-451,115,6 -9448,2485,92,7 -3905,-1624,76,-9 -3382,-1885,120,53 -7915,822,119,64 -1542,-2522,91,22 -1541,-2523,116,26 -6886,18,111,19 -6006,-580,111,72 -6043,-586,115,34 -8154,931,55,58 -3213,-1993,115,1 -5740,-859,68,38 -6791,-239,112,2 -8472,983,75,2 -6507,-466,114,47 -5985,-791,102,57 -3522,-1959,100,2 -1117,-2676,100,26 -5626,-1036,110,54 -8753,984,118,79 -8201,512,115,21 -4585,-1611,103,58 -2972,-2219,75,59 -1578,-2612,109,17 -6026,-970,109,17 -6414,-770,112,62 -4884,-1549,77,68 -8923,935,116,3 -3495,-2095,45,76 -9017,973,119,6 -5719,-1198,74,47 -5628,-1263,88,19 -4093,-1945,114,78 -7108,-512,93,63 -848,-2776,115,26 -8566,459,96,-5 -8751,581,79,1 -6588,-861,85,20 -8980,703,88,2 -6685,-837,105,-5 -8919,472,81,43 -5489,-1526,114,59 -6581,-1014,99,83 -5679,-1476,101,26 -8181,-129,93,48 -8081,-196,74,8 -4343,-2008,100,46 -5878,-1401,77,-1 -6173,-1273,116,6 -6172,-1273,117,8 -5071,-1754,110,58 -6777,-1004,87,-8 -6866,-962,102,9 -8823,203,114,18 -8943,272,113,24 -5080,-1798,111,46 -3285,-2377,119,47 -8934,228,110,60 -5415,-1712,120,2 -5636,-1627,99,82 -2321,-2631,100,22 -1909,-2713,119,53 -4526,-2117,111,-6 -8603,-383,108,54 -6490,-1479,106,75 -5199,-1994,87,58 -6794,-1380,98,80 -1671,-2789,84,-5 -9156,-114,97,46 -5891,-1774,112,12 -6004,-1733,102,11 -1539,-2805,71,24 -3841,-2420,100,81 -6660,-1499,108,82 -8048,-846,120,3 -7325,-1221,105,62 -6859,-1464,77,58 -2882,-2652,100,4 -4857,-2204,102,2 -8626,-655,113,44 -5940,-1897,116,3 -2227,-2771,96,59 -8920,-591,114,-2 -6674,-1731,117,-5 -1089,-2889,113,60 -7551,-1416,115,3 -3073,-2739,95,31 -6738,-1807,118,74 -5914,-2095,109,-4 -3552,-2687,108,55 -7442,-1612,116,0 -6768,-1884,112,51 -8672,-1099,108,19 -5606,-2289,108,-5 -9019,-929,109,19 -5008,-2452,1,0 -2536,-2864,115,-2 -3582,-2778,120,-3 -3243,-2861,101,-4 -5833,-2418,114,18 -4944,-2633,93,8 -4950,-2633,92,9 -5179,-2595,87,10 -5181,-2595,115,14 -9354,-1160,116,2 -7260,-2045,84,24 -1418,-2978,105,48 -6487,-2302,97,60 -1290,-2979,107,2 -3513,-2895,118,-5 -7587,-1978,87,7 -7454,-2090,118,1 -5764,-2591,119,-8 -5796,-2587,104,5 -5700,-2614,70,0 -2860,-3008,93,59 -3521,-2972,110,42 -7210,-2284,109,-3 -3763,-2978,98,45 -5292,-2786,112,-7 -6391,-2569,113,68 -1684,-3046,96,58 -5304,-2802,84,79 -7072,-2407,91,39 -3963,-2987,117,23 -4764,-2895,109,52 -5652,-2748,120,46 -4503,-2939,82,70 -9360,-1616,112,52 -7696,-2267,114,55 -2274,-3079,112,47 -3024,-3076,113,58 -5791,-2777,104,30 -5157,-2910,118,-4 -7821,-2305,107,37 -8319,-2162,118,13 -5826,-2821,65,-2 -8364,-2159,105,29 -8161,-2248,80,54 -6642,-2676,105,61 -5898,-2837,99,73 -3790,-3096,108,-9 -3248,-3126,110,43 -6644,-2722,114,-4 -4183,-3091,100,9 -3488,-3185,108,-1 -5970,-2958,113,77 -8403,-2396,60,1 -6373,-2936,111,15 -6948,-2823,116,5 -8843,-2317,101,-3 -5444,-3094,105,-5 -5886,-3038,104,18 -3592,-3240,118,54 -1173,-3102,102,15 -3123,-3285,103,50 -6056,-3132,119,-3 -3871,-3299,117,33 -2028,-3225,61,50 -5093,-3283,89,-8 -3033,-3313,100,58 -7421,-3011,113,6 -8322,-2808,112,53 -6166,-3220,118,83 -1472,-3183,89,63 -7405,-3046,95,-3 -5219,-3336,87,63 -8414,-2828,113,-1 -3489,-3379,76,48 -7184,-3138,109,1 -8888,-2758,106,10 -8783,-2862,111,13 -3034,-3402,118,81 -2212,-3326,92,2 -6760,-3366,104,-6 -4601,-3526,117,46 -6311,-3453,100,-6 -8904,-3053,103,38 -7692,-3319,103,50 -5454,-3563,103,-6 -7652,-3352,112,0 -8743,-3150,115,23 -7684,-3356,117,78 -3593,-3553,115,0 -7003,-3524,89,75 -6990,-3533,116,51 -8516,-3318,111,52 -3655,-3596,75,7 -6551,-3629,61,54 -6551,-3630,102,-5 -3809,-3637,111,64 -6738,-3634,118,46 -5694,-3701,95,-8 -1807,-3372,93,39 -3922,-3689,120,77 -3702,-3680,114,24 -7742,-3639,100,-5 -4711,-3760,107,3 -6354,-3765,108,29 -3810,-3729,90,20 -4440,-3787,103,46 -9120,-3513,120,44 -8269,-3671,113,50 -3287,-3702,118,24 -6264,-3901,94,49 -4657,-3862,108,-3 -8037,-3808,88,39 -4336,-3865,101,21 -8126,-3834,88,52 -8722,-3759,120,-4 -3766,-3820,120,32 -9067,-3768,106,29 -5959,-3998,119,6 -6880,-4019,110,47 -4775,-3967,117,80 -5319,-4017,98,47 -1815,-3481,118,4 -4373,-3955,57,0 -9303,-3893,54,75 -5784,-4096,100,24 -7981,-4089,74,66 -5181,-4087,117,-4 -6939,-4151,120,50 -1717,-3489,77,44 -9107,-4028,115,27 -7889,-4156,100,5 -5135,-4160,104,83 -4902,-4138,114,-3 -3471,-3927,101,64 -9368,-4097,102,28 -7354,-4254,98,-8 -4134,-4066,112,-4 -6998,-4291,111,34 -4030,-4052,118,-9 -2977,-3867,103,-6 -7133,-4339,91,-2 -7097,-4375,111,-1 -5344,-4288,116,39 -3514,-4022,98,6 -5151,-4293,99,-4 -2831,-3871,100,79 -9213,-4348,106,1 -5588,-4352,78,51 -4912,-4296,109,-4 -4255,-4238,118,9 -3751,-4177,101,56 -2209,-3768,104,80 -1908,-3685,90,66 -2476,-3902,108,60 -3394,-4178,116,22 -983,-3380,88,-2 -2444,-3970,114,26 -2999,-4182,86,6 -2580,-4042,116,74 -1955,-3857,118,30 -3097,-4296,115,6 -2392,-4056,114,-2 -1755,-3799,112,74 -2216,-4006,114,78 -625,-3299,108,50 -651,-3319,119,47 -2273,-4138,84,10 -1169,-3614,104,5 -510,-3285,115,0 -1861,-4102,112,11 -2298,-4367,68,46 -659,-3405,107,57 -1012,-3688,120,47 -803,-3608,118,-3 -1332,-4016,118,19 -854,-3719,118,77 -569,-3522,119,48 -1283,-4217,65,-10 -1150,-4243,91,55 -1071,-4175,104,53 -921,-4189,101,22 -910,-4307,96,46 -125,-3199,105,-2 -462,-3823,117,9 -447,-3828,109,5 -564,-4059,114,1 -673,-4300,102,20 -579,-4150,116,80 -193,-3483,95,63 -99,-3292,118,67 -131,-3385,94,71 -399,-4229,88,40 -396,-4356,118,0 11,-3137,111,12 -208,-4294,119,6 -159,-4062,64,52",
+    figs: "Aql:-9303,-3893,-9648,-4046,-10144,-4188,-11802,-4796,-11202,-3839,-10425,-2642,-8403,-2396,-9648,-4046,-10425,-2642,-11507,-1134|Aur:4498,-2771,4430,-3614,4976,-3856,5978,-4145,6546,-3291,5354,-2609,4498,-2771,3514,-2897,4430,-3614,4661,-3933,4989,-3949|Boo:-1824,3253,-1968,3124,-2409,2916,-2367,1799,-2084,1132,-2463,727,-3015,1161,-2739,1974,-2409,2916,-3169,3224;-2084,1132,-1577,599,-1350,156,-1492,88,-1577,599|Cam:3532,-3868,2846,-3651,2231,-3620,1536,-3945,2037,-4275,2397,-4823;2231,-3620,2009,-2816,1255,-2656|Cnc:4945,2600,4860,1825,4676,1522,4151,983|CVn:-486,1560,-99,1323|Cep:-2273,-4138,-2298,-4367,-2002,-4677,-2103,-5213,-1878,-5690,-1845,-5542,-1602,-5688,-928,-5058,-159,-4062,-1283,-4217,-2002,-4677;-1283,-4217,-928,-5058|Com:-982,3397,-893,2440,-1,2473|CrB:-3412,1127,-3443,1368,-3697,1484,-3869,1417,-4009,1346,-4104,1171,-3984,883|Cyg:-5629,-6759,-5435,-5762,-4808,-4892,-4373,-3955,-3655,-3596,-3489,-3379;-4063,-5117,-4808,-4892,-5588,-4352,-6551,-3629|Dra:-2972,-2219,-3495,-2095,-3272,-1751,-3026,-1889,-2972,-2219,-2028,-3225,-1671,-2789,-2003,-2052,-2093,-1461,-2136,-1096,-1797,-830,-844,-810,-7,-1097,460,-1095;-1671,-2789,-1539,-2805;-2028,-3225,-1717,-3489|Her:-5080,1432,-5070,1098,-4492,152,-3950,-359,-3579,-455,-3138,-515,-3107,-294,-3066,62;-4492,152,-4821,-128;-3950,-359,-4507,-753;-4884,-1549,-4573,-925,-4507,-753,-4821,-128,-5570,-1,-5740,-859,-5719,-1198,-5878,-1401;-6524,795,-5070,1098|Leo:3302,3403,3149,2938,2764,2761,1577,3029,873,3706,1669,3508,3302,3403;2764,2761,2710,2412,3086,1977,3318,2103|LMi:2450,1327,2184,1583,1689,1712,2055,1352,2450,1327,2943,942|Lyn:3004,-2681,2946,-2202,3600,-1461,3531,-362,3146,185,3163,753,3256,964|Lyr:-5179,-2595,-4950,-2633,-5008,-2452,-5179,-2595,-5304,-2802,-5826,-2821,-5700,-2614,-5179,-2595|Oph:-10328,2053,-8472,983,-8154,931,-7108,459,-6614,1610,-6558,2894,-6511,3835,-6699,3882,-7733,4265,-9337,4265;-6614,1610,-7733,4265,-8007,5229,-8000,5582,-8011,5879,-8317,6410;-8154,931,-9337,4265,-10754,5548,-11515,6407|Sge:-8037,-3808,-7981,-4089,-7846,-4526;-8126,-3834,-7981,-4089|Ser:-4569,2314,-4225,1997,-4464,2033,-4780,2143,-4569,2314,-4583,2933,-5048,3211,-5331,3315,-6511,3835|Ser:-9337,4265,-10291,3503,-10328,2053,-10246,1715,-10039,477,-9750,-1476|UMa:159,-10,859,-527,1013,-94,438,255,159,-10,-295,62,-665,90,-1087,476;438,255,600,742,1261,1922,1294,2057;600,742,1184,916,1982,921;1184,916,2010,772;859,-527,1626,-1047,2233,-1344,1658,-640,1013,-94;1013,-94,1876,-263,2206,-226,2791,-270;2792,-164,2206,-226|UMi:-767,-2160,-1018,-2179,-1039,-1683,-760,-1728,-767,-2160,-591,-2579,-236,-2821,109,-2950|Vir:-870,4054,-770,4839,-424,5381;-1247,5786,-1868,5144,-2554,4768,-3744,4379|Vul:-7405,-3046,-7003,-3524,-7133,-4339,-6585,-4574,-6528,-5046",
+    names: "Aql,-9548,-2842,Aquila|Aur,5480,-3301,Auriga|Boo,-2576,1228,Boötes|Cam,1751,-3155,Camelopardalis|Cnc,4500,923,Cancer|CVn,-318,1169,Canes Venatici|Cep,-850,-4514,Cepheus|Com,-570,2833,Coma Berenices|CrB,-3726,817,Corona Borealis|Cyg,-3613,-4693,Cygnus|Dra,-2312,-2420,Draco|Her,-4401,-285,Hercules|Leo,2558,3332,Leo|LMi,2232,1935,Leo Minor|Lyn,3284,-929,Lynx|Lyr,-6004,-2155,Lyra|Oph,-7544,1903,Ophiuchus|Sge,-7951,-3219,Sagitta|Ser,-4761,3554,Serpens Caput|Ser,-9660,-835,Serpens Cauda|UMa,1242,587,Ursa Major|UMi,-1162,-1348,Ursa Minor|Vir,-1456,5587,Virgo|Vul,-7582,-3922,Vulpecula",
+    plough: {"merak": [1.0127, -0.0939, 2.34, 0.033], "dubhe": [0.8588, -0.5269, 1.81, 1.061], "phecda": [0.4376, 0.2548, 2.41, 0.044], "megrez": [0.1593, -0.0098, 3.32, 0.077], "alioth": [-0.2953, 0.0621, 1.76, -0.022], "mizar": [-0.6652, 0.0898, 2.23, 0.057], "alkaid": [-1.0868, 0.4759, 1.85, -0.099]},
+    alcor: [-0.6795, 0.0811, 3.99, 0.169]
+  };
+
+  /* ---------- the night sky ----------------------------------------------
+     Four layers under the desk, all procedural, no image files:
+       .dome   css sky gradient with a light-pollution glow at the horizon
+       #gal    the milky way, one webgl fragment shader, drawn once per resize
+       #fine   the faint field, thousands of stars, painted once
+       #stc    the bright stars, the asterism and the meteors, per frame
+
+     The maths is ported from two MIT-licensed projects:
+       CK42BB/procedural-stars-threejs  (c) 2026 Kingsley
+         magnitude to brightness (2.512^-m), the three-frequency twinkle that
+         bright stars resist, the core+glow star profile with a diffraction
+         hint, and the milky way as band * structure * (1 - dust) + core.
+       H0rn0chse/NightSky               (c) 2022 H0rn0chse
+         star count scaled to viewport area, stars split into parallax layers.
+     ---------------------------------------------------------------------- */
+  var NIGHT = (function(){
+    var gal = $("gal"), fine = $("fine"), mwc = $("mwc"), stc = $("stc"), btn = $("thbtn");
+    var sys = $("sys"), coreEl = $("coreA"), skyEl2 = $("sky");
+    var photoEl = document.querySelector("#space .photo");
+    var sctx = stc.getContext("2d"), fctx = fine.getContext("2d"), mctx = mwc.getContext("2d");
+    var lbl = btn.querySelector("span");
+    var root = document.documentElement;
+    var on = root.getAttribute("data-theme") === "night";
+    var W = 0, H = 0, DPR = 1, t0 = 0, shoot = null, nextShoot = 0, still = false;
+    var pointerX = null, pointerY = null;
+    var mwPending = 0, mwRows = 0, mwImg = null, mwW = 0, mwH = 0, rzT = 0;
+    var mx = 0, my = 0, px = 0, py = 0;
+
+    /* "photo" puts the JWST plate behind everything; "shader" goes back to
+       the procedural galaxy, which is still here and still works. */
+    var SKY = "shader";
+
+    function clamp(v, a, b){ return v < a ? a : (v > b ? b : v); }
+    function sstep(e0, e1, x){
+      var t = clamp((x - e0) / (e1 - e0), 0, 1);
+      return t * t * (3 - 2 * t);
+    }
+
+    /* one seed, so this is always the same sky and not a new one every visit */
+    function rng(a){
+      return function(){
+        a |= 0; a = a + 0x6D2B79F5 | 0;
+        var t = Math.imul(a ^ a >>> 15, 1 | a);
+        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      };
+    }
+
+    /* B-V colour index to rgb. Alkaid really is blue and Dubhe really is
+       orange, and at night you can see the difference between them. */
+    var BVT = [[-0.35,155,176,255],[-0.15,170,191,255],[0.05,202,215,255],
+               [0.25,248,247,255],[0.55,255,244,234],[0.85,255,228,197],
+               [1.15,255,205,161],[1.60,255,180,124]];
+    function bv2rgb(bv){
+      var i = 0;
+      while(i < BVT.length - 2 && bv > BVT[i+1][0]) i++;
+      var a = BVT[i], b = BVT[i+1];
+      var k = clamp((bv - a[0]) / (b[0] - a[0]), 0, 1);
+      return [Math.round(a[1]+(b[1]-a[1])*k),
+              Math.round(a[2]+(b[2]-a[2])*k),
+              Math.round(a[3]+(b[3]-a[3])*k)];
+    }
+
+    /* a star is a prebaked sprite, not a gradient rebuilt sixty times a second */
+    var cache = {};
+    function sprite(rgb, spike){
+      var key = rgb[0]+","+rgb[1]+","+rgb[2]+(spike?"+":"");
+      if(cache[key]) return cache[key];
+      var S = 48, c = document.createElement("canvas"), x = c.getContext("2d");
+      c.width = c.height = S;
+      var img = x.createImageData(S, S), d = img.data, hh = (S-1)/2;
+      for(var j=0;j<S;j++) for(var i=0;i<S;i++){
+        var dx = (i-hh)/hh, dy = (j-hh)/hh, dist = Math.sqrt(dx*dx+dy*dy);
+        var a = sstep(0.30, 0.02, dist) + Math.exp(-dist*dist/0.075)*0.50;
+        if(spike){
+          var sp = Math.pow(Math.abs(Math.cos(Math.atan2(dy,dx)*2)), 26) * (1 - dist*1.7);
+          if(sp > 0) a += sp*0.62;
+        }
+        var o = (j*S+i)*4;
+        d[o]=rgb[0]; d[o+1]=rgb[1]; d[o+2]=rgb[2]; d[o+3]=Math.round(clamp(a,0,1)*255);
+      }
+      x.putImageData(img, 0, 0);
+      cache[key] = c;
+      return c;
+    }
+
+    /* the same galactic plane the shader uses, so the stars crowd where the
+       band is. A milky way is not a painted smear, it is a density of stars,
+       and this is the part that sells it. */
+    var AX = 0.40, AY = 1.0, AL = Math.sqrt(AX*AX + AY*AY);
+    AX /= AL; AY /= AL;
+
+    /* ---- the real sky ----------------------------------------------------
+       Nothing here is invented. Every point is a catalogued star at its own
+       place, with its own magnitude and its own colour index, and every line
+       is the figure astronomers actually draw. The Plough is no longer a
+       shape on its own: it sits inside Draco, Bootes, Canes Venatici, Leo
+       Minor, Lynx and twenty more, exactly as it does overhead.
+
+       Stars are drawn as point sources, not as little spheres. No star but
+       the sun is resolvable from here, so what a star gives you is a core,
+       a glare, and diffraction spikes if it is bright enough. */
+    var FIELD_BRIGHT = 4.1;          /* brighter than this twinkles every frame */
+    var field = [], fieldLive = [], figs = [], conNames = [];
+
+    function starLum(mag){ return Math.pow(2.512, -mag); }
+    function starSize(mag){ return 1.10 + 7.60*Math.pow(starLum(mag), 0.33); }
+    function starAlpha(mag){ return clamp(0.30 + 2.20*Math.pow(starLum(mag), 0.38), 0, 1); }
+
+    function parseSky(){
+      if(field.length) return;
+      var rows = SKYDATA.stars.split(" ");
+      for(var i=0;i<rows.length;i++){
+        var v = rows[i].split(",");
+        var mag = (+v[2])/20, bv = (+v[3])/50;
+        var s = { x:(+v[0])/1000, y:(+v[1])/1000, mag:mag,
+                  ph: ((i*2654435761) % 6283)/1000,
+                  img: sprite(bv2rgb(bv), mag < 2.2) };
+        field.push(s);
+        if(mag <= FIELD_BRIGHT) fieldLive.push(s);
+      }
+      var fs = SKYDATA.figs.split("|");
+      for(i=0;i<fs.length;i++){
+        var c = fs[i].indexOf(":"), id = fs[i].slice(0, c);
+        var parts = fs[i].slice(c+1).split(";"), poly = [];
+        for(var j=0;j<parts.length;j++){
+          var n = parts[j].split(","), pts = [];
+          for(var k=0;k<n.length;k+=2) pts.push([(+n[k])/1000, (+n[k+1])/1000]);
+          poly.push(pts);
+        }
+        figs.push({ id:id, poly:poly });
+      }
+      var ns = SKYDATA.names.split("|");
+      for(i=0;i<ns.length;i++){
+        var p = ns[i].split(",");
+        conNames.push({ id:p[0], x:(+p[1])/1000, y:(+p[2])/1000, name:p[3].toLowerCase() });
+      }
+    }
+
+    /* on a phone the asterism cannot hang off the folders, because the folders
+       are a list. So the sky gets its own frame: the same projection, placed
+       by hand in the upper third where nothing else lives. */
+    var MB = { cx:0, cy:0, r:0 };
+    function frameB(){ return MOB ? MB : SYS[1]; }
+    function sx(nx){ var B = frameB(); return B.cx + nx*B.r; }
+    function sy(ny){ var B = frameB(); return B.cy + ny*B.r*CSQ; }
+
+    /* the phone version: field, figures and the seven, all on one static
+       canvas, so the page can then sit perfectly still. No loop runs behind
+       it, which is the only way a background like this belongs on a battery. */
+    function paintMobileSky(){
+      /* scaled so the catalogue actually reaches all four edges: the field
+         runs to 4.4 units either side of the asterism, so the radius has to
+         be a little over an eighth of the screen height to cover it. */
+      MB.r  = Math.round(Math.min(W*0.30, H*0.135));
+      MB.cx = Math.round(W*0.58);
+      MB.cy = Math.round(H*0.46);
+      fine.width = Math.round(W*DPR); fine.height = Math.round(H*DPR);
+      fctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      fctx.clearRect(0, 0, W, H);
+      fctx.globalCompositeOperation = "lighter";
+      var i, j, k;
+      for(i=0;i<field.length;i++){
+        var s = field[i], x = sx(s.x), y = sy(s.y);
+        if(x < -20 || x > W+20 || y < -20 || y > H+20) continue;
+        var d = starSize(s.mag)*4.4;
+        fctx.globalAlpha = starAlpha(s.mag);
+        fctx.drawImage(s.img, x - d/2, y - d/2, d, d);
+      }
+      fctx.globalAlpha = 1;
+      fctx.globalCompositeOperation = "source-over";
+      fctx.lineCap = "round"; fctx.lineJoin = "round";
+      fctx.strokeStyle = "rgba(174,202,248,.14)"; fctx.lineWidth = 0.8;
+      for(i=0;i<figs.length;i++){
+        var f = figs[i];
+        if(f.id === "UMa") continue;
+        for(j=0;j<f.poly.length;j++){
+          var pts = f.poly[j];
+          fctx.beginPath();
+          for(k=0;k<pts.length;k++){
+            var ax = sx(pts[k][0]), ay = sy(pts[k][1]);
+            if(k) fctx.lineTo(ax, ay); else fctx.moveTo(ax, ay);
+          }
+          fctx.stroke();
+        }
+      }
+      /* the plough, from the same vertices the desktop hangs its folders on */
+      fctx.strokeStyle = "rgba(206,226,255,.52)"; fctx.lineWidth = 1.1;
+      for(i=0;i<LINES.length;i++){
+        fctx.beginPath();
+        for(j=0;j<LINES[i].length;j++){
+          var v = VERT[LINES[i][j]], vx = sx(v.nx), vy = sy(v.ny);
+          if(j) fctx.lineTo(vx, vy); else fctx.moveTo(vx, vy);
+        }
+        fctx.stroke();
+      }
+      fctx.globalCompositeOperation = "lighter";
+      for(i=0;i<VERT.length;i++){
+        var vv = VERT[i];
+        if(!vv.img) vv.img = sprite(bv2rgb(vv.bv), true);
+        var vd = starSize(vv.mag)*6.2;
+        fctx.globalAlpha = clamp(starAlpha(vv.mag), 0, 1);
+        fctx.drawImage(vv.img, sx(vv.nx) - vd/2, sy(vv.ny) - vd/2, vd, vd);
+      }
+      if(SKYDATA.alcor){
+        var A = SKYDATA.alcor;
+        if(!alcImg) alcImg = sprite(bv2rgb(A[3]), false);
+        var ad2 = starSize(A[2])*4.6;
+        fctx.globalAlpha = clamp(starAlpha(A[2]), 0, 1);
+        fctx.drawImage(alcImg, sx(A[0]) - ad2/2, sy(A[1]) - ad2/2, ad2, ad2);
+      }
+      fctx.globalAlpha = 1;
+      fctx.globalCompositeOperation = "source-over";
+    }
+
+    /* the faint field never changes, so it is painted once per layout */
+    function paintFine(){
+      var B = frameB();
+      if(!B || !B.r) return;
+      fine.width = Math.round(W*DPR); fine.height = Math.round(H*DPR);
+      fctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      fctx.clearRect(0, 0, W, H);
+      fctx.globalCompositeOperation = "lighter";
+      for(var i=0;i<field.length;i++){
+        var s = field[i];
+        if(s.mag <= FIELD_BRIGHT) continue;
+        var x = sx(s.x), y = sy(s.y);
+        if(x < -20 || x > W+20 || y < -20 || y > H+20) continue;
+        var d = starSize(s.mag)*4.4;
+        fctx.globalAlpha = starAlpha(s.mag);
+        fctx.drawImage(s.img, x - d/2, y - d/2, d, d);
+      }
+      fctx.globalAlpha = 1;
+      fctx.globalCompositeOperation = "source-over";
+    }
+
+    /* the figures of the neighbouring constellations, and their names, which
+       surface only where the pointer is looking */
+    function drawFigs(){
+      var B = frameB();
+      if(!B || !B.r) return;
+      var mxp = pointerX, myp = pointerY;
+      sctx.lineCap = "round"; sctx.lineJoin = "round";
+      for(var i=0;i<figs.length;i++){
+        var f = figs[i], nm = null;
+        for(var j=0;j<conNames.length;j++) if(conNames[j].id === f.id){ nm = conNames[j]; break; }
+        var near = 0;
+        if(nm && mxp != null){
+          var d = Math.hypot(sx(nm.x) - mxp, sy(nm.y) - myp);
+          near = 1 - clamp((d - 90)/190, 0, 1);
+        }
+        if(f.id === "UMa") continue;          /* the plough is drawn in svg, it follows the folders */
+        sctx.strokeStyle = "rgba(174,202,248," + (0.115 + near*0.34).toFixed(3) + ")";
+        sctx.lineWidth = 0.75 + near*0.35;
+        for(j=0;j<f.poly.length;j++){
+          var pts = f.poly[j];
+          sctx.beginPath();
+          for(var k=0;k<pts.length;k++){
+            var x = sx(pts[k][0]), y = sy(pts[k][1]);
+            if(k) sctx.lineTo(x, y); else sctx.moveTo(x, y);
+          }
+          sctx.stroke();
+        }
+        if(nm && near > 0.02){
+          sctx.globalAlpha = near*0.8;
+          sctx.fillStyle = "#9FB0CE";
+          sctx.font = '9px "JetBrains Mono", ui-monospace, monospace';
+          try{ sctx.letterSpacing = "2px"; }catch(e){}
+          sctx.textAlign = "center";
+          sctx.fillText(nm.name, sx(nm.x), sy(nm.y));
+          try{ sctx.letterSpacing = "0px"; }catch(e){}
+          sctx.globalAlpha = 1;
+        }
+      }
+    }
+
+    /* the bright field: these are the ones the eye sees scintillate */
+    function drawField(now, ign){
+      var B = frameB();
+      if(!B || !B.r) return;
+      var t = reduce ? 0 : now/1000;
+      sctx.globalCompositeOperation = "lighter";
+      for(var i=0;i<fieldLive.length;i++){
+        var s = fieldLive[i];
+        var x = sx(s.x), y = sy(s.y);
+        if(x < -30 || x > W+30 || y < -30 || y > H+30) continue;
+        var tw = 1 + Math.sin(t*1.5 + s.ph)*0.14
+                   + Math.sin(t*3.6 + s.ph*2)*0.07
+                   + Math.sin(t*7.0 + s.ph*3)*0.035;
+        var a = clamp(starAlpha(s.mag)*tw, 0, 1)*ign;
+        var d = starSize(s.mag)*tw*4.4;
+        sctx.globalAlpha = a;
+        sctx.drawImage(s.img, x - d/2, y - d/2, d, d);
+      }
+      sctx.globalAlpha = 1;
+    }
+
+    /* the seven, and the companion that is really there */
+    function drawCon(ign, t){
+      var B = frameB();
+      if(!B || !B.r) return;
+      sctx.globalCompositeOperation = "lighter";
+      for(var i=0;i<VERT.length;i++){
+        var v = VERT[i];
+        if(v.cx == null || v.mag == null) continue;
+        /* the shape lights up from the tip of the handle down to the pointers */
+        var lit = clamp((ign*1.75 - (VERT.length-1-i)*0.085)/0.34, 0, 1);
+        if(lit <= 0) continue;
+        if(!v.img) v.img = sprite(bv2rgb(v.bv), true);
+        var tw = 1 + Math.sin(t*1.5 + v.ph)*0.10 + Math.sin(t*3.6 + v.ph*2)*0.05;
+        var d = starSize(v.mag)*tw*7.2;
+        sctx.globalAlpha = clamp(starAlpha(v.mag)*tw, 0, 1)*lit;
+        sctx.drawImage(v.img, v.cx - d/2, v.cy - d/2, d, d);
+        /* Mizar and Alcor really are a naked-eye pair twelve arcminutes apart.
+           At this scale that is about three pixels, so it is drawn true: a
+           tight companion you only notice if you look. */
+        if(v.star === "mizar" && SKYDATA.alcor){
+          var A = SKYDATA.alcor;
+          var ax = v.cx + (A[0] - v.nx)*B.r, ay = v.cy + (A[1] - v.ny)*B.r*CSQ;
+          if(!alcImg) alcImg = sprite(bv2rgb(A[3]), false);
+          var ad = starSize(A[2])*5.4;
+          sctx.globalAlpha = clamp(starAlpha(A[2]), 0, 1)*lit;
+          sctx.drawImage(alcImg, ax - ad/2, ay - ad/2, ad, ad);
+          var lab = skyEl2 && skyEl2.classList.contains("near") ? lit*0.72 : 0;
+          alcorLbl.setAttribute("x", (ax + 15).toFixed(0));
+          alcorLbl.setAttribute("y", (ay - 6).toFixed(0));
+          alcorLbl.style.opacity = lab.toFixed(2);
+        }
+      }
+      sctx.globalAlpha = 1;
+    }
+    var alcImg = null;
+
+    /* ---- the sky, coded ---------------------------------------------------
+       No photograph. The backdrop is three nebula layers and nothing else,
+       and each layer is one colour, one intensity, one falloff.
+
+       The method is wwwtyro/space-3d (Unlicense, public domain): instead of
+       stacking octaves, feed the noise its own output six times over, each
+       round at half the scale. That one loop is what turns fog into wisps.
+       The falloff exponent then throws away everything but the densest part,
+       which is why it reads as clean structure rather than grey haze.
+
+       Drawn once per resize at half device resolution. A nebula has no sharp
+       edge to lose, and the stars that do need edges are point sources drawn
+       on their own canvas above this one. */
+    var VS = "attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}";
+    var FS = [
+    "precision highp float;",
+    "uniform vec2 uRes;",
+    /* a hash with no trigonometry in it, after Dave Hoskins */
+    "vec3 h33(vec3 p){",
+    "  p=fract(p*vec3(0.1031,0.1030,0.0973));",
+    "  p+=dot(p,p.yxz+33.33);",
+    "  return fract((p.xxy+p.yxx)*p.zyx)*2.0-1.0;",
+    "}",
+    /* gradient noise: smoother than value noise, and the warp loop needs it */
+    "float gn(vec3 p){",
+    "  vec3 i=floor(p),f=fract(p);",
+    "  vec3 u=f*f*(3.0-2.0*f);",
+    "  return mix(mix(mix(dot(h33(i+vec3(0,0,0)),f-vec3(0,0,0)),",
+    "                     dot(h33(i+vec3(1,0,0)),f-vec3(1,0,0)),u.x),",
+    "                 mix(dot(h33(i+vec3(0,1,0)),f-vec3(0,1,0)),",
+    "                     dot(h33(i+vec3(1,1,0)),f-vec3(1,1,0)),u.x),u.y),",
+    "             mix(mix(dot(h33(i+vec3(0,0,1)),f-vec3(0,0,1)),",
+    "                     dot(h33(i+vec3(1,0,1)),f-vec3(1,0,1)),u.x),",
+    "                 mix(dot(h33(i+vec3(0,1,1)),f-vec3(0,1,1)),",
+    "                     dot(h33(i+vec3(1,1,1)),f-vec3(1,1,1)),u.x),u.y),u.z);",
+    "}",
+    "float n3(vec3 p){ return gn(p)*0.5+0.5; }",
+    /* space-3d's nebula, verbatim in structure */
+    "float neb(vec3 p){",
+    "  float scale=32.0;",
+    "  vec3 d=vec3(0.0);",
+    "  for(int i=0;i<5;i++){",
+    "    d=vec3(n3(p.xyz*scale+d), n3(p.yzx*scale+d), n3(p.zxy*scale+d));",
+    "    scale*=0.5;",
+    "  }",
+    "  return n3(p*scale+d);",
+    "}",
+    "float layer(vec3 dir,vec3 off,float sc,float inten,float fall){",
+    "  float c=min(1.0,neb(normalize(dir)*sc+off)*inten);",
+    "  return pow(c,fall);",
+    "}",
+    "void main(){",
+    "  vec2 uv=gl_FragCoord.xy/uRes;",
+    "  float asp=uRes.x/uRes.y;",
+    /* look out of a box, so the structure is three-dimensional and seamless */
+    "  vec3 dir=normalize(vec3((uv-0.5)*vec2(asp,1.0)*1.5, 1.0));",
+
+    /* composition: the clouds live on the left, the asterism keeps a clean
+       corner on the right. one mask, no per-layer fiddling. */
+    "  float room=1.0-smoothstep(0.34,0.96,uv.x*0.72+uv.y*0.46);",
+    "  room=0.14+0.86*room;",
+
+    "  vec3 col=vec3(0.0);",
+    "  col+=vec3(0.24,0.34,0.72)*layer(dir,vec3( 0.0, 0.0, 0.0),2.2,1.34,3.0)*1.25*room;",
+    "  col+=vec3(0.16,0.52,0.60)*layer(dir,vec3(17.0, 5.0,11.0),2.9,1.20,4.2)*0.72*room;",
+    "  col+=vec3(0.80,0.42,0.20)*layer(dir,vec3(41.0,23.0, 7.0),3.6,1.12,5.6)*0.52*room;",
+
+    "  float a=clamp(max(col.r,max(col.g,col.b))*1.9,0.0,1.0);",
+    "  gl_FragColor=vec4(col,a);",
+    "}"].join("\n");
+
+    var gl = null, glProg = null, glOK = false;
+    function glInit(){
+      try{
+        gl = gal.getContext("webgl", { alpha:true, premultipliedAlpha:false,
+                                       antialias:false, depth:false, stencil:false });
+      }catch(e){ gl = null; }
+      if(!gl) return false;
+      function sh(type, src){
+        var s = gl.createShader(type);
+        gl.shaderSource(s, src); gl.compileShader(s);
+        return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
+      }
+      var vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
+      if(!vs || !fs) return false;
+      glProg = gl.createProgram();
+      gl.attachShader(glProg, vs); gl.attachShader(glProg, fs);
+      gl.linkProgram(glProg);
+      if(!gl.getProgramParameter(glProg, gl.LINK_STATUS)) return false;
+      gl.useProgram(glProg);
+      var buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+      var loc = gl.getAttribLocation(glProg, "a");
+      gl.enableVertexAttribArray(loc);
+      gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      glOK = true;
+      return true;
+    }
+    function glPaint(){
+      if(!glOK) return false;
+      /* half resolution: the warp loop is expensive and the result is smooth,
+         so there is nothing to gain from painting it per device pixel */
+      var s = Math.min(DPR, 2)*(MOB ? 0.34 : 0.50), w = Math.round(W*s), hh = Math.round(H*s);
+      var MAXPX = 1400000;
+      if(w*hh > MAXPX){ var f = Math.sqrt(MAXPX/(w*hh)); w = Math.round(w*f); hh = Math.round(hh*f); }
+      gal.width = w; gal.height = hh;
+      gl.viewport(0, 0, w, hh);
+      gl.uniform2f(gl.getUniformLocation(glProg, "uRes"), w, hh);
+      gl.clearColor(0, 0, 0, 0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      return true;
+    }
+
+    /* ---- the solar system ------------------------------------------------
+       In night the desktop stops being a desktop. The centre is a star, the
+       five project folders are the planets that orbit it, and each one is a
+       different world: rock, ocean, two gas giants, ice.
+
+       Every body is one quad drawn by a shared fragment shader, so the whole
+       system is a handful of draw calls on one webgl context.
+
+       The light direction is not a constant. It is computed per planet from
+       where that planet actually is on its orbit, which means the phases are
+       real: a planet on the near side of the sun shows a crescent, one on the
+       far side shows a full disc.
+
+       Surface work follows the layered-noise scheme in
+       XenoverseUp/procedural-planets (MIT): a warped continent layer, ridged
+       detail on top, then colour ramps by elevation, plus that project's
+       atmosphere term pow(k - dot(n,v), 2) for the limb. */
+    var BODY = {
+      readme:   { t:0, rad:52, spin:0.030, tilt:0.00, seed: 3.1, pad:2.40 },
+      reporting:{ t:3, rad:27, spin:0.085, tilt:0.14, seed:37.0, pad:1.45 },
+      dinlesen: { t:5, rad:22, spin:0.100, tilt:0.30, seed:71.0, pad:2.55 },
+      pipeline: { t:2, rad:20, spin:0.120, tilt:0.22, seed:23.0, pad:1.45 },
+      sms:      { t:4, rad:18, spin:0.140, tilt:0.40, seed:53.0, pad:1.45 },
+      karinca:  { t:1, rad:16, spin:0.165, tilt:0.28, seed:11.0, pad:1.45 }
+    };
+
+    var BVS = [
+    "attribute vec2 a;",
+    "uniform vec2 uRes; uniform vec2 uC; uniform float uPad;",
+    "varying vec2 vP;",
+    "void main(){",
+    "  vP=a*uPad;",
+    "  vec2 px=uC+vP;",
+    "  gl_Position=vec4(px.x/uRes.x*2.0-1.0, 1.0-px.y/uRes.y*2.0, 0.0, 1.0);",
+    "}"].join("\n");
+
+    var BFS = [
+    "precision highp float;",
+    "uniform float uR,uPad,uT,uTilt,uSeed,uDim;",
+    "uniform vec3 uTint;",
+    "uniform vec3 uL;",
+    "uniform int uType;",
+    "varying vec2 vP;",
+    "float h31(vec3 p){",
+    "  p=fract(p*0.3183099+vec3(0.1,0.2,0.3)); p*=17.0;",
+    "  return fract(p.x*p.y*p.z*(p.x+p.y+p.z));",
+    "}",
+    "float n3(vec3 x){",
+    "  vec3 i=floor(x),f=fract(x); f=f*f*(3.0-2.0*f);",
+    "  return mix(mix(mix(h31(i),h31(i+vec3(1,0,0)),f.x),",
+    "                 mix(h31(i+vec3(0,1,0)),h31(i+vec3(1,1,0)),f.x),f.y),",
+    "             mix(mix(h31(i+vec3(0,0,1)),h31(i+vec3(1,0,1)),f.x),",
+    "                 mix(h31(i+vec3(0,1,1)),h31(i+vec3(1,1,1)),f.x),f.y),f.z);",
+    "}",
+    "float fb(vec3 p,int oct){",
+    "  float s=0.0,a=0.5,m=0.0;",
+    "  for(int i=0;i<6;i++){ if(i>=oct)break; s+=n3(p)*a; m+=a; a*=0.5; p=p*2.04+1.7; }",
+    "  return s/m;",
+    "}",
+    "float rg(vec3 p,int oct){",
+    "  float s=0.0,a=0.5,m=0.0;",
+    "  for(int i=0;i<6;i++){ if(i>=oct)break;",
+    "    float n=1.0-abs(n3(p)*2.0-1.0); s+=n*n*a; m+=a; a*=0.5; p=p*2.06+3.1; }",
+    "  return s/m;",
+    "}",
+    "float f2(vec2 p,int oct){ return fb(vec3(p,0.7),oct); }",
+    "vec3 rotY(vec3 p,float a){ float c=cos(a),s=sin(a); return vec3(c*p.x+s*p.z,p.y,-s*p.x+c*p.z); }",
+    "vec3 rotX(vec3 p,float a){ float c=cos(a),s=sin(a); return vec3(p.x,c*p.y-s*p.z,s*p.y+c*p.z); }",
+    "void main(){",
+    "  vec2 uv=vP/uR;",
+    "  float r2=dot(uv,uv), r=sqrt(r2);",
+
+    /* ---------------- the star ---------------- */
+    "  if(uType==0){",
+    /* one star shader for every star. uTint is the body colour, taken from the
+       real B-V index, so Dubhe comes out orange and Alkaid comes out blue.
+       Squaring the tint deepens it for the cool limb; mixing it toward white
+       gives the hot core. */
+    "    vec3 cLo=uTint*uTint*1.10;",
+    "    vec3 cHi=mix(uTint,vec3(1.0),0.74);",
+    "    if(r<=1.0){",
+    "      float z=sqrt(max(0.0,1.0-r2));",
+    "      vec3 P=rotX(rotY(vec3(uv,z),uT),0.28);",
+    /* granulation: convection cells, two scales */
+    "      float g=fb(P*6.2+uSeed,4), g2=fb(P*17.0+uSeed+9.0,3);",
+    "      float s=0.58+g*0.46+g2*0.22;",
+    /* limb darkening: a star is dimmer at its edge, and this is the single",
+       cue that makes a flat disc read as a sphere of gas */
+    "      float ld=0.38+0.62*pow(z,0.42);",
+    "      float e=s*ld;",
+    "      vec3 c=mix(cLo,uTint,smoothstep(0.26,0.70,e));",
+    "      c=mix(c,cHi,smoothstep(0.80,1.16,e));",
+    "      gl_FragColor=vec4(c*(0.46+e*1.00)*uDim,uDim);",
+    "      return;",
+    "    }",
+    "    float d=r-1.0;",
+    "    float ang=atan(uv.y,uv.x);",
+    /* the corona is not a smooth halo, it has streamers */
+    "    float ray=0.52+0.48*f2(vec2(ang*3.4,d*2.2+uT*1.6),3);",
+    "    float glow=exp(-d*3.6)*ray+exp(-d*11.0)*0.85;",
+    "    gl_FragColor=vec4(uTint*glow*1.75*uDim,clamp(glow*1.2,0.0,1.0)*uDim);",
+    "    return;",
+    "  }",
+
+    /* ---------------- rings, for the one that has them ---------------- */
+    "  float ringA=0.0; vec3 ringC=vec3(0.0);",
+    "  if(uType==5){",
+    "    float rr=length(vec2(uv.x,uv.y/0.30));",
+    "    if(rr>1.34 && rr<2.28){",
+    "      float t=(rr-1.34)/0.94;",
+    "      float dens=smoothstep(0.30,0.74,f2(vec2(rr*15.0,uSeed),3));",
+    "      dens*=smoothstep(0.015,0.085,abs(t-0.44));",   /* a division in the ring */
+    "      dens*=smoothstep(0.0,0.10,t)*smoothstep(1.0,0.84,t);",
+    "      ringA=dens*0.78;",
+    "      ringC=mix(vec3(0.58,0.50,0.37),vec3(0.90,0.83,0.68),dens);",
+    "      ringC*=0.30+0.80*clamp(uL.z*0.5+0.62,0.0,1.0);",
+    "    }",
+    "  }",
+    "  if(r>1.0){",
+    "    if(ringA>0.0){ gl_FragColor=vec4(ringC,ringA); return; }",
+    "    discard;",
+    "  }",
+
+    /* ---------------- the worlds ---------------- */
+    "  float z=sqrt(max(0.0,1.0-r2));",
+    "  vec3 N=vec3(uv,z);",
+    "  vec3 P=rotX(rotY(N,uT),uTilt);",
+    "  vec3 col;",
+    "  if(uType==1){",                          /* rust and rock */
+    "    float h=fb(P*3.1+uSeed,5);",
+    "    float m=rg(P*7.4+uSeed,4);",
+    "    col=mix(vec3(0.30,0.13,0.08),vec3(0.68,0.38,0.20),h);",
+    "    col=mix(col,vec3(0.76,0.57,0.38),smoothstep(0.55,0.95,m)*0.55);",
+    "    col=mix(col,vec3(0.88,0.88,0.90),smoothstep(0.87,0.98,abs(P.y)+fb(P*9.0,2)*0.06));",
+    "  } else if(uType==2){",                   /* an ocean with a little land */
+    "    vec3 w=vec3(fb(P*1.3+2.0,3),fb(P*1.3+8.0,3),fb(P*1.3+14.0,3))-0.5;",
+    "    float h=(fb(P*2.4+w*1.6+uSeed,5)-0.605)*1.95;",
+    "    float land=smoothstep(0.0,0.025,h);",
+    "    vec3 sea=mix(vec3(0.015,0.060,0.185),vec3(0.045,0.235,0.395),smoothstep(-0.24,0.0,h));",
+    "    vec3 gnd=mix(vec3(0.19,0.31,0.17),vec3(0.46,0.42,0.29),smoothstep(0.02,0.13,h));",
+    "    col=mix(sea,gnd,land);",
+    "    float cl=smoothstep(0.545,0.815,fb(P*3.1+40.0,4));",
+    "    col=mix(col,vec3(0.92,0.95,0.99),cl*0.58);",
+    "    col=mix(col,vec3(0.90,0.94,0.97),smoothstep(0.85,0.97,abs(P.y)));",
+    "  } else if(uType==3||uType==5){",         /* banded giants */
+    "    float turb=fb(P*3.2+uSeed,4);",
+    "    float b=sin((P.y*3.0+turb*0.62)*5.6)*0.5+0.5;",
+    "    vec3 c1,c2;",
+    "    if(uType==3){ c1=vec3(0.26,0.32,0.48); c2=vec3(0.70,0.75,0.84); }",
+    "    else        { c1=vec3(0.44,0.31,0.16); c2=vec3(0.86,0.76,0.55); }",
+    "    col=mix(c1,c2,b);",
+    "    col=mix(col,c2*1.12,smoothstep(0.58,0.96,turb)*0.40);",
+    /* one long-lived storm, the way a real giant has one */
+    "    float lon=atan(P.x,P.z);",
+    "    vec2 dd=vec2(sin(lon-1.15)*1.15,(P.y+0.21)*2.9);",
+    "    col=mix(col,vec3(0.82,0.40,0.26),exp(-dot(dd,dd)*5.5)*0.78);",
+    "  } else {",                               /* ice, cracked */
+    "    float cr=rg(P*5.2+uSeed,4);",
+    "    col=mix(vec3(0.50,0.61,0.73),vec3(0.87,0.93,0.98),fb(P*2.7+uSeed,4));",
+    "    col=mix(col,vec3(0.38,0.53,0.69),smoothstep(0.60,0.95,cr)*0.75);",
+    "  }",
+    "  float nl=dot(N,uL);",
+    "  float day=smoothstep(-0.13,0.30,nl);",
+    "  col*=0.085+0.92*day;",
+    "  float limb=pow(1.0-z,2.1)*smoothstep(-0.26,0.62,nl);",
+    /* a cold edge so the silhouette still reads when the world is unlit */
+    "  col+=vec3(0.15,0.21,0.35)*pow(1.0-z,3.0)*0.60;",
+    "  if(uType==2) col+=vec3(0.34,0.58,1.0)*limb*1.05;",
+    "  else if(uType==4) col+=vec3(0.52,0.70,1.0)*limb*0.70;",
+    "  else col+=vec3(0.42,0.50,0.74)*limb*0.45;",
+    "  if(ringA>0.0&&uv.y>0.0) col=mix(col,ringC,ringA);",
+    "  gl_FragColor=vec4(col,1.0);",
+    "}"].join("\n");
+
+    var bgl = null, bProg = null, bOK = false, bU = {}, sunHot = false;
+    var CT = Math.sqrt(1 - SQ*SQ);          /* how much of the orbit tips toward us */
+    function bInit(){
+      if(!sys) return false;
+      try{
+        bgl = sys.getContext("webgl", { alpha:true, premultipliedAlpha:false,
+                                        antialias:true, depth:false, stencil:false });
+      }catch(e){ bgl = null; }
+      if(!bgl) return false;
+      function sh(t, src){
+        var s = bgl.createShader(t);
+        bgl.shaderSource(s, src); bgl.compileShader(s);
+        return bgl.getShaderParameter(s, bgl.COMPILE_STATUS) ? s : null;
+      }
+      var vs = sh(bgl.VERTEX_SHADER, BVS), fs = sh(bgl.FRAGMENT_SHADER, BFS);
+      if(!vs || !fs) return false;
+      bProg = bgl.createProgram();
+      bgl.attachShader(bProg, vs); bgl.attachShader(bProg, fs);
+      bgl.linkProgram(bProg);
+      if(!bgl.getProgramParameter(bProg, bgl.LINK_STATUS)) return false;
+      bgl.useProgram(bProg);
+      var b = bgl.createBuffer();
+      bgl.bindBuffer(bgl.ARRAY_BUFFER, b);
+      bgl.bufferData(bgl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), bgl.STATIC_DRAW);
+      var loc = bgl.getAttribLocation(bProg, "a");
+      bgl.enableVertexAttribArray(loc);
+      bgl.vertexAttribPointer(loc, 2, bgl.FLOAT, false, 0, 0);
+      ["uRes","uC","uR","uPad","uT","uTilt","uSeed","uL","uType","uTint","uDim"].forEach(function(n){
+        bU[n] = bgl.getUniformLocation(bProg, n);
+      });
+      bgl.enable(bgl.BLEND);
+      bgl.blendFunc(bgl.SRC_ALPHA, bgl.ONE_MINUS_SRC_ALPHA);
+      bOK = true;
+      document.body.classList.add("sysgl");
+      return true;
+    }
+
+    /* the light on a planet points at the star, through the tilted orbit */
+    function lightFor(sx, sy){
+      var X = sx, Z = sy/SQ, m = Math.sqrt(X*X + Z*Z);
+      if(m < 0.0001) return [0, 0, 1];
+      var nx = -X/m, nz = -Z/m;
+      return [nx, -SQ*nz, CT*nz];
+    }
+
+    function bSize(){
+      var w = Math.round(W*DPR), hh = Math.round(H*DPR);
+      if(sys.width !== w || sys.height !== hh){
+        sys.width = w; sys.height = hh;
+        bgl.viewport(0, 0, w, hh);
+      }
+      bgl.uniform2f(bU.uRes, sys.width, sys.height);
+    }
+    var SUNTINT = [1.0, 0.62, 0.22];
+    function drawBody(b, x, y, rad, L, spinT, tint, dim){
+      bgl.uniform2f(bU.uC, x*DPR, y*DPR);
+      bgl.uniform1f(bU.uR, rad*DPR);
+      bgl.uniform1f(bU.uPad, rad*b.pad*DPR);
+      bgl.uniform1f(bU.uT, spinT);
+      bgl.uniform1f(bU.uTilt, b.tilt);
+      bgl.uniform1f(bU.uSeed, b.seed);
+      bgl.uniform3f(bU.uL, L[0], L[1], L[2]);
+      bgl.uniform1i(bU.uType, b.t);
+      tint = tint || SUNTINT;
+      bgl.uniform3f(bU.uTint, tint[0], tint[1], tint[2]);
+      bgl.uniform1f(bU.uDim, dim == null ? 1 : dim);
+      bgl.drawArrays(bgl.TRIANGLE_STRIP, 0, 4);
+    }
+
+    /* the seven of the plough, drawn by the same shader as the sun, each one
+       sized by its real magnitude and coloured by its real B-V index */
+    var curIgn = 0;
+    function drawSystem(now){
+      if(!bOK || !W) return;
+      bSize();
+      bgl.clearColor(0, 0, 0, 0);
+      bgl.clear(bgl.COLOR_BUFFER_BIT);
+      var S = SYS[0], t = reduce ? 40 : now/1000;
+
+      /* the star first: nothing on this orbit ever passes in front of it */
+      var sunB = BODY.readme;
+      drawBody(sunB, S.cx, S.cy, sunB.rad*(sunHot ? 1.05 : 1),
+               [0,0,1], t*sunB.spin, SUNTINT, 1);
+
+      /* then the planets, far side first, so a nearer one can cover it */
+      var ord = [];
+      for(var i=0;i<SAT.length;i++){
+        var st = SAT[i];
+        if(st.sys !== 0 || !BODY[st.id] || st.px == null) continue;
+        if(st.toff == null) continue;
+        ord.push(st);
+      }
+      ord.sort(function(p, q){ return (p.py - S.cy) - (q.py - S.cy); });
+      for(i=0;i<ord.length;i++){
+        var s2 = ord[i], b = BODY[s2.id];
+        var sc = 1 + (s2.dep || 0)*0.07;
+        var cy = s2.py + s2.toff*sc;
+        drawBody(b, s2.px, cy, b.rad*sc,
+                 lightFor(s2.px - S.cx, s2.py - S.cy), t*b.spin + b.seed, null, 1);
+      }
+    }
+
+    /* ---- 2d fallback, used only where webgl is unavailable ---- */
+    function hash2(x, y){ var s = Math.sin(x*127.1 + y*311.7)*43758.5453; return s - Math.floor(s); }
+    function vnoise(x, y){
+      var ix = Math.floor(x), iy = Math.floor(y), fx = x-ix, fy = y-iy;
+      fx = fx*fx*(3-2*fx); fy = fy*fy*(3-2*fy);
+      var a = hash2(ix,iy), b = hash2(ix+1,iy), c = hash2(ix,iy+1), d = hash2(ix+1,iy+1);
+      var t = a + (b-a)*fx;
+      return t + ((c + (d-c)*fx) - t)*fy;
+    }
+    function fbm2(x, y, oct){
+      var s = 0, amp = 1, m = 0;
+      for(var i=0;i<oct;i++){ s += vnoise(x,y)*amp; m += amp; amp *= 0.5; x *= 2.1; y *= 2.1; }
+      return s/m;
+    }
+    function mwStart(){
+      mwW = 340;
+      mwH = clamp(Math.round(mwW * (H/Math.max(1,W))), 120, 260);
+      mwc.width = mwW; mwc.height = mwH;
+      mwImg = mctx.createImageData(mwW, mwH);
+      mwRows = 0;
+      if(mwPending) cancelAnimationFrame(mwPending);
+      mwStep();
+    }
+    function mwStep(){
+      var d = mwImg.data, rows = Math.min(mwH, mwRows + 26);
+      for(var j=mwRows;j<rows;j++){
+        var v = j/mwH;
+        for(var i=0;i<mwW;i++){
+          var u = i/mwW, qx = u - 0.13, qy = v;
+          var lon = qx*AX + qy*AY, lat = qx*AY - qy*AX;
+          var o = (j*mwW+i)*4;
+          var band = Math.exp(-lat*lat/0.0182);
+          if(band < 0.004){ d[o+3] = 0; continue; }
+          var st   = fbm2(lon*5.0, lat*11.0, 5)*0.74 + 0.26;
+          var dust = sstep(0.35, 0.55, fbm2(lon*8.5+1.7, lat*34.0+1.7, 4))*0.72;
+          var core = Math.exp(-(lon-0.82)*(lon-0.82)*3.2)*0.58;
+          var mw   = band*st*(1-dust) + core*band;
+          var k    = clamp(core*2.1 + 0.16, 0, 1);
+          var sn   = Math.pow(vnoise(lon*260, lat*260), 9)*band;
+          d[o]   = Math.round(clamp(86  + (252-86 )*k + sn*160, 0, 255));
+          d[o+1] = Math.round(clamp(110 + (208-110)*k + sn*160, 0, 255));
+          d[o+2] = Math.round(clamp(178 + (150-178)*k + sn*160, 0, 255));
+          d[o+3] = Math.round(clamp(mw*0.31 + sn*0.34, 0, 1)*255);
+        }
+      }
+      mctx.putImageData(mwImg, 0, 0);
+      mwRows = rows;
+      mwPending = mwRows < mwH ? requestAnimationFrame(mwStep) : 0;
+    }
+
+    /* the alcor label is svg; alcor itself is a point source like any star */
+    var alcorLbl = document.createElementNS(NS, "text");
+    alcorLbl.setAttribute("class", "cal");
+    alcorLbl.textContent = "alcor";
+    conG.appendChild(alcorLbl);
+
+    /* ---- a meteor now and then, never two at once ---- */
+    function drawShoot(now){
+      if(!shoot){
+        if(nextShoot > 0 && now > nextShoot){
+          shoot = { x: W*(0.18 + Math.random()*0.72), y: -30,
+                    vx: -(150 + Math.random()*140), vy: (120 + Math.random()*110),
+                    t0: now, life: 820 + Math.random()*460 };
+        }
+        return;
+      }
+      var e = (now - shoot.t0)/1000, k = (now - shoot.t0)/shoot.life;
+      if(k >= 1){ shoot = null; nextShoot = now + 17000 + Math.random()*30000; return; }
+      var x = shoot.x + shoot.vx*e, y = shoot.y + shoot.vy*e;
+      var L = Math.sqrt(shoot.vx*shoot.vx + shoot.vy*shoot.vy);
+      var ux = shoot.vx/L, uy = shoot.vy/L, len = 108, a = Math.sin(k*Math.PI);
+      var g = sctx.createLinearGradient(x, y, x - ux*len, y - uy*len);
+      g.addColorStop(0, "rgba(255,255,255," + (a*0.85).toFixed(3) + ")");
+      g.addColorStop(0.35, "rgba(200,220,255," + (a*0.28).toFixed(3) + ")");
+      g.addColorStop(1, "rgba(160,190,255,0)");
+      sctx.strokeStyle = g; sctx.lineWidth = 1.5; sctx.lineCap = "round";
+      sctx.beginPath(); sctx.moveTo(x, y); sctx.lineTo(x - ux*len, y - uy*len); sctx.stroke();
+    }
+
+    function tick(now){
+      if(!on || MOB || !W) return;
+      var ign = reduce ? 1 : clamp((now - t0)/1400, 0, 1);
+      curIgn = ign;
+      px += (mx - px)*0.06; py += (my - py)*0.06;
+      /* under reduced motion the star canvas is painted once and left alone,
+         but the bodies still follow their folders, so they are never frozen */
+      if(reduce && still){ drawSystem(now); return; }
+      still = reduce;
+      sctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      sctx.clearRect(0, 0, W, H);
+      var t = reduce ? 0 : now/1000;
+      drawField(now, ign);
+      drawFigs();
+      drawCon(ign, t);
+      sctx.globalCompositeOperation = "lighter";
+      if(!reduce) drawShoot(now);
+      sctx.globalCompositeOperation = "source-over";
+      drawSystem(now);
+      sctx.globalCompositeOperation = "source-over";
+      if(!reduce){
+        /* the catalogue is the sky itself, anchored to the asterism, so only
+           the plate behind it drifts */
+        gal.style.transform  = "translate3d(" + (px*0.30).toFixed(1) + "px," + (py*0.30).toFixed(1) + "px,0)";
+        if(photoEl) photoEl.style.transform = "translate3d(" + (px*0.22).toFixed(1) + "px," + (py*0.22).toFixed(1) + "px,0)";
+      }
+    }
+
+    function repaintSky(){
+      if(!W) return;
+      parseSky();
+      if(MOB) paintMobileSky(); else paintFine();
+      if(SKY === "photo") return;
+      if(!glPaint()){ clearTimeout(rzT); rzT = setTimeout(mwStart, 200); }
+    }
+
+    /* where the planet sits inside its folder, in layout pixels */
+    function measureTiles(){
+      for(var i=0;i<SAT.length;i++){
+        var st = SAT[i];
+        if(st.sys !== 0){ st.el.classList.add("con"); continue; }
+        if(!BODY[st.id]) continue;
+        st.el.classList.add("sys");
+        var tile = st.el.querySelector(".tile");
+        if(tile && st.el.offsetHeight) st.toff = tile.offsetTop + tile.offsetHeight/2 - st.el.offsetHeight/2;
+      }
+    }
+
+    function resize(){
+      var b = bounds();
+      W = Math.round(b.w); H = Math.round(b.h);
+      DPR = Math.min(2, devicePixelRatio || 1);
+      stc.width = Math.round(W*DPR); stc.height = Math.round(H*DPR);
+      still = false;
+      parseSky();
+      if(!MOB) measureTiles();
+      if(on){ clearTimeout(rzT); rzT = setTimeout(repaintSky, 180); }
+    }
+
+    function apply(theme){
+      on = (theme === "night");
+      root.setAttribute("data-theme", theme);
+      try{ localStorage.setItem("desk_theme", theme); }catch(e){}
+      lbl.textContent = on ? "DAY" : "NIGHT";
+      btn.title = on ? "back to day (N)" : "night sky (N)";
+      scopeLabel();
+      if(on){
+        resize();
+        repaintSky();
+        t0 = performance.now();
+        nextShoot = t0 + 6000;
+        still = false;
+      }
+      if(!on){
+        sctx.setTransform(1,0,0,1,0,0);
+        sctx.clearRect(0, 0, stc.width, stc.height);
+        alcorLbl.style.opacity = 0;
+      }
+    }
+
+    if(SKY === "photo") document.body.classList.add("photosky");
+    if(SKY !== "photo") glInit();
+    if(!MOB) bInit();
+    /* a gpu reset would otherwise leave the galaxy blank until the next resize */
+    if(sys){
+      sys.addEventListener("webglcontextlost", function(e){
+        e.preventDefault(); bOK = false; document.body.classList.remove("sysgl");
+      });
+      sys.addEventListener("webglcontextrestored", function(){ bOK = false; bgl = null; bInit(); });
+    }
+    if(coreEl){
+      coreEl.addEventListener("pointerenter", function(){ sunHot = true; });
+      coreEl.addEventListener("pointerleave", function(){ sunHot = false; });
+    }
+    gal.addEventListener("webglcontextlost", function(e){ e.preventDefault(); glOK = false; });
+    gal.addEventListener("webglcontextrestored", function(){
+      glOK = false; gl = null;
+      if(glInit() && on && !MOB) repaintSky();
+    });
+
+    btn.addEventListener("click", function(){ toggle(btn); });
+    addEventListener("keydown", function(e){
+      if(e.metaKey || e.ctrlKey || e.altKey) return;
+      if(e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+      if(e.key === "n" || e.key === "N") toggle(null);
+    });
+    function conNear(x, y){
+      var B = SYS[1];
+      if(!B || !B.r) return false;
+      return Math.abs(x - B.cx) < B.r*1.5 + 80 && Math.abs(y - B.cy) < B.r*1.3 + 80;
+    }
+    deskEl.addEventListener("pointermove", function(e){
+      if(!on || MOB || reduce) return;
+      var b = deskEl.getBoundingClientRect();
+      if(skyEl2) skyEl2.classList.toggle("near", conNear(e.clientX - b.left, e.clientY - b.top));
+      pointerX = e.clientX - b.left; pointerY = e.clientY - b.top;
+      mx = ((e.clientX - b.left)/b.width - 0.5) * -20;
+      my = ((e.clientY - b.top)/b.height - 0.5) * -14;
+    });
+    /* ---------- the telescope ---------------------------------------------
+       The night side sits behind one small button in the menu bar, and a
+       visitor who is skimming never presses it. So the desk gets a telescope
+       in its bottom right corner (in the taskbar on a phone), drawn in the
+       same orange as the icons but with no box and no label. Every few
+       seconds a star flares where it points; pressing it is the same switch
+       as N. */
+    var SCOPE_SVG =
+        '<svg viewBox="-16 -16 32 32" aria-hidden="true">'
+      + '<g class="aim">'
+      +   '<path class="g" d="M-11.5 -3.3 L5.3 -2.3 L5.3 2.3 L-11.5 3.3 Z"/>'
+      +   '<path class="g" d="M5.3 -1.2 H8 V1.2 H5.3 M-7 -3.1 V3.1 M-3 -4.9 H2.2"/>'
+      + '</g>'
+      + '<path class="g" d="M1.9 .8 L-4.3 12 M1.9 .8 L8.1 12 M1.9 .8 V11.4"/>'
+      + '<g transform="translate(-18 -17) scale(1.05)"><g class="spk">'
+      +   '<path class="ray" d="M0 -8 C.5 -2 2 -.5 8 0 C2 .5 .5 2 0 8 C-.5 2 -2 .5 -8 0 C-2 -.5 -.5 -2 0 -8Z"/>'
+      +   '<circle class="core" r="1.6"/>'
+      + '</g></g>'
+      + '</svg>';
+
+    var scopeEl = document.createElement("button");
+    scopeEl.type = "button"; scopeEl.id = "scope";
+    scopeEl.innerHTML = SCOPE_SVG;
+    deskEl.insertBefore(scopeEl, $("grid"));
+
+    var scopeB = document.createElement("button");
+    scopeB.type = "button"; scopeB.id = "scopeb";
+    scopeB.innerHTML = SCOPE_SVG;
+    var clockEl = $("clock");
+    clockEl.parentNode.insertBefore(scopeB, clockEl);
+
+    /* no visible label, but a screen reader still hears what it does */
+    function scopeLabel(){
+      if(!scopeEl) return;
+      var s = on ? "back to day" : "look through the telescope: switch to the night sky";
+      scopeEl.setAttribute("aria-label", s);
+      scopeB.setAttribute("aria-label", s);
+    }
+
+    /* every way in goes through here: the telescope, the menu bar button,
+       the N key and the context menu */
+    function toggle(){ apply(on ? "day" : "night"); }
+
+    /* called once the boot screen has gone; the star starts flaring then */
+    function ready(){
+      scopeLabel();
+      scopeEl.classList.add("live");
+      scopeB.classList.add("live");
+    }
+
+    scopeEl.addEventListener("click", toggle);
+    scopeB.addEventListener("click", toggle);
+    scopeLabel();
+
+    lbl.textContent = on ? "DAY" : "NIGHT";
+
+    return { tick:tick, resize:resize, apply:apply, toggle:toggle, ready:ready,
+             isOn:function(){ return on; } };
+  })();
+
+  /* ---------- context menu ---------- */
+  var menuEl = $("menu"), menuFor = null;
+  var MENUS = {
+    desk: [ ["refresh","Refresh","F5"], ["realign","Realign the system",""], ["sep"],
+            ["readme","Open README.txt",""], ["search","Search","⌘K"], ["sep"],
+            ["closeall","Close all windows",""], ["night","Night sky","N"], ["sep"],
+            ["reset","Reset desktop",""] ],
+    ico:  [ ["open","Open","↵"], ["orbit","Send back to orbit",""], ["sep"],
+            ["search","Search","⌘K"] ]
+  };
+  function hideMenu(){ menuEl.classList.remove("on"); menuFor = null; selectOnly(null); }
+  function showMenu(kind, x, y, id){
+    menuFor = id || null;
+    menuEl.innerHTML = MENUS[kind].map(function(r){
+      return r[0]==="sep" ? "<hr>"
+        : '<button data-a="'+r[0]+'">'+r[1]+(r[2]?'<s>'+r[2]+'</s>':'')+'</button>';
+    }).join("");
+    menuEl.classList.add("on");
+    menuEl.style.left = "0px"; menuEl.style.top = "0px";
+    var b = menuEl.getBoundingClientRect();
+    menuEl.style.left = Math.min(x, innerWidth - b.width - 8)+"px";
+    menuEl.style.top  = Math.min(y, innerHeight - b.height - 8)+"px";
+  }
+  deskEl.addEventListener("contextmenu", function(e){
+    if(MOB || e.target.closest(".win")) return;
+    e.preventDefault();
+    var ic = e.target.closest(".ico");
+    if(ic){ selectOnly(ic); showMenu("ico", e.clientX, e.clientY, ic.getAttribute("data-app")); }
+    else if(e.target.closest(".planet")){
+      selectOnly(null);
+      showMenu("ico", e.clientX, e.clientY, "readme");
+    }
+    else { selectOnly(null); showMenu("desk", e.clientX, e.clientY, null); }
+  });
+  menuEl.addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    var a = b.getAttribute("data-a"), id = menuFor;
+    hideMenu();
+    if(a==="refresh"){ measureSky(); bloom(); }
+    else if(a==="realign"){ glide(function(){ tNow = 0; }, 820, 34); }
+    else if(a==="readme"){ launch("readme"); }
+    else if(a==="search"){ palOpen(); }
+    else if(a==="open"){ if(id) launch(id); }
+    else if(a==="orbit"){ if(id && byId[id]) glide(null, 700); }
+    else if(a==="closeall"){ Object.keys(open).forEach(close); }
+    else if(a==="night"){ NIGHT.toggle(); }
+    else if(a==="reset"){
+      Object.keys(open).forEach(close);
+      try{ localStorage.removeItem("desk_session"); }catch(_){}
+      measureSky(); bloom(); setTimeout(function(){ launch("readme"); }, 340);
+    }
+  });
+  addEventListener("pointerdown", function(e){
+    if(menuEl.classList.contains("on") && !e.target.closest("#menu")) hideMenu();
+  }, true);
+  addEventListener("blur", hideMenu);
+  addEventListener("keydown", function(e){ if(e.key==="Escape") hideMenu(); });
+  addEventListener("contextmenu", function(e){
+    if(!MOB && !e.target.closest(".win") && !e.target.closest("#desk") && !e.target.closest("#menu")){
+      e.preventDefault(); showMenu("desk", e.clientX, e.clientY, null);
+    }
+  });
+
+  /* ---------- command palette ---------- */
+  var pal=$("pal"), palin=$("palin"), pallist=$("pallist"), palIdx=0, palRows=[];
+  function palPaint(){
+    var q = palin.value.trim().toLowerCase();
+    palRows = DESK.filter(function(id){
+      return !q || (APPS[id].t+" "+LABEL[id]).toLowerCase().indexOf(q) >= 0;
+    });
+    if(palIdx >= palRows.length) palIdx = 0;
+    pallist.innerHTML = palRows.map(function(id,i){
+      return '<div class="'+(i===palIdx?"cur":"")+'" data-app="'+id+'">'+APPS[id].t
+           + '<em>'+(open[id]?"open":"window")+'</em></div>';
+    }).join("") || '<div style="color:var(--faint)">no match</div>';
+  }
+  function palOpen(){ pal.classList.add("on"); palin.value=""; palIdx=0; palPaint(); palin.focus(); }
+  function palClose(){ pal.classList.remove("on"); palin.blur(); }
+  palin.addEventListener("input", function(){ palIdx=0; palPaint(); });
+  palin.addEventListener("keydown", function(e){
+    if(e.key==="ArrowDown"){ e.preventDefault(); palIdx=Math.min(palRows.length-1,palIdx+1); palPaint(); }
+    else if(e.key==="ArrowUp"){ e.preventDefault(); palIdx=Math.max(0,palIdx-1); palPaint(); }
+    else if(e.key==="Enter"){ e.preventDefault(); if(palRows[palIdx]){ launch(palRows[palIdx]); palClose(); } }
+    else if(e.key==="Escape"){ e.preventDefault(); palClose(); }
+  });
+  pallist.addEventListener("click", function(e){
+    var r=e.target.closest("[data-app]"); if(!r) return;
+    launch(r.getAttribute("data-app")); palClose();
+  });
+  pal.addEventListener("pointerdown", function(e){ if(e.target===pal) palClose(); });
+  $("palbtn").addEventListener("click", palOpen);
+  $("barpal").addEventListener("click", palOpen);
+
+  addEventListener("keydown", function(e){
+    if((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==="k"){ e.preventDefault(); palOpen(); return; }
+    if(e.key==="Escape" && !pal.classList.contains("on") && focused){ close(focused); return; }
+    if(e.altKey && /^[1-9]$/.test(e.key)){
+      var id = DESK[+e.key-1]; if(id){ e.preventDefault(); launch(id); }
+    }
+  });
+
+  /* ---------- clock ---------- */
+  function tick(){
+    var d = new Date();
+    $("clock").textContent = String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
+  }
+  tick(); setInterval(tick, 10000);
+
+  /* ---------- boot ---------- */
+  var bootEl = $("boot"), osEl = $("os"), booted = false;
+  function start(){
+    if(booted) return; booted = true;
+    bootEl.classList.add("gone");
+    osEl.classList.add("up");
+    setTimeout(function(){ bootEl.style.display = "none"; }, 380);
+    measure(); layoutIcons();
+    NIGHT.resize();
+    if(NIGHT.isOn()) NIGHT.apply("night");
+    NIGHT.ready();
+    if(!MOB && !reduce) bloom();
+    if(!MOB) placeAll();
+    var had = restore();
+    if(!had && MOB) launch("readme");
+  }
+  requestAnimationFrame(frame);
+  if(reduce){ start(); }
+  else {
+    ["b1","b2","b3","b4"].forEach(function(id,i){
+      setTimeout(function(){ var el=$(id); if(el) el.classList.add("on"); }, 120 + i*330);
+    });
+    setTimeout(start, 2050);
+    addEventListener("keydown", start, { once:true });
+    bootEl.addEventListener("pointerdown", start, { once:true });
+  }
+})();
+</script>
