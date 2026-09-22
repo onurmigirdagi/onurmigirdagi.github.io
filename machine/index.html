@@ -77,7 +77,10 @@ button{font:inherit; color:inherit; background:none; border:none; cursor:pointer
 #sky .cd:nth-of-type(3){animation-duration:4.2s; animation-delay:1.7s;}
 @keyframes tw{0%,100%{opacity:.45} 50%{opacity:1}}
 #sky text{font-family:var(--mono); text-anchor:middle;}
-#sky text.ct{font-size:10px; letter-spacing:.28em; fill:#3D424A;}
+#sky text.ct{font-size:10px; letter-spacing:.28em; fill:#3D424A;
+  opacity:0; transition:opacity .3s ease;}
+#sky.near text.ct{opacity:1;}
+body.phone #sky text.ct{opacity:1;}
 
 .planet{position:absolute; left:-999px; top:0; z-index:3; pointer-events:auto;
   cursor:pointer; touch-action:none; transition:transform .36s cubic-bezier(.2,1,.3,1);}
@@ -759,7 +762,7 @@ document.documentElement.setAttribute("data-theme", "day");
   var LANG = /[?&]lang=en\b/.test(location.search) ? "en" : "tr";
   document.documentElement.lang = LANG;
   var UI = {
-    en:{ projects:"projects", about:"about", readme:"readme", openReadme:"open the readme",
+    en:{ projects:"Projects", about:"about", readme:"readme", openReadme:"open the readme",
          search:"SEARCH", find:"open a project, a document, a tool...",
          open:"open", win:"window", none:"no match",
          mn:"minimize", mx:"maximize", x:"close",
@@ -768,7 +771,7 @@ document.documentElement.setAttribute("data-theme", "day");
          m_reset:"Reset desktop", m_open:"Open", m_orbit:"Send back to orbit",
          dayB:"DAY", nightB:"NIGHT", dayT:"back to day (N)", nightT:"night sky (N)",
          scopeDay:"back to day", scopeNight:"look through the telescope: switch to the night sky" },
-    tr:{ projects:"projeler", about:"hakkımda", readme:"benioku", openReadme:"benioku dosyasını aç",
+    tr:{ projects:"Projeler", about:"hakkımda", readme:"benioku", openReadme:"benioku dosyasını aç",
          search:"ARA", find:"bir proje, belge ya da araç aç...",
          open:"açık", win:"pencere", none:"sonuç yok",
          mn:"küçült", mx:"büyüt", x:"kapat",
@@ -817,14 +820,14 @@ document.documentElement.setAttribute("data-theme", "day");
 
   var PROJ = {
     karinca:{ w:640, h:600, badges:[0,1,1],
-      en:{ t:"karinca", name:"Karınca", meta:"2025 to 2026 &middot; Android, ~140 Kotlin files",
+      en:{ t:"Karinca", name:"Karınca", meta:"2025 to 2026 &middot; Android, ~140 Kotlin files",
         lede:"A spaced repetition study app with a full virtual economy underneath it.",
         paras:["Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. It runs an Anki style repetition engine with dynamic question generation, but the part I care about is the economy layered on top: XP, coins, levels, streaks, a theme shop and a paywall.",
                "The flashcards are the easy part. What decides whether someone opens the app again tomorrow is the loop around them: whether today's session left a reason to come back.",
                "I wrote a UI specification targeting 60fps and WCAG 2.1 AA, then commissioned a full technical audit of my own codebase and worked from its findings rather than from my own opinion of the code. It scored 6.8 out of 10 and was blunt about weak test coverage, which is exactly what made it useful."],
         rt:"Stack", rail:["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM and Clean Architecture","Hilt dependency injection","Room local, <b>Supabase</b> sync","Spaced repetition engine","Self commissioned <b>audit</b>, 6.8/10"],
         tags:["Kotlin","Jetpack Compose","Supabase","Retention loop"] },
-      tr:{ t:"karinca", name:"Karınca", meta:"2025'ten 2026'ya &middot; Android, ~140 Kotlin dosyası",
+      tr:{ t:"Karınca", name:"Karınca", meta:"2025'ten 2026'ya &middot; Android, ~140 Kotlin dosyası",
         lede:"Altında eksiksiz bir sanal ekonomi dönen, aralıklı tekrar yöntemli bir ders çalışma uygulaması.",
         paras:["Jetpack Compose üzerinde MVVM ve Clean Architecture ile yazıldı. Bağımlılıklar için Hilt, yerelde Room, senkronizasyon için Supabase kullanıyor. Dinamik soru üreten Anki tarzı bir tekrar motoru var, ama benim asıl önemsediğim kısım üstüne kurulan ekonomi: XP, coin, seviyeler, seriler, tema mağazası ve paywall.",
                "Kartlar işin kolay kısmı. Birinin uygulamayı yarın yeniden açıp açmayacağını etrafındaki döngü belirliyor: bugünkü oturum geri gelmek için bir sebep bıraktı mı?",
@@ -833,14 +836,14 @@ document.documentElement.setAttribute("data-theme", "day");
         tags:["Kotlin","Jetpack Compose","Supabase","Kullanıcı döngüsü"] } },
 
     istakip:{ w:660, h:600, badges:[0,0,1],
-      en:{ t:"is-takip", name:"İş Takip Modülü", meta:"2026 &middot; personal project &middot; BTS &amp; Partners",
+      en:{ t:"İş Takip", name:"İş Takip Modülü", meta:"2026 &middot; personal project &middot; BTS &amp; Partners",
         lede:"A personal knowledge graph that holds tasks, notes, findings, concepts and sources in one place, designed to be read by an AI agent.",
         paras:["It is not a to do app. Eleven kinds of thing (task, note, finding, concept, source, project, person, discipline, tag, quote, conversation) live in one nodes table, and the relations between them are built from close to twenty typed edges. My research and work knowledge from BTS goes in there, and so do my own notes: the point is that they sit in the same graph and can be connected.",
                "The design decision I care about: instead of embedding AI inside the app, I made the data something an agent can walk. The app builds a structured prompt for a task, Claude reads the database over REST and works through it with me, and nothing is written until I approve the proposed output. Every write lands in an audit table.",
                "Which kind and which edge to use is written down as rules, with anti patterns, because a graph built out of vague links is worthless. Fifteen migrations that repaired wrongly built edges were applied with a backup snapshot taken before and after each one. On top of it there is a game for rehearsing my own connections: spaced repetition applied to the edges rather than to cards."],
         rt:"Built with", rail:["Flutter, ~14,400 lines of Dart","<b>Supabase</b> Postgres with RLS","11 node kinds, ~20 typed edges","Force directed graph, no package","Prompt building, <b>approved</b> AI writes","Migrations with backups either side"],
         tags:["Flutter","Supabase","Knowledge graph","AI agent"] },
-      tr:{ t:"iş-takip", name:"İş Takip Modülü", meta:"2026 &middot; kişisel proje &middot; BTS &amp; Partners",
+      tr:{ t:"İş Takip", name:"İş Takip Modülü", meta:"2026 &middot; kişisel proje &middot; BTS &amp; Partners",
         lede:"Görev, not, bulgu, kavram ve kaynakları tek yerde tutan, yapay zekânın gezebilmesi için tasarlanmış kişisel bir bilgi grafı.",
         paras:["Yapılacaklar uygulaması değil. On bir tür (görev, not, bulgu, kavram, kaynak, proje, kişi, disiplin, etiket, alıntı, sohbet özeti) tek bir nodes tablosunda duruyor, aralarındaki ilişkiler yirmiye yakın tiplenmiş kenarla kuruluyor. BTS'deki araştırma ve iş bilgim de kendi notlarım da buraya giriyor. Mesele ikisinin aynı grafta durup birbirine bağlanabilmesi.",
                "Asıl önemsediğim tasarım kararı şu: yapay zekâyı uygulamanın içine gömmek yerine veriyi bir ajanın gezebileceği hale getirdim. Uygulama görev için yapılandırılmış bir prompt üretiyor, Claude veritabanını REST üzerinden okuyup benimle birlikte çalışıyor ve önerdiği çıktıyı ben onaylamadan hiçbir şey yazılmıyor. Her yazma audit tablosuna düşüyor.",
@@ -849,14 +852,14 @@ document.documentElement.setAttribute("data-theme", "day");
         tags:["Flutter","Supabase","Bilgi grafı","AI ajanı"] } },
 
     pipeline:{ w:680, h:600, badges:[1,1,1],
-      en:{ t:"pipeline", name:"Regulatory Monitoring Pipeline", meta:"2026 &middot; BTS &amp; Partners",
+      en:{ t:"Pipeline", name:"Regulatory Monitoring Pipeline", meta:"2026 &middot; BTS &amp; Partners",
         lede:"An autonomous agent pipeline watching 107 public and regulatory sources, running unattended in production.",
         paras:["A collector agent retrieves every item, produces a summary with a relevance score and a topic tag, and writes it to a central database. Two publisher agents distribute the legislation and news bulletins by corporate email. Nobody touches it day to day.",
                "I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.",
                "Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison."],
         rt:"Built with", rail:["Python, scheduled <b>agents</b>","<b>Supabase</b> central store","Streamlit for inspection","<b>Microsoft Graph</b> for delivery","Benchmarked against <b>Power Automate</b>","Relevance scoring and tagging"],
         tags:["Python","AI agents","Supabase","Microsoft Graph"] },
-      tr:{ t:"mevzuat-izleme", name:"Mevzuat İzleme Sistemi", meta:"2026 &middot; BTS &amp; Partners",
+      tr:{ t:"Mevzuat İzleme", name:"Mevzuat İzleme Sistemi", meta:"2026 &middot; BTS &amp; Partners",
         lede:"107 kamu ve düzenleyici kaynağı izleyen, canlı ortamda kendi başına çalışan otonom bir ajan pipeline'ı.",
         paras:["Toplayıcı ajan her içeriği çekiyor, alaka puanı ve konu etiketiyle bir özet çıkarıyor ve merkezi veritabanına yazıyor. İki yayıncı ajan mevzuat ve haber bültenlerini kurumsal e-postayla dağıtıyor. Günlük işleyişte kimsenin dokunmasına gerek yok.",
                "Aynı iş akışını, ikisi düzgünce karşılaştırılabilsin diye Microsoft Power Automate üzerinde ikinci kez kurdum. Bu kadar kaynağı sorgulayıp sonuçlar üzerinde yapay zekâ analizi çalıştırmak şirketin lisans kapsamının dışında kalıyordu. Ajan versiyonu bu yüzden kazandı: mevcut abonelik kapasitesi içinde, ek altyapı maliyeti olmadan çalışıyor.",
@@ -865,13 +868,13 @@ document.documentElement.setAttribute("data-theme", "day");
         tags:["Python","Yapay zekâ ajanları","Supabase","Microsoft Graph"] } },
 
     reporting:{ w:660, h:580, badges:[1,1,1],
-      en:{ t:"reporting", name:"Marketplace Reporting", meta:"2025 &middot; Tradist Distribution",
+      en:{ t:"Reporting", name:"Marketplace Reporting", meta:"2025 &middot; Tradist Distribution",
         lede:"Four marketplace APIs, four different response shapes, one report the company actually reads.",
         paras:["Sales lived in four separate marketplace back offices: Amazon, n11, Trendyol and Hepsiburada. Every month somebody opened each one, exported what it offered in whatever format it offered, and pasted the pieces together by hand. The formats did not agree with each other: different field names, different date handling, different ideas of what counts as a return.",
                "I pulled each channel through its own API, normalized the responses into one schema, and generated a single monthly report laid out the way the company reads it rather than the way any marketplace exports it. It removed more than five hours of manual gathering per month and, more usefully, removed the copy and paste errors that came with it."],
         rt:"What it does", rail:["Four <b>marketplace APIs</b>, pulled on schedule","Field mapping to <b>one schema</b>","Currency, date and return normalization","Company specific layout, not vendor layout","One monthly report, <b>5+ hours saved</b>"],
         tags:["Python","Apps Script","API integration"] },
-      tr:{ t:"raporlama", name:"Pazaryeri Raporlama", meta:"2025 &middot; Tradist Distribution",
+      tr:{ t:"Raporlama", name:"Pazaryeri Raporlama", meta:"2025 &middot; Tradist Distribution",
         lede:"Dört pazaryeri API'si, dört farklı yanıt yapısı, şirketin gerçekten okuduğu tek bir rapor.",
         paras:["Satışlar dört ayrı pazaryeri panelinde duruyordu: Amazon, n11, Trendyol ve Hepsiburada. Her ay biri hepsini tek tek açıyor, her birinin sunduğu veriyi sunduğu formatta dışa aktarıyor ve parçaları elle birleştiriyordu. Formatlar birbirini tutmuyordu: farklı alan adları, farklı tarih biçimleri, neyin iade sayıldığına dair farklı kurallar.",
                "Her kanalı kendi API'si üzerinden çektim, yanıtları tek bir şemada normalize ettim ve herhangi bir pazaryerinin dışa aktardığı şekilde değil, şirketin okuduğu şekilde düzenlenmiş tek bir aylık rapor ürettim. Ayda beş saatten fazla elle veri toplamayı ortadan kaldırdı ve daha da önemlisi, onunla gelen kopyala yapıştır hatalarını da."],
@@ -879,14 +882,14 @@ document.documentElement.setAttribute("data-theme", "day");
         tags:["Python","Apps Script","API entegrasyonu"] } },
 
     sms:{ w:660, h:580, badges:[1,1,1],
-      en:{ t:"sms-relay", name:"SMS Verification Relay", meta:"2025 &middot; Tradist Distribution",
+      en:{ t:"SMS Relay", name:"SMS Verification Relay", meta:"2025 &middot; Tradist Distribution",
         lede:"Marketplace verification codes pulled from SMS automatically, so the whole team reads them from one sheet instead of asking for them.",
         paras:["Amazon, n11, Trendyol and Hepsiburada send a verification code by SMS every time somebody signs in to the seller panel. The phones sat in a drawer. Whoever needed to log in had to find the right handset, unlock it, read the code out loud, and hope it had not expired by the time they typed it.",
                "I wrote an Android app that pulls those codes out of incoming SMS automatically and sends them to a shared Google Sheet the moment they land. It runs in the background and survives a device restart. Anyone who needs a code opens the sheet and takes it, without asking anybody: the code stopped being something one person physically possessed.",
                "It saved each person around twenty minutes a day. I found the need myself and built it on my own initiative; it was still running after I left."],
         rt:"How it works", rail:["Codes from <b>four marketplaces</b>","Pulled from SMS <b>automatically</b>","Sent to a shared <b>Google Sheet</b>","Runs in the background, survives restart","Nobody asks anybody for a code"],
         tags:["Android","Kotlin","Google Sheets"] },
-      tr:{ t:"sms-aktarıcı", name:"SMS Doğrulama Aktarıcı", meta:"2025 &middot; Tradist Distribution",
+      tr:{ t:"SMS Aktarıcı", name:"SMS Doğrulama Aktarıcı", meta:"2025 &middot; Tradist Distribution",
         lede:"Pazaryeri doğrulama kodları SMS'ten otomatik çekiliyor, ekip kodu kimseye sormadan tek bir tablodan okuyor.",
         paras:["Amazon, n11, Trendyol ve Hepsiburada satıcı paneline her girişte SMS ile doğrulama kodu gönderiyor. Telefonlar bir çekmecede duruyordu. Giriş yapması gereken kişi doğru cihazı bulmak, kilidini açmak, kodu yüksek sesle okumak ve yazana kadar süresinin dolmamasını ummak zorundaydı.",
                "Bu kodları gelen SMS'lerden otomatik olarak çeken ve geldiği anda ortak bir Google Sheets tablosuna yollayan bir Android uygulaması yazdım. Arka planda çalışıyor ve cihaz yeniden başlasa da devam ediyor. Kod lazım olan tabloyu açıp alıyor, kimse kimseye kod sormuyor: kod, tek bir kişinin elinde tuttuğu bir şey olmaktan çıktı.",
@@ -897,20 +900,20 @@ document.documentElement.setAttribute("data-theme", "day");
   var PORDER = ["karinca","istakip","pipeline","reporting","sms"];
 
   var TOOLS = {
-    en:{ t:"tools", h:"Tools", meta:"what I actually work in", g:[
+    en:{ t:"Tools", h:"Tools", meta:"what I actually work in", g:[
       ["AI","Prompt engineering, agent pipelines, LLM evaluation and benchmarking, output quality control, tool comparison"],
       ["Automation","Python, n8n, Power Automate, Google Apps Script, Microsoft Graph, scheduled agents"],
       ["Data and integration","API integration, Supabase, SQL, Google Sheets API, Streamlit"],
       ["Apps","Kotlin, Jetpack Compose, Android background services, PyQt"]] },
-    tr:{ t:"araçlar", h:"Araçlar", meta:"gerçekten kullandıklarım", g:[
+    tr:{ t:"Araçlar", h:"Araçlar", meta:"gerçekten kullandıklarım", g:[
       ["Yapay zekâ","Prompt mühendisliği, ajan pipeline'ları, LLM değerlendirme ve benchmark, çıktı kalite kontrolü, araç karşılaştırma"],
       ["Otomasyon","Python, n8n, Power Automate, Google Apps Script, Microsoft Graph, zamanlanmış ajanlar"],
       ["Veri ve entegrasyon","API entegrasyonu, Supabase, SQL, Google Sheets API, Streamlit"],
       ["Uygulama","Kotlin, Jetpack Compose, Android arka plan servisleri, PyQt"]] }
   };
   var PLAIN = {
-    en:{ t:"PLAIN.txt", h:"every project on one page, with nothing around it, for anyone who would rather just read." },
-    tr:{ t:"DÜZ-METİN.txt", h:"tüm projeler tek sayfada, etrafında hiçbir arayüz olmadan, sadece okumak isteyenler için." }
+    en:{ t:"One Page.txt", h:"every project on one page, with nothing around it, for anyone who would rather just read." },
+    tr:{ t:"Tek Sayfa.txt", h:"tüm projeler tek sayfada, etrafında hiçbir arayüz olmadan, sadece okumak isteyenler için." }
   };
 
   /* ---------- project diagrams ----------
@@ -1081,7 +1084,7 @@ document.documentElement.setAttribute("data-theme", "day");
     });
     o.tools   = { t:TOOLS[L].t, w:560, h:360, html:tools(L) };
     o.plain   = { t:PLAIN[L].t, w:640, h:540, html:plain(L) };
-    o.contact = { t:(L==="tr" ? "iletişim" : "contact"), w:420, h:260, html:contact(L) };
+    o.contact = { t:(L==="tr" ? "İletişim" : "Contact"), w:420, h:260, html:contact(L) };
     return o;
   }
   var APPS_BY = { en:buildApps("en"), tr:buildApps("tr") };
@@ -1532,6 +1535,18 @@ document.documentElement.setAttribute("data-theme", "day");
     lastT = 0;
     if(document.visibilityState==="visible") placeAll();
   });
+
+  /* the constellation says what it is only when the pointer comes near it */
+  function conNearDay(x, y){
+    var B = SYS[1];
+    return !!B.r && Math.abs(x - B.cx) < B.r*1.5 + 80 && Math.abs(y - B.cy) < B.r*1.3 + 80;
+  }
+  deskEl.addEventListener("pointermove", function(e){
+    if(MOB) return;
+    var r = deskEl.getBoundingClientRect();
+    skyEl.classList.toggle("near", conNearDay(e.clientX - r.left, e.clientY - r.top));
+  });
+  deskEl.addEventListener("pointerleave", function(){ skyEl.classList.remove("near"); });
 
   function selectOnly(el){
     Array.prototype.forEach.call(iconsEl.children, function(c){ c.classList.remove("sel"); });
@@ -2723,7 +2738,7 @@ document.documentElement.setAttribute("data-theme", "day");
       i.classList.toggle("on", i.getAttribute("data-l") === LANG);
     });
     $("capA").textContent = ui("projects");
-    $("lblA").textContent = ui("readme");
+    $("lblA").textContent = APPS.readme.t;
     $("coreA").setAttribute("aria-label", ui("openReadme"));
     $("barpal").textContent = ui("search");
     palin.setAttribute("placeholder", ui("find"));
