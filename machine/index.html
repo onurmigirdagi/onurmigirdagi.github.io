@@ -51,6 +51,9 @@ button{font:inherit; color:inherit; background:none; border:none; cursor:pointer
 #top button{font-family:var(--mono); font-size:11px; letter-spacing:.09em; color:var(--dim);
   padding:3px 8px; border-radius:4px;}
 #top button:hover{color:var(--txt); background:rgba(24,26,32,.05);}
+#lgbtn{display:flex; gap:7px;}
+#lgbtn i{font-style:normal; opacity:.5;}
+#lgbtn i.on{opacity:1; color:var(--sig-ink); font-weight:700;}
 
 #desk{position:relative; flex:1 1 auto; overflow:hidden;
   background:
@@ -247,6 +250,25 @@ button{font:inherit; color:inherit; background:none; border:none; cursor:pointer
 .doc .badges span{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
   border:1px solid var(--line); border-radius:5px; padding:5px 9px; color:var(--faint);}
 .doc .badges span.on{color:var(--sig-ink); border-color:rgba(255,154,60,.55); background:var(--sig-soft);}
+/* project diagrams: drawn from data, coloured only through the theme tokens
+   so the night build needs nothing of its own */
+.doc .dia{margin:0 0 22px; border:1px solid var(--line); border-radius:8px;
+  padding:14px 14px 12px; background:var(--panel2); overflow-x:auto;}
+.doc .dia h3{font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--faint); margin:0 0 10px; font-weight:500;}
+.dia svg{display:block; width:100%; min-width:470px; height:auto; overflow:visible;}
+.dia .dn{fill:var(--panel); stroke:var(--line3); stroke-width:1;}
+.dia .dn.hi{stroke:var(--sig); stroke-width:1.3;}
+.dia .dn.nt{fill:none; stroke-dasharray:3 4;}
+.dia .grp{fill:none; stroke:var(--line2); stroke-dasharray:5 5;}
+.dia text{font-family:var(--mono); font-size:11px; fill:var(--dim); text-anchor:middle;}
+.dia text.dt{fill:var(--txt); font-weight:500;}
+.dia text.hi{fill:var(--sig-ink);}
+.dia text.el,.dia text.gt{font-size:10px; fill:var(--faint); letter-spacing:.06em;}
+.dia .de{fill:none; stroke:var(--sig-dim); stroke-width:1.3; stroke-dasharray:4 4;
+  animation:flow 1.4s linear infinite;}
+.dia .ah{fill:var(--sig-dim);}
+@keyframes flow{to{stroke-dashoffset:-16;}}
 .grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:18px;}
 .grid2 h4{font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
   color:var(--faint); margin:0 0 7px; font-weight:500;}
@@ -629,9 +651,9 @@ document.documentElement.setAttribute("data-theme", "day");
 <div id="boot">
   <div class="lines">
     <div id="b1">system online</div>
-    <div id="b2">content pipeline <b>ready</b></div>
+    <div id="b2">automation pipeline <b>ready</b></div>
     <div id="b3">onur can mığırdağı</div>
-    <div id="b4">ai content producer <span class="cur"></span></div>
+    <div id="b4">ai &amp; automation <span class="cur"></span></div>
   </div>
   <div class="skip">PRESS ANY KEY TO SKIP</div>
 </div>
@@ -640,6 +662,7 @@ document.documentElement.setAttribute("data-theme", "day");
   <div id="top">
     <span class="brand">onur can<i>&nbsp;mığırdağı</i></span>
     <span class="right">
+      <button id="lgbtn" aria-label="Türkçe / English"><i data-l="tr">TR</i><i data-l="en">EN</i></button>
       <button id="palbtn">&#8984;K</button>
       <button id="thbtn" title="night sky (N)" aria-label="toggle night sky"><i></i><span>NIGHT</span></button>
       <span class="led"></span>
@@ -669,20 +692,20 @@ document.documentElement.setAttribute("data-theme", "day");
       <g id="conB"></g>
     </svg></div>
 
-    <div id="coreA" class="planet" role="button" tabindex="0" aria-label="open the readme">
+    <div id="coreA" class="planet" role="button" tabindex="0" aria-label="">
       <span class="halo"></span>
       <svg class="lb" viewBox="-100 -100 200 200" aria-hidden="true"><g transform="rotate(-17)">
         <ellipse class="rg" rx="99" ry="44"/>
         <ellipse class="rg rg2" rx="114" ry="51"/>
       </g></svg>
-      <span class="orb"><span class="cap">projects</span></span>
+      <span class="orb"><span class="cap" id="capA"></span></span>
       <svg class="lf" viewBox="-100 -100 200 200" aria-hidden="true">
         <defs><clipPath id="clipA"><circle r="56"/></clipPath></defs>
         <g clip-path="url(#clipA)" transform="rotate(-17)">
           <path class="rf" d="M-99 0 A 99 44 0 0 0 99 0"/>
         </g>
       </svg>
-      <span class="lbl">readme</span>
+      <span class="lbl" id="lblA"></span>
     </div>
 
     <div id="icons"></div>
@@ -691,7 +714,7 @@ document.documentElement.setAttribute("data-theme", "day");
   </div>
 
   <div id="bar">
-    <button class="k" id="barpal">SEARCH</button>
+    <button class="k" id="barpal"></button>
     <a class="k lnk" href="https://www.linkedin.com/in/onurmigirdagi" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
       linkedin</a>
@@ -704,7 +727,7 @@ document.documentElement.setAttribute("data-theme", "day");
 
 <div id="pal">
   <div id="palbox">
-    <input id="palin" placeholder="open a project, a document, a tool..." autocomplete="off" spellcheck="false">
+    <input id="palin" autocomplete="off" spellcheck="false">
     <div id="pallist"></div>
   </div>
 </div>
@@ -720,143 +743,360 @@ document.documentElement.setAttribute("data-theme", "day");
     readme:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-9" y="-12" width="18" height="24" rx="2.5"/><path class="g" d="M-5 -6 H5 M-5 -1 H5 M-5 4 H1"/></svg>',
     karinca:'<svg viewBox="-16 -16 32 32"><ellipse class="gf" cx="0" cy="7" rx="4.6" ry="6"/><circle class="gf" cx="0" cy="-1.5" r="3.3"/><circle class="gf" cx="0" cy="-8.5" r="3.5"/><path class="g" d="M-2.4 -11.2 L-6 -15 M2.4 -11.2 L6 -15 M-3 -4 L-8.5 -6.5 M-3 -1.5 L-9 -1 M-3 1 L-8.5 3.6 M3 -4 L8.5 -6.5 M3 -1.5 L9 -1 M3 1 L8.5 3.6"/></svg>',
     pipeline:'<svg viewBox="-16 -16 32 32"><circle class="gf" cx="-9.5" cy="0" r="2.4"/><circle class="gf" cx="0" cy="0" r="3.9"/><circle class="gf" cx="9.8" cy="-7" r="2.4"/><circle class="gf" cx="9.8" cy="7" r="2.4"/><path class="g" d="M-7 0 H-4 M3.4 -1.7 C6.5 -5.4, 7.2 -7, 7.4 -7 M3.4 1.7 C6.5 5.4, 7.2 7, 7.4 7"/></svg>',
+    istakip:'<svg viewBox="-16 -16 32 32"><path class="g" d="M0 -8 L-9 6 M0 -8 L9 6 M-9 6 L9 6"/><circle class="gf" cx="0" cy="-8" r="3.2"/><circle class="gf" cx="-9" cy="6" r="3.2"/><circle class="gf" cx="9" cy="6" r="3.2"/></svg>',
     reporting:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-9" y="-11" width="18" height="22" rx="2.5"/><path class="g" d="M-4.5 -5 H4.5 M-4.5 0 H4.5 M-4.5 5 H1"/></svg>',
     sms:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-10.5" y="-9" width="21" height="14.5" rx="3.5"/><path class="gf" d="M-5 5 L1.5 5 L-3.5 11 Z"/><circle class="gf" cx="-4.6" cy="-1.8" r="1.5"/><circle class="gf" cx="0" cy="-1.8" r="1.5"/><circle class="gf" cx="4.6" cy="-1.8" r="1.5"/></svg>',
-    dinlesen:'<svg viewBox="-16 -16 32 32"><ellipse class="gf" cx="-5.5" cy="7.5" rx="3.9" ry="3"/><ellipse class="gf" cx="6.8" cy="5.2" rx="3.9" ry="3"/><path class="g" d="M-1.6 7.5 V-8 M10.7 5.2 V-10.4" style="stroke-width:2"/><path class="gf" d="M-1.6 -8.2 L10.7 -10.6 L10.7 -6.7 L-1.6 -4.3 Z"/></svg>',
     tools:'<svg viewBox="-16 -16 32 32"><path class="g" d="M-10 -4 H10 M-10 4 H10"/><circle class="gf" cx="-4" cy="-4" r="2.6"/><circle class="gf" cx="5" cy="4" r="2.6"/></svg>',
     plain:'<svg viewBox="-16 -16 32 32"><path class="g" d="M-9 -12 H4 L9 -7 V12 H-9 Z M4 -12 V-7 H9"/><path class="g" d="M-5 -1 H5 M-5 4 H5"/></svg>',
     contact:'<svg viewBox="-16 -16 32 32"><circle class="g" cx="0" cy="-4" r="4.6"/><path class="g" d="M-8.5 11 C-8.5 4.8, 8.5 4.8, 8.5 11"/></svg>'
   };
 
+  /* ---------- language ----------
+     The page opens in Turkish. ?lang=en opens it in English, which is the
+     link to send with an English application, and the switch in the menu bar
+     rewrites the address so a reload keeps the choice. The boot lines are
+     the machine talking, so they stay as they are in both. */
+  var LANG = /[?&]lang=en\b/.test(location.search) ? "en" : "tr";
+  document.documentElement.lang = LANG;
+  var UI = {
+    en:{ projects:"projects", about:"about", readme:"readme", openReadme:"open the readme",
+         search:"SEARCH", find:"open a project, a document, a tool...",
+         open:"open", win:"window", none:"no match",
+         mn:"minimize", mx:"maximize", x:"close",
+         m_refresh:"Refresh", m_realign:"Realign the system", m_readme:"Open README.txt",
+         m_search:"Search", m_lang:"Türkçe", m_closeall:"Close all windows", m_night:"Night sky",
+         m_reset:"Reset desktop", m_open:"Open", m_orbit:"Send back to orbit",
+         dayB:"DAY", nightB:"NIGHT", dayT:"back to day (N)", nightT:"night sky (N)",
+         scopeDay:"back to day", scopeNight:"look through the telescope: switch to the night sky" },
+    tr:{ projects:"projeler", about:"hakkımda", readme:"benioku", openReadme:"benioku dosyasını aç",
+         search:"ARA", find:"bir proje, belge ya da araç aç...",
+         open:"açık", win:"pencere", none:"sonuç yok",
+         mn:"küçült", mx:"büyüt", x:"kapat",
+         m_refresh:"Yenile", m_realign:"Sistemi hizala", m_readme:"BENİOKU.txt dosyasını aç",
+         m_search:"Ara", m_lang:"English", m_closeall:"Tüm pencereleri kapat", m_night:"Gece gökyüzü",
+         m_reset:"Masaüstünü sıfırla", m_open:"Aç", m_orbit:"Yörüngeye geri gönder",
+         dayB:"GÜNDÜZ", nightB:"GECE", dayT:"gündüze dön (N)", nightT:"gece gökyüzü (N)",
+         scopeDay:"gündüze dön", scopeNight:"teleskoptan bak: gece gökyüzüne geç" }
+  };
+  function ui(k){ return UI[LANG][k]; }
+
   /* ---------- window contents ---------- */
-  function proj(name, meta, lede, badges, paras, railTitle, rail, tags){
-    return '<div class="doc"><h1>'+name+'</h1><p class="meta">'+meta+'</p>'
-      + '<div class="badges">'+badges.map(function(b){ return '<span class="'+(b[1]?'on':'')+'">'+b[0]+'</span>'; }).join('')+'</div>'
-      + '<p class="lede">'+lede+'</p>'
-      + paras.map(function(p){ return '<p>'+p+'</p>'; }).join('')
-      + '<div class="rail"><h3>'+railTitle+'</h3><ol>'+rail.map(function(r){ return '<li>'+r+'</li>'; }).join('')+'</ol></div>'
-      + '<div class="tags">'+tags.map(function(t){ return '<span>'+t+'</span>'; }).join('')+'</div></div>';
-  }
+  var MAIL = '<a href="mailto:onurmigirdagi@gmail.com">onurmigirdagi@gmail.com</a>';
+  var ROLE = { en:"AI &amp; Automation", tr:"Yapay Zekâ ve Otomasyon" };
+  var CITY = { en:"Istanbul, Türkiye", tr:"İstanbul, Türkiye" };
+  var BADGE = { en:["shipped","measured","running"], tr:["yayında","ölçüldü","çalışıyor"] };
 
-  var APPS = {
-    readme:{ t:"README.txt", w:560, h:430, html:
-      '<div class="doc mono">'
-      + '<b>Onur Can Mığırdağı</b><br>AI Content Producer &middot; Istanbul, Türkiye'
-      + '<div class="hr"></div>'
-      + 'I make content, and I build the machine that makes it.<br>'
-      + 'Every project on this desktop has an output and a pipeline.<br>'
-      + 'The pipeline is usually the part I am prouder of.'
-      + '<div class="hr"></div>'
-      + '<b>how to use</b><br>'
-      + '<span class="dk">'
-      +   '&rsaquo; five projects orbit the planet, my own files sit in the seven stars<br>'
-      +   '&rsaquo; click anything to open it, or drag it out of orbit and let go<br>'
-      +   '&rsaquo; right click the desktop for the system menu<br>'
-      +   '&rsaquo; drag a window to the screen edge to snap it<br>'
-      +   '&rsaquo; press <b>⌘K</b> to search everything'
-      + '</span>'
-      + '<span class="mb">'
-      +   '&rsaquo; five projects orbit the planet, my own files sit in the seven stars<br>'
-      +   '&rsaquo; tap anything to open it, or drag it out of orbit and let go<br>'
-      +   '&rsaquo; close a window to go back to the desk'
-      + '</span>'
-      + '<div class="hr"></div>'
-      + '<b>what I have not done yet</b><br>'
-      + 'I have not produced with Veo, Sora, Kling or Runway.<br>'
-      + 'Everything here is audio, image, code and pipeline work.<br>'
-      + 'Every tool on this desktop was learned against a real project with something at stake.'
-      + '<div class="hr"></div>'
-      + '<a href="mailto:onurmigirdagi@gmail.com">onurmigirdagi@gmail.com</a>'
-      + '</div>' },
-
-    karinca:{ t:"karinca", w:620, h:520, html: proj(
-      "Karınca", "2025 to 2026 &middot; Android, ~140 Kotlin files",
-      "A spaced repetition study app with a full virtual economy underneath it.",
-      [["shipped",0],["measured",1],["running",1]],
-      ["Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. It runs an Anki style repetition engine with dynamic question generation, but the part I care about is the economy layered on top: XP, coins, levels, streaks, a theme shop and a paywall.",
-       "That is a game designer's problem wearing a study app's clothes. What makes someone open it tomorrow is not the flashcards, it is whether the loop gave them a reason to come back.",
-       "I wrote a UI specification targeting 60fps and WCAG 2.1 AA, then commissioned a full technical audit of my own codebase and worked from its findings rather than from my own opinion of the code. It scored 6.8 out of 10 and was blunt about weak test coverage, which is exactly what made it useful."],
-      "Stack", ["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM and Clean Architecture","Hilt dependency injection","Room local, <b>Supabase</b> sync","Spaced repetition engine","Self commissioned <b>audit</b>, 6.8/10"],
-      ["Kotlin","Jetpack Compose","Supabase","Game economy"]) },
-
-    pipeline:{ t:"pipeline", w:640, h:500, html: proj(
-      "Regulatory Monitoring Pipeline", "2026 &middot; BTS &amp; Partners",
-      "An autonomous agent pipeline watching 107 public and regulatory sources, running unattended in production.",
-      [["shipped",1],["measured",1],["running",1]],
-      ["A collector agent retrieves every item, produces a summary with a relevance score and a topic tag, and writes it to a central database. Two publisher agents distribute the legislation and news bulletins by corporate email. Nobody touches it day to day.",
-       "I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.",
-       "Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison."],
-      "Built with", ["Python, scheduled <b>agents</b>","<b>Supabase</b> central store","Streamlit for inspection","<b>Microsoft Graph</b> for delivery","Benchmarked against <b>Power Automate</b>","Relevance scoring and tagging"],
-      ["Python","AI agents","Supabase","Microsoft Graph"]) },
-
-    reporting:{ t:"reporting", w:620, h:470, html: proj(
-      "Marketplace Reporting", "2025 &middot; Tradist Distribution",
-      "Five marketplace APIs, five different response shapes, one report the company actually reads.",
-      [["shipped",1],["measured",1],["running",1]],
-      ["Sales lived in five separate marketplace back offices. Every month somebody opened each one, exported what it offered in whatever format it offered, and pasted the pieces together by hand. The formats did not agree with each other: different field names, different date handling, different ideas of what counts as a return.",
-       "I pulled each channel through its own API, normalized the responses into one schema, and generated a single monthly report laid out the way the company reads it rather than the way any marketplace exports it. It removed more than five hours of manual gathering per month and, more usefully, removed the copy and paste errors that came with it."],
-      "What it does", ["Five <b>marketplace APIs</b>, pulled on schedule","Field mapping to <b>one schema</b>","Currency, date and return normalization","Company specific layout, not vendor layout","One monthly report, <b>5+ hours saved</b>"],
-      ["Python","Apps Script","API integration"]) },
-
-    sms:{ t:"sms-relay", w:600, h:460, html: proj(
-      "SMS Verification Relay", "2025 &middot; Tradist Distribution",
-      "Verification codes arriving on four phone lines, readable by the whole team without anyone holding a phone.",
-      [["shipped",1],["measured",1],["running",1]],
-      ["Marketplace back offices send a verification code by SMS every time somebody signs in. The phones sat in a drawer. Whoever needed to log in had to find the right handset, unlock it, read the code out loud, and hope it had not expired by the time they typed it.",
-       "I wrote an Android background service that listens for incoming messages, extracts the code, and writes it to a shared sheet the moment it lands. The service survives a device restart. Everyone reads the same row at the same time, which is the whole point: the code stopped being something one person physically possessed.",
-       "It saved each person around twenty minutes a day. I found the need myself and built it on my own initiative; it was still running after I left."],
-      "How it works", ["Android <b>background service</b>","Listens for incoming SMS","Extracts the code by pattern","Writes to <b>shared sheet</b> in real time","Survives device restart","Whole team reads the same row"],
-      ["Android","Kotlin","Sheets API"]) },
-
-    dinlesen:{ t:"dinlesen-yeter", w:600, h:450, html: proj(
-      "Dinlesen Yeter", "2024 &middot; generative music, trial project",
-      "Turkish literature and Ottoman history rewritten as songs for students preparing for the university entrance exam.",
-      [["shipped",1],["measured",0],["running",0]],
-      ["An experiment in producing generative content end to end, alone. I wrote each set of lyrics as a structured prompt for a generative music model, then iterated on takes until one held together as a song rather than a demo. Vocals and instrumentals were separated into stems so the mix could be corrected, cover art was generated and finished in Photoshop, and the video was cut and subtitled in Premiere Pro.",
-       "The tooling is the part worth showing. Generative models do not hold a metre, and checking syllable counts by hand does not scale past the second song, so I wrote a Turkish syllable counter and a small PyQt workspace around it, then wrote the lyrics against that instead.",
-       "Two tracks were published and three more were finished but never released. I stopped the project in 2024. The workflow it taught me is the one I still work in."],
-      "Production chain", ["Source text to <b>structured lyric prompt</b>","Generative model, iterate takes","<b>Syllable counter</b> (Python) for metre","Vocal and instrumental <b>stem separation</b>","Cover art, finished in <b>Photoshop</b>","Edit and subtitle in <b>Premiere Pro</b>"],
-      ["Generative audio","Premiere Pro","Photoshop","Python"]) },
-
-    tools:{ t:"tools", w:560, h:330, html:
-      '<div class="doc"><h1>Tools</h1><p class="meta">what I actually work in</p><div class="grid2">'
-      + '<div><h4>Creative</h4><p>Premiere Pro, Photoshop, generative audio and image models, stem separation, subtitling, cover art</p></div>'
-      + '<div><h4>Automation</h4><p>Python, PyQt, Kotlin, n8n, Power Automate, Google Apps Script, Supabase, SQL</p></div>'
-      + '<div><h4>AI</h4><p>Prompt engineering, agent pipelines, LLM evaluation and benchmarking, output quality control, tool comparison</p></div>'
-      + '<div><h4>Games I keep going back to</h4><p>Hearthstone, Polytopia, Balatro. All three for the same reason, which is the system underneath</p></div>'
-      + '</div></div>' },
-
-    plain:{ t:"PLAIN.txt", w:560, h:380, html:
-      '<div class="doc mono"><b>plain document</b><div class="hr"></div>'
-      + 'In the finished build this window holds every project as one<br>'
-      + 'scrollable text document, with no interface around it, for<br>'
-      + 'anyone who would rather just read.<div class="hr"></div>'
-      + '<a href="mailto:onurmigirdagi@gmail.com">onurmigirdagi@gmail.com</a></div>' },
-
-    contact:{ t:"contact", w:420, h:280, html:
-      '<div class="card"><img src="data:image/jpeg;base64,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" alt=""><div>'
-      + '<b>Onur Can Mığırdağı</b>'
-      + '<div class="r">AI CONTENT PRODUCER</div>'
-      + '<div class="r">ISTANBUL, TÜRKİYE</div></div></div>'
-      + '<div class="links">'
-      + '<a href="mailto:onurmigirdagi@gmail.com">onurmigirdagi@gmail.com</a>'
-      + '<a href="https://www.linkedin.com/in/onurmigirdagi">linkedin.com/in/onurmigirdagi</a>'
-      + '<a href="https://www.youtube.com/@DinlesenYeter">youtube.com/@DinlesenYeter</a>'
-      + '</div>' },
+  var INTRO = {
+    en:["I build AI agents and automation that take repetitive work off a team's hands.",
+        "Every project here started from a real problem and ended with something measurable.",
+        "The pipeline behind the output is usually the part I am prouder of."],
+    tr:["Ekiplerin tekrar eden işini üstlenen yapay zekâ ajanları ve otomasyonlar kuruyorum.",
+        "Buradaki her proje gerçek bir problemden çıktı ve ölçülebilir bir sonuçla bitti.",
+        "Çıktının arkasındaki sistem, genelde en çok gurur duyduğum kısım."]
+  };
+  var HOW = {
+    en:{ h:"how to use",
+      dk:["five projects orbit the planet, my own files sit in the seven stars",
+          "click anything to open it, or drag it out of orbit and let go",
+          "right click the desktop for the system menu",
+          "drag a window to the screen edge to snap it",
+          "press <b>⌘K</b> to search everything"],
+      mb:["five projects orbit the planet, my own files sit in the seven stars",
+          "tap anything to open it, or drag it out of orbit and let go",
+          "close a window to go back to the desk"] },
+    tr:{ h:"nasıl kullanılır",
+      dk:["beş proje gezegenin etrafında dönüyor, benim dosyalarım yedi yıldızda",
+          "açmak için tıkla ya da yörüngeden çekip bırak",
+          "sistem menüsü için masaüstüne sağ tıkla",
+          "yaslamak için pencereyi ekranın kenarına sürükle",
+          "her şeyi aramak için <b>⌘K</b>"],
+      mb:["beş proje gezegenin etrafında dönüyor, benim dosyalarım yedi yıldızda",
+          "açmak için herhangi birine dokun ya da yörüngeden çekip bırak",
+          "masaya dönmek için pencereyi kapat"] }
   };
 
-  var DESK = ["readme","karinca","pipeline","reporting","sms","dinlesen","tools","plain","contact"];
-  var ORB  = ["karinca","pipeline","reporting","sms","dinlesen","tools","plain","contact"];
-  var RING = { karinca:0, pipeline:0, reporting:0, sms:0, dinlesen:0, tools:1, plain:1, contact:1 };
-  var LABEL = { readme:"README.txt", karinca:"karinca", pipeline:"pipeline", reporting:"reporting",
-                sms:"sms-relay", dinlesen:"dinlesen", tools:"tools", plain:"PLAIN.txt", contact:"contact" };
+  var PROJ = {
+    karinca:{ w:640, h:600, badges:[0,1,1],
+      en:{ t:"karinca", name:"Karınca", meta:"2025 to 2026 &middot; Android, ~140 Kotlin files",
+        lede:"A spaced repetition study app with a full virtual economy underneath it.",
+        paras:["Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. It runs an Anki style repetition engine with dynamic question generation, but the part I care about is the economy layered on top: XP, coins, levels, streaks, a theme shop and a paywall.",
+               "The flashcards are the easy part. What decides whether someone opens the app again tomorrow is the loop around them: whether today's session left a reason to come back.",
+               "I wrote a UI specification targeting 60fps and WCAG 2.1 AA, then commissioned a full technical audit of my own codebase and worked from its findings rather than from my own opinion of the code. It scored 6.8 out of 10 and was blunt about weak test coverage, which is exactly what made it useful."],
+        rt:"Stack", rail:["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM and Clean Architecture","Hilt dependency injection","Room local, <b>Supabase</b> sync","Spaced repetition engine","Self commissioned <b>audit</b>, 6.8/10"],
+        tags:["Kotlin","Jetpack Compose","Supabase","Retention loop"] },
+      tr:{ t:"karinca", name:"Karınca", meta:"2025'ten 2026'ya &middot; Android, ~140 Kotlin dosyası",
+        lede:"Altında eksiksiz bir sanal ekonomi dönen, aralıklı tekrar yöntemli bir ders çalışma uygulaması.",
+        paras:["Jetpack Compose üzerinde MVVM ve Clean Architecture ile yazıldı. Bağımlılıklar için Hilt, yerelde Room, senkronizasyon için Supabase kullanıyor. Dinamik soru üreten Anki tarzı bir tekrar motoru var, ama benim asıl önemsediğim kısım üstüne kurulan ekonomi: XP, coin, seviyeler, seriler, tema mağazası ve paywall.",
+               "Kartlar işin kolay kısmı. Birinin uygulamayı yarın yeniden açıp açmayacağını etrafındaki döngü belirliyor: bugünkü oturum geri gelmek için bir sebep bıraktı mı?",
+               "60fps ve WCAG 2.1 AA hedefleyen bir arayüz spesifikasyonu yazdım, ardından kendi kod tabanım için kapsamlı bir teknik denetim yaptırdım ve kod hakkındaki kendi fikrimle değil, denetimin bulgularıyla ilerledim. 10 üzerinden 6.8 aldı ve zayıf test kapsamı konusunda açık sözlüydü. Onu faydalı yapan da tam olarak buydu."],
+        rt:"Teknoloji", rail:["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM ve Clean Architecture","Hilt ile bağımlılık yönetimi","Yerelde Room, <b>Supabase</b> senkronizasyonu","Aralıklı tekrar motoru","Kendi yaptırdığım <b>denetim</b>, 6.8/10"],
+        tags:["Kotlin","Jetpack Compose","Supabase","Kullanıcı döngüsü"] } },
+
+    istakip:{ w:660, h:600, badges:[0,0,1],
+      en:{ t:"is-takip", name:"İş Takip Modülü", meta:"2026 &middot; personal project &middot; BTS &amp; Partners",
+        lede:"A personal knowledge graph that holds tasks, notes, findings, concepts and sources in one place, designed to be read by an AI agent.",
+        paras:["It is not a to do app. Eleven kinds of thing (task, note, finding, concept, source, project, person, discipline, tag, quote, conversation) live in one nodes table, and the relations between them are built from close to twenty typed edges. My research and work knowledge from BTS goes in there, and so do my own notes: the point is that they sit in the same graph and can be connected.",
+               "The design decision I care about: instead of embedding AI inside the app, I made the data something an agent can walk. The app builds a structured prompt for a task, Claude reads the database over REST and works through it with me, and nothing is written until I approve the proposed output. Every write lands in an audit table.",
+               "Which kind and which edge to use is written down as rules, with anti patterns, because a graph built out of vague links is worthless. Fifteen migrations that repaired wrongly built edges were applied with a backup snapshot taken before and after each one. On top of it there is a game for rehearsing my own connections: spaced repetition applied to the edges rather than to cards."],
+        rt:"Built with", rail:["Flutter, ~14,400 lines of Dart","<b>Supabase</b> Postgres with RLS","11 node kinds, ~20 typed edges","Force directed graph, no package","Prompt building, <b>approved</b> AI writes","Migrations with backups either side"],
+        tags:["Flutter","Supabase","Knowledge graph","AI agent"] },
+      tr:{ t:"iş-takip", name:"İş Takip Modülü", meta:"2026 &middot; kişisel proje &middot; BTS &amp; Partners",
+        lede:"Görev, not, bulgu, kavram ve kaynakları tek yerde tutan, yapay zekânın gezebilmesi için tasarlanmış kişisel bir bilgi grafı.",
+        paras:["Yapılacaklar uygulaması değil. On bir tür (görev, not, bulgu, kavram, kaynak, proje, kişi, disiplin, etiket, alıntı, sohbet özeti) tek bir nodes tablosunda duruyor, aralarındaki ilişkiler yirmiye yakın tiplenmiş kenarla kuruluyor. BTS'deki araştırma ve iş bilgim de kendi notlarım da buraya giriyor. Mesele ikisinin aynı grafta durup birbirine bağlanabilmesi.",
+               "Asıl önemsediğim tasarım kararı şu: yapay zekâyı uygulamanın içine gömmek yerine veriyi bir ajanın gezebileceği hale getirdim. Uygulama görev için yapılandırılmış bir prompt üretiyor, Claude veritabanını REST üzerinden okuyup benimle birlikte çalışıyor ve önerdiği çıktıyı ben onaylamadan hiçbir şey yazılmıyor. Her yazma audit tablosuna düşüyor.",
+               "Hangi durumda hangi türün ve hangi kenarın kullanılacağı, anti kalıplarıyla birlikte yazılı kurallara bağlı; çünkü gelişigüzel bağlarla kurulmuş bir graf işe yaramıyor. Yanlış kurulmuş kenarları düzelten on beş migrasyonu, her birinin öncesinde ve sonrasında yedek alarak uyguladım. Üstünde de kendi bağlantılarımı tekrar eden bir oyun var: aralıklı tekrar kartlara değil, kenarlara uygulanıyor."],
+        rt:"Yapı taşları", rail:["Flutter, ~14.400 satır Dart","RLS'li <b>Supabase</b> Postgres","11 node türü, ~20 tiplenmiş kenar","Force directed graf, paketsiz","Prompt üretimi, <b>onaylı</b> AI yazma","Öncesi ve sonrası yedekli göçler"],
+        tags:["Flutter","Supabase","Bilgi grafı","AI ajanı"] } },
+
+    pipeline:{ w:680, h:600, badges:[1,1,1],
+      en:{ t:"pipeline", name:"Regulatory Monitoring Pipeline", meta:"2026 &middot; BTS &amp; Partners",
+        lede:"An autonomous agent pipeline watching 107 public and regulatory sources, running unattended in production.",
+        paras:["A collector agent retrieves every item, produces a summary with a relevance score and a topic tag, and writes it to a central database. Two publisher agents distribute the legislation and news bulletins by corporate email. Nobody touches it day to day.",
+               "I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.",
+               "Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison."],
+        rt:"Built with", rail:["Python, scheduled <b>agents</b>","<b>Supabase</b> central store","Streamlit for inspection","<b>Microsoft Graph</b> for delivery","Benchmarked against <b>Power Automate</b>","Relevance scoring and tagging"],
+        tags:["Python","AI agents","Supabase","Microsoft Graph"] },
+      tr:{ t:"mevzuat-izleme", name:"Mevzuat İzleme Sistemi", meta:"2026 &middot; BTS &amp; Partners",
+        lede:"107 kamu ve düzenleyici kaynağı izleyen, canlı ortamda kendi başına çalışan otonom bir ajan pipeline'ı.",
+        paras:["Toplayıcı ajan her içeriği çekiyor, alaka puanı ve konu etiketiyle bir özet çıkarıyor ve merkezi veritabanına yazıyor. İki yayıncı ajan mevzuat ve haber bültenlerini kurumsal e-postayla dağıtıyor. Günlük işleyişte kimsenin dokunmasına gerek yok.",
+               "Aynı iş akışını, ikisi düzgünce karşılaştırılabilsin diye Microsoft Power Automate üzerinde ikinci kez kurdum. Bu kadar kaynağı sorgulayıp sonuçlar üzerinde yapay zekâ analizi çalıştırmak şirketin lisans kapsamının dışında kalıyordu. Ajan versiyonu bu yüzden kazandı: mevcut abonelik kapasitesi içinde, ek altyapı maliyeti olmadan çalışıyor.",
+               "Ayrıca orada yapay zekâ çıktıları için kullanılan değerlendirme yöntemini tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk benchmark'ı ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması."],
+        rt:"Yapı taşları", rail:["Python, zamanlanmış <b>ajanlar</b>","Merkezi depo olarak <b>Supabase</b>","İnceleme için Streamlit","Dağıtım için <b>Microsoft Graph</b>","<b>Power Automate</b> ile karşılaştırıldı","Alaka puanlama ve etiketleme"],
+        tags:["Python","Yapay zekâ ajanları","Supabase","Microsoft Graph"] } },
+
+    reporting:{ w:660, h:580, badges:[1,1,1],
+      en:{ t:"reporting", name:"Marketplace Reporting", meta:"2025 &middot; Tradist Distribution",
+        lede:"Four marketplace APIs, four different response shapes, one report the company actually reads.",
+        paras:["Sales lived in four separate marketplace back offices: Amazon, n11, Trendyol and Hepsiburada. Every month somebody opened each one, exported what it offered in whatever format it offered, and pasted the pieces together by hand. The formats did not agree with each other: different field names, different date handling, different ideas of what counts as a return.",
+               "I pulled each channel through its own API, normalized the responses into one schema, and generated a single monthly report laid out the way the company reads it rather than the way any marketplace exports it. It removed more than five hours of manual gathering per month and, more usefully, removed the copy and paste errors that came with it."],
+        rt:"What it does", rail:["Four <b>marketplace APIs</b>, pulled on schedule","Field mapping to <b>one schema</b>","Currency, date and return normalization","Company specific layout, not vendor layout","One monthly report, <b>5+ hours saved</b>"],
+        tags:["Python","Apps Script","API integration"] },
+      tr:{ t:"raporlama", name:"Pazaryeri Raporlama", meta:"2025 &middot; Tradist Distribution",
+        lede:"Dört pazaryeri API'si, dört farklı yanıt yapısı, şirketin gerçekten okuduğu tek bir rapor.",
+        paras:["Satışlar dört ayrı pazaryeri panelinde duruyordu: Amazon, n11, Trendyol ve Hepsiburada. Her ay biri hepsini tek tek açıyor, her birinin sunduğu veriyi sunduğu formatta dışa aktarıyor ve parçaları elle birleştiriyordu. Formatlar birbirini tutmuyordu: farklı alan adları, farklı tarih biçimleri, neyin iade sayıldığına dair farklı kurallar.",
+               "Her kanalı kendi API'si üzerinden çektim, yanıtları tek bir şemada normalize ettim ve herhangi bir pazaryerinin dışa aktardığı şekilde değil, şirketin okuduğu şekilde düzenlenmiş tek bir aylık rapor ürettim. Ayda beş saatten fazla elle veri toplamayı ortadan kaldırdı ve daha da önemlisi, onunla gelen kopyala yapıştır hatalarını da."],
+        rt:"Ne yapıyor", rail:["Dört <b>pazaryeri API'si</b>, zamanlanmış çekim","Alanların <b>tek şemaya</b> eşlenmesi","Para birimi, tarih ve iade normalizasyonu","Pazaryerinin değil, şirketin düzeni","Tek aylık rapor, <b>ayda 5+ saat</b> kazanç"],
+        tags:["Python","Apps Script","API entegrasyonu"] } },
+
+    sms:{ w:660, h:580, badges:[1,1,1],
+      en:{ t:"sms-relay", name:"SMS Verification Relay", meta:"2025 &middot; Tradist Distribution",
+        lede:"Marketplace verification codes pulled from SMS automatically, so the whole team reads them from one sheet instead of asking for them.",
+        paras:["Amazon, n11, Trendyol and Hepsiburada send a verification code by SMS every time somebody signs in to the seller panel. The phones sat in a drawer. Whoever needed to log in had to find the right handset, unlock it, read the code out loud, and hope it had not expired by the time they typed it.",
+               "I wrote an Android app that pulls those codes out of incoming SMS automatically and sends them to a shared Google Sheet the moment they land. It runs in the background and survives a device restart. Anyone who needs a code opens the sheet and takes it, without asking anybody: the code stopped being something one person physically possessed.",
+               "It saved each person around twenty minutes a day. I found the need myself and built it on my own initiative; it was still running after I left."],
+        rt:"How it works", rail:["Codes from <b>four marketplaces</b>","Pulled from SMS <b>automatically</b>","Sent to a shared <b>Google Sheet</b>","Runs in the background, survives restart","Nobody asks anybody for a code"],
+        tags:["Android","Kotlin","Google Sheets"] },
+      tr:{ t:"sms-aktarıcı", name:"SMS Doğrulama Aktarıcı", meta:"2025 &middot; Tradist Distribution",
+        lede:"Pazaryeri doğrulama kodları SMS'ten otomatik çekiliyor, ekip kodu kimseye sormadan tek bir tablodan okuyor.",
+        paras:["Amazon, n11, Trendyol ve Hepsiburada satıcı paneline her girişte SMS ile doğrulama kodu gönderiyor. Telefonlar bir çekmecede duruyordu. Giriş yapması gereken kişi doğru cihazı bulmak, kilidini açmak, kodu yüksek sesle okumak ve yazana kadar süresinin dolmamasını ummak zorundaydı.",
+               "Bu kodları gelen SMS'lerden otomatik olarak çeken ve geldiği anda ortak bir Google Sheets tablosuna yollayan bir Android uygulaması yazdım. Arka planda çalışıyor ve cihaz yeniden başlasa da devam ediyor. Kod lazım olan tabloyu açıp alıyor, kimse kimseye kod sormuyor: kod, tek bir kişinin elinde tuttuğu bir şey olmaktan çıktı.",
+               "Kişi başı günde yaklaşık yirmi dakika kazandırdı. İhtiyacı kendim fark ettim ve kendi inisiyatifimle kurdum. Ben ayrıldıktan sonra da çalışıyordu."],
+        rt:"Nasıl çalışıyor", rail:["<b>Dört pazaryerinden</b> gelen kodlar","SMS'ten <b>otomatik</b> çekiliyor","Ortak <b>Google Sheets</b> tablosuna gidiyor","Arka planda, yeniden başlatmaya dayanıklı","Kimse kimseye kod sormuyor"],
+        tags:["Android","Kotlin","Google Sheets"] } }
+  };
+  var PORDER = ["karinca","istakip","pipeline","reporting","sms"];
+
+  var TOOLS = {
+    en:{ t:"tools", h:"Tools", meta:"what I actually work in", g:[
+      ["AI","Prompt engineering, agent pipelines, LLM evaluation and benchmarking, output quality control, tool comparison"],
+      ["Automation","Python, n8n, Power Automate, Google Apps Script, Microsoft Graph, scheduled agents"],
+      ["Data and integration","API integration, Supabase, SQL, Google Sheets API, Streamlit"],
+      ["Apps","Kotlin, Jetpack Compose, Android background services, PyQt"]] },
+    tr:{ t:"araçlar", h:"Araçlar", meta:"gerçekten kullandıklarım", g:[
+      ["Yapay zekâ","Prompt mühendisliği, ajan pipeline'ları, LLM değerlendirme ve benchmark, çıktı kalite kontrolü, araç karşılaştırma"],
+      ["Otomasyon","Python, n8n, Power Automate, Google Apps Script, Microsoft Graph, zamanlanmış ajanlar"],
+      ["Veri ve entegrasyon","API entegrasyonu, Supabase, SQL, Google Sheets API, Streamlit"],
+      ["Uygulama","Kotlin, Jetpack Compose, Android arka plan servisleri, PyQt"]] }
+  };
+  var PLAIN = {
+    en:{ t:"PLAIN.txt", h:"every project on one page, with nothing around it, for anyone who would rather just read." },
+    tr:{ t:"DÜZ-METİN.txt", h:"tüm projeler tek sayfada, etrafında hiçbir arayüz olmadan, sadece okumak isteyenler için." }
+  };
+
+  /* ---------- project diagrams ----------
+     Each diagram is boxes and arrows in a fixed coordinate space. Arrows
+     leave from a side of one box (r, l, t, b) and enter a side of another,
+     as a curve that starts and ends square to those sides. */
+  var DIA_T = { en:"How it flows", tr:"Nasıl akıyor" };
+  function dia(D, L){
+    var N = {}, s = "", DIR = { r:[1,0], l:[-1,0], t:[0,-1], b:[0,1] };
+    D.nodes.forEach(function(n){ N[n.id] = n; });
+    function port(n, side){
+      return side==="r" ? [n.x+n.w, n.y+n.h/2] : side==="l" ? [n.x, n.y+n.h/2]
+           : side==="t" ? [n.x+n.w/2, n.y] : [n.x+n.w/2, n.y+n.h];
+    }
+    (D.groups||[]).forEach(function(g){
+      s += '<rect class="grp" x="'+g.x+'" y="'+g.y+'" width="'+g.w+'" height="'+g.h+'" rx="10"/>';
+      s += '<text class="gt" x="'+(g.x+g.w/2)+'" y="'+(g.y+g.gy)+'">'+g.t[L]+'</text>';
+    });
+    (D.notes||[]).forEach(function(n){
+      s += '<text class="el" x="'+n.x+'" y="'+n.y+'">'+n.t[L]+'</text>';
+    });
+    D.edges.forEach(function(e){
+      var a = N[e.f], b = N[e.t], fs = e.fs || "r", ts = e.ts || "l";
+      var p = port(a, fs), q = port(b, ts), da = DIR[fs], db = DIR[ts];
+      var k = e.k || Math.max(18, Math.hypot(q[0]-p[0], q[1]-p[1])*0.42);
+      var c1 = [p[0]+da[0]*k, p[1]+da[1]*k], c2 = [q[0]+db[0]*(k+6), q[1]+db[1]*(k+6)];
+      var q2 = [q[0]+db[0]*6, q[1]+db[1]*6];   /* the line stops where the head starts */
+      s += '<path class="de" d="M'+p+' C'+c1+' '+c2+' '+q2+'"/>';
+      var ux = -db[0], uy = -db[1];            /* heading into the box */
+      s += '<path class="ah" d="M'+q+' L'+(q[0]-ux*7-uy*3.6)+','+(q[1]-uy*7+ux*3.6)
+         + ' L'+(q[0]-ux*7+uy*3.6)+','+(q[1]-uy*7-ux*3.6)+'Z"/>';
+      if(e.lbl) s += '<text class="el" x="'+e.lx+'" y="'+e.ly+'">'+e.lbl[L]+'</text>';
+    });
+    D.nodes.forEach(function(n){
+      var cls = "dn" + (n.hi ? " hi" : "") + (n.nt ? " nt" : "");
+      if(n.stack) for(var i=2; i>0; i--)
+        s += '<rect class="dn" x="'+(n.x+i*4)+'" y="'+(n.y-i*4)+'" width="'+n.w+'" height="'+n.h+'" rx="7"/>';
+      s += '<rect class="'+cls+'" x="'+n.x+'" y="'+n.y+'" width="'+n.w+'" height="'+n.h+'" rx="7"/>';
+      var ln = n.t[L], y0 = n.y + n.h/2 - (ln.length-1)*7 + 4;
+      ln.forEach(function(t, i){
+        var c = i ? "" : (n.hi ? "dt hi" : "dt");
+        s += '<text'+(c ? ' class="'+c+'"' : '')+' x="'+(n.x+n.w/2)+'" y="'+(y0+i*14)+'">'+t+'</text>';
+      });
+    });
+    return '<div class="dia"><h3>'+DIA_T[L]+'</h3><svg viewBox="-4 -8 '+(D.w+8)+' '+(D.h+12)+'" role="img" aria-label="'+DIA_T[L]+'">'+s+'</svg></div>';
+  }
+
+  var DIA = {
+    karinca:{ w:600, h:136,
+      nodes:[
+        { id:"a", x:0,   y:14, w:126, h:48, hi:1, t:{ en:["study","session"], tr:["çalışma","oturumu"] } },
+        { id:"b", x:158, y:14, w:126, h:48, t:{ en:["XP and","coins"], tr:["XP ve","coin"] } },
+        { id:"c", x:316, y:14, w:126, h:48, t:{ en:["levels and","streaks"], tr:["seviye ve","seri"] } },
+        { id:"d", x:474, y:14, w:126, h:48, t:{ en:["theme shop,","paywall"], tr:["tema mağazası,","paywall"] } }],
+      edges:[ { f:"a", t:"b" }, { f:"b", t:"c" }, { f:"c", t:"d" },
+        { f:"d", fs:"b", t:"a", ts:"b", k:70, lx:300, ly:128,
+          lbl:{ en:"a reason to come back tomorrow", tr:"yarın geri gelmek için bir sebep" } }] },
+
+    istakip:{ w:640, h:148,
+      nodes:[
+        { id:"db", x:0,   y:22, w:130, h:64, t:{ en:["Supabase","Postgres + RLS"], tr:["Supabase","Postgres + RLS"] } },
+        { id:"ap", x:186, y:22, w:152, h:64, hi:1, t:{ en:["Flutter app","list, map, graph"], tr:["Flutter uygulaması","defter, harita, graf"] } },
+        { id:"pr", x:390, y:22, w:106, h:64, t:{ en:["prompt","task context"], tr:["prompt","görev bağlamı"] } },
+        { id:"cl", x:540, y:22, w:100, h:64, t:{ en:["Claude","walks the graph"], tr:["Claude","grafı gezer"] } }],
+      edges:[ { f:"db", t:"ap" }, { f:"ap", t:"pr" }, { f:"pr", t:"cl" },
+        { f:"cl", fs:"b", t:"db", ts:"b", k:56, lx:320, ly:140,
+          lbl:{ en:"approved writes, every one audited", tr:"onaylı yazma, hepsi audit'e düşer" } }],
+      notes:[ { x:158, y:48, t:{ en:"REST", tr:"REST" } } ] },
+
+    pipeline:{ w:640, h:214,
+      nodes:[
+        { id:"src", x:0,   y:70,  w:92,  h:50, stack:1, t:{ en:["107","sources"], tr:["107","kaynak"] } },
+        { id:"col", x:124, y:62,  w:132, h:66, hi:1, t:{ en:["collector agent","summary, score,","tag"], tr:["toplayıcı ajan","özet, puan,","etiket"] } },
+        { id:"db",  x:288, y:70,  w:104, h:50, t:{ en:["Supabase","central store"], tr:["Supabase","merkezi depo"] } },
+        { id:"st",  x:288, y:168, w:104, h:44, nt:1, t:{ en:["Streamlit","inspection"], tr:["Streamlit","inceleme"] } },
+        { id:"p1",  x:424, y:18,  w:110, h:50, t:{ en:["publisher","legislation"], tr:["yayıncı ajan","mevzuat"] } },
+        { id:"p2",  x:424, y:122, w:110, h:50, t:{ en:["publisher","news"], tr:["yayıncı ajan","haberler"] } },
+        { id:"gr",  x:560, y:62,  w:80,  h:66, t:{ en:["MS Graph","corporate","email"], tr:["MS Graph","kurumsal","e-posta"] } }],
+      edges:[ { f:"src", t:"col" }, { f:"col", t:"db" }, { f:"db", t:"p1" }, { f:"db", t:"p2" },
+        { f:"db", fs:"b", t:"st", ts:"t" }, { f:"p1", t:"gr" }, { f:"p2", t:"gr" }] },
+
+    reporting:{ w:640, h:168,
+      nodes:[
+        { id:"m1", x:0, y:10,   w:108, h:28, t:{ en:["Amazon"], tr:["Amazon"] } },
+        { id:"m2", x:0, y:50,  w:108, h:28, t:{ en:["n11"], tr:["n11"] } },
+        { id:"m3", x:0, y:90,  w:108, h:28, t:{ en:["Trendyol"], tr:["Trendyol"] } },
+        { id:"m4", x:0, y:130, w:108, h:28, t:{ en:["Hepsiburada"], tr:["Hepsiburada"] } },
+        { id:"n",  x:184, y:54, w:150, h:78, hi:1, t:{ en:["one schema","fields, dates,","currency, returns"], tr:["tek şema","alan, tarih,","para birimi, iade"] } },
+        { id:"r",  x:370, y:65, w:124, h:56, t:{ en:["monthly report","company layout"], tr:["aylık rapor","şirketin düzeni"] } },
+        { id:"o",  x:528, y:70, w:112, h:46, nt:1, t:{ en:["5+ hours","saved a month"], tr:["ayda 5+ saat","kazanç"] } }],
+      edges:[ { f:"m1", t:"n" }, { f:"m2", t:"n" }, { f:"m3", t:"n" }, { f:"m4", t:"n" },
+        { f:"n", t:"r" }, { f:"r", t:"o" }] },
+
+    sms:{ w:640, h:126,
+      nodes:[
+        { id:"m1", x:0, y:0,  w:108, h:26, t:{ en:["Amazon"], tr:["Amazon"] } },
+        { id:"m2", x:0, y:33, w:108, h:26, t:{ en:["n11"], tr:["n11"] } },
+        { id:"m3", x:0, y:66, w:108, h:26, t:{ en:["Trendyol"], tr:["Trendyol"] } },
+        { id:"m4", x:0, y:99, w:108, h:26, t:{ en:["Hepsiburada"], tr:["Hepsiburada"] } },
+        { id:"a",  x:170, y:32, w:156, h:60, t:{ en:["Android app","pulls code from SMS"], tr:["Android uygulaması","SMS'ten kodu çeker"] } },
+        { id:"sh", x:366, y:32, w:120, h:60, hi:1, t:{ en:["Google Sheets","shared sheet"], tr:["Google Sheets","ortak tablo"] } },
+        { id:"tm", x:524, y:32, w:116, h:60, t:{ en:["whole team","nobody asks"], tr:["tüm ekip","kimse sormaz"] } }],
+      edges:[ { f:"m1", t:"a" }, { f:"m2", t:"a" }, { f:"m3", t:"a" }, { f:"m4", t:"a" },
+              { f:"a", t:"sh" }, { f:"sh", t:"tm" } ],
+      notes:[ { x:139, y:6, t:{ en:"SMS", tr:"SMS" } },
+              { x:248, y:114, t:{ en:"survives a restart", tr:"yeniden başlatmaya dayanıklı" } } ] }
+  };
+
+  function proj(d, badges, L, id){
+    return '<div class="doc"><h1>'+d.name+'</h1><p class="meta">'+d.meta+'</p>'
+      + '<div class="badges">'+badges.map(function(on, i){ return '<span class="'+(on?'on':'')+'">'+BADGE[L][i]+'</span>'; }).join('')+'</div>'
+      + '<p class="lede">'+d.lede+'</p>'
+      + (DIA[id] ? dia(DIA[id], L) : '')
+      + d.paras.map(function(p){ return '<p>'+p+'</p>'; }).join('')
+      + '<div class="rail"><h3>'+d.rt+'</h3><ol>'+d.rail.map(function(r){ return '<li>'+r+'</li>'; }).join('')+'</ol></div>'
+      + '<div class="tags">'+d.tags.map(function(t){ return '<span>'+t+'</span>'; }).join('')+'</div></div>';
+  }
+  function lines(a){ return a.map(function(s){ return '&rsaquo; '+s; }).join('<br>'); }
+
+  function readme(L){
+    return '<div class="doc mono">'
+      + '<b>Onur Can Mığırdağı</b><br>'+ROLE[L]+' &middot; '+CITY[L]
+      + '<div class="hr"></div>'
+      + INTRO[L].join('<br>')
+      + '<div class="hr"></div>'
+      + '<b>'+HOW[L].h+'</b><br>'
+      + '<span class="dk">'+lines(HOW[L].dk)+'</span>'
+      + '<span class="mb">'+lines(HOW[L].mb)+'</span>'
+      + '<div class="hr"></div>'
+      + MAIL + '</div>';
+  }
+  function tools(L){
+    var T = TOOLS[L];
+    return '<div class="doc"><h1>'+T.h+'</h1><p class="meta">'+T.meta+'</p><div class="grid2">'
+      + T.g.map(function(g){ return '<div><h4>'+g[0]+'</h4><p>'+g[1]+'</p></div>'; }).join('')
+      + '</div></div>';
+  }
+  /* the plain document is written from the same data as the windows, so it
+     can never say something the desktop does not */
+  function plain(L){
+    var strip = function(s){ return s.replace(/<\/?b>/g, ""); };
+    return '<div class="doc mono">'
+      + '<b>Onur Can Mığırdağı</b><br>'+ROLE[L]+' &middot; '+CITY[L]+'<br><br>'+PLAIN[L].h
+      + '<div class="hr"></div>' + INTRO[L].join('<br>')
+      + PORDER.map(function(id){ var d = PROJ[id][L];
+          return '<div class="hr"></div><b>'+d.name+'</b><br>'+d.meta+'<br><br>'
+            + d.lede+'<br><br>'+d.paras.join('<br><br>')+'<br><br>'+lines(d.rail.map(strip)); }).join('')
+      + '<div class="hr"></div><b>'+TOOLS[L].h+'</b><br>'
+      + TOOLS[L].g.map(function(g){ return g[0]+': '+g[1]; }).join('<br>')
+      + '<div class="hr"></div>' + MAIL + '</div>';
+  }
+  function contact(L){
+    return '<div class="card"><img src="data:image/jpeg;base64,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" alt=""><div>'
+      + '<b>Onur Can Mığırdağı</b>'
+      + '<div class="r">'+(L==="tr" ? "YAPAY ZEKÂ VE OTOMASYON" : "AI &amp; AUTOMATION")+'</div>'
+      + '<div class="r">'+(L==="tr" ? "İSTANBUL, TÜRKİYE" : "ISTANBUL, TÜRKİYE")+'</div></div></div>'
+      + '<div class="links">' + MAIL
+      + '<a href="https://www.linkedin.com/in/onurmigirdagi">linkedin.com/in/onurmigirdagi</a>'
+      + '</div>';
+  }
+
+  function buildApps(L){
+    var o = {
+      readme:{ t:(L==="tr" ? "BENİOKU.txt" : "README.txt"), w:560, h:430, html:readme(L) }
+    };
+    PORDER.forEach(function(id){
+      var p = PROJ[id]; o[id] = { t:p[L].t, w:p.w, h:p.h, html:proj(p[L], p.badges, L, id) };
+    });
+    o.tools   = { t:TOOLS[L].t, w:560, h:360, html:tools(L) };
+    o.plain   = { t:PLAIN[L].t, w:640, h:540, html:plain(L) };
+    o.contact = { t:(L==="tr" ? "iletişim" : "contact"), w:420, h:260, html:contact(L) };
+    return o;
+  }
+  var APPS_BY = { en:buildApps("en"), tr:buildApps("tr") };
+  var APPS = APPS_BY[LANG];
+
+  var DESK = ["readme","karinca","istakip","pipeline","reporting","sms","tools","plain","contact"];
+  var ORB  = ["karinca","istakip","pipeline","reporting","sms","tools","plain","contact"];
+  var RING = { karinca:0, istakip:0, pipeline:0, reporting:0, sms:0, tools:1, plain:1, contact:1 };
 
   /* ---------- desktop icons ---------- */
   var iconsEl = $("icons");
   ORB.forEach(function(id){
     var b = document.createElement("div");
     b.className = "ico"; b.setAttribute("data-app", id); b.tabIndex = 0;
-    b.innerHTML = '<span class="tile">'+ART[id]+'</span><span>'+LABEL[id]+'</span>';
+    b.innerHTML = '<span class="tile">'+ART[id]+'</span><span>'+APPS[id].t+'</span>';
     iconsEl.appendChild(b);
   });
 
@@ -942,9 +1182,9 @@ document.documentElement.setAttribute("data-theme", "day");
     el.className = "win" + (reduce ? "" : " pop");
     el.innerHTML =
       '<div class="tbar"><span class="nm">'+a.t+'</span><span class="sp"></span>'
-      + '<span class="ctl"><button class="mn" title="minimize">&#8211;</button>'
-      + '<button class="mx" title="maximize">&#9744;</button>'
-      + '<button class="x" title="close">&#10005;</button></span></div>'
+      + '<span class="ctl"><button class="mn" title="'+ui("mn")+'">&#8211;</button>'
+      + '<button class="mx" title="'+ui("mx")+'">&#9744;</button>'
+      + '<button class="x" title="'+ui("x")+'">&#10005;</button></span></div>'
       + '<div class="body">'+a.html+'</div>'
       + '<div class="rz e"></div><div class="rz s"></div><div class="rz se"></div>';
     winsEl.appendChild(el);
@@ -1114,7 +1354,7 @@ document.documentElement.setAttribute("data-theme", "day");
     conG.appendChild(v.el);
   });
   var conLbl = document.createElementNS(NS,"text");
-  conLbl.setAttribute("class","ct"); conLbl.textContent = "about";
+  conLbl.setAttribute("class","ct"); conLbl.textContent = ui("about");
   conG.appendChild(conLbl);
 
   Array.prototype.forEach.call(iconsEl.children, function(el){
@@ -1849,8 +2089,8 @@ document.documentElement.setAttribute("data-theme", "day");
        atmosphere term pow(k - dot(n,v), 2) for the limb. */
     var BODY = {
       readme:   { t:0, rad:52, spin:0.030, tilt:0.00, seed: 3.1, pad:2.40 },
+      istakip:  { t:5, rad:22, spin:0.100, tilt:0.30, seed:71.0, pad:2.55 },
       reporting:{ t:3, rad:27, spin:0.085, tilt:0.14, seed:37.0, pad:1.45 },
-      dinlesen: { t:5, rad:22, spin:0.100, tilt:0.30, seed:71.0, pad:2.55 },
       pipeline: { t:2, rad:20, spin:0.120, tilt:0.22, seed:23.0, pad:1.45 },
       sms:      { t:4, rad:18, spin:0.140, tilt:0.40, seed:53.0, pad:1.45 },
       karinca:  { t:1, rad:16, spin:0.165, tilt:0.28, seed:11.0, pad:1.45 }
@@ -2252,8 +2492,8 @@ document.documentElement.setAttribute("data-theme", "day");
     function apply(theme){
       on = (theme === "night");
       root.setAttribute("data-theme", theme);
-      lbl.textContent = on ? "DAY" : "NIGHT";
-      btn.title = on ? "back to day (N)" : "night sky (N)";
+      lbl.textContent = ui(on ? "dayB" : "nightB");
+      btn.title = ui(on ? "dayT" : "nightT");
       scopeLabel();
       if(on){
         resize();
@@ -2342,7 +2582,7 @@ document.documentElement.setAttribute("data-theme", "day");
     /* no visible label, but a screen reader still hears what it does */
     function scopeLabel(){
       if(!scopeEl) return;
-      var s = on ? "back to day" : "look through the telescope: switch to the night sky";
+      var s = ui(on ? "scopeDay" : "scopeNight");
       scopeEl.setAttribute("aria-label", s);
     }
 
@@ -2359,7 +2599,14 @@ document.documentElement.setAttribute("data-theme", "day");
     scopeEl.addEventListener("click", toggle);
     scopeLabel();
 
-    lbl.textContent = on ? "DAY" : "NIGHT";
+    lbl.textContent = ui(on ? "dayB" : "nightB");
+    btn.title = ui(on ? "dayT" : "nightT");
+    /* the language switch repaints the words the night side owns */
+    document.addEventListener("langchange", function(){
+      lbl.textContent = ui(on ? "dayB" : "nightB");
+      btn.title = ui(on ? "dayT" : "nightT");
+      scopeLabel();
+    });
 
     return { tick:tick, resize:resize, apply:apply, toggle:toggle, ready:ready,
              isOn:function(){ return on; } };
@@ -2368,19 +2615,19 @@ document.documentElement.setAttribute("data-theme", "day");
   /* ---------- context menu ---------- */
   var menuEl = $("menu"), menuFor = null;
   var MENUS = {
-    desk: [ ["refresh","Refresh","F5"], ["realign","Realign the system",""], ["sep"],
-            ["readme","Open README.txt",""], ["search","Search","⌘K"], ["sep"],
-            ["closeall","Close all windows",""], ["night","Night sky","N"], ["sep"],
-            ["reset","Reset desktop",""] ],
-    ico:  [ ["open","Open","↵"], ["orbit","Send back to orbit",""], ["sep"],
-            ["search","Search","⌘K"] ]
+    desk: [ ["refresh","F5"], ["realign",""], ["sep"],
+            ["readme",""], ["search","⌘K"], ["lang",""], ["sep"],
+            ["closeall",""], ["night","N"], ["sep"],
+            ["reset",""] ],
+    ico:  [ ["open","↵"], ["orbit",""], ["sep"],
+            ["search","⌘K"] ]
   };
   function hideMenu(){ menuEl.classList.remove("on"); menuFor = null; selectOnly(null); }
   function showMenu(kind, x, y, id){
     menuFor = id || null;
     menuEl.innerHTML = MENUS[kind].map(function(r){
       return r[0]==="sep" ? "<hr>"
-        : '<button data-a="'+r[0]+'">'+r[1]+(r[2]?'<s>'+r[2]+'</s>':'')+'</button>';
+        : '<button data-a="'+r[0]+'">'+ui("m_"+r[0])+(r[1]?'<s>'+r[1]+'</s>':'')+'</button>';
     }).join("");
     menuEl.classList.add("on");
     menuEl.style.left = "0px"; menuEl.style.top = "0px";
@@ -2407,6 +2654,7 @@ document.documentElement.setAttribute("data-theme", "day");
     else if(a==="realign"){ glide(function(){ tNow = 0; }, 820, 34); }
     else if(a==="readme"){ launch("readme"); }
     else if(a==="search"){ palOpen(); }
+    else if(a==="lang"){ setLang(LANG==="tr" ? "en" : "tr"); }
     else if(a==="open"){ if(id) launch(id); }
     else if(a==="orbit"){ if(id && byId[id]) glide(null, 700); }
     else if(a==="closeall"){ Object.keys(open).forEach(close); }
@@ -2431,15 +2679,15 @@ document.documentElement.setAttribute("data-theme", "day");
   /* ---------- command palette ---------- */
   var pal=$("pal"), palin=$("palin"), pallist=$("pallist"), palIdx=0, palRows=[];
   function palPaint(){
-    var q = palin.value.trim().toLowerCase();
+    var q = palin.value.trim().toLocaleLowerCase("tr");
     palRows = DESK.filter(function(id){
-      return !q || (APPS[id].t+" "+LABEL[id]).toLowerCase().indexOf(q) >= 0;
+      return !q || (APPS_BY.tr[id].t+" "+APPS_BY.en[id].t).toLocaleLowerCase("tr").indexOf(q) >= 0;
     });
     if(palIdx >= palRows.length) palIdx = 0;
     pallist.innerHTML = palRows.map(function(id,i){
       return '<div class="'+(i===palIdx?"cur":"")+'" data-app="'+id+'">'+APPS[id].t
-           + '<em>'+(open[id]?"open":"window")+'</em></div>';
-    }).join("") || '<div style="color:var(--faint)">no match</div>';
+           + '<em>'+(open[id]?ui("open"):ui("win"))+'</em></div>';
+    }).join("") || '<div style="color:var(--faint)">'+ui("none")+'</div>';
   }
   function palOpen(){ pal.classList.add("on"); palin.value=""; palIdx=0; palPaint(); palin.focus(); }
   function palClose(){ pal.classList.remove("on"); palin.blur(); }
@@ -2465,6 +2713,44 @@ document.documentElement.setAttribute("data-theme", "day");
       var id = DESK[+e.key-1]; if(id){ e.preventDefault(); launch(id); }
     }
   });
+
+  /* ---------- language switch ----------
+     everything with words in it is repainted in place: open windows keep
+     their position, size and scroll, only the text changes */
+  function paintLang(){
+    document.documentElement.lang = LANG;
+    Array.prototype.forEach.call($("lgbtn").children, function(i){
+      i.classList.toggle("on", i.getAttribute("data-l") === LANG);
+    });
+    $("capA").textContent = ui("projects");
+    $("lblA").textContent = ui("readme");
+    $("coreA").setAttribute("aria-label", ui("openReadme"));
+    $("barpal").textContent = ui("search");
+    palin.setAttribute("placeholder", ui("find"));
+    conLbl.textContent = ui("about");
+    Array.prototype.forEach.call(iconsEl.children, function(el){
+      el.lastElementChild.textContent = APPS[el.getAttribute("data-app")].t;
+    });
+  }
+  function setLang(l){
+    if(l === LANG || !APPS_BY[l]) return;
+    LANG = l; APPS = APPS_BY[l];
+    try{ history.replaceState(null, "", location.pathname + (l==="en" ? "?lang=en" : "") + location.hash); }catch(_){}
+    paintLang();
+    Object.keys(open).forEach(function(id){
+      var el = open[id].el, bd = el.querySelector(".body"), top = bd.scrollTop;
+      el.querySelector(".nm").textContent = APPS[id].t;
+      bd.innerHTML = APPS[id].html; bd.scrollTop = top;
+      el.querySelector(".mn").title = ui("mn");
+      el.querySelector(".mx").title = ui("mx");
+      el.querySelector(".x").title = ui("x");
+    });
+    paintTasks();
+    if(pal.classList.contains("on")) palPaint();
+    document.dispatchEvent(new Event("langchange"));
+  }
+  paintLang();
+  $("lgbtn").addEventListener("click", function(){ setLang(LANG==="tr" ? "en" : "tr"); });
 
   /* ---------- clock ---------- */
   function tick(){
