@@ -621,15 +621,9 @@ html[data-theme=night] #scope.live .spk{animation:none;}
 </style>
 
 <script>
-/* the theme is resolved before the first paint, so night never opens with a white flash */
-(function(){
-  var t = null;
-  try{ t = localStorage.getItem("desk_theme"); }catch(e){}
-  if(t !== "night" && t !== "day"){
-    t = matchMedia("(prefers-color-scheme: dark)").matches ? "night" : "day";
-  }
-  document.documentElement.setAttribute("data-theme", t);
-})();
+/* every visit opens in daylight, whatever the phone is set to and whatever
+   the last visit ended on: the switch to night is the visitor's to make */
+document.documentElement.setAttribute("data-theme", "day");
 </script>
 
 <div id="boot">
@@ -1138,7 +1132,7 @@ html[data-theme=night] #scope.live .spk{animation:none;}
 
   function measureSky(){
     var b = bounds();
-    if(MOB){ measurePhone(b); return; }
+    if(MOB && b.h >= b.w*0.75){ measurePhone(b); return; }   /* a phone on its side keeps the desktop row */
     var RA = Math.max(118, Math.min(b.w*0.232, (b.h*0.40)/SQ));
     var A = SYS[0], B = SYS[1];
     A.box = 176; A.el.style.width = A.el.style.height = "";
@@ -2182,7 +2176,6 @@ html[data-theme=night] #scope.live .spk{animation:none;}
     function apply(theme){
       on = (theme === "night");
       root.setAttribute("data-theme", theme);
-      try{ localStorage.setItem("desk_theme", theme); }catch(e){}
       lbl.textContent = on ? "DAY" : "NIGHT";
       btn.title = on ? "back to day (N)" : "night sky (N)";
       scopeLabel();
