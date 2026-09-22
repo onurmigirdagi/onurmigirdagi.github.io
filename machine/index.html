@@ -1379,6 +1379,80 @@ document.documentElement.setAttribute("data-theme", "day");
     alcor: [-0.6795, 0.0811, 3.99, 0.169]
   };
 
+  /* ---------- third party notices -----------------------------------------
+     This page ships code and data adapted from the projects below. Their
+     licences ask that these notices travel with the copies, so they do.
+
+     d3-celestial, https://github.com/ofrohn/d3-celestial
+       star positions, magnitudes, colour indices and constellation figures
+       (Yale Bright Star Catalogue and Hipparcos, as packaged there)
+       Copyright (c) 2015, Olaf Frohn. BSD 3-Clause, full text below.
+
+     procedural-stars-threejs, https://github.com/CK42BB/procedural-stars-threejs
+       Copyright (c) 2026 Kingsley. MIT, full text below.
+     NightSky, https://github.com/H0rn0chse/NightSky
+       Copyright (c) 2022 H0rn0chse. MIT, full text below.
+     procedural-planets, https://github.com/XenoverseUp/procedural-planets
+       Copyright (c) 2024 Muhammed Can Durmus. MIT, full text below.
+     Hash without Sine, https://www.shadertoy.com/view/4djSRW
+       Copyright (c) 2014 David Hoskins. MIT, full text below.
+     space-3d, https://github.com/wwwtyro/space-3d
+       released into the public domain (The Unlicense); credited, not required.
+
+     ---- BSD 3-Clause License (d3-celestial) ----
+     Copyright (c) 2015, Olaf Frohn
+     All rights reserved.
+
+     Redistribution and use in source and binary forms, with or without
+     modification, are permitted provided that the following conditions are met:
+
+     1. Redistributions of source code must retain the above copyright notice,
+        this list of conditions and the following disclaimer.
+
+     2. Redistributions in binary form must reproduce the above copyright
+        notice, this list of conditions and the following disclaimer in the
+        documentation and/or other materials provided with the distribution.
+
+     3. Neither the name of the copyright holder nor the names of its
+        contributors may be used to endorse or promote products derived from
+        this software without specific prior written permission.
+
+     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+     AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+     IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+     ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+     LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+     CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+     SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+     INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+     ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+     POSSIBILITY OF SUCH DAMAGE.
+
+     ---- MIT License (the four MIT projects above) ----
+     Copyright (c) 2026 Kingsley
+     Copyright (c) 2022 H0rn0chse
+     Copyright (c) 2024 Muhammed Can Durmus
+     Copyright (c) 2014 David Hoskins
+
+     Permission is hereby granted, free of charge, to any person obtaining a copy
+     of this software and associated documentation files (the "Software"), to
+     deal in the Software without restriction, including without limitation the
+     rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+     sell copies of the Software, and to permit persons to whom the Software is
+     furnished to do so, subject to the following conditions:
+
+     The above copyright notice and this permission notice shall be included in
+     all copies or substantial portions of the Software.
+
+     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+     IN THE SOFTWARE.
+     ---------------------------------------------------------------------- */
   /* ---------- the night sky ----------------------------------------------
      Four layers under the desk, all procedural, no image files:
        .dome   css sky gradient with a light-pollution glow at the horizon
@@ -1919,7 +1993,9 @@ document.documentElement.setAttribute("data-theme", "day");
     "  }",
     "  float nl=dot(N,uL);",
     "  float day=smoothstep(-0.13,0.30,nl);",
-    "  col*=0.085+0.92*day;",
+    /* the unlit side keeps a floor of light, so a planet on the near side of
+       the star still reads as a world and not as a hole in the sky */
+    "  col*=0.28+0.72*day;",
     "  float limb=pow(1.0-z,2.1)*smoothstep(-0.26,0.62,nl);",
     /* a cold edge so the silhouette still reads when the world is unlit */
     "  col+=vec3(0.15,0.21,0.35)*pow(1.0-z,3.0)*0.60;",
@@ -2231,6 +2307,11 @@ document.documentElement.setAttribute("data-theme", "day");
       pointerX = e.clientX - b.left; pointerY = e.clientY - b.top;
       mx = ((e.clientX - b.left)/b.width - 0.5) * -20;
       my = ((e.clientY - b.top)/b.height - 0.5) * -14;
+    });
+    /* the names answer the pointer, so they go out when it leaves the desk */
+    deskEl.addEventListener("pointerleave", function(){
+      pointerX = pointerY = null;
+      if(skyEl2) skyEl2.classList.remove("near");
     });
     /* ---------- the telescope ---------------------------------------------
        The night side sits behind one small button in the menu bar, and a
