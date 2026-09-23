@@ -36,23 +36,27 @@ Proje pencerelerinin çoğunda, projenin nasıl çalıştığını canlı göste
 
 ### Karınca
 
-_2025 ve 2026 · Android, yaklaşık 140 Kotlin dosyası · etkisi ölçüldü, kullanımda_
+_2025 ve 2026 · Android, yaklaşık 62.000 satır Kotlin · etkisi ölçüldü, kullanımda_
 
-**Arkasında eksiksiz bir sanal ekonomi işleyen, aralıklı tekrara dayalı bir ders çalışma uygulamasıdır.**
+**YKS'ye hazırlanan öğrenciler için aralıklı tekrara dayalı bir Android ders çalışma uygulamasıdır. Kartlarda hazır soru yoktur; bir kart her açıldığında soruyu bir generator yeniden kurar. Aşağıdaki pencere, bu soru ekranının ve soruları öğrenciye ulaşmadan önce denetleyen kalite kapısının uygulamanın gerçek kurallarıyla çalışan hâlidir.**
 
-Jetpack Compose üzerinde MVVM ve Clean Architecture ile geliştirdim. Bağımlılık yönetiminde Hilt, yerel veride Room, eşitlemede Supabase kullanıyor. Soruları dinamik olarak üreten, Anki benzeri bir tekrar motoru var; ama benim için asıl önemli olan, bunun üzerine kurduğum ekonomidir: XP, jeton, seviyeler, seriler, tema mağazası ve ücretli üyelik.
+Uygulamayı Jetpack Compose üzerinde MVVM ve Clean Architecture ile geliştirdim. Bağımlılık yönetiminde Hilt, yerel veride Room, eşitlemede Supabase kullanılıyor. Tekrar motoru Anki'ye benziyor ama öğrenci kendini puanlamıyor; puanı cevabın doğruluğu ve süresi veriyor. Yanlış cevaplanan kart birkaç dakika içinde yeniden geliyor, doğru cevap ise bir kartı hiçbir zaman sıfırlamıyor.
 
-Kartlar işin kolay kısmıdır. Birinin uygulamayı ertesi gün yeniden açıp açmayacağını, kartların çevresindeki döngü belirliyor: Bugünkü oturum, geri dönmek için bir sebep bıraktı mı?
+Sorular hiçbir yerde hazır durmuyor. Her kart yalnızca bir tarifin kimliğini taşıyor: Hangi kavramın, hangi soru kökleriyle ve hangi çeldirici havuzundan sorulacağını tarif eden bir Kotlin sınıfı. Aynı kart her gelişinde başka bir kökle, başka çeldiricilerle ve başka bir şık sırasıyla karşıya çıkıyor; öğrenci cevabı yerinden ezberleyemiyor. Bugün 273 generator dosyası var ve 2.006 kart öğrenciye açıktır. Biyolojide müfredattaki 91 kazanımın 85'i kapsanıyor.
+
+Bu kadar soruyu elle denetlemek mümkün değildi, bu yüzden bir kalite kapısı kurdum. Her kart kayda girmeden önce 120 kez üretiliyor ve her örnek kurallardan geçiyor: Doğru cevap hep en uzun ya da en kısa şık mı, "yalnızca" ya da "hiçbir" gibi sözcüklere bakan öğrenci konuyu bilmeden cevabı bulabiliyor mu, kart yeterince farklı soru çıkarıyor mu? Kurallar biçimi ölçer, anlamı ölçemez. Bu yüzden her dosyayı ayrıca Claude'a, bu iş için yazdığım bir skill ile okutuyorum. İkinci bir doğru cevap, bilgi hatası ya da anlamsız bir çeldirici bulgu olarak açılıyor ve kararı ben veriyorum. Kurallar, bulgular ve kararlar PySide6 ile yazdığım bir masaüstü aracında bir araya geliyor.
+
+Sorular işin kolay kısmıdır. Birinin uygulamayı ertesi gün yeniden açıp açmayacağını, soruların çevresindeki döngü belirliyor: XP, jeton, seviyeler, seriler, tema mağazası ve ücretli üyelik. Bugünkü oturum, geri dönmek için bir sebep bıraktı mı?
 
 60 fps ve WCAG 2.1 AA hedefleyen bir arayüz şartnamesi yazdım. Ardından kod tabanım için kapsamlı bir teknik denetim yaptırdım ve kendi kanaatimle değil, denetimin bulgularıyla ilerledim. Denetim 10 üzerinden 6,8 puan verdi ve test kapsamının zayıf olduğunu açıkça belirtti. Onu faydalı kılan da tam olarak bu dürüstlüktü.
 
 **Teknoloji**
 
 - Kotlin, Jetpack Compose, Material3
-- MVVM ve Clean Architecture
-- Hilt ile bağımlılık yönetimi
+- MVVM ve Clean Architecture, Hilt
 - Yerelde Room, Supabase ile eşitleme
-- Aralıklı tekrar motoru
+- 273 generator dosyası, 2.006 kart
+- 120 örnekli kalite kapısı, yapay zekâ incelemesi
 - Kendi isteğimle yaptırdığım denetim, 6,8/10
 
 **Sayfadaki etkileşimli demo:** İki sekmesi vardır. Ders sekmesinde solda uygulamanın soru ekranı, uygulamanın kendi renkleriyle bir telefonun içinde durur: Çalışma Oturumu başlığı, kalan kart sayısı, soru kartı, beş şık ve Cevabı Göster düğmesi. Sorular sayfada, uygulamadaki bio_9121_b generator'ının içeriği ve kurallarıyla üretilir; kartta hazır bir soru yoktur, yalnızca bir tarifin kimliği vardır. Sağda kartın kimliği, sorunun hangi yönden kurulduğu (mineralden göreve, görevden minerale, ayrıntı, hangisi değildir) ve aynı karttan yeni bir soru üreten bir düğme bulunur. Cevap verilince doğru şık yeşile, yanlış seçilen kırmızıya döner ve çözüm açılır; aralıklı tekrar kutusu cevabı, süreyi, Tekrar, İyi ya da Kolay değerlendirmesini ve kartın ne zaman yeniden geleceğini gösterir. Puanı öğrenci değil, cevap ve süre verir. Ekonomi kutusu XP, seviye ve jetonu gösterir. Ziyaretçi soruları kendisi çözebilir; dokunmazsa demo kendi kendine oynar. Kalite kapısı sekmesinde aynı kart 120 kez üretilir ve her örnek uygulamanın kalite kurallarından geçer: doğru cevabın belirgin biçimde en uzun ya da en kısa şık olup olmadığı, mutlak sözcüklere bakarak tahmin edilip edilemediği, kaç farklı soru çıktığı ve yapı. Bozuk bir tarif (kısa ya da mutlak sözcüklü çeldiriciler) seçilince kapı kapanır. Ardından yapay zekâ incelemesi, editör kararı ve kayıt adımları anlatılır. XP, jeton ve seviye değerleri temsilîdir.
@@ -61,7 +65,7 @@ Kartlar işin kolay kısmıdır. Birinin uygulamayı ertesi gün yeniden açıp 
 
 ![Karınca, Kalite kapısı sekmesi: Potasyum kartı 120 kez üretilmiş; UZUNLUK, KISALIK, MUTLAK, ÇEŞİTLİLİK ve YAPI kurallarının ölçümleri ve eşikleri, hepsi geçti; üstte generatordan kayda uzanan adımlar.](https://onurmigirdagi.github.io/machine/shots/karinca-kalite.jpg)
 
-Etiketler: Kotlin, Jetpack Compose, Supabase, Etkileşim döngüsü
+Etiketler: Kotlin, Jetpack Compose, Supabase, Soru üretimi, Kalite kontrol
 
 ### İş Takip Modülü
 
@@ -145,7 +149,7 @@ Her kanalın verisini kendi API'si üzerinden çektim, yanıtları tek bir şema
 - Pazaryerinin değil, şirketin kullandığı düzen
 - Tek aylık rapor, ayda 5 saatten fazla kazanç
 
-**Sayfadaki etkileşimli demo:** Üstte dört pazaryeri API'sinin kendi biçimindeki örnek yanıtları, altta Mac tarzı bir bilgisayar ekranı vardır. Program önce ne tür bir rapor istendiğini sorar: aylık ya da yıllık rapor, dönem ve dahil edilecek pazaryerleri. Ziyaretçi bunları kendisi seçebilir; seçmezse form birkaç saniye sonra kendini doldurur. Raporu oluştur düğmesine basılınca pencere geri plana çekilir ve sağ üstte bir bildirim baloncuğu ilerlemeyi gösterir: Veriler alınır, alanlar tek yapıda birleştirilir, tarih, para birimi ve iadeler düzenlenir, rapor yazılır. Sonra şirketin düzeninde bir satış raporu açılır: net satış, sipariş sayısı ve iade oranı, kanal bazında grafik ve tablo. Rapor kanala göre süzülebilir. Rakamlar temsilîdir.
+**Sayfadaki etkileşimli demo:** Üstte dört pazaryeri API'sinin kendi biçimindeki örnek yanıtları, altta Mac tarzı bir bilgisayar ekranı vardır. Program önce ne tür bir rapor istendiğini sorar: aylık ya da yıllık rapor, dönem ve dahil edilecek pazaryerleri. Ziyaretçi seçenekleri değiştirebilir. Rapor, ziyaretçi Raporu oluştur düğmesine bastığında başlar; düğme yanıp söner ve yanında "Raporu başlatmak için tıklayın" yazar. Düğmeye basılınca pencere geri plana çekilir ve sağ üstte bir bildirim baloncuğu ilerlemeyi gösterir: Veriler alınır, alanlar tek yapıda birleştirilir, tarih, para birimi ve iadeler düzenlenir, rapor yazılır. Sonra şirketin düzeninde bir satış raporu açılır: net satış, sipariş sayısı ve iade oranı, kanal bazında grafik ve tablo. Rapor kanala göre süzülebilir. Rakamlar temsilîdir.
 
 ![Raporlama, ilk adım: Mac tarzı ekranda rapor.py · Yeni rapor penceresi; Aylık ve Yıllık seçimi, Mart 2025 dönemi, dört pazaryeri onay kutusu ve mavi Raporu oluştur düğmesi; üstte dört pazaryeri API'sinin kendi biçimindeki ham yanıtları.](https://onurmigirdagi.github.io/machine/shots/raporlama-secim.jpg)
 
@@ -225,23 +229,27 @@ Most project windows include an interactive demo that shows the project working.
 
 ### Karınca
 
-_2025 to 2026 · Android, ~140 Kotlin files · measured, running_
+_2025 to 2026 · Android, ~62,000 lines of Kotlin · measured, running_
 
-**A spaced repetition study app with a full virtual economy underneath it.**
+**A spaced repetition study app for students preparing for YKS, the Turkish university entrance exam. No card holds a written question; every time a card comes up, a generator builds its question anew. The window below is the study screen, and the quality gate that checks the questions before they reach a student, running on the app's real rules.**
 
-Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. It runs an Anki style repetition engine with dynamic question generation, but the part I care about is the economy layered on top: XP, coins, levels, streaks, a theme shop and a paywall.
+Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. The repetition engine is Anki like, but students do not grade themselves: the rating comes from whether the answer was right and how long it took. A card answered wrong comes back within minutes, and a right answer never resets a card.
 
-The flashcards are the easy part. What decides whether someone opens the app again tomorrow is the loop around them: whether today's session left a reason to come back.
+The questions are not stored anywhere. Each card carries only the id of a recipe: a Kotlin class describing which concept to ask, with which question stems and from which pool of distractors. Every time the same card comes back it has a different stem, different distractors and a different order, so the answer cannot be memorised by its position. There are 273 generator files today and 2,006 cards open to students; in biology 85 of the curriculum's 91 learning outcomes are covered.
+
+Checking that many questions by hand was not possible, so I built a quality gate. Before a card is registered it is generated 120 times and every sample goes through the rules: is the right answer always the longest or the shortest option, can a student who looks for words like "only" or "never" find it without knowing the topic, does the card produce enough different questions. Rules measure form, not meaning, so every file is also read by Claude with a skill I wrote for the job. A second right answer, a factual error or a meaningless distractor opens a finding, and I make the decision. Rules, findings and decisions come together in a desktop tool I wrote with PySide6.
+
+The questions are the easy part. What decides whether someone opens the app again tomorrow is the loop around them: XP, coins, levels, streaks, a theme shop and a paywall. Did today's session leave a reason to come back?
 
 I wrote a UI specification targeting 60fps and WCAG 2.1 AA, then commissioned a full technical audit of my own codebase and worked from its findings rather than from my own opinion of the code. It scored 6.8 out of 10 and was blunt about weak test coverage, which is exactly what made it useful.
 
 **Stack**
 
 - Kotlin, Jetpack Compose, Material3
-- MVVM and Clean Architecture
-- Hilt dependency injection
+- MVVM and Clean Architecture, Hilt
 - Room local, Supabase sync
-- Spaced repetition engine
+- 273 generator files, 2,006 cards
+- 120 sample quality gate, AI review
 - Self commissioned audit, 6.8/10
 
 **The interactive demo on the page:** It has two tabs. On the Study tab the app's question screen sits inside a phone, in the app's own colours: the Çalışma Oturumu (study session) header, the cards left, the question card, five options and the Cevabı Göster (show answer) button. The questions are built on the page from the content and rules of the app's bio_9121_b generator; the card holds no written question, only the id of a recipe. On the right are the card id, the direction the question was built from (mineral to role, role to mineral, detail, which is not) and a button that builds a new question from the same card. After an answer the right option turns green, a wrong pick red, and the explanation opens; the spaced repetition box shows the answer, the time, the rating (Again, Good or Easy) and when the card comes back. The rating comes from the answer and the time, not from the student. The economy box shows XP, level and coins. Visitors can answer the questions themselves; left alone, the demo plays by itself. On the Quality gate tab the same card is generated 120 times and every sample goes through the app's quality rules: whether the right answer is noticeably the longest or the shortest option, whether it can be guessed from absolute words, how many distinct questions come out, and structure. Choosing a broken recipe (short distractors, or distractors with absolute words) closes the gate. Then the AI review, the editor's decision and the registration steps are described. XP, coin and level values are illustrative.
@@ -250,7 +258,7 @@ I wrote a UI specification targeting 60fps and WCAG 2.1 AA, then commissioned a 
 
 ![Karınca, the Quality gate tab: the potassium card generated 120 times; the measurements and thresholds for the length, shortness, absolute word, diversity and structure rules, all passing; above, the steps from generator to registration.](https://onurmigirdagi.github.io/machine/shots/karinca-kalite.jpg)
 
-Tags: Kotlin, Jetpack Compose, Supabase, Retention loop
+Tags: Kotlin, Jetpack Compose, Supabase, Question generation, Quality control
 
 ### İş Takip Modülü
 
@@ -334,7 +342,7 @@ I pulled each channel through its own API, normalized the responses into one sch
 - Company specific layout, not vendor layout
 - One monthly report, 5+ hours saved
 
-**The interactive demo on the page:** Above are sample responses from four marketplace APIs, each in its own shape; below is a Mac style computer screen. The program first asks what kind of report is wanted: monthly or yearly, the period, and which marketplaces to include. The visitor can choose; if they do not, the form fills itself in after a few seconds. On Create report the window steps back and a notification bubble at the top right shows the progress: data is pulled, fields are merged into one structure, dates, currency and returns are evened out, and the report is written. Then a sales report opens in the company's own layout: net sales, orders and return rate, a chart and a table by channel. The report can be filtered by channel. The figures are illustrative.
+**The interactive demo on the page:** Above are sample responses from four marketplace APIs, each in its own shape; below is a Mac style computer screen. The program first asks what kind of report is wanted: monthly or yearly, the period, and which marketplaces to include. The visitor can change the options. The report starts when the visitor presses Create report; the button pulses, with "Click to start the report" beside it. On Create report the window steps back and a notification bubble at the top right shows the progress: data is pulled, fields are merged into one structure, dates, currency and returns are evened out, and the report is written. Then a sales report opens in the company's own layout: net sales, orders and return rate, a chart and a table by channel. The report can be filtered by channel. The figures are illustrative.
 
 ![Reporting, first step: on a Mac style screen the New report window with Monthly and Yearly, the March 2025 period, four marketplace checkboxes and a blue Create report button; above it the raw responses of the four marketplace APIs.](https://onurmigirdagi.github.io/machine/shots/raporlama-secim.jpg)
 

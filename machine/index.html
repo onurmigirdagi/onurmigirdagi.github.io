@@ -785,7 +785,12 @@ body.mob .sm-ba,body.phone .sm-ba{grid-template-columns:1fr;}
 select.rp-dd{appearance:none; -webkit-appearance:none; cursor:pointer; font-family:inherit; padding-right:22px;
   background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%2355555C'/%3E%3C/svg%3E") no-repeat right 8px center;}
 .rp-seg button,.rp-cbs label,.rp-go{cursor:pointer;}
-.rp-go[disabled]{opacity:.4; cursor:default;}
+.rp-go[disabled]{opacity:.4; cursor:default; animation:none;}
+.rp-go{animation:rpgo 1.6s ease-in-out infinite;}
+@keyframes rpgo{0%{box-shadow:0 0 0 0 rgba(10,132,255,.55);} 70%{box-shadow:0 0 0 9px rgba(10,132,255,0);} 100%{box-shadow:0 0 0 0 rgba(10,132,255,0);}}
+.rp-hint{margin-left:9px; font-style:normal; font-size:9.5px; font-weight:600; color:#0A84FF; animation:rphint 1.6s ease-in-out infinite;}
+@keyframes rphint{50%{transform:translateX(-3px);}}
+.rp-ask.none .rp-hint{display:none;}
 .rp-warn{display:none; margin-left:8px; font-style:normal; font-size:9.5px; color:#D70015;}
 .rp-ask.none .rp-warn{display:inline;}
 .rp-new{margin-left:8px; font-size:9px; padding:2px 8px; border-radius:6px; border:1px solid #0A84FF; color:#0A84FF; background:#fff; cursor:pointer;}
@@ -1399,25 +1404,27 @@ document.documentElement.setAttribute("data-theme", "day");
 <h2>Projeler</h2>
 <article id="tr-karinca">
 <h3>Karınca</h3>
-<p><small>2025 ve 2026 · Android, yaklaşık 140 Kotlin dosyası · etkisi ölçüldü, kullanımda</small></p>
-<p><strong>Arkasında eksiksiz bir sanal ekonomi işleyen, aralıklı tekrara dayalı bir ders çalışma uygulamasıdır.</strong></p>
-<p>Jetpack Compose üzerinde MVVM ve Clean Architecture ile geliştirdim. Bağımlılık yönetiminde Hilt, yerel veride Room, eşitlemede Supabase kullanıyor. Soruları dinamik olarak üreten, Anki benzeri bir tekrar motoru var; ama benim için asıl önemli olan, bunun üzerine kurduğum ekonomidir: XP, jeton, seviyeler, seriler, tema mağazası ve ücretli üyelik.</p>
-<p>Kartlar işin kolay kısmıdır. Birinin uygulamayı ertesi gün yeniden açıp açmayacağını, kartların çevresindeki döngü belirliyor: Bugünkü oturum, geri dönmek için bir sebep bıraktı mı?</p>
+<p><small>2025 ve 2026 · Android, yaklaşık 62.000 satır Kotlin · etkisi ölçüldü, kullanımda</small></p>
+<p><strong>YKS'ye hazırlanan öğrenciler için aralıklı tekrara dayalı bir Android ders çalışma uygulamasıdır. Kartlarda hazır soru yoktur; bir kart her açıldığında soruyu bir generator yeniden kurar. Aşağıdaki pencere, bu soru ekranının ve soruları öğrenciye ulaşmadan önce denetleyen kalite kapısının uygulamanın gerçek kurallarıyla çalışan hâlidir.</strong></p>
+<p>Uygulamayı Jetpack Compose üzerinde MVVM ve Clean Architecture ile geliştirdim. Bağımlılık yönetiminde Hilt, yerel veride Room, eşitlemede Supabase kullanılıyor. Tekrar motoru Anki'ye benziyor ama öğrenci kendini puanlamıyor; puanı cevabın doğruluğu ve süresi veriyor. Yanlış cevaplanan kart birkaç dakika içinde yeniden geliyor, doğru cevap ise bir kartı hiçbir zaman sıfırlamıyor.</p>
+<p>Sorular hiçbir yerde hazır durmuyor. Her kart yalnızca bir tarifin kimliğini taşıyor: Hangi kavramın, hangi soru kökleriyle ve hangi çeldirici havuzundan sorulacağını tarif eden bir Kotlin sınıfı. Aynı kart her gelişinde başka bir kökle, başka çeldiricilerle ve başka bir şık sırasıyla karşıya çıkıyor; öğrenci cevabı yerinden ezberleyemiyor. Bugün 273 generator dosyası var ve 2.006 kart öğrenciye açıktır. Biyolojide müfredattaki 91 kazanımın 85'i kapsanıyor.</p>
+<p>Bu kadar soruyu elle denetlemek mümkün değildi, bu yüzden bir kalite kapısı kurdum. Her kart kayda girmeden önce 120 kez üretiliyor ve her örnek kurallardan geçiyor: Doğru cevap hep en uzun ya da en kısa şık mı, "yalnızca" ya da "hiçbir" gibi sözcüklere bakan öğrenci konuyu bilmeden cevabı bulabiliyor mu, kart yeterince farklı soru çıkarıyor mu? Kurallar biçimi ölçer, anlamı ölçemez. Bu yüzden her dosyayı ayrıca Claude'a, bu iş için yazdığım bir skill ile okutuyorum. İkinci bir doğru cevap, bilgi hatası ya da anlamsız bir çeldirici bulgu olarak açılıyor ve kararı ben veriyorum. Kurallar, bulgular ve kararlar PySide6 ile yazdığım bir masaüstü aracında bir araya geliyor.</p>
+<p>Sorular işin kolay kısmıdır. Birinin uygulamayı ertesi gün yeniden açıp açmayacağını, soruların çevresindeki döngü belirliyor: XP, jeton, seviyeler, seriler, tema mağazası ve ücretli üyelik. Bugünkü oturum, geri dönmek için bir sebep bıraktı mı?</p>
 <p>60 fps ve WCAG 2.1 AA hedefleyen bir arayüz şartnamesi yazdım. Ardından kod tabanım için kapsamlı bir teknik denetim yaptırdım ve kendi kanaatimle değil, denetimin bulgularıyla ilerledim. Denetim 10 üzerinden 6,8 puan verdi ve test kapsamının zayıf olduğunu açıkça belirtti. Onu faydalı kılan da tam olarak bu dürüstlüktü.</p>
 <h4>Teknoloji</h4>
 <ul>
 <li>Kotlin, <b>Jetpack Compose</b>, Material3</li>
-<li>MVVM ve Clean Architecture</li>
-<li>Hilt ile bağımlılık yönetimi</li>
+<li>MVVM ve Clean Architecture, Hilt</li>
 <li>Yerelde Room, <b>Supabase</b> ile eşitleme</li>
-<li>Aralıklı tekrar motoru</li>
+<li>273 generator dosyası, <b>2.006 kart</b></li>
+<li>120 örnekli <b>kalite kapısı</b>, yapay zekâ incelemesi</li>
 <li>Kendi isteğimle yaptırdığım <b>denetim</b>, 6,8/10</li>
 </ul>
 <h4>Sayfadaki etkileşimli demo</h4>
 <p>İki sekmesi vardır. Ders sekmesinde solda uygulamanın soru ekranı, uygulamanın kendi renkleriyle bir telefonun içinde durur: Çalışma Oturumu başlığı, kalan kart sayısı, soru kartı, beş şık ve Cevabı Göster düğmesi. Sorular sayfada, uygulamadaki bio_9121_b generator'ının içeriği ve kurallarıyla üretilir; kartta hazır bir soru yoktur, yalnızca bir tarifin kimliği vardır. Sağda kartın kimliği, sorunun hangi yönden kurulduğu (mineralden göreve, görevden minerale, ayrıntı, hangisi değildir) ve aynı karttan yeni bir soru üreten bir düğme bulunur. Cevap verilince doğru şık yeşile, yanlış seçilen kırmızıya döner ve çözüm açılır; aralıklı tekrar kutusu cevabı, süreyi, Tekrar, İyi ya da Kolay değerlendirmesini ve kartın ne zaman yeniden geleceğini gösterir. Puanı öğrenci değil, cevap ve süre verir. Ekonomi kutusu XP, seviye ve jetonu gösterir. Ziyaretçi soruları kendisi çözebilir; dokunmazsa demo kendi kendine oynar. Kalite kapısı sekmesinde aynı kart 120 kez üretilir ve her örnek uygulamanın kalite kurallarından geçer: doğru cevabın belirgin biçimde en uzun ya da en kısa şık olup olmadığı, mutlak sözcüklere bakarak tahmin edilip edilemediği, kaç farklı soru çıktığı ve yapı. Bozuk bir tarif (kısa ya da mutlak sözcüklü çeldiriciler) seçilince kapı kapanır. Ardından yapay zekâ incelemesi, editör kararı ve kayıt adımları anlatılır. XP, jeton ve seviye değerleri temsilîdir.</p>
 <p><a href="shots/karinca-ders.jpg">Ekran görüntüsü</a>: Karınca, Ders sekmesi: Telefonda uygulamanın soru ekranı; demir kartında görevden minerale kurulmuş bir soru yanlış cevaplanmış, seçilen şık kırmızı, doğru şık yeşil, altında çözüm. Sağda kartın kimliği bio_9121_b_demir, soru yönü, aralıklı tekrarda Tekrar değerlendirmesi ve 1 dakika sonra yeniden gelme, altta XP, seviye ve jeton.</p>
 <p><a href="shots/karinca-kalite.jpg">Ekran görüntüsü</a>: Karınca, Kalite kapısı sekmesi: Potasyum kartı 120 kez üretilmiş; UZUNLUK, KISALIK, MUTLAK, ÇEŞİTLİLİK ve YAPI kurallarının ölçümleri ve eşikleri, hepsi geçti; üstte generatordan kayda uzanan adımlar.</p>
-<p><small>Etiketler: Kotlin, Jetpack Compose, Supabase, Etkileşim döngüsü</small></p>
+<p><small>Etiketler: Kotlin, Jetpack Compose, Supabase, Soru üretimi, Kalite kontrol</small></p>
 </article>
 <article id="tr-istakip">
 <h3>İş Takip Modülü</h3>
@@ -1481,7 +1488,7 @@ document.documentElement.setAttribute("data-theme", "day");
 <li>Tek aylık rapor, <b>ayda 5 saatten fazla</b> kazanç</li>
 </ul>
 <h4>Sayfadaki etkileşimli demo</h4>
-<p>Üstte dört pazaryeri API'sinin kendi biçimindeki örnek yanıtları, altta Mac tarzı bir bilgisayar ekranı vardır. Program önce ne tür bir rapor istendiğini sorar: aylık ya da yıllık rapor, dönem ve dahil edilecek pazaryerleri. Ziyaretçi bunları kendisi seçebilir; seçmezse form birkaç saniye sonra kendini doldurur. Raporu oluştur düğmesine basılınca pencere geri plana çekilir ve sağ üstte bir bildirim baloncuğu ilerlemeyi gösterir: Veriler alınır, alanlar tek yapıda birleştirilir, tarih, para birimi ve iadeler düzenlenir, rapor yazılır. Sonra şirketin düzeninde bir satış raporu açılır: net satış, sipariş sayısı ve iade oranı, kanal bazında grafik ve tablo. Rapor kanala göre süzülebilir. Rakamlar temsilîdir.</p>
+<p>Üstte dört pazaryeri API'sinin kendi biçimindeki örnek yanıtları, altta Mac tarzı bir bilgisayar ekranı vardır. Program önce ne tür bir rapor istendiğini sorar: aylık ya da yıllık rapor, dönem ve dahil edilecek pazaryerleri. Ziyaretçi seçenekleri değiştirebilir. Rapor, ziyaretçi Raporu oluştur düğmesine bastığında başlar; düğme yanıp söner ve yanında "Raporu başlatmak için tıklayın" yazar. Düğmeye basılınca pencere geri plana çekilir ve sağ üstte bir bildirim baloncuğu ilerlemeyi gösterir: Veriler alınır, alanlar tek yapıda birleştirilir, tarih, para birimi ve iadeler düzenlenir, rapor yazılır. Sonra şirketin düzeninde bir satış raporu açılır: net satış, sipariş sayısı ve iade oranı, kanal bazında grafik ve tablo. Rapor kanala göre süzülebilir. Rakamlar temsilîdir.</p>
 <p><a href="shots/raporlama-secim.jpg">Ekran görüntüsü</a>: Raporlama, ilk adım: Mac tarzı ekranda rapor.py · Yeni rapor penceresi; Aylık ve Yıllık seçimi, Mart 2025 dönemi, dört pazaryeri onay kutusu ve mavi Raporu oluştur düğmesi; üstte dört pazaryeri API'sinin kendi biçimindeki ham yanıtları.</p>
 <p><a href="shots/raporlama-hazirlaniyor.jpg">Ekran görüntüsü</a>: Raporlama, hazırlık: Pencere geri plana çekilmiş ve Rapor arka planda hazırlanıyor yazıyor; sağ üstte Rapor hazırlanıyor bildirim baloncuğu, ilerleme çubuğu ve dört adımlık liste; üstte veri gelen API kartları yeşile dönmüş.</p>
 <p><a href="shots/raporlama-rapor.jpg">Ekran görüntüsü</a>: Raporlama, sonuç: Aylık Satış Raporu · Mart 2025; kanal filtresinde Trendyol seçili, net satış 198.760 TL, 402 sipariş ve yüzde 4,2 iade oranı, kanal bazında çubuk grafik ve tablo, sağ üstte + Yeni rapor düğmesi.</p>
@@ -1538,25 +1545,27 @@ document.documentElement.setAttribute("data-theme", "day");
 <h2>Projects</h2>
 <article id="en-karinca">
 <h3>Karınca</h3>
-<p><small>2025 to 2026 · Android, ~140 Kotlin files · measured, running</small></p>
-<p><strong>A spaced repetition study app with a full virtual economy underneath it.</strong></p>
-<p>Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. It runs an Anki style repetition engine with dynamic question generation, but the part I care about is the economy layered on top: XP, coins, levels, streaks, a theme shop and a paywall.</p>
-<p>The flashcards are the easy part. What decides whether someone opens the app again tomorrow is the loop around them: whether today's session left a reason to come back.</p>
+<p><small>2025 to 2026 · Android, ~62,000 lines of Kotlin · measured, running</small></p>
+<p><strong>A spaced repetition study app for students preparing for YKS, the Turkish university entrance exam. No card holds a written question; every time a card comes up, a generator builds its question anew. The window below is the study screen, and the quality gate that checks the questions before they reach a student, running on the app's real rules.</strong></p>
+<p>Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. The repetition engine is Anki like, but students do not grade themselves: the rating comes from whether the answer was right and how long it took. A card answered wrong comes back within minutes, and a right answer never resets a card.</p>
+<p>The questions are not stored anywhere. Each card carries only the id of a recipe: a Kotlin class describing which concept to ask, with which question stems and from which pool of distractors. Every time the same card comes back it has a different stem, different distractors and a different order, so the answer cannot be memorised by its position. There are 273 generator files today and 2,006 cards open to students; in biology 85 of the curriculum's 91 learning outcomes are covered.</p>
+<p>Checking that many questions by hand was not possible, so I built a quality gate. Before a card is registered it is generated 120 times and every sample goes through the rules: is the right answer always the longest or the shortest option, can a student who looks for words like "only" or "never" find it without knowing the topic, does the card produce enough different questions. Rules measure form, not meaning, so every file is also read by Claude with a skill I wrote for the job. A second right answer, a factual error or a meaningless distractor opens a finding, and I make the decision. Rules, findings and decisions come together in a desktop tool I wrote with PySide6.</p>
+<p>The questions are the easy part. What decides whether someone opens the app again tomorrow is the loop around them: XP, coins, levels, streaks, a theme shop and a paywall. Did today's session leave a reason to come back?</p>
 <p>I wrote a UI specification targeting 60fps and WCAG 2.1 AA, then commissioned a full technical audit of my own codebase and worked from its findings rather than from my own opinion of the code. It scored 6.8 out of 10 and was blunt about weak test coverage, which is exactly what made it useful.</p>
 <h4>Stack</h4>
 <ul>
 <li>Kotlin, <b>Jetpack Compose</b>, Material3</li>
-<li>MVVM and Clean Architecture</li>
-<li>Hilt dependency injection</li>
+<li>MVVM and Clean Architecture, Hilt</li>
 <li>Room local, <b>Supabase</b> sync</li>
-<li>Spaced repetition engine</li>
+<li>273 generator files, <b>2,006 cards</b></li>
+<li>120 sample <b>quality gate</b>, AI review</li>
 <li>Self commissioned <b>audit</b>, 6.8/10</li>
 </ul>
 <h4>The interactive demo on the page</h4>
 <p>It has two tabs. On the Study tab the app's question screen sits inside a phone, in the app's own colours: the Çalışma Oturumu (study session) header, the cards left, the question card, five options and the Cevabı Göster (show answer) button. The questions are built on the page from the content and rules of the app's bio_9121_b generator; the card holds no written question, only the id of a recipe. On the right are the card id, the direction the question was built from (mineral to role, role to mineral, detail, which is not) and a button that builds a new question from the same card. After an answer the right option turns green, a wrong pick red, and the explanation opens; the spaced repetition box shows the answer, the time, the rating (Again, Good or Easy) and when the card comes back. The rating comes from the answer and the time, not from the student. The economy box shows XP, level and coins. Visitors can answer the questions themselves; left alone, the demo plays by itself. On the Quality gate tab the same card is generated 120 times and every sample goes through the app's quality rules: whether the right answer is noticeably the longest or the shortest option, whether it can be guessed from absolute words, how many distinct questions come out, and structure. Choosing a broken recipe (short distractors, or distractors with absolute words) closes the gate. Then the AI review, the editor's decision and the registration steps are described. XP, coin and level values are illustrative.</p>
 <p><a href="shots/karinca-ders.jpg">Screenshot</a>: Karınca, the Study tab: the app's question screen in a phone; a role to mineral question on the iron card answered wrong, the pick in red, the right option in green, the explanation below. On the right the card id bio_9121_b_demir, the question direction, the Again rating with the card coming back in a minute, and XP, level and coins.</p>
 <p><a href="shots/karinca-kalite.jpg">Screenshot</a>: Karınca, the Quality gate tab: the potassium card generated 120 times; the measurements and thresholds for the length, shortness, absolute word, diversity and structure rules, all passing; above, the steps from generator to registration.</p>
-<p><small>Tags: Kotlin, Jetpack Compose, Supabase, Retention loop</small></p>
+<p><small>Tags: Kotlin, Jetpack Compose, Supabase, Question generation, Quality control</small></p>
 </article>
 <article id="en-istakip">
 <h3>İş Takip Modülü</h3>
@@ -1620,7 +1629,7 @@ document.documentElement.setAttribute("data-theme", "day");
 <li>One monthly report, <b>5+ hours saved</b></li>
 </ul>
 <h4>The interactive demo on the page</h4>
-<p>Above are sample responses from four marketplace APIs, each in its own shape; below is a Mac style computer screen. The program first asks what kind of report is wanted: monthly or yearly, the period, and which marketplaces to include. The visitor can choose; if they do not, the form fills itself in after a few seconds. On Create report the window steps back and a notification bubble at the top right shows the progress: data is pulled, fields are merged into one structure, dates, currency and returns are evened out, and the report is written. Then a sales report opens in the company's own layout: net sales, orders and return rate, a chart and a table by channel. The report can be filtered by channel. The figures are illustrative.</p>
+<p>Above are sample responses from four marketplace APIs, each in its own shape; below is a Mac style computer screen. The program first asks what kind of report is wanted: monthly or yearly, the period, and which marketplaces to include. The visitor can change the options. The report starts when the visitor presses Create report; the button pulses, with "Click to start the report" beside it. On Create report the window steps back and a notification bubble at the top right shows the progress: data is pulled, fields are merged into one structure, dates, currency and returns are evened out, and the report is written. Then a sales report opens in the company's own layout: net sales, orders and return rate, a chart and a table by channel. The report can be filtered by channel. The figures are illustrative.</p>
 <p><a href="shots/raporlama-secim.jpg">Screenshot</a>: Reporting, first step: on a Mac style screen the New report window with Monthly and Yearly, the March 2025 period, four marketplace checkboxes and a blue Create report button; above it the raw responses of the four marketplace APIs.</p>
 <p><a href="shots/raporlama-hazirlaniyor.jpg">Screenshot</a>: Reporting, preparing: the window has stepped back and says the report is being prepared in the background; at the top right a notification bubble with a progress bar and a four step list; the API cards that answered have turned green.</p>
 <p><a href="shots/raporlama-rapor.jpg">Screenshot</a>: Reporting, the result: the Monthly Sales Report for March 2025 filtered to Trendyol, with net sales of 198,760 TL, 402 orders and a 4.2 percent return rate, a bar chart and a table by channel, and a New report button.</p>
@@ -1828,20 +1837,24 @@ document.documentElement.setAttribute("data-theme", "day");
 
   var PROJ = {
     karinca:{ w:720, h:660, badges:[0,1,1],
-      en:{ t:"Karinca", name:"Karınca", meta:"2025 to 2026 &middot; Android, ~140 Kotlin files",
-        lede:"A spaced repetition study app with a full virtual economy underneath it.",
-        paras:["Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. It runs an Anki style repetition engine with dynamic question generation, but the part I care about is the economy layered on top: XP, coins, levels, streaks, a theme shop and a paywall.",
-               "The flashcards are the easy part. What decides whether someone opens the app again tomorrow is the loop around them: whether today's session left a reason to come back.",
+      en:{ t:"Karinca", name:"Karınca", meta:"2025 to 2026 &middot; Android, ~62,000 lines of Kotlin",
+        lede:"A spaced repetition study app for students preparing for YKS, the Turkish university entrance exam. No card holds a written question; every time a card comes up, a generator builds its question anew. The window below is the study screen, and the quality gate that checks the questions before they reach a student, running on the app's real rules.",
+        paras:["Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. The repetition engine is Anki like, but students do not grade themselves: the rating comes from whether the answer was right and how long it took. A card answered wrong comes back within minutes, and a right answer never resets a card.",
+               "The questions are not stored anywhere. Each card carries only the id of a recipe: a Kotlin class describing which concept to ask, with which question stems and from which pool of distractors. Every time the same card comes back it has a different stem, different distractors and a different order, so the answer cannot be memorised by its position. There are 273 generator files today and 2,006 cards open to students; in biology 85 of the curriculum's 91 learning outcomes are covered.",
+               "Checking that many questions by hand was not possible, so I built a quality gate. Before a card is registered it is generated 120 times and every sample goes through the rules: is the right answer always the longest or the shortest option, can a student who looks for words like \"only\" or \"never\" find it without knowing the topic, does the card produce enough different questions. Rules measure form, not meaning, so every file is also read by Claude with a skill I wrote for the job. A second right answer, a factual error or a meaningless distractor opens a finding, and I make the decision. Rules, findings and decisions come together in a desktop tool I wrote with PySide6.",
+               "The questions are the easy part. What decides whether someone opens the app again tomorrow is the loop around them: XP, coins, levels, streaks, a theme shop and a paywall. Did today's session leave a reason to come back?",
                "I wrote a UI specification targeting 60fps and WCAG 2.1 AA, then commissioned a full technical audit of my own codebase and worked from its findings rather than from my own opinion of the code. It scored 6.8 out of 10 and was blunt about weak test coverage, which is exactly what made it useful."],
-        rt:"Stack", rail:["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM and Clean Architecture","Hilt dependency injection","Room local, <b>Supabase</b> sync","Spaced repetition engine","Self commissioned <b>audit</b>, 6.8/10"],
-        tags:["Kotlin","Jetpack Compose","Supabase","Retention loop"] },
-      tr:{ t:"Karınca", name:"Karınca", meta:"2025 ve 2026 &middot; Android, yaklaşık 140 Kotlin dosyası",
-        lede:"Arkasında eksiksiz bir sanal ekonomi işleyen, aralıklı tekrara dayalı bir ders çalışma uygulamasıdır.",
-        paras:["Jetpack Compose üzerinde MVVM ve Clean Architecture ile geliştirdim. Bağımlılık yönetiminde Hilt, yerel veride Room, eşitlemede Supabase kullanıyor. Soruları dinamik olarak üreten, Anki benzeri bir tekrar motoru var; ama benim için asıl önemli olan, bunun üzerine kurduğum ekonomidir: XP, jeton, seviyeler, seriler, tema mağazası ve ücretli üyelik.",
-               "Kartlar işin kolay kısmıdır. Birinin uygulamayı ertesi gün yeniden açıp açmayacağını, kartların çevresindeki döngü belirliyor: Bugünkü oturum, geri dönmek için bir sebep bıraktı mı?",
+        rt:"Stack", rail:["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM and Clean Architecture, Hilt","Room local, <b>Supabase</b> sync","273 generator files, <b>2,006 cards</b>","120 sample <b>quality gate</b>, AI review","Self commissioned <b>audit</b>, 6.8/10"],
+        tags:["Kotlin","Jetpack Compose","Supabase","Question generation","Quality control"] },
+      tr:{ t:"Karınca", name:"Karınca", meta:"2025 ve 2026 &middot; Android, yaklaşık 62.000 satır Kotlin",
+        lede:"YKS'ye hazırlanan öğrenciler için aralıklı tekrara dayalı bir Android ders çalışma uygulamasıdır. Kartlarda hazır soru yoktur; bir kart her açıldığında soruyu bir generator yeniden kurar. Aşağıdaki pencere, bu soru ekranının ve soruları öğrenciye ulaşmadan önce denetleyen kalite kapısının uygulamanın gerçek kurallarıyla çalışan hâlidir.",
+        paras:["Uygulamayı Jetpack Compose üzerinde MVVM ve Clean Architecture ile geliştirdim. Bağımlılık yönetiminde Hilt, yerel veride Room, eşitlemede Supabase kullanılıyor. Tekrar motoru Anki'ye benziyor ama öğrenci kendini puanlamıyor; puanı cevabın doğruluğu ve süresi veriyor. Yanlış cevaplanan kart birkaç dakika içinde yeniden geliyor, doğru cevap ise bir kartı hiçbir zaman sıfırlamıyor.",
+               "Sorular hiçbir yerde hazır durmuyor. Her kart yalnızca bir tarifin kimliğini taşıyor: Hangi kavramın, hangi soru kökleriyle ve hangi çeldirici havuzundan sorulacağını tarif eden bir Kotlin sınıfı. Aynı kart her gelişinde başka bir kökle, başka çeldiricilerle ve başka bir şık sırasıyla karşıya çıkıyor; öğrenci cevabı yerinden ezberleyemiyor. Bugün 273 generator dosyası var ve 2.006 kart öğrenciye açıktır. Biyolojide müfredattaki 91 kazanımın 85'i kapsanıyor.",
+               "Bu kadar soruyu elle denetlemek mümkün değildi, bu yüzden bir kalite kapısı kurdum. Her kart kayda girmeden önce 120 kez üretiliyor ve her örnek kurallardan geçiyor: Doğru cevap hep en uzun ya da en kısa şık mı, \"yalnızca\" ya da \"hiçbir\" gibi sözcüklere bakan öğrenci konuyu bilmeden cevabı bulabiliyor mu, kart yeterince farklı soru çıkarıyor mu? Kurallar biçimi ölçer, anlamı ölçemez. Bu yüzden her dosyayı ayrıca Claude'a, bu iş için yazdığım bir skill ile okutuyorum. İkinci bir doğru cevap, bilgi hatası ya da anlamsız bir çeldirici bulgu olarak açılıyor ve kararı ben veriyorum. Kurallar, bulgular ve kararlar PySide6 ile yazdığım bir masaüstü aracında bir araya geliyor.",
+               "Sorular işin kolay kısmıdır. Birinin uygulamayı ertesi gün yeniden açıp açmayacağını, soruların çevresindeki döngü belirliyor: XP, jeton, seviyeler, seriler, tema mağazası ve ücretli üyelik. Bugünkü oturum, geri dönmek için bir sebep bıraktı mı?",
                "60 fps ve WCAG 2.1 AA hedefleyen bir arayüz şartnamesi yazdım. Ardından kod tabanım için kapsamlı bir teknik denetim yaptırdım ve kendi kanaatimle değil, denetimin bulgularıyla ilerledim. Denetim 10 üzerinden 6,8 puan verdi ve test kapsamının zayıf olduğunu açıkça belirtti. Onu faydalı kılan da tam olarak bu dürüstlüktü."],
-        rt:"Teknoloji", rail:["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM ve Clean Architecture","Hilt ile bağımlılık yönetimi","Yerelde Room, <b>Supabase</b> ile eşitleme","Aralıklı tekrar motoru","Kendi isteğimle yaptırdığım <b>denetim</b>, 6,8/10"],
-        tags:["Kotlin","Jetpack Compose","Supabase","Etkileşim döngüsü"] } },
+        rt:"Teknoloji", rail:["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM ve Clean Architecture, Hilt","Yerelde Room, <b>Supabase</b> ile eşitleme","273 generator dosyası, <b>2.006 kart</b>","120 örnekli <b>kalite kapısı</b>, yapay zekâ incelemesi","Kendi isteğimle yaptırdığım <b>denetim</b>, 6,8/10"],
+        tags:["Kotlin","Jetpack Compose","Supabase","Soru üretimi","Kalite kontrol"] } },
 
     istakip:{ w:900, h:720, badges:[0,0,1],
       en:{ t:"İş Takip", name:"İş Takip Modülü", meta:"2026 &middot; personal project &middot; BTS &amp; Partners",
@@ -3307,7 +3320,7 @@ document.documentElement.setAttribute("data-theme", "day");
       steps:["Rapor seçenekleri","Veriyi çek","Tek şemaya eşle","Standartlaştır","Rapor"],
       newRep:"Yeni rapor", qType:"Rapor türü", types:[["m","Aylık"],["y","Yıllık"]], qPeriod:"Dönem", qMk:"Pazaryerleri", go:"Raporu oluştur",
       repM:"Aylık Satış Raporu", repY:"Yıllık Satış Raporu", mks:"pazaryeri", notInc:"rapora dahil değil",
-      s00:"Program önce nasıl bir rapor istendiğini soruyor. Seçimi siz yapabilirsiniz; dokunmazsanız birkaç saniye sonra kendisi seçecek.",
+      s00:"Program önce nasıl bir rapor istendiğini soruyor. İsterseniz seçenekleri değiştirin; raporu başlatmak için Raporu oluştur düğmesine basın.", goHint:"Raporu başlatmak için tıklayın",
       s00m:"Rapor türünü, dönemi ve pazaryerlerini seçip Raporu oluştur düğmesine basın.", noneSel:"En az bir pazaryeri seçin.", now:"şimdi",
       sBg:"Rapor arka planda hazırlanıyor; ilerleme sağ üstteki bildirimde görünüyor.", bgNote:"Rapor arka planda hazırlanıyor",
       bubT:"Rapor hazırlanıyor", bubDone:"Rapor hazır", bubOpen:"Açmak için tıklayın",
@@ -3323,7 +3336,7 @@ document.documentElement.setAttribute("data-theme", "day");
       s2:"Yanıtların alan adları birbirini tutmuyor; her biri tek şemadaki karşılığına eşleniyor.",
       s3:"Tarihler, para birimleri ve iade durumları tek bir biçime getiriliyor.",
       s4:"Veri, pazaryerinin dışa aktardığı düzende değil, şirketin okuduğu düzende tek bir rapora yazılıyor.",
-      s5:"Ayda beş saati aşan elle toplama işi ortadan kalktı; kopyala yapıştır hataları da. Filtreleri siz de deneyebilirsiniz; akış biraz sonra yeniden başlıyor.",
+      s5:"Ayda beş saati aşan elle toplama işi ve kopyala yapıştır hataları ortadan kalktı. Filtreleri deneyebilir, + Yeni rapor ile başka bir rapor oluşturabilirsiniz.",
       recs:"kayıt", fixH:["kaynaktaki değer","rapordaki değer"],
       rep:"Aylık Satış Raporu", sheet:"Google Sheets", month:function(d){ return ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"][d.getMonth()]+" "+d.getFullYear(); },
       kpi:["Net satış","Sipariş","İade oranı"], byCh:"Kanal bazında net satış", tbl:["Kanal","Sipariş","İade","Net satış"],
@@ -3340,7 +3353,7 @@ document.documentElement.setAttribute("data-theme", "day");
       steps:["Report options","Pull the data","Map to one schema","Normalize","Report"],
       newRep:"New report", qType:"Report type", types:[["m","Monthly"],["y","Yearly"]], qPeriod:"Period", qMk:"Marketplaces", go:"Create report",
       repM:"Monthly Sales Report", repY:"Yearly Sales Report", mks:"marketplaces", notInc:"not in this report",
-      s00:"The program first asks what kind of report is wanted. You can choose; if you leave it, it fills itself in after a few seconds.",
+      s00:"The program first asks what kind of report is wanted. Change the options if you like, then press Create report to start it.", goHint:"Click to start the report",
       s00m:"Pick the report type, the period and the marketplaces, then press Create report.", noneSel:"Pick at least one marketplace.", now:"now",
       sBg:"The report is being prepared in the background; the progress shows in the notification at the top right.", bgNote:"Preparing the report in the background",
       bubT:"Preparing report", bubDone:"Report ready", bubOpen:"Click to open",
@@ -3356,7 +3369,7 @@ document.documentElement.setAttribute("data-theme", "day");
       s2:"The responses do not agree on field names; each one is mapped to its place in the single schema.",
       s3:"Dates, currencies and return statuses are brought to one format.",
       s4:"The data is written into one report laid out the way the company reads it, not the way a marketplace exports it.",
-      s5:"More than five hours of manual gathering a month is gone, and the copy and paste errors with it. Try the filters yourself; the flow starts again shortly.",
+      s5:"More than five hours of manual gathering a month is gone, and the copy and paste errors with it. Try the filters, or make another report with + New report.",
       recs:"records", fixH:["value at the source","value in the report"],
       rep:"Monthly Sales Report", sheet:"Google Sheets", month:function(d){ return ["January","February","March","April","May","June","July","August","September","October","November","December"][d.getMonth()]+" "+d.getFullYear(); },
       kpi:["Net sales","Orders","Return rate"], byCh:"Net sales by channel", tbl:["Channel","Orders","Returns","Net sales"],
@@ -3373,8 +3386,6 @@ document.documentElement.setAttribute("data-theme", "day");
   /* [orders, returns, net sales]; a month and the whole year, illustrative */
   var RP_NUM = { m:{ amazon:[118, 9, 86240], n11:[164, 6, 71530], trendyol:[402, 17, 198760], hb:[287, 12, 142310] },
                  y:{ amazon:[1412, 97, 1028650], n11:[1896, 71, 846120], trendyol:[4871, 204, 2391480], hb:[3368, 139, 1702940] } };
-  /* what the program is asked for on each pass of the loop */
-  var RP_RUNS = [{ type:"m", inc:["amazon","n11","trendyol","hb"] }, { type:"y", inc:["amazon","trendyol","hb"] }];
   function rpHtml(L){
     var T = RP_T[L];
     var steps = function(a, cls){ return '<ol class="sm-steps '+cls+'">'+a.map(function(s){ return '<li>'+s+'</li>'; }).join('')+'</ol>'; };
@@ -3442,13 +3453,13 @@ document.documentElement.setAttribute("data-theme", "day");
     /* 0: the program first asks what kind of report is wanted; the visitor can answer, or let it answer itself */
     function ask(){
       step(0); tt.textContent = T.app+' · '+T.newRep;
-      var auto = RP_RUNS[run++ % RP_RUNS.length], manual = manualNext; manualNext = false; touched = manual;
+      var manual = manualNext; manualNext = false; touched = manual;
       var st = { type:"m", m:2, y:YEAR, inc:RP_SRC.map(function(s){ return s.k; }) };
       scr.innerHTML = '<div class="rp-ask">'
         + '<div class="rp-q"><small>'+T.qType+'</small><span class="rp-seg">'+T.types.map(function(t){ return '<button data-v="'+t[0]+'">'+t[1]+'</button>'; }).join('')+'</span></div>'
         + '<div class="rp-q"><small>'+T.qPeriod+'</small><select class="rp-dd"></select></div>'
         + '<div class="rp-q"><small>'+T.qMk+'</small><span class="rp-cbs">'+RP_SRC.map(function(s){ return '<label data-k="'+s.k+'"><i></i>'+s.n+'</label>'; }).join('')+'</span></div>'
-        + '<div class="rp-q"><small></small><span><button class="rp-go">'+T.go+'</button><em class="rp-warn">'+T.noneSel+'</em></span></div></div>';
+        + '<div class="rp-q"><small></small><span><button class="rp-go">'+T.go+'</button><em class="rp-hint">&larr; '+T.goHint+'</em><em class="rp-warn">'+T.noneSel+'</em></span></div></div>';
       var seg = scr.querySelectorAll(".rp-seg button"), dd = scr.querySelector(".rp-dd"), cbs = scr.querySelectorAll(".rp-cbs label"), go = scr.querySelector(".rp-go");
       function draw(){
         Array.prototype.forEach.call(seg, function(b){ b.classList.toggle("on", b.getAttribute("data-v") === st.type); });
@@ -3472,32 +3483,6 @@ document.documentElement.setAttribute("data-theme", "day");
           draw();
         }; });
         go.onclick = function(){ if(!st.inc.length) return; lastTouch = Date.now(); tap(go); apply({ type:st.type, m:st.m, y:st.y, inc:st.inc.slice() }); setTimeout(done, 350); };
-        /* if nobody touches the form, it fills itself in */
-        var a = sleep(9000).then(function(){
-          if(touched) return;
-          var b = scr.querySelector('.rp-seg button[data-v="'+auto.type+'"]'); tap(b); st.type = auto.type; draw();
-          say.textContent = auto.type === "m" ? T.s0m : T.s0y;
-          return sleep(1300);
-        }).then(function(){
-          if(touched) return;
-          tap(dd); if(auto.type === "m") st.m = 2; else st.y = YEAR; draw();
-          return sleep(1300);
-        }).then(function(){
-          var p = Promise.resolve();
-          RP_SRC.forEach(function(s){
-            if(auto.inc.indexOf(s.k) >= 0) return;
-            p = p.then(function(){
-              if(touched) return;
-              var c = scr.querySelector('.rp-cbs label[data-k="'+s.k+'"]'); tap(c); st.inc = st.inc.filter(function(k){ return k !== s.k; }); draw();
-              say.textContent = T.s0x(s.n); return sleep(1500);
-            });
-          });
-          return p;
-        }).then(function(){
-          if(touched) return;
-          say.textContent = T.s0g(st.inc.length); return sleep(1200);
-        }).then(function(){ if(!touched) go.onclick(); });
-        a.catch(fail);
       });
     }
     /* 1 to 3: the report is prepared in the background; the window steps back and a bubble shows the progress */
@@ -3575,7 +3560,8 @@ document.documentElement.setAttribute("data-theme", "day");
       var parts = scr.querySelectorAll(".rp-rh, .rp-flt, .rp-kpi > div, .rp-bars, .rp-tbl, .rp-tr"), p = sleep(300);
       Array.prototype.forEach.call(parts, function(el){ p = p.then(function(){ el.classList.add("in"); return sleep(200); }); });
       var t0, idle = function(){ return Date.now() - lastTouch > 9000 && !wantNew; };
-      function hold(){ return sleep(400).then(function(){ if(wantNew) return; if(Date.now() - t0 < 8000 || Date.now() - lastTouch < 12000) return hold(); }); }
+      /* the report stays on screen until the visitor asks for a new one */
+      function hold(){ return sleep(400).then(function(){ if(!wantNew) return hold(); }); }
       return p.then(function(){
         Array.prototype.forEach.call(scr.querySelectorAll(".rp-bar i"), function(x){ x.style.width = x.getAttribute("data-w")+"%"; });
         return sleep(2200);
