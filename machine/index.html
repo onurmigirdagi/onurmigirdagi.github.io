@@ -370,6 +370,79 @@ html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparen
 .pk-next{justify-self:start; padding:8px 14px; border-radius:7px; background:var(--pk-acc); color:#fff; font-size:12px; font-weight:600;}
 .pk-gfoot{margin-top:auto; display:flex; flex-direction:column; gap:4px; font-size:11.5px; color:var(--faint); line-height:1.5; padding-top:8px;}
 .pk-gfoot span:first-child{font-family:var(--mono); color:var(--dim);}
+/* Mevzuat İzleme demo: one real day of the Resmî Gazete branch, replayed */
+.mz-run{display:grid; grid-template-columns:190px minmax(0,1fr); grid-template-rows:minmax(0,1fr); height:470px; background:var(--panel);}
+.mz-steps{border-right:1px solid var(--line); background:var(--panel2); padding:10px 8px; display:flex; flex-direction:column; gap:0; overflow:auto;}
+.mz-step{display:grid; grid-template-columns:18px 1fr; gap:7px; padding:5px 6px; border-radius:7px; opacity:.45; transition:opacity .2s ease, background .2s ease;}
+.mz-step.go,.mz-step.ok{opacity:1;} .mz-step.go{background:var(--panel);}
+.mz-step i{width:14px; height:14px; margin-top:1px; border-radius:50%; border:1.5px solid var(--line3); position:relative;}
+.mz-step.go i{border-color:var(--pk-acc); border-right-color:transparent; animation:mzspin .7s linear infinite;}
+.mz-step.ok i{border-color:#1F9D55; background:#1F9D55;}
+.mz-step.ok i:after{content:""; position:absolute; left:4px; top:1px; width:3px; height:7px; border:solid #fff; border-width:0 1.6px 1.6px 0; transform:rotate(45deg);}
+.mz-step b{display:block; font-size:12.5px; font-weight:600; color:var(--txt);}
+.mz-step small{display:block; font-size:10.5px; line-height:1.35; color:var(--faint); margin-top:1px;}
+@keyframes mzspin{to{transform:rotate(360deg);}}
+.mz-count{margin-top:auto; display:grid; grid-template-columns:repeat(3,1fr); gap:4px; padding-top:8px;}
+.mz-count div{background:var(--panel); border:1px solid var(--line2); border-radius:7px; padding:6px 4px; text-align:center;}
+.mz-count b{display:block; font-family:var(--mono); font-size:16px; color:var(--txt);}
+.mz-count small{font-size:9.5px; color:var(--faint); letter-spacing:.02em;}
+.mz-replay{margin-top:8px; padding:7px; border-radius:7px; background:var(--pk-acc); color:#fff; font-size:12px; font-weight:600;}
+.mz-replay:hover{filter:brightness(1.08);}
+.mz-main{display:flex; flex-direction:column; min-width:0; min-height:0;}
+.mz-head{display:flex; align-items:center; gap:8px; padding:8px 12px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:10px; color:var(--faint); letter-spacing:.04em;}
+.mz-head span:first-child{flex:1;}
+.mz-list{flex:1; min-height:0; overflow:auto; user-select:text;}
+.mz-row{border-bottom:1px solid var(--line); opacity:0; transform:translateY(4px); transition:opacity .25s ease, transform .25s ease;}
+.mz-row.in{opacity:1; transform:none;}
+.mz-rh{display:grid; grid-template-columns:minmax(0,1fr) 92px 58px; gap:10px; align-items:center; padding:7px 12px; cursor:pointer;}
+.mz-rh>span:first-child{min-width:0;}
+.mz-rh:hover{background:var(--panel2);}
+.mz-ty{display:block; font-family:var(--mono); font-size:9.5px; color:var(--faint); letter-spacing:.05em; text-transform:uppercase;}
+.mz-ti{display:block; font-size:12.5px; line-height:1.35; color:var(--txt); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.mz-row.open .mz-ti{white-space:normal;}
+.mz-bar{position:relative; height:6px; border-radius:3px; background:var(--line);}
+.mz-bar u{position:absolute; left:0; top:0; bottom:0; width:0; border-radius:3px; background:var(--line3); transition:width .45s cubic-bezier(.2,.8,.2,1);}
+.mz-bar.hi u{background:var(--pk-acc);}
+.mz-bar:after{content:""; position:absolute; left:40%; top:-3px; bottom:-3px; width:1px; background:var(--dim); opacity:.55;}
+.mz-bar em{position:absolute; right:0; top:-15px; font-style:normal; font-family:var(--mono); font-size:9.5px; color:var(--dim);}
+.mz-dec{justify-self:end; font-family:var(--mono); font-size:9.5px; letter-spacing:.05em; padding:3px 7px; border-radius:10px; border:1px solid var(--line2); color:var(--faint); opacity:0; transition:opacity .2s ease;}
+.mz-dec.on{opacity:1;} .mz-dec.s{color:#fff; background:#1F9D55; border-color:#1F9D55;}
+.mz-dec sup{font-size:8px; margin-left:3px; vertical-align:1px;}
+.mz-det{display:none; padding:0 12px 11px;}
+.mz-row.open .mz-det{display:block;}
+.mz-det p{margin:0 0 7px; font-size:12.5px; line-height:1.55; color:var(--dim); font-style:italic;}
+.mz-det code{display:block; font-family:var(--mono); font-size:10.5px; line-height:1.6; color:var(--pk-code); white-space:pre-wrap; word-break:break-word;}
+.mz-hint{padding:7px 12px; border-top:1px solid var(--line); font-family:var(--mono); font-size:10px; color:var(--faint);}
+.mz-mail{height:470px; overflow:auto; background:var(--panel2); padding:14px; user-select:text;}
+.mz-env{max-width:640px; margin:0 auto; border-radius:9px; overflow:hidden; border:1px solid var(--line2); box-shadow:0 8px 22px rgba(26,30,38,.12);}
+.mz-hdr{background:var(--panel); padding:10px 14px; font-size:12px; color:var(--dim); line-height:1.7; border-bottom:1px solid var(--line2);}
+.mz-hdr b{display:inline-block; min-width:54px; font-weight:600; color:var(--faint); font-family:var(--mono); font-size:10.5px;}
+.mz-paper{background:#fff; color:#1a1a1a; padding:18px 22px 22px; font-family:Calibri,Carlito,Arial,sans-serif; font-size:14px;}
+.mz-paper h4{margin:0 0 10px; color:#C00000; font-size:15px;}
+.mz-paper h5{margin:14px 0 3px; font-size:14px;}
+.mz-paper h6{margin:8px 0 2px; font-size:14px;}
+.mz-paper p{margin:3px 0; line-height:1.45;}
+.mz-paper p span{color:#1F7A4D; text-decoration:underline;}
+.mz-paper p i{display:block; margin:2px 0 6px 14px; color:#333;}
+.mz-note{max-width:640px; margin:10px auto 0; font-size:11px; color:var(--faint); line-height:1.5;}
+.mz-rules{height:470px; overflow:auto; padding:14px 16px; background:var(--panel); user-select:text; display:grid; gap:9px; align-content:start;}
+.mz-rule{display:grid; grid-template-columns:24px 1fr; gap:10px; padding:11px 13px; border-radius:9px; background:var(--panel2); border:1px solid var(--line2);}
+.mz-rule>span{font-family:var(--mono); font-size:11px; color:var(--pk-acc); padding-top:1px;}
+.mz-rule b{display:block; font-size:13px; color:var(--txt); margin-bottom:3px;}
+.mz-rule div{font-size:12.5px; line-height:1.55; color:var(--dim);}
+.mz-rule code{font-family:var(--mono); font-size:11px; color:var(--pk-code);}
+.mz-rule small{display:inline-block; margin-top:5px; font-family:var(--mono); font-size:9.5px; color:var(--faint); letter-spacing:.05em; text-transform:uppercase;}
+body.mob .mz-run,body.phone .mz-run{grid-template-columns:minmax(0,1fr); grid-template-rows:auto minmax(0,1fr); height:520px;}
+body.mob .mz-steps,body.phone .mz-steps{flex-direction:row; flex-wrap:wrap; border-right:0; border-bottom:1px solid var(--line); padding:8px;}
+body.mob .mz-step,body.phone .mz-step{grid-template-columns:14px auto; gap:5px; padding:4px 6px;}
+body.mob .mz-step small,body.phone .mz-step small{display:none;}
+body.mob .mz-step i,body.phone .mz-step i{width:11px; height:11px;}
+body.mob .mz-step.ok i:after,body.phone .mz-step.ok i:after{left:3px; top:0; height:6px;}
+body.mob .mz-count,body.phone .mz-count{width:100%; margin-top:6px; padding-top:0; grid-template-columns:repeat(3,1fr) auto;}
+body.mob .mz-replay,body.phone .mz-replay{margin-top:0; padding:6px 10px;}
+body.mob .mz-rh,body.phone .mz-rh{grid-template-columns:minmax(0,1fr) 60px 50px; gap:8px;}
+body.mob .mz-mail,body.phone .mz-mail,body.mob .mz-rules,body.phone .mz-rules{height:480px;}
+body.mob .mz-paper,body.phone .mz-paper{padding:14px;}
 body.mob .pk-stage,body.phone .pk-stage{height:380px;}
 body.mob .pk-side,body.phone .pk-side{left:10px; width:auto; top:auto; max-height:56%;}
 body.mob .pk-stat,body.phone .pk-stat{display:none;}
@@ -967,6 +1040,7 @@ document.documentElement.setAttribute("data-theme", "day");
       en:{ t:"Pipeline", name:"Regulatory Monitoring Pipeline", meta:"2026 &middot; BTS &amp; Partners",
         lede:"An autonomous agent pipeline watching 107 public and regulatory sources, running unattended in production.",
         paras:["A collector agent retrieves every item, produces a summary with a relevance score and a topic tag, and writes it to a central database. Two publisher agents distribute the legislation and news bulletins by corporate email. Nobody touches it day to day.",
+               "The run above is the Official Gazette branch on 1 July 2026, replayed from its real output: 19 index entries, with the scores and summaries the model actually produced. The Gazette is public, so none of the text has been changed.",
                "I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.",
                "Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison."],
         rt:"Built with", rail:["Python, scheduled <b>agents</b>","<b>Supabase</b> central store","Streamlit for inspection","<b>Microsoft Graph</b> for delivery","Benchmarked against <b>Power Automate</b>","Relevance scoring and tagging"],
@@ -974,6 +1048,7 @@ document.documentElement.setAttribute("data-theme", "day");
       tr:{ t:"Mevzuat İzleme", name:"Mevzuat İzleme Sistemi", meta:"2026 &middot; BTS &amp; Partners",
         lede:"107 kamu ve düzenleyici kaynağı izleyen, canlı ortamda kendi başına çalışan otonom bir ajan pipeline'ı.",
         paras:["Toplayıcı ajan her içeriği çekiyor, alaka puanı ve konu etiketiyle bir özet çıkarıyor ve merkezi veritabanına yazıyor. İki yayıncı ajan mevzuat ve haber bültenlerini kurumsal e-postayla dağıtıyor. Günlük işleyişte kimsenin dokunmasına gerek yok.",
+               "Yukarıdaki tur, Resmî Gazete kolunun 1 Temmuz 2026 günkü gerçek çıktısından yeniden oynatılıyor: fihristteki 19 madde, modelin o gün verdiği puanlar ve yazdığı özetlerle. Resmî Gazete kamuya açık olduğu için metinlerin hiçbirine dokunmadım.",
                "Aynı iş akışını, ikisi düzgünce karşılaştırılabilsin diye Microsoft Power Automate üzerinde ikinci kez kurdum. Bu kadar kaynağı sorgulayıp sonuçlar üzerinde yapay zekâ analizi çalıştırmak şirketin lisans kapsamının dışında kalıyordu. Ajan versiyonu bu yüzden kazandı: mevcut abonelik kapasitesi içinde, ek altyapı maliyeti olmadan çalışıyor.",
                "Ayrıca orada yapay zekâ çıktıları için kullanılan değerlendirme yöntemini tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk benchmark'ı ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması."],
         rt:"Yapı taşları", rail:["Python, zamanlanmış <b>ajanlar</b>","Merkezi depo olarak <b>Supabase</b>","İnceleme için Streamlit","Dağıtım için <b>Microsoft Graph</b>","<b>Power Automate</b> ile karşılaştırıldı","Alaka puanlama ve etiketleme"],
@@ -1027,6 +1102,10 @@ document.documentElement.setAttribute("data-theme", "day");
     en:{ t:"One Page.txt", h:"Every project on one page, with nothing around it, for anyone who would rather just read." },
     tr:{ t:"Tek Sayfa.txt", h:"Tüm projeler tek sayfada, etrafında hiçbir arayüz olmadan, sadece okumak isteyenler için." }
   };
+
+  /* MZDATA start */
+  var MZ = {"date":"2026-07-01","date_tr":"1 Temmuz 2026","no":"33297","items":[["IDARE",["Kanun","Law"],"7587 Bazı Kanunlarda Değişiklik Yapılmasına Dair Kanun","7587 sayılı Kanun ile birden fazla kanunda değişiklik yapılmıştır. Emniyet Teşkilat Kanunu kapsamında polis rütbe oranları yeniden belirlenmiş; sağlık şartı gerekçesiyle ilişiği kesilen personelin altı ay içinde başvurmaları hâlinde Genel İdare Hizmetleri Sınıfına atanabilmesine imkân tanıyan geçici madde eklenmiştir. Gelir Vergisi Kanunu'nda taksi işleticileri için hasılat esaslı vergilendirme kapsamı genişletilmiş; ticari plaka devirinden doğan kazançlar gelir vergisinden istisna tutulmuştur. Basın İlan Kurumu mevzuatına internet haber sitelerinin vasıf, ödev ve yaptırım rejimi eklenmiş; ihlal süresine ve tekrar sayısına göre 1 ila 60 gün arasında resmî ilan kesme müeyyidesi öngörülmüştür. Vergi Usul Kanunu'nun 107/A maddesi değiştirilerek kurumlar vergisi mükellefleri, gerçek usulde vergilendirilen gelir vergisi mükellefleri ve belirli araç alıcıları için elektronik tebligat zorunluluğu kapsamı yeniden düzenlenmiştir.",0.4,true],["IDARE",["Cumhurbaşkanı Kararı","Presidential decision"],"Bazı Sanayi Ürünlerinin İthalatında Tarife Kontenjanı Uygulanması Hakkında Kararda Değişiklik Yapılmasına Dair Karar (Karar Sayısı: 11484)","30 Haziran 2026 tarihli ve 11484 sayılı Cumhurbaşkanı Kararı ile, 31/12/2025 tarihli ve 10792 sayılı Cumhurbaşkanı Kararı ile yürürlüğe konulan Bazı Sanayi Ürünlerinin İthalatında Tarife Kontenjanı Uygulanması Hakkında Karara ekli tabloda yer alan 3815.19.90 GTP'li satır yürürlükten kaldırılmıştır. Karar yayımı tarihinde yürürlüğe girmiş olup hükümlerin yürütülmesinden Ticaret Bakanı sorumlu kılınmıştır.",0.2,false],["IDARE",["Cumhurbaşkanı Kararı","Presidential decision"],"İthalat Rejimi Kararında Değişiklik Yapılmasına İlişkin Karar (Karar Sayısı: 11485)","31/12/2020 tarihli ve 3350 sayılı Cumhurbaşkanı Kararı ile yürürlüğe konulan İthalat Rejimi Kararının eki V sayılı listede değişiklik yapılmıştır. Kimyasal maddeler, otomotiv ve elektrikli araç bileşenleri, endüstriyel ekipman, tekstil hammaddeleri ve optik ürünlere ilişkin çok sayıda seri numaralı satır V sayılı listeden kaldırılmış; bir kısmı Ek-1'de gösterildiği şekilde değiştirilmiş, Ek-2'de yer alan eşyaya ilişkin yeni satırlar eklenmiştir. Karar yayımı tarihinde yürürlüğe girmiş olup hükümleri Ticaret Bakanı tarafından yürütülecektir.",0.12,false],["IDARE",["Cumhurbaşkanı Kararı","Presidential decision"],"Bazı Sanayi Ürünlerinin İthalatında Tarife Kontenjanı Uygulanması Hakkında Kararda Değişiklik Yapılmasına Dair Karar (Karar Sayısı: 11486)","30 Haziran 2026 tarihli ve 11486 sayılı Cumhurbaşkanı Kararı ile, 31/12/2025 tarihli ve 10793 sayılı Cumhurbaşkanı Kararı ile yürürlüğe konulan Bazı Sanayi Ürünlerinin İthalatında Tarife Kontenjanı Uygulanması Hakkında Karar ekinde yer alan tablonun bazı satırları değiştirilmiştir. Değişiklik kapsamında aminonaftalin sülfonik asit, diaminobenzensülfonik asit ve aminofenil bileşikleri gibi kimyasal hammaddelere ait tarife kontenjan miktarları ve gümrük vergisi oranları güncellenmiş; kontenjan kullanım dönemi 16/2/2026-31/12/2026 olarak belirlenmiştir. Kararın uygulanmasından Ticaret Bakanı sorumlu kılınmıştır.",0.15,false],["IDARE",["Cumhurbaşkanı Kararı","Presidential decision"],"Bazı Sanayi Ürünlerinin İthalatında Tarife Kontenjanı Uygulanması Hakkında Karar (Karar Sayısı: 11487)","30 Haziran 2026 tarihli ve 11487 sayılı Cumhurbaşkanı Kararı ile bazı sanayi ürünlerinin (3-metoksi-3-metil-1-butanol, dizel üretiminde kullanılan katalizör sistemi bileşenleri ve fermuar imaline mahsus dar şeritler) ithalatında 15 Şubat 2027 tarihine kadar geçerli olmak üzere %0 gümrük vergisi oranıyla tarife kontenjanları açılmış; karar yayımı tarihinde yürürlüğe girerken uygulamasından Ticaret Bakanı sorumlu kılınmıştır.",0.12,false],["IDARE",["Cumhurbaşkanı Kararı","Presidential decision"],"Bazı Kamu Kurum ve Kuruluşlarına Ait Dolu ve Boş Kadrolarda Değişiklik Yapılması Hakkında Karar (Karar: 2026/152)","2 sayılı Cumhurbaşkanlığı Kararnamesinin 7. maddesi uyarınca, Adalet Bakanlığı, Sağlık Bakanlığı, Milli Eğitim Bakanlığı, Emniyet Genel Müdürlüğü, Diyanet İşleri Başkanlığı ve diğerleri dahil onlarca kamu kurum ve kuruluşuna ait dolu ve boş kadrolarda derece sınıflaması değişikliği yapılmıştır.",0.05,false],["IDARE",["Yönetmelik","Regulation"],"Planlı Alanlar İmar Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik","Planlı Alanlar İmar Yönetmeliğinde süs havuzu tanımı eklenmesi, TAKS/KAKS hesabı, asansör zorunluluğu ve yeniden ruhsat düzenlenmesine ilişkin teknik kurallar güncellenmiştir.",0.05,false],["IDARE",["Yönetmelik","Regulation"],"Kamu Taşınmazlarının Turizm Yatırımlarına Tahsisi Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik","Kamu taşınmazlarının turizm yatırımlarına tahsisinde, konaklama amaçlı tahsislerde yatak kapasitesinin en az yüzde on düşürülmesi talebinin uygun görülmesi hâlinde kullanım bedellerinin yeniden belirlenmesine ilişkin usul eklenmiştir.",0.05,false],["IDARE",["Yönetmelik","Regulation"],"Ticari Reklam ve Haksız Ticari Uygulamalar Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik","Ticari Reklam ve Haksız Ticari Uygulamalar Yönetmeliğinde kapsamlı değişiklikler yapılmıştır. Yönetmeliğe 'çevresel beyan', 'sosyal medya', 'sosyal medya etkileyicisi' ve 'tüketici değerlendirmeleri' kavramları tanım olarak eklenmiştir. Çevresel fayda iddiası taşıyan reklamlarda sertifika ve onayların yetkili kuruluşlardan alınan belgelerle ispatlanması zorunlu kılınmış; genel içerikli yeşil pazarlama ibarelerinin açıklama yapılmaksızın kullanımı yasaklanmıştır. İndirim fiyatı reklamlarında kanal bazlı hesaplama kuralı getirilmiş; farklı satış kanalları arasında fiyat mukayesesine dayalı indirim beyanı kısıtlanmıştır. Sadakat programı ve koşullu satış reklamlarına yönelik özel düzenlemeler eklenmiş; reklamlarda tüketicilerin ekonomik davranışını önemli ölçüde etkileyecek biçimde yapay zekâ veya yazılım kullanımına ilişkin yükümlülükler getirilmiştir. Yönetmelik yayımı tarihinde yürürlüğe girmiştir.",0.75,true],["IDARE",["Tebliğ","Communiqué"],"İthalatta Kota ve Tarife Kontenjanı İdaresine İlişkin Tebliğ (Tebliğ No: 2026/1)’de Değişiklik Yapılmasına Dair Tebliğ (No: 2026/7)","2026/1 sayılı İthalatta Kota ve Tarife Kontenjanı Tebliği Ek-1'inden 3815.19.90 GTİP numaralı ürün satırı yürürlükten kaldırılmıştır.",0.05,false],["IDARE",["Tebliğ","Communiqué"],"İthalatta Kota ve Tarife Kontenjanı İdaresine İlişkin Tebliğ (Tebliğ No: 2026/2)’de Değişiklik Yapılmasına Dair Tebliğ (No: 2026/8)","2026/2 sayılı İthalatta Kota ve Tarife Kontenjanı Tebliği Ek-1'i güncellenerek çeşitli kimyasal maddeler, doğal reçine asitleri, titanyum oksit içeren katalizör ve havacılık endüstrisine mahsus alüminyum alaşımlı levhalar için tarife kontenjanı miktarları ile sıfır gümrük vergisi oranları yeniden belirlenmiştir.",0.05,false],["IDARE",["Tebliğ","Communiqué"],"İthalatta Kota ve Tarife Kontenjanı İdaresine İlişkin Tebliğ (No: 2026/9)","30/6/2026 tarihli ve 11487 sayılı Cumhurbaşkanı Kararı'na dayanılarak bazı sanayi ürünleri için açılan tarife kontenjanlarının dağıtımı, başvuru ve kullanım usul ile esaslarını belirleyen yeni tebliğdir; sanayiciler yayım tarihinden itibaren 15 iş günü içinde elektronik imzayla başvurabilecektir.",0.05,false],["IDARE",["Tebliğ","Communiqué"],"Sosyal Güvenlik Kurumu Sağlık Uygulama Tebliğinde Değişiklik Yapılmasına Dair Tebliğ","SGK Sağlık Uygulama Tebliği'nde birinci basamak sağlık hizmetlerinde hekim muayenesinden katılım payı alınmayacağı netleştirilmiş; aile hekimi sevkiyle yapılan muayenelerde katılım payının yüzde elli azaltılarak tahsil edileceği düzenlenmiştir.",0.08,false],["IDARE",["Tebliğ","Communiqué"],"Zorunlu Karşılıklar Hakkında Tebliğ (Sayı: 2013/15)’de Değişiklik Yapılmasına Dair Tebliğ (Sayı: 2026/10)","Türkiye Cumhuriyet Merkez Bankası tarafından yabancı para yükümlülüklerine ilişkin zorunlu karşılık oranları güncellenmiştir. Vadesiz ve bir aya kadar vadeli mevduat/katılım fonu için oran yüzde 32; üç ay ile daha uzun vadeli mevduat için yüzde 28; müstakrizlerin fonları için yüzde 25 olarak belirlenmiştir. Tebliğ yayımı tarihinde yürürlüğe girmiştir.",0.3,false],["IDARE",["Kurul Kararı","Board decision"],"Kişisel Verileri Koruma Kurulunun 20/05/2026 Tarihli ve 2026/1095 Sayılı Kararı","Kişisel Verileri Koruma Kurulu, hasar danışmanlık şirketleri, sigorta eksperleri ve avukatların kaza mağdurlarına ait kişisel verileri (kimlik, iletişim, kaza bilgileri) iş kazası/trafik kazası süreçlerine ilişkin belgeler aracılığıyla yetkisiz biçimde elde ettiğine dair çok sayıda şikayet üzerine ilke kararı almıştır. Kararda; kaza mağdurlarına ait kişisel verileri uhdesinde bulunduran veri sorumlularının 6698 sayılı Kanun'un 12. maddesi uyarınca rol tabanlı erişim kontrolü, eğitim ve bilinçlendirme faaliyetleri başta olmak üzere gerekli teknik ve idari tedbirleri alması zorunlu tutulmuştur. Yetkisiz veri erişimi sağlayan hasar danışmanlık şirketleri ile avukatlık yapılarının 13. madde kapsamında Kurula şikâyet edilebileceği vurgulanmış; sigorta eksperlerinin kanuni görev sınırları dışında kişisel veri işlemesi hâlinde 5237 sayılı TCK'nın 136. maddesi kapsamında suç oluşturabileceği belirtilmiştir.",0.88,true],["ILAN",["İlân","Notice"],"Yargı İlânları","Karaman ve Edirne mahkemelerinden yargı ilanları yayımlanmıştır.",0.0,false],["ILAN",["İlân","Notice"],"Artırma, Eksiltme ve İhale İlânları","Çeşitli kamu kurumları ve belediyelerden taşınmaz satışı, altyapı yapımı ve tarımsal ürün alımı ihale ilanları yayımlanmıştır.",0.0,false],["ILAN",["İlân","Notice"],"Çeşitli İlânlar","SGK, Dışişleri Bakanlığı, üniversiteler ve belediyeler dahil çeşitli kamu kurumlarından muhtelif ilanlar yayımlanmıştır.",0.0,false],["ILAN",["İlân","Notice"],"T.C. Merkez Bankasınca Belirlenen Döviz Kurları ve Devlet İç Borçlanma Senetlerinin Günlük Değerleri","1 Temmuz 2026 tarihine ait Merkez Bankası döviz kurları ve devlet iç borçlanma senetleri günlük değerlerini içeren ilan yayımlanmıştır.",0.05,false]]};
+  /* MZDATA end */
 
   /* PKGRAPH start */
   var PKG = {"kinds":["concept","task","source","finding","tag","project","discipline","person"],"rels":["asserts","compares","composed_of","developed_by","example_of","extends","governed_by","implements","parent_of","produces","references","requested_by","sourced_from","supersedes","tagged_with","uses"],"n":[[0,["Test katılımcısı","Test participant"],""],[0,"ISO 42001",""],[0,"EU AI Act",""],[0,"NIST AI RMF",""],[0,"LLM Evals",""],[0,"VerifyWise",""],[0,"BlueWave Labs",""],[0,"Alibaba Wukong: Kurumsal AI Ajan Platformu",""],[0,"AB-100 Agentic AI Business Solutions Architect",""],[0,"n8n: Açık Kaynak Otomasyon Platformu",""],[0,"Microsoft Agent Framework",""],[0,"Ollama",""],[0,"Gemma 3",""],[0,"Tailscale",""],[0,"Caddy reverse proxy + Let's Encrypt",""],[0,"Hetzner EX130-S GPU sunucu (RTX 4000 Ada)",""],[0,"Dell PowerEdge R770 (17G)",""],[0,"Supermicro SYS-212GB-FNR",""],[0,"Qwen",""],[0,"DingTalk: Alibaba kurumsal işbirliği platformu",""],[0,"Azure AI Foundry Agent Service",""],[0,"Microsoft Copilot Studio",""],[0,"Microsoft 365 Copilot agents",""],[0,"CrewAI",""],[0,"Semantic Kernel",""],[0,"AutoGen",""],[0,"Agent-to-Agent Protocol (A2A)",""],[0,"LangGraph (LangChain)",""],[0,"OpenAI Agents SDK",""],[0,"Google Agent Development Kit (ADK)",""],[0,"Claude Agent SDK",""],[0,"Microsoft 365 Copilot agents",""],[0,"Microsoft Entra ID",""],[0,"OpenTelemetry",""],[0,"Model Context Protocol (MCP)",""],[0,"Microsoft Power Automate",""],[0,"Process Mining",""],[0,"faker-js/faker: JS sahte veri kütüphanesi",""],[0,"Marak Squires faker.js / colors.js sabotaj olayı (Ocak 2022)",""],[0,"npm tedarik zinciri güvenliği",""],[0,"DraftWise",""],[0,"Mikeoss",""],[0,"Legora",""],[0,"Claude Skill",""],[0,"mevzuat (MCP)",""],[0,"yargi (MCP)",""],[0,"adeu (MCP)",""],[0,"legal-tech-rapor (Skill)",""],[0,"Veritabanı Normalizasyonu",""],[0,"Foreign Key",""],[0,"Junction Table (Köprü Tablo)",""],[0,"Lookup Table (Referans Tablo)",""],[0,"Surrogate Key vs Natural Key",""],[0,"Composite UNIQUE Constraint",""],[0,"Forward-Compatible Schema Design",""],[0,"Rule Engine NULL = Wildcard Pattern",""],[0,"MIT AI Risk Repository",""],[0,"CSET AI Harm Framework",""],[0,"Claude for Legal Turkish",""],[0,"Claude Code Plugin",""],[0,"Lawve.ai: Legal AI Skills & MCP Marketplace",""],[0,"PII Shield (MCP): Yerel Anonimleştirici",""],[0,"İletişim Başkanlığı Dezenformasyon Bültenleri Dataset (HuggingFace)",""],[0,"T.C. Cumhurbaşkanlığı İletişim Başkanlığı",""],[0,"DMM: Dezenformasyonla Mücadele Merkezi",""],[0,"HuggingFace",""],[0,"Schema.org ClaimReview",""],[0,"TCK 217/A: Halkı Yanıltıcı Bilgi Yayma Suçu",""],[0,"Teyit.org",""],[0,"IFCN: International Fact-Checking Network",""],[0,"Fact-checking / Doğrulama gazeteciliği",""],[0,"Hukuki veri seti kullanım katmanları (manuel → API/RAG)",""],[0,"AB Veri Sınırı (EU Data Boundary)",""],[0,"Microsoft Agent Library",""],[0,"Pargesoft",""],[0,"Microsoft Graph",""],[0,"Alibaba Token Hub",""],[0,"Tongyi Lab",""],[0,"PIPL: Çin Kişisel Bilgi Koruma Kanunu",""],[0,"Microsoft Purview",""],[0,"OCPM (Object-Centric Process Mining)",""],[0,"OCEL 2.0",""],[0,"Task Mining",""],[0,"Microsoft Power Automate Process Mining",""],[0,"DSAR (Veri Sahibi Erişim Talebi)",""],[1,["Görev 01","Task 01"],"inbox"],[1,["Görev 02","Task 02"],"shipped"],[1,["Görev 03","Task 03"],"shipped"],[1,["Görev 04","Task 04"],"planned"],[1,["Görev 05","Task 05"],"shipped"],[1,["Görev 06","Task 06"],"shipped"],[1,["Görev 07","Task 07"],"shipped"],[1,["Görev 08","Task 08"],"shipped"],[1,["Görev 09","Task 09"],"shipped"],[1,["Görev 10","Task 10"],"shipped"],[1,["Görev 11","Task 11"],"planned"],[1,["Görev 12","Task 12"],"shipped"],[1,["Görev 13","Task 13"],"shipped"],[1,["Görev 14","Task 14"],"shipped"],[1,["Görev 15","Task 15"],"shipped"],[1,["Görev 16","Task 16"],"inbox"],[1,["Görev 17","Task 17"],"inbox"],[1,["Görev 18","Task 18"],"inbox"],[1,["Görev 19","Task 19"],"shipped"],[1,["Görev 20","Task 20"],"inbox"],[1,["Görev 21","Task 21"],"inbox"],[1,["Görev 22","Task 22"],"shipped"],[1,["Görev 23","Task 23"],"in_progress"],[1,["Görev 24","Task 24"],"shipped"],[1,["Görev 25","Task 25"],"shipped"],[1,["Görev 26","Task 26"],"shipped"],[1,["Görev 27","Task 27"],"inbox"],[2,"VerifyWise resmi web sitesi",""],[2,"Microsoft Learn: Power Automate ürün sayfası",""],[2,"Alibaba Group: Wukong duyurusu",""],[2,"PowerEdge Server GPU Matrix Data Sheet: Dell Technologies (Mart 2026)",""],[2,"GPU SuperServer SYS-212GB-FNR: Supermicro",""],[2,"Microsoft Learn: Agent Framework dokümantasyonu",""],[2,"GitHub: microsoft/agent-framework",""],[2,"mevzuat.gov.tr",""],[2,"DergiPark: Suriyeli Sığınmacılara Karşı Dezenformasyon, DMM Deprem Bültenleri",""],[2,"DergiPark: Dezenformasyon ve Yapay Zekâ",""],[2,"DergiPark: Algı Yönetimi X Platformu DMM Örneği",""],[2,"OMÜ AVESİS: Türkiye'de Bilgi Düzensizliği ile Mücadele",""],[2,"Microsoft Copilot Studio: Agent Library overview",""],[2,"Microsoft announces AI agents and templates for retail scenarios",""],[3,["Bulgu 01","Finding 01"],""],[3,["Bulgu 02","Finding 02"],""],[3,["Bulgu 03","Finding 03"],""],[3,["Bulgu 04","Finding 04"],""],[3,["Bulgu 05","Finding 05"],""],[3,["Bulgu 06","Finding 06"],""],[3,["Bulgu 07","Finding 07"],""],[3,["Bulgu 08","Finding 08"],""],[3,["Bulgu 09","Finding 09"],""],[3,["Bulgu 10","Finding 10"],""],[3,["Bulgu 11","Finding 11"],""],[3,["Bulgu 12","Finding 12"],""],[3,["Bulgu 13","Finding 13"],""],[3,["Bulgu 14","Finding 14"],""],[4,"urgent",""],[4,"research",""],[4,"comparison",""],[4,"learning",""],[4,"infra",""],[4,"content",""],[4,"self-initiated",""],[4,"open-source",""],[4,"risk-management",""],[4,"demo-pending",""],[4,"saas",""],[4,"self-hosted",""],[5,["Proje 01","Project 01"],"shipped"],[5,["Proje 02","Project 02"],"in_progress"],[5,["Proje 03","Project 03"],"planned"],[5,["Proje 04","Project 04"],"planned"],[5,["Proje 05","Project 05"],"in_progress"],[5,["Proje 06","Project 06"],"shipped"],[5,["Proje 07","Project 07"],"inbox"],[5,["Proje 08","Project 08"],"inbox"],[5,["Proje 09","Project 09"],"inbox"],[5,["Proje 10","Project 10"],"inbox"],[5,["Proje 11","Project 11"],"in_progress"],[5,["Proje 12","Project 12"],"in_progress"],[6,"Microsoft Stack",""],[6,"Metodoloji",""],[6,"Yazılım Mühendisliği",""],[6,"Legal Tech",""],[6,"KVKK / Veri Koruma",""],[6,"AI Governance",""],[6,"Makine Öğrenmesi",""],[6,"Change Management",""],[6,"Açık Kaynak / OSS",""],[7,["Kişi A","Person A"],""],[7,["Kişi B","Person B"],""],[7,["Kişi C","Person C"],""],[7,"Onur Can Mığırdağı",""]],"e":[[5,1,10],[5,2,10],[5,3,10],[5,4,10],[5,6,3],[5,112,12],[5,147,14],[5,148,14],[5,150,14],[5,151,14],[7,10,1],[7,18,10],[7,19,5],[7,78,6],[7,114,12],[8,10,10],[8,164,14],[9,86,1],[9,141,14],[10,24,13],[10,25,13],[10,26,7],[10,32,7],[10,33,7],[10,34,7],[10,35,5],[10,72,6],[10,75,15],[10,79,6],[10,117,12],[10,118,12],[10,164,14],[10,169,14],[11,12,5],[11,144,14],[12,144,14],[13,144,14],[14,144,14],[15,144,14],[16,15,1],[16,17,1],[16,167,14],[17,15,1],[17,167,14],[20,10,5],[20,32,7],[20,33,10],[20,79,6],[21,10,5],[21,73,10],[22,21,5],[22,75,15],[22,79,6],[23,10,1],[23,141,14],[24,141,14],[24,164,14],[25,141,14],[25,164,14],[26,141,14],[26,169,14],[27,10,1],[27,141,14],[28,10,1],[28,141,14],[29,10,1],[29,141,14],[30,10,1],[30,141,14],[31,10,5],[31,141,14],[31,164,14],[32,72,6],[32,164,14],[32,169,14],[33,169,14],[34,141,14],[34,169,14],[35,10,1],[35,75,15],[35,164,14],[36,35,10],[36,164,14],[36,165,14],[37,38,5],[38,39,4],[41,42,1],[41,167,14],[42,167,14],[44,34,4],[44,119,12],[45,34,4],[46,34,4],[47,43,4],[48,49,2],[48,143,14],[49,143,14],[50,48,4],[50,49,2],[50,143,14],[51,48,4],[51,49,5],[51,143,14],[52,49,10],[52,143,14],[53,50,5],[53,143,14],[54,48,5],[54,143,14],[55,48,10],[55,143,14],[56,141,14],[56,143,14],[57,141,14],[57,143,14],[58,34,15],[58,43,10],[58,44,15],[58,45,15],[58,59,10],[58,147,14],[58,167,14],[58,172,14],[59,34,7],[59,43,2],[59,166,14],[60,43,4],[60,167,14],[61,43,10],[61,60,4],[61,167,14],[61,168,14],[62,64,3],[62,65,4],[62,66,10],[64,63,5],[64,66,10],[64,67,10],[64,68,1],[64,70,4],[64,120,12],[64,121,12],[64,122,12],[64,123,12],[66,70,10],[67,167,14],[68,69,10],[68,70,4],[69,70,10],[71,165,14],[71,167,14],[72,168,14],[73,21,5],[73,124,12],[73,125,12],[74,21,10],[74,164,14],[74,167,14],[75,164,14],[76,7,2],[76,18,9],[76,77,9],[76,170,14],[77,18,10],[77,170,14],[78,72,1],[78,168,14],[79,168,14],[79,169,14],[80,36,5],[80,81,10],[80,96,10],[80,111,10],[80,141,14],[80,165,14],[81,80,4],[81,141,14],[81,165,14],[82,36,1],[82,141,14],[82,164,14],[82,168,14],[83,36,5],[83,96,10],[83,141,14],[83,164,14],[84,141,14],[84,167,14],[84,168,14],[85,0,10],[85,143,14],[85,166,14],[85,174,11],[86,35,10],[86,126,9],[86,127,9],[86,141,14],[86,169,14],[86,174,11],[87,3,15],[87,48,15],[87,49,15],[87,50,15],[87,56,15],[87,57,15],[87,93,10],[87,143,14],[87,144,14],[87,166,14],[87,169,14],[87,175,11],[88,5,10],[88,112,10],[88,141,14],[88,142,14],[88,149,14],[88,169,14],[88,171,14],[88,174,11],[89,7,10],[89,141,14],[89,174,11],[90,140,14],[90,169,14],[90,174,11],[91,10,10],[91,141,14],[91,169,14],[91,175,11],[92,11,15],[92,12,15],[92,13,15],[92,14,15],[92,15,15],[92,128,9],[92,144,14],[92,175,11],[93,48,15],[93,49,15],[93,50,15],[93,51,15],[93,52,15],[93,53,15],[93,54,15],[93,55,15],[93,143,14],[93,166,14],[93,175,11],[94,7,10],[94,10,10],[94,72,10],[94,73,10],[94,76,10],[94,78,10],[94,79,10],[94,137,9],[94,141,14],[94,142,14],[94,164,14],[94,170,14],[94,174,11],[95,143,14],[95,171,14],[95,174,11],[96,36,10],[96,138,9],[96,139,9],[96,141,14],[97,16,15],[97,17,15],[97,141,14],[97,144,14],[97,175,11],[98,62,10],[98,67,10],[98,71,10],[98,141,14],[98,167,14],[98,169,14],[98,170,14],[98,176,11],[99,169,14],[99,174,11],[100,20,10],[100,141,14],[100,142,14],[101,21,10],[101,141,14],[101,142,14],[102,22,10],[102,141,14],[102,142,14],[103,37,10],[103,131,9],[103,132,9],[103,133,9],[103,141,14],[103,172,14],[103,173,11],[104,40,10],[104,141,14],[104,174,11],[105,41,10],[105,42,10],[105,141,14],[105,142,14],[105,167,14],[105,174,11],[106,99,13],[106,169,14],[106,174,11],[107,141,14],[107,176,11],[108,174,11],[109,58,10],[109,59,10],[109,134,9],[109,141,14],[109,143,14],[109,147,14],[109,167,14],[109,172,14],[109,174,11],[110,60,10],[110,61,10],[110,135,9],[110,136,9],[110,141,14],[110,142,14],[110,167,14],[110,174,11],[111,96,10],[111,141,14],[111,176,11],[113,86,10],[115,129,10],[116,130,10],[128,13,5],[128,144,14],[129,16,4],[130,17,4],[134,58,0],[135,60,0],[136,61,0],[136,168,14],[137,7,0],[137,10,0],[138,36,0],[138,141,14],[138,143,14],[139,36,0],[139,141,14],[139,143,14],[152,99,8],[152,106,8],[152,108,8],[152,165,14],[152,167,14],[152,169,14],[153,146,14],[153,166,14],[154,171,14],[155,146,14],[155,166,14],[155,170,14],[156,107,8],[156,146,14],[156,167,14],[156,168,14],[156,170,14],[156,173,10],[157,165,14],[157,167,14],[157,168,14],[158,86,8],[158,91,8],[158,96,8],[158,100,8],[158,101,8],[158,102,8],[158,111,8],[158,164,14],[158,170,14],[159,103,8],[159,166,14],[159,172,14],[160,89,8],[160,94,8],[160,167,14],[160,169,14],[160,170,14],[161,92,8],[161,97,8],[161,166,14],[161,170,14],[162,34,8],[162,43,8],[162,44,8],[162,45,8],[162,46,8],[162,47,8],[162,109,8],[162,166,14],[162,167,14],[163,5,8],[163,40,8],[163,41,8],[163,42,8],[163,88,8],[163,104,8],[163,105,8],[163,110,8],[163,165,14],[163,167,14],[163,169,14]]};
@@ -1676,9 +1755,183 @@ document.documentElement.setAttribute("data-theme", "day");
       new ResizeObserver(function(){ if(activeTab==="graph"){ var had = W; size(); if(!had) fitCam(false); kick(); } }).observe(stage);
     }
   }
+  /* Mevzuat İzleme demo. MZ is one real day of the Resmî Gazete branch
+     (make_mzdata.py): every index entry with the model's score, summary and
+     the summarise decision, exactly as the run produced them. The run tab
+     replays that day step by step; the bulletin tab is the mail it compiled;
+     the rules tab is what the prompts and the code enforce. */
+  var MZ_T = {
+    tr:{ run:"Tur", bul:"Bülten", rules:"Kurallar", items:"madde", no:"sayı",
+      date:function(){ return MZ.date_tr; },
+      steps:[["Topla","resmigazete.gov.tr günlük fihristi"],["Zenginleştir","Claude: özet, alaka puanı, özet mi başlık mı"],
+             ["Kontrol","Deterministik kurallar, JSON doğrulama"],["Onay","İnceleme ekranında Onayla ve Yükle"],
+             ["Veritabanı","Merkezi depoya yazma"],["Bülten","Bölüm ve tür sırasıyla derleme"],["E-posta","Kurumsal e-postayla dağıtım"]],
+      seen:"İncelenen", rel:"İlgili", sum:"Özetlenen", replay:"Yeniden çalıştır",
+      cols:["Madde","Alaka","Karar"], sumP:"ÖZET", titP:"BAŞLIK",
+      hint:"Bir maddeye tıkla, modelin çıktısını gör &middot; * kodla sabitlenen karar", orig:"",
+      done:function(s,t){ return "Bülten gönderildi · "+s+" özet, "+t+" başlık"; },
+      from:"Kimden", fromV:"Mevzuat İzleme ajanı", to:"Kime", toV:"Ekip dağıtım listesi", subj:"Konu",
+      subjV:function(){ return "Resmî Gazete Bülteni: "+MZ.date_tr; },
+      mnote:"Bülten, ajanın o gün derleyip gönderdiği hâliyle. Başlıklar Resmî Gazete fihristinden, italik özetler modelin yazdığı gibi.",
+      rl:[
+        ["Kaynak metni veri, talimat değil","Taranan sayfa modele <code>&lt;&lt;&lt;KAYNAK_VERISI</code> ile <code>KAYNAK_VERISI&gt;&gt;&gt;</code> arasında gidiyor. Arasındaki hiçbir cümle, \"önceki talimatları yok say\" dahil, komut sayılmıyor.","Prompt"],
+        ["Yalnız bugünün kaydı","Bugünün tarihi dört ayrı biçimde prompta yazılıyor. Tarihi bugün olmayan ya da tarihi görünmeyen gelişme alınmıyor; kod da metinde bugünün tarihini ayrıca arıyor.","Prompt + kod"],
+        ["Alaka puanı","0.0 ile 1.0 arası, firmanın alanlarına yakınlık: veri koruma, rekabet, fintech, telekom, yapay zekâ, e-ticaret, fikri mülkiyet. Tarım, atama, ihale ve döviz 0.0 ile 0.2; doğrudan ilgili düzenleme 0.6 ile 0.9. <code>0.40</code> ve üstü ilgili sayılıyor.","Prompt"],
+        ["Özet mi, başlık mı","Beş aylık gerçek bültenin 1127 maddesinden çıkan oranlarla ayarlı: Anayasa Mahkemesi %96, Kanun %38, Kurul Kararı %18, Tebliğ %11, Yönetmelik %3. Emin değilse başlıkla bırakıyor.","Prompt"],
+        ["Kesin türler kodda","Kanun ve yüksek mahkeme kararları her zaman özetleniyor, ilan ve döviz kuru asla. Aradaki gri alan modelin kararı. Listede * ile işaretli olanlar.","Kod"],
+        ["Yorum yok, uydurma yok","Özet yalnız metinde olanı söylüyor. \"Önem taşımaktadır\", \"takip edilmelidir\" gibi değerlendirme kalıpları yasak.","Prompt"],
+        ["Link ve taşma freni","Link yalnız kaynağın kendi alan adından, izinli alan adı listesine karşı kontrol ediliyor. Aynı gelişme iki kez girmiyor, bir kaynaktan bir turda en fazla 15 kayıt geliyor.","Kod"],
+        ["Onay kapısı","Veritabanına yazma inceleme ekranındaki Onayla ve Yükle ile. Onaysız otomatik yayın ayrı ve bilerek seçilen bir yol.","Akış"]]
+    },
+    en:{ run:"Run", bul:"Bulletin", rules:"Rules", items:"items", no:"issue",
+      date:function(){ var m=["January","February","March","April","May","June","July","August","September","October","November","December"], p=MZ.date.split("-"); return (+p[2])+" "+m[p[1]-1]+" "+p[0]; },
+      steps:[["Collect","resmigazete.gov.tr daily index"],["Enrich","Claude: summary, relevance, summarise or list"],
+             ["Check","Deterministic rules, JSON validation"],["Approve","Approve and upload in the review screen"],
+             ["Database","Written to the central store"],["Bulletin","Compiled by section and type"],["Email","Sent by corporate email"]],
+      seen:"Read", rel:"Relevant", sum:"Summarised", replay:"Run again",
+      cols:["Item","Relevance","Decision"], sumP:"SUMMARY", titP:"TITLE",
+      hint:"Click an item to see the model's output &middot; * decision fixed in code", orig:" &middot; titles and summaries in the original Turkish",
+      done:function(s,t){ return "Bulletin sent · "+s+" summarised, "+t+" listed"; },
+      from:"From", fromV:"Regulatory monitoring agent", to:"To", toV:"Team distribution list", subj:"Subject",
+      subjV:function(){ return "Resmî Gazete Bülteni: "+MZ.date_tr; },
+      mnote:"The bulletin as the agent compiled and sent it that day, in Turkish. Titles come from the Official Gazette index, the italic summaries are the model's.",
+      rl:[
+        ["Source text is data, not instructions","The scraped page reaches the model between <code>&lt;&lt;&lt;KAYNAK_VERISI</code> and <code>KAYNAK_VERISI&gt;&gt;&gt;</code>. No sentence in between, \"ignore previous instructions\" included, counts as a command.","Prompt"],
+        ["Today's items only","Today's date goes into the prompt in four formats. Anything not dated today, or with no visible date, is dropped; the code separately checks the text for today's date.","Prompt + code"],
+        ["Relevance score","0.0 to 1.0, closeness to the firm's practice areas: data protection, competition, fintech, telecoms, AI, e-commerce, IP. Agriculture, appointments, tenders and exchange rates 0.0 to 0.2; directly relevant regulation 0.6 to 0.9. <code>0.40</code> and above counts as relevant.","Prompt"],
+        ["Summarise or just list","Calibrated on 1,127 items from five months of real bulletins: Constitutional Court 96%, laws 38%, board decisions 18%, communiqués 11%, regulations 3%. When unsure, it lists the title only.","Prompt"],
+        ["Fixed types live in code","Laws and high court decisions are always summarised, notices and exchange rates never. The grey area in between is the model's call. These are the ones marked * in the list.","Code"],
+        ["No commentary, nothing invented","A summary says only what the text says. Evaluative phrases such as \"this is significant\" or \"should be monitored\" are banned.","Prompt"],
+        ["Links and flood limits","Links only from the source's own domain, checked against an allow list. The same item never goes in twice, and one source yields at most 15 items per run.","Code"],
+        ["Approval gate","Writing to the database happens through Approve and upload in the review screen. Publishing without approval is a separate path you choose on purpose.","Flow"]]
+    }
+  };
+  function mzFixed(it){ var t = it[2].toLocaleLowerCase("tr"); return it[1][0]==="Kanun" || it[0]==="ILAN" || /anayasa mahkemes|yargıtay|danıştay|merkez bankas/.test(t); }
+
+  function mzHtml(L){
+    var T = MZ_T[L];
+    return '<div class="pk" data-demo="mz">'
+      + '<div class="pk-top"><span class="pk-dots"><i></i><i></i><i></i></span>'
+      + '<span class="pk-tabs"><button data-t="run" class="on">'+T.run+'</button><button data-t="bul">'+T.bul+'</button><button data-t="rules">'+T.rules+'</button></span>'
+      + '<span class="pk-stat">'+T.date()+' &middot; '+MZ.no+' '+T.no+' &middot; '+MZ.items.length+' '+T.items+'</span></div>'
+      + '<div class="pk-view on" data-v="run"><div class="mz-run"><div class="mz-steps">'
+      +   T.steps.map(function(s){ return '<div class="mz-step"><i></i><span><b>'+s[0]+'</b><small>'+s[1]+'</small></span></div>'; }).join('')
+      +   '<div class="mz-count"><div><b data-c="seen">0</b><small>'+T.seen+'</small></div><div><b data-c="rel">0</b><small>'+T.rel+'</small></div><div><b data-c="sum">0</b><small>'+T.sum+'</small></div></div>'
+      +   '<button class="mz-replay">&#8635; '+T.replay+'</button></div>'
+      +   '<div class="mz-main"><div class="mz-head"><span>'+T.cols[0]+T.orig+'</span><span style="width:92px">'+T.cols[1]+' &ge; 0.40</span><span style="width:58px;text-align:right">'+T.cols[2]+'</span></div>'
+      +   '<div class="mz-list"></div><div class="mz-hint">'+T.hint+'</div></div></div></div>'
+      + '<div class="pk-view" data-v="bul"><div class="mz-mail"></div></div>'
+      + '<div class="pk-view" data-v="rules"><div class="mz-rules">'
+      +   T.rl.map(function(r, i){ return '<div class="mz-rule"><span>'+(i<9?'0':'')+(i+1)+'</span><div><b>'+r[0]+'</b>'+r[1]+'<br><small>'+r[2]+'</small></div></div>'; }).join('')
+      + '</div></div></div>';
+  }
+
+  function mzMount(root, L){
+    if(root._mz) return; root._mz = 1;
+    var T = MZ_T[L], list = root.querySelector(".mz-list"), steps = root.querySelectorAll(".mz-step");
+    var stat = root.querySelector(".pk-stat"), stat0 = stat.innerHTML;
+    var cnt = {}; Array.prototype.forEach.call(root.querySelectorAll("[data-c]"), function(b){ cnt[b.getAttribute("data-c")] = b; });
+
+    list.innerHTML = MZ.items.map(function(it, i){
+      var js = '{ "relevance_score": '+it[4].toFixed(2)+', "is_relevant": '+(it[4]>=.4)+', "summarize": '+it[5]+(mzFixed(it)?(L==="tr"?'  // kodla sabit':'  // fixed in code'):'')+' }';
+      return '<div class="mz-row" data-i="'+i+'"><div class="mz-rh"><span><span class="mz-ty">'+it[1][L==="tr"?0:1]+'</span><span class="mz-ti">'+pkEsc(it[2])+'</span></span>'
+        + '<span class="mz-bar'+(it[4]>=.4?' hi':'')+'"><u></u><em></em></span>'
+        + '<span class="mz-dec'+(it[5]?' s':'')+'">'+(it[5]?T.sumP:T.titP)+(mzFixed(it)?'<sup>*</sup>':'')+'</span></div>'
+        + '<div class="mz-det">'+(it[3]?'<p>'+pkEsc(it[3])+'</p>':'')+'<code>'+js+'</code></div></div>';
+    }).join('');
+    var rows = list.querySelectorAll(".mz-row");
+    list.addEventListener("click", function(ev){ var h = ev.target.closest(".mz-rh"); if(h) h.parentNode.classList.toggle("open"); });
+
+    function score(i){
+      var r = rows[i], it = MZ.items[i];
+      r.querySelector(".mz-bar u").style.width = Math.max(2, it[4]*100)+"%";
+      r.querySelector(".mz-bar em").textContent = it[4].toFixed(2);
+      r.querySelector(".mz-dec").classList.add("on");
+    }
+    function counts(n){
+      var rel = 0, sum = 0;
+      for(var i = 0; i < n; i++){ if(MZ.items[i][4] >= .4) rel++; if(MZ.items[i][5]) sum++; }
+      cnt.seen.textContent = n; cnt.rel.textContent = rel; cnt.sum.textContent = sum;
+      return sum;
+    }
+    function step(k, st){ steps[k].className = "mz-step" + (st ? " "+st : ""); }
+
+    var timers = [], started = false;
+    function at(ms, f){ timers.push(setTimeout(f, ms)); }
+    function finish(){
+      var n = MZ.items.length, s = counts(n);
+      for(var k = 0; k < steps.length; k++) step(k, "ok");
+      for(var i = 0; i < n; i++){ rows[i].classList.add("in"); score(i); }
+      stat.textContent = T.done(s, n - s);
+    }
+    function run(){
+      started = true;
+      timers.forEach(clearTimeout); timers = [];
+      stat.innerHTML = stat0;
+      for(var k = 0; k < steps.length; k++) step(k, "");
+      Array.prototype.forEach.call(rows, function(r){
+        r.className = "mz-row"; r.querySelector(".mz-bar u").style.width = "0";
+        r.querySelector(".mz-bar em").textContent = ""; r.querySelector(".mz-dec").classList.remove("on");
+      });
+      counts(0); list.scrollTop = 0;
+      if(reduce){ finish(); return; }
+      var n = MZ.items.length, t = 200;
+      step(0, "go");
+      for(var i = 0; i < n; i++) (function(i){ at(t + i*55, function(){ rows[i].classList.add("in"); }); })(i);
+      t += n*55 + 350;
+      at(t, function(){ step(0, "ok"); step(1, "go"); });
+      for(var j = 0; j < n; j++) (function(j){
+        at(t + 250 + j*300, function(){
+          score(j); counts(j+1);
+          var r = rows[j], top = r.offsetTop - list.offsetTop;
+          if(top + r.offsetHeight > list.scrollTop + list.clientHeight || top < list.scrollTop) list.scrollTop = top - list.clientHeight/2;
+        });
+      })(j);
+      t += 250 + n*300 + 300;
+      at(t, function(){ step(1, "ok"); step(2, "go"); list.scrollTop = 0; }); t += 900;
+      [3, 4, 5, 6].forEach(function(k){
+        at(t, function(){ step(k-1, "ok"); step(k, "go"); }); t += k === 3 ? 1000 : 700;
+      });
+      at(t, finish);
+    }
+    root.querySelector(".mz-replay").addEventListener("click", run);
+
+    /* the bulletin, grouped the way the real render groups it */
+    var SEC = { IDARE:"YÜRÜTME VE İDARE BÖLÜMÜ", YARGI:"YARGI BÖLÜMÜ", ILAN:"İLÂN BÖLÜMÜ" };
+    var PL = { "Kanun":"KANUNLAR", "Cumhurbaşkanı Kararı":"CUMHURBAŞKANI KARARLARI", "Yönetmelik":"YÖNETMELİKLER", "Tebliğ":"TEBLİĞLER", "Kurul Kararı":"KURUL KARARLARI" };
+    var h = '<h4>'+MZ.date_tr+' Tarihli ve '+MZ.no+' Sayılı Resmî Gazete</h4>', sec = "", grp = "";
+    MZ.items.forEach(function(it, i){
+      if(it[0] !== sec){ sec = it[0]; grp = ""; h += '<h5>'+SEC[sec]+'</h5>'; }
+      if(sec !== "ILAN" && it[1][0] !== grp){
+        grp = it[1][0];
+        var many = MZ.items.filter(function(x){ return x[0]===sec && x[1][0]===grp; }).length > 1;
+        h += '<h6>'+(many && PL[grp] ? PL[grp] : grp.toLocaleUpperCase("tr"))+'</h6>';
+      }
+      h += '<p>&bull; <span>'+pkEsc(it[2])+'</span>'+(it[5] && it[3] ? '<i>'+pkEsc(it[3])+'</i>' : '')+'</p>';
+    });
+    root.querySelector(".mz-mail").innerHTML = '<div class="mz-env"><div class="mz-hdr"><b>'+T.from+'</b> '+T.fromV+'<br><b>'+T.to+'</b> '+T.toV
+      + '<br><b>'+T.subj+'</b> '+T.subjV()+'</div><div class="mz-paper">'+h+'</div></div><p class="mz-note">'+T.mnote+'</p>';
+
+    root.querySelector(".pk-tabs").addEventListener("click", function(ev){
+      var b = ev.target.closest("button[data-t]"); if(!b) return;
+      var t = b.getAttribute("data-t");
+      Array.prototype.forEach.call(root.querySelectorAll(".pk-tabs button"), function(x){ x.classList.toggle("on", x === b); });
+      Array.prototype.forEach.call(root.querySelectorAll(".pk-view"), function(v){ v.classList.toggle("on", v.getAttribute("data-v")===t); });
+    });
+
+    /* start the run once the demo is actually on screen */
+    if(window.IntersectionObserver){
+      var io = new IntersectionObserver(function(es){
+        if(es[0].isIntersecting && !started){ io.disconnect(); setTimeout(run, 350); }
+      }, { threshold:.35 });
+      io.observe(root);
+    } else run();
+  }
   function mountDemos(el){
     var r = el.querySelector('[data-demo="pk"]');
     if(r) pkMount(r, LANG);
+    var m = el.querySelector('[data-demo="mz"]');
+    if(m) mzMount(m, LANG);
   }
 
   /* how information moves through İş Takip Modülü, and the tables it lands in */
@@ -1749,7 +2002,7 @@ document.documentElement.setAttribute("data-theme", "day");
     return '<div class="doc"><h1>'+d.name+'</h1><p class="meta">'+d.meta+'</p>'
       + '<div class="badges">'+badges.map(function(on, i){ return '<span class="'+(on?'on':'')+'">'+BADGE[L][i]+'</span>'; }).join('')+'</div>'
       + '<p class="lede">'+d.lede+'</p>'
-      + (id === "istakip" ? pkHtml(L) : DIA[id] ? dia(DIA[id], L) : '')
+      + (id === "istakip" ? pkHtml(L) : (id === "pipeline" ? mzHtml(L) : '') + (DIA[id] ? dia(DIA[id], L) : ''))
       + d.paras.map(function(p, i){
           var b = d.blocks && d.blocks[i];
           return (b === "flow" ? dia(PK_FLOW, L) : b === "erd" ? erd(PK_ERD, L) : '') + '<p>'+p+'</p>';
