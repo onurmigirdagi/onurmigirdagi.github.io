@@ -744,6 +744,41 @@ body.mob .sm-ba,body.phone .sm-ba{grid-template-columns:1fr;}
 .rp-cbs label:not(.on){opacity:.55;}
 .rp-go{justify-self:start; font-size:10.5px; font-weight:600; padding:5px 14px; border-radius:6px; background:#0A84FF; color:#fff; transition:transform .2s ease;}
 .rp-scr .press{transform:scale(.93);}
+.rp-win{transition:transform .5s ease, opacity .5s ease, filter .5s ease;}
+.rp-win.bg{transform:scale(.94); opacity:.75; filter:saturate(.7);}
+.rp-veil{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:rgba(255,255,255,.72); backdrop-filter:blur(2px); font-size:11px; color:#55555C; animation:smig .4s ease;}
+.rp-veil:before{content:""; width:14px; height:14px; border-radius:50%; border:2px solid #D6D6DC; border-top-color:#0A84FF; animation:smspin 1s linear infinite;}
+.rp-bub{position:absolute; top:24px; right:10px; width:228px; box-sizing:border-box; padding:9px 11px 10px; border-radius:13px; background:rgba(246,246,248,.9);
+  backdrop-filter:blur(14px); box-shadow:0 10px 26px rgba(20,20,40,.26), 0 0 0 .5px rgba(0,0,0,.14); color:#1D1D1F; font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", var(--ui);
+  opacity:0; transform:translateX(24px); pointer-events:none; transition:opacity .45s ease, transform .45s cubic-bezier(.2,.8,.2,1); z-index:2;}
+.rp-bub.on{opacity:1; transform:none; pointer-events:auto;}
+.rp-bub.ok{cursor:pointer;}
+.rp-bub.out{opacity:0; transform:translateX(24px); pointer-events:none;}
+.rp-bh{display:flex; align-items:center; gap:5px; font-size:9px; color:#6E6E73; margin-bottom:4px;}
+.rp-bh i{width:13px; height:13px; border-radius:3.5px; background:linear-gradient(135deg, #34C759, #1F9D55);}
+.rp-bh b{font-weight:600; text-transform:uppercase; letter-spacing:.04em;}
+.rp-bh em{margin-left:auto; font-style:normal;}
+.rp-bt{display:block; font-size:11.5px; font-weight:600;}
+.rp-bs{display:block; font-size:10px; color:#55555C; margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.rp-pb{height:4px; border-radius:2px; background:#E2E2E7; margin:7px 0 6px; overflow:hidden;}
+.rp-pb u{display:block; height:100%; width:0; background:#0A84FF; border-radius:2px; transition:width .8s ease;}
+.rp-bub.ok .rp-pb u{background:#28C840;}
+.rp-bub ul{margin:0; padding:0; list-style:none;}
+.rp-bub li{position:relative; padding:1px 0 1px 15px; font-size:9.5px; color:#A1A1A8; transition:color .3s ease;}
+.rp-bub li:before{content:""; position:absolute; left:2px; top:4px; width:6px; height:6px; border-radius:50%; border:1px solid #C7C7CC;}
+.rp-bub li.on{color:#1D1D1F;}
+.rp-bub li.on:before{border-color:#0A84FF; border-top-color:transparent; animation:smspin .9s linear infinite; width:7px; height:7px; left:1px; top:3px;}
+.rp-bub li.done{color:#55555C;}
+.rp-bub li.done:before{border:0; content:"✓"; color:#28C840; font-size:9px; top:0; left:1px; width:auto; height:auto;}
+select.rp-dd{appearance:none; -webkit-appearance:none; cursor:pointer; font-family:inherit; padding-right:22px;
+  background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%2355555C'/%3E%3C/svg%3E") no-repeat right 8px center;}
+.rp-seg button,.rp-cbs label,.rp-go{cursor:pointer;}
+.rp-go[disabled]{opacity:.4; cursor:default;}
+.rp-warn{display:none; margin-left:8px; font-style:normal; font-size:9.5px; color:#D70015;}
+.rp-ask.none .rp-warn{display:inline;}
+.rp-new{margin-left:8px; font-size:9px; padding:2px 8px; border-radius:6px; border:1px solid #0A84FF; color:#0A84FF; background:#fff; cursor:pointer;}
+.rp-new:hover{background:#0A84FF; color:#fff;}
+.rp-rh span{margin-left:auto;}
 .rp-log{padding:10px 12px; font-family:var(--mono); font-size:10.5px; line-height:1.75; color:var(--dim);}
 .rp-log div{animation:smin .35s ease;}
 .rp-log .cmd{color:var(--txt);}
@@ -806,6 +841,7 @@ body.mob .rp-src,body.phone .rp-src{grid-template-columns:repeat(2, minmax(0,1fr
 body.mob .rp-down,body.phone .rp-down{display:none;}
 body.mob .rp-pcw,body.phone .rp-pcw{padding-top:10px;}
 body.mob .rp-screen,body.phone .rp-screen{padding:0 8px 8px; border-width:5px;}
+body.mob .rp-bub,body.phone .rp-bub{width:auto; left:10px;}
 body.mob .rp-q,body.phone .rp-q{grid-template-columns:minmax(0,1fr); gap:3px;} body.mob .rp-q small,body.phone .rp-q small{text-align:left;} body.mob .rp-ask,body.phone .rp-ask{padding:10px 12px; gap:8px;} body.mob .rp-menu,body.phone .rp-menu{margin:0 -8px 8px;} body.mob .rp-tc,body.phone .rp-tc{display:none;} body.mob .rp-menu span,body.phone .rp-menu span{display:none;}
 body.mob .rp-win,body.phone .rp-win{height:320px;}
 body.mob .rp-grid,body.phone .rp-grid{grid-template-columns:minmax(0,1fr);}
@@ -2844,7 +2880,12 @@ document.documentElement.setAttribute("data-theme", "day");
       steps:["Rapor seçenekleri","Veriyi çek","Tek şemaya eşle","Standartlaştır","Rapor"],
       newRep:"Yeni rapor", qType:"Rapor türü", types:[["m","Aylık"],["y","Yıllık"]], qPeriod:"Dönem", qMk:"Pazaryerleri", go:"Raporu oluştur",
       repM:"Aylık Satış Raporu", repY:"Yıllık Satış Raporu", mks:"pazaryeri", notInc:"rapora dahil değil",
-      s00:"Program önce nasıl bir rapor istendiğini soruyor: rapor türü, dönem ve dahil edilecek pazaryerleri.",
+      s00:"Program önce nasıl bir rapor istendiğini soruyor. Seçimi siz yapabilirsiniz; dokunmazsanız birkaç saniye sonra kendisi seçecek.",
+      s00m:"Rapor türünü, dönemi ve pazaryerlerini seçip Raporu oluştur düğmesine basın.", noneSel:"En az bir pazaryeri seçin.", now:"şimdi",
+      sBg:"Rapor arka planda hazırlanıyor; ilerleme sağ üstteki bildirimde görünüyor.", bgNote:"Rapor arka planda hazırlanıyor",
+      bubT:"Rapor hazırlanıyor", bubDone:"Rapor hazır", bubOpen:"Açmak için tıklayın",
+      tasks:["Veriler pazaryerlerinden alınıyor","Alanlar tek yapıda birleştiriliyor","Tarih, para birimi ve iadeler düzenleniyor","Rapor şirketin düzeninde yazılıyor"],
+      pullS:function(n){ return n+" verileri alınıyor"; },
       s0m:"Bu sefer aylık rapor seçiliyor.", s0y:"Bu sefer yıllık rapor seçiliyor.",
       s0x:function(n){ return n+" bu rapora dahil edilmiyor."; },
       s0g:function(n){ return n+" pazaryeriyle rapor oluşturuluyor."; },
@@ -2860,7 +2901,7 @@ document.documentElement.setAttribute("data-theme", "day");
       rep:"Aylık Satış Raporu", sheet:"Google Sheets", month:function(d){ return ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"][d.getMonth()]+" "+d.getFullYear(); },
       kpi:["Net satış","Sipariş","İade oranı"], byCh:"Kanal bazında net satış", tbl:["Kanal","Sipariş","İade","Net satış"],
       ready:"Rapor hazır", all:"Tümü", chan:"Kanal", menu:["Dosya","Düzen","Görünüm"],
-      sF:function(n){ return "Rapor kanal bazında süzülebiliyor: şimdi yalnızca "+n+" görünüyor."; }, sF0:"Filtre kaldırıldı; dört kanal yeniden birlikte görünüyor.",
+      sF:function(n){ return "Rapor kanal bazında süzülebiliyor: şimdi yalnızca "+n+" görünüyor."; }, sF0:"Filtre kaldırıldı; seçilen bütün kanallar yeniden birlikte görünüyor.", sReady:"Rapor hazır; bildirime tıklayınca ya da birkaç saniye içinde açılıyor.",
       note:"Temsilîdir: Alan adları, değerler ve tutarlar örnektir; dört kaynak ve akış gerçektir.",
       bef:"Önce", aft:"Sonra",
       befS:["Dört satıcı panelini tek tek aç","Her birinden veriyi kendi biçiminde dışa aktar","Alanları ve tarihleri elle eşleştir","Parçaları kopyala yapıştırla birleştir"],
@@ -2872,7 +2913,12 @@ document.documentElement.setAttribute("data-theme", "day");
       steps:["Report options","Pull the data","Map to one schema","Normalize","Report"],
       newRep:"New report", qType:"Report type", types:[["m","Monthly"],["y","Yearly"]], qPeriod:"Period", qMk:"Marketplaces", go:"Create report",
       repM:"Monthly Sales Report", repY:"Yearly Sales Report", mks:"marketplaces", notInc:"not in this report",
-      s00:"The program first asks what kind of report is wanted: the type, the period and which marketplaces to include.",
+      s00:"The program first asks what kind of report is wanted. You can choose; if you leave it, it fills itself in after a few seconds.",
+      s00m:"Pick the report type, the period and the marketplaces, then press Create report.", noneSel:"Pick at least one marketplace.", now:"now",
+      sBg:"The report is being prepared in the background; the progress shows in the notification at the top right.", bgNote:"Preparing the report in the background",
+      bubT:"Preparing report", bubDone:"Report ready", bubOpen:"Click to open",
+      tasks:["Pulling data from the marketplaces","Merging fields into one structure","Evening out dates, currency and returns","Writing the report in the company's layout"],
+      pullS:function(n){ return "Pulling "+n+" data"; },
       s0m:"This time a monthly report is chosen.", s0y:"This time a yearly report is chosen.",
       s0x:function(n){ return n+" is left out of this report."; },
       s0g:function(n){ return "Creating the report with "+n+" marketplaces."; },
@@ -2888,7 +2934,7 @@ document.documentElement.setAttribute("data-theme", "day");
       rep:"Monthly Sales Report", sheet:"Google Sheets", month:function(d){ return ["January","February","March","April","May","June","July","August","September","October","November","December"][d.getMonth()]+" "+d.getFullYear(); },
       kpi:["Net sales","Orders","Return rate"], byCh:"Net sales by channel", tbl:["Channel","Orders","Returns","Net sales"],
       ready:"Report ready", all:"All", chan:"Channel", menu:["File","Edit","View"],
-      sF:function(n){ return "The report can be filtered by channel: only "+n+" is showing now."; }, sF0:"Filter cleared; all four channels are showing again.",
+      sF:function(n){ return "The report can be filtered by channel: only "+n+" is showing now."; }, sF0:"Filter cleared; every chosen channel is showing again.", sReady:"The report is ready; it opens when you click the notification, or in a few seconds.",
       note:"Illustrative: field names, values and totals are examples; the four sources and the flow are real.",
       bef:"Before", aft:"After",
       befS:["Open four seller panels one by one","Export each one in its own format","Match fields and dates by hand","Paste the pieces together"],
@@ -2918,7 +2964,10 @@ document.documentElement.setAttribute("data-theme", "day");
       +   '<div class="rp-pcw"><div class="rp-screen">'
       +     '<div class="rp-menu"><b>'+T.app+'</b>'+T.menu.map(function(m){ return '<span>'+m+'</span>'; }).join('')+'<em class="rp-clk"></em></div>'
       +     '<div class="rp-win"><div class="rp-tb"><span class="rp-tl"><i></i><i></i><i></i></span><b class="rp-tt">'+T.app+'</b><span class="rp-tc"></span></div>'
-      +     '<div class="rp-scr"></div></div></div></div>'
+      +     '<div class="rp-scr"></div></div>'
+      +     '<div class="rp-bub"><div class="rp-bh"><i></i><b>'+T.app+'</b><em>'+T.now+'</em></div><b class="rp-bt"></b><span class="rp-bs"></span>'
+      +       '<div class="rp-pb"><u></u></div><ul>'+T.tasks.map(function(t){ return '<li>'+t+'</li>'; }).join('')+'</ul></div>'
+      +   '</div></div>'
       +   '<div class="sm-note">'+T.note+'</div>'
       + '</div></div>'
       + '<div class="pk-view" data-v="ba"><div class="sm-ba">'
@@ -2929,13 +2978,25 @@ document.documentElement.setAttribute("data-theme", "day");
   }
   function rpMount(root, L){
     if(root._rp) return; root._rp = 1;
-    var T = RP_T[L], TR = L === "tr";
+    var T = RP_T[L], TR = L === "tr", loc = TR ? "tr-TR" : "en-GB";
     var q = function(s){ return root.querySelector(s); }, qa = function(s){ return Array.prototype.slice.call(root.querySelectorAll(s)); };
-    var say = q(".rp-say"), scr = q(".rp-scr"), tt = q(".rp-tt"), tc = q(".rp-tc"), down = q(".rp-down"), stepEls = qa(".rp-steps span");
+    var say = q(".rp-say"), scr = q(".rp-scr"), win = q(".rp-win"), tt = q(".rp-tt"), tc = q(".rp-tc"), down = q(".rp-down"), stepEls = qa(".rp-steps span"),
+        bub = q(".rp-bub"), bt = q(".rp-bt"), bs = q(".rp-bs"), bar = q(".rp-pb u"), tasks = qa(".rp-bub li");
     var sleep = function(ms){ return new Promise(function(r, j){ setTimeout(function(){ root.isConnected ? r() : j(); }, reduce ? Math.min(ms, 120) : ms); }); };
-    var tl = function(n){ return n.toLocaleString(TR ? "tr-TR" : "en-GB")+" TL"; };
-    var last = new Date(2025, 2, 1);   /* the month the sample records belong to */
-    var run = 0, cfg, SRC, NUM, period, title;
+    var tl = function(n){ return n.toLocaleString(loc)+" TL"; }, num = function(n){ return n.toLocaleString(loc); };
+    var YEAR = 2025, MF = [.82,.78,1,.95,1.04,.97,.91,.94,1.06,1.1,1.28,1.36];
+    var run = 0, cfg, SRC, NUM, period, title, touched = false, manualNext = false, lastTouch = 0, sel = "all";
+    var mName = function(m){ return T.month(new Date(YEAR, m, 1)); };
+    /* the numbers for whatever was chosen, scaled from one sample month and one sample year */
+    function numsFor(c){
+      var out = {}, f = c.type === "m" ? MF[c.m] : (c.y === YEAR ? 1 : .84), base = RP_NUM[c.type];
+      RP_SRC.forEach(function(s){ var b = base[s.k]; out[s.k] = [Math.round(b[0]*f), Math.max(1, Math.round(b[1]*f)), Math.round(b[2]*f/10)*10]; });
+      return out;
+    }
+    function apply(c){
+      cfg = c; SRC = RP_SRC.filter(function(s){ return c.inc.indexOf(s.k) >= 0; }); NUM = numsFor(c);
+      period = c.type === "m" ? mName(c.m) : String(c.y); title = c.type === "m" ? T.repM : T.repY;
+    }
     root.addEventListener("click", function(ev){
       var t = ev.target.closest(".pk-tabs button"); if(!t) return;
       qa(".pk-tabs button").forEach(function(b){ b.classList.toggle("on", b === t); });
@@ -2944,160 +3005,169 @@ document.documentElement.setAttribute("data-theme", "day");
     var clk = q(".rp-clk"), days = TR ? ["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"] : ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
     (function tickClk(){ if(!root.isConnected) return; var d = new Date(); clk.textContent = days[d.getDay()]+" "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2); setTimeout(tickClk, 20000); })();
     function step(i){ stepEls.forEach(function(s, k){ s.className = k < i ? "done" : k === i ? "on" : ""; }); }
+    function tap(el){ if(!el) return; el.classList.add("press"); setTimeout(function(){ el.classList.remove("press"); }, 300); }
     function reset(){
-      cfg = RP_RUNS[run++ % RP_RUNS.length];
-      SRC = RP_SRC.filter(function(s){ return cfg.inc.indexOf(s.k) >= 0; }); NUM = RP_NUM[cfg.type];
-      period = cfg.type === "m" ? T.month(last) : String(last.getFullYear());
-      title = cfg.type === "m" ? T.repM : T.repY;
       qa(".rp-s").forEach(function(s){ s.className = "rp-s"; s.querySelector(".rp-ok").textContent = ""; });
       Array.prototype.forEach.call(down.querySelectorAll("i"), function(i){ i.className = ""; });
-      tt.textContent = T.app; tc.textContent = ""; scr.innerHTML = ""; step(-1);
+      tt.textContent = T.app; tc.textContent = ""; win.classList.remove("bg"); bub.className = "rp-bub"; step(-1);
     }
-    function log(s, cls){ var l = scr.querySelector(".rp-log"); if(l){ l.insertAdjacentHTML("beforeend", '<div class="'+(cls||'')+'">'+s+'</div>'); } }
-    function tap(el){ if(!el) return; el.classList.add("press"); setTimeout(function(){ el.classList.remove("press"); }, 300); }
 
-    /* 0: the program first asks what kind of report is wanted */
+    /* 0: the program first asks what kind of report is wanted; the visitor can answer, or let it answer itself */
     function ask(){
-      step(0); say.textContent = T.s00; tt.textContent = T.app+' · '+T.newRep;
-      var yrs = [String(last.getFullYear() - 1), String(last.getFullYear())];
+      step(0); tt.textContent = T.app+' · '+T.newRep;
+      var auto = RP_RUNS[run++ % RP_RUNS.length], manual = manualNext; manualNext = false; touched = manual;
+      var st = { type:"m", m:2, y:YEAR, inc:RP_SRC.map(function(s){ return s.k; }) };
       scr.innerHTML = '<div class="rp-ask">'
         + '<div class="rp-q"><small>'+T.qType+'</small><span class="rp-seg">'+T.types.map(function(t){ return '<button data-v="'+t[0]+'">'+t[1]+'</button>'; }).join('')+'</span></div>'
-        + '<div class="rp-q"><small>'+T.qPeriod+'</small><span class="rp-dd"><b></b> &#9662;</span></div>'
+        + '<div class="rp-q"><small>'+T.qPeriod+'</small><select class="rp-dd"></select></div>'
         + '<div class="rp-q"><small>'+T.qMk+'</small><span class="rp-cbs">'+RP_SRC.map(function(s){ return '<label data-k="'+s.k+'"><i></i>'+s.n+'</label>'; }).join('')+'</span></div>'
-        + '<div class="rp-q"><small></small><button class="rp-go">'+T.go+'</button></div></div>';
-      var seg = scr.querySelectorAll(".rp-seg button"), dd = scr.querySelector(".rp-dd b"), cbs = scr.querySelectorAll(".rp-cbs label");
-      Array.prototype.forEach.call(seg, function(b){ b.classList.toggle("on", b.getAttribute("data-v") === "m"); });
-      dd.textContent = T.month(new Date(last.getFullYear(), last.getMonth() + 1, 1));
-      Array.prototype.forEach.call(cbs, function(c){ c.classList.add("on"); });
-      return sleep(1500).then(function(){
-        var b = scr.querySelector('.rp-seg button[data-v="'+cfg.type+'"]'); tap(b);
-        Array.prototype.forEach.call(seg, function(x){ x.classList.toggle("on", x === b); });
-        say.textContent = cfg.type === "m" ? T.s0m : T.s0y;
-        return sleep(1300);
-      }).then(function(){
-        tap(dd.parentNode); dd.textContent = period;
-        return sleep(1300);
-      }).then(function(){
-        var p = Promise.resolve();
-        Array.prototype.forEach.call(cbs, function(c){
-          if(cfg.inc.indexOf(c.getAttribute("data-k")) >= 0) return;
-          p = p.then(function(){ tap(c); c.classList.remove("on"); say.textContent = T.s0x(c.textContent); return sleep(1500); });
-        });
-        return p;
-      }).then(function(){
-        say.textContent = T.s0g(SRC.length); return sleep(1200);
-      }).then(function(){
-        tap(scr.querySelector(".rp-go")); return sleep(700);
+        + '<div class="rp-q"><small></small><span><button class="rp-go">'+T.go+'</button><em class="rp-warn">'+T.noneSel+'</em></span></div></div>';
+      var seg = scr.querySelectorAll(".rp-seg button"), dd = scr.querySelector(".rp-dd"), cbs = scr.querySelectorAll(".rp-cbs label"), go = scr.querySelector(".rp-go");
+      function draw(){
+        Array.prototype.forEach.call(seg, function(b){ b.classList.toggle("on", b.getAttribute("data-v") === st.type); });
+        dd.innerHTML = st.type === "m"
+          ? MF.map(function(_, m){ return '<option value="'+m+'"'+(m === st.m ? ' selected' : '')+'>'+mName(m)+'</option>'; }).join('')
+          : [YEAR - 1, YEAR].map(function(y){ return '<option value="'+y+'"'+(y === st.y ? ' selected' : '')+'>'+y+'</option>'; }).join('');
+        Array.prototype.forEach.call(cbs, function(c){ c.classList.toggle("on", st.inc.indexOf(c.getAttribute("data-k")) >= 0); });
+        go.disabled = !st.inc.length; scr.querySelector(".rp-ask").classList.toggle("none", !st.inc.length);
+      }
+      draw();
+      say.textContent = manual ? T.s00m : T.s00;
+      return new Promise(function(done, fail){
+        function user(){ if(!touched){ touched = true; say.textContent = T.s00m; } lastTouch = Date.now(); }
+        Array.prototype.forEach.call(seg, function(b){ b.onclick = function(){ user(); st.type = b.getAttribute("data-v"); draw(); }; });
+        dd.onchange = function(){ user(); if(st.type === "m") st.m = +dd.value; else st.y = +dd.value; };
+        dd.onmousedown = dd.onfocus = user;
+        Array.prototype.forEach.call(cbs, function(c){ c.onclick = function(){
+          user(); var k = c.getAttribute("data-k"), i = st.inc.indexOf(k);
+          if(i >= 0) st.inc.splice(i, 1); else st.inc.push(k);
+          st.inc.sort(function(a, b){ return RP_SRC.findIndex(function(s){ return s.k === a; }) - RP_SRC.findIndex(function(s){ return s.k === b; }); });
+          draw();
+        }; });
+        go.onclick = function(){ if(!st.inc.length) return; lastTouch = Date.now(); tap(go); apply({ type:st.type, m:st.m, y:st.y, inc:st.inc.slice() }); setTimeout(done, 350); };
+        /* if nobody touches the form, it fills itself in */
+        var a = sleep(9000).then(function(){
+          if(touched) return;
+          var b = scr.querySelector('.rp-seg button[data-v="'+auto.type+'"]'); tap(b); st.type = auto.type; draw();
+          say.textContent = auto.type === "m" ? T.s0m : T.s0y;
+          return sleep(1300);
+        }).then(function(){
+          if(touched) return;
+          tap(dd); if(auto.type === "m") st.m = 2; else st.y = YEAR; draw();
+          return sleep(1300);
+        }).then(function(){
+          var p = Promise.resolve();
+          RP_SRC.forEach(function(s){
+            if(auto.inc.indexOf(s.k) >= 0) return;
+            p = p.then(function(){
+              if(touched) return;
+              var c = scr.querySelector('.rp-cbs label[data-k="'+s.k+'"]'); tap(c); st.inc = st.inc.filter(function(k){ return k !== s.k; }); draw();
+              say.textContent = T.s0x(s.n); return sleep(1500);
+            });
+          });
+          return p;
+        }).then(function(){
+          if(touched) return;
+          say.textContent = T.s0g(st.inc.length); return sleep(1200);
+        }).then(function(){ if(!touched) go.onclick(); });
+        a.catch(fail);
       });
     }
-    /* 1: pull every API that was asked for */
-    function pull(){
-      step(1); say.textContent = T.s0; tt.textContent = T.app;
-      scr.innerHTML = '<div class="rp-log"></div>';
-      log(title+' &middot; '+period+' &middot; '+SRC.length+' '+T.mks, "cmd");
-      RP_SRC.forEach(function(s, i){ if(cfg.inc.indexOf(s.k) < 0){ q('.rp-s[data-k="'+s.k+'"]').classList.add("skip"); q('.rp-s[data-k="'+s.k+'"] .rp-ok').textContent = T.notInc; } });
-      var p = sleep(1300);
-      SRC.forEach(function(s){
+    /* 1 to 3: the report is prepared in the background; the window steps back and a bubble shows the progress */
+    function task(i, state){ tasks[i].className = state; }
+    function prep(){
+      step(1); win.classList.add("bg"); tt.textContent = T.app;
+      scr.insertAdjacentHTML("beforeend", '<div class="rp-veil">'+T.bgNote+'</div>');
+      bub.className = "rp-bub on"; bt.textContent = T.bubT; bs.textContent = title+' · '+period; bar.style.width = "4%";
+      tasks.forEach(function(t){ t.className = ""; });
+      say.textContent = T.sBg;
+      RP_SRC.forEach(function(s){ if(cfg.inc.indexOf(s.k) < 0){ q('.rp-s[data-k="'+s.k+'"]').classList.add("skip"); q('.rp-s[data-k="'+s.k+'"] .rp-ok').textContent = T.notInc; } });
+      task(0, "on");
+      var p = sleep(1200), n = SRC.length;
+      SRC.forEach(function(s, j){
         p = p.then(function(){
           var el = q('.rp-s[data-k="'+s.k+'"]'), i = RP_SRC.indexOf(s); el.classList.add("on");
-          log(s.n+' &rsaquo; '+s.ep+' <span class="w">…</span>');
+          bs.textContent = T.pullS(s.n);
           return sleep(1000).then(function(){
-            var n = NUM[s.k][0].toLocaleString(TR ? "tr-TR" : "en-GB");
-            el.classList.remove("on"); el.classList.add("got"); el.querySelector(".rp-ok").textContent = "200 · "+n+" "+T.recs;
+            var c = num(NUM[s.k][0]);
+            el.classList.remove("on"); el.classList.add("got"); el.querySelector(".rp-ok").textContent = "200 · "+c+" "+T.recs;
             down.querySelectorAll("i")[i].className = "go";
-            var w = scr.querySelector(".rp-log .w"); if(w){ w.className = "g"; w.textContent = "200 · "+n+" "+T.recs; }
-            say.textContent = T.s1(s.n, n);
-            return sleep(1300);
+            bar.style.width = (4 + 46*(j+1)/n)+"%";
+            say.textContent = T.s1(s.n, c);
+            return sleep(1000);
           });
         });
       });
-      return p;
-    }
-    /* 2: map the fields to one schema */
-    function map(){
-      step(2); say.textContent = T.s2; tt.textContent = T.app+' · '+T.schema;
-      scr.innerHTML = '<div class="rp-map"><div class="rp-mr h"><span></span>'+T.cols.map(function(c){ return '<span>'+c+'</span>'; }).join('')+'</div>'
-        + SRC.map(function(s){ return '<div class="rp-mr" data-k="'+s.k+'"><span>'+s.n+'</span>'+s.map.map(function(){ return '<span></span>'; }).join('')+'</div>'; }).join('')+'</div>';
-      var p = sleep(900);
-      SRC.forEach(function(s){
-        p = p.then(function(){
-          var cells = scr.querySelectorAll('.rp-mr[data-k="'+s.k+'"] span'), src = q('.rp-s[data-k="'+s.k+'"]'), k = 0;
-          src.classList.add("on");
-          return (function next(){
-            if(k >= s.map.length){ src.classList.remove("on"); return sleep(300); }
-            var c = cells[k+1]; c.textContent = s.map[k]; c.className = "in"; k++;
-            return sleep(260).then(next);
-          })();
-        });
-      });
-      return p.then(function(){ return sleep(1400); });
-    }
-    /* 3: normalize dates, currency and returns */
-    function norm(){
-      step(3); say.textContent = T.s3;
-      scr.innerHTML = '<div class="rp-fix">'
-        + SRC.map(function(s){ return '<div class="rp-fc"><b>'+s.n+'</b>'+s.fix.map(function(f){ return '<div class="rp-fr"><span class="a">'+pkEsc(f[0])+'</span><span class="ar">&rarr;</span><span class="b">'+f[1]+'</span></div>'; }).join('')+'</div>'; }).join('')+'</div>';
-      var rows = scr.querySelectorAll(".rp-fr"), p = sleep(600);
-      Array.prototype.forEach.call(rows, function(r){
-        p = p.then(function(){ r.classList.add("in"); return sleep(260); }).then(function(){ r.classList.add("ok"); return sleep(200); });
-      });
-      return p.then(function(){ return sleep(1600); });
+      return p.then(function(){
+        task(0, "done"); task(1, "on"); step(2); say.textContent = T.s2; bs.textContent = T.tasks[1];
+        SRC.forEach(function(s){ q('.rp-s[data-k="'+s.k+'"]').classList.add("on"); });
+        bar.style.width = "68%"; return sleep(2600);
+      }).then(function(){
+        SRC.forEach(function(s){ q('.rp-s[data-k="'+s.k+'"]').classList.remove("on"); });
+        task(1, "done"); task(2, "on"); step(3); say.textContent = T.s3; bs.textContent = T.tasks[2];
+        bar.style.width = "86%"; return sleep(2600);
+      }).then(function(){
+        task(2, "done"); task(3, "on"); bs.textContent = T.tasks[3]; bar.style.width = "97%"; return sleep(1600);
+      }).then(function(){
+        task(3, "done"); bar.style.width = "100%"; bub.classList.add("ok"); bt.textContent = T.bubDone; bs.textContent = T.bubOpen; say.textContent = T.sReady;
+        return new Promise(function(r, j){ bub.onclick = r; sleep(1800).then(r, j); });
+      }).then(function(){ bub.onclick = null; bub.classList.add("out"); win.classList.remove("bg"); });
     }
     /* 4: the report, in the company's layout, with a channel filter */
-    var sel = "all", lastTouch = 0;
+    var wantNew = false;
     function filter(k){
       sel = k;
       var list = SRC.filter(function(s){ return k === "all" || s.k === k; }), tot = [0, 0, 0];
       list.forEach(function(s){ var n = NUM[s.k]; tot[0] += n[2]; tot[1] += n[0]; tot[2] += n[1]; });
       var kp = scr.querySelectorAll(".rp-kpi b"); if(!kp.length) return;
-      kp[0].textContent = tl(tot[0]); kp[1].textContent = tot[1].toLocaleString(TR ? "tr-TR" : "en-GB");
+      kp[0].textContent = tl(tot[0]); kp[1].textContent = num(tot[1]);
       kp[2].textContent = (tot[2]/tot[1]*100).toFixed(1).replace(".", TR ? "," : ".")+"%";
       Array.prototype.forEach.call(scr.querySelectorAll(".rp-chips button"), function(c){ c.classList.toggle("on", c.getAttribute("data-c") === k); });
       Array.prototype.forEach.call(scr.querySelectorAll(".rp-bar, .rp-tr[data-k]"), function(r){ r.classList.toggle("off", k !== "all" && r.getAttribute("data-k") !== k); });
       Array.prototype.forEach.call(scr.querySelectorAll(".rp-kpi > div"), function(d){ d.classList.remove("pulse"); void d.offsetWidth; d.classList.add("pulse"); });
     }
     root.addEventListener("click", function(ev){
-      var c = ev.target.closest(".rp-chips button"); if(!c) return;
-      lastTouch = Date.now(); filter(c.getAttribute("data-c"));
+      var c = ev.target.closest(".rp-chips button");
+      if(c){ lastTouch = Date.now(); filter(c.getAttribute("data-c")); return; }
+      if(ev.target.closest(".rp-new")){ wantNew = true; manualNext = true; }
     });
     function press(k){ tap(scr.querySelector('.rp-chips button[data-c="'+k+'"]')); filter(k); }
     function report(){
-      step(4); say.textContent = T.s4; tt.textContent = title+' · '+period; tc.textContent = T.sheet;
+      step(4); say.textContent = T.s4; tt.textContent = title+' · '+period; tc.textContent = T.sheet; wantNew = false;
       var max = Math.max.apply(null, SRC.map(function(s){ return NUM[s.k][2]; }));
-      var num = function(n){ return n.toLocaleString(TR ? "tr-TR" : "en-GB"); };
-      scr.innerHTML = '<div class="rp-rep"><div class="rp-rh"><b>'+title+'</b><span>'+period+'</span></div>'
-        + '<div class="rp-flt"><small>'+T.chan+'</small><span class="rp-chips"><button data-c="all" class="on">'+T.all+'</button>'
-        +   SRC.map(function(s){ return '<button data-c="'+s.k+'">'+s.n+'</button>'; }).join('')+'</span><span class="rp-sel">'+period+' &#9662;</span></div>'
+      scr.innerHTML = '<div class="rp-rep"><div class="rp-rh"><b>'+title+'</b><span>'+period+'</span><button class="rp-new">+ '+T.newRep+'</button></div>'
+        + '<div class="rp-flt"><small>'+T.chan+'</small><span class="rp-chips">'+(SRC.length > 1 ? '<button data-c="all" class="on">'+T.all+'</button>' : '')
+        +   SRC.map(function(s){ return '<button data-c="'+s.k+'">'+s.n+'</button>'; }).join('')+'</span><span class="rp-sel">'+period+'</span></div>'
         + '<div class="rp-kpi">'+T.kpi.map(function(k){ return '<div><small>'+k+'</small><b></b></div>'; }).join('')+'</div>'
         + '<div class="rp-grid"><div class="rp-bars"><small>'+T.byCh+'</small>'
         +   SRC.map(function(s){ var v = NUM[s.k][2]; return '<div class="rp-bar" data-k="'+s.k+'"><span>'+s.n+'</span><i data-w="'+(v/max*100).toFixed(1)+'"></i><em>'+tl(v)+'</em></div>'; }).join('')
         + '</div><div class="rp-tbl"><div class="rp-tr h">'+T.tbl.map(function(c){ return '<span>'+c+'</span>'; }).join('')+'</div>'
         +   SRC.map(function(s){ var n = NUM[s.k]; return '<div class="rp-tr" data-k="'+s.k+'"><span>'+s.n+'</span><span>'+num(n[0])+'</span><span>'+num(n[1])+'</span><span>'+tl(n[2])+'</span></div>'; }).join('')
         + '</div></div></div>';
-      filter("all");
+      filter(SRC.length > 1 ? "all" : SRC[0].k);
       var parts = scr.querySelectorAll(".rp-rh, .rp-flt, .rp-kpi > div, .rp-bars, .rp-tbl, .rp-tr"), p = sleep(300);
-      Array.prototype.forEach.call(parts, function(el){ p = p.then(function(){ el.classList.add("in"); return sleep(220); }); });
-      var t0, a = SRC[SRC.length > 3 ? 2 : 1], b = SRC[SRC.length - 1];
-      function hold(){ return sleep(500).then(function(){ if(Date.now() - t0 < 7000 || Date.now() - lastTouch < 9000) return hold(); }); }
+      Array.prototype.forEach.call(parts, function(el){ p = p.then(function(){ el.classList.add("in"); return sleep(200); }); });
+      var t0, idle = function(){ return Date.now() - lastTouch > 9000 && !wantNew; };
+      function hold(){ return sleep(400).then(function(){ if(wantNew) return; if(Date.now() - t0 < 8000 || Date.now() - lastTouch < 12000) return hold(); }); }
       return p.then(function(){
         Array.prototype.forEach.call(scr.querySelectorAll(".rp-bar i"), function(x){ x.style.width = x.getAttribute("data-w")+"%"; });
-        var rs = scr.querySelector(".rp-rh span"); rs.innerHTML = "&check; "+T.ready; rs.className = "ok";
         return sleep(2200);
       }).then(function(){
-        if(Date.now() - lastTouch < 9000) return;
+        if(!idle() || SRC.length < 2) return;
+        var a = SRC[SRC.length > 3 ? 2 : 1], b = SRC[SRC.length - 1];
         press(a.k); say.textContent = T.sF(a.n);
-        return sleep(3200).then(function(){
-          if(Date.now() - lastTouch < 9000) return;
+        return sleep(3000).then(function(){
+          if(!idle()) return;
           press(b.k); say.textContent = T.sF(b.n);
-          return sleep(3200);
+          return sleep(3000);
         }).then(function(){
-          if(Date.now() - lastTouch < 9000) return;
+          if(!idle()) return;
           press("all"); say.textContent = T.sF0;
-          return sleep(2400);
+          return sleep(2200);
         });
-      }).then(function(){ step(5); say.textContent = T.s5; t0 = Date.now(); return hold(); });
+      }).then(function(){ step(5); if(!wantNew) say.textContent = T.s5; t0 = Date.now(); return hold(); });
     }
-    function loop(){ reset(); return ask().then(pull).then(map).then(norm).then(report).then(loop); }
+    function loop(){ reset(); return ask().then(prep).then(report).then(loop); }
     var started = false;
     function start(){ if(started) return; started = true; setTimeout(function(){ loop().catch(function(){}); }, 500); }
     say.textContent = TR ? "Akış birazdan başlıyor." : "The flow starts in a moment.";
