@@ -280,13 +280,14 @@ body.phone #sky text.ct{opacity:1;}
 .dia .hdl{stroke:var(--line2); stroke-width:1;}
 .dia .fkl{fill:none; stroke:var(--sig-dim); stroke-width:1.2; opacity:.8;}
 .dia .fkd{fill:var(--sig-dim);}
-/* the İş Takip demo wears the desktop's own colours: the graph sits on the
-   same grey as the desk by day and on the night desk after dark. The canvas
-   reads the --pk-* tokens, so it follows the theme switch too. */
-:root{ --pk-bg1:#E4E6EA; --pk-bg2:#CCD0D6; --pk-grid:rgba(24,26,32,.045); --pk-ink:#22242A;
-  --pk-halo:rgba(226,228,233,.92); --pk-ring:#22242A; --pk-edge:.42; --pk-glow:0; --pk-dim:.2;
+/* the İş Takip demo uses the app's own canvas: mindmapCanvasColor() in the
+   Flutter code is #F6F6F9 in the light theme and #06060A in the dark one,
+   and the page picks the same pair by day and at night. The canvas reads the
+   --pk-* tokens, so it follows the theme switch too. */
+:root{ --pk-bg1:#F6F6F9; --pk-bg2:#F6F6F9; --pk-grid:transparent; --pk-ink:#14141A;
+  --pk-halo:rgba(246,246,249,.92); --pk-ring:#14141A; --pk-edge:.5; --pk-glow:1; --pk-dim:.15;
   --pk-code:#0E7490; --pk-acc:#6D4FE8; }
-html[data-theme=night]{ --pk-bg1:#111522; --pk-bg2:#080A12; --pk-grid:rgba(150,180,255,.045); --pk-ink:#E8E8EE;
+html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparent; --pk-ink:#E8E8EE;
   --pk-halo:rgba(8,10,17,.88); --pk-ring:#FFFFFF; --pk-edge:.26; --pk-glow:1; --pk-dim:.13;
   --pk-code:#22D3EE; --pk-acc:#7C5CFF; }
 .pk{margin:0 0 24px; border-radius:12px; overflow:hidden; background:var(--panel); border:1px solid var(--line2);
@@ -764,7 +765,7 @@ document.documentElement.setAttribute("data-theme", "day");
 
 <div id="os">
   <div id="top">
-    <span class="brand">onur can<i>&nbsp;mığırdağı</i></span>
+    <span class="brand">Onur Can<i>&nbsp;Mığırdağı</i></span>
     <span class="right">
       <button id="lgbtn" aria-label="Türkçe / English"><i data-l="tr">TR</i><i data-l="en">EN</i></button>
       <button id="palbtn">&#8984;K</button>
@@ -821,7 +822,7 @@ document.documentElement.setAttribute("data-theme", "day");
     <button class="k" id="barpal"></button>
     <a class="k lnk" href="https://www.linkedin.com/in/onurmigirdagi" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-      linkedin</a>
+      LinkedIn</a>
     <div id="tasks"></div>
     <span id="clock">--:--</span>
   </div>
@@ -863,24 +864,24 @@ document.documentElement.setAttribute("data-theme", "day");
   var LANG = /[?&]lang=en\b/.test(location.search) ? "en" : "tr";
   document.documentElement.lang = LANG;
   var UI = {
-    en:{ projects:"Projects", about:"about", readme:"readme", openReadme:"open the readme",
-         search:"SEARCH", find:"open a project, a document, a tool...",
-         open:"open", win:"window", none:"no match",
-         mn:"minimize", mx:"maximize", x:"close",
+    en:{ projects:"Projects", about:"About", readme:"readme", openReadme:"Open the readme",
+         search:"SEARCH", find:"Open a project, a document, a tool...",
+         open:"Open", win:"Window", none:"No match",
+         mn:"Minimize", mx:"Maximize", x:"Close",
          m_refresh:"Refresh", m_realign:"Realign the system", m_readme:"Open README.txt",
          m_search:"Search", m_lang:"Türkçe", m_closeall:"Close all windows", m_night:"Night sky",
          m_reset:"Reset desktop", m_open:"Open", m_orbit:"Send back to orbit",
-         dayB:"DAY", nightB:"NIGHT", dayT:"back to day (N)", nightT:"night sky (N)",
-         scopeDay:"back to day", scopeNight:"look through the telescope: switch to the night sky" },
-    tr:{ projects:"Projeler", about:"hakkımda", readme:"benioku", openReadme:"benioku dosyasını aç",
-         search:"ARA", find:"bir proje, belge ya da araç aç...",
-         open:"açık", win:"pencere", none:"sonuç yok",
-         mn:"küçült", mx:"büyüt", x:"kapat",
+         dayB:"DAY", nightB:"NIGHT", dayT:"Back to day (N)", nightT:"Night sky (N)",
+         scopeDay:"Back to day", scopeNight:"Look through the telescope: switch to the night sky" },
+    tr:{ projects:"Projeler", about:"Hakkımda", readme:"benioku", openReadme:"Benioku dosyasını aç",
+         search:"ARA", find:"Bir proje, belge ya da araç aç...",
+         open:"Açık", win:"Pencere", none:"Sonuç yok",
+         mn:"Küçült", mx:"Büyüt", x:"Kapat",
          m_refresh:"Yenile", m_realign:"Sistemi hizala", m_readme:"BENİOKU.txt dosyasını aç",
          m_search:"Ara", m_lang:"English", m_closeall:"Tüm pencereleri kapat", m_night:"Gece gökyüzü",
          m_reset:"Masaüstünü sıfırla", m_open:"Aç", m_orbit:"Yörüngeye geri gönder",
-         dayB:"GÜNDÜZ", nightB:"GECE", dayT:"gündüze dön (N)", nightT:"gece gökyüzü (N)",
-         scopeDay:"gündüze dön", scopeNight:"teleskoptan bak: gece gökyüzüne geç" }
+         dayB:"GÜNDÜZ", nightB:"GECE", dayT:"Gündüze dön (N)", nightT:"Gece gökyüzü (N)",
+         scopeDay:"Gündüze dön", scopeNight:"Teleskoptan bak: gece gökyüzüne geç" }
   };
   function ui(k){ return UI[LANG][k]; }
 
@@ -899,24 +900,24 @@ document.documentElement.setAttribute("data-theme", "day");
         "Çıktının arkasındaki sistem, genelde en çok gurur duyduğum kısım."]
   };
   var HOW = {
-    en:{ h:"how to use",
-      dk:["five projects orbit the planet, my own files sit in the seven stars",
-          "click anything to open it, or drag it out of orbit and let go",
-          "right click the desktop for the system menu",
-          "drag a window to the screen edge to snap it",
-          "press <b>⌘K</b> to search everything"],
-      mb:["five projects orbit the planet, my own files sit in the seven stars",
-          "tap anything to open it, or drag it out of orbit and let go",
-          "close a window to go back to the desk"] },
-    tr:{ h:"nasıl kullanılır",
-      dk:["beş proje gezegenin etrafında dönüyor, benim dosyalarım yedi yıldızda",
-          "açmak için tıkla ya da yörüngeden çekip bırak",
-          "sistem menüsü için masaüstüne sağ tıkla",
-          "yaslamak için pencereyi ekranın kenarına sürükle",
-          "her şeyi aramak için <b>⌘K</b>"],
-      mb:["beş proje gezegenin etrafında dönüyor, benim dosyalarım yedi yıldızda",
-          "açmak için herhangi birine dokun ya da yörüngeden çekip bırak",
-          "masaya dönmek için pencereyi kapat"] }
+    en:{ h:"How to use",
+      dk:["Five projects orbit the planet, my own files sit in the seven stars",
+          "Click anything to open it, or drag it out of orbit and let go",
+          "Right click the desktop for the system menu",
+          "Drag a window to the screen edge to snap it",
+          "Press <b>⌘K</b> to search everything"],
+      mb:["Five projects orbit the planet, my own files sit in the seven stars",
+          "Tap anything to open it, or drag it out of orbit and let go",
+          "Close a window to go back to the desk"] },
+    tr:{ h:"Nasıl kullanılır",
+      dk:["Beş proje gezegenin etrafında dönüyor, benim dosyalarım yedi yıldızda",
+          "Açmak için tıkla ya da yörüngeden çekip bırak",
+          "Sistem menüsü için masaüstüne sağ tıkla",
+          "Yaslamak için pencereyi ekranın kenarına sürükle",
+          "Her şeyi aramak için <b>⌘K</b>"],
+      mb:["Beş proje gezegenin etrafında dönüyor, benim dosyalarım yedi yıldızda",
+          "Açmak için herhangi birine dokun ya da yörüngeden çekip bırak",
+          "Masaya dönmek için pencereyi kapat"] }
   };
 
   var PROJ = {
@@ -938,27 +939,29 @@ document.documentElement.setAttribute("data-theme", "day");
 
     istakip:{ w:900, h:720, badges:[0,0,1],
       en:{ t:"İş Takip", name:"İş Takip Modülü", meta:"2026 &middot; personal project &middot; BTS &amp; Partners",
-        lede:"My second brain as a knowledge graph: 177 nodes and 415 typed edges, built so that an AI agent can walk it. The window below is the graph screen of the app running on the real data.",
-        paras:["My research at BTS and what I learn on my own go into one notebook: tasks, findings, concepts, sources, people. Every one of them is a node in the same table, and every relation between them has a type. A tool implements a protocol, a product operates under a regulation, a finding asserts something a source said. In the graph these are not lines, they are meanings.",
-               "I did not build AI into the app. For whichever node you pick, the app writes a structured prompt; Claude reads the database with it, works through the task with me step by step, and not a single row is written until I approve the output it proposes. The Prompt tab shows the exact text the app produces.",
-               "Information gets in two ways. The first is quick add: I type one line of plain language, something like \"tomorrow 2pm contract review #kvkk @project +person P1\", and the app parses the tag, the project, the person, the date and the priority, then creates the node and its edges itself. The second is the close of a piece of work done with Claude: when a task is finished, Claude proposes a closing note, the new findings, concepts and sources and the edges between them as YAML that fits the schema, and it is written only if I approve it. Every source records where it came from (web, book, paper, conversation, colleague) and who produced it, me or an AI.",
-               "Why I bother: I do not want to lose years of research, and I want to see its connections months later. Every design decision answers one of three questions. Can I capture something without friction making me give up? Will I find the connections later? Can an AI read the notebook and build on it? That is why a tag marks a state and never a topic, why a regulation is opened as a concept and not a tag, and why every edge has a meaning instead of a vague relates_to. I repaired 88 wrongly built edges in 15 migrations, with a backup before and after each one, until none of those vague links was left. The Game tab keeps the connections alive: spaced repetition applied to the edges instead of cards, each edge with its own memory curve.",
-               "Everything is one nodes table, with the type in a kind column. A table per type would have meant a join for every graph query; with one table the graph queries run without caring about kind. Edges live in their own table, the same triple cannot be entered twice and a node cannot link to itself. Notes, repeated test runs and weighted criteria hang off a node in their own tables, and the game's memory hangs off an edge. Every row is locked to its owner with row level security, and every write lands in audit_log.",
+        lede:"A digital Zettelkasten: for as long as I work, every task I do and everything I learn is kept in one database, and I get back to it later through its connections. The window below is the graph screen of the app running on the real data.",
+        paras:["A Zettelkasten is the slip box method the sociologist Niklas Luhmann worked with. Every idea goes on its own small note that makes sense by itself, every note has a permanent identity, and the notes are organised not in folders but by the references they make to each other. Over time the knowledge turns into a network that grows, and you find what you are looking for through a connection rather than a category. İş Takip Modülü is that method moved into a database.",
+               "As I work, two things pile up together: my task tracking and what I learn. A task is opened; the findings that come out of working on it, the concepts I run into and the sources I read are added as separate notes and linked to it. When the task is closed the knowledge does not go with it: the next time a piece of work touches the same concept, the earlier findings are already there. Every note is a node in one table and every relation between them has a type. A tool implements a protocol, a product operates under a regulation, a finding rests on a source.",
+               "Information gets in two ways. The first is quick add: I type one line of plain language, something like \"tomorrow 2pm contract review #kvkk @project +person P1\", and the app parses the tag, the project, the person, the date and the priority, then creates the note and its links itself. The second is the close of a piece of work done with Claude: when a task is finished, Claude proposes a closing note, the new findings, concepts and sources and the links between them as YAML that fits the schema, and it is written only if I approve it. Every source records where it came from (web, book, paper, conversation, colleague) and who produced it, me or an AI.",
+               "I get back to that knowledge in four ways. In the graph I click a concept and see its two hop neighbourhood: which work I did on it, what I found, which sources it rests on. In search, a query like \"kvkk #research status:shipped\" filters by kind, status, tag and project. When I start something new, Claude reads the same database with the prompt the app writes and uses the earlier notes as context; the Prompt tab shows that exact text. And the Game tab keeps the connections alive in my own memory: spaced repetition applied to the links instead of cards, each link with its own memory curve.",
+               "A Zettelkasten is only worth as much as its links. So which kind a note gets and which relation a link gets is written down as rules: a tag marks a state and never a topic, and a regulation is opened as a concept, not a tag. I repaired 88 wrongly built links in 15 migrations, with a backup before and after each one, until not one vague relates_to link was left.",
+               "Everything is one nodes table, with the type in a kind column. A table per type would have meant a join for every graph query; with one table the graph queries run without caring about kind. Links live in their own table, the same triple cannot be entered twice and a note cannot link to itself. Comments, repeated test runs and weighted criteria hang off a note in their own tables, and the game's memory hangs off a link. Every row is locked to its owner with row level security, and every write lands in audit_log.",
                "People, tasks, findings and projects are numbered here because they describe client and internal work. Their kind, status and every connection are real."],
-        blocks:{ 2:"flow", 4:"erd" },
-        rt:"Built with", rail:["Flutter, ~14,400 lines of Dart","<b>Supabase</b> Postgres with RLS","177 nodes, 415 typed edges","Force directed graph, written from scratch","Prompt building, <b>approved</b> AI writes","FSRS memory on every edge"],
-        tags:["Flutter","Supabase","Knowledge graph","AI agent"] },
+        blocks:{ 2:"flow", 5:"erd" },
+        rt:"Built with", rail:["Flutter, ~14,400 lines of Dart","<b>Database</b> with row level security","177 notes, 415 typed links","Force directed graph, written from scratch","Prompt building, <b>approved</b> AI writes","FSRS memory on every link"],
+        tags:["Zettelkasten","Flutter","Knowledge graph","AI agent"] },
       tr:{ t:"İş Takip", name:"İş Takip Modülü", meta:"2026 &middot; kişisel proje &middot; BTS &amp; Partners",
-        lede:"Bilgi grafı olarak ikinci beynim: 177 düğüm ve 415 tiplenmiş bağ, bir yapay zekâ ajanının gezebileceği şekilde kuruldu. Aşağıdaki pencere, uygulamanın graf ekranının gerçek veriyle çalışan hali.",
-        paras:["BTS'deki araştırmalarım da kendi öğrendiklerim de tek bir deftere giriyor: görevler, bulgular, kavramlar, kaynaklar, kişiler. Her biri aynı tabloda bir düğüm, aralarındaki her ilişkinin bir türü var. Bir araç bir protokolü uyguluyor, bir ürün bir regülasyona tabi, bir bulgu bir kaynağın söylediğini ileri sürüyor. Grafta bunlar çizgi değil, anlam.",
-               "Yapay zekâyı uygulamanın içine gömmedim. Hangi düğümü seçersen uygulama onun için yapılandırılmış bir prompt yazıyor. Claude bu promptla veritabanını okuyup görevi benimle adım adım yürütüyor ve önerdiği çıktıyı ben onaylamadan tek satır yazılmıyor. Prompt sekmesinde uygulamanın ürettiği metnin aynısı duruyor.",
-               "Bilgi iki yoldan giriyor. Birincisi hızlı ekleme: tek satır düz Türkçe yazıyorum, \"yarın 14:00 sözleşme incelemesi #kvkk @proje +kişi P1\" gibi. Uygulama etiketi, projeyi, kişiyi, tarihi ve önceliği ayrıştırıp düğümü ve bağlarını kendisi kuruyor. İkincisi Claude ile yürüttüğüm işlerin kapanışı: bir görev bitince Claude kapanış notunu, yeni bulguları, kavramları, kaynakları ve aralarındaki bağları şemaya uygun bir YAML olarak öneriyor, ben onaylarsam yazılıyor. Her kaynağın nereden geldiği (web, kitap, makale, sohbet, meslektaş) ve kimin ürettiği, ben mi yapay zekâ mı, kayıtlı.",
-               "Neden uğraşıyorum: yıllarca biriktirdiğim araştırmayı kaybetmek istemiyorum ve aylar sonra bağlantılarını görebilmek istiyorum. Her tasarım kararı üç sorudan birine cevap veriyor. Bir şeyi sürtünme yüzünden vazgeçmeden yakalayabiliyor muyum? Bağlantıları sonra bulabilecek miyim? Yapay zekâ defteri okuyup üzerine inşa edebiliyor mu? Bu yüzden etiket bir durumu işaretliyor, asla bir konuyu değil; bir mevzuat etiket olarak değil kavram olarak açılıyor; her bağın belirsiz bir relates_to yerine bir anlamı var. Yanlış kurulmuş 88 bağı 15 migrasyonda, her birinin öncesinde ve sonrasında yedek alarak düzelttim, o belirsiz bağlardan tek biri kalmadı. Oyun sekmesi de bağları canlı tutuyor: aralıklı tekrar kartlara değil bağlara uygulanıyor, her bağın kendi hafıza eğrisi var.",
-               "Her şey tek bir nodes tablosunda, türü kind sütununda. Her tür için ayrı tablo, her graf sorgusunda bir JOIN demekti; tek tabloyla graf sorguları türe bakmadan çalışıyor. Bağlar kendi tablosunda, aynı üçlü iki kez girilemiyor ve bir düğüm kendine bağlanamıyor. Notlar, tekrarlanan test koşumları ve ağırlıklı kriterler düğüme bağlı ayrı tablolarda, oyunun hafızası ise bağa bağlı. Her satır RLS ile sahibine kilitli, her yazma audit_log'a düşüyor.",
+        lede:"Dijital bir Zettelkasten: çalıştığım sürece yaptığım her iş ve öğrendiğim her bilgi tek bir veritabanında tutuluyor, sonra o bilgiye bağlantıları üzerinden geri dönüyorum. Aşağıdaki pencere, uygulamanın graf ekranının gerçek veriyle çalışan hali.",
+        paras:["Zettelkasten, sosyolog Niklas Luhmann'ın çalıştığı not kutusu yöntemi. Her fikir kendi başına anlamlı küçük bir nota yazılır, her notun kalıcı bir kimliği vardır ve notlar klasörlerde değil, birbirlerine verdikleri referanslarla düzenlenir. Bilgi zamanla büyüyen bir ağa dönüşür; aradığını bir kategoriden değil, bir bağlantıdan bulursun. İş Takip Modülü bu yöntemin bir veritabanına taşınmış hali.",
+               "Çalıştığım sürece iki şey birlikte birikiyor: iş takibim ve öğrendiklerim. Bir görev açılıyor; üzerinde çalışırken çıkan bulgular, karşılaştığım kavramlar ve okuduğum kaynaklar ayrı notlar olarak ekleniyor ve göreve bağlanıyor. Görev kapanınca bilgi onunla birlikte gitmiyor: bir sonraki iş aynı kavrama dokunduğunda önceki bulgular zaten orada. Her not tek bir tabloda bir düğüm, aralarındaki her ilişkinin bir türü var. Bir araç bir protokolü uyguluyor, bir ürün bir regülasyona tabi, bir bulgu bir kaynağa dayanıyor.",
+               "Bilgi iki yoldan giriyor. Birincisi hızlı ekleme: tek satır düz Türkçe yazıyorum, \"yarın 14:00 sözleşme incelemesi #kvkk @proje +kişi P1\" gibi. Uygulama etiketi, projeyi, kişiyi, tarihi ve önceliği ayrıştırıp notu ve bağlarını kendisi kuruyor. İkincisi Claude ile yürüttüğüm işlerin kapanışı: bir görev bitince Claude kapanış notunu, yeni bulguları, kavramları, kaynakları ve aralarındaki bağları şemaya uygun bir YAML olarak öneriyor, ben onaylarsam yazılıyor. Her kaynağın nereden geldiği (web, kitap, makale, sohbet, meslektaş) ve kimin ürettiği, ben mi yapay zekâ mı, kayıtlı.",
+               "O bilgiye dört yoldan geri dönüyorum. Grafta bir kavrama tıklayıp iki adımlık komşuluğunu görüyorum: o konuda hangi işleri yaptığımı, neler bulduğumu, hangi kaynaklara dayandığımı. Aramada \"kvkk #research status:shipped\" gibi bir sorguyla tür, durum, etiket ve projeye göre süzüyorum. Yeni bir işe başladığımda Claude, uygulamanın yazdığı promptla aynı veritabanını okuyup önceki notları bağlam olarak kullanıyor; Prompt sekmesinde o metnin aynısı duruyor. Oyun sekmesi de bağlantıları kendi hafızamda canlı tutuyor: aralıklı tekrar kartlara değil bağlara uygulanıyor, her bağın kendi hafıza eğrisi var.",
+               "Bir Zettelkasten ancak bağları kadar değerli. Bu yüzden bir notun hangi türle, bir bağın hangi ilişkiyle açılacağı yazılı kurallara bağlı: etiket bir durumu işaretliyor, asla bir konuyu değil; bir mevzuat etiket olarak değil kavram olarak açılıyor. Yanlış kurulmuş 88 bağı 15 migrasyonda, her birinin öncesinde ve sonrasında yedek alarak düzelttim; belirsiz tek bir relates_to bağı kalmadı.",
+               "Her şey tek bir nodes tablosunda, türü kind sütununda. Her tür için ayrı tablo, her graf sorgusunda bir JOIN demekti; tek tabloyla graf sorguları türe bakmadan çalışıyor. Bağlar kendi tablosunda, aynı üçlü iki kez girilemiyor ve bir not kendine bağlanamıyor. Yorumlar, tekrarlanan test koşumları ve ağırlıklı kriterler nota bağlı ayrı tablolarda, oyunun hafızası ise bağa bağlı. Her satır RLS ile sahibine kilitli, her yazma audit_log'a düşüyor.",
                "Kişi, görev, bulgu ve proje adları burada numaralı, çünkü müşteri ve şirket içi işleri anlatıyorlar. Türleri, durumları ve bütün bağlantıları gerçek."],
-        blocks:{ 2:"flow", 4:"erd" },
-        rt:"Yapı taşları", rail:["Flutter, ~14.400 satır Dart","RLS'li <b>Supabase</b> Postgres","177 düğüm, 415 tiplenmiş bağ","Sıfırdan yazılmış force directed graf","Prompt üretimi, <b>onaylı</b> AI yazma","Her bağda FSRS hafızası"],
-        tags:["Flutter","Supabase","Bilgi grafı","AI ajanı"] } },
+        blocks:{ 2:"flow", 5:"erd" },
+        rt:"Yapı taşları", rail:["Flutter, ~14.400 satır Dart","Satır düzeyinde kilitli <b>veritabanı</b>","177 not, 415 tiplenmiş bağ","Sıfırdan yazılmış force directed graf","Prompt üretimi, <b>onaylı</b> AI yazma","Her bağda FSRS hafızası"],
+        tags:["Zettelkasten","Flutter","Bilgi grafı","AI ajanı"] } },
 
     pipeline:{ w:680, h:600, badges:[1,1,1],
       en:{ t:"Pipeline", name:"Regulatory Monitoring Pipeline", meta:"2026 &middot; BTS &amp; Partners",
@@ -1009,20 +1012,20 @@ document.documentElement.setAttribute("data-theme", "day");
   var PORDER = ["karinca","istakip","pipeline","reporting","sms"];
 
   var TOOLS = {
-    en:{ t:"Tools", h:"Tools", meta:"what I actually work in", g:[
+    en:{ t:"Tools", h:"Tools", meta:"What I actually work in", g:[
       ["AI","Prompt engineering, agent pipelines, LLM evaluation and benchmarking, output quality control, tool comparison"],
       ["Automation","Python, n8n, Power Automate, Google Apps Script, Microsoft Graph, scheduled agents"],
       ["Data and integration","API integration, Supabase, SQL, Google Sheets API, Streamlit"],
       ["Apps","Kotlin, Jetpack Compose, Android background services, PyQt"]] },
-    tr:{ t:"Araçlar", h:"Araçlar", meta:"gerçekten kullandıklarım", g:[
+    tr:{ t:"Araçlar", h:"Araçlar", meta:"Gerçekten kullandıklarım", g:[
       ["Yapay zekâ","Prompt mühendisliği, ajan pipeline'ları, LLM değerlendirme ve benchmark, çıktı kalite kontrolü, araç karşılaştırma"],
       ["Otomasyon","Python, n8n, Power Automate, Google Apps Script, Microsoft Graph, zamanlanmış ajanlar"],
       ["Veri ve entegrasyon","API entegrasyonu, Supabase, SQL, Google Sheets API, Streamlit"],
       ["Uygulama","Kotlin, Jetpack Compose, Android arka plan servisleri, PyQt"]] }
   };
   var PLAIN = {
-    en:{ t:"One Page.txt", h:"every project on one page, with nothing around it, for anyone who would rather just read." },
-    tr:{ t:"Tek Sayfa.txt", h:"tüm projeler tek sayfada, etrafında hiçbir arayüz olmadan, sadece okumak isteyenler için." }
+    en:{ t:"One Page.txt", h:"Every project on one page, with nothing around it, for anyone who would rather just read." },
+    tr:{ t:"Tek Sayfa.txt", h:"Tüm projeler tek sayfada, etrafında hiçbir arayüz olmadan, sadece okumak isteyenler için." }
   };
 
   /* PKGRAPH start */
@@ -1078,22 +1081,22 @@ document.documentElement.setAttribute("data-theme", "day");
   var DIA = {
     karinca:{ w:600, h:136,
       nodes:[
-        { id:"a", x:0,   y:14, w:126, h:48, hi:1, t:{ en:["study","session"], tr:["çalışma","oturumu"] } },
+        { id:"a", x:0,   y:14, w:126, h:48, hi:1, t:{ en:["Study","session"], tr:["Çalışma","oturumu"] } },
         { id:"b", x:158, y:14, w:126, h:48, t:{ en:["XP and","coins"], tr:["XP ve","coin"] } },
-        { id:"c", x:316, y:14, w:126, h:48, t:{ en:["levels and","streaks"], tr:["seviye ve","seri"] } },
-        { id:"d", x:474, y:14, w:126, h:48, t:{ en:["theme shop,","paywall"], tr:["tema mağazası,","paywall"] } }],
+        { id:"c", x:316, y:14, w:126, h:48, t:{ en:["Levels and","streaks"], tr:["Seviye ve","seri"] } },
+        { id:"d", x:474, y:14, w:126, h:48, t:{ en:["Theme shop,","paywall"], tr:["Tema mağazası,","paywall"] } }],
       edges:[ { f:"a", t:"b" }, { f:"b", t:"c" }, { f:"c", t:"d" },
         { f:"d", fs:"b", t:"a", ts:"b", k:70, lx:300, ly:128,
-          lbl:{ en:"a reason to come back tomorrow", tr:"yarın geri gelmek için bir sebep" } }] },
+          lbl:{ en:"A reason to come back tomorrow", tr:"Yarın geri gelmek için bir sebep" } }] },
 
     pipeline:{ w:640, h:214,
       nodes:[
         { id:"src", x:0,   y:70,  w:92,  h:50, stack:1, t:{ en:["107","sources"], tr:["107","kaynak"] } },
-        { id:"col", x:124, y:62,  w:132, h:66, hi:1, t:{ en:["collector agent","summary, score,","tag"], tr:["toplayıcı ajan","özet, puan,","etiket"] } },
+        { id:"col", x:124, y:62,  w:132, h:66, hi:1, t:{ en:["Collector agent","summary, score,","tag"], tr:["Toplayıcı ajan","özet, puan,","etiket"] } },
         { id:"db",  x:288, y:70,  w:104, h:50, t:{ en:["Supabase","central store"], tr:["Supabase","merkezi depo"] } },
         { id:"st",  x:288, y:168, w:104, h:44, nt:1, t:{ en:["Streamlit","inspection"], tr:["Streamlit","inceleme"] } },
-        { id:"p1",  x:424, y:18,  w:110, h:50, t:{ en:["publisher","legislation"], tr:["yayıncı ajan","mevzuat"] } },
-        { id:"p2",  x:424, y:122, w:110, h:50, t:{ en:["publisher","news"], tr:["yayıncı ajan","haberler"] } },
+        { id:"p1",  x:424, y:18,  w:110, h:50, t:{ en:["Publisher","legislation"], tr:["Yayıncı ajan","mevzuat"] } },
+        { id:"p2",  x:424, y:122, w:110, h:50, t:{ en:["Publisher","news"], tr:["Yayıncı ajan","haberler"] } },
         { id:"gr",  x:560, y:62,  w:80,  h:66, t:{ en:["MS Graph","corporate","email"], tr:["MS Graph","kurumsal","e-posta"] } }],
       edges:[ { f:"src", t:"col" }, { f:"col", t:"db" }, { f:"db", t:"p1" }, { f:"db", t:"p2" },
         { f:"db", fs:"b", t:"st", ts:"t" }, { f:"p1", t:"gr" }, { f:"p2", t:"gr" }] },
@@ -1104,9 +1107,9 @@ document.documentElement.setAttribute("data-theme", "day");
         { id:"m2", x:0, y:50,  w:108, h:28, t:{ en:["n11"], tr:["n11"] } },
         { id:"m3", x:0, y:90,  w:108, h:28, t:{ en:["Trendyol"], tr:["Trendyol"] } },
         { id:"m4", x:0, y:130, w:108, h:28, t:{ en:["Hepsiburada"], tr:["Hepsiburada"] } },
-        { id:"n",  x:184, y:54, w:150, h:78, hi:1, t:{ en:["one schema","fields, dates,","currency, returns"], tr:["tek şema","alan, tarih,","para birimi, iade"] } },
-        { id:"r",  x:370, y:65, w:124, h:56, t:{ en:["monthly report","company layout"], tr:["aylık rapor","şirketin düzeni"] } },
-        { id:"o",  x:528, y:70, w:112, h:46, nt:1, t:{ en:["5+ hours","saved a month"], tr:["ayda 5+ saat","kazanç"] } }],
+        { id:"n",  x:184, y:54, w:150, h:78, hi:1, t:{ en:["One schema","fields, dates,","currency, returns"], tr:["Tek şema","alan, tarih,","para birimi, iade"] } },
+        { id:"r",  x:370, y:65, w:124, h:56, t:{ en:["Monthly report","company layout"], tr:["Aylık rapor","şirketin düzeni"] } },
+        { id:"o",  x:528, y:70, w:112, h:46, nt:1, t:{ en:["5+ hours","saved a month"], tr:["Ayda 5+ saat","kazanç"] } }],
       edges:[ { f:"m1", t:"n" }, { f:"m2", t:"n" }, { f:"m3", t:"n" }, { f:"m4", t:"n" },
         { f:"n", t:"r" }, { f:"r", t:"o" }] },
 
@@ -1118,11 +1121,11 @@ document.documentElement.setAttribute("data-theme", "day");
         { id:"m4", x:0, y:99, w:108, h:26, t:{ en:["Hepsiburada"], tr:["Hepsiburada"] } },
         { id:"a",  x:170, y:32, w:156, h:60, t:{ en:["Android app","pulls code from SMS"], tr:["Android uygulaması","SMS'ten kodu çeker"] } },
         { id:"sh", x:366, y:32, w:120, h:60, hi:1, t:{ en:["Google Sheets","shared sheet"], tr:["Google Sheets","ortak tablo"] } },
-        { id:"tm", x:524, y:32, w:116, h:60, t:{ en:["whole team","nobody asks"], tr:["tüm ekip","kimse sormaz"] } }],
+        { id:"tm", x:524, y:32, w:116, h:60, t:{ en:["Whole team","nobody asks"], tr:["Tüm ekip","kimse sormaz"] } }],
       edges:[ { f:"m1", t:"a" }, { f:"m2", t:"a" }, { f:"m3", t:"a" }, { f:"m4", t:"a" },
               { f:"a", t:"sh" }, { f:"sh", t:"tm" } ],
       notes:[ { x:139, y:6, t:{ en:"SMS", tr:"SMS" } },
-              { x:248, y:114, t:{ en:"survives a restart", tr:"yeniden başlatmaya dayanıklı" } } ] }
+              { x:248, y:114, t:{ en:"Survives a restart", tr:"Yeniden başlatmaya dayanıklı" } } ] }
   };
 
   /* ---------- İş Takip demo ----------
@@ -1157,28 +1160,28 @@ document.documentElement.setAttribute("data-theme", "day");
          produces:"A produced B", developed_by:"A was developed by B" } };
   var PK_T = {
     tr:{ graph:"Graf", prompt:"Prompt", game:"Oyun", nodes:"düğüm", edges:"bağ", rels:"ilişki türü",
-         hint:"sürükle · kaydır · tekerlekle yakınlaş · bir düğüme tıkla", thint:"sürükle · + ile yakınlaş · bir düğüme dokun", links:"bağlantı",
+         hint:"Sürükle · kaydır · tekerlekle yakınlaş · bir düğüme tıkla", thint:"Sürükle · + ile yakınlaş · bir düğüme dokun", links:"bağlantı",
          hood:"iki adımlık komşuluk", more:"daha", mkprompt:"Bu düğüm için prompt üret",
-         kinds:{ concept:"kavram", task:"görev", source:"kaynak", finding:"bulgu", tag:"etiket",
-                 project:"proje", discipline:"disiplin", person:"kişi" },
+         kinds:{ concept:"Kavram", task:"Görev", source:"Kaynak", finding:"Bulgu", tag:"Etiket",
+                 project:"Proje", discipline:"Disiplin", person:"Kişi" },
          pnote:"Uygulamadaki Kopyala düğmesi bu metni panoya koyar. Claude onunla grafı okur, adım adım çalışır ve onay almadan yazmaz.",
          copy:"Kopyala", copied:"Kopyalandı",
-         gq1:"Bu kavram grafta hangisine bağlı?", gq2:"Peki nasıl bağlı?", gsrc:"kaynak düğüm",
+         gq1:"Bu kavram grafta hangisine bağlı?", gq2:"Peki nasıl bağlı?", gsrc:"Kaynak düğüm",
          right:"doğru", wrong:"yanlış", next:"Sonraki bağ", again:"Tekrar (1)", hard:"Zor (2)", good:"İyi (3)",
-         stab:"kararlılık", day:"gün", nextrev:"sonraki tekrar", hours:"saat", days:"gün",
-         played:"oynanan", score:"ikisi de doğru",
+         stab:"Kararlılık", day:"gün", nextrev:"sonraki tekrar", hours:"saat", days:"gün",
+         played:"Oynanan", score:"ikisi de doğru",
          gnote:"Uygulamadaki Zettelkasten oyunu: aralıklı tekrar kartlara değil bağlara uygulanır, her bağın kendi hafıza eğrisi var. Hesap uygulamanın FSRS formülüyle yapılıyor." },
     en:{ graph:"Graph", prompt:"Prompt", game:"Game", nodes:"nodes", edges:"edges", rels:"relation types",
-         hint:"drag · pan · scroll to zoom · click a node", thint:"drag · zoom with + · tap a node", links:"connections",
+         hint:"Drag · pan · scroll to zoom · click a node", thint:"Drag · zoom with + · tap a node", links:"connections",
          hood:"two hop neighbourhood", more:"more", mkprompt:"Build the prompt for this node",
-         kinds:{ concept:"concept", task:"task", source:"source", finding:"finding", tag:"tag",
-                 project:"project", discipline:"discipline", person:"person" },
+         kinds:{ concept:"Concept", task:"Task", source:"Source", finding:"Finding", tag:"Tag",
+                 project:"Project", discipline:"Discipline", person:"Person" },
          pnote:"The Copy button in the app puts this text on the clipboard. Claude reads the graph with it, works step by step and writes nothing without approval.",
          copy:"Copy", copied:"Copied",
-         gq1:"Which of these is this concept linked to?", gq2:"And how is it linked?", gsrc:"source node",
+         gq1:"Which of these is this concept linked to?", gq2:"And how is it linked?", gsrc:"Source node",
          right:"right", wrong:"wrong", next:"Next edge", again:"Again (1)", hard:"Hard (2)", good:"Good (3)",
-         stab:"stability", day:"days", nextrev:"next review", hours:"hours", days:"days",
-         played:"played", score:"both right",
+         stab:"Stability", day:"days", nextrev:"next review", hours:"hours", days:"days",
+         played:"Played", score:"both right",
          gnote:"The Zettelkasten game from the app: spaced repetition applied to the edges instead of cards, each edge with its own memory curve. The update is the app's FSRS formula." }
   };
   function pkEsc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -1188,13 +1191,13 @@ document.documentElement.setAttribute("data-theme", "day");
     return '<div class="pk" data-demo="pk">'
       + '<div class="pk-top"><span class="pk-dots"><i></i><i></i><i></i></span>'
       + '<span class="pk-tabs"><button data-t="graph" class="on">'+T.graph+'</button>'
-      + '<button data-t="prompt">'+T.prompt+'</button><button data-t="game">'+T.game+'</button></span>'
+      + '<button data-t="Prompt">'+T.prompt+'</button><button data-t="game">'+T.game+'</button></span>'
       + '<span class="pk-stat">'+PKG.n.length+' '+T.nodes+' &middot; '+PKG.e.length+' '+T.edges+' &middot; '+PKG.rels.length+' '+T.rels+'</span></div>'
       + '<div class="pk-view on" data-v="graph"><div class="pk-stage"><canvas></canvas>'
       +   '<div class="pk-ctl"><button data-z="in" aria-label="zoom in">+</button><button data-z="out" aria-label="zoom out">&minus;</button><button data-z="fit" aria-label="fit">&#9678;</button></div>'
       +   '<div class="pk-tip"></div><div class="pk-side"></div><div class="pk-hint">'+(matchMedia("(pointer: coarse)").matches ? T.thint : T.hint)+'</div></div>'
       +   '<div class="pk-leg"></div></div>'
-      + '<div class="pk-view" data-v="prompt"><div class="pk-pbar"><span>'+T.pnote+'</span><button class="pk-copy">'+T.copy+'</button></div><pre class="pk-pre"></pre></div>'
+      + '<div class="pk-view" data-v="Prompt"><div class="pk-pbar"><span>'+T.pnote+'</span><button class="pk-copy">'+T.copy+'</button></div><pre class="pk-pre"></pre></div>'
       + '<div class="pk-view" data-v="game"><div class="pk-game"></div></div>'
       + '</div>';
   }
@@ -1205,7 +1208,10 @@ document.documentElement.setAttribute("data-theme", "day");
     var cv = root.querySelector("canvas"), ctx = cv.getContext("2d");
     var stage = root.querySelector(".pk-stage"), tip = root.querySelector(".pk-tip");
     var side = root.querySelector(".pk-side"), leg = root.querySelector(".pk-leg");
-    function lab(n){ return typeof n.lab === "string" ? n.lab : n.lab[L==="tr" ? 0 : 1]; }
+    function lab(n){
+      var s = typeof n.lab === "string" ? n.lab : n.lab[L==="tr" ? 0 : 1];
+      return n.k === "tag" ? s.charAt(0).toLocaleUpperCase("en") + s.slice(1) : s;
+    }
 
     /* ---- the graph ---- */
     var seed = 7; function rnd(){ seed = (seed*16807) % 2147483647; return (seed-1)/2147483646; }
@@ -1310,14 +1316,8 @@ document.documentElement.setAttribute("data-theme", "day");
       if(!W) return;
       if(!PAL) readPal();
       ctx.setTransform(DPR,0,0,DPR,0,0);
-      /* the desk: the same grey gradient and the same 26px grid */
-      var g = ctx.createLinearGradient(0, 0, W*.2, H);
-      g.addColorStop(0, PAL.bg1); g.addColorStop(1, PAL.bg2);
-      ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
-      ctx.strokeStyle = PAL.grid; ctx.lineWidth = 1; ctx.beginPath();
-      for(var gx = .5; gx < W; gx += 26){ ctx.moveTo(gx, 0); ctx.lineTo(gx, H); }
-      for(var gy = .5; gy < H; gy += 26){ ctx.moveTo(0, gy); ctx.lineTo(W, gy); }
-      ctx.stroke();
+      /* the app's canvas: one flat colour, nothing drawn on it */
+      ctx.fillStyle = PAL.bg1; ctx.fillRect(0,0,W,H);
       var sel = !!(hood || hover), i, e, p, q, n;
       ctx.lineCap = "round";
       for(i=0; i<E.length; i++){ e = E[i];
@@ -1405,7 +1405,7 @@ document.documentElement.setAttribute("data-theme", "day");
         }
       }
       paintSide(); kick();
-      if(activeTab === "prompt") paintPrompt();
+      if(activeTab === "Prompt") paintPrompt();
     }
     function paintSide(){
       if(!focus){ side.classList.remove("on"); return; }
@@ -1427,7 +1427,7 @@ document.documentElement.setAttribute("data-theme", "day");
     }
     side.addEventListener("click", function(ev){
       if(ev.target.closest(".pk-x")){ setFocus(null); return; }
-      if(ev.target.closest(".pk-mk")){ showTab("prompt"); return; }
+      if(ev.target.closest(".pk-mk")){ showTab("Prompt"); return; }
       var li = ev.target.closest("li[data-n]");
       if(li) setFocus(N[+li.getAttribute("data-n")], true);
     });
@@ -1516,7 +1516,7 @@ document.documentElement.setAttribute("data-theme", "day");
       Array.prototype.forEach.call(root.querySelectorAll(".pk-tabs button"), function(b){ b.classList.toggle("on", b.getAttribute("data-t")===t); });
       Array.prototype.forEach.call(root.querySelectorAll(".pk-view"), function(v){ v.classList.toggle("on", v.getAttribute("data-v")===t); });
       if(t === "graph"){ size(); kick(); }
-      if(t === "prompt") paintPrompt();
+      if(t === "Prompt") paintPrompt();
       if(t === "game" && !game.cur) newRound();
     }
     root.querySelector(".pk-tabs").addEventListener("click", function(ev){
@@ -1543,7 +1543,7 @@ document.documentElement.setAttribute("data-theme", "day");
       var id = "3f9c…"+(1000+n.i*37).toString(16);
       var t = [];
       t.push("# "+head+": "+lab(n), "");
-      t.push("- **ID** (Supabase nodes): `"+id+"`");
+      t.push("- **ID** (nodes): `"+id+"`");
       if(n.st) t.push(tr ? "- **Status:** `"+n.st+"` · **Kategori:** `work`" : "- **Status:** `"+n.st+"` · **Category:** `work`");
       if(proj) t.push((tr ? "- **Proje:** **" : "- **Project:** **")+lab(proj.n)+"**");
       if(tags.length) t.push((tr ? "- **Etiketler:** " : "- **Tags:** ")+tags.join(" "));
@@ -1684,19 +1684,19 @@ document.documentElement.setAttribute("data-theme", "day");
   /* how information moves through İş Takip Modülü, and the tables it lands in */
   var PK_FLOW = { w:640, h:262, title:{ tr:"Sistem nasıl işliyor", en:"How the system works" },
     nodes:[
-      { id:"cap", x:0,   y:14,  w:150, h:72, t:{ tr:["hızlı ekleme","#etiket @proje +kişi","yarın 14:00 P1"], en:["quick add","#tag @project +person","tomorrow 2pm P1"] } },
-      { id:"db",  x:245, y:14,  w:150, h:72, hi:1, t:{ tr:["Supabase","düğümler + bağlar","RLS, audit_log"], en:["Supabase","nodes + edges","RLS, audit_log"] } },
-      { id:"app", x:490, y:14,  w:150, h:72, t:{ tr:["uygulama","defter, harita,","graf, arama"], en:["the app","list, map,","graph, search"] } },
+      { id:"cap", x:0,   y:14,  w:150, h:72, t:{ tr:["Hızlı ekleme","#etiket @proje +kişi","yarın 14:00 P1"], en:["Quick add","#tag @project +person","tomorrow 2pm P1"] } },
+      { id:"db",  x:245, y:14,  w:150, h:72, hi:1, t:{ tr:["Veritabanı","düğümler + bağlar","RLS, audit_log"], en:["Database","nodes + edges","RLS, audit_log"] } },
+      { id:"app", x:490, y:14,  w:150, h:72, t:{ tr:["Uygulama","defter, harita,","graf, arama"], en:["The app","list, map,","graph, search"] } },
       { id:"pr",  x:490, y:176, w:150, h:72, t:{ tr:["PromptBuilder","düğüm, bağlar,","kurallar"], en:["PromptBuilder","node, edges,","rules"] } },
       { id:"cl",  x:245, y:176, w:150, h:72, t:{ tr:["Claude Code","q.mjs ile okur,","adım adım çalışır"], en:["Claude Code","reads with q.mjs,","works step by step"] } },
-      { id:"ok",  x:0,   y:176, w:150, h:72, nt:1, t:{ tr:["onay","YAML: not, yeni","düğüm ve bağlar"], en:["approval","YAML: note, new","nodes and edges"] } }],
+      { id:"ok",  x:0,   y:176, w:150, h:72, nt:1, t:{ tr:["Onay","YAML: not, yeni","düğüm ve bağlar"], en:["Approval","YAML: note, new","nodes and edges"] } }],
     edges:[
-      { f:"cap", t:"db", lx:197, ly:40, lbl:{ tr:"yakala", en:"capture" } },
+      { f:"cap", t:"db", lx:197, ly:40, lbl:{ tr:"Yakala", en:"Capture" } },
       { f:"db", t:"app", lx:442, ly:40, lbl:{ tr:"REST + JWT", en:"REST + JWT" } },
-      { f:"app", fs:"b", t:"pr", ts:"t", lx:522, ly:134, lbl:{ tr:"düğüm seç", en:"pick a node" } },
-      { f:"pr", fs:"l", t:"cl", ts:"r", lx:442, ly:204, lbl:{ tr:"prompt", en:"prompt" } },
-      { f:"cl", fs:"l", t:"ok", ts:"r", lx:197, ly:204, lbl:{ tr:"tamamla", en:"done" } },
-      { f:"ok", fs:"t", t:"db", ts:"b", k:40, lx:150, ly:132, lbl:{ tr:"onaylı yazma", en:"approved write" } }] };
+      { f:"app", fs:"b", t:"pr", ts:"t", lx:522, ly:134, lbl:{ tr:"Düğüm seç", en:"Pick a node" } },
+      { f:"pr", fs:"l", t:"cl", ts:"r", lx:442, ly:204, lbl:{ tr:"Prompt", en:"Prompt" } },
+      { f:"cl", fs:"l", t:"ok", ts:"r", lx:197, ly:204, lbl:{ tr:"Tamamla", en:"Done" } },
+      { f:"ok", fs:"t", t:"db", ts:"b", k:40, lx:150, ly:132, lbl:{ tr:"Onaylı yazma", en:"Approved write" } }] };
 
   var PK_ERD = { w:640, h:318, title:{ tr:"Veritabanı", en:"Database" },
     tables:[
@@ -1712,8 +1712,8 @@ document.documentElement.setAttribute("data-theme", "day");
             ["node_notes","node_id","nodes","r","l"], ["node_runs","node_id","nodes","r","l"], ["node_criteria","node_id","nodes","r","l"],
             ["nodes","project_id","nodes","r","r",30],
             ["edge_memory","edge_id","edges","l","l",26], ["game_play","edge_id","edges","l","l",40] ],
-    notes:{ tr:"turuncu: birincil anahtar · çizgi: yabancı anahtar · audit_log her yazmayı kaydeder",
-            en:"orange: primary key · line: foreign key · audit_log records every write" } };
+    notes:{ tr:"Turuncu: birincil anahtar · Çizgi: yabancı anahtar · audit_log her yazmayı kaydeder",
+            en:"Orange: primary key · Line: foreign key · audit_log records every write" } };
 
   function erd(D, L){
     var T = {}, s = "", RH = 15, HH = 24;
