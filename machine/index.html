@@ -709,10 +709,9 @@ body.mob .sm-ba,body.phone .sm-ba{grid-template-columns:1fr;}
 .rp-down i{justify-self:center; width:2px; height:100%; background:var(--line2); position:relative;}
 .rp-down i.go{background:color-mix(in srgb, #1F9D55 55%, var(--line2));}
 .rp-down i.go:after{content:""; position:absolute; left:-3px; bottom:-2px; border:4px solid transparent; border-top:5px solid #1F9D55; border-bottom:0;}
-.rp-pcw{display:flex; flex-direction:column; align-items:center; padding:4px 12px 12px; background:var(--panel2); border-bottom:1px solid var(--line);}
-.rp-mac{width:100%; max-width:540px; padding:6px 6px 0; border-radius:12px 12px 10px 10px; background:linear-gradient(180deg, #F2F3F5, #D9DCE1);
-  box-shadow:0 12px 26px rgba(20,20,26,.18), inset 0 0 0 1px rgba(0,0,0,.06);}
-.rp-screen{position:relative; border-radius:6px 6px 2px 2px; overflow:hidden; border:4px solid #111114; padding:0 18px 12px;
+.rp-pcw{display:flex; flex-direction:column; align-items:center; padding:4px 12px 14px; background:var(--panel2); border-bottom:1px solid var(--line);}
+.rp-screen{position:relative; width:100%; max-width:540px; box-sizing:border-box; border-radius:12px; overflow:hidden; border:7px solid #111114; padding:0 18px 14px;
+  box-shadow:0 12px 26px rgba(20,20,26,.2), 0 0 0 1px rgba(255,255,255,.08) inset;
   background:radial-gradient(120% 90% at 15% 0%, #C9D8F2 0%, transparent 55%), radial-gradient(90% 90% at 100% 100%, #E9C9DF 0%, transparent 60%), linear-gradient(160deg, #B9C6E6, #D9C8E6);}
 .rp-menu{display:flex; align-items:center; gap:11px; height:17px; margin:0 -18px 10px; padding:0 10px; background:rgba(255,255,255,.55); backdrop-filter:blur(8px);
   font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", var(--ui); font-size:9.5px; color:#1D1D1F;}
@@ -728,9 +727,23 @@ body.mob .sm-ba,body.phone .sm-ba{grid-template-columns:1fr;}
 .rp-tt{font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", var(--ui); font-size:10.5px; font-weight:600; color:#3A3A3F; max-width:65%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .rp-tc{position:absolute; right:9px; top:6px; font-family:var(--mono); font-size:9px; color:#1F9D55;}
 .rp-scr{flex:1; min-height:0; overflow:hidden; position:relative; background:#FFFFFF;}
-.rp-chin{height:26px;}
-.rp-neck{width:74px; height:30px; background:linear-gradient(90deg, #C3C7CE, #E4E6EA 45%, #C3C7CE); clip-path:polygon(8% 0, 92% 0, 100% 100%, 0 100%);}
-.rp-foot{width:150px; height:6px; border-radius:2px 2px 5px 5px; background:linear-gradient(#DADDE2, #BFC3CA); box-shadow:0 4px 8px rgba(20,20,26,.18);}
+.rp-s.skip{opacity:.4;} .rp-s.skip .rp-ok{color:var(--faint);}
+.rp-ask{padding:14px 18px; display:flex; flex-direction:column; gap:10px;}
+.rp-q{display:grid; grid-template-columns:88px minmax(0,1fr); align-items:center; gap:8px;}
+.rp-q small{font-size:10px; color:var(--dim); text-align:right;}
+.rp-seg{display:inline-flex; justify-self:start; padding:2px; border-radius:7px; background:#E8E8ED;}
+.rp-seg button{font-size:10.5px; padding:3px 14px; border-radius:5px; color:#3A3A3F; transition:all .2s ease;}
+.rp-seg button.on{background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.15); font-weight:600;}
+.rp-dd{justify-self:start; min-width:130px; font-size:10.5px; padding:3px 9px; border-radius:6px; border:1px solid var(--line2); background:#fff; color:#1D1D1F; display:flex; justify-content:space-between; gap:10px; transition:transform .2s ease;}
+.rp-dd b{font-weight:500;}
+.rp-cbs{display:flex; flex-wrap:wrap; gap:6px 12px;}
+.rp-cbs label{display:flex; align-items:center; gap:5px; font-size:10.5px; color:#1D1D1F; transition:transform .2s ease, opacity .2s ease;}
+.rp-cbs label i{width:12px; height:12px; border-radius:3px; border:1px solid #B8B8C0; background:#fff; position:relative;}
+.rp-cbs label.on i{background:#0A84FF; border-color:#0A84FF;}
+.rp-cbs label.on i:after{content:""; position:absolute; left:3.5px; top:1px; width:3px; height:6px; border:solid #fff; border-width:0 1.5px 1.5px 0; transform:rotate(45deg);}
+.rp-cbs label:not(.on){opacity:.55;}
+.rp-go{justify-self:start; font-size:10.5px; font-weight:600; padding:5px 14px; border-radius:6px; background:#0A84FF; color:#fff; transition:transform .2s ease;}
+.rp-scr .press{transform:scale(.93);}
 .rp-log{padding:10px 12px; font-family:var(--mono); font-size:10.5px; line-height:1.75; color:var(--dim);}
 .rp-log div{animation:smin .35s ease;}
 .rp-log .cmd{color:var(--txt);}
@@ -792,7 +805,8 @@ body.mob .sm-ba,body.phone .sm-ba{grid-template-columns:1fr;}
 body.mob .rp-src,body.phone .rp-src{grid-template-columns:repeat(2, minmax(0,1fr));}
 body.mob .rp-down,body.phone .rp-down{display:none;}
 body.mob .rp-pcw,body.phone .rp-pcw{padding-top:10px;}
-body.mob .rp-screen,body.phone .rp-screen{padding:0 8px 8px;} body.mob .rp-menu,body.phone .rp-menu{margin:0 -8px 8px;} body.mob .rp-tc,body.phone .rp-tc{display:none;} body.mob .rp-menu span,body.phone .rp-menu span{display:none;}
+body.mob .rp-screen,body.phone .rp-screen{padding:0 8px 8px; border-width:5px;}
+body.mob .rp-q,body.phone .rp-q{grid-template-columns:minmax(0,1fr); gap:3px;} body.mob .rp-q small,body.phone .rp-q small{text-align:left;} body.mob .rp-ask,body.phone .rp-ask{padding:10px 12px; gap:8px;} body.mob .rp-menu,body.phone .rp-menu{margin:0 -8px 8px;} body.mob .rp-tc,body.phone .rp-tc{display:none;} body.mob .rp-menu span,body.phone .rp-menu span{display:none;}
 body.mob .rp-win,body.phone .rp-win{height:320px;}
 body.mob .rp-grid,body.phone .rp-grid{grid-template-columns:minmax(0,1fr);}
 body.mob .rp-mr,body.phone .rp-mr{grid-template-columns:62px repeat(5, minmax(0,1fr));}
@@ -2827,12 +2841,18 @@ document.documentElement.setAttribute("data-theme", "day");
   ];
   var RP_T = {
     tr:{ run:"Canlı", ba:"Önce ve sonra", stat:"4 API · tek şema · tek rapor",
-      steps:["Veriyi çek","Tek şemaya eşle","Standartlaştır","Aylık rapor"],
+      steps:["Rapor seçenekleri","Veriyi çek","Tek şemaya eşle","Standartlaştır","Rapor"],
+      newRep:"Yeni rapor", qType:"Rapor türü", types:[["m","Aylık"],["y","Yıllık"]], qPeriod:"Dönem", qMk:"Pazaryerleri", go:"Raporu oluştur",
+      repM:"Aylık Satış Raporu", repY:"Yıllık Satış Raporu", mks:"pazaryeri", notInc:"rapora dahil değil",
+      s00:"Program önce nasıl bir rapor istendiğini soruyor: rapor türü, dönem ve dahil edilecek pazaryerleri.",
+      s0m:"Bu sefer aylık rapor seçiliyor.", s0y:"Bu sefer yıllık rapor seçiliyor.",
+      s0x:function(n){ return n+" bu rapora dahil edilmiyor."; },
+      s0g:function(n){ return n+" pazaryeriyle rapor oluşturuluyor."; },
       apis:"Pazaryeri API'leri", app:"rapor.py", pc:"Şirket bilgisayarı",
       cols:["tarih","sipariş","tutar","para birimi","tür"], schema:"Tek şema",
-      s0:"Her ayın başında program dört pazaryerinin API'sine bağlanıyor.",
+      s0:"Program, seçilen pazaryerlerinin API'lerine bağlanıyor.",
       s1:function(n, c){ return n+" API'si yanıt verdi: "+c+" kayıt, kendi biçiminde."; },
-      s2:"Dört yanıtın alan adları birbirini tutmuyor; her biri tek şemadaki karşılığına eşleniyor.",
+      s2:"Yanıtların alan adları birbirini tutmuyor; her biri tek şemadaki karşılığına eşleniyor.",
       s3:"Tarihler, para birimleri ve iade durumları tek bir biçime getiriliyor.",
       s4:"Veri, pazaryerinin dışa aktardığı düzende değil, şirketin okuduğu düzende tek bir rapora yazılıyor.",
       s5:"Ayda beş saati aşan elle toplama işi ortadan kalktı; kopyala yapıştır hataları da. Filtreleri siz de deneyebilirsiniz; akış biraz sonra yeniden başlıyor.",
@@ -2849,12 +2869,18 @@ document.documentElement.setAttribute("data-theme", "day");
       aftF:"Elle veri toplama ortadan kalktı; rapor her ay aynı düzende ve hatasız geliyor.",
       baNote:"Tarih biçimleri, para birimleri ve neyin iade sayılacağına dair kurallar her pazaryerinde farklıydı; hepsi tek bir kural setine bağlandı." },
     en:{ run:"Live", ba:"Before and after", stat:"4 APIs · one schema · one report",
-      steps:["Pull the data","Map to one schema","Normalize","Monthly report"],
+      steps:["Report options","Pull the data","Map to one schema","Normalize","Report"],
+      newRep:"New report", qType:"Report type", types:[["m","Monthly"],["y","Yearly"]], qPeriod:"Period", qMk:"Marketplaces", go:"Create report",
+      repM:"Monthly Sales Report", repY:"Yearly Sales Report", mks:"marketplaces", notInc:"not in this report",
+      s00:"The program first asks what kind of report is wanted: the type, the period and which marketplaces to include.",
+      s0m:"This time a monthly report is chosen.", s0y:"This time a yearly report is chosen.",
+      s0x:function(n){ return n+" is left out of this report."; },
+      s0g:function(n){ return "Creating the report with "+n+" marketplaces."; },
       apis:"Marketplace APIs", app:"report.py", pc:"Company computer",
       cols:["date","order","amount","currency","type"], schema:"One schema",
-      s0:"At the start of each month the script connects to all four marketplace APIs.",
+      s0:"The program connects to the APIs of the chosen marketplaces.",
       s1:function(n, c){ return n+" answered: "+c+" records, in its own shape."; },
-      s2:"The four responses do not agree on field names; each one is mapped to its place in the single schema.",
+      s2:"The responses do not agree on field names; each one is mapped to its place in the single schema.",
       s3:"Dates, currencies and return statuses are brought to one format.",
       s4:"The data is written into one report laid out the way the company reads it, not the way a marketplace exports it.",
       s5:"More than five hours of manual gathering a month is gone, and the copy and paste errors with it. Try the filters yourself; the flow starts again shortly.",
@@ -2871,7 +2897,11 @@ document.documentElement.setAttribute("data-theme", "day");
       aftF:"Manual gathering is gone; the report arrives every month in the same layout, without errors.",
       baNote:"Date formats, currencies and what counts as a return differed on every marketplace; all of it now follows one set of rules." }
   };
-  var RP_NUM = { amazon:[118, 9, 86240], n11:[164, 6, 71530], trendyol:[402, 17, 198760], hb:[287, 12, 142310] };
+  /* [orders, returns, net sales]; a month and the whole year, illustrative */
+  var RP_NUM = { m:{ amazon:[118, 9, 86240], n11:[164, 6, 71530], trendyol:[402, 17, 198760], hb:[287, 12, 142310] },
+                 y:{ amazon:[1412, 97, 1028650], n11:[1896, 71, 846120], trendyol:[4871, 204, 2391480], hb:[3368, 139, 1702940] } };
+  /* what the program is asked for on each pass of the loop */
+  var RP_RUNS = [{ type:"m", inc:["amazon","n11","trendyol","hb"] }, { type:"y", inc:["amazon","trendyol","hb"] }];
   function rpHtml(L){
     var T = RP_T[L];
     var steps = function(a, cls){ return '<ol class="sm-steps '+cls+'">'+a.map(function(s){ return '<li>'+s+'</li>'; }).join('')+'</ol>'; };
@@ -2885,10 +2915,10 @@ document.documentElement.setAttribute("data-theme", "day");
       +   '<div class="rp-apis"><div class="mz-ph2"><span>'+T.apis+'</span><span></span></div><div class="rp-src">'
       +     RP_SRC.map(function(s){ return '<div class="rp-s" data-k="'+s.k+'"><div class="rp-sh"><b>'+s.n+'</b><em>'+s.ep+'</em></div><pre>'+pkEsc(s.raw)+'</pre><span class="rp-ok"></span></div>'; }).join('')
       +   '</div><div class="rp-down"><i></i><i></i><i></i><i></i></div></div>'
-      +   '<div class="rp-pcw"><div class="rp-mac"><div class="rp-screen">'
+      +   '<div class="rp-pcw"><div class="rp-screen">'
       +     '<div class="rp-menu"><b>'+T.app+'</b>'+T.menu.map(function(m){ return '<span>'+m+'</span>'; }).join('')+'<em class="rp-clk"></em></div>'
       +     '<div class="rp-win"><div class="rp-tb"><span class="rp-tl"><i></i><i></i><i></i></span><b class="rp-tt">'+T.app+'</b><span class="rp-tc"></span></div>'
-      +     '<div class="rp-scr"></div></div></div><div class="rp-chin"></div></div><div class="rp-neck"></div><div class="rp-foot"></div></div>'
+      +     '<div class="rp-scr"></div></div></div></div>'
       +   '<div class="sm-note">'+T.note+'</div>'
       + '</div></div>'
       + '<div class="pk-view" data-v="ba"><div class="sm-ba">'
@@ -2905,34 +2935,79 @@ document.documentElement.setAttribute("data-theme", "day");
     var sleep = function(ms){ return new Promise(function(r, j){ setTimeout(function(){ root.isConnected ? r() : j(); }, reduce ? Math.min(ms, 120) : ms); }); };
     var tl = function(n){ return n.toLocaleString(TR ? "tr-TR" : "en-GB")+" TL"; };
     var last = new Date(2025, 2, 1);   /* the month the sample records belong to */
+    var run = 0, cfg, SRC, NUM, period, title;
     root.addEventListener("click", function(ev){
       var t = ev.target.closest(".pk-tabs button"); if(!t) return;
       qa(".pk-tabs button").forEach(function(b){ b.classList.toggle("on", b === t); });
       qa(".pk-view").forEach(function(v){ v.classList.toggle("on", v.getAttribute("data-v") === t.getAttribute("data-t")); });
     });
-    function step(i){ stepEls.forEach(function(s, k){ s.className = k < i ? "done" : k === i ? "on" : ""; }); }
     var clk = q(".rp-clk"), days = TR ? ["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"] : ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
     (function tickClk(){ if(!root.isConnected) return; var d = new Date(); clk.textContent = days[d.getDay()]+" "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2); setTimeout(tickClk, 20000); })();
+    function step(i){ stepEls.forEach(function(s, k){ s.className = k < i ? "done" : k === i ? "on" : ""; }); }
     function reset(){
+      cfg = RP_RUNS[run++ % RP_RUNS.length];
+      SRC = RP_SRC.filter(function(s){ return cfg.inc.indexOf(s.k) >= 0; }); NUM = RP_NUM[cfg.type];
+      period = cfg.type === "m" ? T.month(last) : String(last.getFullYear());
+      title = cfg.type === "m" ? T.repM : T.repY;
       qa(".rp-s").forEach(function(s){ s.className = "rp-s"; s.querySelector(".rp-ok").textContent = ""; });
-      down.className = "rp-down"; tt.textContent = T.app; tc.textContent = ""; scr.innerHTML = '<div class="rp-log"></div>'; step(-1);
+      Array.prototype.forEach.call(down.querySelectorAll("i"), function(i){ i.className = ""; });
+      tt.textContent = T.app; tc.textContent = ""; scr.innerHTML = ""; step(-1);
     }
     function log(s, cls){ var l = scr.querySelector(".rp-log"); if(l){ l.insertAdjacentHTML("beforeend", '<div class="'+(cls||'')+'">'+s+'</div>'); } }
-    /* 1: pull every API */
+    function tap(el){ if(!el) return; el.classList.add("press"); setTimeout(function(){ el.classList.remove("press"); }, 300); }
+
+    /* 0: the program first asks what kind of report is wanted */
+    function ask(){
+      step(0); say.textContent = T.s00; tt.textContent = T.app+' · '+T.newRep;
+      var yrs = [String(last.getFullYear() - 1), String(last.getFullYear())];
+      scr.innerHTML = '<div class="rp-ask">'
+        + '<div class="rp-q"><small>'+T.qType+'</small><span class="rp-seg">'+T.types.map(function(t){ return '<button data-v="'+t[0]+'">'+t[1]+'</button>'; }).join('')+'</span></div>'
+        + '<div class="rp-q"><small>'+T.qPeriod+'</small><span class="rp-dd"><b></b> &#9662;</span></div>'
+        + '<div class="rp-q"><small>'+T.qMk+'</small><span class="rp-cbs">'+RP_SRC.map(function(s){ return '<label data-k="'+s.k+'"><i></i>'+s.n+'</label>'; }).join('')+'</span></div>'
+        + '<div class="rp-q"><small></small><button class="rp-go">'+T.go+'</button></div></div>';
+      var seg = scr.querySelectorAll(".rp-seg button"), dd = scr.querySelector(".rp-dd b"), cbs = scr.querySelectorAll(".rp-cbs label");
+      Array.prototype.forEach.call(seg, function(b){ b.classList.toggle("on", b.getAttribute("data-v") === "m"); });
+      dd.textContent = T.month(new Date(last.getFullYear(), last.getMonth() + 1, 1));
+      Array.prototype.forEach.call(cbs, function(c){ c.classList.add("on"); });
+      return sleep(1500).then(function(){
+        var b = scr.querySelector('.rp-seg button[data-v="'+cfg.type+'"]'); tap(b);
+        Array.prototype.forEach.call(seg, function(x){ x.classList.toggle("on", x === b); });
+        say.textContent = cfg.type === "m" ? T.s0m : T.s0y;
+        return sleep(1300);
+      }).then(function(){
+        tap(dd.parentNode); dd.textContent = period;
+        return sleep(1300);
+      }).then(function(){
+        var p = Promise.resolve();
+        Array.prototype.forEach.call(cbs, function(c){
+          if(cfg.inc.indexOf(c.getAttribute("data-k")) >= 0) return;
+          p = p.then(function(){ tap(c); c.classList.remove("on"); say.textContent = T.s0x(c.textContent); return sleep(1500); });
+        });
+        return p;
+      }).then(function(){
+        say.textContent = T.s0g(SRC.length); return sleep(1200);
+      }).then(function(){
+        tap(scr.querySelector(".rp-go")); return sleep(700);
+      });
+    }
+    /* 1: pull every API that was asked for */
     function pull(){
-      step(0); say.textContent = T.s0; log('$ python '+T.app+' --ay '+(last.getMonth()+1)+'/'+last.getFullYear(), "cmd");
-      var p = sleep(1600);
-      RP_SRC.forEach(function(s, i){
+      step(1); say.textContent = T.s0; tt.textContent = T.app;
+      scr.innerHTML = '<div class="rp-log"></div>';
+      log(title+' &middot; '+period+' &middot; '+SRC.length+' '+T.mks, "cmd");
+      RP_SRC.forEach(function(s, i){ if(cfg.inc.indexOf(s.k) < 0){ q('.rp-s[data-k="'+s.k+'"]').classList.add("skip"); q('.rp-s[data-k="'+s.k+'"] .rp-ok').textContent = T.notInc; } });
+      var p = sleep(1300);
+      SRC.forEach(function(s){
         p = p.then(function(){
-          var el = q('.rp-s[data-k="'+s.k+'"]'); el.classList.add("on");
+          var el = q('.rp-s[data-k="'+s.k+'"]'), i = RP_SRC.indexOf(s); el.classList.add("on");
           log(s.n+' &rsaquo; '+s.ep+' <span class="w">…</span>');
-          return sleep(1100).then(function(){
-            var n = RP_NUM[s.k][0];
+          return sleep(1000).then(function(){
+            var n = NUM[s.k][0].toLocaleString(TR ? "tr-TR" : "en-GB");
             el.classList.remove("on"); el.classList.add("got"); el.querySelector(".rp-ok").textContent = "200 · "+n+" "+T.recs;
             down.querySelectorAll("i")[i].className = "go";
-            var w = scr.querySelector(".rp-log .w:last-of-type"); if(w){ w.className = "g"; w.textContent = "200 · "+n+" "+T.recs; }
+            var w = scr.querySelector(".rp-log .w"); if(w){ w.className = "g"; w.textContent = "200 · "+n+" "+T.recs; }
             say.textContent = T.s1(s.n, n);
-            return sleep(1500);
+            return sleep(1300);
           });
         });
       });
@@ -2940,11 +3015,11 @@ document.documentElement.setAttribute("data-theme", "day");
     }
     /* 2: map the fields to one schema */
     function map(){
-      step(1); say.textContent = T.s2; tt.textContent = T.app+' · '+T.schema;
+      step(2); say.textContent = T.s2; tt.textContent = T.app+' · '+T.schema;
       scr.innerHTML = '<div class="rp-map"><div class="rp-mr h"><span></span>'+T.cols.map(function(c){ return '<span>'+c+'</span>'; }).join('')+'</div>'
-        + RP_SRC.map(function(s){ return '<div class="rp-mr" data-k="'+s.k+'"><span>'+s.n+'</span>'+s.map.map(function(){ return '<span></span>'; }).join('')+'</div>'; }).join('')+'</div>';
+        + SRC.map(function(s){ return '<div class="rp-mr" data-k="'+s.k+'"><span>'+s.n+'</span>'+s.map.map(function(){ return '<span></span>'; }).join('')+'</div>'; }).join('')+'</div>';
       var p = sleep(900);
-      RP_SRC.forEach(function(s){
+      SRC.forEach(function(s){
         p = p.then(function(){
           var cells = scr.querySelectorAll('.rp-mr[data-k="'+s.k+'"] span'), src = q('.rp-s[data-k="'+s.k+'"]'), k = 0;
           src.classList.add("on");
@@ -2959,23 +3034,23 @@ document.documentElement.setAttribute("data-theme", "day");
     }
     /* 3: normalize dates, currency and returns */
     function norm(){
-      step(2); say.textContent = T.s3;
+      step(3); say.textContent = T.s3;
       scr.innerHTML = '<div class="rp-fix">'
-        + RP_SRC.map(function(s){ return '<div class="rp-fc"><b>'+s.n+'</b>'+s.fix.map(function(f){ return '<div class="rp-fr"><span class="a">'+pkEsc(f[0])+'</span><span class="ar">&rarr;</span><span class="b">'+f[1]+'</span></div>'; }).join('')+'</div>'; }).join('')+'</div>';
+        + SRC.map(function(s){ return '<div class="rp-fc"><b>'+s.n+'</b>'+s.fix.map(function(f){ return '<div class="rp-fr"><span class="a">'+pkEsc(f[0])+'</span><span class="ar">&rarr;</span><span class="b">'+f[1]+'</span></div>'; }).join('')+'</div>'; }).join('')+'</div>';
       var rows = scr.querySelectorAll(".rp-fr"), p = sleep(600);
       Array.prototype.forEach.call(rows, function(r){
         p = p.then(function(){ r.classList.add("in"); return sleep(260); }).then(function(){ r.classList.add("ok"); return sleep(200); });
       });
       return p.then(function(){ return sleep(1600); });
     }
-    /* 4: the monthly report, in the company's layout, with a channel filter */
+    /* 4: the report, in the company's layout, with a channel filter */
     var sel = "all", lastTouch = 0;
     function filter(k){
       sel = k;
-      var list = RP_SRC.filter(function(s){ return k === "all" || s.k === k; }), tot = [0, 0, 0];
-      list.forEach(function(s){ var n = RP_NUM[s.k]; tot[0] += n[2]; tot[1] += n[0]; tot[2] += n[1]; });
+      var list = SRC.filter(function(s){ return k === "all" || s.k === k; }), tot = [0, 0, 0];
+      list.forEach(function(s){ var n = NUM[s.k]; tot[0] += n[2]; tot[1] += n[0]; tot[2] += n[1]; });
       var kp = scr.querySelectorAll(".rp-kpi b"); if(!kp.length) return;
-      kp[0].textContent = tl(tot[0]); kp[1].textContent = String(tot[1]);
+      kp[0].textContent = tl(tot[0]); kp[1].textContent = tot[1].toLocaleString(TR ? "tr-TR" : "en-GB");
       kp[2].textContent = (tot[2]/tot[1]*100).toFixed(1).replace(".", TR ? "," : ".")+"%";
       Array.prototype.forEach.call(scr.querySelectorAll(".rp-chips button"), function(c){ c.classList.toggle("on", c.getAttribute("data-c") === k); });
       Array.prototype.forEach.call(scr.querySelectorAll(".rp-bar, .rp-tr[data-k]"), function(r){ r.classList.toggle("off", k !== "all" && r.getAttribute("data-k") !== k); });
@@ -2985,49 +3060,47 @@ document.documentElement.setAttribute("data-theme", "day");
       var c = ev.target.closest(".rp-chips button"); if(!c) return;
       lastTouch = Date.now(); filter(c.getAttribute("data-c"));
     });
-    function press(k){
-      var c = scr.querySelector('.rp-chips button[data-c="'+k+'"]'); if(!c) return;
-      c.classList.add("press"); setTimeout(function(){ c.classList.remove("press"); }, 350); filter(k);
-    }
+    function press(k){ tap(scr.querySelector('.rp-chips button[data-c="'+k+'"]')); filter(k); }
     function report(){
-      step(3); say.textContent = T.s4; tt.textContent = T.rep+' · '+T.month(last); tc.textContent = T.sheet;
-      var max = Math.max.apply(null, RP_SRC.map(function(s){ return RP_NUM[s.k][2]; }));
-      scr.innerHTML = '<div class="rp-rep"><div class="rp-rh"><b>'+T.rep+'</b><span>'+T.month(last)+'</span></div>'
+      step(4); say.textContent = T.s4; tt.textContent = title+' · '+period; tc.textContent = T.sheet;
+      var max = Math.max.apply(null, SRC.map(function(s){ return NUM[s.k][2]; }));
+      var num = function(n){ return n.toLocaleString(TR ? "tr-TR" : "en-GB"); };
+      scr.innerHTML = '<div class="rp-rep"><div class="rp-rh"><b>'+title+'</b><span>'+period+'</span></div>'
         + '<div class="rp-flt"><small>'+T.chan+'</small><span class="rp-chips"><button data-c="all" class="on">'+T.all+'</button>'
-        +   RP_SRC.map(function(s){ return '<button data-c="'+s.k+'">'+s.n+'</button>'; }).join('')+'</span><span class="rp-sel">'+T.month(last)+' &#9662;</span></div>'
+        +   SRC.map(function(s){ return '<button data-c="'+s.k+'">'+s.n+'</button>'; }).join('')+'</span><span class="rp-sel">'+period+' &#9662;</span></div>'
         + '<div class="rp-kpi">'+T.kpi.map(function(k){ return '<div><small>'+k+'</small><b></b></div>'; }).join('')+'</div>'
         + '<div class="rp-grid"><div class="rp-bars"><small>'+T.byCh+'</small>'
-        +   RP_SRC.map(function(s){ var v = RP_NUM[s.k][2]; return '<div class="rp-bar" data-k="'+s.k+'"><span>'+s.n+'</span><i data-w="'+(v/max*100).toFixed(1)+'"></i><em>'+tl(v)+'</em></div>'; }).join('')
+        +   SRC.map(function(s){ var v = NUM[s.k][2]; return '<div class="rp-bar" data-k="'+s.k+'"><span>'+s.n+'</span><i data-w="'+(v/max*100).toFixed(1)+'"></i><em>'+tl(v)+'</em></div>'; }).join('')
         + '</div><div class="rp-tbl"><div class="rp-tr h">'+T.tbl.map(function(c){ return '<span>'+c+'</span>'; }).join('')+'</div>'
-        +   RP_SRC.map(function(s){ var n = RP_NUM[s.k]; return '<div class="rp-tr" data-k="'+s.k+'"><span>'+s.n+'</span><span>'+n[0]+'</span><span>'+n[1]+'</span><span>'+tl(n[2])+'</span></div>'; }).join('')
+        +   SRC.map(function(s){ var n = NUM[s.k]; return '<div class="rp-tr" data-k="'+s.k+'"><span>'+s.n+'</span><span>'+num(n[0])+'</span><span>'+num(n[1])+'</span><span>'+tl(n[2])+'</span></div>'; }).join('')
         + '</div></div></div>';
       filter("all");
       var parts = scr.querySelectorAll(".rp-rh, .rp-flt, .rp-kpi > div, .rp-bars, .rp-tbl, .rp-tr"), p = sleep(300);
       Array.prototype.forEach.call(parts, function(el){ p = p.then(function(){ el.classList.add("in"); return sleep(220); }); });
-      var t0;
+      var t0, a = SRC[SRC.length > 3 ? 2 : 1], b = SRC[SRC.length - 1];
       function hold(){ return sleep(500).then(function(){ if(Date.now() - t0 < 7000 || Date.now() - lastTouch < 9000) return hold(); }); }
       return p.then(function(){
-        Array.prototype.forEach.call(scr.querySelectorAll(".rp-bar i"), function(b){ b.style.width = b.getAttribute("data-w")+"%"; });
+        Array.prototype.forEach.call(scr.querySelectorAll(".rp-bar i"), function(x){ x.style.width = x.getAttribute("data-w")+"%"; });
         var rs = scr.querySelector(".rp-rh span"); rs.innerHTML = "&check; "+T.ready; rs.className = "ok";
         return sleep(2200);
       }).then(function(){
         if(Date.now() - lastTouch < 9000) return;
-        press("trendyol"); say.textContent = T.sF("Trendyol");
+        press(a.k); say.textContent = T.sF(a.n);
         return sleep(3200).then(function(){
           if(Date.now() - lastTouch < 9000) return;
-          press("hb"); say.textContent = T.sF("Hepsiburada");
+          press(b.k); say.textContent = T.sF(b.n);
           return sleep(3200);
         }).then(function(){
           if(Date.now() - lastTouch < 9000) return;
           press("all"); say.textContent = T.sF0;
           return sleep(2400);
         });
-      }).then(function(){ step(4); say.textContent = T.s5; t0 = Date.now(); return hold(); });
+      }).then(function(){ step(5); say.textContent = T.s5; t0 = Date.now(); return hold(); });
     }
-    function loop(){ reset(); return pull().then(map).then(norm).then(report).then(loop); }
+    function loop(){ reset(); return ask().then(pull).then(map).then(norm).then(report).then(loop); }
     var started = false;
     function start(){ if(started) return; started = true; setTimeout(function(){ loop().catch(function(){}); }, 500); }
-    reset(); say.textContent = TR ? "Akış birazdan başlıyor." : "The flow starts in a moment.";
+    say.textContent = TR ? "Akış birazdan başlıyor." : "The flow starts in a moment.";
     if(window.IntersectionObserver){
       var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); start(); } }, { threshold:.3 });
       io.observe(root);
