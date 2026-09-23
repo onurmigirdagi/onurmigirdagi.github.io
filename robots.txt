@@ -1,2 +1,13 @@
+# Arama motorlari: bu sitede hicbir sey dizine eklenmez.
+# Search engines: nothing on this site is to be indexed.
 User-agent: *
+Disallow: /
+
+# Bir kisinin istegiyle sayfayi acan yapay zeka araclari portfoyu okuyabilir.
+# Assistants fetching a page because a person asked them to may read the portfolio.
+User-agent: ChatGPT-User
+User-agent: Claude-User
+User-agent: Perplexity-User
+User-agent: MistralAI-User
+Allow: /machine/
 Disallow: /

@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="tr">
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onur Can Mığırdağı · Portföy metni</title>
+<link rel="alternate" type="text/markdown" href="llms.txt">
+<style>
+body{max-width:720px; margin:0 auto; padding:28px 18px 60px; font:16px/1.65 Archivo,"Helvetica Neue",Arial,sans-serif; color:#22242A; background:#FAFAFB;}
+h1{font-size:26px; margin:0 0 4px;} h2{font-size:20px; margin:36px 0 10px; border-bottom:2px solid #FF9A3C; padding-bottom:4px;}
+h3{font-size:17px; margin:28px 0 6px;} h4{font-size:14px; margin:16px 0 4px; text-transform:uppercase; letter-spacing:.06em; color:#5D616A;}
+small{color:#5D616A;} a{color:#B9640A;} article{margin-bottom:28px;} hr{margin:48px 0; border:0; border-top:1px solid #ddd;}
+</style>
+<body>
+<p>Bu, portföyün JavaScript gerektirmeyen metin sürümüdür. Asıl sayfa tarayıcıda çalışan etkileşimli bir masaüstüdür; aşağıda hem bütün içerik hem de arayüzün ve demoların nasıl göründüğü yazılıdır.</p>
+<p><a href="https://onurmigirdagi.github.io/machine/">Etkileşimli sürüm</a> · <a href="llms.txt">llms.txt</a></p>
+<section lang="tr">
+<h0>Onur Can Mığırdağı</h0>
+<p>Yapay Zekâ ve Otomasyon · İstanbul, Türkiye</p>
+<p>Ekiplerin tekrar eden işlerini üstlenen yapay zekâ ajanları ve otomasyonlar geliştiriyorum.</p>
+<p>Buradaki her proje gerçek bir ihtiyaçtan doğdu ve ölçülebilir bir sonuç verdi.</p>
+<p>Beni en çok gururlandıran çoğu zaman çıktının kendisi değil, arkasındaki sistem oluyor.</p>
+<h1>Arayüz ve tasarım</h1>
+<p>Portföy, tarayıcıda çalışan bir masaüstü işletim sistemi gibi tasarlandı. Kısa bir açılış ekranından sonra açık gri, ince ızgaralı bir masaüstü gelir; vurgu rengi turuncudur, yazılarda Archivo ve JetBrains Mono yazı tipleri kullanılır.</p>
+<p>Masaüstünün ortasında üzerinde "Projeler" yazan, halkalı bir gezegen durur. Beş proje simgesi (Karınca, İş Takip, Mevzuat İzleme, Raporlama, SMS Aktarıcı) bu gezegenin çevresindeki yörüngede yavaşça döner. Sağda yedi yıldızdan oluşan bir takımyıldız vardır; yıldızların bir kısmı kişisel dosyaları açar: Araçlar, Tek Sayfa.txt ve İletişim. Gezegene tıklamak BENİOKU dosyasını açar.</p>
+<p>Bir simgeye tıklanınca içerik bir pencerede açılır. Pencereler sürüklenir, ekran kenarına yaslanır, küçültülür ve kapatılır; simgeler yörüngeden çekilip bırakılabilir. Masaüstüne sağ tıklamak bir sistem menüsü açar, ⌘K bütün içerikte arama yapar. Sağ üstte Türkçe ve İngilizce arasında geçiş ile bir gece modu düğmesi vardır; gece modu masaüstünü yıldızlı bir gece gökyüzüne çevirir. Alt çubukta açık pencereler ve LinkedIn bağlantısı durur.</p>
+<p>Proje pencerelerinin çoğunda, projenin nasıl çalıştığını canlı gösteren etkileşimli bir demo vardır. Demolar aşağıda her projenin altında anlatılmıştır.</p>
+<h1>Projeler</h1>
+<article id="tr-karinca">
+<h2>Karınca</h2>
+<p><small>2025 ve 2026 · Android, yaklaşık 140 Kotlin dosyası · etkisi ölçüldü, kullanımda</small></p>
+<p><strong>Arkasında eksiksiz bir sanal ekonomi işleyen, aralıklı tekrara dayalı bir ders çalışma uygulamasıdır.</strong></p>
+<p>Jetpack Compose üzerinde MVVM ve Clean Architecture ile geliştirdim. Bağımlılık yönetiminde Hilt, yerel veride Room, eşitlemede Supabase kullanıyor. Soruları dinamik olarak üreten, Anki benzeri bir tekrar motoru var; ama benim için asıl önemli olan, bunun üzerine kurduğum ekonomidir: XP, jeton, seviyeler, seriler, tema mağazası ve ücretli üyelik.</p>
+<p>Kartlar işin kolay kısmıdır. Birinin uygulamayı ertesi gün yeniden açıp açmayacağını, kartların çevresindeki döngü belirliyor: Bugünkü oturum, geri dönmek için bir sebep bıraktı mı?</p>
+<p>60 fps ve WCAG 2.1 AA hedefleyen bir arayüz şartnamesi yazdım. Ardından kod tabanım için kapsamlı bir teknik denetim yaptırdım ve kendi kanaatimle değil, denetimin bulgularıyla ilerledim. Denetim 10 üzerinden 6,8 puan verdi ve test kapsamının zayıf olduğunu açıkça belirtti. Onu faydalı kılan da tam olarak bu dürüstlüktü.</p>
+<h3>Teknoloji</h3>
+<ul>
+<li>Kotlin, <b>Jetpack Compose</b>, Material3</li>
+<li>MVVM ve Clean Architecture</li>
+<li>Hilt ile bağımlılık yönetimi</li>
+<li>Yerelde Room, <b>Supabase</b> ile eşitleme</li>
+<li>Aralıklı tekrar motoru</li>
+<li>Kendi isteğimle yaptırdığım <b>denetim</b>, 6,8/10</li>
+</ul>
+<p><small>Etiketler: Kotlin, Jetpack Compose, Supabase, Etkileşim döngüsü</small></p>
+</article>
+<article id="tr-istakip">
+<h2>İş Takip Modülü</h2>
+<p><small>2026 · kişisel proje · BTS &amp; Partners · kullanımda</small></p>
+<p><strong>Dijital bir Zettelkasten: Çalışırken yaptığım her işi ve öğrendiğim her bilgiyi tek bir veritabanında topluyor, sonra bu bilgiye bağlantıları üzerinden geri dönüyorum. Aşağıdaki pencere, uygulamanın graf ekranının gerçek veriyle çalışan hâlidir.</strong></p>
+<p>Zettelkasten, sosyolog Niklas Luhmann'ın kullandığı not kutusu yöntemidir. Her fikir, tek başına anlam taşıyan küçük bir nota yazılır; her notun kalıcı bir kimliği vardır ve notlar klasörlerle değil, birbirlerine yaptıkları atıflarla düzenlenir. Zamanla bilgi büyüyen bir ağa dönüşür ve aranan şey bir kategoride değil, bir bağlantının ucunda bulunur. İş Takip Modülü, bu yöntemin bir veritabanına taşınmış hâlidir.</p>
+<p>Çalıştıkça iki şey birlikte birikiyor: iş takibim ve öğrendiklerim. Bir görev açıldığında, üzerinde çalışırken ortaya çıkan bulgular, karşılaştığım kavramlar ve okuduğum kaynaklar ayrı notlar olarak ekleniyor ve göreve bağlanıyor. Görev kapandığında bilgi onunla birlikte kaybolmuyor; sonraki iş aynı kavrama dokunduğunda önceki bulgular zaten orada oluyor. Her not, tek bir tabloda bir düğüm olarak duruyor ve aralarındaki her ilişkinin bir türü var: Bir araç bir protokolü uygular, bir ürün bir düzenlemeye tabidir, bir bulgu bir kaynağa dayanır.</p>
+<p>Bilgi iki yoldan giriyor. Birincisi hızlı ekleme: "yarın 14:00 sözleşme incelemesi #kvkk @proje +kişi P1" gibi tek satırlık düz bir cümle yazıyorum; uygulama etiketi, projeyi, kişiyi, tarihi ve önceliği ayırıp notu ve bağlantılarını kendisi oluşturuyor. İkincisi, Claude ile yürüttüğüm işlerin kapanışı: Bir görev bittiğinde Claude kapanış notunu, yeni bulguları, kavramları, kaynakları ve bunlar arasındaki bağlantıları şemaya uygun bir YAML olarak öneriyor; onaylarsam kaydediliyor. Her kaynağın nereden geldiği (web, kitap, makale, sohbet, meslektaş) ve kimin ürettiği, benim mi yapay zekânın mı olduğu da kayıt altındadır.</p>
+<p>Bu bilgiye dört yoldan geri dönüyorum. Grafta bir kavrama tıklayıp iki adımlık çevresini görüyorum: O konuda hangi işleri yaptığımı, neler bulduğumu, hangi kaynaklara dayandığımı. Aramada "kvkk #research status:shipped" gibi bir sorguyla türe, duruma, etikete ve projeye göre süzüyorum. Yeni bir işe başladığımda Claude, uygulamanın hazırladığı prompt ile aynı veritabanını okuyor ve önceki notları bağlam olarak kullanıyor; Prompt sekmesinde yer alan metin de birebir budur. Oyun sekmesi ise bağlantıları hafızamda canlı tutuyor: Aralıklı tekrar kartlara değil bağlantılara uygulanıyor ve her bağlantının kendi hafıza eğrisi var.</p>
+<p>Bir Zettelkasten ancak bağlantıları kadar değerlidir. Bu yüzden bir notun hangi türle, bir bağlantının hangi ilişkiyle kurulacağı yazılı kurallara bağlı: Etiket bir konuyu değil, yalnızca bir durumu işaretler; bir mevzuat etiket olarak değil, kavram olarak açılır. Yanlış kurulmuş 88 bağlantıyı 15 aşamada, her aşamanın öncesinde ve sonrasında yedek alarak düzelttim; anlamı belirsiz tek bir relates_to bağlantısı kalmadı.</p>
+<p>Her şey tek bir nodes tablosunda durur, tür bilgisi ise kind sütunundadır. Her tür için ayrı tablo açmak, her graf sorgusunda bir JOIN demekti; tek tabloyla graf sorguları türden bağımsız çalışıyor. Bağlantılar ayrı bir tabloda tutuluyor: Aynı üçlü iki kez girilemiyor, bir not kendisine bağlanamıyor. Yorumlar, tekrarlanan test çalıştırmaları ve ağırlıklı ölçütler nota bağlı ayrı tablolarda tutulur; oyunun hafızası ise bağlantıya bağlıdır. Her satır RLS ile sahibine kilitli ve her yazma işlemi audit_log'a kaydediliyor.</p>
+<p>Kişi, görev, bulgu ve proje adları burada numaralandırıldı, çünkü müşteri ve şirket içi işlere aittir. Türleri, durumları ve bütün bağlantıları ise gerçektir.</p>
+<h3>Yapı taşları</h3>
+<ul>
+<li>Flutter, yaklaşık 14.400 satır Dart</li>
+<li>Satır düzeyinde erişim kilitli <b>veritabanı</b></li>
+<li>177 not, türü belirli 415 bağlantı</li>
+<li>Sıfırdan yazılmış kuvvet yönelimli graf</li>
+<li>Prompt üretimi, <b>onaylı</b> yapay zekâ kaydı</li>
+<li>Her bağlantıda FSRS hafızası</li>
+</ul>
+<h3>Sayfadaki etkileşimli demo</h3>
+<p>Pencerede uygulamanın graf ekranı gerçek veriyle çalışır: Notlar ve aralarındaki türü belirli bağlantılar, türlerine göre renklendirilmiş bir ağ olarak çizilir. Bir düğüme tıklanınca iki adımlık çevresi öne çıkar; düğümler sürüklenir, tekerlekle yakınlaşılır. Prompt sekmesi uygulamanın Claude'a verdiği metnin aynısını gösterir. Oyun sekmesi bir kavramın hangi düğüme ve hangi ilişkiyle bağlı olduğunu sorar; aralıklı tekrar kartlara değil bağlantılara uygulanır. Kişi, görev, bulgu ve proje adları numaralandırılmıştır.</p>
+<p><small>Etiketler: Zettelkasten, Flutter, Bilgi grafı, Yapay zekâ ajanı</small></p>
+</article>
+<article id="tr-pipeline">
+<h2>Mevzuat İzleme Sistemi</h2>
+<p><small>2026 · BTS &amp; Partners · yayında, etkisi ölçüldü, kullanımda</small></p>
+<p><strong>Beş teknoloji şirketini ve resmî kurum, düzenleyici ve sektör basınından 107 kaynağı izleyen; canlı ortamda insan müdahalesi olmadan çalışan bir yapay zekâ ajanı hattıdır.</strong></p>
+<p>Toplayıcı ajan kaynakları saatte bir tarıyor. Her içeriği tam metninden özetliyor, alaka puanı veriyor; ilgili şirketi, ekosistemi ve çalışma alanını etiketleyip 17 alanlı bir kayıt olarak ortak veritabanına yazıyor. Hat tam bu kayıtta ikiye ayrılıyor: Yayıncı ajanlardan biri iki saatte bir izlenen beş şirketin (Microsoft, Apple, Google, LinkedIn, Snapchat) haberlerini ve ekosistemdeki gelişmeleri süzerek teknoloji bültenini, diğeri Türkiye'deki düzenleyici gelişmeleri süzerek mevzuat bültenini kurumsal e-postayla gönderiyor. Günlük işleyişte kimsenin müdahalesine gerek kalmıyor.</p>
+<p>Yukarıdaki turda gösterilen kayıtlar temsilîdir ve akışı anlatmak için hazırlandı; izlenen beş şirket, etiketler ve süzgeçler ise sistemdekiyle aynıdır.</p>
+<p>İki yaklaşımı sağlıklı biçimde karşılaştırabilmek için aynı iş akışını Microsoft Power Automate üzerinde de kurdum. Bu kadar çok kaynağı sorgulayıp sonuçları yapay zekâyla analiz etmek, şirketin lisans kapsamının dışında kalıyordu. Ajan sürümünün tercih edilmesinin nedeni de buydu: Mevcut abonelik kapasitesiyle, ek altyapı maliyeti olmadan çalışıyor.</p>
+<p>Bunun yanında, şirkette yapay zekâ çıktılarını değerlendirmek için kullanılan yöntemi tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk testi ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması.</p>
+<h3>Yapı taşları</h3>
+<ul>
+<li>Python ile zamanlanmış <b>ajanlar</b></li>
+<li>Merkezî depo olarak <b>Supabase</b></li>
+<li>İnceleme ekranı için Streamlit</li>
+<li>Dağıtım için <b>Microsoft Graph</b></li>
+<li><b>Power Automate</b> ile karşılaştırma</li>
+<li>Şirket, ekosistem ve çalışma alanı etiketleme</li>
+</ul>
+<h3>Sayfadaki etkileşimli demo</h3>
+<p>Pencerenin üstünde, projenin sunumundaki akış şemasından uyarlanmış bir çizim vardır: kaynaklar, toplayıcı ajan, ortak veritabanı ve iki yayıncı ajan. Tur sekmesi hattı baştan sona oynatır: Toplayıcı ajan kaynak sayfaları gezer, içeriği okur, kurum üslubunda özetler, şirket, ekosistem ve çalışma alanı etiketlerini seçer, 0,40 eşiğiyle alaka puanı verir ve kaydı ortak veritabanına yazar. Veritabanı panelinde kayıtlar süzülüp açılabilir. Ardından hat ikiye ayrılır: Teknoloji bülteni yayıncısı izlenen beş şirketin haberlerini, mevzuat bülteni yayıncısı düzenleyici gelişmeleri süzer ve iki bülten e-postayla ekibe gider. Tur duraklatılabilir, hızlandırılabilir ve bölümler arasında atlanabilir. Bülten sekmesi iki bültenin örneğini, Üslup sekmesi yazım kılavuzunu, Kurallar sekmesi ajanın uyduğu kuralları gösterir. Kayıtlar temsilîdir.</p>
+<p><small>Etiketler: Python, Yapay zekâ ajanları, Supabase, Microsoft Graph</small></p>
+</article>
+<article id="tr-reporting">
+<h2>Pazaryeri Raporlama</h2>
+<p><small>2025 · Tradist Distribution · yayında, etkisi ölçüldü, kullanımda</small></p>
+<p><strong>Dört pazaryeri API'sinden, dört farklı yapıda gelen veri, şirketin gerçekten okuduğu tek bir rapora dönüşür.</strong></p>
+<p>Satış verileri dört ayrı pazaryeri panelinde duruyordu: Amazon, n11, Trendyol ve Hepsiburada. Her ay biri bu panelleri tek tek açıyor, her birinden veriyi kendi biçiminde dışa aktarıyor ve parçaları elle birleştiriyordu. Biçimler birbirini tutmuyordu: Alan adları, tarih biçimleri ve neyin iade sayılacağına dair kurallar farklıydı.</p>
+<p>Her kanalın verisini kendi API'si üzerinden çektim, yanıtları tek bir şemada birleştirdim ve pazaryerlerinin dışa aktardığı düzende değil, şirketin okumaya alıştığı düzende hazırlanmış tek bir aylık rapor oluşturdum. Bu, ayda beş saati aşan elle veri toplama işini ortadan kaldırdı; daha da önemlisi, beraberinde gelen kopyala yapıştır hatalarını da bitirdi.</p>
+<h3>Ne yapıyor</h3>
+<ul>
+<li>Dört <b>pazaryeri API'sinden</b> zamanlanmış veri çekme</li>
+<li>Alanların <b>tek şemada</b> eşlenmesi</li>
+<li>Para birimi, tarih ve iade verilerinin standartlaştırılması</li>
+<li>Pazaryerinin değil, şirketin kullandığı düzen</li>
+<li>Tek aylık rapor, <b>ayda 5 saatten fazla</b> kazanç</li>
+</ul>
+<h3>Sayfadaki etkileşimli demo</h3>
+<p>Üstte dört pazaryeri API'sinin kendi biçimindeki örnek yanıtları, altta Mac tarzı bir bilgisayar ekranı vardır. Program önce ne tür bir rapor istendiğini sorar: aylık ya da yıllık rapor, dönem ve dahil edilecek pazaryerleri. Ziyaretçi bunları kendisi seçebilir; seçmezse form birkaç saniye sonra kendini doldurur. Raporu oluştur düğmesine basılınca pencere geri plana çekilir ve sağ üstte bir bildirim baloncuğu ilerlemeyi gösterir: Veriler alınır, alanlar tek yapıda birleştirilir, tarih, para birimi ve iadeler düzenlenir, rapor yazılır. Sonra şirketin düzeninde bir satış raporu açılır: net satış, sipariş sayısı ve iade oranı, kanal bazında grafik ve tablo. Rapor kanala göre süzülebilir. Rakamlar temsilîdir.</p>
+<p><small>Etiketler: Python, Apps Script, API entegrasyonu</small></p>
+</article>
+<article id="tr-sms">
+<h2>SMS Doğrulama Kodu Aktarıcısı</h2>
+<p><small>2025 · Tradist Distribution · yayında, etkisi ölçüldü, kullanımda</small></p>
+<p><strong>Pazaryeri doğrulama kodları SMS'ten otomatik olarak alınıyor; ekip, kimseye sormadan kodu tek bir tablodan okuyor.</strong></p>
+<p>Amazon, n11, Trendyol ve Hepsiburada, satıcı paneline her girişte SMS ile doğrulama kodu gönderiyor. Bazı pazaryerleri bir hesaba yalnızca sınırlı sayıda telefon eklenmesine izin verdiği için kodlar farklı çalışanların kendi telefonlarına gidiyordu ve hangi pazaryerinin hangi telefona kayıtlı olduğu kolayca karışıyordu. Kod geldiği anda o kişiye ulaşılamazsa giriş bekliyordu; gece çalışmak gerektiğinde ise telefon sahibine ulaşmak gerekiyordu. Bu ne sürdürülebilir ne de profesyonel bir yöntemdi.</p>
+<p>Bir Android uygulaması yazdım ve kodların gittiği her telefona kurdum. Uygulama yalnızca pazaryerlerinden gelen doğrulama mesajlarını alıyor, kişisel mesajlara dokunmuyor ve kodu geldiği anda ortak bir Google Sheets tablosuna gönderiyor. Uygulama arka planda çalışıyor ve cihaz yeniden başlasa da çalışmayı sürdürüyor. Koda ihtiyacı olan tabloyu açıp alıyor, kimse kimseye kod sormuyor; kod artık tek bir kişinin elindeki bir şey olmaktan çıktı.</p>
+<p>Kişi başına günde yaklaşık yirmi dakika kazandırdı. İhtiyacı kendim fark ettim ve kendi inisiyatifimle geliştirdim. Ben ayrıldıktan sonra da kullanılmaya devam ediyordu.</p>
+<h3>Nasıl çalışıyor</h3>
+<ul>
+<li><b>Dört pazaryerinden</b> gelen kodlar</li>
+<li>Her telefona kurulu <b>Aktarıcı</b> uygulaması</li>
+<li>Yalnızca <b>pazaryeri</b> SMS'leri, kişisel mesajlar değil</li>
+<li>Ortak <b>Google Sheets</b> tablosuna aktarılıyor</li>
+<li>Arka planda çalışıyor, yeniden başlatmadan etkilenmiyor</li>
+<li>Kimse kimseye kod sormuyor</li>
+</ul>
+<h3>Sayfadaki etkileşimli demo</h3>
+<p>Üç çalışanın telefonu yan yana durur ve her birinde Aktarıcı uygulaması kuruludur; telefonların altında hangi pazaryerlerinin o telefona kayıtlı olduğu yazar. Akış kendiliğinden oynar: Önce Çalışan A'ya bankadan kod içeren bir mesaj gelir ve Aktarıcı onu tabloya göndermez, çünkü gönderen bir pazaryeri değildir. Ardından Hepsiburada kodu toplantıdaki Çalışan B'ye ve izindeki Çalışan C'ye, n11 kodu C'ye, Trendyol kodu A'ya gelir. Her kod mesajın içinden ayıklanır, ortak Google Sheets tablosuna yazılır ve giriş yapan kişi kodu tablodan alır. Önce ve sonra sekmesi eski yöntemle yenisini karşılaştırır. Kodlar ve mesajlar temsilîdir.</p>
+<p><small>Etiketler: Android, Kotlin, Google Sheets</small></p>
+</article>
+<h1>Araçlar</h1>
+<p>Fiilen kullandığım araçlar</p>
+<ul>
+<li><b>Yapay zekâ:</b> Prompt mühendisliği, ajan hatları, LLM değerlendirme ve kıyaslama testleri, çıktı kalite kontrolü, araç karşılaştırması</li>
+<li><b>Otomasyon:</b> Python, n8n, Power Automate, Google Apps Script, Microsoft Graph, zamanlanmış ajanlar</li>
+<li><b>Veri ve entegrasyon:</b> API entegrasyonu, Supabase, SQL, Google Sheets API, Streamlit</li>
+<li><b>Uygulama geliştirme:</b> Kotlin, Jetpack Compose, Android arka plan servisleri, PyQt</li>
+</ul>
+<h1>İletişim</h1>
+<p><a href="mailto:onurmigirdagi@gmail.com">onurmigirdagi@gmail.com</a> · <a href="https://www.linkedin.com/in/onurmigirdagi">linkedin.com/in/onurmigirdagi</a></p>
+</section>
+<hr>
+<p lang="en">This is the text edition of the portfolio, readable without JavaScript. The real page is an interactive desktop that runs in the browser; below is all of its content, plus a description of how the interface and the demos look.</p>
+<section lang="en">
+<h0>Onur Can Mığırdağı</h0>
+<p>AI &amp; Automation · Istanbul, Türkiye</p>
+<p>I build AI agents and automation that take repetitive work off a team's hands.</p>
+<p>Every project here started from a real problem and ended with something measurable.</p>
+<p>The pipeline behind the output is usually the part I am prouder of.</p>
+<h1>Interface and design</h1>
+<p>The portfolio is designed as a desktop operating system that runs in the browser. After a short boot screen comes a light grey desktop with a fine grid; the accent colour is orange, and the type is set in Archivo and JetBrains Mono.</p>
+<p>In the middle of the desktop sits a ringed planet labelled "Projects". Five project icons (Karınca, İş Takip, Mevzuat İzleme, Reporting, SMS Relay) circle it slowly in orbit. On the right is a constellation of seven stars; some of the stars open personal files: Tools, One Page.txt and Contact. Clicking the planet opens the README.</p>
+<p>Clicking an icon opens its content in a window. Windows can be dragged, snapped to the screen edge, minimised and closed; icons can be pulled out of orbit and let go. Right clicking the desktop opens a system menu, and ⌘K searches everything. At the top right there is a Turkish and English switch and a night mode button, which turns the desktop into a starry night sky. The bottom bar holds the open windows and a LinkedIn link.</p>
+<p>Most project windows include an interactive demo that shows the project working. The demos are described below, under each project.</p>
+<h1>Projects</h1>
+<article id="en-karinca">
+<h2>Karınca</h2>
+<p><small>2025 to 2026 · Android, ~140 Kotlin files · measured, running</small></p>
+<p><strong>A spaced repetition study app with a full virtual economy underneath it.</strong></p>
+<p>Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. It runs an Anki style repetition engine with dynamic question generation, but the part I care about is the economy layered on top: XP, coins, levels, streaks, a theme shop and a paywall.</p>
+<p>The flashcards are the easy part. What decides whether someone opens the app again tomorrow is the loop around them: whether today's session left a reason to come back.</p>
+<p>I wrote a UI specification targeting 60fps and WCAG 2.1 AA, then commissioned a full technical audit of my own codebase and worked from its findings rather than from my own opinion of the code. It scored 6.8 out of 10 and was blunt about weak test coverage, which is exactly what made it useful.</p>
+<h3>Stack</h3>
+<ul>
+<li>Kotlin, <b>Jetpack Compose</b>, Material3</li>
+<li>MVVM and Clean Architecture</li>
+<li>Hilt dependency injection</li>
+<li>Room local, <b>Supabase</b> sync</li>
+<li>Spaced repetition engine</li>
+<li>Self commissioned <b>audit</b>, 6.8/10</li>
+</ul>
+<p><small>Tags: Kotlin, Jetpack Compose, Supabase, Retention loop</small></p>
+</article>
+<article id="en-istakip">
+<h2>İş Takip Modülü</h2>
+<p><small>2026 · personal project · BTS &amp; Partners · running</small></p>
+<p><strong>A digital Zettelkasten: for as long as I work, every task I do and everything I learn is kept in one database, and I get back to it later through its connections. The window below is the graph screen of the app running on the real data.</strong></p>
+<p>A Zettelkasten is the slip box method the sociologist Niklas Luhmann worked with. Every idea goes on its own small note that makes sense by itself, every note has a permanent identity, and the notes are organised not in folders but by the references they make to each other. Over time the knowledge turns into a network that grows, and you find what you are looking for through a connection rather than a category. İş Takip Modülü is that method moved into a database.</p>
+<p>As I work, two things pile up together: my task tracking and what I learn. A task is opened; the findings that come out of working on it, the concepts I run into and the sources I read are added as separate notes and linked to it. When the task is closed the knowledge does not go with it: the next time a piece of work touches the same concept, the earlier findings are already there. Every note is a node in one table and every relation between them has a type. A tool implements a protocol, a product operates under a regulation, a finding rests on a source.</p>
+<p>Information gets in two ways. The first is quick add: I type one line of plain language, something like "tomorrow 2pm contract review #kvkk @project +person P1", and the app parses the tag, the project, the person, the date and the priority, then creates the note and its links itself. The second is the close of a piece of work done with Claude: when a task is finished, Claude proposes a closing note, the new findings, concepts and sources and the links between them as YAML that fits the schema, and it is written only if I approve it. Every source records where it came from (web, book, paper, conversation, colleague) and who produced it, me or an AI.</p>
+<p>I get back to that knowledge in four ways. In the graph I click a concept and see its two hop neighbourhood: which work I did on it, what I found, which sources it rests on. In search, a query like "kvkk #research status:shipped" filters by kind, status, tag and project. When I start something new, Claude reads the same database with the prompt the app writes and uses the earlier notes as context; the Prompt tab shows that exact text. And the Game tab keeps the connections alive in my own memory: spaced repetition applied to the links instead of cards, each link with its own memory curve.</p>
+<p>A Zettelkasten is only worth as much as its links. So which kind a note gets and which relation a link gets is written down as rules: a tag marks a state and never a topic, and a regulation is opened as a concept, not a tag. I repaired 88 wrongly built links in 15 migrations, with a backup before and after each one, until not one vague relates_to link was left.</p>
+<p>Everything is one nodes table, with the type in a kind column. A table per type would have meant a join for every graph query; with one table the graph queries run without caring about kind. Links live in their own table, the same triple cannot be entered twice and a note cannot link to itself. Comments, repeated test runs and weighted criteria hang off a note in their own tables, and the game's memory hangs off a link. Every row is locked to its owner with row level security, and every write lands in audit_log.</p>
+<p>People, tasks, findings and projects are numbered here because they describe client and internal work. Their kind, status and every connection are real.</p>
+<h3>Built with</h3>
+<ul>
+<li>Flutter, ~14,400 lines of Dart</li>
+<li><b>Database</b> with row level security</li>
+<li>177 notes, 415 typed links</li>
+<li>Force directed graph, written from scratch</li>
+<li>Prompt building, <b>approved</b> AI writes</li>
+<li>FSRS memory on every link</li>
+</ul>
+<h3>The interactive demo on the page</h3>
+<p>The window runs the app's graph screen on the real data: notes and the typed links between them, drawn as a network coloured by kind. Clicking a node brings its two hop neighbourhood forward; nodes can be dragged and the wheel zooms. The Prompt tab shows the exact text the app hands to Claude. The Game tab asks which node a concept is linked to and through which relation; spaced repetition runs on the links, not on cards. Names of people, tasks, findings and projects are numbered.</p>
+<p><small>Tags: Zettelkasten, Flutter, Knowledge graph, AI agent</small></p>
+</article>
+<article id="en-pipeline">
+<h2>Regulatory Monitoring Pipeline</h2>
+<p><small>2026 · BTS &amp; Partners · shipped, measured, running</small></p>
+<p><strong>An autonomous agent pipeline that follows five technology companies and 107 public, regulatory and trade press sources, running unattended in production.</strong></p>
+<p>Every hour a collector agent scans the sources, summarises each item from its body, scores its relevance and tags it with the related company, the ecosystem and the practice area, then writes it to a shared database as a 17 field record. The line splits at that record: every two hours one publisher agent filters for the five watched companies (Microsoft, Apple, Google, LinkedIn, Snapchat) and ecosystem developments and sends the technology bulletin, the other filters for Turkish regulatory developments and sends the legislation bulletin, both by corporate email. Nobody touches it day to day.</p>
+<p>In the run above the records are illustrative, written to show the flow; the five companies, the tags and the filters are the system's.</p>
+<p>I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.</p>
+<p>Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison.</p>
+<h3>Built with</h3>
+<ul>
+<li>Python, scheduled <b>agents</b></li>
+<li><b>Supabase</b> central store</li>
+<li>Streamlit for inspection</li>
+<li><b>Microsoft Graph</b> for delivery</li>
+<li>Benchmarked against <b>Power Automate</b></li>
+<li>Company, ecosystem and practice area tagging</li>
+</ul>
+<h3>The interactive demo on the page</h3>
+<p>The top of the window holds a flow drawing adapted from the project's slide deck: sources, the collector agent, the shared database and two publisher agents. The Run tab replays the pipeline end to end: the collector visits source pages, reads the content, summarises it in the house style, picks company, ecosystem and practice area tags, scores relevance against a 0.40 threshold and writes the record to the shared database. Records in the database panel can be filtered and opened. Then the line splits: the technology bulletin publisher filters news about the five watched companies, the legislation bulletin publisher filters regulatory developments, and both bulletins go to the team by email. The run can be paused, sped up and skipped between chapters. The Bulletins tab shows a sample of each bulletin, the Style tab the writing guide, and the Rules tab the rules the agent follows. The records are illustrative.</p>
+<p><small>Tags: Python, AI agents, Supabase, Microsoft Graph</small></p>
+</article>
+<article id="en-reporting">
+<h2>Marketplace Reporting</h2>
+<p><small>2025 · Tradist Distribution · shipped, measured, running</small></p>
+<p><strong>Four marketplace APIs, four different response shapes, one report the company actually reads.</strong></p>
+<p>Sales lived in four separate marketplace back offices: Amazon, n11, Trendyol and Hepsiburada. Every month somebody opened each one, exported what it offered in whatever format it offered, and pasted the pieces together by hand. The formats did not agree with each other: different field names, different date handling, different ideas of what counts as a return.</p>
+<p>I pulled each channel through its own API, normalized the responses into one schema, and generated a single monthly report laid out the way the company reads it rather than the way any marketplace exports it. It removed more than five hours of manual gathering per month and, more usefully, removed the copy and paste errors that came with it.</p>
+<h3>What it does</h3>
+<ul>
+<li>Four <b>marketplace APIs</b>, pulled on schedule</li>
+<li>Field mapping to <b>one schema</b></li>
+<li>Currency, date and return normalization</li>
+<li>Company specific layout, not vendor layout</li>
+<li>One monthly report, <b>5+ hours saved</b></li>
+</ul>
+<h3>The interactive demo on the page</h3>
+<p>Above are sample responses from four marketplace APIs, each in its own shape; below is a Mac style computer screen. The program first asks what kind of report is wanted: monthly or yearly, the period, and which marketplaces to include. The visitor can choose; if they do not, the form fills itself in after a few seconds. On Create report the window steps back and a notification bubble at the top right shows the progress: data is pulled, fields are merged into one structure, dates, currency and returns are evened out, and the report is written. Then a sales report opens in the company's own layout: net sales, orders and return rate, a chart and a table by channel. The report can be filtered by channel. The figures are illustrative.</p>
+<p><small>Tags: Python, Apps Script, API integration</small></p>
+</article>
+<article id="en-sms">
+<h2>SMS Verification Relay</h2>
+<p><small>2025 · Tradist Distribution · shipped, measured, running</small></p>
+<p><strong>Marketplace verification codes pulled from SMS automatically, so the whole team reads them from one sheet instead of asking for them.</strong></p>
+<p>Amazon, n11, Trendyol and Hepsiburada send a verification code by SMS every time somebody signs in to the seller panel. Some marketplaces allow only a limited number of phones per account, so the codes went to different employees' own phones, and which marketplace was registered to which phone got confusing fast. If that person could not be reached the moment the code arrived, the sign in simply waited; working at night meant calling the phone's owner. None of that was workable or professional.</p>
+<p>I wrote an Android app and installed it on every phone the codes go to. It only takes the marketplaces' verification messages, leaves personal messages alone, and sends each code to a shared Google Sheet the moment it lands. It runs in the background and survives a device restart. Anyone who needs a code opens the sheet and takes it, without asking anybody: the code stopped being something one person physically possessed.</p>
+<p>It saved each person around twenty minutes a day. I found the need myself and built it on my own initiative; it was still running after I left.</p>
+<h3>How it works</h3>
+<ul>
+<li>Codes from <b>four marketplaces</b></li>
+<li>Relay app on <b>every phone</b></li>
+<li>Only <b>marketplace</b> SMS, nothing personal</li>
+<li>Sent to a shared <b>Google Sheet</b></li>
+<li>Runs in the background, survives restart</li>
+<li>Nobody asks anybody for a code</li>
+</ul>
+<h3>The interactive demo on the page</h3>
+<p>Three employees' phones stand side by side, each with the relay app installed; under each phone it says which marketplaces are registered to it. The flow plays by itself: first a message from the bank with a code in it reaches Employee A, and the relay does not send it to the sheet, because the sender is not a marketplace. Then a Hepsiburada code reaches Employee B, who is in a meeting, and Employee C, who is on leave; an n11 code reaches C and a Trendyol code reaches A. Each code is lifted out of the message, written to the shared Google Sheet, and the person signing in takes it from there. The Before and after tab compares the old way with the new one. Codes and messages are illustrative.</p>
+<p><small>Tags: Android, Kotlin, Google Sheets</small></p>
+</article>
+<h1>Tools</h1>
+<p>What I actually work in</p>
+<ul>
+<li><b>AI:</b> Prompt engineering, agent pipelines, LLM evaluation and benchmarking, output quality control, tool comparison</li>
+<li><b>Automation:</b> Python, n8n, Power Automate, Google Apps Script, Microsoft Graph, scheduled agents</li>
+<li><b>Data and integration:</b> API integration, Supabase, SQL, Google Sheets API, Streamlit</li>
+<li><b>Apps:</b> Kotlin, Jetpack Compose, Android background services, PyQt</li>
+</ul>
+<h1>Contact</h1>
+<p><a href="mailto:onurmigirdagi@gmail.com">onurmigirdagi@gmail.com</a> · <a href="https://www.linkedin.com/in/onurmigirdagi">linkedin.com/in/onurmigirdagi</a></p>
+</section>
+</body>
+</html>
