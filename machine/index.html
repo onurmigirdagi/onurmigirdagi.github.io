@@ -272,87 +272,103 @@ body.phone #sky text.ct{opacity:1;}
   animation:flow 1.4s linear infinite;}
 .dia .ah{fill:var(--sig-dim);}
 @keyframes flow{to{stroke-dashoffset:-16;}}
-/* the İş Takip demo keeps the app's own dark palette in both themes, the way
-   a screenshot would, so it reads as the program rather than as the page */
-.pk{margin:0 0 24px; border-radius:12px; overflow:hidden; background:#0B0B0F; border:1px solid #2A2A36;
-  color:#E8E8EE; font-family:var(--ui); box-shadow:0 14px 34px rgba(10,10,22,.28); user-select:none;}
-.pk-top{display:flex; align-items:center; gap:10px; padding:7px 10px; background:#15151B; border-bottom:1px solid #2A2A36;}
-.pk-dots{display:flex; gap:6px;} .pk-dots i{width:9px; height:9px; border-radius:50%; background:#2A2A36;}
+.dia text.tn{text-anchor:start; font-size:11px; font-weight:600; fill:var(--txt);}
+.dia text.cn{text-anchor:start; font-size:10.5px; fill:var(--dim);}
+.dia text.cn.pk{fill:var(--sig-ink); font-weight:500;}
+.dia text.cn.fk{fill:var(--txt);}
+.dia text.cty{text-anchor:end; font-size:9.5px; fill:var(--faint);}
+.dia .hdl{stroke:var(--line2); stroke-width:1;}
+.dia .fkl{fill:none; stroke:var(--sig-dim); stroke-width:1.2; opacity:.8;}
+.dia .fkd{fill:var(--sig-dim);}
+/* the İş Takip demo wears the desktop's own colours: the graph sits on the
+   same grey as the desk by day and on the night desk after dark. The canvas
+   reads the --pk-* tokens, so it follows the theme switch too. */
+:root{ --pk-bg1:#E4E6EA; --pk-bg2:#CCD0D6; --pk-grid:rgba(24,26,32,.045); --pk-ink:#22242A;
+  --pk-halo:rgba(226,228,233,.92); --pk-ring:#22242A; --pk-edge:.42; --pk-glow:0; --pk-dim:.2;
+  --pk-code:#0E7490; --pk-acc:#6D4FE8; }
+html[data-theme=night]{ --pk-bg1:#111522; --pk-bg2:#080A12; --pk-grid:rgba(150,180,255,.045); --pk-ink:#E8E8EE;
+  --pk-halo:rgba(8,10,17,.88); --pk-ring:#FFFFFF; --pk-edge:.26; --pk-glow:1; --pk-dim:.13;
+  --pk-code:#22D3EE; --pk-acc:#7C5CFF; }
+.pk{margin:0 0 24px; border-radius:12px; overflow:hidden; background:var(--panel); border:1px solid var(--line2);
+  color:var(--txt); font-family:var(--ui); box-shadow:0 12px 30px rgba(26,30,38,.14); user-select:none;}
+.pk-top{display:flex; align-items:center; gap:10px; padding:7px 10px; background:var(--panel2); border-bottom:1px solid var(--line);}
+.pk-dots{display:flex; gap:6px;} .pk-dots i{width:9px; height:9px; border-radius:50%; background:var(--line2);}
 .pk-tabs{display:flex; gap:3px; margin-left:4px;}
-.pk-tabs button{font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:#8A8A99; padding:5px 11px; border-radius:6px;}
-.pk-tabs button:hover{color:#E8E8EE;}
-.pk-tabs button.on{color:#E8E8EE; background:#1E1E26; box-shadow:inset 0 0 0 1px #2A2A36;}
-.pk-stat{margin-left:auto; font-family:var(--mono); font-size:10.5px; color:#8A8A99; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.pk-tabs button{font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:var(--faint); padding:5px 11px; border-radius:6px;}
+.pk-tabs button:hover{color:var(--txt);}
+.pk-tabs button.on{color:var(--txt); background:var(--panel); box-shadow:inset 0 0 0 1px var(--line2);}
+.pk-stat{margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .pk-view{display:none;} .pk-view.on{display:block;}
 .pk-stage{position:relative; height:460px; overflow:hidden;}
 .pk-stage canvas{display:block; width:100%; height:100%; touch-action:none; cursor:grab;}
 .pk-stage canvas.grab{cursor:grabbing;}
 .pk-ctl{position:absolute; left:10px; top:10px; display:flex; flex-direction:column; gap:4px;}
-.pk-ctl button{width:27px; height:27px; border-radius:7px; background:rgba(21,21,27,.9); border:1px solid #2A2A36;
-  color:#A9A9B8; font-family:var(--mono); font-size:13px; line-height:1;}
-.pk-ctl button:hover{color:#fff; border-color:#7C5CFF;}
+.pk-ctl button{width:27px; height:27px; border-radius:7px; background:var(--panel); border:1px solid var(--line2);
+  color:var(--dim); font-family:var(--mono); font-size:13px; line-height:1; box-shadow:0 2px 6px rgba(26,30,38,.10);}
+.pk-ctl button:hover{color:var(--txt); border-color:var(--pk-acc);}
 .pk-side.on ~ .pk-hint{display:none;}
-.pk-hint{position:absolute; left:12px; bottom:9px; font-family:var(--mono); font-size:10px; color:#5E5E6C; pointer-events:none;}
-.pk-tip{position:absolute; pointer-events:none; background:rgba(21,21,27,.96); border:1px solid #2A2A36; border-radius:7px;
-  padding:6px 9px; font-size:12px; max-width:240px; opacity:0; transition:opacity .12s ease; color:#E8E8EE;}
-.pk-tip small{display:block; font-family:var(--mono); font-size:10px; color:#8A8A99; margin-top:2px;}
-.pk-side{position:absolute; top:10px; right:10px; bottom:10px; width:272px; background:rgba(17,17,23,.95);
-  border:1px solid #2A2A36; border-radius:10px; padding:14px 14px 12px; overflow:auto; opacity:0; transform:translateX(14px);
-  pointer-events:none; transition:opacity .2s ease, transform .2s ease; user-select:text;}
+.pk-hint{position:absolute; left:12px; bottom:9px; font-family:var(--mono); font-size:10px; color:var(--faint); pointer-events:none;}
+.pk-tip{position:absolute; pointer-events:none; background:var(--panel); border:1px solid var(--line2); border-radius:7px;
+  padding:6px 9px; font-size:12px; max-width:240px; opacity:0; transition:opacity .12s ease; color:var(--txt);
+  box-shadow:0 8px 20px rgba(26,30,38,.16);}
+.pk-tip small{display:block; font-family:var(--mono); font-size:10px; color:var(--faint); margin-top:2px;}
+.pk-side{position:absolute; top:10px; right:10px; bottom:10px; width:272px; background:var(--panel);
+  border:1px solid var(--line2); border-radius:10px; padding:14px 14px 12px; overflow:auto; opacity:0; transform:translateX(14px);
+  pointer-events:none; transition:opacity .2s ease, transform .2s ease; user-select:text; box-shadow:0 14px 34px rgba(26,30,38,.18);}
 .pk-side.on{opacity:1; transform:none; pointer-events:auto;}
-.pk-x{position:absolute; right:8px; top:6px; color:#8A8A99; font-size:17px; width:24px; height:24px;}
-.pk-x:hover{color:#fff;}
-.pk-kind{display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:10.5px; color:#A9A9B8; text-transform:uppercase; letter-spacing:.1em;}
+.pk-x{position:absolute; right:8px; top:6px; color:var(--faint); font-size:17px; width:24px; height:24px;}
+.pk-x:hover{color:var(--txt);}
+.pk-kind{display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:10.5px; color:var(--dim); text-transform:uppercase; letter-spacing:.1em;}
 .pk-kind i{width:8px; height:8px; border-radius:50%;}
 .pk-st{margin-left:6px; text-transform:none; letter-spacing:.02em;}
-.pk-title{font-size:16px; font-weight:600; margin:7px 0 4px; line-height:1.3; color:#fff; padding-right:14px;}
-.pk-meta{font-family:var(--mono); font-size:10.5px; color:#8A8A99; margin:0 0 10px;}
+.pk-title{font-size:16px; font-weight:600; margin:7px 0 4px; line-height:1.3; color:var(--txt); padding-right:14px;}
+.pk-meta{font-family:var(--mono); font-size:10.5px; color:var(--faint); margin:0 0 10px;}
 .pk-side ul{list-style:none; margin:0 0 10px; padding:0;}
 .pk-side li{padding:6px 7px; border-radius:6px; cursor:pointer; font-size:12.5px; line-height:1.35;}
-.pk-side li:hover{background:#1E1E26;}
+.pk-side li:hover{background:var(--panel2);}
 .pk-side li em{display:block; font-style:normal; font-family:var(--mono); font-size:9.5px; letter-spacing:.04em; margin-bottom:2px;}
-.pk-side li span{display:flex; align-items:center; gap:7px; color:#D6D6DF;}
+.pk-side li span{display:flex; align-items:center; gap:7px; color:var(--txt);}
 .pk-side li span i{width:6px; height:6px; border-radius:50%; flex:none;}
-.pk-mk{width:100%; padding:8px; border-radius:7px; background:#7C5CFF; color:#fff; font-size:12px; font-weight:600;}
-.pk-mk:hover{background:#6D4FE8;}
-.pk-leg{display:flex; flex-wrap:wrap; gap:6px; padding:9px 10px; border-top:1px solid #2A2A36; background:#101015;}
-.pk-leg button{display:flex; align-items:center; gap:6px; font-family:var(--mono); font-size:10.5px; color:#C9C9D3;
-  padding:4px 9px; border-radius:20px; border:1px solid #2A2A36;}
-.pk-leg button:hover{border-color:#4A4A5A;}
+.pk-mk{width:100%; padding:8px; border-radius:7px; background:var(--pk-acc); color:#fff; font-size:12px; font-weight:600;}
+.pk-mk:hover{filter:brightness(1.08);}
+.pk-leg{display:flex; flex-wrap:wrap; gap:6px; padding:9px 10px; border-top:1px solid var(--line); background:var(--panel2);}
+.pk-leg button{display:flex; align-items:center; gap:6px; font-family:var(--mono); font-size:10.5px; color:var(--dim);
+  padding:4px 9px; border-radius:20px; border:1px solid var(--line2); background:var(--panel);}
+.pk-leg button:hover{border-color:var(--line3);}
 .pk-leg button i{width:8px; height:8px; border-radius:50%;}
-.pk-leg button em{font-style:normal; color:#6E6E7C;}
+.pk-leg button em{font-style:normal; color:var(--faint);}
 .pk-leg button.off{opacity:.35;}
-.pk-pbar{display:flex; align-items:center; gap:14px; padding:12px 14px; border-bottom:1px solid #2A2A36; background:#101015;
-  font-size:12.5px; color:#A9A9B8; line-height:1.5;}
-.pk-copy{flex:none; padding:7px 13px; border-radius:7px; background:#7C5CFF; color:#fff; font-size:12px; font-weight:600;}
+.pk-pbar{display:flex; align-items:center; gap:14px; padding:12px 14px; border-bottom:1px solid var(--line); background:var(--panel2);
+  font-size:12.5px; color:var(--dim); line-height:1.5;}
+.pk-copy{flex:none; padding:7px 13px; border-radius:7px; background:var(--pk-acc); color:#fff; font-size:12px; font-weight:600;}
 .pk-pre{margin:0; padding:16px 18px; height:460px; overflow:auto; font-family:var(--mono); font-size:11.5px; line-height:1.7;
-  color:#B9B9C6; white-space:pre-wrap; word-break:break-word; user-select:text;}
-.pk-pre b{color:#F2F2F7; font-weight:600;} .pk-pre b.h{color:#A78BFA;}
-.pk-pre code{font-family:inherit; color:#22D3EE;}
-.pk-game{padding:18px 18px 14px; min-height:460px; display:flex; flex-direction:column;}
-.pk-gsrc{padding:14px 16px; border-radius:10px; background:#15151B; border:1px solid #2A2A36; margin-bottom:14px;}
-.pk-gsrc small{display:block; font-family:var(--mono); font-size:10px; color:#8A8A99; letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px;}
-.pk-gsrc b{font-size:18px; font-weight:600; color:#22D3EE;}
-.pk-q{font-size:13px; color:#A9A9B8; margin:4px 0 8px;}
+  color:var(--dim); white-space:pre-wrap; word-break:break-word; user-select:text; background:var(--panel);}
+.pk-pre b{color:var(--txt); font-weight:600;} .pk-pre b.h{color:var(--pk-acc);}
+.pk-pre code{font-family:inherit; color:var(--pk-code);}
+.pk-game{padding:18px 18px 14px; min-height:460px; display:flex; flex-direction:column; background:var(--panel);}
+.pk-gsrc{padding:14px 16px; border-radius:10px; background:var(--panel2); border:1px solid var(--line2); margin-bottom:14px;}
+.pk-gsrc small{display:block; font-family:var(--mono); font-size:10px; color:var(--faint); letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px;}
+.pk-gsrc b{font-size:18px; font-weight:600; color:var(--pk-code);}
+.pk-q{font-size:13px; color:var(--dim); margin:4px 0 8px;}
 .pk-opts{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:7px; margin-bottom:12px;}
-.pk-opts button{text-align:left; padding:10px 12px; border-radius:8px; background:#15151B; border:1px solid #2A2A36;
-  color:#E8E8EE; font-size:13px; line-height:1.35; display:flex; gap:9px; align-items:flex-start;}
-.pk-opts button:hover:not([disabled]){border-color:#7C5CFF;}
+.pk-opts button{text-align:left; padding:10px 12px; border-radius:8px; background:var(--panel); border:1px solid var(--line2);
+  color:var(--txt); font-size:13px; line-height:1.35; display:flex; gap:9px; align-items:flex-start;}
+.pk-opts button:hover:not([disabled]){border-color:var(--pk-acc);}
 .pk-opts button i{width:8px; height:8px; border-radius:50%; flex:none; margin-top:5px;}
-.pk-opts button small{display:block; font-size:11px; color:#8A8A99; margin-top:2px;}
+.pk-opts button small{display:block; font-size:11px; color:var(--faint); margin-top:2px;}
 .pk-opts.rel button span{font-family:var(--mono); font-size:12px;}
 .pk-opts.rel button small{font-family:var(--ui);}
-.pk-opts button.ok{border-color:#4ADE80; background:rgba(74,222,128,.10);}
-.pk-opts button.no{border-color:#F87171; background:rgba(248,113,113,.10);}
+.pk-opts button.ok{border-color:#22A55A; background:rgba(74,222,128,.13);}
+.pk-opts button.no{border-color:#E05252; background:rgba(248,113,113,.12);}
 .pk-opts button.dim{opacity:.4;}
-.pk-res{padding:13px 15px; border-radius:10px; background:#15151B; border:1px solid #2A2A36; display:grid; gap:8px; margin-bottom:10px;}
+.pk-res{padding:13px 15px; border-radius:10px; background:var(--panel2); border:1px solid var(--line2); display:grid; gap:8px; margin-bottom:10px;}
 .pk-edge{font-size:14px;} .pk-edge em{font-style:normal; font-family:var(--mono); font-size:12px; margin:0 6px;}
 .pk-rate{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;}
-.pk-rate.r1{color:#F87171;} .pk-rate.r2{color:#FBBF24;} .pk-rate.r3{color:#4ADE80;}
-.pk-fsrs{font-family:var(--mono); font-size:11.5px; color:#A9A9B8;}
-.pk-next{justify-self:start; padding:8px 14px; border-radius:7px; background:#7C5CFF; color:#fff; font-size:12px; font-weight:600;}
-.pk-gfoot{margin-top:auto; display:flex; flex-direction:column; gap:4px; font-size:11.5px; color:#6E6E7C; line-height:1.5; padding-top:8px;}
-.pk-gfoot span:first-child{font-family:var(--mono); color:#8A8A99;}
+.pk-rate.r1{color:#DC4C4C;} .pk-rate.r2{color:#C98A0B;} .pk-rate.r3{color:#1F9D55;}
+.pk-fsrs{font-family:var(--mono); font-size:11.5px; color:var(--dim);}
+.pk-next{justify-self:start; padding:8px 14px; border-radius:7px; background:var(--pk-acc); color:#fff; font-size:12px; font-weight:600;}
+.pk-gfoot{margin-top:auto; display:flex; flex-direction:column; gap:4px; font-size:11.5px; color:var(--faint); line-height:1.5; padding-top:8px;}
+.pk-gfoot span:first-child{font-family:var(--mono); color:var(--dim);}
 body.mob .pk-stage,body.phone .pk-stage{height:380px;}
 body.mob .pk-side,body.phone .pk-side{left:10px; width:auto; top:auto; max-height:56%;}
 body.mob .pk-stat,body.phone .pk-stat{display:none;}
@@ -925,16 +941,22 @@ document.documentElement.setAttribute("data-theme", "day");
         lede:"My second brain as a knowledge graph: 177 nodes and 415 typed edges, built so that an AI agent can walk it. The window below is the graph screen of the app running on the real data.",
         paras:["My research at BTS and what I learn on my own go into one notebook: tasks, findings, concepts, sources, people. Every one of them is a node in the same table, and every relation between them has a type. A tool implements a protocol, a product operates under a regulation, a finding asserts something a source said. In the graph these are not lines, they are meanings.",
                "I did not build AI into the app. For whichever node you pick, the app writes a structured prompt; Claude reads the database with it, works through the task with me step by step, and not a single row is written until I approve the output it proposes. The Prompt tab shows the exact text the app produces.",
-               "A graph is only as good as its edges, so which kind and which relation to use is written down as rules. I repaired 88 wrongly built edges in 15 migrations, taking a backup before and after each one, until no vague relates_to link was left. The Game tab is the Zettelkasten game from the app: spaced repetition applied to the edges instead of cards, each edge with its own memory curve.",
+               "Information gets in two ways. The first is quick add: I type one line of plain language, something like \"tomorrow 2pm contract review #kvkk @project +person P1\", and the app parses the tag, the project, the person, the date and the priority, then creates the node and its edges itself. The second is the close of a piece of work done with Claude: when a task is finished, Claude proposes a closing note, the new findings, concepts and sources and the edges between them as YAML that fits the schema, and it is written only if I approve it. Every source records where it came from (web, book, paper, conversation, colleague) and who produced it, me or an AI.",
+               "Why I bother: I do not want to lose years of research, and I want to see its connections months later. Every design decision answers one of three questions. Can I capture something without friction making me give up? Will I find the connections later? Can an AI read the notebook and build on it? That is why a tag marks a state and never a topic, why a regulation is opened as a concept and not a tag, and why every edge has a meaning instead of a vague relates_to. I repaired 88 wrongly built edges in 15 migrations, with a backup before and after each one, until none of those vague links was left. The Game tab keeps the connections alive: spaced repetition applied to the edges instead of cards, each edge with its own memory curve.",
+               "Everything is one nodes table, with the type in a kind column. A table per type would have meant a join for every graph query; with one table the graph queries run without caring about kind. Edges live in their own table, the same triple cannot be entered twice and a node cannot link to itself. Notes, repeated test runs and weighted criteria hang off a node in their own tables, and the game's memory hangs off an edge. Every row is locked to its owner with row level security, and every write lands in audit_log.",
                "People, tasks, findings and projects are numbered here because they describe client and internal work. Their kind, status and every connection are real."],
+        blocks:{ 2:"flow", 4:"erd" },
         rt:"Built with", rail:["Flutter, ~14,400 lines of Dart","<b>Supabase</b> Postgres with RLS","177 nodes, 415 typed edges","Force directed graph, written from scratch","Prompt building, <b>approved</b> AI writes","FSRS memory on every edge"],
         tags:["Flutter","Supabase","Knowledge graph","AI agent"] },
       tr:{ t:"İş Takip", name:"İş Takip Modülü", meta:"2026 &middot; kişisel proje &middot; BTS &amp; Partners",
         lede:"Bilgi grafı olarak ikinci beynim: 177 düğüm ve 415 tiplenmiş bağ, bir yapay zekâ ajanının gezebileceği şekilde kuruldu. Aşağıdaki pencere, uygulamanın graf ekranının gerçek veriyle çalışan hali.",
         paras:["BTS'deki araştırmalarım da kendi öğrendiklerim de tek bir deftere giriyor: görevler, bulgular, kavramlar, kaynaklar, kişiler. Her biri aynı tabloda bir düğüm, aralarındaki her ilişkinin bir türü var. Bir araç bir protokolü uyguluyor, bir ürün bir regülasyona tabi, bir bulgu bir kaynağın söylediğini ileri sürüyor. Grafta bunlar çizgi değil, anlam.",
                "Yapay zekâyı uygulamanın içine gömmedim. Hangi düğümü seçersen uygulama onun için yapılandırılmış bir prompt yazıyor. Claude bu promptla veritabanını okuyup görevi benimle adım adım yürütüyor ve önerdiği çıktıyı ben onaylamadan tek satır yazılmıyor. Prompt sekmesinde uygulamanın ürettiği metnin aynısı duruyor.",
-               "Bir graf ancak bağları kadar iyi. Bu yüzden hangi türün ve hangi ilişkinin kullanılacağı yazılı kurallara bağlı. Yanlış kurulmuş 88 bağı 15 migrasyonda, her birinin öncesinde ve sonrasında yedek alarak düzelttim; belirsiz tek bir relates_to bağı kalmadı. Oyun sekmesi uygulamadaki Zettelkasten oyunu: aralıklı tekrar kartlara değil bağlara uygulanıyor, her bağın kendi hafıza eğrisi var.",
+               "Bilgi iki yoldan giriyor. Birincisi hızlı ekleme: tek satır düz Türkçe yazıyorum, \"yarın 14:00 sözleşme incelemesi #kvkk @proje +kişi P1\" gibi. Uygulama etiketi, projeyi, kişiyi, tarihi ve önceliği ayrıştırıp düğümü ve bağlarını kendisi kuruyor. İkincisi Claude ile yürüttüğüm işlerin kapanışı: bir görev bitince Claude kapanış notunu, yeni bulguları, kavramları, kaynakları ve aralarındaki bağları şemaya uygun bir YAML olarak öneriyor, ben onaylarsam yazılıyor. Her kaynağın nereden geldiği (web, kitap, makale, sohbet, meslektaş) ve kimin ürettiği, ben mi yapay zekâ mı, kayıtlı.",
+               "Neden uğraşıyorum: yıllarca biriktirdiğim araştırmayı kaybetmek istemiyorum ve aylar sonra bağlantılarını görebilmek istiyorum. Her tasarım kararı üç sorudan birine cevap veriyor. Bir şeyi sürtünme yüzünden vazgeçmeden yakalayabiliyor muyum? Bağlantıları sonra bulabilecek miyim? Yapay zekâ defteri okuyup üzerine inşa edebiliyor mu? Bu yüzden etiket bir durumu işaretliyor, asla bir konuyu değil; bir mevzuat etiket olarak değil kavram olarak açılıyor; her bağın belirsiz bir relates_to yerine bir anlamı var. Yanlış kurulmuş 88 bağı 15 migrasyonda, her birinin öncesinde ve sonrasında yedek alarak düzelttim, o belirsiz bağlardan tek biri kalmadı. Oyun sekmesi de bağları canlı tutuyor: aralıklı tekrar kartlara değil bağlara uygulanıyor, her bağın kendi hafıza eğrisi var.",
+               "Her şey tek bir nodes tablosunda, türü kind sütununda. Her tür için ayrı tablo, her graf sorgusunda bir JOIN demekti; tek tabloyla graf sorguları türe bakmadan çalışıyor. Bağlar kendi tablosunda, aynı üçlü iki kez girilemiyor ve bir düğüm kendine bağlanamıyor. Notlar, tekrarlanan test koşumları ve ağırlıklı kriterler düğüme bağlı ayrı tablolarda, oyunun hafızası ise bağa bağlı. Her satır RLS ile sahibine kilitli, her yazma audit_log'a düşüyor.",
                "Kişi, görev, bulgu ve proje adları burada numaralı, çünkü müşteri ve şirket içi işleri anlatıyorlar. Türleri, durumları ve bütün bağlantıları gerçek."],
+        blocks:{ 2:"flow", 4:"erd" },
         rt:"Yapı taşları", rail:["Flutter, ~14.400 satır Dart","RLS'li <b>Supabase</b> Postgres","177 düğüm, 415 tiplenmiş bağ","Sıfırdan yazılmış force directed graf","Prompt üretimi, <b>onaylı</b> AI yazma","Her bağda FSRS hafızası"],
         tags:["Flutter","Supabase","Bilgi grafı","AI ajanı"] } },
 
@@ -1049,7 +1071,8 @@ document.documentElement.setAttribute("data-theme", "day");
         s += '<text'+(c ? ' class="'+c+'"' : '')+' x="'+(n.x+n.w/2)+'" y="'+(y0+i*14)+'">'+t+'</text>';
       });
     });
-    return '<div class="dia"><h3>'+DIA_T[L]+'</h3><svg viewBox="-4 -8 '+(D.w+8)+' '+(D.h+12)+'" role="img" aria-label="'+DIA_T[L]+'">'+s+'</svg></div>';
+    var ttl = D.title ? D.title[L] : DIA_T[L];
+    return '<div class="dia"><h3>'+ttl+'</h3><svg viewBox="-4 -8 '+(D.w+8)+' '+(D.h+12)+'" role="img" aria-label="'+ttl+'">'+s+'</svg></div>';
   }
 
   var DIA = {
@@ -1241,9 +1264,9 @@ document.documentElement.setAttribute("data-theme", "day");
     /* ---- camera ---- */
     var W = 0, H = 0, DPR = 1, cam = { x:0, y:0, s:1 }, camTo = null, userCam = false;
     function size(){
-      var r = stage.getBoundingClientRect();
-      if(!r.width) return;
-      W = r.width; H = r.height; DPR = Math.min(2, devicePixelRatio || 1);
+      /* layout size, not the rect: the window opens with a scale animation */
+      if(!stage.clientWidth) return;
+      W = stage.clientWidth; H = stage.clientHeight; DPR = Math.min(2, devicePixelRatio || 1);
       cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
       cv.style.width = W+"px"; cv.style.height = H+"px";
     }
@@ -1274,13 +1297,27 @@ document.documentElement.setAttribute("data-theme", "day");
       if(hover) return n === hover || hover.nb.some(function(q){ return q.n === n; });
       return true;
     }
+    var PAL = null;
+    function readPal(){
+      var cs = getComputedStyle(root), v = function(k){ return cs.getPropertyValue(k).trim(); };
+      PAL = { bg1:v("--pk-bg1"), bg2:v("--pk-bg2"), grid:v("--pk-grid"), ink:v("--pk-ink"), halo:v("--pk-halo"),
+              ring:v("--pk-ring"), edge:parseFloat(v("--pk-edge")) || .4, glow:v("--pk-glow")==="1", dim:parseFloat(v("--pk-dim")) || .2 };
+    }
+    /* the theme switch changes the tokens; the canvas repaints with them */
+    if(window.MutationObserver) new MutationObserver(function(){ readPal(); kick(); })
+      .observe(document.documentElement, { attributes:true, attributeFilter:["data-theme"] });
     function draw(){
       if(!W) return;
+      if(!PAL) readPal();
       ctx.setTransform(DPR,0,0,DPR,0,0);
-      ctx.fillStyle = "#0B0B0F"; ctx.fillRect(0,0,W,H);
-      var g = ctx.createRadialGradient(W*.5, H*.45, 0, W*.5, H*.45, Math.max(W,H)*.7);
-      g.addColorStop(0, "rgba(124,92,255,.07)"); g.addColorStop(1, "rgba(124,92,255,0)");
+      /* the desk: the same grey gradient and the same 26px grid */
+      var g = ctx.createLinearGradient(0, 0, W*.2, H);
+      g.addColorStop(0, PAL.bg1); g.addColorStop(1, PAL.bg2);
       ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+      ctx.strokeStyle = PAL.grid; ctx.lineWidth = 1; ctx.beginPath();
+      for(var gx = .5; gx < W; gx += 26){ ctx.moveTo(gx, 0); ctx.lineTo(gx, H); }
+      for(var gy = .5; gy < H; gy += 26){ ctx.moveTo(0, gy); ctx.lineTo(W, gy); }
+      ctx.stroke();
       var sel = !!(hood || hover), i, e, p, q, n;
       ctx.lineCap = "round";
       for(i=0; i<E.length; i++){ e = E[i];
@@ -1288,7 +1325,7 @@ document.documentElement.setAttribute("data-theme", "day");
         var on = hood ? (hood[e.a.i] && hood[e.b.i] && (e.a===focus || e.b===focus || hood[e.a.i]===1 && hood[e.b.i]===1))
                       : hover ? (e.a===hover || e.b===hover) : false;
         p = toScr(e.a); q = toScr(e.b);
-        ctx.strokeStyle = rgba(PK_REL[e.rel] || "#9CA3AF", sel ? (on ? .9 : .045) : .26);
+        ctx.strokeStyle = rgba(PK_REL[e.rel] || "#9CA3AF", sel ? (on ? .9 : .05) : PAL.edge);
         ctx.lineWidth = on ? 1.5 : .8;
         ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
       }
@@ -1297,12 +1334,16 @@ document.documentElement.setAttribute("data-theme", "day");
         if(hidden[n.k]) continue;
         p = toScr(n); var r = Math.max(2, n.r*zs), L1 = lit(n), c = PK_COL[n.k];
         if(p.x < -30 || p.y < -30 || p.x > W+30 || p.y > H+30) continue;
-        ctx.globalAlpha = sel && !L1 ? .13 : 1;
-        if(!sel || L1){ ctx.shadowColor = c; ctx.shadowBlur = (n===focus || n===hover) ? 22 : 9; }
+        ctx.globalAlpha = sel && !L1 ? PAL.dim : 1;
+        if(!sel || L1){
+          if(PAL.glow){ ctx.shadowColor = c; ctx.shadowBlur = (n===focus || n===hover) ? 22 : 9; }
+          else { ctx.shadowColor = "rgba(26,30,38,.28)"; ctx.shadowBlur = (n===focus || n===hover) ? 10 : 4; ctx.shadowOffsetY = 1.5; }
+        }
         ctx.fillStyle = c; ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, 7); ctx.fill();
-        ctx.shadowBlur = 0;
+        ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+        if(!PAL.glow){ ctx.strokeStyle = "rgba(20,22,28,.22)"; ctx.lineWidth = 1; ctx.stroke(); }
         if(n.st){ ctx.fillStyle = stCol(n.st); ctx.beginPath(); ctx.arc(p.x, p.y, r*.42, 0, 7); ctx.fill(); }
-        if(n === focus){ ctx.strokeStyle = "#E8E8EE"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(p.x, p.y, r+4, 0, 7); ctx.stroke(); }
+        if(n === focus){ ctx.strokeStyle = PAL.ring; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(p.x, p.y, r+4, 0, 7); ctx.stroke(); }
       }
       ctx.globalAlpha = 1;
       ctx.font = "500 10.5px Archivo, Inter, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "top";
@@ -1326,9 +1367,9 @@ document.documentElement.setAttribute("data-theme", "day");
         var bx = { x0:p.x - tw/2 - 3, x1:p.x + tw/2 + 3, y0:ty - 1, y1:ty + 13 };
         if(n !== focus && n !== hover && boxes.some(function(o){ return bx.x0 < o.x1 && bx.x1 > o.x0 && bx.y0 < o.y1 && bx.y1 > o.y0; })) return;
         boxes.push(bx);
-        ctx.lineWidth = 3; ctx.strokeStyle = "rgba(11,11,15,.85)"; ctx.strokeText(t, p.x, ty);
-        ctx.fillStyle = (n===focus || n===hover) ? "#FFFFFF" : "rgba(232,232,238,.82)";
-        ctx.fillText(t, p.x, ty);
+        ctx.lineWidth = 3; ctx.strokeStyle = PAL.halo; ctx.strokeText(t, p.x, ty);
+        ctx.fillStyle = PAL.ink; ctx.globalAlpha = (n===focus || n===hover) ? 1 : .8;
+        ctx.fillText(t, p.x, ty); ctx.globalAlpha = 1;
       });
     }
 
@@ -1640,12 +1681,79 @@ document.documentElement.setAttribute("data-theme", "day");
     if(r) pkMount(r, LANG);
   }
 
+  /* how information moves through İş Takip Modülü, and the tables it lands in */
+  var PK_FLOW = { w:640, h:262, title:{ tr:"Sistem nasıl işliyor", en:"How the system works" },
+    nodes:[
+      { id:"cap", x:0,   y:14,  w:150, h:72, t:{ tr:["hızlı ekleme","#etiket @proje +kişi","yarın 14:00 P1"], en:["quick add","#tag @project +person","tomorrow 2pm P1"] } },
+      { id:"db",  x:245, y:14,  w:150, h:72, hi:1, t:{ tr:["Supabase","düğümler + bağlar","RLS, audit_log"], en:["Supabase","nodes + edges","RLS, audit_log"] } },
+      { id:"app", x:490, y:14,  w:150, h:72, t:{ tr:["uygulama","defter, harita,","graf, arama"], en:["the app","list, map,","graph, search"] } },
+      { id:"pr",  x:490, y:176, w:150, h:72, t:{ tr:["PromptBuilder","düğüm, bağlar,","kurallar"], en:["PromptBuilder","node, edges,","rules"] } },
+      { id:"cl",  x:245, y:176, w:150, h:72, t:{ tr:["Claude Code","q.mjs ile okur,","adım adım çalışır"], en:["Claude Code","reads with q.mjs,","works step by step"] } },
+      { id:"ok",  x:0,   y:176, w:150, h:72, nt:1, t:{ tr:["onay","YAML: not, yeni","düğüm ve bağlar"], en:["approval","YAML: note, new","nodes and edges"] } }],
+    edges:[
+      { f:"cap", t:"db", lx:197, ly:40, lbl:{ tr:"yakala", en:"capture" } },
+      { f:"db", t:"app", lx:442, ly:40, lbl:{ tr:"REST + JWT", en:"REST + JWT" } },
+      { f:"app", fs:"b", t:"pr", ts:"t", lx:522, ly:134, lbl:{ tr:"düğüm seç", en:"pick a node" } },
+      { f:"pr", fs:"l", t:"cl", ts:"r", lx:442, ly:204, lbl:{ tr:"prompt", en:"prompt" } },
+      { f:"cl", fs:"l", t:"ok", ts:"r", lx:197, ly:204, lbl:{ tr:"tamamla", en:"done" } },
+      { f:"ok", fs:"t", t:"db", ts:"b", k:40, lx:150, ly:132, lbl:{ tr:"onaylı yazma", en:"approved write" } }] };
+
+  var PK_ERD = { w:640, h:318, title:{ tr:"Veritabanı", en:"Database" },
+    tables:[
+      { id:"nodes", x:235, y:8, w:170, hi:1, cols:[["id","uuid","pk"],["kind","node_kind"],["title","text"],["status","node_status"],["code","text"],["project_id","uuid","fk"],["produced_by","producer"],["source_url","text"],["metadata","jsonb"]] },
+      { id:"edges", x:470, y:8, w:170, hi:1, cols:[["id","uuid","pk"],["from_id","uuid","fk"],["to_id","uuid","fk"],["relation","edge_relation"],["note","text"]] },
+      { id:"edge_memory", x:470, y:126, w:170, cols:[["edge_id","uuid","pk"],["difficulty","numeric"],["stability","numeric"],["reps","int"]] },
+      { id:"game_play", x:470, y:228, w:170, cols:[["id","uuid","pk"],["edge_id","uuid","fk"],["rating","smallint"],["stability_after","numeric"]] },
+      { id:"node_notes", x:0, y:8, w:170, cols:[["id","uuid","pk"],["node_id","uuid","fk"],["body","text"],["author","user | ai"]] },
+      { id:"node_runs", x:0, y:110, w:170, cols:[["id","uuid","pk"],["node_id","uuid","fk"],["run_index","int"],["score","numeric"]] },
+      { id:"node_criteria", x:0, y:212, w:170, cols:[["id","uuid","pk"],["node_id","uuid","fk"],["weight","numeric"],["score","numeric"]] },
+      { id:"audit_log", x:235, y:212, w:170, nt:1, cols:[["actor","user | ai"],["op","ins | upd | del"],["table_name","text"],["diff","jsonb"]] }],
+    links:[ ["edges","from_id","nodes","l","r"], ["edges","to_id","nodes","l","r"],
+            ["node_notes","node_id","nodes","r","l"], ["node_runs","node_id","nodes","r","l"], ["node_criteria","node_id","nodes","r","l"],
+            ["nodes","project_id","nodes","r","r",30],
+            ["edge_memory","edge_id","edges","l","l",26], ["game_play","edge_id","edges","l","l",40] ],
+    notes:{ tr:"turuncu: birincil anahtar · çizgi: yabancı anahtar · audit_log her yazmayı kaydeder",
+            en:"orange: primary key · line: foreign key · audit_log records every write" } };
+
+  function erd(D, L){
+    var T = {}, s = "", RH = 15, HH = 24;
+    D.tables.forEach(function(t){ T[t.id] = t; t.h = HH + t.cols.length*RH + 6; });
+    function rowY(t, col){
+      for(var i=0; i<t.cols.length; i++) if(t.cols[i][0] === col) return t.y + HH + i*RH + RH/2 + 1;
+      return t.y + HH/2;
+    }
+    D.links.forEach(function(k){
+      var a = T[k[0]], b = T[k[2]], ya = rowY(a, k[1]), yb = rowY(b, "id");
+      var xa = k[3]==="r" ? a.x + a.w : a.x, xb = k[4]==="r" ? b.x + b.w : b.x;
+      var da = k[3]==="r" ? 1 : -1, db = k[4]==="r" ? 1 : -1;
+      var kk = k[5] || Math.max(22, Math.abs(xb - xa)*.45);
+      s += '<path class="fkl" d="M'+xa+','+ya+' C'+(xa+da*kk)+','+ya+' '+(xb+db*kk)+','+yb+' '+xb+','+yb+'"/>';
+      s += '<circle class="fkd" cx="'+xa+'" cy="'+ya+'" r="2.6"/>';
+      s += '<path class="fkd" d="M'+xb+','+yb+' L'+(xb+db*7)+','+(yb-3.5)+' L'+(xb+db*7)+','+(yb+3.5)+'Z"/>';
+    });
+    D.tables.forEach(function(t){
+      s += '<rect class="dn'+(t.hi ? ' hi' : '')+(t.nt ? ' nt' : '')+'" x="'+t.x+'" y="'+t.y+'" width="'+t.w+'" height="'+t.h+'" rx="7"/>';
+      s += '<path class="hdl" d="M'+t.x+','+(t.y+HH)+' H'+(t.x+t.w)+'"/>';
+      s += '<text class="tn" x="'+(t.x+10)+'" y="'+(t.y+16)+'">'+t.id+'</text>';
+      t.cols.forEach(function(c, i){
+        var y = t.y + HH + i*RH + RH/2 + 5;
+        s += '<text class="cn'+(c[2] ? ' '+c[2] : '')+'" x="'+(t.x+10)+'" y="'+y+'">'+c[0]+'</text>';
+        s += '<text class="cty" x="'+(t.x+t.w-10)+'" y="'+y+'">'+c[1]+'</text>';
+      });
+    });
+    s += '<text class="el" x="'+(D.w/2)+'" y="'+(D.h+16)+'">'+D.notes[L]+'</text>';
+    return '<div class="dia"><h3>'+D.title[L]+'</h3><svg viewBox="-4 -6 '+(D.w+8)+' '+(D.h+28)+'" role="img" aria-label="'+D.title[L]+'">'+s+'</svg></div>';
+  }
+
   function proj(d, badges, L, id){
     return '<div class="doc"><h1>'+d.name+'</h1><p class="meta">'+d.meta+'</p>'
       + '<div class="badges">'+badges.map(function(on, i){ return '<span class="'+(on?'on':'')+'">'+BADGE[L][i]+'</span>'; }).join('')+'</div>'
       + '<p class="lede">'+d.lede+'</p>'
       + (id === "istakip" ? pkHtml(L) : DIA[id] ? dia(DIA[id], L) : '')
-      + d.paras.map(function(p){ return '<p>'+p+'</p>'; }).join('')
+      + d.paras.map(function(p, i){
+          var b = d.blocks && d.blocks[i];
+          return (b === "flow" ? dia(PK_FLOW, L) : b === "erd" ? erd(PK_ERD, L) : '') + '<p>'+p+'</p>';
+        }).join('')
       + '<div class="rail"><h3>'+d.rt+'</h3><ol>'+d.rail.map(function(r){ return '<li>'+r+'</li>'; }).join('')+'</ol></div>'
       + '<div class="tags">'+d.tags.map(function(t){ return '<span>'+t+'</span>'; }).join('')+'</div></div>';
   }
