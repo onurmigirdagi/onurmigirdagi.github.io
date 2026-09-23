@@ -22,9 +22,15 @@ Portföy, tarayıcıda çalışan bir masaüstü işletim sistemi gibi tasarland
 
 Masaüstünün ortasında üzerinde "Projeler" yazan, halkalı bir gezegen durur. Beş proje simgesi (Karınca, İş Takip, Mevzuat İzleme, Raporlama, SMS Aktarıcı) bu gezegenin çevresindeki yörüngede yavaşça döner. Sağda yedi yıldızdan oluşan bir takımyıldız vardır; yıldızların bir kısmı kişisel dosyaları açar: Araçlar, Tek Sayfa.txt ve İletişim. Gezegene tıklamak BENİOKU dosyasını açar.
 
-Bir simgeye tıklanınca içerik bir pencerede açılır. Pencereler sürüklenir, ekran kenarına yaslanır, küçültülür ve kapatılır; simgeler yörüngeden çekilip bırakılabilir. Masaüstüne sağ tıklamak bir sistem menüsü açar, ⌘K bütün içerikte arama yapar. Sağ üstte Türkçe ve İngilizce arasında geçiş ile bir gece modu düğmesi vardır; gece modu masaüstünü yıldızlı bir gece gökyüzüne çevirir. Alt çubukta açık pencereler ve LinkedIn bağlantısı durur.
+Bir simgeye tıklanınca içerik bir pencerede açılır. Pencereler sürüklenir, ekran kenarına yaslanır, küçültülür ve kapatılır; simgeler yörüngeden çekilip bırakılabilir. Masaüstüne sağ tıklamak bir sistem menüsü açar, ⌘K bütün içerikte arama yapar. Sağ üstte Türkçe ve İngilizce arasında geçiş ile bir gece modu düğmesi vardır. Gece modunda masaüstü, Yale Parlak Yıldız Kataloğu ve Hipparcos verileriyle çizilmiş gerçek takımyıldızların olduğu lacivert bir gökyüzüne dönüşür; ortadaki gezegen Güneş, proje simgeleri de onun çevresinde dönen gezegenler olur. Alt çubukta açık pencereler ve LinkedIn bağlantısı durur.
 
 Proje pencerelerinin çoğunda, projenin nasıl çalıştığını canlı gösteren etkileşimli bir demo vardır. Demolar aşağıda her projenin altında anlatılmıştır.
+
+![Gündüz masaüstü: açık gri ızgaralı zemin, ortada Projeler yazan turuncu halkalı beyaz gezegen, çevresindeki kesik çizgili yörüngede beş proje simgesi; sağda Tek Sayfa.txt, Araçlar ve İletişim simgelerini birleştiren takımyıldız; üstte ad, TR/EN, ⌘K ve GECE düğmesi, altta ARA ve LinkedIn.](https://onurmigirdagi.github.io/machine/shots/masaustu.jpg)
+
+![Gece modu: lacivert gökyüzü ve bulutsular, ince çizgilerle bağlanmış gerçek takımyıldızlar, ortada parlayan Güneş ve yörüngesinde gezegenlere dönüşmüş proje simgeleri; sol altta YALE BSC5 · HIPPARCOS yazısı.](https://onurmigirdagi.github.io/machine/shots/gece.jpg)
+
+![Telefon görünümü: aynı gezegen ve yörünge dikey ekrana sığdırılmış, altında takımyıldız ve Hakkımda yazısı; üstte ad ve dil seçimi, altta ARA ve LinkedIn.](https://onurmigirdagi.github.io/machine/shots/telefon.jpg)
 
 ## Projeler
 
@@ -82,6 +88,8 @@ Kişi, görev, bulgu ve proje adları burada numaralandırıldı, çünkü müş
 
 **Sayfadaki etkileşimli demo:** Pencerede uygulamanın graf ekranı gerçek veriyle çalışır: Notlar ve aralarındaki türü belirli bağlantılar, türlerine göre renklendirilmiş bir ağ olarak çizilir. Bir düğüme tıklanınca iki adımlık çevresi öne çıkar; düğümler sürüklenir, tekerlekle yakınlaşılır. Prompt sekmesi uygulamanın Claude'a verdiği metnin aynısını gösterir. Oyun sekmesi bir kavramın hangi düğüme ve hangi ilişkiyle bağlı olduğunu sorar; aralıklı tekrar kartlara değil bağlantılara uygulanır. Kişi, görev, bulgu ve proje adları numaralandırılmıştır.
 
+![İş Takip penceresi: Graf sekmesinde 177 düğüm, 415 bağlantı ve 16 ilişki türüyle, türlerine göre renklendirilmiş bir bilgi ağı; Learning, Research, Legal Tech, Microsoft Agent Framework gibi düğüm adları; altta Kavram 85, Görev 27, Kaynak 14 gibi tür sayaçları.](https://onurmigirdagi.github.io/machine/shots/istakip.jpg)
+
 Etiketler: Zettelkasten, Flutter, Bilgi grafı, Yapay zekâ ajanı
 
 ### Mevzuat İzleme Sistemi
@@ -109,6 +117,8 @@ Bunun yanında, şirkette yapay zekâ çıktılarını değerlendirmek için kul
 
 **Sayfadaki etkileşimli demo:** Pencerenin üstünde, projenin sunumundaki akış şemasından uyarlanmış bir çizim vardır: kaynaklar, toplayıcı ajan, ortak veritabanı ve iki yayıncı ajan. Tur sekmesi hattı baştan sona oynatır: Toplayıcı ajan kaynak sayfaları gezer, içeriği okur, kurum üslubunda özetler, şirket, ekosistem ve çalışma alanı etiketlerini seçer, 0,40 eşiğiyle alaka puanı verir ve kaydı ortak veritabanına yazar. Veritabanı panelinde kayıtlar süzülüp açılabilir. Ardından hat ikiye ayrılır: Teknoloji bülteni yayıncısı izlenen beş şirketin haberlerini, mevzuat bülteni yayıncısı düzenleyici gelişmeleri süzer ve iki bülten e-postayla ekibe gider. Tur duraklatılabilir, hızlandırılabilir ve bölümler arasında atlanabilir. Bülten sekmesi iki bültenin örneğini, Üslup sekmesi yazım kılavuzunu, Kurallar sekmesi ajanın uyduğu kuralları gösterir. Kayıtlar temsilîdir.
 
+![Mevzuat İzleme penceresi: Üstte 107 kaynaktan toplayıcı ajana, ortak veritabanına ve iki yayıncı ajana giden mor akış şeması; altta bölüm düğmeleri (Kaynaklar, Topla ve yaz, Veritabanı, Yayıncılar, E-posta), solda ajanın değerlendirdiği bir haber ve ALINMADI kararı, sağda şirket ve ekosistem etiketli kayıtların durduğu ortak veritabanı.](https://onurmigirdagi.github.io/machine/shots/mevzuat.jpg)
+
 Etiketler: Python, Yapay zekâ ajanları, Supabase, Microsoft Graph
 
 ### Pazaryeri Raporlama
@@ -130,6 +140,12 @@ Her kanalın verisini kendi API'si üzerinden çektim, yanıtları tek bir şema
 - Tek aylık rapor, ayda 5 saatten fazla kazanç
 
 **Sayfadaki etkileşimli demo:** Üstte dört pazaryeri API'sinin kendi biçimindeki örnek yanıtları, altta Mac tarzı bir bilgisayar ekranı vardır. Program önce ne tür bir rapor istendiğini sorar: aylık ya da yıllık rapor, dönem ve dahil edilecek pazaryerleri. Ziyaretçi bunları kendisi seçebilir; seçmezse form birkaç saniye sonra kendini doldurur. Raporu oluştur düğmesine basılınca pencere geri plana çekilir ve sağ üstte bir bildirim baloncuğu ilerlemeyi gösterir: Veriler alınır, alanlar tek yapıda birleştirilir, tarih, para birimi ve iadeler düzenlenir, rapor yazılır. Sonra şirketin düzeninde bir satış raporu açılır: net satış, sipariş sayısı ve iade oranı, kanal bazında grafik ve tablo. Rapor kanala göre süzülebilir. Rakamlar temsilîdir.
+
+![Raporlama, ilk adım: Mac tarzı ekranda rapor.py · Yeni rapor penceresi; Aylık ve Yıllık seçimi, Mart 2025 dönemi, dört pazaryeri onay kutusu ve mavi Raporu oluştur düğmesi; üstte dört pazaryeri API'sinin kendi biçimindeki ham yanıtları.](https://onurmigirdagi.github.io/machine/shots/raporlama-secim.jpg)
+
+![Raporlama, hazırlık: Pencere geri plana çekilmiş ve Rapor arka planda hazırlanıyor yazıyor; sağ üstte Rapor hazırlanıyor bildirim baloncuğu, ilerleme çubuğu ve dört adımlık liste; üstte veri gelen API kartları yeşile dönmüş.](https://onurmigirdagi.github.io/machine/shots/raporlama-hazirlaniyor.jpg)
+
+![Raporlama, sonuç: Aylık Satış Raporu · Mart 2025; kanal filtresinde Trendyol seçili, net satış 198.760 TL, 402 sipariş ve yüzde 4,2 iade oranı, kanal bazında çubuk grafik ve tablo, sağ üstte + Yeni rapor düğmesi.](https://onurmigirdagi.github.io/machine/shots/raporlama-rapor.jpg)
 
 Etiketler: Python, Apps Script, API entegrasyonu
 
@@ -155,6 +171,8 @@ Kişi başına günde yaklaşık yirmi dakika kazandırdı. İhtiyacı kendim fa
 - Kimse kimseye kod sormuyor
 
 **Sayfadaki etkileşimli demo:** Üç çalışanın telefonu yan yana durur ve her birinde Aktarıcı uygulaması kuruludur; telefonların altında hangi pazaryerlerinin o telefona kayıtlı olduğu yazar. Akış kendiliğinden oynar: Önce Çalışan A'ya bankadan kod içeren bir mesaj gelir ve Aktarıcı onu tabloya göndermez, çünkü gönderen bir pazaryeri değildir. Ardından Hepsiburada kodu toplantıdaki Çalışan B'ye ve izindeki Çalışan C'ye, n11 kodu C'ye, Trendyol kodu A'ya gelir. Her kod mesajın içinden ayıklanır, ortak Google Sheets tablosuna yazılır ve giriş yapan kişi kodu tablodan alır. Önce ve sonra sekmesi eski yöntemle yenisini karşılaştırır. Kodlar ve mesajlar temsilîdir.
+
+![SMS Aktarıcı penceresi: Üstte Hepsiburada satıcı paneline giriş satırı; ortada her birinde Aktarıcı kurulu üç telefon, A'da tabloya gitmez etiketli banka mesajı, B'de işaretlenmiş Hepsiburada kodu; altta saat, pazaryeri, telefon, kod ve durum sütunlarıyla ortak Google Sheets tablosu.](https://onurmigirdagi.github.io/machine/shots/sms.jpg)
 
 Etiketler: Android, Kotlin, Google Sheets
 
@@ -187,9 +205,15 @@ The portfolio is designed as a desktop operating system that runs in the browser
 
 In the middle of the desktop sits a ringed planet labelled "Projects". Five project icons (Karınca, İş Takip, Mevzuat İzleme, Reporting, SMS Relay) circle it slowly in orbit. On the right is a constellation of seven stars; some of the stars open personal files: Tools, One Page.txt and Contact. Clicking the planet opens the README.
 
-Clicking an icon opens its content in a window. Windows can be dragged, snapped to the screen edge, minimised and closed; icons can be pulled out of orbit and let go. Right clicking the desktop opens a system menu, and ⌘K searches everything. At the top right there is a Turkish and English switch and a night mode button, which turns the desktop into a starry night sky. The bottom bar holds the open windows and a LinkedIn link.
+Clicking an icon opens its content in a window. Windows can be dragged, snapped to the screen edge, minimised and closed; icons can be pulled out of orbit and let go. Right clicking the desktop opens a system menu, and ⌘K searches everything. At the top right there is a Turkish and English switch and a night mode button. In night mode the desktop becomes a deep blue sky with real constellations drawn from the Yale Bright Star Catalogue and Hipparcos data; the planet in the middle becomes the Sun and the project icons become planets circling it. The bottom bar holds the open windows and a LinkedIn link.
 
 Most project windows include an interactive demo that shows the project working. The demos are described below, under each project.
+
+![The desktop by day: light grey grid, a white planet with an orange ring labelled Projeler in the middle, five project icons on the dotted orbit around it; on the right a constellation joining One Page, Tools and Contact; name, TR/EN, ⌘K and the night button at the top, search and LinkedIn at the bottom.](https://onurmigirdagi.github.io/machine/shots/masaustu.jpg)
+
+![Night mode: a deep blue sky with nebulae, real constellations joined by thin lines, a glowing Sun in the middle and the project icons turned into planets on its orbit; YALE BSC5 · HIPPARCOS in the lower left.](https://onurmigirdagi.github.io/machine/shots/gece.jpg)
+
+![On a phone: the same planet and orbit fitted to a tall screen, the constellation and an About label below it; name and language switch at the top, search and LinkedIn at the bottom.](https://onurmigirdagi.github.io/machine/shots/telefon.jpg)
 
 ## Projects
 
@@ -247,6 +271,8 @@ People, tasks, findings and projects are numbered here because they describe cli
 
 **The interactive demo on the page:** The window runs the app's graph screen on the real data: notes and the typed links between them, drawn as a network coloured by kind. Clicking a node brings its two hop neighbourhood forward; nodes can be dragged and the wheel zooms. The Prompt tab shows the exact text the app hands to Claude. The Game tab asks which node a concept is linked to and through which relation; spaced repetition runs on the links, not on cards. Names of people, tasks, findings and projects are numbered.
 
+![The İş Takip window: the Graph tab showing a knowledge network of 177 nodes, 415 links and 16 relation types, coloured by kind, with node names such as Learning, Research, Legal Tech and Microsoft Agent Framework; counters by kind along the bottom.](https://onurmigirdagi.github.io/machine/shots/istakip.jpg)
+
 Tags: Zettelkasten, Flutter, Knowledge graph, AI agent
 
 ### Regulatory Monitoring Pipeline
@@ -274,6 +300,8 @@ Separately I designed the evaluation methodology used on AI output there: a weig
 
 **The interactive demo on the page:** The top of the window holds a flow drawing adapted from the project's slide deck: sources, the collector agent, the shared database and two publisher agents. The Run tab replays the pipeline end to end: the collector visits source pages, reads the content, summarises it in the house style, picks company, ecosystem and practice area tags, scores relevance against a 0.40 threshold and writes the record to the shared database. Records in the database panel can be filtered and opened. Then the line splits: the technology bulletin publisher filters news about the five watched companies, the legislation bulletin publisher filters regulatory developments, and both bulletins go to the team by email. The run can be paused, sped up and skipped between chapters. The Bulletins tab shows a sample of each bulletin, the Style tab the writing guide, and the Rules tab the rules the agent follows. The records are illustrative.
 
+![The Mevzuat İzleme window: a purple flow from 107 sources to the collector agent, the shared database and two publisher agents; chapter buttons below it; on the left a news item the agent has judged and dropped, on the right the shared database with records tagged by company and ecosystem.](https://onurmigirdagi.github.io/machine/shots/mevzuat.jpg)
+
 Tags: Python, AI agents, Supabase, Microsoft Graph
 
 ### Marketplace Reporting
@@ -295,6 +323,12 @@ I pulled each channel through its own API, normalized the responses into one sch
 - One monthly report, 5+ hours saved
 
 **The interactive demo on the page:** Above are sample responses from four marketplace APIs, each in its own shape; below is a Mac style computer screen. The program first asks what kind of report is wanted: monthly or yearly, the period, and which marketplaces to include. The visitor can choose; if they do not, the form fills itself in after a few seconds. On Create report the window steps back and a notification bubble at the top right shows the progress: data is pulled, fields are merged into one structure, dates, currency and returns are evened out, and the report is written. Then a sales report opens in the company's own layout: net sales, orders and return rate, a chart and a table by channel. The report can be filtered by channel. The figures are illustrative.
+
+![Reporting, first step: on a Mac style screen the New report window with Monthly and Yearly, the March 2025 period, four marketplace checkboxes and a blue Create report button; above it the raw responses of the four marketplace APIs.](https://onurmigirdagi.github.io/machine/shots/raporlama-secim.jpg)
+
+![Reporting, preparing: the window has stepped back and says the report is being prepared in the background; at the top right a notification bubble with a progress bar and a four step list; the API cards that answered have turned green.](https://onurmigirdagi.github.io/machine/shots/raporlama-hazirlaniyor.jpg)
+
+![Reporting, the result: the Monthly Sales Report for March 2025 filtered to Trendyol, with net sales of 198,760 TL, 402 orders and a 4.2 percent return rate, a bar chart and a table by channel, and a New report button.](https://onurmigirdagi.github.io/machine/shots/raporlama-rapor.jpg)
 
 Tags: Python, Apps Script, API integration
 
@@ -320,6 +354,8 @@ It saved each person around twenty minutes a day. I found the need myself and bu
 - Nobody asks anybody for a code
 
 **The interactive demo on the page:** Three employees' phones stand side by side, each with the relay app installed; under each phone it says which marketplaces are registered to it. The flow plays by itself: first a message from the bank with a code in it reaches Employee A, and the relay does not send it to the sheet, because the sender is not a marketplace. Then a Hepsiburada code reaches Employee B, who is in a meeting, and Employee C, who is on leave; an n11 code reaches C and a Trendyol code reaches A. Each code is lifted out of the message, written to the shared Google Sheet, and the person signing in takes it from there. The Before and after tab compares the old way with the new one. Codes and messages are illustrative.
+
+![The SMS Relay window: a Hepsiburada seller panel sign in at the top; three phones with the relay installed, a bank message on A marked as never sent, a highlighted Hepsiburada code on B; below, the shared Google Sheet with time, marketplace, phone, code and status columns.](https://onurmigirdagi.github.io/machine/shots/sms.jpg)
 
 Tags: Android, Kotlin, Google Sheets
 
