@@ -643,7 +643,9 @@ body.mob .mz-paper,body.phone .mz-paper{padding:14px;}
 .sm-r.taken .c{background:none; box-shadow:none;}
 .sm-r.taken .st{color:var(--dim);}
 .sm-r.old{opacity:.5;} .sm-r.old .c{text-decoration:line-through;} .sm-r.old .st{color:var(--faint);}
-.sm-team{display:flex; align-items:center; flex-wrap:wrap; gap:6px 8px; padding:8px 12px; background:var(--panel2); border-bottom:1px solid var(--line);}
+.sm-team{display:flex; align-items:center; flex-wrap:wrap; gap:7px 8px; padding:10px 12px; background:var(--panel2); border-bottom:1px solid var(--line);}
+.sm-ask{flex-basis:100%; font-size:13px; font-weight:600; color:var(--txt);}
+.sm-mk button{font-weight:500;}
 .sm-tl{font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint);}
 .sm-mk{display:flex; flex-wrap:wrap; gap:4px;}
 .sm-mk button{font-size:11.5px; padding:5px 10px; border-radius:7px; border:1px solid var(--line2); background:var(--panel); color:var(--txt);}
@@ -2513,7 +2515,7 @@ document.documentElement.setAttribute("data-theme", "day");
       sP:function(p){ return p+" telefonuna bankadan bir mesaj geldi. İçinde bir kod olsa da gönderen bir pazaryeri olmadığı için Aktarıcı bu mesajı tabloya göndermiyor."; }, app:"Aktarıcı", sheet:"Ortak tablo · Google Sheets", codes:"kod",
       emp:"Çalışan", away:["sahada","toplantıda","izinde"], sleep:"uyuyor",
       cols:["Saat","Pazaryeri","Tel.","Kod","Durum"],
-      team:"Ekip", login:function(m){ return m+" satıcı paneline giriş"; }, codeL:"Doğrulama kodu", waiting:"SMS bekleniyor",
+      team:"Ekip", ask:"Hangi pazaryerine giriş yapmak istiyorsunuz?", login:function(m){ return m+" satıcı paneline giriş"; }, codeL:"Doğrulama kodu", waiting:"SMS bekleniyor",
       fromSheet:"tablodan alındı", ok:"Giriş yapıldı", reboot:"A'nın telefonunu yeniden başlat", night:"Gece mesaisi", day:"Gündüze dön",
       msg:function(m, c){ return m+" satıcı paneli doğrulama kodunuz: "+c; },
       valid:"geçerli", expired:"süresi doldu", taken:"alındı",
@@ -2521,7 +2523,7 @@ document.documentElement.setAttribute("data-theme", "day");
       s1:"Aktarıcı mesajı o telefonda arka planda yakalıyor ve kodu metnin içinden ayıklıyor.",
       s2:"Kod, geldiği anda ortak tabloya yazılıyor.",
       s3:"Giriş yapan kişi kodu tablodan alıyor; kimse telefon sahibini aramıyor, kimseden kod istenmiyor.",
-      idle:"Sıra sizde: Bir pazaryerine giriş yapın, gece mesaisini deneyin ya da bir telefonu yeniden başlatın.",
+      idle:"Sıra sizde: Yukarıdan bir pazaryeri seçin, gece mesaisini deneyin ya da bir telefonu yeniden başlatın.",
       nightOn:"Saat 23:40. Bütün telefon sahipleri uyuyor; yine de giriş yapabilirsiniz.",
       r0:"A'nın telefonu yeniden başlatılıyor.", r1:"Aktarıcı açılışta kendiliğinden başladı; kodlar aynı şekilde gelmeye devam ediyor.",
       booting:"Yeniden başlatılıyor", booted:"Aktarıcı yeniden çalışıyor",
@@ -2540,7 +2542,7 @@ document.documentElement.setAttribute("data-theme", "day");
       sP:function(p){ return "A message from the bank reached "+p+"'s phone. It has a code in it, but the sender is not a marketplace, so the relay does not send it to the sheet."; }, app:"Relay", sheet:"Shared sheet · Google Sheets", codes:"codes",
       emp:"Employee", away:["out in the field","in a meeting","on leave"], sleep:"asleep",
       cols:["Time","Marketplace","Ph.","Code","Status"],
-      team:"Team", login:function(m){ return "Signing in to "+m+" seller panel"; }, codeL:"Verification code", waiting:"waiting for SMS",
+      team:"Team", ask:"Which marketplace do you want to sign in to?", login:function(m){ return "Signing in to "+m+" seller panel"; }, codeL:"Verification code", waiting:"waiting for SMS",
       fromSheet:"taken from the sheet", ok:"Signed in", reboot:"Restart A's phone", night:"Night shift", day:"Back to daytime",
       msg:function(m, c){ return "Your "+m+" seller panel verification code: "+c; },
       valid:"valid", expired:"expired", taken:"taken",
@@ -2548,7 +2550,7 @@ document.documentElement.setAttribute("data-theme", "day");
       s1:"The relay on that phone catches the message in the background and lifts the code out of the text.",
       s2:"The code lands in the shared sheet the moment it arrives.",
       s3:"Whoever is signing in takes the code from the sheet; nobody calls the phone's owner, nobody asks for a code.",
-      idle:"Your turn: sign in to a marketplace, try the night shift, or restart a phone.",
+      idle:"Your turn: pick a marketplace above, try the night shift, or restart a phone.",
       nightOn:"It is 23:40. Every phone owner is asleep; you can still sign in.",
       r0:"A's phone is restarting.", r1:"The relay started again on its own at boot; codes keep arriving the same way.",
       booting:"Restarting", booted:"Relay running again",
@@ -2568,6 +2570,10 @@ document.documentElement.setAttribute("data-theme", "day");
       + '<span class="pk-tabs"><button data-t="run" class="on">'+T.run+'</button><button data-t="ba">'+T.ba+'</button></span>'
       + '<span class="pk-stat"></span></div>'
       + '<div class="pk-view on" data-v="run"><div class="sm-run">'
+      +   '<div class="sm-team"><span class="sm-ask">'+T.ask+'</span><span class="sm-mk">'
+      +     SM_MK.map(function(m){ return '<button data-m="'+m[0]+'">'+m[1]+'</button>'; }).join('')+'</span>'
+      +     '<span class="sm-tools"><button class="sm-nt" data-c="night">&#9790; '+T.night+'</button><button class="sm-rb" data-c="reboot">&#8635; '+T.reboot+'</button></span></div>'
+      +   '<div class="sm-login"><span class="sm-lt"></span><span class="sm-lf"><small>'+T.codeL+'</small><code></code></span><span class="sm-ls"></span></div>'
       +   '<div class="mz-say sm-say"></div>'
       +   '<div class="sm-body">'
       +     '<div class="sm-pc"><div class="mz-ph2"><span>'+T.phones+'<em> &middot; '+T.inst+'</em></span><span class="sm-clock"></span></div><div class="sm-phs">'
@@ -2582,10 +2588,6 @@ document.documentElement.setAttribute("data-theme", "day");
       +       '<div class="sm-grid"><div class="sm-r sm-gh"><span></span>'+T.cols.map(function(c){ return '<span>'+c+'</span>'; }).join('')+'</div>'
       +       '<div class="sm-rows"></div></div></div>'
       +   '</div>'
-      +   '<div class="sm-team"><span class="sm-tl">'+T.team+'</span><span class="sm-mk">'
-      +     SM_MK.map(function(m){ return '<button data-m="'+m[0]+'">'+m[1]+'</button>'; }).join('')+'</span>'
-      +     '<span class="sm-tools"><button class="sm-nt" data-c="night">&#9790; '+T.night+'</button><button class="sm-rb" data-c="reboot">&#8635; '+T.reboot+'</button></span></div>'
-      +   '<div class="sm-login"><span class="sm-lt"></span><span class="sm-lf"><small>'+T.codeL+'</small><code></code></span><span class="sm-ls"></span></div>'
       +   '<div class="sm-note">'+T.note+'</div>'
       + '</div></div>'
       + '<div class="pk-view" data-v="ba"><div class="sm-ba">'
