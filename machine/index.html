@@ -2505,7 +2505,7 @@ document.documentElement.setAttribute("data-theme", "day");
      it there, even when the owner is in a meeting, on leave or asleep. The
      visitor drives it. Codes, times and message texts are illustrative. */
   var SM_MK = [["amazon","Amazon"],["n11","n11"],["trendyol","Trendyol"],["hb","Hepsiburada"]];
-  var SM_PH = [{ id:"A", mk:["amazon","trendyol"] }, { id:"B", mk:["hb","n11"] }, { id:"C", mk:["trendyol","hb"] }];
+  var SM_PH = [{ id:"A", mk:["amazon","trendyol"] }, { id:"B", mk:["hb","n11"] }, { id:"C", mk:["hb","n11"] }];
   var SM_T = {
     tr:{ run:"Canlı", ba:"Önce ve sonra",
       stat:function(n){ return "4 pazaryeri · 3 telefon · "+n+" kod"; },
@@ -2515,18 +2515,14 @@ document.documentElement.setAttribute("data-theme", "day");
       sP:function(p){ return p+" telefonuna bankadan bir mesaj geldi. İçinde bir kod olsa da gönderen bir pazaryeri olmadığı için Aktarıcı bu mesajı tabloya göndermiyor."; }, app:"Aktarıcı", sheet:"Ortak tablo · Google Sheets", codes:"kod",
       emp:"Çalışan", away:["sahada","toplantıda","izinde"], sleep:"uyuyor",
       cols:["Saat","Pazaryeri","Tel.","Kod","Durum"],
-      team:"Ekip", ask:"Hangi pazaryerine giriş yapmak istiyorsunuz?", login:function(m){ return m+" satıcı paneline giriş"; }, codeL:"Doğrulama kodu", waiting:"SMS bekleniyor",
-      fromSheet:"tablodan alındı", ok:"Giriş yapıldı", reboot:"A'nın telefonunu yeniden başlat", night:"Gece mesaisi", day:"Gündüze dön",
-      msg:function(m, c){ return m+" satıcı paneli doğrulama kodunuz: "+c; },
+      login:function(m){ return m+" satıcı paneline giriş"; }, codeL:"Doğrulama kodu", waiting:"SMS bekleniyor",
+      fromSheet:"tablodan alındı", ok:"Giriş yapıldı", msg:function(m, c){ return m+" satıcı paneli doğrulama kodunuz: "+c; },
       valid:"geçerli", expired:"süresi doldu", taken:"alındı",
+      soon:"Akış birazdan başlıyor.", again:"Bütün girişler tablodan yapıldı; kimse telefon sahibine ulaşmak zorunda kalmadı. Akış birazdan yeniden başlıyor.",
       s0:function(m, p, st){ return m+" hesabı "+p+" telefonuna kayıtlı ve kod oraya gidiyor; telefonun sahibi şu an "+st+"."; },
       s1:"Aktarıcı mesajı o telefonda arka planda yakalıyor ve kodu metnin içinden ayıklıyor.",
       s2:"Kod, geldiği anda ortak tabloya yazılıyor.",
       s3:"Giriş yapan kişi kodu tablodan alıyor; kimse telefon sahibini aramıyor, kimseden kod istenmiyor.",
-      idle:"Sıra sizde: Yukarıdan bir pazaryeri seçin, gece mesaisini deneyin ya da bir telefonu yeniden başlatın.",
-      nightOn:"Saat 23:40. Bütün telefon sahipleri uyuyor; yine de giriş yapabilirsiniz.",
-      r0:"A'nın telefonu yeniden başlatılıyor.", r1:"Aktarıcı açılışta kendiliğinden başladı; kodlar aynı şekilde gelmeye devam ediyor.",
-      booting:"Yeniden başlatılıyor", booted:"Aktarıcı yeniden çalışıyor",
       note:"Temsilîdir: Kodlar, saatler ve mesaj metinleri örnektir; pazaryerleri ve akış gerçektir.",
       bef:"Önce", aft:"Sonra",
       befS:["Kodun hangi çalışanın telefonuna gittiğini bul","O kişiye o anda ulaşmaya çalış","Kodu mesajla ya da telefonla iste","Süresi dolmadan yaz"],
@@ -2542,18 +2538,14 @@ document.documentElement.setAttribute("data-theme", "day");
       sP:function(p){ return "A message from the bank reached "+p+"'s phone. It has a code in it, but the sender is not a marketplace, so the relay does not send it to the sheet."; }, app:"Relay", sheet:"Shared sheet · Google Sheets", codes:"codes",
       emp:"Employee", away:["out in the field","in a meeting","on leave"], sleep:"asleep",
       cols:["Time","Marketplace","Ph.","Code","Status"],
-      team:"Team", ask:"Which marketplace do you want to sign in to?", login:function(m){ return "Signing in to "+m+" seller panel"; }, codeL:"Verification code", waiting:"waiting for SMS",
-      fromSheet:"taken from the sheet", ok:"Signed in", reboot:"Restart A's phone", night:"Night shift", day:"Back to daytime",
-      msg:function(m, c){ return "Your "+m+" seller panel verification code: "+c; },
+      login:function(m){ return "Signing in to "+m+" seller panel"; }, codeL:"Verification code", waiting:"waiting for SMS",
+      fromSheet:"taken from the sheet", ok:"Signed in", msg:function(m, c){ return "Your "+m+" seller panel verification code: "+c; },
       valid:"valid", expired:"expired", taken:"taken",
+      soon:"The flow starts in a moment.", again:"Every sign in went through the sheet; nobody had to reach a phone's owner. The flow starts again in a moment.",
       s0:function(m, p, st){ return "The "+m+" account is registered to "+p+"'s phone, so the code goes there; the owner is "+st+" right now."; },
       s1:"The relay on that phone catches the message in the background and lifts the code out of the text.",
       s2:"The code lands in the shared sheet the moment it arrives.",
       s3:"Whoever is signing in takes the code from the sheet; nobody calls the phone's owner, nobody asks for a code.",
-      idle:"Your turn: pick a marketplace above, try the night shift, or restart a phone.",
-      nightOn:"It is 23:40. Every phone owner is asleep; you can still sign in.",
-      r0:"A's phone is restarting.", r1:"The relay started again on its own at boot; codes keep arriving the same way.",
-      booting:"Restarting", booted:"Relay running again",
       note:"Illustrative: codes, times and message texts are examples; the marketplaces and the flow are real.",
       bef:"Before", aft:"After",
       befS:["Work out whose phone the code went to","Try to reach that person right then","Ask for the code by message or call","Type it before it expires"],
@@ -2570,16 +2562,13 @@ document.documentElement.setAttribute("data-theme", "day");
       + '<span class="pk-tabs"><button data-t="run" class="on">'+T.run+'</button><button data-t="ba">'+T.ba+'</button></span>'
       + '<span class="pk-stat"></span></div>'
       + '<div class="pk-view on" data-v="run"><div class="sm-run">'
-      +   '<div class="sm-team"><span class="sm-ask">'+T.ask+'</span><span class="sm-mk">'
-      +     SM_MK.map(function(m){ return '<button data-m="'+m[0]+'">'+m[1]+'</button>'; }).join('')+'</span>'
-      +     '<span class="sm-tools"><button class="sm-nt" data-c="night">&#9790; '+T.night+'</button><button class="sm-rb" data-c="reboot">&#8635; '+T.reboot+'</button></span></div>'
       +   '<div class="sm-login"><span class="sm-lt"></span><span class="sm-lf"><small>'+T.codeL+'</small><code></code></span><span class="sm-ls"></span></div>'
       +   '<div class="mz-say sm-say"></div>'
       +   '<div class="sm-body">'
       +     '<div class="sm-pc"><div class="mz-ph2"><span>'+T.phones+'<em> &middot; '+T.inst+'</em></span><span class="sm-clock"></span></div><div class="sm-phs">'
       +       SM_PH.map(function(p, i){
                 return '<div class="sm-pw" data-p="'+p.id+'"><div class="sm-phone"><div class="sm-sb"><span class="sm-t"></span><span class="sm-app"><i></i>'+T.app+'</span></div>'
-                  + '<div class="sm-msgs"></div><div class="sm-boot"><i></i><b></b></div></div>'
+                  + '<div class="sm-msgs"></div></div>'
                   + '<div class="sm-cap"><b>'+T.emp+' '+p.id+'</b> <span class="sm-who">'+T.away[i]+'</span><small>'+p.mk.map(name).join(', ')+'</small></div></div>';
               }).join('')
       +     '</div></div>'
@@ -2600,18 +2589,16 @@ document.documentElement.setAttribute("data-theme", "day");
     if(root._sm) return; root._sm = 1;
     var T = SM_T[L], TR = L === "tr";
     var q = function(s){ return root.querySelector(s); }, qa = function(s){ return Array.prototype.slice.call(root.querySelectorAll(s)); };
-    var say = q(".sm-say"), wire = q(".sm-wire"), rows = q(".sm-rows"), nEl = q(".sm-n"), stat = q(".pk-stat"), run = q(".sm-run"),
-        login = q(".sm-login"), lt = q(".sm-lt"), lf = q(".sm-lf code"), ls = q(".sm-ls"), clock = q(".sm-clock"),
-        mkBtns = qa(".sm-mk button"), tools = qa(".sm-tools button"), nt = q(".sm-nt");
-    var busy = false, count = 0, live = [], night = false, shift = 0;
+    var say = q(".sm-say"), wire = q(".sm-wire"), rows = q(".sm-rows"), nEl = q(".sm-n"), stat = q(".pk-stat"),
+        login = q(".sm-login"), lt = q(".sm-lt"), lf = q(".sm-lf code"), ls = q(".sm-ls"), clock = q(".sm-clock");
+    var count = 0, live = [];
     var pad = function(n){ return ("0"+n).slice(-2); };
-    var at = function(ms){ return new Date(Date.now() + shift + (ms || 0)); };
     var hm = function(d){ return pad(d.getHours())+":"+pad(d.getMinutes()); };
-    var sleep = function(ms){ return new Promise(function(r){ setTimeout(r, reduce ? Math.min(ms, 120) : ms); }); };
+    var sleep = function(ms){ return new Promise(function(r, j){ setTimeout(function(){ root.isConnected ? r() : j(); }, reduce ? Math.min(ms, 120) : ms); }); };
     var mkName = function(k){ return SM_MK.filter(function(m){ return m[0] === k; })[0][1]; };
-    var phoneEl = function(id){ return q('.sm-pw[data-p="'+id+'"]'); }, runs = 0, rot = {};
+    var phoneEl = function(id){ return q('.sm-pw[data-p="'+id+'"]'); };
+    var gen = function(id){ return T.emp+" "+id+(TR ? { A:"'nın", B:"'nin", C:"'nin" }[id] : ""); };
     var code6 = function(){ return String(100000 + Math.floor(Math.random()*900000)); };
-    function lock(on){ busy = on; mkBtns.concat(tools).forEach(function(b){ b.disabled = on; }); }
     function counts(){ nEl.textContent = count+" "+T.codes; stat.textContent = T.stat(count); }
     function addRow(t, mk, ph, code, until, state){
       count++;
@@ -2623,11 +2610,11 @@ document.documentElement.setAttribute("data-theme", "day");
       live.push(r); counts(); return r;
     }
     /* the sheet already has the morning in it */
-    [[-176, "hb", "B", "taken"], [-131, "amazon", "A", "taken"], [-87, "n11", "B", "old"], [-52, "trendyol", "C", "taken"], [-19, "hb", "C", "taken"]]
-      .forEach(function(x){ addRow(at(x[0]*60000), x[1], x[2], code6(), 0, x[3]); });
+    [[-176, "hb", "B", "taken"], [-131, "amazon", "A", "taken"], [-87, "n11", "B", "old"], [-52, "trendyol", "A", "taken"], [-19, "hb", "C", "taken"]]
+      .forEach(function(x){ addRow(new Date(Date.now() + x[0]*60000), x[1], x[2], code6(), 0, x[3]); });
     function tick(){
       if(!root.isConnected) return clearInterval(timer);
-      clock.textContent = hm(at()); qa(".sm-t").forEach(function(t){ t.textContent = hm(at()); });
+      var t = hm(new Date()); clock.textContent = t; qa(".sm-t").forEach(function(s){ s.textContent = t; });
       var now = Date.now();
       live.forEach(function(r){
         if(r.done) return;
@@ -2638,52 +2625,33 @@ document.documentElement.setAttribute("data-theme", "day");
     }
     var timer = setInterval(tick, 1000); tick();
     root.addEventListener("click", function(ev){
-      var t = ev.target.closest(".pk-tabs button");
-      if(t){ qa(".pk-tabs button").forEach(function(b){ b.classList.toggle("on", b === t); });
-        qa(".pk-view").forEach(function(v){ v.classList.toggle("on", v.getAttribute("data-v") === t.getAttribute("data-t")); }); return; }
-      if(busy) return;
-      var m = ev.target.closest(".sm-mk button");
-      if(m) return relay(m.getAttribute("data-m"));
-      if(ev.target.closest(".sm-rb")) return reboot();
-      if(ev.target.closest(".sm-nt")) return toggleNight();
+      var t = ev.target.closest(".pk-tabs button"); if(!t) return;
+      qa(".pk-tabs button").forEach(function(b){ b.classList.toggle("on", b === t); });
+      qa(".pk-view").forEach(function(v){ v.classList.toggle("on", v.getAttribute("data-v") === t.getAttribute("data-t")); });
     });
-    function toggleNight(){
-      night = !night;
-      if(night){ var d = new Date(); d.setHours(23, 40, 0, 0); shift = d - Date.now(); } else shift = 0;
-      run.classList.toggle("night", night);
-      nt.innerHTML = night ? "&#9788; "+T.day : "&#9790; "+T.night;
-      qa(".sm-who").forEach(function(w, i){ w.textContent = night ? "☾ "+T.sleep : T.away[i]; });
-      tick(); say.textContent = night ? T.nightOn : T.idle;
-    }
     function push(w, html){
       var box = w.querySelector(".sm-msgs"), ph = w.querySelector(".sm-phone");
       box.insertAdjacentHTML("afterbegin", html);
       var all = box.querySelectorAll(".sm-m"); if(all.length > 2) all[all.length-1].remove();
       ph.classList.remove("buzz"); void ph.offsetWidth; ph.classList.add("buzz");
     }
-    function relay(mk){
-      lock(true);
-      var code = code6(), opts = SM_PH.filter(function(p){ return p.mk.indexOf(mk) >= 0; }),
-          k = rot[mk] = (rot[mk] || 0) + 1, p = opts[(k - 1) % opts.length], el = phoneEl(p.id), idx = SM_PH.indexOf(p);
+    /* one sign in: the code lands on the phone that marketplace is registered to, goes to the sheet, and is read from there */
+    function relay(mk, id, bank){
+      var code = code6(), p = SM_PH.filter(function(x){ return x.id === id; })[0], el = phoneEl(id), idx = SM_PH.indexOf(p), r;
       qa(".sm-pw").forEach(function(x){ x.classList.remove("on"); });
       login.className = "sm-login on"; lt.textContent = T.login(mkName(mk)); lf.textContent = ""; lf.className = "";
       ls.textContent = T.waiting; ls.className = "sm-ls w";
-      say.textContent = T.s0(mkName(mk), T.emp+" "+p.id+(TR ? { A:"'nın", B:"'nin", C:"'nin" }[p.id] : ""), night ? T.sleep : T.away[idx]);
-      if(runs % 2 === 0) say.textContent = T.login(mkName(mk))+(TR ? " başlatıldı." : " started.");
-      var r, gen = function(id){ return T.emp+" "+id+(TR ? { A:"'nın", B:"'nin", C:"'nin" }[id] : ""); };
-      /* every other run a personal message lands first, and the relay leaves it alone */
-      var other = SM_PH.filter(function(x){ return x !== p; })[runs % 2], first = runs++ % 2 === 0 ? sleep(1800).then(function(){
-        var o = phoneEl(other.id);
-        push(o, '<div class="sm-m pv"><b>'+T.pv+'<em>'+hm(at())+'</em></b>'+T.bank(code6())+'<em class="sm-ig">'+T.ignored+'</em></div>');
-        say.textContent = T.sP(gen(other.id));
-        return sleep(3200);
-      }).then(function(){
-        say.textContent = T.s0(mkName(mk), gen(p.id), night ? T.sleep : T.away[idx]);
-        return sleep(1600);
-      }) : sleep(1800);
+      var first = bank ? (say.textContent = T.login(mkName(mk))+(TR ? " başlatıldı." : " started."), sleep(1800).then(function(){
+        push(phoneEl(bank), '<div class="sm-m pv"><b>'+T.pv+'</b>'+T.bank(code6())+'<em class="sm-ig">'+T.ignored+'</em></div>');
+        say.textContent = T.sP(gen(bank));
+        return sleep(3400);
+      })) : Promise.resolve();
       return first.then(function(){
+        say.textContent = T.s0(mkName(mk), gen(id), T.away[idx]);
+        return sleep(1800);
+      }).then(function(){
         el.classList.add("on");
-        push(el, '<div class="sm-m"><b>'+mkName(mk).toLocaleUpperCase(TR?"tr":"en")+'<em>'+hm(at())+'</em></b>'+T.msg(mkName(mk), '<mark>'+code+'</mark>')+'</div>');
+        push(el, '<div class="sm-m"><b>'+mkName(mk).toLocaleUpperCase(TR?"tr":"en")+'</b>'+T.msg(mkName(mk), '<mark>'+code+'</mark>')+'</div>');
         return sleep(1700);
       }).then(function(){
         say.textContent = T.s1; el.querySelector(".sm-m mark").classList.add("on");
@@ -2693,7 +2661,7 @@ document.documentElement.setAttribute("data-theme", "day");
         return sleep(1100);
       }).then(function(){
         wire.classList.remove("go");
-        r = addRow(at(), mk, p.id, code, Date.now() + 180000); tick();
+        r = addRow(new Date(), mk, id, code, Date.now() + 180000); tick();
         return sleep(2000);
       }).then(function(){
         say.textContent = T.s3; r.el.classList.add("pick");
@@ -2707,33 +2675,25 @@ document.documentElement.setAttribute("data-theme", "day");
         return sleep(1300);
       }).then(function(){
         ls.textContent = "✓ "+T.ok; ls.className = "sm-ls ok";
-        return sleep(1600);
-      }).then(function(){ el.classList.remove("on"); el.querySelector(".sm-m mark") && el.querySelector(".sm-m mark").classList.remove("on"); lock(false); say.textContent = night ? T.nightOn : T.idle; });
+        return sleep(2000);
+      }).then(function(){ el.classList.remove("on"); el.querySelector(".sm-m mark").classList.remove("on"); });
     }
-    function reboot(){
-      var el = phoneEl("A").querySelector(".sm-phone"), b = el.querySelector(".sm-boot b");
-      lock(true); say.textContent = T.r0;
-      b.textContent = T.booting; el.classList.add("off");
-      return sleep(2400).then(function(){
-        b.textContent = T.booted; el.classList.add("up");
-        return sleep(1700);
-      }).then(function(){
-        el.classList.remove("off", "up"); say.textContent = T.r1;
-        return sleep(2600);
-      }).then(function(){ lock(false); say.textContent = night ? T.nightOn : T.idle; });
+    /* Hepsiburada to B then C, n11 to C, Trendyol to A; then again, gently */
+    var SEQ = [["hb","B","A"], ["hb","C"], ["n11","C"], ["trendyol","A"]];
+    function loop(){
+      var p = Promise.resolve();
+      SEQ.forEach(function(s){ p = p.then(function(){ return relay(s[0], s[1], s[2]); }); });
+      return p.then(function(){ say.textContent = T.again; return sleep(5000); }).then(loop);
     }
-
-    say.textContent = T.idle;
+    var started = false;
+    function start(){ if(started) return; started = true; setTimeout(function(){ loop().catch(function(){}); }, 600); }
+    say.textContent = T.soon;
     if(window.IntersectionObserver){
-      var io = new IntersectionObserver(function(es){
-        if(es[0].isIntersecting){ io.disconnect(); auto(); }
-      }, { threshold:.35 });
+      var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); start(); } }, { threshold:.35 });
       io.observe(root);
     }
     /* the window may still be growing when the observer first looks, so check once more */
-    var autoDone = false;
-    function auto(){ if(autoDone) return; autoDone = true; setTimeout(function(){ if(!busy) relay("hb").then(function(){ return sleep(1500); }).then(function(){ if(!busy) relay("hb"); }); }, 600); }
-    setTimeout(function(){ var r = root.getBoundingClientRect(); if(root.isConnected && r.top < innerHeight - 120 && r.bottom > 120) auto(); }, 2500);
+    setTimeout(function(){ var r = root.getBoundingClientRect(); if(root.isConnected && r.top < innerHeight - 120 && r.bottom > 120) start(); }, 2500);
   }
 
   function mountDemos(el){
