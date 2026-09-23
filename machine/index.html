@@ -709,16 +709,28 @@ body.mob .sm-ba,body.phone .sm-ba{grid-template-columns:1fr;}
 .rp-down i{justify-self:center; width:2px; height:100%; background:var(--line2); position:relative;}
 .rp-down i.go{background:color-mix(in srgb, #1F9D55 55%, var(--line2));}
 .rp-down i.go:after{content:""; position:absolute; left:-3px; bottom:-2px; border:4px solid transparent; border-top:5px solid #1F9D55; border-bottom:0;}
-.rp-pcw{display:flex; flex-direction:column; align-items:center; padding:2px 12px 10px; background:var(--panel2); border-bottom:1px solid var(--line);}
-.rp-pc{width:100%; max-width:540px; border:8px solid #23232A; border-bottom-width:14px; border-radius:10px; background:#23232A; box-shadow:0 10px 24px rgba(20,20,26,.16);}
-.rp-win{background:var(--panel); border-radius:3px; overflow:hidden; display:flex; flex-direction:column; height:222px;}
-.rp-tb{display:flex; align-items:center; gap:8px; padding:5px 8px; background:var(--panel2); border-bottom:1px solid var(--line);}
-.rp-tb .pk-dots i{width:7px; height:7px;}
-.rp-tt{font-family:var(--mono); font-size:10px; font-weight:500; color:var(--txt); flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-.rp-tc{font-family:var(--mono); font-size:9px; color:#1F9D55;}
-.rp-scr{flex:1; min-height:0; overflow:hidden; position:relative;}
-.rp-neck{width:60px; height:16px; background:linear-gradient(#2E2E36, #23232A);}
-.rp-foot{width:160px; height:6px; border-radius:3px 3px 6px 6px; background:#2E2E36; font-size:0;}
+.rp-pcw{display:flex; flex-direction:column; align-items:center; padding:4px 12px 12px; background:var(--panel2); border-bottom:1px solid var(--line);}
+.rp-mac{width:100%; max-width:540px; padding:6px 6px 0; border-radius:12px 12px 10px 10px; background:linear-gradient(180deg, #F2F3F5, #D9DCE1);
+  box-shadow:0 12px 26px rgba(20,20,26,.18), inset 0 0 0 1px rgba(0,0,0,.06);}
+.rp-screen{position:relative; border-radius:6px 6px 2px 2px; overflow:hidden; border:4px solid #111114; padding:0 18px 12px;
+  background:radial-gradient(120% 90% at 15% 0%, #C9D8F2 0%, transparent 55%), radial-gradient(90% 90% at 100% 100%, #E9C9DF 0%, transparent 60%), linear-gradient(160deg, #B9C6E6, #D9C8E6);}
+.rp-menu{display:flex; align-items:center; gap:11px; height:17px; margin:0 -18px 10px; padding:0 10px; background:rgba(255,255,255,.55); backdrop-filter:blur(8px);
+  font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", var(--ui); font-size:9.5px; color:#1D1D1F;}
+.rp-menu b{font-weight:700;}
+.rp-menu em{margin-left:auto; font-style:normal;}
+.rp-win{background:#FFFFFF; color:#1D1D1F; border-radius:9px; overflow:hidden; display:flex; flex-direction:column; height:236px;
+  box-shadow:0 14px 30px rgba(30,30,60,.28), 0 0 0 .5px rgba(0,0,0,.18);
+  --panel:#FFFFFF; --panel2:#F5F5F7; --line:#E6E6EA; --line2:#D6D6DC; --txt:#1D1D1F; --dim:#55555C; --faint:#8A8A93;}
+.rp-tb{position:relative; display:flex; align-items:center; justify-content:center; gap:8px; height:24px; padding:0 8px; background:#ECECEF; border-bottom:1px solid #D6D6DC;}
+.rp-tl{position:absolute; left:9px; top:7px; display:flex; gap:6px;}
+.rp-tl i{width:10px; height:10px; border-radius:50%; background:#FF5F57; box-shadow:inset 0 0 0 .5px rgba(0,0,0,.2);}
+.rp-tl i:nth-child(2){background:#FEBC2E;} .rp-tl i:nth-child(3){background:#28C840;}
+.rp-tt{font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", var(--ui); font-size:10.5px; font-weight:600; color:#3A3A3F; max-width:65%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.rp-tc{position:absolute; right:9px; top:6px; font-family:var(--mono); font-size:9px; color:#1F9D55;}
+.rp-scr{flex:1; min-height:0; overflow:hidden; position:relative; background:#FFFFFF;}
+.rp-chin{height:26px;}
+.rp-neck{width:74px; height:30px; background:linear-gradient(90deg, #C3C7CE, #E4E6EA 45%, #C3C7CE); clip-path:polygon(8% 0, 92% 0, 100% 100%, 0 100%);}
+.rp-foot{width:150px; height:6px; border-radius:2px 2px 5px 5px; background:linear-gradient(#DADDE2, #BFC3CA); box-shadow:0 4px 8px rgba(20,20,26,.18);}
 .rp-log{padding:10px 12px; font-family:var(--mono); font-size:10.5px; line-height:1.75; color:var(--dim);}
 .rp-log div{animation:smin .35s ease;}
 .rp-log .cmd{color:var(--txt);}
@@ -743,21 +755,34 @@ body.mob .sm-ba,body.phone .sm-ba{grid-template-columns:1fr;}
 .rp-fr .ar{color:var(--faint); text-align:center; font-size:10px;}
 .rp-fr .b{font-family:var(--mono); font-size:9px; color:var(--pk-code); opacity:0; transition:opacity .3s ease;}
 .rp-fr.ok .b{opacity:1;}
-.rp-rep{padding:9px 12px; display:flex; flex-direction:column; gap:7px; height:100%; box-sizing:border-box;}
+.rp-flt{display:flex; align-items:center; gap:6px; flex-wrap:wrap;}
+.rp-flt small{font-size:8.5px; color:var(--faint);}
+.rp-chips{display:flex; gap:3px; flex-wrap:wrap;}
+.rp-chips button{font-size:9px; padding:2px 7px; border-radius:10px; border:1px solid var(--line2); background:#fff; color:var(--dim); cursor:pointer; transition:all .2s ease;}
+.rp-chips button:hover{border-color:#1F9D55;}
+.rp-chips button.on{background:#1F9D55; border-color:#1F9D55; color:#fff;}
+.rp-chips button.press{transform:scale(.92);}
+.rp-sel{margin-left:auto; font-family:var(--mono); font-size:8.5px; color:var(--dim); border:1px solid var(--line2); border-radius:5px; padding:1px 6px;}
+.rp-kpi > div.pulse b{animation:rppulse .5s ease;}
+@keyframes rppulse{from{color:#1F9D55;}}
+.rp-bar,.rp-tr[data-k]{transition:opacity .3s ease;}
+.rp-bar.off{opacity:.2;}
+.rp-tr.off{display:none;}
+.rp-rep{padding:8px 11px; display:flex; flex-direction:column; gap:5px; height:100%; box-sizing:border-box;}
 .rp-rep .in{opacity:1 !important; transform:none !important;}
-.rp-rh,.rp-kpi > div,.rp-bars,.rp-tbl,.rp-tr,.rp-done{opacity:0; transform:translateY(4px); transition:opacity .35s ease, transform .35s ease;}
+.rp-rh,.rp-flt,.rp-kpi > div,.rp-bars,.rp-tbl,.rp-tr,.rp-done{opacity:0; transform:translateY(4px); transition:opacity .35s ease, transform .35s ease;}
 .rp-rh{display:flex; justify-content:space-between; align-items:baseline; border-bottom:2px solid #1F9D55; padding-bottom:4px;}
-.rp-rh b{font-size:12.5px; color:var(--txt);} .rp-rh span{font-family:var(--mono); font-size:9.5px; color:var(--dim);}
+.rp-rh b{font-size:12.5px; color:var(--txt);} .rp-rh span{font-family:var(--mono); font-size:9.5px; color:var(--dim);} .rp-rh span.ok{color:#1F9D55;}
 .rp-kpi{display:grid; grid-template-columns:repeat(3, 1fr); gap:6px;}
 .rp-kpi > div{border:1px solid var(--line2); border-radius:6px; padding:4px 7px;}
 .rp-kpi small{display:block; font-size:8.5px; color:var(--faint);}
 .rp-kpi b{font-family:var(--mono); font-size:12.5px; color:var(--txt); font-weight:600;}
 .rp-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; flex:1; min-height:0;}
 .rp-bars small{display:block; font-size:8.5px; color:var(--faint); margin-bottom:4px;}
-.rp-bar{display:grid; grid-template-columns:62px minmax(0,1fr); align-items:center; gap:0 5px; margin-bottom:4px;}
+.rp-bar{display:grid; grid-template-columns:58px minmax(0,1fr) 62px; align-items:center; gap:0 5px; margin-bottom:5px;}
 .rp-bar span{font-size:9.5px; color:var(--txt);}
 .rp-bar i{display:block; height:8px; width:0; border-radius:2px; background:#1F9D55; transition:width .9s cubic-bezier(.2,.8,.2,1);}
-.rp-bar em{grid-column:2; font-style:normal; font-family:var(--mono); font-size:8px; color:var(--faint);}
+.rp-bar em{font-style:normal; font-family:var(--mono); font-size:8px; color:var(--faint); text-align:right; white-space:nowrap;}
 .rp-tbl{font-size:9.5px; align-self:start;}
 .rp-tr{display:grid; grid-template-columns:minmax(0,1.3fr) .8fr .7fr minmax(0,1.5fr); border-bottom:1px solid var(--line);}
 .rp-tr span{padding:4px 3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:var(--txt);}
@@ -767,7 +792,7 @@ body.mob .sm-ba,body.phone .sm-ba{grid-template-columns:1fr;}
 body.mob .rp-src,body.phone .rp-src{grid-template-columns:repeat(2, minmax(0,1fr));}
 body.mob .rp-down,body.phone .rp-down{display:none;}
 body.mob .rp-pcw,body.phone .rp-pcw{padding-top:10px;}
-body.mob .rp-pc,body.phone .rp-pc{border-width:6px; border-bottom-width:10px;}
+body.mob .rp-screen,body.phone .rp-screen{padding:0 8px 8px;} body.mob .rp-menu,body.phone .rp-menu{margin:0 -8px 8px;} body.mob .rp-tc,body.phone .rp-tc{display:none;} body.mob .rp-menu span,body.phone .rp-menu span{display:none;}
 body.mob .rp-win,body.phone .rp-win{height:320px;}
 body.mob .rp-grid,body.phone .rp-grid{grid-template-columns:minmax(0,1fr);}
 body.mob .rp-mr,body.phone .rp-mr{grid-template-columns:62px repeat(5, minmax(0,1fr));}
@@ -2810,11 +2835,13 @@ document.documentElement.setAttribute("data-theme", "day");
       s2:"Dört yanıtın alan adları birbirini tutmuyor; her biri tek şemadaki karşılığına eşleniyor.",
       s3:"Tarihler, para birimleri ve iade durumları tek bir biçime getiriliyor.",
       s4:"Veri, pazaryerinin dışa aktardığı düzende değil, şirketin okuduğu düzende tek bir rapora yazılıyor.",
-      s5:"Ayda beş saati aşan elle toplama işi ortadan kalktı; kopyala yapıştır hataları da. Akış birazdan yeniden başlıyor.",
+      s5:"Ayda beş saati aşan elle toplama işi ortadan kalktı; kopyala yapıştır hataları da. Filtreleri siz de deneyebilirsiniz; akış biraz sonra yeniden başlıyor.",
       recs:"kayıt", fixH:["kaynaktaki değer","rapordaki değer"],
       rep:"Aylık Satış Raporu", sheet:"Google Sheets", month:function(d){ return ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"][d.getMonth()]+" "+d.getFullYear(); },
       kpi:["Net satış","Sipariş","İade oranı"], byCh:"Kanal bazında net satış", tbl:["Kanal","Sipariş","İade","Net satış"],
-      ready:"Rapor hazır", note:"Temsilîdir: Alan adları, değerler ve tutarlar örnektir; dört kaynak ve akış gerçektir.",
+      ready:"Rapor hazır", all:"Tümü", chan:"Kanal", menu:["Dosya","Düzen","Görünüm"],
+      sF:function(n){ return "Rapor kanal bazında süzülebiliyor: şimdi yalnızca "+n+" görünüyor."; }, sF0:"Filtre kaldırıldı; dört kanal yeniden birlikte görünüyor.",
+      note:"Temsilîdir: Alan adları, değerler ve tutarlar örnektir; dört kaynak ve akış gerçektir.",
       bef:"Önce", aft:"Sonra",
       befS:["Dört satıcı panelini tek tek aç","Her birinden veriyi kendi biçiminde dışa aktar","Alanları ve tarihleri elle eşleştir","Parçaları kopyala yapıştırla birleştir"],
       aftS:["Program dört API'den veriyi çeker","Tek şemada birleştirir","Aylık rapor şirketin düzeninde hazır olur"],
@@ -2830,11 +2857,13 @@ document.documentElement.setAttribute("data-theme", "day");
       s2:"The four responses do not agree on field names; each one is mapped to its place in the single schema.",
       s3:"Dates, currencies and return statuses are brought to one format.",
       s4:"The data is written into one report laid out the way the company reads it, not the way a marketplace exports it.",
-      s5:"More than five hours of manual gathering a month is gone, and the copy and paste errors with it. The flow starts again in a moment.",
+      s5:"More than five hours of manual gathering a month is gone, and the copy and paste errors with it. Try the filters yourself; the flow starts again shortly.",
       recs:"records", fixH:["value at the source","value in the report"],
       rep:"Monthly Sales Report", sheet:"Google Sheets", month:function(d){ return ["January","February","March","April","May","June","July","August","September","October","November","December"][d.getMonth()]+" "+d.getFullYear(); },
       kpi:["Net sales","Orders","Return rate"], byCh:"Net sales by channel", tbl:["Channel","Orders","Returns","Net sales"],
-      ready:"Report ready", note:"Illustrative: field names, values and totals are examples; the four sources and the flow are real.",
+      ready:"Report ready", all:"All", chan:"Channel", menu:["File","Edit","View"],
+      sF:function(n){ return "The report can be filtered by channel: only "+n+" is showing now."; }, sF0:"Filter cleared; all four channels are showing again.",
+      note:"Illustrative: field names, values and totals are examples; the four sources and the flow are real.",
       bef:"Before", aft:"After",
       befS:["Open four seller panels one by one","Export each one in its own format","Match fields and dates by hand","Paste the pieces together"],
       aftS:["The script pulls all four APIs","Merges them into one schema","The monthly report is ready in the company's layout"],
@@ -2856,8 +2885,10 @@ document.documentElement.setAttribute("data-theme", "day");
       +   '<div class="rp-apis"><div class="mz-ph2"><span>'+T.apis+'</span><span></span></div><div class="rp-src">'
       +     RP_SRC.map(function(s){ return '<div class="rp-s" data-k="'+s.k+'"><div class="rp-sh"><b>'+s.n+'</b><em>'+s.ep+'</em></div><pre>'+pkEsc(s.raw)+'</pre><span class="rp-ok"></span></div>'; }).join('')
       +   '</div><div class="rp-down"><i></i><i></i><i></i><i></i></div></div>'
-      +   '<div class="rp-pcw"><div class="rp-pc"><div class="rp-win"><div class="rp-tb"><span class="pk-dots"><i></i><i></i><i></i></span><b class="rp-tt">'+T.app+'</b><span class="rp-tc"></span></div>'
-      +     '<div class="rp-scr"></div></div></div><div class="rp-neck"></div><div class="rp-foot">'+T.pc+'</div></div>'
+      +   '<div class="rp-pcw"><div class="rp-mac"><div class="rp-screen">'
+      +     '<div class="rp-menu"><b>'+T.app+'</b>'+T.menu.map(function(m){ return '<span>'+m+'</span>'; }).join('')+'<em class="rp-clk"></em></div>'
+      +     '<div class="rp-win"><div class="rp-tb"><span class="rp-tl"><i></i><i></i><i></i></span><b class="rp-tt">'+T.app+'</b><span class="rp-tc"></span></div>'
+      +     '<div class="rp-scr"></div></div></div><div class="rp-chin"></div></div><div class="rp-neck"></div><div class="rp-foot"></div></div>'
       +   '<div class="sm-note">'+T.note+'</div>'
       + '</div></div>'
       + '<div class="pk-view" data-v="ba"><div class="sm-ba">'
@@ -2880,6 +2911,8 @@ document.documentElement.setAttribute("data-theme", "day");
       qa(".pk-view").forEach(function(v){ v.classList.toggle("on", v.getAttribute("data-v") === t.getAttribute("data-t")); });
     });
     function step(i){ stepEls.forEach(function(s, k){ s.className = k < i ? "done" : k === i ? "on" : ""; }); }
+    var clk = q(".rp-clk"), days = TR ? ["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"] : ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    (function tickClk(){ if(!root.isConnected) return; var d = new Date(); clk.textContent = days[d.getDay()]+" "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2); setTimeout(tickClk, 20000); })();
     function reset(){
       qa(".rp-s").forEach(function(s){ s.className = "rp-s"; s.querySelector(".rp-ok").textContent = ""; });
       down.className = "rp-down"; tt.textContent = T.app; tc.textContent = ""; scr.innerHTML = '<div class="rp-log"></div>'; step(-1);
@@ -2935,25 +2968,61 @@ document.documentElement.setAttribute("data-theme", "day");
       });
       return p.then(function(){ return sleep(1600); });
     }
-    /* 4: the monthly report, in the company's layout */
+    /* 4: the monthly report, in the company's layout, with a channel filter */
+    var sel = "all", lastTouch = 0;
+    function filter(k){
+      sel = k;
+      var list = RP_SRC.filter(function(s){ return k === "all" || s.k === k; }), tot = [0, 0, 0];
+      list.forEach(function(s){ var n = RP_NUM[s.k]; tot[0] += n[2]; tot[1] += n[0]; tot[2] += n[1]; });
+      var kp = scr.querySelectorAll(".rp-kpi b"); if(!kp.length) return;
+      kp[0].textContent = tl(tot[0]); kp[1].textContent = String(tot[1]);
+      kp[2].textContent = (tot[2]/tot[1]*100).toFixed(1).replace(".", TR ? "," : ".")+"%";
+      Array.prototype.forEach.call(scr.querySelectorAll(".rp-chips button"), function(c){ c.classList.toggle("on", c.getAttribute("data-c") === k); });
+      Array.prototype.forEach.call(scr.querySelectorAll(".rp-bar, .rp-tr[data-k]"), function(r){ r.classList.toggle("off", k !== "all" && r.getAttribute("data-k") !== k); });
+      Array.prototype.forEach.call(scr.querySelectorAll(".rp-kpi > div"), function(d){ d.classList.remove("pulse"); void d.offsetWidth; d.classList.add("pulse"); });
+    }
+    root.addEventListener("click", function(ev){
+      var c = ev.target.closest(".rp-chips button"); if(!c) return;
+      lastTouch = Date.now(); filter(c.getAttribute("data-c"));
+    });
+    function press(k){
+      var c = scr.querySelector('.rp-chips button[data-c="'+k+'"]'); if(!c) return;
+      c.classList.add("press"); setTimeout(function(){ c.classList.remove("press"); }, 350); filter(k);
+    }
     function report(){
       step(3); say.textContent = T.s4; tt.textContent = T.rep+' · '+T.month(last); tc.textContent = T.sheet;
-      var tot = [0, 0, 0]; RP_SRC.forEach(function(s){ var n = RP_NUM[s.k]; tot[0] += n[2]; tot[1] += n[0]; tot[2] += n[1]; });
       var max = Math.max.apply(null, RP_SRC.map(function(s){ return RP_NUM[s.k][2]; }));
-      var rate = (tot[2]/tot[1]*100).toFixed(1).replace(".", TR ? "," : ".")+"%";
       scr.innerHTML = '<div class="rp-rep"><div class="rp-rh"><b>'+T.rep+'</b><span>'+T.month(last)+'</span></div>'
-        + '<div class="rp-kpi">'+[tl(tot[0]), String(tot[1]), rate].map(function(v, i){ return '<div><small>'+T.kpi[i]+'</small><b>'+v+'</b></div>'; }).join('')+'</div>'
+        + '<div class="rp-flt"><small>'+T.chan+'</small><span class="rp-chips"><button data-c="all" class="on">'+T.all+'</button>'
+        +   RP_SRC.map(function(s){ return '<button data-c="'+s.k+'">'+s.n+'</button>'; }).join('')+'</span><span class="rp-sel">'+T.month(last)+' &#9662;</span></div>'
+        + '<div class="rp-kpi">'+T.kpi.map(function(k){ return '<div><small>'+k+'</small><b></b></div>'; }).join('')+'</div>'
         + '<div class="rp-grid"><div class="rp-bars"><small>'+T.byCh+'</small>'
-        +   RP_SRC.map(function(s){ var v = RP_NUM[s.k][2]; return '<div class="rp-bar"><span>'+s.n+'</span><i data-w="'+(v/max*100).toFixed(1)+'"></i><em>'+tl(v)+'</em></div>'; }).join('')
+        +   RP_SRC.map(function(s){ var v = RP_NUM[s.k][2]; return '<div class="rp-bar" data-k="'+s.k+'"><span>'+s.n+'</span><i data-w="'+(v/max*100).toFixed(1)+'"></i><em>'+tl(v)+'</em></div>'; }).join('')
         + '</div><div class="rp-tbl"><div class="rp-tr h">'+T.tbl.map(function(c){ return '<span>'+c+'</span>'; }).join('')+'</div>'
-        +   RP_SRC.map(function(s){ var n = RP_NUM[s.k]; return '<div class="rp-tr"><span>'+s.n+'</span><span>'+n[0]+'</span><span>'+n[1]+'</span><span>'+tl(n[2])+'</span></div>'; }).join('')
-        + '</div></div><div class="rp-done">&check; '+T.ready+'</div></div>';
-      var parts = scr.querySelectorAll(".rp-rh, .rp-kpi > div, .rp-bars, .rp-tbl, .rp-tr, .rp-done"), p = sleep(300);
-      Array.prototype.forEach.call(parts, function(el){ p = p.then(function(){ el.classList.add("in"); return sleep(260); }); });
+        +   RP_SRC.map(function(s){ var n = RP_NUM[s.k]; return '<div class="rp-tr" data-k="'+s.k+'"><span>'+s.n+'</span><span>'+n[0]+'</span><span>'+n[1]+'</span><span>'+tl(n[2])+'</span></div>'; }).join('')
+        + '</div></div></div>';
+      filter("all");
+      var parts = scr.querySelectorAll(".rp-rh, .rp-flt, .rp-kpi > div, .rp-bars, .rp-tbl, .rp-tr"), p = sleep(300);
+      Array.prototype.forEach.call(parts, function(el){ p = p.then(function(){ el.classList.add("in"); return sleep(220); }); });
+      var t0;
+      function hold(){ return sleep(500).then(function(){ if(Date.now() - t0 < 7000 || Date.now() - lastTouch < 9000) return hold(); }); }
       return p.then(function(){
         Array.prototype.forEach.call(scr.querySelectorAll(".rp-bar i"), function(b){ b.style.width = b.getAttribute("data-w")+"%"; });
-        return sleep(3200);
-      }).then(function(){ step(4); say.textContent = T.s5; return sleep(6000); });
+        var rs = scr.querySelector(".rp-rh span"); rs.innerHTML = "&check; "+T.ready; rs.className = "ok";
+        return sleep(2200);
+      }).then(function(){
+        if(Date.now() - lastTouch < 9000) return;
+        press("trendyol"); say.textContent = T.sF("Trendyol");
+        return sleep(3200).then(function(){
+          if(Date.now() - lastTouch < 9000) return;
+          press("hb"); say.textContent = T.sF("Hepsiburada");
+          return sleep(3200);
+        }).then(function(){
+          if(Date.now() - lastTouch < 9000) return;
+          press("all"); say.textContent = T.sF0;
+          return sleep(2400);
+        });
+      }).then(function(){ step(4); say.textContent = T.s5; t0 = Date.now(); return hold(); });
     }
     function loop(){ reset(); return pull().then(map).then(norm).then(report).then(loop); }
     var started = false;
