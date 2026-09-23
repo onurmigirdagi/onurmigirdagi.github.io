@@ -689,6 +689,91 @@ body.mob .sm-login,body.phone .sm-login{flex-wrap:wrap; gap:6px 10px;}
 body.mob .sm-lt,body.phone .sm-lt{flex-basis:100%;}
 body.mob .sm-ls,body.phone .sm-ls{min-width:0; margin-left:auto;}
 body.mob .sm-ba,body.phone .sm-ba{grid-template-columns:1fr;}
+/* Raporlama demo: four APIs above, the company computer below */
+.rp-run{display:flex; flex-direction:column; background:var(--panel);}
+.rp-steps{display:flex; gap:4px; padding:8px 12px; background:var(--panel2); border-bottom:1px solid var(--line); flex-wrap:wrap;}
+.rp-steps span{display:flex; align-items:center; gap:5px; font-size:11px; padding:3px 9px 3px 4px; border-radius:14px; border:1px solid var(--line2); background:var(--panel); color:var(--dim); transition:all .3s ease;}
+.rp-steps i{font-style:normal; font-family:var(--mono); font-size:9px; width:15px; height:15px; border-radius:50%; display:grid; place-items:center; background:var(--line); color:var(--dim);}
+.rp-steps span.on{border-color:var(--pk-acc); color:var(--txt);} .rp-steps span.on i{background:var(--pk-acc); color:#fff;}
+.rp-steps span.done i{background:#1F9D55; color:#fff;}
+.rp-apis{background:var(--panel2);}
+.rp-src{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:7px; padding:9px 10px 4px;}
+.rp-s{position:relative; min-width:0; border:1px solid var(--line2); border-radius:8px; background:var(--panel); padding:6px 7px 16px; transition:border-color .3s ease, box-shadow .3s ease;}
+.rp-s.on{border-color:var(--pk-acc); box-shadow:0 0 0 3px color-mix(in srgb, var(--pk-acc) 15%, transparent);}
+.rp-s.got{border-color:color-mix(in srgb, #1F9D55 55%, var(--line2));}
+.rp-sh b{display:block; font-size:11.5px; color:var(--txt);}
+.rp-sh em{display:block; font-style:normal; font-family:var(--mono); font-size:8px; color:var(--faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.rp-s pre{margin:5px 0 0; font-family:var(--mono); font-size:7.5px; line-height:1.4; color:var(--pk-code); white-space:pre-wrap; word-break:break-all; height:46px; overflow:hidden;}
+.rp-ok{position:absolute; left:7px; bottom:3px; font-family:var(--mono); font-size:8.5px; color:#1F9D55;}
+.rp-down{display:grid; grid-template-columns:repeat(4, 1fr); padding:0 10px; height:16px;}
+.rp-down i{justify-self:center; width:2px; height:100%; background:var(--line2); position:relative;}
+.rp-down i.go{background:color-mix(in srgb, #1F9D55 55%, var(--line2));}
+.rp-down i.go:after{content:""; position:absolute; left:-3px; bottom:-2px; border:4px solid transparent; border-top:5px solid #1F9D55; border-bottom:0;}
+.rp-pcw{display:flex; flex-direction:column; align-items:center; padding:2px 12px 10px; background:var(--panel2); border-bottom:1px solid var(--line);}
+.rp-pc{width:100%; max-width:540px; border:8px solid #23232A; border-bottom-width:14px; border-radius:10px; background:#23232A; box-shadow:0 10px 24px rgba(20,20,26,.16);}
+.rp-win{background:var(--panel); border-radius:3px; overflow:hidden; display:flex; flex-direction:column; height:222px;}
+.rp-tb{display:flex; align-items:center; gap:8px; padding:5px 8px; background:var(--panel2); border-bottom:1px solid var(--line);}
+.rp-tb .pk-dots i{width:7px; height:7px;}
+.rp-tt{font-family:var(--mono); font-size:10px; font-weight:500; color:var(--txt); flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.rp-tc{font-family:var(--mono); font-size:9px; color:#1F9D55;}
+.rp-scr{flex:1; min-height:0; overflow:hidden; position:relative;}
+.rp-neck{width:60px; height:16px; background:linear-gradient(#2E2E36, #23232A);}
+.rp-foot{width:160px; height:6px; border-radius:3px 3px 6px 6px; background:#2E2E36; font-size:0;}
+.rp-log{padding:10px 12px; font-family:var(--mono); font-size:10.5px; line-height:1.75; color:var(--dim);}
+.rp-log div{animation:smin .35s ease;}
+.rp-log .cmd{color:var(--txt);}
+.rp-log .w{color:var(--faint);} .rp-log .g{color:#1F9D55;}
+.rp-map{padding:10px 10px; font-size:10px;}
+.rp-mr{display:grid; grid-template-columns:78px repeat(5, minmax(0,1fr)); border-bottom:1px solid var(--line);}
+.rp-mr span{padding:6px 5px; font-family:var(--mono); font-size:9px; color:var(--pk-code); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; border-right:1px solid var(--line);}
+.rp-mr span:last-child{border-right:0;}
+.rp-mr span:first-child{font-family:var(--ui); font-size:10.5px; color:var(--txt); font-weight:600;}
+.rp-mr.h span{font-family:var(--mono); font-size:9.5px; color:#fff; background:var(--pk-acc); font-weight:500; letter-spacing:.03em;}
+.rp-mr.h span:first-child{background:none;}
+.rp-mr span.in{animation:rpin .5s ease; background:color-mix(in srgb, var(--pk-acc) 7%, transparent);}
+@keyframes rpin{from{background:color-mix(in srgb, var(--pk-acc) 30%, transparent);}}
+.rp-fix{padding:9px 10px; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:7px;}
+.rp-fc{border:1px solid var(--line2); border-radius:6px; padding:5px 7px;}
+.rp-fc b{display:block; font-size:10.5px; color:var(--txt); margin-bottom:2px;}
+.rp-fr{display:grid; grid-template-columns:minmax(0,1fr) 14px minmax(0,1fr); align-items:center; padding:1px 0; opacity:.25; transition:opacity .3s ease;}
+.rp-fr.in{opacity:1;}
+.rp-fr span{white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.rp-fr .a{font-family:var(--mono); font-size:9px; color:var(--dim); transition:all .3s ease;}
+.rp-fr.ok .a{text-decoration:line-through; color:var(--faint);}
+.rp-fr .ar{color:var(--faint); text-align:center; font-size:10px;}
+.rp-fr .b{font-family:var(--mono); font-size:9px; color:var(--pk-code); opacity:0; transition:opacity .3s ease;}
+.rp-fr.ok .b{opacity:1;}
+.rp-rep{padding:9px 12px; display:flex; flex-direction:column; gap:7px; height:100%; box-sizing:border-box;}
+.rp-rep .in{opacity:1 !important; transform:none !important;}
+.rp-rh,.rp-kpi > div,.rp-bars,.rp-tbl,.rp-tr,.rp-done{opacity:0; transform:translateY(4px); transition:opacity .35s ease, transform .35s ease;}
+.rp-rh{display:flex; justify-content:space-between; align-items:baseline; border-bottom:2px solid #1F9D55; padding-bottom:4px;}
+.rp-rh b{font-size:12.5px; color:var(--txt);} .rp-rh span{font-family:var(--mono); font-size:9.5px; color:var(--dim);}
+.rp-kpi{display:grid; grid-template-columns:repeat(3, 1fr); gap:6px;}
+.rp-kpi > div{border:1px solid var(--line2); border-radius:6px; padding:4px 7px;}
+.rp-kpi small{display:block; font-size:8.5px; color:var(--faint);}
+.rp-kpi b{font-family:var(--mono); font-size:12.5px; color:var(--txt); font-weight:600;}
+.rp-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; flex:1; min-height:0;}
+.rp-bars small{display:block; font-size:8.5px; color:var(--faint); margin-bottom:4px;}
+.rp-bar{display:grid; grid-template-columns:62px minmax(0,1fr); align-items:center; gap:0 5px; margin-bottom:4px;}
+.rp-bar span{font-size:9.5px; color:var(--txt);}
+.rp-bar i{display:block; height:8px; width:0; border-radius:2px; background:#1F9D55; transition:width .9s cubic-bezier(.2,.8,.2,1);}
+.rp-bar em{grid-column:2; font-style:normal; font-family:var(--mono); font-size:8px; color:var(--faint);}
+.rp-tbl{font-size:9.5px; align-self:start;}
+.rp-tr{display:grid; grid-template-columns:minmax(0,1.3fr) .8fr .7fr minmax(0,1.5fr); border-bottom:1px solid var(--line);}
+.rp-tr span{padding:4px 3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:var(--txt);}
+.rp-tr span:nth-child(n+2){font-family:var(--mono); font-size:9px; text-align:right;}
+.rp-tr.h span{font-family:var(--mono); font-size:8px; color:#fff; background:#1F9D55; text-align:left;}
+.rp-done{align-self:flex-end; font-family:var(--mono); font-size:10px; color:#1F9D55;}
+body.mob .rp-src,body.phone .rp-src{grid-template-columns:repeat(2, minmax(0,1fr));}
+body.mob .rp-down,body.phone .rp-down{display:none;}
+body.mob .rp-pcw,body.phone .rp-pcw{padding-top:10px;}
+body.mob .rp-pc,body.phone .rp-pc{border-width:6px; border-bottom-width:10px;}
+body.mob .rp-win,body.phone .rp-win{height:320px;}
+body.mob .rp-grid,body.phone .rp-grid{grid-template-columns:minmax(0,1fr);}
+body.mob .rp-mr,body.phone .rp-mr{grid-template-columns:62px repeat(5, minmax(0,1fr));}
+body.mob .rp-fix,body.phone .rp-fix{grid-template-columns:minmax(0,1fr); gap:4px;}
+body.mob .rp-steps span,body.phone .rp-steps span{font-size:10px;}
+body.mob .rp-tbl,body.phone .rp-tbl{display:none;}
 body.mob .pk-stage,body.phone .pk-stage{height:380px;}
 body.mob .pk-side,body.phone .pk-side{left:10px; width:auto; top:auto; max-height:56%;}
 body.mob .pk-stat,body.phone .pk-stat{display:none;}
@@ -2696,6 +2781,191 @@ document.documentElement.setAttribute("data-theme", "day");
     setTimeout(function(){ var r = root.getBoundingClientRect(); if(root.isConnected && r.top < innerHeight - 120 && r.bottom > 120) start(); }, 2500);
   }
 
+  /* Raporlama demo. Four marketplace APIs answer in four different shapes;
+     the script pulls each one, maps the fields to one schema, evens out
+     dates, currency and returns, and writes the monthly report in the
+     company's own layout. Played on a desktop screen, on a loop. Field
+     names, values and totals are illustrative. */
+  var RP_SRC = [
+    { k:"amazon", n:"Amazon", ep:"GET /orders/v0/orders", raw:'{ "AmazonOrderId": "406-8812",\n  "PurchaseDate": "2025-03-04T10:21Z",\n  "OrderTotal": { "Amount": "12.40",\n    "CurrencyCode": "USD" },\n  "OrderStatus": "Refunded" }',
+      map:["PurchaseDate","AmazonOrderId","OrderTotal.Amount","CurrencyCode","OrderStatus"],
+      fix:[["2025-03-04T10:21Z","04.03.2025"],["12.40 USD","436,48 TL"],["Refunded","iade"]] },
+    { k:"n11", n:"n11", ep:"getOrderList", raw:'<order>\n  <orderNumber>2025030412</orderNumber>\n  <createDate>04/03/2025</createDate>\n  <totalAmount>249,90</totalAmount>\n  <status>5</status>\n</order>',
+      map:["createDate","orderNumber","totalAmount","(TL)","status"],
+      fix:[["04/03/2025","04.03.2025"],["249,90","249,90 TL"],["5","satış"]] },
+    { k:"trendyol", n:"Trendyol", ep:"GET /orders", raw:'{ "orderNumber": 10834721,\n  "orderDate": 1741083660000,\n  "totalPrice": 249.9,\n  "currencyCode": "TRY",\n  "status": "Delivered" }',
+      map:["orderDate","orderNumber","totalPrice","currencyCode","status"],
+      fix:[["1741083660000","04.03.2025"],["249.9 TRY","249,90 TL"],["Delivered","satış"]] },
+    { k:"hb", n:"Hepsiburada", ep:"GET /orders", raw:'{ "OrderNumber": "HB-3321",\n  "OrderDate": "04.03.2025 10:21",\n  "TotalPrice": { "Value": 249.90,\n    "Currency": "TRY" },\n  "Status": "ClaimAccepted" }',
+      map:["OrderDate","OrderNumber","TotalPrice.Value","TotalPrice.Currency","Status"],
+      fix:[["04.03.2025 10:21","04.03.2025"],["249.90 TRY","249,90 TL"],["ClaimAccepted","iade"]] }
+  ];
+  var RP_T = {
+    tr:{ run:"Canlı", ba:"Önce ve sonra", stat:"4 API · tek şema · tek rapor",
+      steps:["Veriyi çek","Tek şemaya eşle","Standartlaştır","Aylık rapor"],
+      apis:"Pazaryeri API'leri", app:"rapor.py", pc:"Şirket bilgisayarı",
+      cols:["tarih","sipariş","tutar","para birimi","tür"], schema:"Tek şema",
+      s0:"Her ayın başında program dört pazaryerinin API'sine bağlanıyor.",
+      s1:function(n, c){ return n+" API'si yanıt verdi: "+c+" kayıt, kendi biçiminde."; },
+      s2:"Dört yanıtın alan adları birbirini tutmuyor; her biri tek şemadaki karşılığına eşleniyor.",
+      s3:"Tarihler, para birimleri ve iade durumları tek bir biçime getiriliyor.",
+      s4:"Veri, pazaryerinin dışa aktardığı düzende değil, şirketin okuduğu düzende tek bir rapora yazılıyor.",
+      s5:"Ayda beş saati aşan elle toplama işi ortadan kalktı; kopyala yapıştır hataları da. Akış birazdan yeniden başlıyor.",
+      recs:"kayıt", fixH:["kaynaktaki değer","rapordaki değer"],
+      rep:"Aylık Satış Raporu", sheet:"Google Sheets", month:function(d){ return ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"][d.getMonth()]+" "+d.getFullYear(); },
+      kpi:["Net satış","Sipariş","İade oranı"], byCh:"Kanal bazında net satış", tbl:["Kanal","Sipariş","İade","Net satış"],
+      ready:"Rapor hazır", note:"Temsilîdir: Alan adları, değerler ve tutarlar örnektir; dört kaynak ve akış gerçektir.",
+      bef:"Önce", aft:"Sonra",
+      befS:["Dört satıcı panelini tek tek aç","Her birinden veriyi kendi biçiminde dışa aktar","Alanları ve tarihleri elle eşleştir","Parçaları kopyala yapıştırla birleştir"],
+      aftS:["Program dört API'den veriyi çeker","Tek şemada birleştirir","Aylık rapor şirketin düzeninde hazır olur"],
+      befF:"Her ay beş saati aşan bir iş ve beraberinde gelen kopyala yapıştır hataları vardı.",
+      aftF:"Elle veri toplama ortadan kalktı; rapor her ay aynı düzende ve hatasız geliyor.",
+      baNote:"Tarih biçimleri, para birimleri ve neyin iade sayılacağına dair kurallar her pazaryerinde farklıydı; hepsi tek bir kural setine bağlandı." },
+    en:{ run:"Live", ba:"Before and after", stat:"4 APIs · one schema · one report",
+      steps:["Pull the data","Map to one schema","Normalize","Monthly report"],
+      apis:"Marketplace APIs", app:"report.py", pc:"Company computer",
+      cols:["date","order","amount","currency","type"], schema:"One schema",
+      s0:"At the start of each month the script connects to all four marketplace APIs.",
+      s1:function(n, c){ return n+" answered: "+c+" records, in its own shape."; },
+      s2:"The four responses do not agree on field names; each one is mapped to its place in the single schema.",
+      s3:"Dates, currencies and return statuses are brought to one format.",
+      s4:"The data is written into one report laid out the way the company reads it, not the way a marketplace exports it.",
+      s5:"More than five hours of manual gathering a month is gone, and the copy and paste errors with it. The flow starts again in a moment.",
+      recs:"records", fixH:["value at the source","value in the report"],
+      rep:"Monthly Sales Report", sheet:"Google Sheets", month:function(d){ return ["January","February","March","April","May","June","July","August","September","October","November","December"][d.getMonth()]+" "+d.getFullYear(); },
+      kpi:["Net sales","Orders","Return rate"], byCh:"Net sales by channel", tbl:["Channel","Orders","Returns","Net sales"],
+      ready:"Report ready", note:"Illustrative: field names, values and totals are examples; the four sources and the flow are real.",
+      bef:"Before", aft:"After",
+      befS:["Open four seller panels one by one","Export each one in its own format","Match fields and dates by hand","Paste the pieces together"],
+      aftS:["The script pulls all four APIs","Merges them into one schema","The monthly report is ready in the company's layout"],
+      befF:"More than five hours of work every month, and the copy and paste errors that came with it.",
+      aftF:"Manual gathering is gone; the report arrives every month in the same layout, without errors.",
+      baNote:"Date formats, currencies and what counts as a return differed on every marketplace; all of it now follows one set of rules." }
+  };
+  var RP_NUM = { amazon:[118, 9, 86240], n11:[164, 6, 71530], trendyol:[402, 17, 198760], hb:[287, 12, 142310] };
+  function rpHtml(L){
+    var T = RP_T[L];
+    var steps = function(a, cls){ return '<ol class="sm-steps '+cls+'">'+a.map(function(s){ return '<li>'+s+'</li>'; }).join('')+'</ol>'; };
+    return '<div class="pk" data-demo="rp">'
+      + '<div class="pk-top"><span class="pk-dots"><i></i><i></i><i></i></span>'
+      + '<span class="pk-tabs"><button data-t="run" class="on">'+T.run+'</button><button data-t="ba">'+T.ba+'</button></span>'
+      + '<span class="pk-stat">'+T.stat+'</span></div>'
+      + '<div class="pk-view on" data-v="run"><div class="rp-run">'
+      +   '<div class="rp-steps">'+T.steps.map(function(s, i){ return '<span data-s="'+i+'"><i>'+(i+1)+'</i>'+s+'</span>'; }).join('')+'</div>'
+      +   '<div class="mz-say rp-say"></div>'
+      +   '<div class="rp-apis"><div class="mz-ph2"><span>'+T.apis+'</span><span></span></div><div class="rp-src">'
+      +     RP_SRC.map(function(s){ return '<div class="rp-s" data-k="'+s.k+'"><div class="rp-sh"><b>'+s.n+'</b><em>'+s.ep+'</em></div><pre>'+pkEsc(s.raw)+'</pre><span class="rp-ok"></span></div>'; }).join('')
+      +   '</div><div class="rp-down"><i></i><i></i><i></i><i></i></div></div>'
+      +   '<div class="rp-pcw"><div class="rp-pc"><div class="rp-win"><div class="rp-tb"><span class="pk-dots"><i></i><i></i><i></i></span><b class="rp-tt">'+T.app+'</b><span class="rp-tc"></span></div>'
+      +     '<div class="rp-scr"></div></div></div><div class="rp-neck"></div><div class="rp-foot">'+T.pc+'</div></div>'
+      +   '<div class="sm-note">'+T.note+'</div>'
+      + '</div></div>'
+      + '<div class="pk-view" data-v="ba"><div class="sm-ba">'
+      +   '<div class="sm-card"><h4>'+T.bef+'</h4>'+steps(T.befS, "b")+'<p>'+T.befF+'</p></div>'
+      +   '<div class="sm-card a"><h4>'+T.aft+'</h4>'+steps(T.aftS, "a")+'<p>'+T.aftF+'</p></div>'
+      +   '<p class="sm-banote">'+T.baNote+'</p>'
+      + '</div></div></div>';
+  }
+  function rpMount(root, L){
+    if(root._rp) return; root._rp = 1;
+    var T = RP_T[L], TR = L === "tr";
+    var q = function(s){ return root.querySelector(s); }, qa = function(s){ return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var say = q(".rp-say"), scr = q(".rp-scr"), tt = q(".rp-tt"), tc = q(".rp-tc"), down = q(".rp-down"), stepEls = qa(".rp-steps span");
+    var sleep = function(ms){ return new Promise(function(r, j){ setTimeout(function(){ root.isConnected ? r() : j(); }, reduce ? Math.min(ms, 120) : ms); }); };
+    var tl = function(n){ return n.toLocaleString(TR ? "tr-TR" : "en-GB")+" TL"; };
+    var last = new Date(2025, 2, 1);   /* the month the sample records belong to */
+    root.addEventListener("click", function(ev){
+      var t = ev.target.closest(".pk-tabs button"); if(!t) return;
+      qa(".pk-tabs button").forEach(function(b){ b.classList.toggle("on", b === t); });
+      qa(".pk-view").forEach(function(v){ v.classList.toggle("on", v.getAttribute("data-v") === t.getAttribute("data-t")); });
+    });
+    function step(i){ stepEls.forEach(function(s, k){ s.className = k < i ? "done" : k === i ? "on" : ""; }); }
+    function reset(){
+      qa(".rp-s").forEach(function(s){ s.className = "rp-s"; s.querySelector(".rp-ok").textContent = ""; });
+      down.className = "rp-down"; tt.textContent = T.app; tc.textContent = ""; scr.innerHTML = '<div class="rp-log"></div>'; step(-1);
+    }
+    function log(s, cls){ var l = scr.querySelector(".rp-log"); if(l){ l.insertAdjacentHTML("beforeend", '<div class="'+(cls||'')+'">'+s+'</div>'); } }
+    /* 1: pull every API */
+    function pull(){
+      step(0); say.textContent = T.s0; log('$ python '+T.app+' --ay '+(last.getMonth()+1)+'/'+last.getFullYear(), "cmd");
+      var p = sleep(1600);
+      RP_SRC.forEach(function(s, i){
+        p = p.then(function(){
+          var el = q('.rp-s[data-k="'+s.k+'"]'); el.classList.add("on");
+          log(s.n+' &rsaquo; '+s.ep+' <span class="w">…</span>');
+          return sleep(1100).then(function(){
+            var n = RP_NUM[s.k][0];
+            el.classList.remove("on"); el.classList.add("got"); el.querySelector(".rp-ok").textContent = "200 · "+n+" "+T.recs;
+            down.querySelectorAll("i")[i].className = "go";
+            var w = scr.querySelector(".rp-log .w:last-of-type"); if(w){ w.className = "g"; w.textContent = "200 · "+n+" "+T.recs; }
+            say.textContent = T.s1(s.n, n);
+            return sleep(1500);
+          });
+        });
+      });
+      return p;
+    }
+    /* 2: map the fields to one schema */
+    function map(){
+      step(1); say.textContent = T.s2; tt.textContent = T.app+' · '+T.schema;
+      scr.innerHTML = '<div class="rp-map"><div class="rp-mr h"><span></span>'+T.cols.map(function(c){ return '<span>'+c+'</span>'; }).join('')+'</div>'
+        + RP_SRC.map(function(s){ return '<div class="rp-mr" data-k="'+s.k+'"><span>'+s.n+'</span>'+s.map.map(function(){ return '<span></span>'; }).join('')+'</div>'; }).join('')+'</div>';
+      var p = sleep(900);
+      RP_SRC.forEach(function(s){
+        p = p.then(function(){
+          var cells = scr.querySelectorAll('.rp-mr[data-k="'+s.k+'"] span'), src = q('.rp-s[data-k="'+s.k+'"]'), k = 0;
+          src.classList.add("on");
+          return (function next(){
+            if(k >= s.map.length){ src.classList.remove("on"); return sleep(300); }
+            var c = cells[k+1]; c.textContent = s.map[k]; c.className = "in"; k++;
+            return sleep(260).then(next);
+          })();
+        });
+      });
+      return p.then(function(){ return sleep(1400); });
+    }
+    /* 3: normalize dates, currency and returns */
+    function norm(){
+      step(2); say.textContent = T.s3;
+      scr.innerHTML = '<div class="rp-fix">'
+        + RP_SRC.map(function(s){ return '<div class="rp-fc"><b>'+s.n+'</b>'+s.fix.map(function(f){ return '<div class="rp-fr"><span class="a">'+pkEsc(f[0])+'</span><span class="ar">&rarr;</span><span class="b">'+f[1]+'</span></div>'; }).join('')+'</div>'; }).join('')+'</div>';
+      var rows = scr.querySelectorAll(".rp-fr"), p = sleep(600);
+      Array.prototype.forEach.call(rows, function(r){
+        p = p.then(function(){ r.classList.add("in"); return sleep(260); }).then(function(){ r.classList.add("ok"); return sleep(200); });
+      });
+      return p.then(function(){ return sleep(1600); });
+    }
+    /* 4: the monthly report, in the company's layout */
+    function report(){
+      step(3); say.textContent = T.s4; tt.textContent = T.rep+' · '+T.month(last); tc.textContent = T.sheet;
+      var tot = [0, 0, 0]; RP_SRC.forEach(function(s){ var n = RP_NUM[s.k]; tot[0] += n[2]; tot[1] += n[0]; tot[2] += n[1]; });
+      var max = Math.max.apply(null, RP_SRC.map(function(s){ return RP_NUM[s.k][2]; }));
+      var rate = (tot[2]/tot[1]*100).toFixed(1).replace(".", TR ? "," : ".")+"%";
+      scr.innerHTML = '<div class="rp-rep"><div class="rp-rh"><b>'+T.rep+'</b><span>'+T.month(last)+'</span></div>'
+        + '<div class="rp-kpi">'+[tl(tot[0]), String(tot[1]), rate].map(function(v, i){ return '<div><small>'+T.kpi[i]+'</small><b>'+v+'</b></div>'; }).join('')+'</div>'
+        + '<div class="rp-grid"><div class="rp-bars"><small>'+T.byCh+'</small>'
+        +   RP_SRC.map(function(s){ var v = RP_NUM[s.k][2]; return '<div class="rp-bar"><span>'+s.n+'</span><i data-w="'+(v/max*100).toFixed(1)+'"></i><em>'+tl(v)+'</em></div>'; }).join('')
+        + '</div><div class="rp-tbl"><div class="rp-tr h">'+T.tbl.map(function(c){ return '<span>'+c+'</span>'; }).join('')+'</div>'
+        +   RP_SRC.map(function(s){ var n = RP_NUM[s.k]; return '<div class="rp-tr"><span>'+s.n+'</span><span>'+n[0]+'</span><span>'+n[1]+'</span><span>'+tl(n[2])+'</span></div>'; }).join('')
+        + '</div></div><div class="rp-done">&check; '+T.ready+'</div></div>';
+      var parts = scr.querySelectorAll(".rp-rh, .rp-kpi > div, .rp-bars, .rp-tbl, .rp-tr, .rp-done"), p = sleep(300);
+      Array.prototype.forEach.call(parts, function(el){ p = p.then(function(){ el.classList.add("in"); return sleep(260); }); });
+      return p.then(function(){
+        Array.prototype.forEach.call(scr.querySelectorAll(".rp-bar i"), function(b){ b.style.width = b.getAttribute("data-w")+"%"; });
+        return sleep(3200);
+      }).then(function(){ step(4); say.textContent = T.s5; return sleep(6000); });
+    }
+    function loop(){ reset(); return pull().then(map).then(norm).then(report).then(loop); }
+    var started = false;
+    function start(){ if(started) return; started = true; setTimeout(function(){ loop().catch(function(){}); }, 500); }
+    reset(); say.textContent = TR ? "Akış birazdan başlıyor." : "The flow starts in a moment.";
+    if(window.IntersectionObserver){
+      var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); start(); } }, { threshold:.3 });
+      io.observe(root);
+    }
+    setTimeout(function(){ var r = root.getBoundingClientRect(); if(root.isConnected && r.top < innerHeight - 120 && r.bottom > 120) start(); }, 2500);
+  }
+
   function mountDemos(el){
     var r = el.querySelector('[data-demo="pk"]');
     if(r) pkMount(r, LANG);
@@ -2703,6 +2973,8 @@ document.documentElement.setAttribute("data-theme", "day");
     if(m) mzMount(m, LANG);
     var s = el.querySelector('[data-demo="sm"]');
     if(s) smMount(s, LANG);
+    var rp = el.querySelector('[data-demo="rp"]');
+    if(rp) rpMount(rp, LANG);
   }
 
   /* how information moves through İş Takip Modülü, and the tables it lands in */
@@ -2773,7 +3045,7 @@ document.documentElement.setAttribute("data-theme", "day");
     return '<div class="doc"><h1>'+d.name+'</h1><p class="meta">'+d.meta+'</p>'
       + '<div class="badges">'+badges.map(function(on, i){ return '<span class="'+(on?'on':'')+'">'+BADGE[L][i]+'</span>'; }).join('')+'</div>'
       + '<p class="lede">'+d.lede+'</p>'
-      + (id === "istakip" ? pkHtml(L) : id === "pipeline" ? mzHtml(L) : id === "sms" ? smHtml(L) : '')
+      + (id === "istakip" ? pkHtml(L) : id === "pipeline" ? mzHtml(L) : id === "sms" ? smHtml(L) : id === "reporting" ? rpHtml(L) : '')
       + d.paras.map(function(p, i){
           var b = d.blocks && d.blocks[i];
           return (b === "flow" ? dia(PK_FLOW, L) : b === "erd" ? erd(PK_ERD, L) : '') + '<p>'+p+'</p>';
