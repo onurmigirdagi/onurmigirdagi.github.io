@@ -582,19 +582,20 @@ body.mob .mz-paper,body.phone .mz-paper{padding:14px;}
 .sm-clock{font-family:var(--mono); color:var(--txt);}
 .sm-phs{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:10px; padding:10px 14px 7px; background:var(--panel2);}
 .sm-pw{display:flex; flex-direction:column; align-items:center; gap:6px; min-width:0;}
-.sm-phone{position:relative; width:100%; max-width:140px; height:152px; border-radius:18px; border:5px solid #23232A; background:var(--panel);
+.sm-phone{position:relative; width:100%; width:100%; max-width:104px; aspect-ratio:104 / 198; border-radius:18px; border:5px solid #23232A; background:var(--panel);
   box-shadow:0 8px 20px rgba(20,20,26,.14); overflow:hidden; display:flex; flex-direction:column; transition:box-shadow .3s ease;}
 .sm-pw.on .sm-phone{box-shadow:0 0 0 3px color-mix(in srgb, var(--pk-acc) 45%, transparent), 0 8px 20px rgba(20,20,26,.14);}
 .sm-phone.buzz{animation:smbuzz .12s linear 4;}
 @keyframes smbuzz{25%{transform:translateX(-2px) rotate(-.6deg);} 75%{transform:translateX(2px) rotate(.6deg);}}
-.sm-sb{display:flex; justify-content:space-between; align-items:center; gap:4px; padding:6px 8px 4px; font-family:var(--mono); font-size:8.5px; color:var(--dim);}
+.sm-phone:before{content:""; display:block; width:30px; height:4px; border-radius:3px; background:#23232A; margin:5px auto 0; flex:none;}
+.sm-sb{display:flex; justify-content:space-between; align-items:center; gap:4px; padding:4px 7px 4px; font-family:var(--mono); font-size:8.5px; color:var(--dim);}
 .sm-app{display:flex; align-items:center; gap:3px; padding:0 5px; border-radius:8px; border:1px solid var(--line2); white-space:nowrap;}
 .sm-app i{width:5px; height:5px; border-radius:50%; background:#1F9D55; animation:mzfade 1.6s ease infinite;}
-.sm-msgs{flex:1; min-height:0; overflow:hidden; padding:2px 6px 6px; display:flex; flex-direction:column; gap:5px;}
-.sm-m{flex:none; background:var(--panel2); border:1px solid var(--line2); border-radius:9px; padding:4px 6px; font-size:9.5px; line-height:1.35; color:var(--txt);
+.sm-msgs{flex:1; min-height:0; overflow:hidden; padding:2px 5px 6px; display:flex; flex-direction:column; gap:5px;}
+.sm-m{flex:none; background:var(--panel2); border:1px solid var(--line2); border-radius:9px; padding:4px 5px; font-size:8.5px; line-height:1.35; color:var(--txt);
   animation:smin .45s cubic-bezier(.2,.8,.2,1);}
 .sm-m b{display:flex; justify-content:space-between; font-family:var(--mono); font-size:7.5px; letter-spacing:.05em; color:var(--faint); font-weight:600; margin-bottom:1px;}
-.sm-m b em{font-style:normal; font-weight:400;}
+.sm-m b em{display:none;}
 .sm-m mark{background:none; color:var(--pk-code); font-family:var(--mono); font-weight:600; padding:0 2px; border-radius:3px; transition:all .5s ease;}
 .sm-m mark.on{background:color-mix(in srgb, var(--pk-acc) 16%, transparent); box-shadow:0 0 0 1px var(--pk-acc);}
 .sm-m.pv{position:relative; padding-bottom:6px;}
@@ -678,7 +679,7 @@ body.mob .mz-paper,body.phone .mz-paper{padding:14px;}
 .sm-banote{grid-column:1 / -1; margin:0; font-size:11.5px; line-height:1.5; color:var(--dim);}
 body.mob .sm-r,body.phone .sm-r{grid-template-columns:18px 44px minmax(0,1fr) 22px 54px 66px;}
 body.mob .sm-phs,body.phone .sm-phs{gap:6px; padding:10px 8px 6px;}
-body.mob .sm-phone,body.phone .sm-phone{height:150px; border-width:4px; border-radius:16px;}
+body.mob .sm-phone,body.phone .sm-phone{max-width:92px; border-width:4px; border-radius:16px;}
 body.mob .sm-app,body.phone .sm-app{font-size:0; gap:0; padding:3px;}
 body.mob .sm-pc .mz-ph2 em,body.phone .sm-pc .mz-ph2 em{display:none;}
 body.mob .sm-tools,body.phone .sm-tools{margin-left:0; flex-wrap:wrap;}
@@ -2507,8 +2508,9 @@ document.documentElement.setAttribute("data-theme", "day");
     tr:{ run:"Canlı", ba:"Önce ve sonra",
       stat:function(n){ return "4 pazaryeri · 3 telefon · "+n+" kod"; },
       phones:"Çalışanların telefonları", inst:"her birinde Aktarıcı kurulu", reg:"kayıtlı",
-      pv:"KİŞİSEL MESAJ", ignored:"tabloya gitmez",
-      sP:function(p){ return p+" telefonuna kişisel bir mesaj geldi. Aktarıcı yalnızca pazaryeri doğrulama mesajlarını alıyor; kişisel mesajlara dokunmuyor."; }, app:"Aktarıcı", sheet:"Ortak tablo · Google Sheets", codes:"kod",
+      pv:"BANKA", ignored:"tabloya gitmez",
+      bank:function(c){ return "İnternet alışverişi için tek kullanımlık şifreniz: "+c; },
+      sP:function(p){ return p+" telefonuna bankadan bir mesaj geldi. İçinde bir kod olsa da gönderen bir pazaryeri olmadığı için Aktarıcı bu mesajı tabloya göndermiyor."; }, app:"Aktarıcı", sheet:"Ortak tablo · Google Sheets", codes:"kod",
       emp:"Çalışan", away:["sahada","toplantıda","izinde"], sleep:"uyuyor",
       cols:["Saat","Pazaryeri","Tel.","Kod","Durum"],
       team:"Ekip", login:function(m){ return m+" satıcı paneline giriş"; }, codeL:"Doğrulama kodu", waiting:"SMS bekleniyor",
@@ -2533,8 +2535,9 @@ document.documentElement.setAttribute("data-theme", "day");
     en:{ run:"Live", ba:"Before and after",
       stat:function(n){ return "4 marketplaces · 3 phones · "+n+" codes"; },
       phones:"Employees' phones", inst:"the relay is installed on each", reg:"registered",
-      pv:"PERSONAL MESSAGE", ignored:"never sent",
-      sP:function(p){ return "A personal message reached "+p+"'s phone. The relay only takes marketplace verification messages; it leaves personal ones alone."; }, app:"Relay", sheet:"Shared sheet · Google Sheets", codes:"codes",
+      pv:"BANK", ignored:"never sent",
+      bank:function(c){ return "Your one time password for online shopping: "+c; },
+      sP:function(p){ return "A message from the bank reached "+p+"'s phone. It has a code in it, but the sender is not a marketplace, so the relay does not send it to the sheet."; }, app:"Relay", sheet:"Shared sheet · Google Sheets", codes:"codes",
       emp:"Employee", away:["out in the field","in a meeting","on leave"], sleep:"asleep",
       cols:["Time","Marketplace","Ph.","Code","Status"],
       team:"Team", login:function(m){ return "Signing in to "+m+" seller panel"; }, codeL:"Verification code", waiting:"waiting for SMS",
@@ -2604,7 +2607,7 @@ document.documentElement.setAttribute("data-theme", "day");
     var hm = function(d){ return pad(d.getHours())+":"+pad(d.getMinutes()); };
     var sleep = function(ms){ return new Promise(function(r){ setTimeout(r, reduce ? Math.min(ms, 120) : ms); }); };
     var mkName = function(k){ return SM_MK.filter(function(m){ return m[0] === k; })[0][1]; };
-    var phoneEl = function(id){ return q('.sm-pw[data-p="'+id+'"]'); }, runs = 0;
+    var phoneEl = function(id){ return q('.sm-pw[data-p="'+id+'"]'); }, runs = 0, rot = {};
     var code6 = function(){ return String(100000 + Math.floor(Math.random()*900000)); };
     function lock(on){ busy = on; mkBtns.concat(tools).forEach(function(b){ b.disabled = on; }); }
     function counts(){ nEl.textContent = count+" "+T.codes; stat.textContent = T.stat(count); }
@@ -2659,7 +2662,7 @@ document.documentElement.setAttribute("data-theme", "day");
     function relay(mk){
       lock(true);
       var code = code6(), opts = SM_PH.filter(function(p){ return p.mk.indexOf(mk) >= 0; }),
-          p = opts[Math.floor(Math.random()*opts.length)], el = phoneEl(p.id), idx = SM_PH.indexOf(p);
+          k = rot[mk] = (rot[mk] || 0) + 1, p = opts[(k - 1) % opts.length], el = phoneEl(p.id), idx = SM_PH.indexOf(p);
       qa(".sm-pw").forEach(function(x){ x.classList.remove("on"); });
       login.className = "sm-login on"; lt.textContent = T.login(mkName(mk)); lf.textContent = ""; lf.className = "";
       ls.textContent = T.waiting; ls.className = "sm-ls w";
@@ -2669,7 +2672,7 @@ document.documentElement.setAttribute("data-theme", "day");
       /* every other run a personal message lands first, and the relay leaves it alone */
       var other = SM_PH.filter(function(x){ return x !== p; })[runs % 2], first = runs++ % 2 === 0 ? sleep(1800).then(function(){
         var o = phoneEl(other.id);
-        push(o, '<div class="sm-m pv"><b>'+T.pv+'</b><span class="sm-bl"></span><span class="sm-bl s"></span><em class="sm-ig">'+T.ignored+'</em></div>');
+        push(o, '<div class="sm-m pv"><b>'+T.pv+'<em>'+hm(at())+'</em></b>'+T.bank(code6())+'<em class="sm-ig">'+T.ignored+'</em></div>');
         say.textContent = T.sP(gen(other.id));
         return sleep(3200);
       }).then(function(){
@@ -2727,7 +2730,7 @@ document.documentElement.setAttribute("data-theme", "day");
     }
     /* the window may still be growing when the observer first looks, so check once more */
     var autoDone = false;
-    function auto(){ if(autoDone) return; autoDone = true; setTimeout(function(){ if(!busy) relay("hb"); }, 600); }
+    function auto(){ if(autoDone) return; autoDone = true; setTimeout(function(){ if(!busy) relay("hb").then(function(){ return sleep(1500); }).then(function(){ if(!busy) relay("hb"); }); }, 600); }
     setTimeout(function(){ var r = root.getBoundingClientRect(); if(root.isConnected && r.top < innerHeight - 120 && r.bottom > 120) auto(); }, 2500);
   }
 
