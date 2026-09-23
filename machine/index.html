@@ -372,7 +372,30 @@ html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparen
 .pk-gfoot span:first-child{font-family:var(--mono); color:var(--dim);}
 /* Mevzuat İzleme demo: one real day of the Resmî Gazete branch, replayed end to end */
 .mz-run{display:flex; flex-direction:column; background:var(--panel);}
-.mz-flow{position:relative; display:flex; align-items:stretch; gap:0; padding:10px 12px 9px; border-bottom:1px solid var(--line); background:var(--panel2);}
+.mz-flow{position:relative; padding:4px 10px 2px; border-bottom:1px solid var(--line); background:var(--panel2); overflow-x:auto;}
+.mzf{display:block; width:100%; height:auto; overflow:visible;}
+.mzf .fl{stroke:var(--line2); stroke-width:.7; fill:none;}
+.mzf .fd{fill:var(--line3); opacity:.7;} .mzf .fd.a{fill:var(--pk-acc); opacity:.55;}
+.mzf .nd.on .fl{stroke:color-mix(in srgb, var(--pk-acc) 40%, var(--line2));} .mzf .nd.on .fd,.mzf .nd.done .fd{opacity:1;}
+.mzf .ln{fill:none; stroke:var(--line3); stroke-width:3.5; stroke-linecap:round; transition:stroke .3s ease;}
+.mzf .st{fill:var(--panel); stroke:var(--line3); stroke-width:1.6;}
+.mzf g[data-s].go .ln{stroke:var(--pk-acc);} .mzf g[data-s].go .st{stroke:var(--pk-acc);}
+.mzf .p{fill:var(--pk-acc); opacity:0;} .mzf g[data-s].go .p{opacity:1;}
+.mzf g[data-s="src"] .p{fill:var(--pk-acc);}
+.mzf .nd .r{fill:var(--panel); stroke:var(--line3); stroke-width:3.5; transition:stroke .3s ease, fill .3s ease;}
+.mzf .nd .c{fill:var(--line3);}
+.mzf .nd.on .r,.mzf .nd.done .r{stroke:var(--pk-acc);} .mzf .nd.on .c,.mzf .nd.done .c{fill:var(--pk-acc);}
+.mzf .nd.db .r{fill:var(--line);} .mzf .nd.db.on .r,.mzf .nd.db.done .r{fill:var(--pk-acc); stroke:color-mix(in srgb, var(--pk-acc) 55%, #fff);}
+.mzf .nd.pill .r{fill:var(--panel);}
+.mzf .pl{fill:none; stroke:var(--pk-acc); stroke-width:2; opacity:0; transform-box:fill-box; transform-origin:center;}
+.mzf .nd.on .pl{animation:mzpulse 1.4s ease-out infinite;}
+@keyframes mzpulse{from{opacity:.55; transform:scale(1);} to{opacity:0; transform:scale(1.7);}}
+.mzf text{font-family:var(--ui);}
+.mzf .t{font-size:11.5px; font-weight:600; fill:var(--txt);}
+.mzf .s{font-family:var(--mono); font-size:8.8px; fill:var(--faint);} .mzf .s.i{font-style:italic;}
+.mzf .k{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.12em; fill:var(--dim);}
+.mzf .ph{font-family:var(--mono); font-size:9.5px; fill:var(--faint);}
+.mzf .ph tspan.on{fill:var(--pk-acc); font-weight:700;}
 .mz-n{flex:1 1 0; min-width:0; border:1px solid var(--line2); border-radius:9px; background:var(--panel); padding:7px 8px; position:relative;
   transition:border-color .25s ease, box-shadow .25s ease, opacity .25s ease; opacity:.55;}
 .mz-n b{display:block; font-size:11.5px; font-weight:600; color:var(--txt); line-height:1.25;}
@@ -537,7 +560,7 @@ html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparen
 .mz-ex .mz-sum{font-size:13px;}
 .mz-len{display:grid; grid-template-columns:1fr auto; gap:3px 14px; margin-top:4px; font-size:12px;}
 .mz-len span:nth-child(even){font-family:var(--mono); font-size:11px; color:var(--pk-code); text-align:right;}
-body.mob .mz-flow,body.phone .mz-flow{padding:8px 6px; overflow-x:auto;}
+body.mob .mzf,body.phone .mzf{min-width:600px;}
 body.mob .mz-n,body.phone .mz-n{padding:5px 14px 5px 7px; min-width:78px;} body.mob .mz-n.big,body.phone .mz-n.big{min-width:136px;}
 body.mob .mz-flow::-webkit-scrollbar,body.phone .mz-flow::-webkit-scrollbar{display:none;}
 body.mob .mz-n small,body.phone .mz-n small{display:none;}
@@ -1146,20 +1169,20 @@ document.documentElement.setAttribute("data-theme", "day");
 
     pipeline:{ w:740, h:720, badges:[1,1,1],
       en:{ t:"Pipeline", name:"Regulatory Monitoring Pipeline", meta:"2026 &middot; BTS &amp; Partners",
-        lede:"An autonomous agent pipeline that follows the news of five client companies and 107 public and regulatory sources, running unattended in production.",
-        paras:["Every hour a collector agent scans the sources, summarises each item from its body, scores its relevance and tags it with the client company, sector and practice area it belongs to, then writes it to a shared database as a 17 field record. The line splits at that record: every two hours one publisher agent filters for the five client companies and developments in their sectors, the other for Turkish regulatory developments, and each sends its own bulletin by corporate email. Nobody touches it day to day.",
-               "In the run above the client news is illustrative: the companies stay unnamed and the stories are written to show the flow, while the structure, tags and filter are the system's. The Official Gazette part is the real output of 1 July 2026: 19 index entries, with the scores and summaries the model actually produced.",
+        lede:"An autonomous agent pipeline that follows five technology companies and 107 public, regulatory and trade press sources, running unattended in production.",
+        paras:["Every hour a collector agent scans the sources, summarises each item from its body, scores its relevance and tags it with the related company, the ecosystem and the practice area, then writes it to a shared database as a 17 field record. The line splits at that record: every two hours one publisher agent filters for the five watched companies (Microsoft, Apple, Google, LinkedIn, Snapchat) and ecosystem developments and sends the technology bulletin, the other filters for Turkish regulatory developments and sends the legislation bulletin, both by corporate email. Nobody touches it day to day.",
+               "In the run above the company stories are illustrative, written to show the flow; the five companies, the tags and the filter are the system's. The Official Gazette part is the real output of 1 July 2026: 19 index entries, with the scores and summaries the model actually produced.",
                "I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.",
                "Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison."],
-        rt:"Built with", rail:["Python, scheduled <b>agents</b>","<b>Supabase</b> central store","Streamlit for inspection","<b>Microsoft Graph</b> for delivery","Benchmarked against <b>Power Automate</b>","Client, sector and practice area tagging"],
+        rt:"Built with", rail:["Python, scheduled <b>agents</b>","<b>Supabase</b> central store","Streamlit for inspection","<b>Microsoft Graph</b> for delivery","Benchmarked against <b>Power Automate</b>","Company, ecosystem and practice area tagging"],
         tags:["Python","AI agents","Supabase","Microsoft Graph"] },
       tr:{ t:"Mevzuat İzleme", name:"Mevzuat İzleme Sistemi", meta:"2026 &middot; BTS &amp; Partners",
-        lede:"Beş müvekkil şirketin haberlerini ve 107 kamu ve düzenleyici kaynağı izleyen, canlı ortamda kendi başına çalışan otonom bir ajan hattı.",
-        paras:["Toplayıcı ajan kaynakları saatte bir tarıyor. Her içeriği gövdesinden özetliyor, alaka puanı veriyor, hangi müvekkil şirkete, sektöre ve çalışma alanına ait olduğunu etiketleyip 17 alanlık bir kayıt olarak ortak veritabanına yazıyor. Hat tam o kayıtta ikiye ayrılıyor: bir yayıncı ajan iki saatte bir beş müvekkil şirketin haberlerini ve sektörlerindeki gelişmeleri, diğeri Türkiye'deki düzenleyici gelişmeleri süzüyor ve her biri kendi bültenini kurumsal e-postayla gönderiyor. Günlük işleyişte kimsenin dokunmasına gerek yok.",
-               "Yukarıdaki turda müvekkil haberleri temsili: şirket adları gizli, haberler akışı göstermek için yazıldı; yapı, etiketler ve süzgeç sistemdeki gibi. Resmî Gazete kısmı ise 1 Temmuz 2026 günkü gerçek çıktı: fihristteki 19 madde, modelin o gün verdiği puanlar ve yazdığı özetlerle.",
+        lede:"Beş teknoloji şirketini ve resmî kurum, düzenleyici ve sektör basınından 107 kaynağı izleyen, canlı ortamda kendi başına çalışan otonom bir ajan hattı.",
+        paras:["Toplayıcı ajan kaynakları saatte bir tarıyor. Her içeriği gövdesinden özetliyor, alaka puanı veriyor, ilgili şirketi, ekosistemi ve çalışma alanını etiketleyip 17 alanlık bir kayıt olarak ortak veritabanına yazıyor. Hat tam o kayıtta ikiye ayrılıyor: bir yayıncı ajan iki saatte bir izlenen beş şirketin (Microsoft, Apple, Google, LinkedIn, Snapchat) haberlerini ve ekosistem gelişmelerini süzüp teknoloji bültenini, diğeri Türkiye'deki düzenleyici gelişmeleri süzüp mevzuat bültenini kurumsal e-postayla gönderiyor. Günlük işleyişte kimsenin dokunmasına gerek yok.",
+               "Yukarıdaki turda şirket haberleri temsili, akışı göstermek için yazıldı; izlenen beş şirket, etiketler ve süzgeç sistemdeki gibi. Resmî Gazete kısmı ise 1 Temmuz 2026 günkü gerçek çıktı: fihristteki 19 madde, modelin o gün verdiği puanlar ve yazdığı özetlerle.",
                "Aynı iş akışını, ikisi düzgünce karşılaştırılabilsin diye Microsoft Power Automate üzerinde ikinci kez kurdum. Bu kadar kaynağı sorgulayıp sonuçlar üzerinde yapay zekâ analizi çalıştırmak şirketin lisans kapsamının dışında kalıyordu. Ajan versiyonu bu yüzden kazandı: mevcut abonelik kapasitesi içinde, ek altyapı maliyeti olmadan çalışıyor.",
                "Ayrıca orada yapay zekâ çıktıları için kullanılan değerlendirme yöntemini tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk benchmark'ı ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması."],
-        rt:"Yapı taşları", rail:["Python, zamanlanmış <b>ajanlar</b>","Merkezi depo olarak <b>Supabase</b>","İnceleme için Streamlit","Dağıtım için <b>Microsoft Graph</b>","<b>Power Automate</b> ile karşılaştırıldı","Müvekkil, sektör ve alan etiketleme"],
+        rt:"Yapı taşları", rail:["Python, zamanlanmış <b>ajanlar</b>","Merkezi depo olarak <b>Supabase</b>","İnceleme için Streamlit","Dağıtım için <b>Microsoft Graph</b>","<b>Power Automate</b> ile karşılaştırıldı","İlgili şirket, ekosistem ve alan etiketleme"],
         tags:["Python","Yapay zekâ ajanları","Supabase","Microsoft Graph"] } },
 
     reporting:{ w:660, h:580, badges:[1,1,1],
@@ -1280,10 +1303,10 @@ document.documentElement.setAttribute("data-theme", "day");
       nodes:[
         { id:"src", x:0,   y:70,  w:92,  h:50, stack:1, t:{ en:["107","sources"], tr:["107","kaynak"] } },
         { id:"col", x:124, y:62,  w:132, h:66, hi:1, t:{ en:["Collector agent","summary, score,","tag"], tr:["Toplayıcı ajan","özet, puan,","etiket"] } },
-        { id:"db",  x:288, y:70,  w:104, h:50, t:{ en:["Supabase","client tagged"], tr:["Supabase","müvekkil etiketli"] } },
+        { id:"db",  x:288, y:70,  w:104, h:50, t:{ en:["Supabase","company tagged"], tr:["Supabase","şirket etiketli"] } },
         { id:"st",  x:288, y:168, w:104, h:44, nt:1, t:{ en:["Streamlit","inspection"], tr:["Streamlit","inceleme"] } },
         { id:"p1",  x:424, y:122, w:110, h:50, t:{ en:["Publisher","legislation"], tr:["Yayıncı ajan","mevzuat"] } },
-        { id:"p2",  x:424, y:18,  w:110, h:50, hi:1, t:{ en:["Publisher","5 clients + sector"], tr:["Yayıncı ajan","5 müvekkil + sektör"] } },
+        { id:"p2",  x:424, y:18,  w:110, h:50, hi:1, t:{ en:["Publisher","5 companies + ecosystem"], tr:["Yayıncı ajan","5 şirket + ekosistem"] } },
         { id:"gr",  x:560, y:62,  w:80,  h:66, t:{ en:["MS Graph","corporate","email"], tr:["MS Graph","kurumsal","e-posta"] } }],
       edges:[ { f:"src", t:"col" }, { f:"col", t:"db" }, { f:"db", t:"p1" }, { f:"db", t:"p2" },
         { f:"db", fs:"b", t:"st", ts:"t" }, { f:"p1", t:"gr" }, { f:"p2", t:"gr" }] },
@@ -1863,73 +1886,79 @@ document.documentElement.setAttribute("data-theme", "day");
       new ResizeObserver(function(){ if(activeTab==="graph"){ var had = W; size(); if(!had) fitCam(false); kick(); } }).observe(stage);
     }
   }
-  /* Mevzuat İzleme demo. One collector writes every item, tagged by client
-     company, sector and practice area, into a shared database; the line
-     splits there and two publisher agents filter the same records into two
-     bulletins. The client news records are illustrative (the clients stay
-     unnamed); MZ, the Official Gazette part, is one real day
+  /* Mevzuat İzleme demo. One collector writes every item, tagged with the
+     related company, ecosystem and practice area, into a shared database; the
+     line splits there and two publisher agents filter the same records into
+     two bulletins (the flow on the firm's own slide). The five watched
+     companies are the ones on that slide; their stories here are
+     illustrative. MZ, the Official Gazette part, is one real day
      (make_mzdata.py) with the model's scores and summaries as produced. */
   var MZ_AREA = { competition:["Rekabet","Competition"], corporate:["Şirketler ve M&A","Corporate and M&A"], dataprotection:["Kişisel Veri","Data Protection"],
     fintech:["FinTech","FinTech"], ip:["Fikri Mülkiyet","IP"], ittelecom:["BT ve Telekom","IT and Telecoms"], employment:["İş Hukuku","Employment"] };
-  /* client news: illustrative records in the shape the collector writes them */
+  var MZ_COS = ["Microsoft","Apple","Google","LinkedIn","Snapchat"];
+  /* company news: illustrative records in the shape the collector writes them */
   var MZ_NEWS = [
-    { co:"A", area:["competition","corporate"], sc:.86,
-      tr:["Müvekkil A'nın sektördeki bir rakibini devralma işlemi Rekabet Kurulu'na bildirildi","Müvekkil A'nın faaliyet gösterdiği sektördeki bir rakibini devralma işlemi izin için Rekabet Kurulu'na bildirilmiştir. İşlemin bedeli açıklanmamış olup Kurul'un ön inceleme süreci başlamıştır."],
-      en:["Client A's acquisition of a competitor notified to the Competition Board","Client A's acquisition of a competitor in its sector has been notified to the Competition Board for clearance. The price has not been disclosed and the Board's preliminary review has begun."] },
-    { eco:"B", area:["competition"], sc:.61,
-      tr:["Müvekkil B'nin sektöründe iki büyük şirketin birleşmesine şartlı izin verildi","Rekabet Kurulu, Müvekkil B'nin faaliyet gösterdiği sektörde iki büyük şirketin birleşmesine, taahhütlerin yerine getirilmesi şartıyla izin vermiştir."],
-      en:["Conditional clearance for a merger of two major players in Client B's sector","The Competition Board has cleared a merger of two major players in Client B's sector, subject to commitments being met."] },
+    { co:"Microsoft", area:["dataprotection","ittelecom"], sc:.82,
+      tr:["Microsoft, AB Veri Sınırı çalışmasının son aşamasını tamamladığını duyurdu","Microsoft, bulut hizmetlerinde müşteri verilerinin Avrupa Birliği sınırları içinde işlenmesini öngören AB Veri Sınırı çalışmasının son aşamasını tamamladığını duyurmuştur. Destek süreçlerinde oluşan veriler de kapsama alınmıştır."],
+      en:["Microsoft says it has completed the last phase of its EU Data Boundary","Microsoft has announced that it has completed the last phase of its EU Data Boundary, under which customer data in its cloud services is processed within the European Union. Data generated in support processes is now covered too."] },
+    { eco:1, area:["competition"], sc:.63,
+      tr:["Avrupa Komisyonu, Dijital Piyasalar Yasası kapsamında yeni bir uyum incelemesi başlattı","Avrupa Komisyonu, Dijital Piyasalar Yasası kapsamında erişim kapısı olarak belirlenen platformların yükümlülüklerine uyumunu değerlendirmek üzere yeni bir inceleme başlatmıştır."],
+      en:["The European Commission opens a new compliance review under the Digital Markets Act","The European Commission has opened a new review of whether platforms designated as gatekeepers under the Digital Markets Act comply with their obligations."] },
     { drop:1, sc:0,
       tr:["Bir kurumun sözleşmeli personel alımı duyurusu","Düzenleyici nitelik taşımıyor: etkinlik, personel alımı, ihale ve kutlama kalemleri alınmıyor."],
       en:["An agency's recruitment notice for contract staff","Not regulatory in nature: events, recruitment, tenders and celebrations are never taken."] },
-    { co:"B", area:["ittelecom","dataprotection"], sc:.64,
-      tr:["Müvekkil B yeni bir veri merkezi yatırımını duyurdu","Müvekkil B, yeni bir veri merkezi yatırımı yapacağını duyurmuştur. Tesisin gelecek yıl hizmete girmesi planlanmaktadır."],
-      en:["Client B announces a new data centre investment","Client B has announced a new data centre investment. The facility is planned to open next year."] },
-    { co:"C", area:["fintech"], sc:.72,
-      tr:["Müvekkil C elektronik para kuruluşu lisansı için başvurdu","Müvekkil C'nin elektronik para kuruluşu faaliyet izni için başvuruda bulunduğu açıklanmıştır."],
-      en:["Client C applies for an e-money institution licence","Client C has been reported to have applied for an e-money institution licence."] },
-    { co:"D", area:["corporate"], sc:.22,
-      tr:["Müvekkil D'nin yöneticisi bir sektör konferansında konuştu","Müvekkil D'nin bir yöneticisi sektör konferansında şirketin büyüme planlarını anlatmıştır."],
-      en:["An executive of Client D speaks at an industry conference","An executive of Client D has outlined the company's growth plans at an industry conference."] },
-    { co:"E", area:["ip"], sc:.58,
-      tr:["Müvekkil E yeni ürün serisi için marka başvurusu yaptı","Müvekkil E'nin yeni ürün serisi için Türk Patent ve Marka Kurumu'na marka başvurusu yaptığı yayımlanmıştır."],
-      en:["Client E files a trademark application for a new product line","Client E has filed a trademark application with the Turkish Patent and Trademark Office for a new product line."] },
-    { eco:"C", area:["fintech"], sc:.55,
-      tr:["Müvekkil C'nin sektöründe ödeme kuruluşlarına yeni denetim dönemi","Müvekkil C'nin sektöründeki ödeme kuruluşlarına yönelik yeni bir denetim döneminin başlatıldığı duyurulmuştur."],
-      en:["A new inspection round for payment institutions in Client C's sector","A new round of inspections of payment institutions in Client C's sector has been announced."] }
+    { co:"Apple", area:["competition","ittelecom"], sc:.71,
+      tr:["Apple, AB'de alternatif uygulama mağazalarına ilişkin koşullarını güncelledi","Apple, Avrupa Birliği'nde alternatif uygulama mağazalarına ve uygulama dışı ödeme yönlendirmelerine ilişkin koşullarında değişiklik yaptığını açıklamıştır."],
+      en:["Apple updates its terms for alternative app marketplaces in the EU","Apple has announced changes to its terms for alternative app marketplaces and for steering users to payments outside the app in the European Union."] },
+    { co:"Google", area:["competition"], sc:.68,
+      tr:["Google, Dijital Piyasalar Yasası uyum raporunu yayımladı","Google, Dijital Piyasalar Yasası kapsamındaki yükümlülüklerine ilişkin yıllık uyum raporunu yayımlamıştır. Raporda arama sonuçlarının gösterimine ilişkin değişikliklere yer verilmiştir."],
+      en:["Google publishes its Digital Markets Act compliance report","Google has published its annual compliance report on its obligations under the Digital Markets Act. The report sets out changes to how search results are displayed."] },
+    { co:"LinkedIn", area:["dataprotection"], sc:.77,
+      tr:["LinkedIn, yapay zekâ eğitiminde kullanıcı verisi kullanımına ilişkin gizlilik politikasını güncelledi","LinkedIn, kullanıcı verilerinin üretken yapay zekâ modellerinin eğitiminde kullanılmasına ilişkin gizlilik politikasını güncellemiş ve kullanıcılara ret seçeneği sunmuştur."],
+      en:["LinkedIn updates its privacy policy on using member data to train AI","LinkedIn has updated its privacy policy on using member data to train generative AI models and has given members a way to opt out."] },
+    { co:"Snapchat", area:["ittelecom"], sc:.18,
+      tr:["Snapchat yeni artırılmış gerçeklik filtrelerini tanıttı","Snapchat, uygulamaya yeni artırılmış gerçeklik filtreleri eklendiğini duyurmuştur."],
+      en:["Snapchat introduces new augmented reality lenses","Snapchat has announced new augmented reality lenses in the app."] },
+    { eco:1, area:["competition"], sc:.58,
+      tr:["Rekabet Kurumu, çevrim içi reklamcılık sektör incelemesinin sonuçlarını açıkladı","Rekabet Kurumu, çevrim içi reklamcılık alanında yürüttüğü sektör incelemesinin nihai raporunu yayımlamış ve dijital platformlara yönelik tespitlerini paylaşmıştır."],
+      en:["The Turkish Competition Authority publishes its online advertising sector inquiry","The Turkish Competition Authority has published the final report of its sector inquiry into online advertising, setting out its findings on digital platforms."] }
   ];
   var MZ_DET = { news0:1, news1:1, news2:1, rg14:1 };   /* shown at full length; the rest run fast */
   var MZ_T = {
     tr:{ run:"Tur", bul:"Bülten", style:"Üslup", rules:"Kurallar", items:"kayıt",
-      stat:function(){ return "Müvekkil haberleri + "+MZ.date_tr+" Resmî Gazete"; },
-      nodes:[["Kaynaklar","haber, kurum, Resmî Gazete"],["Toplayıcı ajan",""],["Ortak veritabanı","müvekkil etiketli"],
-             ["Müvekkil yayıncısı","5 şirket ve ekosistem"],["Mevzuat yayıncısı","TR düzenleyici alan"],["Ekip","Microsoft 365"]],
+      stat:function(){ return "Şirket haberleri + "+MZ.date_tr+" Resmî Gazete"; },
+      nodes:[["Kaynaklar",""],["Toplayıcı ajan",""],["Ortak veritabanı",""],["Newsletter yayıncısı",""],["Mevzuat yayıncısı",""],["BTS ekibi",""]],
+      fl:{ src:"107 KAYNAK", srcS:"resmî kurum · düzenleyici · sektör basını", col:"Toplayıcı ajan", colS:"saatte bir",
+        db:"Ortak veritabanı", dbS:"17 alan · ilgili şirket etiketli", dbS2:"hattın ayrım noktası",
+        pm:"Yayıncı ajan · Mevzuat", pmS:"TR düzenleyici alan süzgeci · iki saatte bir",
+        pn:"Yayıncı ajan · Newsletter", pnS:"5 şirket + ekosistem süzgeci · iki saatte bir",
+        team:"BTS ekibi", tm:"Mevzuat bülteni", tn:"Teknoloji bülteni", m365:"Microsoft 365" },
       ph:[["git","Git"],["oku","Oku"],["ozet","Özetle"],["etiket","Etiketle"],["deger","Değerlendir"],["yaz","Yaz"]],
-      ch:["Kaynaklar","Müvekkil haberleri","Resmî Gazete","Veritabanı","Yayıncılar","E-posta"],
+      ch:["Kaynaklar","Şirket haberleri","Resmî Gazete","Veritabanı","Yayıncılar","E-posta"],
       screen:"Ajanın ekranı", db:"Ortak veritabanı", rows:"kayıt", empty:"Henüz kayıt yok. Ajan yazdıkça burası dolacak.",
-      flt:[["all","Tümü"],["co","Müvekkil + ekosistem"],["mev","Mevzuat"]],
+      flt:[["all","Tümü"],["co","Şirketler + ekosistem"],["mev","Mevzuat"]],
       rep:"temsili", input:"Girdi", sumH:"Özet", tagH:"Etiketler", evalH:"Değerlendirme",
       pause:"Duraklat", play:"Devam", next:"Sonraki", again:"Baştan",
-      srcN:"Haber", srcR:"Resmî Gazete", company:"müvekkil", eco:"ekosistem", sectorOf:function(c){ return "Müvekkil "+c+" sektörü"; }, coName:function(c){ return "Müvekkil "+c; },
-      route:{ co:"MÜVEKKİL", mev:"MEVZUAT" }, dropped:"ALINMADI",
+      srcN:"Haber", srcR:"Resmî Gazete", company:"ilgili şirket", eco:"ekosistem", ecoV:"dijital platformlar",
+      route:{ co:"TEKNOLOJİ", mev:"MEVZUAT" }, dropped:"ALINMADI",
       cap:{ src:function(n){ return "Toplayıcı ajan saatte bir kaynakları geziyor: <b>"+n+"</b>. Yalnız bugüne ait bölüm alınıyor."; },
-        news:"Müvekkil haberleri: her haber gövdesinden özetleniyor, hangi müvekkile ya da sektöre ait olduğu etiketleniyor.",
+        news:"Şirket haberleri: her haber gövdesinden özetleniyor, izlenen beş şirketten hangisine ya da ekosisteme ait olduğu etiketleniyor.",
         read:"Haber okunuyor.", sum:"Özet kurum üslubunda yazılıyor.", tag:"Etiketler sözlükten seçiliyor: şirket, sektör, çalışma alanı.",
         ev:"Alaka puanı veriliyor: 0.40 ve üstü ilgili.", wr:"Kayıt ortak veritabanına yazıldı.", drop:"Düzenleyici nitelik yok, kayıt alınmadı.",
         fast:"Kalan haberler aynı adımlardan geçiyor.",
         rg:"Resmî Gazete: 1 Temmuz 2026 fihristi okunuyor, 19 madde çıkarılıyor.", rgFast:"Kalan maddeler aynı adımlardan geçiyor.",
         db:"Hat burada ikiye ayrılıyor: aynı kayıtlar etiketlerine göre iki yayıncıya gidiyor.",
-        pubCo:"Müvekkil yayıncısı iki saatte bir süzüyor: beş şirketin etiketli haberleri ve sektörlerindeki gelişmeler.",
+        pubCo:"Newsletter yayıncısı iki saatte bir süzüyor: izlenen beş şirketin haberleri ve ekosistem gelişmeleri.",
         pubMev:"Mevzuat yayıncısı Türkiye'deki düzenleyici gelişmeleri süzüp bülteni derliyor.",
         mail:"İki bülten de ekibe gitti. Kimse bir şeye dokunmadı." },
       why:{ codeS:"Kanun: kod her zaman özetletir", codeT:"İlân ve döviz: kod hiç özetletmez", modelS:"Model: özetlenmeli", modelT:"Model: başlık yeter", rel:"ilgili", low:"düşük alaka, bültene girmez" },
       chips:{ verbs:"-mIştIr çatısı", close:"kalıp kapanış", words:"kelime", noc:"yorum yok" },
-      coB:"Müvekkil ve Ekosistem Bülteni", mevB:"Resmî Gazete Bülteni", coBn:"temsili", mevBn:"gerçek çıktı",
+      coB:"Teknoloji ve Platform Gündemi", mevB:"Resmî Gazete Bülteni", coBn:"temsili", mevBn:"gerçek çıktı",
       ecoH:"EKOSİSTEM", sentOk:"Gönderildi", open:"Aç",
       from:"Kimden", to:"Kime", toV:"Ekip dağıtım listesi", subj:"Konu",
-      fromCo:"Müvekkil haberleri ajanı", fromMev:"Mevzuat İzleme ajanı",
-      subjCo:"Müvekkil ve Ekosistem Bülteni", subjMev:function(){ return "Resmî Gazete Bülteni: "+MZ.date_tr; },
-      noteCo:"Temsili: müvekkil adları gizli, haberler akışı göstermek için yazıldı. Yapı, etiketler ve süzgeç sistemdeki gibi.",
+      fromCo:"Newsletter ajanı", fromMev:"Mevzuat İzleme ajanı",
+      subjCo:"Teknoloji ve Platform Gündemi", subjMev:function(){ return "Resmî Gazete Bülteni: "+MZ.date_tr; },
+      noteCo:"Temsili: izlenen beş şirket, etiketler ve süzgeç sistemdeki gibi; haberler akışı göstermek için yazıldı.",
       noteMev:"Ajanın o gün derleyip gönderdiği hâliyle. Başlıklar Resmî Gazete fihristinden, italik özetler modelin yazdığı gibi.",
       rec:{ items:"items", tags:"item_tags", source:"source", date:"published_at", rel:"relevance", sum:"summary", nul:"null (başlık yeter)" },
       sLede:"Özetler, ekibin elle yazdığı 76 gerçek bülten özetinin incelenmesinden çıkan bir yazım kılavuzuyla yazılıyor. Amaç, özetlerin ekibin elle yazdıklarıyla aynı sesle okunması.",
@@ -1943,7 +1972,7 @@ document.documentElement.setAttribute("data-theme", "day");
       sEx:"O günden bir örnek", sLeg:[["","-mIştIr çatısı"],["k","kalıp kapanış"],["n","somut sayı ve tarih"]],
       rl:[
         ["Kaynak metni veri, talimat değil","Taranan sayfa modele <code>&lt;&lt;&lt;KAYNAK_VERISI</code> ile <code>KAYNAK_VERISI&gt;&gt;&gt;</code> arasında gidiyor. Arasındaki hiçbir cümle, \"önceki talimatları yok say\" dahil, komut sayılmıyor.","Prompt"],
-        ["Etiketler yalnız sözlükten","Şirket, sektör ve çalışma alanı etiketleri veritabanındaki sözlük tablolarından seçiliyor; sözlükte olmayan bir ad ya da kod yazılırsa kod onu atıyor. Bir haber ancak sözlükteki bir müvekkil adı geçiyorsa müvekkille etiketleniyor.","Prompt + kod"],
+        ["Etiketler yalnız sözlükten","Şirket, sektör ve çalışma alanı etiketleri veritabanındaki sözlük tablolarından seçiliyor; sözlükte olmayan bir ad ya da kod yazılırsa kod onu atıyor. Bir haber ancak sözlükteki bir şirket adı geçiyorsa o şirketle etiketleniyor.","Prompt + kod"],
         ["Yalnız bugünün kaydı","Bugünün tarihi dört ayrı biçimde prompta yazılıyor. Tarihi bugün olmayan ya da tarihi görünmeyen gelişme alınmıyor; kod da metinde bugünün tarihini ayrıca arıyor.","Prompt + kod"],
         ["Alaka puanı","0.0 ile 1.0 arası, firmanın alanlarına yakınlık: veri koruma, rekabet, fintech, telekom, yapay zekâ, e-ticaret, fikri mülkiyet. Tarım, atama, ihale ve döviz 0.0 ile 0.2; doğrudan ilgili düzenleme 0.6 ile 0.9. <code>0.40</code> ve üstü ilgili sayılıyor.","Prompt"],
         ["Neyin alınmadığı da kural","Etkinlik, personel alımı, ihale ve kutlama gibi düzenleyici nitelik taşımayan kalemler hiç yazılmıyor. En spesifik alan seçiliyor, her şey \"uyum\" altına yığılmıyor.","Prompt"],
@@ -1952,35 +1981,39 @@ document.documentElement.setAttribute("data-theme", "day");
         ["Link ve taşma freni","Link yalnız kaynağın kendi alan adından, izinli alan adı listesine karşı kontrol ediliyor. Aynı gelişme iki kez girmiyor, bir kaynaktan bir turda en fazla 15 kayıt geliyor.","Kod"]]
     },
     en:{ run:"Run", bul:"Bulletins", style:"Style", rules:"Rules", items:"records",
-      stat:function(){ return "Client news + Official Gazette, 1 July 2026"; },
-      nodes:[["Sources","news, agencies, Gazette"],["Collector agent",""],["Shared database","client tagged"],
-             ["Client publisher","5 companies plus ecosystem"],["Legislation publisher","TR regulator domain"],["Team","Microsoft 365"]],
+      stat:function(){ return "Company news + Official Gazette, 1 July 2026"; },
+      nodes:[["Sources",""],["Collector agent",""],["Shared database",""],["Newsletter publisher",""],["Legislation publisher",""],["BTS team",""]],
+      fl:{ src:"107 SOURCES", srcS:"agencies · regulators · trade press", col:"Collector agent", colS:"hourly",
+        db:"Shared database", dbS:"17 fields · company tagged", dbS2:"where the line splits",
+        pm:"Publisher agent · Legislation", pmS:"TR regulator domain filter · every two hours",
+        pn:"Publisher agent · Newsletter", pnS:"5 companies + ecosystem filter · every two hours",
+        team:"BTS team", tm:"Legislation bulletin", tn:"Technology bulletin", m365:"Microsoft 365" },
       ph:[["git","Visit"],["oku","Read"],["ozet","Summarise"],["etiket","Tag"],["deger","Score"],["yaz","Write"]],
-      ch:["Sources","Client news","Official Gazette","Database","Publishers","Email"],
+      ch:["Sources","Company news","Official Gazette","Database","Publishers","Email"],
       screen:"Agent's screen", db:"Shared database", rows:"records", empty:"No records yet. They land here as the agent writes.",
-      flt:[["all","All"],["co","Clients + ecosystem"],["mev","Legislation"]],
+      flt:[["all","All"],["co","Companies + ecosystem"],["mev","Legislation"]],
       rep:"illustrative", input:"Input", sumH:"Summary", tagH:"Tags", evalH:"Evaluation",
       pause:"Pause", play:"Resume", next:"Next", again:"Restart",
-      srcN:"News", srcR:"Official Gazette", company:"client", eco:"ecosystem", sectorOf:function(c){ return "Client "+c+"'s sector"; }, coName:function(c){ return "Client "+c; },
-      route:{ co:"CLIENTS", mev:"LEGISLATION" }, dropped:"NOT TAKEN",
+      srcN:"News", srcR:"Official Gazette", company:"company", eco:"ecosystem", ecoV:"digital platforms",
+      route:{ co:"TECHNOLOGY", mev:"LEGISLATION" }, dropped:"NOT TAKEN",
       cap:{ src:function(n){ return "Every hour the collector visits the sources: <b>"+n+"</b>. Only the part dated today is kept."; },
-        news:"Client news: each story is summarised from its body and tagged with the client or sector it belongs to.",
+        news:"Company news: each story is summarised from its body and tagged with the watched company or the ecosystem it belongs to.",
         read:"Reading the story.", sum:"Writing the summary in the house style.", tag:"Tags come from the vocabulary: company, sector, practice area.",
         ev:"Relevance score: 0.40 and above counts.", wr:"Record written to the shared database.", drop:"Not regulatory, so it is not taken.",
         fast:"The remaining stories go through the same steps.",
         rg:"Official Gazette: reading the 1 July 2026 index and pulling out 19 items.", rgFast:"The remaining items go through the same steps.",
         db:"This is where the line splits: the same records go to two publishers according to their tags.",
-        pubCo:"Every two hours the client publisher filters for the five companies' tagged news and developments in their sectors.",
+        pubCo:"Every two hours the newsletter publisher filters for the five watched companies' news and ecosystem developments.",
         pubMev:"The legislation publisher filters for Turkish regulatory developments and compiles its bulletin.",
         mail:"Both bulletins reached the team. Nobody touched a thing." },
       why:{ codeS:"Law: code always summarises", codeT:"Notices and FX: code never summarises", modelS:"Model: summarise", modelT:"Model: the title is enough", rel:"relevant", low:"low relevance, stays out of the bulletin" },
       chips:{ verbs:"-mIştIr voice", close:"set closing", words:"words", noc:"no commentary" },
-      coB:"Client and Ecosystem Bulletin", mevB:"Official Gazette Bulletin", coBn:"illustrative", mevBn:"real output",
+      coB:"Technology and Platform Agenda", mevB:"Official Gazette Bulletin", coBn:"illustrative", mevBn:"real output",
       ecoH:"ECOSYSTEM", sentOk:"Sent", open:"Open",
       from:"From", to:"To", toV:"Team distribution list", subj:"Subject",
-      fromCo:"Client news agent", fromMev:"Regulatory monitoring agent",
-      subjCo:"Client and Ecosystem Bulletin", subjMev:function(){ return "Resmî Gazete Bülteni: "+MZ.date_tr; },
-      noteCo:"Illustrative: the clients stay unnamed and the stories are written to show the flow. The structure, tags and filter are the system's.",
+      fromCo:"Newsletter agent", fromMev:"Regulatory monitoring agent",
+      subjCo:"Technology and Platform Agenda", subjMev:function(){ return "Resmî Gazete Bülteni: "+MZ.date_tr; },
+      noteCo:"Illustrative: the five watched companies, the tags and the filter are the system's; the stories are written to show the flow.",
       noteMev:"As the agent compiled and sent it that day, in Turkish. Titles come from the Official Gazette index, the italic summaries are the model's.",
       rec:{ items:"items", tags:"item_tags", source:"source", date:"published_at", rel:"relevance", sum:"summary", nul:"null (title only)" },
       sLede:"Summaries follow a style guide drawn from 76 real summaries the team had written by hand. The aim is for them to read in the same voice as the team's own. They are in Turkish, so the markers below are Turkish grammar.",
@@ -1994,7 +2027,7 @@ document.documentElement.setAttribute("data-theme", "day");
       sEx:"An example from that day", sLeg:[["","-mIştIr voice"],["k","set closing"],["n","concrete figures and dates"]],
       rl:[
         ["Source text is data, not instructions","The scraped page reaches the model between <code>&lt;&lt;&lt;KAYNAK_VERISI</code> and <code>KAYNAK_VERISI&gt;&gt;&gt;</code>. No sentence in between, \"ignore previous instructions\" included, counts as a command.","Prompt"],
-        ["Tags only from the vocabulary","Company, sector and practice area tags are picked from vocabulary tables in the database; a name or code that is not there is dropped by the code. A story is tagged with a client only when a client name from the vocabulary appears in it.","Prompt + code"],
+        ["Tags only from the vocabulary","Company, sector and practice area tags are picked from vocabulary tables in the database; a name or code that is not there is dropped by the code. A story is tagged with a company only when a company name from the vocabulary appears in it.","Prompt + code"],
         ["Today's items only","Today's date goes into the prompt in four formats. Anything not dated today, or with no visible date, is dropped; the code separately checks the text for today's date.","Prompt + code"],
         ["Relevance score","0.0 to 1.0, closeness to the firm's practice areas: data protection, competition, fintech, telecoms, AI, e-commerce, IP. Agriculture, appointments, tenders and exchange rates 0.0 to 0.2; directly relevant regulation 0.6 to 0.9. <code>0.40</code> and above counts as relevant.","Prompt"],
         ["What is not taken is a rule too","Events, recruitment, tenders, celebrations and anything else with no regulatory content is never written. The most specific practice area wins; nothing is piled under \"compliance\".","Prompt"],
@@ -2013,13 +2046,13 @@ document.documentElement.setAttribute("data-theme", "day");
     h = h.replace(MZ_VERB, function(w){ return '<mark>'+w+'</mark>'; });
     return h.replace(/\u0001/g, '<mark class="k">').replace(/\u0002/g, '</mark>');
   }
-  /* every record the run writes, client news first, in one shape */
+  /* every record the run writes, company news first, in one shape */
   function mzRecords(L){
     var T = MZ_T[L], out = [];
     MZ_NEWS.forEach(function(n, i){
       var x = n[L];
       out.push({ key:"news"+i, src:"news", title:x[0], summary:x[1], sc:n.sc, sum:true, drop:!!n.drop,
-        company:n.co ? T.coName(n.co) : "", sector:n.co || n.eco ? T.sectorOf(n.co || n.eco) : "", eco:!!n.eco,
+        company:n.co || "", sector:n.eco ? T.ecoV : "", eco:!!n.eco,
         area:(n.area || []).map(function(a){ return MZ_AREA[a][L==="tr"?0:1]; }), route:n.drop ? "" : "co" });
     });
     MZ.items.forEach(function(it, i){
@@ -2042,14 +2075,14 @@ document.documentElement.setAttribute("data-theme", "day");
     });
     return h;
   }
-  /* the client bulletin: relevant client records grouped by company, then the ecosystem */
+  /* the newsletter: relevant company records grouped by company, then the ecosystem */
   function mzCoBulletin(L, recs){
     var T = MZ_T[L], rel = recs.filter(function(r){ return r.route==="co" && r.sc >= .4; });
     var h = '<h4 style="color:var(--pk-acc)">'+T.coB+'</h4>';
-    "ABCDE".split("").forEach(function(c){
-      var mine = rel.filter(function(r){ return r.company === T.coName(c); });
+    MZ_COS.forEach(function(c){
+      var mine = rel.filter(function(r){ return r.company === c; });
       if(!mine.length) return;
-      h += '<h6>'+T.coName(c).toLocaleUpperCase(L==="tr"?"tr":"en")+'</h6>';
+      h += '<h6>'+c.toLocaleUpperCase("en")+'</h6>';
       mine.forEach(function(r){ h += '<p>&bull; <span>'+pkEsc(r.title)+'</span><i>'+pkEsc(r.summary)+'</i></p>'; });
     });
     var eco = rel.filter(function(r){ return r.eco; });
@@ -2057,19 +2090,65 @@ document.documentElement.setAttribute("data-theme", "day");
     return h;
   }
 
+  /* the flow from the firm's slide ("one database, two bulletins"), redrawn
+     in the page's own tokens: 107 sources fan into the collector, a line to
+     the shared database, then two curves to the publishers and the team */
+  function mzFlow(L){
+    var F = MZ_T[L].fl, ph = MZ_T[L].ph, CY = 118, TY = 58, BY = 178, s = '';
+    function pkts(d, n, dur){
+      if(reduce) return '';
+      var o = '';
+      for(var i = 0; i < n; i++) o += '<circle class="p" r="3.2"><animateMotion dur="'+dur+'s" begin="'+(-i*dur/n).toFixed(2)+'s" repeatCount="indefinite" path="'+d+'"/></circle>';
+      return o;
+    }
+    function seg(name, d, n, dur, stations){
+      return '<g data-s="'+name+'"><path class="ln" d="'+d+'"/>'+(stations||[]).map(function(p){ return '<circle class="st" cx="'+p[0]+'" cy="'+p[1]+'" r="3.6"/>'; }).join('')+pkts(d, n, dur)+'</g>';
+    }
+    /* the fan of sources */
+    var fan = '', dots = '', lines = [];
+    for(var i = 0; i < 44; i++){
+      var x = 8 + (i % 6)*16 + ((i*7) % 9), y = 36 + ((i*53) % 164);
+      lines.push("M"+x+","+y+" L150,"+CY);
+      fan += '<path class="fl" d="M'+x+','+y+' L150,'+CY+'"/>';
+      dots += '<circle class="fd'+(i % 3 ? '' : ' a')+'" cx="'+x+'" cy="'+y+'" r="'+(i % 4 ? 2.4 : 3)+'"/>';
+    }
+    s += '<g class="nd" data-n="0">'+fan+dots+'</g>';
+    s += '<g data-s="src">'+[3, 11, 19, 27, 35, 41].map(function(k, j){ return reduce ? '' : '<circle class="p" r="2.8"><animateMotion dur="1.4s" begin="'+(-j*.23).toFixed(2)+'s" repeatCount="indefinite" path="'+lines[k]+'"/></circle>'; }).join('')+'</g>';
+    s += '<text class="k" x="4" y="22">'+F.src+'</text><text class="s" x="4" y="228">'+F.srcS+'</text>';
+    /* collector */
+    s += seg("cd", "M186,"+CY+" L317,"+CY, 3, 1.1, [[230,CY],[274,CY]]);
+    s += '<g class="nd" data-n="1"><circle class="pl" cx="170" cy="'+CY+'" r="15"/><circle class="r" cx="170" cy="'+CY+'" r="15"/><circle class="c" cx="170" cy="'+CY+'" r="5"/></g>';
+    s += '<text class="t" x="172" y="92" text-anchor="middle">'+F.col+'</text><text class="s" x="172" y="150" text-anchor="middle">'+F.colS+'</text>';
+    [ph.slice(0, 2), ph.slice(2, 4), ph.slice(4)].forEach(function(row, r){
+      s += '<text class="ph" x="172" y="'+(166 + r*12)+'" text-anchor="middle">'+row.map(function(p, k){ return (k ? '<tspan class="dt"> · </tspan>' : '')+'<tspan data-ph="'+p[0]+'">'+p[1]+'</tspan>'; }).join('')+'</text>';
+    });
+    /* the shared database and the split */
+    var up = "M382,"+CY+" C432,"+CY+" 436,"+TY+" 486,"+TY, dn = "M382,"+CY+" C432,"+CY+" 436,"+BY+" 486,"+BY;
+    s += seg("dm", up, 3, 1.1, [[434,88]]) + seg("dn", dn, 3, 1.1, [[434,148]]);
+    s += '<g class="nd db" data-n="2"><circle class="pl" cx="350" cy="'+CY+'" r="32"/><circle class="r" cx="350" cy="'+CY+'" r="32"/></g>';
+    s += '<text class="t" x="350" y="74" text-anchor="middle">'+F.db+'</text><text class="s" x="350" y="166" text-anchor="middle">'+F.dbS+'</text><text class="s i" x="350" y="179" text-anchor="middle">'+F.dbS2+'</text>';
+    /* publishers and the team */
+    s += seg("mt", "M514,"+TY+" L598,"+TY, 3, 1, [[540,TY],[572,TY]]) + seg("nt", "M514,"+BY+" L598,"+BY, 3, 1, [[540,BY],[572,BY]]);
+    s += '<g class="nd" data-n="4"><circle class="pl" cx="500" cy="'+TY+'" r="14"/><circle class="r" cx="500" cy="'+TY+'" r="14"/></g>';
+    s += '<g class="nd" data-n="3"><circle class="pl" cx="500" cy="'+BY+'" r="14"/><circle class="r" cx="500" cy="'+BY+'" r="14"/></g>';
+    s += '<text class="t" x="500" y="24" text-anchor="middle">'+F.pm+'</text><text class="s" x="500" y="36" text-anchor="middle">'+F.pmS+'</text>';
+    s += '<text class="t" x="500" y="211" text-anchor="middle">'+F.pn+'</text><text class="s" x="500" y="223" text-anchor="middle">'+F.pnS+'</text>';
+    s += '<g class="nd pill" data-n="5"><rect class="r" x="598" y="'+(TY-18)+'" width="116" height="36" rx="18"/><rect class="r" x="598" y="'+(BY-18)+'" width="116" height="36" rx="18"/></g>';
+    s += '<text class="t" x="656" y="'+(TY-2)+'" text-anchor="middle">'+F.team+'</text><text class="s" x="656" y="'+(TY+11)+'" text-anchor="middle">'+F.tm+'</text>';
+    s += '<text class="t" x="656" y="'+(BY-2)+'" text-anchor="middle">'+F.team+'</text><text class="s" x="656" y="'+(BY+11)+'" text-anchor="middle">'+F.tn+'</text>';
+    s += '<text class="s" x="656" y="'+(CY+4)+'" text-anchor="middle">'+F.m365+'</text>';
+    return '<svg class="mzf" viewBox="0 0 720 236" role="img" aria-label="'+F.db+'">'+s+'</svg>';
+  }
+
   function mzHtml(L){
-    var T = MZ_T[L], N = T.nodes;
-    function nd(k, cls, extra){ return '<div class="mz-n'+(cls?' '+cls:'')+'" data-n="'+k+'"><b>'+N[k][0]+'</b>'+(N[k][1]?'<small>'+N[k][1]+'</small>':'')+(extra||'')+'</div>'; }
+    var T = MZ_T[L];
     var ex = MZ.items[1];
     return '<div class="pk" data-demo="mz">'
       + '<div class="pk-top"><span class="pk-dots"><i></i><i></i><i></i></span>'
       + '<span class="pk-tabs"><button data-t="run" class="on">'+T.run+'</button><button data-t="bul">'+T.bul+'</button><button data-t="style">'+T.style+'</button><button data-t="rules">'+T.rules+'</button></span>'
       + '<span class="pk-stat">'+T.stat()+'</span></div>'
       + '<div class="pk-view on" data-v="run"><div class="mz-run">'
-      +   '<div class="mz-flow">'+nd(0)+'<div class="mz-w"><i></i></div>'
-      +     nd(1, "big", '<div class="mz-ph">'+T.ph.map(function(p){ return '<span data-ph="'+p[0]+'">'+p[1]+'</span>'; }).join('')+'</div>')
-      +     '<div class="mz-w"><i></i></div>'+nd(2)+'<div class="mz-w"><i></i></div>'
-      +     '<div class="mz-pub">'+nd(3, "co")+nd(4)+'</div><div class="mz-w"><i></i></div>'+nd(5)+'</div>'
+      +   '<div class="mz-flow">'+mzFlow(L)+'</div>'
       +   '<div class="mz-foot"><div class="mz-chs">'+T.ch.map(function(c, i){ return '<button data-ch="'+i+'"><i>'+(i+1)+'</i>'+c+'</button>'; }).join('')+'</div>'
       +     '<div class="mz-ctl"><button data-c="pause">'+T.pause+'</button><button data-c="speed">1&times;</button>'
       +     '<button data-c="next">'+T.next+' &rsaquo;</button><button data-c="again" class="pr">&#8635; '+T.again+'</button></div></div>'
@@ -2097,7 +2176,7 @@ document.documentElement.setAttribute("data-theme", "day");
     var NEWS = R.filter(function(r){ return r.src==="news"; }), RG = R.filter(function(r){ return r.src==="rg"; });
     var q = function(s){ return root.querySelector(s); }, qa = function(s){ return Array.prototype.slice.call(root.querySelectorAll(s)); };
     var scr = q(".mz-scr"), where = q(".mz-where"), cap = q(".mz-say"), rowsEl = q(".mz-dbrows"), dbn = q(".mz-dbn"), dbBox = q(".mz-db");
-    var nodes = qa(".mz-n"), wires = qa(".mz-w"), phs = qa(".mz-ph span"), chBtns = qa(".mz-chs button"), flts = qa(".mz-flt button");
+    var nodes = qa(".mzf .nd"), wires = qa(".mzf [data-s]"), phs = qa(".mzf tspan[data-ph]"), chBtns = qa(".mz-chs button"), flts = qa(".mz-flt button");
     var bPause = q('[data-c="pause"]'), flowEl = q(".mz-flow");
     var token = 0, paused = false, speed = 1, started = false, cur = -1, STOP = {};
 
@@ -2124,17 +2203,22 @@ document.documentElement.setAttribute("data-theme", "day");
       return step();
     }
     function follow(k){
-      var n = nodes[k]; if(!n || flowEl.scrollWidth <= flowEl.clientWidth) return;
-      flowEl.scrollTo({ left:n.offsetLeft - (flowEl.clientWidth - n.offsetWidth)/2, behavior:reduce ? "auto" : "smooth" });
+      var n = root.querySelector('.mzf [data-n="'+k+'"]'); if(!n || flowEl.scrollWidth <= flowEl.clientWidth) return;
+      var r = n.getBoundingClientRect(), c = flowEl.getBoundingClientRect();
+      flowEl.scrollTo({ left:flowEl.scrollLeft + r.left - c.left - (c.width - r.width)/2, behavior:reduce ? "auto" : "smooth" });
     }
     function lit(on, done){
       nodes.forEach(function(n){
         var k = +n.getAttribute("data-n");
-        n.className = "mz-n" + (k===1 ? " big" : k===3 ? " co" : "") + (on.indexOf(k) >= 0 ? " on" : done.indexOf(k) >= 0 ? " done" : "");
+        n.classList.toggle("on", on.indexOf(k) >= 0); n.classList.toggle("done", on.indexOf(k) < 0 && done.indexOf(k) >= 0);
       });
       if(on.length) follow(on[on.length-1]);
     }
-    function flow(k, on){ wires.forEach(function(w, i){ w.classList.toggle("go", i === k && on); }); }
+    var SEGS = { 0:["src"], 1:["cd"], 2:["dn","dm"], 3:["nt","mt"] };
+    function flow(k, on){
+      var names = typeof k === "string" ? [k] : SEGS[k] || [];
+      wires.forEach(function(w){ w.classList.toggle("go", on && names.indexOf(w.getAttribute("data-s")) >= 0); });
+    }
     function phase(p){ phs.forEach(function(s){ s.classList.toggle("on", s.getAttribute("data-ph") === p); }); }
     function say(s){ cap.innerHTML = s; }
     function chapter(c){
@@ -2265,7 +2349,7 @@ document.documentElement.setAttribute("data-theme", "day");
             });
           }).then(function(){ flow(0, false); });
         }, instant:function(){} },
-      { /* client news */
+      { /* company news */
         play:function(){
           say(T.cap.news); where.textContent = T.srcN;
           var said = false;
@@ -2307,11 +2391,11 @@ document.documentElement.setAttribute("data-theme", "day");
         }, instant:function(){ dbBox.classList.add("split"); } },
       { /* publishers */
         play:function(){
-          lit([3], [0,1,2]); flow(2, true); filter("co"); rowsEl.scrollTop = 0; say(T.cap.pubCo); where.textContent = T.coB;
+          lit([3], [0,1,2]); flow("dn", true); filter("co"); rowsEl.scrollTop = 0; say(T.cap.pubCo); where.textContent = T.coB;
           return build(mzCoBulletin(L, R), 260).then(function(){
-            lit([4], [0,1,2,3]); filter("mev"); say(T.cap.pubMev); where.textContent = T.mevB;
+            lit([4], [0,1,2,3]); flow("dm", true); filter("mev"); say(T.cap.pubMev); where.textContent = T.mevB;
             return build(mzBulletin(), 45);
-          }).then(function(){ flow(2, false); filter("all"); });
+          }).then(function(){ flow(3, true); filter("all"); lit([5], [0,1,2,3,4]); return wait(900); });
         }, instant:function(){} },
       { /* email */
         play:function(){ finalScreen(); return wait(10); }, instant:function(){} }
@@ -2357,7 +2441,7 @@ document.documentElement.setAttribute("data-theme", "day");
       }
     });
 
-    /* the bulletins tab: both mails, the client one illustrative, the Gazette one real */
+    /* the bulletins tab: both mails, the newsletter illustrative, the Gazette one real */
     var bdoc = q(".mz-bdoc");
     function showBul(b){
       qa(".mz-bsw button").forEach(function(x){ x.classList.toggle("on", x.getAttribute("data-b") === b); });
