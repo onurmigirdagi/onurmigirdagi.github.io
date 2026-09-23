@@ -370,31 +370,31 @@ html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparen
 .pk-next{justify-self:start; padding:8px 14px; border-radius:7px; background:var(--pk-acc); color:#fff; font-size:12px; font-weight:600;}
 .pk-gfoot{margin-top:auto; display:flex; flex-direction:column; gap:4px; font-size:11.5px; color:var(--faint); line-height:1.5; padding-top:8px;}
 .pk-gfoot span:first-child{font-family:var(--mono); color:var(--dim);}
-/* Mevzuat İzleme demo: one real day of the Resmî Gazete branch, replayed end to end */
+/* Mevzuat İzleme demo: the collector, the shared database and the two publishers, replayed end to end */
 .mz-run{display:flex; flex-direction:column; background:var(--panel);}
 .mz-flow{position:relative; padding:4px 10px 2px; border-bottom:1px solid var(--line); background:var(--panel2); overflow-x:auto;}
-.mzf{display:block; width:100%; height:auto; overflow:visible;}
+.mzf{display:block; width:100%; max-width:540px; margin:0 auto; height:auto; overflow:visible;}
 .mzf .fl{stroke:var(--line2); stroke-width:.7; fill:none;}
 .mzf .fd{fill:var(--line3); opacity:.7;} .mzf .fd.a{fill:var(--pk-acc); opacity:.55;}
 .mzf .nd.on .fl{stroke:color-mix(in srgb, var(--pk-acc) 40%, var(--line2));} .mzf .nd.on .fd,.mzf .nd.done .fd{opacity:1;}
-.mzf .ln{fill:none; stroke:var(--line3); stroke-width:3.5; stroke-linecap:round; transition:stroke .3s ease;}
+.mzf .ln{fill:none; stroke:var(--line3); stroke-width:3.5; stroke-linecap:round; transition:stroke .9s ease;}
 .mzf .st{fill:var(--panel); stroke:var(--line3); stroke-width:1.6;}
 .mzf g[data-s].go .ln{stroke:var(--pk-acc);} .mzf g[data-s].go .st{stroke:var(--pk-acc);}
-.mzf .p{fill:var(--pk-acc); opacity:0;} .mzf g[data-s].go .p{opacity:1;}
+.mzf .p{fill:var(--pk-acc); opacity:0; transition:opacity .8s ease;} .mzf g[data-s].go .p{opacity:.85;}
 .mzf g[data-s="src"] .p{fill:var(--pk-acc);}
-.mzf .nd .r{fill:var(--panel); stroke:var(--line3); stroke-width:3.5; transition:stroke .3s ease, fill .3s ease;}
+.mzf .nd .r{fill:var(--panel); stroke:var(--line3); stroke-width:3.5; transition:stroke .9s ease, fill .9s ease;}
 .mzf .nd .c{fill:var(--line3);}
 .mzf .nd.on .r,.mzf .nd.done .r{stroke:var(--pk-acc);} .mzf .nd.on .c,.mzf .nd.done .c{fill:var(--pk-acc);}
 .mzf .nd.db .r{fill:var(--line);} .mzf .nd.db.on .r,.mzf .nd.db.done .r{fill:var(--pk-acc); stroke:color-mix(in srgb, var(--pk-acc) 55%, #fff);}
 .mzf .nd.pill .r{fill:var(--panel);}
 .mzf .pl{fill:none; stroke:var(--pk-acc); stroke-width:2; opacity:0; transform-box:fill-box; transform-origin:center;}
-.mzf .nd.on .pl{animation:mzpulse 1.4s ease-out infinite;}
-@keyframes mzpulse{from{opacity:.55; transform:scale(1);} to{opacity:0; transform:scale(1.7);}}
+.mzf .nd.on .pl{animation:mzpulse 3s ease-in-out infinite;}
+@keyframes mzpulse{0%{opacity:0; transform:scale(1);} 30%{opacity:.35;} 100%{opacity:0; transform:scale(1.45);}}
 .mzf text{font-family:var(--ui);}
-.mzf .t{font-size:11.5px; font-weight:600; fill:var(--txt);}
-.mzf .s{font-family:var(--mono); font-size:8.8px; fill:var(--faint);} .mzf .s.i{font-style:italic;}
+.mzf .t{font-size:13px; font-weight:600; fill:var(--txt);}
+.mzf .s{font-family:var(--mono); font-size:10px; fill:var(--faint);} .mzf .s.i{font-style:italic;}
 .mzf .k{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.12em; fill:var(--dim);}
-.mzf .ph{font-family:var(--mono); font-size:9.5px; fill:var(--faint);}
+.mzf .ph{font-family:var(--mono); font-size:10.5px; fill:var(--faint);} .mzf .ph tspan{transition:fill .6s ease;}
 .mzf .ph tspan.on{fill:var(--pk-acc); font-weight:700;}
 .mz-n{flex:1 1 0; min-width:0; border:1px solid var(--line2); border-radius:9px; background:var(--panel); padding:7px 8px; position:relative;
   transition:border-color .25s ease, box-shadow .25s ease, opacity .25s ease; opacity:.55;}
@@ -415,7 +415,7 @@ html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparen
 .mz-w.go{background:color-mix(in srgb, var(--pk-acc) 45%, var(--line2));}
 .mz-w.go i{opacity:1; animation:mzpkt .7s linear infinite;}
 @keyframes mzpkt{from{left:0;} to{left:calc(100% - 8px);}}
-.mz-body{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); height:330px;}
+.mz-body{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); height:310px;}
 .mz-live{display:flex; flex-direction:column; min-height:0; border-right:1px solid var(--line);}
 .mz-ph2{display:flex; justify-content:space-between; gap:8px; padding:7px 12px; border-bottom:1px solid var(--line);
   font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; color:var(--faint); text-transform:uppercase;}
@@ -560,7 +560,7 @@ html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparen
 .mz-ex .mz-sum{font-size:13px;}
 .mz-len{display:grid; grid-template-columns:1fr auto; gap:3px 14px; margin-top:4px; font-size:12px;}
 .mz-len span:nth-child(even){font-family:var(--mono); font-size:11px; color:var(--pk-code); text-align:right;}
-body.mob .mzf,body.phone .mzf{min-width:600px;}
+body.mob .mzf,body.phone .mzf{min-width:520px;}
 body.mob .mz-n,body.phone .mz-n{padding:5px 14px 5px 7px; min-width:78px;} body.mob .mz-n.big,body.phone .mz-n.big{min-width:136px;}
 body.mob .mz-flow::-webkit-scrollbar,body.phone .mz-flow::-webkit-scrollbar{display:none;}
 body.mob .mz-n small,body.phone .mz-n small{display:none;}
@@ -1167,11 +1167,11 @@ document.documentElement.setAttribute("data-theme", "day");
         rt:"Yapı taşları", rail:["Flutter, ~14.400 satır Dart","Satır düzeyinde kilitli <b>veritabanı</b>","177 not, 415 tiplenmiş bağ","Sıfırdan yazılmış force directed graf","Prompt üretimi, <b>onaylı</b> AI yazma","Her bağda FSRS hafızası"],
         tags:["Zettelkasten","Flutter","Bilgi grafı","AI ajanı"] } },
 
-    pipeline:{ w:740, h:720, badges:[1,1,1],
+    pipeline:{ w:660, h:580, badges:[1,1,1],
       en:{ t:"Pipeline", name:"Regulatory Monitoring Pipeline", meta:"2026 &middot; BTS &amp; Partners",
         lede:"An autonomous agent pipeline that follows five technology companies and 107 public, regulatory and trade press sources, running unattended in production.",
         paras:["Every hour a collector agent scans the sources, summarises each item from its body, scores its relevance and tags it with the related company, the ecosystem and the practice area, then writes it to a shared database as a 17 field record. The line splits at that record: every two hours one publisher agent filters for the five watched companies (Microsoft, Apple, Google, LinkedIn, Snapchat) and ecosystem developments and sends the technology bulletin, the other filters for Turkish regulatory developments and sends the legislation bulletin, both by corporate email. Nobody touches it day to day.",
-               "In the run above the company stories are illustrative, written to show the flow; the five companies, the tags and the filter are the system's. The Official Gazette part is the real output of 1 July 2026: 19 index entries, with the scores and summaries the model actually produced.",
+               "In the run above the records are illustrative, written to show the flow; the five companies, the tags and the filters are the system's.",
                "I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.",
                "Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison."],
         rt:"Built with", rail:["Python, scheduled <b>agents</b>","<b>Supabase</b> central store","Streamlit for inspection","<b>Microsoft Graph</b> for delivery","Benchmarked against <b>Power Automate</b>","Company, ecosystem and practice area tagging"],
@@ -1179,7 +1179,7 @@ document.documentElement.setAttribute("data-theme", "day");
       tr:{ t:"Mevzuat İzleme", name:"Mevzuat İzleme Sistemi", meta:"2026 &middot; BTS &amp; Partners",
         lede:"Beş teknoloji şirketini ve resmî kurum, düzenleyici ve sektör basınından 107 kaynağı izleyen, canlı ortamda kendi başına çalışan otonom bir ajan hattı.",
         paras:["Toplayıcı ajan kaynakları saatte bir tarıyor. Her içeriği gövdesinden özetliyor, alaka puanı veriyor, ilgili şirketi, ekosistemi ve çalışma alanını etiketleyip 17 alanlık bir kayıt olarak ortak veritabanına yazıyor. Hat tam o kayıtta ikiye ayrılıyor: bir yayıncı ajan iki saatte bir izlenen beş şirketin (Microsoft, Apple, Google, LinkedIn, Snapchat) haberlerini ve ekosistem gelişmelerini süzüp teknoloji bültenini, diğeri Türkiye'deki düzenleyici gelişmeleri süzüp mevzuat bültenini kurumsal e-postayla gönderiyor. Günlük işleyişte kimsenin dokunmasına gerek yok.",
-               "Yukarıdaki turda şirket haberleri temsili, akışı göstermek için yazıldı; izlenen beş şirket, etiketler ve süzgeç sistemdeki gibi. Resmî Gazete kısmı ise 1 Temmuz 2026 günkü gerçek çıktı: fihristteki 19 madde, modelin o gün verdiği puanlar ve yazdığı özetlerle.",
+               "Yukarıdaki turdaki kayıtlar temsili, akışı göstermek için yazıldı; izlenen beş şirket, etiketler ve süzgeçler sistemdeki gibi.",
                "Aynı iş akışını, ikisi düzgünce karşılaştırılabilsin diye Microsoft Power Automate üzerinde ikinci kez kurdum. Bu kadar kaynağı sorgulayıp sonuçlar üzerinde yapay zekâ analizi çalıştırmak şirketin lisans kapsamının dışında kalıyordu. Ajan versiyonu bu yüzden kazandı: mevcut abonelik kapasitesi içinde, ek altyapı maliyeti olmadan çalışıyor.",
                "Ayrıca orada yapay zekâ çıktıları için kullanılan değerlendirme yöntemini tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk benchmark'ı ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması."],
         rt:"Yapı taşları", rail:["Python, zamanlanmış <b>ajanlar</b>","Merkezi depo olarak <b>Supabase</b>","İnceleme için Streamlit","Dağıtım için <b>Microsoft Graph</b>","<b>Power Automate</b> ile karşılaştırıldı","İlgili şirket, ekosistem ve alan etiketleme"],
@@ -1233,10 +1233,6 @@ document.documentElement.setAttribute("data-theme", "day");
     en:{ t:"One Page.txt", h:"Every project on one page, with nothing around it, for anyone who would rather just read." },
     tr:{ t:"Tek Sayfa.txt", h:"Tüm projeler tek sayfada, etrafında hiçbir arayüz olmadan, sadece okumak isteyenler için." }
   };
-
-  /* MZDATA start */
-  var MZ = {"date":"2026-07-01","date_tr":"1 Temmuz 2026","no":"33297","items":[["IDARE",["Kanun","Law"],"7587 Bazı Kanunlarda Değişiklik Yapılmasına Dair Kanun","7587 sayılı Kanun ile birden fazla kanunda değişiklik yapılmıştır. Emniyet Teşkilat Kanunu kapsamında polis rütbe oranları yeniden belirlenmiş; sağlık şartı gerekçesiyle ilişiği kesilen personelin altı ay içinde başvurmaları hâlinde Genel İdare Hizmetleri Sınıfına atanabilmesine imkân tanıyan geçici madde eklenmiştir. Gelir Vergisi Kanunu'nda taksi işleticileri için hasılat esaslı vergilendirme kapsamı genişletilmiş; ticari plaka devirinden doğan kazançlar gelir vergisinden istisna tutulmuştur. Basın İlan Kurumu mevzuatına internet haber sitelerinin vasıf, ödev ve yaptırım rejimi eklenmiş; ihlal süresine ve tekrar sayısına göre 1 ila 60 gün arasında resmî ilan kesme müeyyidesi öngörülmüştür. Vergi Usul Kanunu'nun 107/A maddesi değiştirilerek kurumlar vergisi mükellefleri, gerçek usulde vergilendirilen gelir vergisi mükellefleri ve belirli araç alıcıları için elektronik tebligat zorunluluğu kapsamı yeniden düzenlenmiştir.",0.4,true],["IDARE",["Cumhurbaşkanı Kararı","Presidential decision"],"Bazı Sanayi Ürünlerinin İthalatında Tarife Kontenjanı Uygulanması Hakkında Kararda Değişiklik Yapılmasına Dair Karar (Karar Sayısı: 11484)","30 Haziran 2026 tarihli ve 11484 sayılı Cumhurbaşkanı Kararı ile, 31/12/2025 tarihli ve 10792 sayılı Cumhurbaşkanı Kararı ile yürürlüğe konulan Bazı Sanayi Ürünlerinin İthalatında Tarife Kontenjanı Uygulanması Hakkında Karara ekli tabloda yer alan 3815.19.90 GTP'li satır yürürlükten kaldırılmıştır. Karar yayımı tarihinde yürürlüğe girmiş olup hükümlerin yürütülmesinden Ticaret Bakanı sorumlu kılınmıştır.",0.2,false],["IDARE",["Cumhurbaşkanı Kararı","Presidential decision"],"İthalat Rejimi Kararında Değişiklik Yapılmasına İlişkin Karar (Karar Sayısı: 11485)","31/12/2020 tarihli ve 3350 sayılı Cumhurbaşkanı Kararı ile yürürlüğe konulan İthalat Rejimi Kararının eki V sayılı listede değişiklik yapılmıştır. Kimyasal maddeler, otomotiv ve elektrikli araç bileşenleri, endüstriyel ekipman, tekstil hammaddeleri ve optik ürünlere ilişkin çok sayıda seri numaralı satır V sayılı listeden kaldırılmış; bir kısmı Ek-1'de gösterildiği şekilde değiştirilmiş, Ek-2'de yer alan eşyaya ilişkin yeni satırlar eklenmiştir. Karar yayımı tarihinde yürürlüğe girmiş olup hükümleri Ticaret Bakanı tarafından yürütülecektir.",0.12,false],["IDARE",["Cumhurbaşkanı Kararı","Presidential decision"],"Bazı Sanayi Ürünlerinin İthalatında Tarife Kontenjanı Uygulanması Hakkında Kararda Değişiklik Yapılmasına Dair Karar (Karar Sayısı: 11486)","30 Haziran 2026 tarihli ve 11486 sayılı Cumhurbaşkanı Kararı ile, 31/12/2025 tarihli ve 10793 sayılı Cumhurbaşkanı Kararı ile yürürlüğe konulan Bazı Sanayi Ürünlerinin İthalatında Tarife Kontenjanı Uygulanması Hakkında Karar ekinde yer alan tablonun bazı satırları değiştirilmiştir. Değişiklik kapsamında aminonaftalin sülfonik asit, diaminobenzensülfonik asit ve aminofenil bileşikleri gibi kimyasal hammaddelere ait tarife kontenjan miktarları ve gümrük vergisi oranları güncellenmiş; kontenjan kullanım dönemi 16/2/2026-31/12/2026 olarak belirlenmiştir. Kararın uygulanmasından Ticaret Bakanı sorumlu kılınmıştır.",0.15,false],["IDARE",["Cumhurbaşkanı Kararı","Presidential decision"],"Bazı Sanayi Ürünlerinin İthalatında Tarife Kontenjanı Uygulanması Hakkında Karar (Karar Sayısı: 11487)","30 Haziran 2026 tarihli ve 11487 sayılı Cumhurbaşkanı Kararı ile bazı sanayi ürünlerinin (3-metoksi-3-metil-1-butanol, dizel üretiminde kullanılan katalizör sistemi bileşenleri ve fermuar imaline mahsus dar şeritler) ithalatında 15 Şubat 2027 tarihine kadar geçerli olmak üzere %0 gümrük vergisi oranıyla tarife kontenjanları açılmış; karar yayımı tarihinde yürürlüğe girerken uygulamasından Ticaret Bakanı sorumlu kılınmıştır.",0.12,false],["IDARE",["Cumhurbaşkanı Kararı","Presidential decision"],"Bazı Kamu Kurum ve Kuruluşlarına Ait Dolu ve Boş Kadrolarda Değişiklik Yapılması Hakkında Karar (Karar: 2026/152)","2 sayılı Cumhurbaşkanlığı Kararnamesinin 7. maddesi uyarınca, Adalet Bakanlığı, Sağlık Bakanlığı, Milli Eğitim Bakanlığı, Emniyet Genel Müdürlüğü, Diyanet İşleri Başkanlığı ve diğerleri dahil onlarca kamu kurum ve kuruluşuna ait dolu ve boş kadrolarda derece sınıflaması değişikliği yapılmıştır.",0.05,false],["IDARE",["Yönetmelik","Regulation"],"Planlı Alanlar İmar Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik","Planlı Alanlar İmar Yönetmeliğinde süs havuzu tanımı eklenmesi, TAKS/KAKS hesabı, asansör zorunluluğu ve yeniden ruhsat düzenlenmesine ilişkin teknik kurallar güncellenmiştir.",0.05,false],["IDARE",["Yönetmelik","Regulation"],"Kamu Taşınmazlarının Turizm Yatırımlarına Tahsisi Hakkında Yönetmelikte Değişiklik Yapılmasına Dair Yönetmelik","Kamu taşınmazlarının turizm yatırımlarına tahsisinde, konaklama amaçlı tahsislerde yatak kapasitesinin en az yüzde on düşürülmesi talebinin uygun görülmesi hâlinde kullanım bedellerinin yeniden belirlenmesine ilişkin usul eklenmiştir.",0.05,false],["IDARE",["Yönetmelik","Regulation"],"Ticari Reklam ve Haksız Ticari Uygulamalar Yönetmeliğinde Değişiklik Yapılmasına Dair Yönetmelik","Ticari Reklam ve Haksız Ticari Uygulamalar Yönetmeliğinde kapsamlı değişiklikler yapılmıştır. Yönetmeliğe 'çevresel beyan', 'sosyal medya', 'sosyal medya etkileyicisi' ve 'tüketici değerlendirmeleri' kavramları tanım olarak eklenmiştir. Çevresel fayda iddiası taşıyan reklamlarda sertifika ve onayların yetkili kuruluşlardan alınan belgelerle ispatlanması zorunlu kılınmış; genel içerikli yeşil pazarlama ibarelerinin açıklama yapılmaksızın kullanımı yasaklanmıştır. İndirim fiyatı reklamlarında kanal bazlı hesaplama kuralı getirilmiş; farklı satış kanalları arasında fiyat mukayesesine dayalı indirim beyanı kısıtlanmıştır. Sadakat programı ve koşullu satış reklamlarına yönelik özel düzenlemeler eklenmiş; reklamlarda tüketicilerin ekonomik davranışını önemli ölçüde etkileyecek biçimde yapay zekâ veya yazılım kullanımına ilişkin yükümlülükler getirilmiştir. Yönetmelik yayımı tarihinde yürürlüğe girmiştir.",0.75,true],["IDARE",["Tebliğ","Communiqué"],"İthalatta Kota ve Tarife Kontenjanı İdaresine İlişkin Tebliğ (Tebliğ No: 2026/1)’de Değişiklik Yapılmasına Dair Tebliğ (No: 2026/7)","2026/1 sayılı İthalatta Kota ve Tarife Kontenjanı Tebliği Ek-1'inden 3815.19.90 GTİP numaralı ürün satırı yürürlükten kaldırılmıştır.",0.05,false],["IDARE",["Tebliğ","Communiqué"],"İthalatta Kota ve Tarife Kontenjanı İdaresine İlişkin Tebliğ (Tebliğ No: 2026/2)’de Değişiklik Yapılmasına Dair Tebliğ (No: 2026/8)","2026/2 sayılı İthalatta Kota ve Tarife Kontenjanı Tebliği Ek-1'i güncellenerek çeşitli kimyasal maddeler, doğal reçine asitleri, titanyum oksit içeren katalizör ve havacılık endüstrisine mahsus alüminyum alaşımlı levhalar için tarife kontenjanı miktarları ile sıfır gümrük vergisi oranları yeniden belirlenmiştir.",0.05,false],["IDARE",["Tebliğ","Communiqué"],"İthalatta Kota ve Tarife Kontenjanı İdaresine İlişkin Tebliğ (No: 2026/9)","30/6/2026 tarihli ve 11487 sayılı Cumhurbaşkanı Kararı'na dayanılarak bazı sanayi ürünleri için açılan tarife kontenjanlarının dağıtımı, başvuru ve kullanım usul ile esaslarını belirleyen yeni tebliğdir; sanayiciler yayım tarihinden itibaren 15 iş günü içinde elektronik imzayla başvurabilecektir.",0.05,false],["IDARE",["Tebliğ","Communiqué"],"Sosyal Güvenlik Kurumu Sağlık Uygulama Tebliğinde Değişiklik Yapılmasına Dair Tebliğ","SGK Sağlık Uygulama Tebliği'nde birinci basamak sağlık hizmetlerinde hekim muayenesinden katılım payı alınmayacağı netleştirilmiş; aile hekimi sevkiyle yapılan muayenelerde katılım payının yüzde elli azaltılarak tahsil edileceği düzenlenmiştir.",0.08,false],["IDARE",["Tebliğ","Communiqué"],"Zorunlu Karşılıklar Hakkında Tebliğ (Sayı: 2013/15)’de Değişiklik Yapılmasına Dair Tebliğ (Sayı: 2026/10)","Türkiye Cumhuriyet Merkez Bankası tarafından yabancı para yükümlülüklerine ilişkin zorunlu karşılık oranları güncellenmiştir. Vadesiz ve bir aya kadar vadeli mevduat/katılım fonu için oran yüzde 32; üç ay ile daha uzun vadeli mevduat için yüzde 28; müstakrizlerin fonları için yüzde 25 olarak belirlenmiştir. Tebliğ yayımı tarihinde yürürlüğe girmiştir.",0.3,false],["IDARE",["Kurul Kararı","Board decision"],"Kişisel Verileri Koruma Kurulunun 20/05/2026 Tarihli ve 2026/1095 Sayılı Kararı","Kişisel Verileri Koruma Kurulu, hasar danışmanlık şirketleri, sigorta eksperleri ve avukatların kaza mağdurlarına ait kişisel verileri (kimlik, iletişim, kaza bilgileri) iş kazası/trafik kazası süreçlerine ilişkin belgeler aracılığıyla yetkisiz biçimde elde ettiğine dair çok sayıda şikayet üzerine ilke kararı almıştır. Kararda; kaza mağdurlarına ait kişisel verileri uhdesinde bulunduran veri sorumlularının 6698 sayılı Kanun'un 12. maddesi uyarınca rol tabanlı erişim kontrolü, eğitim ve bilinçlendirme faaliyetleri başta olmak üzere gerekli teknik ve idari tedbirleri alması zorunlu tutulmuştur. Yetkisiz veri erişimi sağlayan hasar danışmanlık şirketleri ile avukatlık yapılarının 13. madde kapsamında Kurula şikâyet edilebileceği vurgulanmış; sigorta eksperlerinin kanuni görev sınırları dışında kişisel veri işlemesi hâlinde 5237 sayılı TCK'nın 136. maddesi kapsamında suç oluşturabileceği belirtilmiştir.",0.88,true],["ILAN",["İlân","Notice"],"Yargı İlânları","Karaman ve Edirne mahkemelerinden yargı ilanları yayımlanmıştır.",0.0,false],["ILAN",["İlân","Notice"],"Artırma, Eksiltme ve İhale İlânları","Çeşitli kamu kurumları ve belediyelerden taşınmaz satışı, altyapı yapımı ve tarımsal ürün alımı ihale ilanları yayımlanmıştır.",0.0,false],["ILAN",["İlân","Notice"],"Çeşitli İlânlar","SGK, Dışişleri Bakanlığı, üniversiteler ve belediyeler dahil çeşitli kamu kurumlarından muhtelif ilanlar yayımlanmıştır.",0.0,false],["ILAN",["İlân","Notice"],"T.C. Merkez Bankasınca Belirlenen Döviz Kurları ve Devlet İç Borçlanma Senetlerinin Günlük Değerleri","1 Temmuz 2026 tarihine ait Merkez Bankası döviz kurları ve devlet iç borçlanma senetleri günlük değerlerini içeren ilan yayımlanmıştır.",0.05,false]]};
-  /* MZDATA end */
 
   /* PKGRAPH start */
   var PKG = {"kinds":["concept","task","source","finding","tag","project","discipline","person"],"rels":["asserts","compares","composed_of","developed_by","example_of","extends","governed_by","implements","parent_of","produces","references","requested_by","sourced_from","supersedes","tagged_with","uses"],"n":[[0,["Test katılımcısı","Test participant"],""],[0,"ISO 42001",""],[0,"EU AI Act",""],[0,"NIST AI RMF",""],[0,"LLM Evals",""],[0,"VerifyWise",""],[0,"BlueWave Labs",""],[0,"Alibaba Wukong: Kurumsal AI Ajan Platformu",""],[0,"AB-100 Agentic AI Business Solutions Architect",""],[0,"n8n: Açık Kaynak Otomasyon Platformu",""],[0,"Microsoft Agent Framework",""],[0,"Ollama",""],[0,"Gemma 3",""],[0,"Tailscale",""],[0,"Caddy reverse proxy + Let's Encrypt",""],[0,"Hetzner EX130-S GPU sunucu (RTX 4000 Ada)",""],[0,"Dell PowerEdge R770 (17G)",""],[0,"Supermicro SYS-212GB-FNR",""],[0,"Qwen",""],[0,"DingTalk: Alibaba kurumsal işbirliği platformu",""],[0,"Azure AI Foundry Agent Service",""],[0,"Microsoft Copilot Studio",""],[0,"Microsoft 365 Copilot agents",""],[0,"CrewAI",""],[0,"Semantic Kernel",""],[0,"AutoGen",""],[0,"Agent-to-Agent Protocol (A2A)",""],[0,"LangGraph (LangChain)",""],[0,"OpenAI Agents SDK",""],[0,"Google Agent Development Kit (ADK)",""],[0,"Claude Agent SDK",""],[0,"Microsoft 365 Copilot agents",""],[0,"Microsoft Entra ID",""],[0,"OpenTelemetry",""],[0,"Model Context Protocol (MCP)",""],[0,"Microsoft Power Automate",""],[0,"Process Mining",""],[0,"faker-js/faker: JS sahte veri kütüphanesi",""],[0,"Marak Squires faker.js / colors.js sabotaj olayı (Ocak 2022)",""],[0,"npm tedarik zinciri güvenliği",""],[0,"DraftWise",""],[0,"Mikeoss",""],[0,"Legora",""],[0,"Claude Skill",""],[0,"mevzuat (MCP)",""],[0,"yargi (MCP)",""],[0,"adeu (MCP)",""],[0,"legal-tech-rapor (Skill)",""],[0,"Veritabanı Normalizasyonu",""],[0,"Foreign Key",""],[0,"Junction Table (Köprü Tablo)",""],[0,"Lookup Table (Referans Tablo)",""],[0,"Surrogate Key vs Natural Key",""],[0,"Composite UNIQUE Constraint",""],[0,"Forward-Compatible Schema Design",""],[0,"Rule Engine NULL = Wildcard Pattern",""],[0,"MIT AI Risk Repository",""],[0,"CSET AI Harm Framework",""],[0,"Claude for Legal Turkish",""],[0,"Claude Code Plugin",""],[0,"Lawve.ai: Legal AI Skills & MCP Marketplace",""],[0,"PII Shield (MCP): Yerel Anonimleştirici",""],[0,"İletişim Başkanlığı Dezenformasyon Bültenleri Dataset (HuggingFace)",""],[0,"T.C. Cumhurbaşkanlığı İletişim Başkanlığı",""],[0,"DMM: Dezenformasyonla Mücadele Merkezi",""],[0,"HuggingFace",""],[0,"Schema.org ClaimReview",""],[0,"TCK 217/A: Halkı Yanıltıcı Bilgi Yayma Suçu",""],[0,"Teyit.org",""],[0,"IFCN: International Fact-Checking Network",""],[0,"Fact-checking / Doğrulama gazeteciliği",""],[0,"Hukuki veri seti kullanım katmanları (manuel → API/RAG)",""],[0,"AB Veri Sınırı (EU Data Boundary)",""],[0,"Microsoft Agent Library",""],[0,"Pargesoft",""],[0,"Microsoft Graph",""],[0,"Alibaba Token Hub",""],[0,"Tongyi Lab",""],[0,"PIPL: Çin Kişisel Bilgi Koruma Kanunu",""],[0,"Microsoft Purview",""],[0,"OCPM (Object-Centric Process Mining)",""],[0,"OCEL 2.0",""],[0,"Task Mining",""],[0,"Microsoft Power Automate Process Mining",""],[0,"DSAR (Veri Sahibi Erişim Talebi)",""],[1,["Görev 01","Task 01"],"inbox"],[1,["Görev 02","Task 02"],"shipped"],[1,["Görev 03","Task 03"],"shipped"],[1,["Görev 04","Task 04"],"planned"],[1,["Görev 05","Task 05"],"shipped"],[1,["Görev 06","Task 06"],"shipped"],[1,["Görev 07","Task 07"],"shipped"],[1,["Görev 08","Task 08"],"shipped"],[1,["Görev 09","Task 09"],"shipped"],[1,["Görev 10","Task 10"],"shipped"],[1,["Görev 11","Task 11"],"planned"],[1,["Görev 12","Task 12"],"shipped"],[1,["Görev 13","Task 13"],"shipped"],[1,["Görev 14","Task 14"],"shipped"],[1,["Görev 15","Task 15"],"shipped"],[1,["Görev 16","Task 16"],"inbox"],[1,["Görev 17","Task 17"],"inbox"],[1,["Görev 18","Task 18"],"inbox"],[1,["Görev 19","Task 19"],"shipped"],[1,["Görev 20","Task 20"],"inbox"],[1,["Görev 21","Task 21"],"inbox"],[1,["Görev 22","Task 22"],"shipped"],[1,["Görev 23","Task 23"],"in_progress"],[1,["Görev 24","Task 24"],"shipped"],[1,["Görev 25","Task 25"],"shipped"],[1,["Görev 26","Task 26"],"shipped"],[1,["Görev 27","Task 27"],"inbox"],[2,"VerifyWise resmi web sitesi",""],[2,"Microsoft Learn: Power Automate ürün sayfası",""],[2,"Alibaba Group: Wukong duyurusu",""],[2,"PowerEdge Server GPU Matrix Data Sheet: Dell Technologies (Mart 2026)",""],[2,"GPU SuperServer SYS-212GB-FNR: Supermicro",""],[2,"Microsoft Learn: Agent Framework dokümantasyonu",""],[2,"GitHub: microsoft/agent-framework",""],[2,"mevzuat.gov.tr",""],[2,"DergiPark: Suriyeli Sığınmacılara Karşı Dezenformasyon, DMM Deprem Bültenleri",""],[2,"DergiPark: Dezenformasyon ve Yapay Zekâ",""],[2,"DergiPark: Algı Yönetimi X Platformu DMM Örneği",""],[2,"OMÜ AVESİS: Türkiye'de Bilgi Düzensizliği ile Mücadele",""],[2,"Microsoft Copilot Studio: Agent Library overview",""],[2,"Microsoft announces AI agents and templates for retail scenarios",""],[3,["Bulgu 01","Finding 01"],""],[3,["Bulgu 02","Finding 02"],""],[3,["Bulgu 03","Finding 03"],""],[3,["Bulgu 04","Finding 04"],""],[3,["Bulgu 05","Finding 05"],""],[3,["Bulgu 06","Finding 06"],""],[3,["Bulgu 07","Finding 07"],""],[3,["Bulgu 08","Finding 08"],""],[3,["Bulgu 09","Finding 09"],""],[3,["Bulgu 10","Finding 10"],""],[3,["Bulgu 11","Finding 11"],""],[3,["Bulgu 12","Finding 12"],""],[3,["Bulgu 13","Finding 13"],""],[3,["Bulgu 14","Finding 14"],""],[4,"urgent",""],[4,"research",""],[4,"comparison",""],[4,"learning",""],[4,"infra",""],[4,"content",""],[4,"self-initiated",""],[4,"open-source",""],[4,"risk-management",""],[4,"demo-pending",""],[4,"saas",""],[4,"self-hosted",""],[5,["Proje 01","Project 01"],"shipped"],[5,["Proje 02","Project 02"],"in_progress"],[5,["Proje 03","Project 03"],"planned"],[5,["Proje 04","Project 04"],"planned"],[5,["Proje 05","Project 05"],"in_progress"],[5,["Proje 06","Project 06"],"shipped"],[5,["Proje 07","Project 07"],"inbox"],[5,["Proje 08","Project 08"],"inbox"],[5,["Proje 09","Project 09"],"inbox"],[5,["Proje 10","Project 10"],"inbox"],[5,["Proje 11","Project 11"],"in_progress"],[5,["Proje 12","Project 12"],"in_progress"],[6,"Microsoft Stack",""],[6,"Metodoloji",""],[6,"Yazılım Mühendisliği",""],[6,"Legal Tech",""],[6,"KVKK / Veri Koruma",""],[6,"AI Governance",""],[6,"Makine Öğrenmesi",""],[6,"Change Management",""],[6,"Açık Kaynak / OSS",""],[7,["Kişi A","Person A"],""],[7,["Kişi B","Person B"],""],[7,["Kişi C","Person C"],""],[7,"Onur Can Mığırdağı",""]],"e":[[5,1,10],[5,2,10],[5,3,10],[5,4,10],[5,6,3],[5,112,12],[5,147,14],[5,148,14],[5,150,14],[5,151,14],[7,10,1],[7,18,10],[7,19,5],[7,78,6],[7,114,12],[8,10,10],[8,164,14],[9,86,1],[9,141,14],[10,24,13],[10,25,13],[10,26,7],[10,32,7],[10,33,7],[10,34,7],[10,35,5],[10,72,6],[10,75,15],[10,79,6],[10,117,12],[10,118,12],[10,164,14],[10,169,14],[11,12,5],[11,144,14],[12,144,14],[13,144,14],[14,144,14],[15,144,14],[16,15,1],[16,17,1],[16,167,14],[17,15,1],[17,167,14],[20,10,5],[20,32,7],[20,33,10],[20,79,6],[21,10,5],[21,73,10],[22,21,5],[22,75,15],[22,79,6],[23,10,1],[23,141,14],[24,141,14],[24,164,14],[25,141,14],[25,164,14],[26,141,14],[26,169,14],[27,10,1],[27,141,14],[28,10,1],[28,141,14],[29,10,1],[29,141,14],[30,10,1],[30,141,14],[31,10,5],[31,141,14],[31,164,14],[32,72,6],[32,164,14],[32,169,14],[33,169,14],[34,141,14],[34,169,14],[35,10,1],[35,75,15],[35,164,14],[36,35,10],[36,164,14],[36,165,14],[37,38,5],[38,39,4],[41,42,1],[41,167,14],[42,167,14],[44,34,4],[44,119,12],[45,34,4],[46,34,4],[47,43,4],[48,49,2],[48,143,14],[49,143,14],[50,48,4],[50,49,2],[50,143,14],[51,48,4],[51,49,5],[51,143,14],[52,49,10],[52,143,14],[53,50,5],[53,143,14],[54,48,5],[54,143,14],[55,48,10],[55,143,14],[56,141,14],[56,143,14],[57,141,14],[57,143,14],[58,34,15],[58,43,10],[58,44,15],[58,45,15],[58,59,10],[58,147,14],[58,167,14],[58,172,14],[59,34,7],[59,43,2],[59,166,14],[60,43,4],[60,167,14],[61,43,10],[61,60,4],[61,167,14],[61,168,14],[62,64,3],[62,65,4],[62,66,10],[64,63,5],[64,66,10],[64,67,10],[64,68,1],[64,70,4],[64,120,12],[64,121,12],[64,122,12],[64,123,12],[66,70,10],[67,167,14],[68,69,10],[68,70,4],[69,70,10],[71,165,14],[71,167,14],[72,168,14],[73,21,5],[73,124,12],[73,125,12],[74,21,10],[74,164,14],[74,167,14],[75,164,14],[76,7,2],[76,18,9],[76,77,9],[76,170,14],[77,18,10],[77,170,14],[78,72,1],[78,168,14],[79,168,14],[79,169,14],[80,36,5],[80,81,10],[80,96,10],[80,111,10],[80,141,14],[80,165,14],[81,80,4],[81,141,14],[81,165,14],[82,36,1],[82,141,14],[82,164,14],[82,168,14],[83,36,5],[83,96,10],[83,141,14],[83,164,14],[84,141,14],[84,167,14],[84,168,14],[85,0,10],[85,143,14],[85,166,14],[85,174,11],[86,35,10],[86,126,9],[86,127,9],[86,141,14],[86,169,14],[86,174,11],[87,3,15],[87,48,15],[87,49,15],[87,50,15],[87,56,15],[87,57,15],[87,93,10],[87,143,14],[87,144,14],[87,166,14],[87,169,14],[87,175,11],[88,5,10],[88,112,10],[88,141,14],[88,142,14],[88,149,14],[88,169,14],[88,171,14],[88,174,11],[89,7,10],[89,141,14],[89,174,11],[90,140,14],[90,169,14],[90,174,11],[91,10,10],[91,141,14],[91,169,14],[91,175,11],[92,11,15],[92,12,15],[92,13,15],[92,14,15],[92,15,15],[92,128,9],[92,144,14],[92,175,11],[93,48,15],[93,49,15],[93,50,15],[93,51,15],[93,52,15],[93,53,15],[93,54,15],[93,55,15],[93,143,14],[93,166,14],[93,175,11],[94,7,10],[94,10,10],[94,72,10],[94,73,10],[94,76,10],[94,78,10],[94,79,10],[94,137,9],[94,141,14],[94,142,14],[94,164,14],[94,170,14],[94,174,11],[95,143,14],[95,171,14],[95,174,11],[96,36,10],[96,138,9],[96,139,9],[96,141,14],[97,16,15],[97,17,15],[97,141,14],[97,144,14],[97,175,11],[98,62,10],[98,67,10],[98,71,10],[98,141,14],[98,167,14],[98,169,14],[98,170,14],[98,176,11],[99,169,14],[99,174,11],[100,20,10],[100,141,14],[100,142,14],[101,21,10],[101,141,14],[101,142,14],[102,22,10],[102,141,14],[102,142,14],[103,37,10],[103,131,9],[103,132,9],[103,133,9],[103,141,14],[103,172,14],[103,173,11],[104,40,10],[104,141,14],[104,174,11],[105,41,10],[105,42,10],[105,141,14],[105,142,14],[105,167,14],[105,174,11],[106,99,13],[106,169,14],[106,174,11],[107,141,14],[107,176,11],[108,174,11],[109,58,10],[109,59,10],[109,134,9],[109,141,14],[109,143,14],[109,147,14],[109,167,14],[109,172,14],[109,174,11],[110,60,10],[110,61,10],[110,135,9],[110,136,9],[110,141,14],[110,142,14],[110,167,14],[110,174,11],[111,96,10],[111,141,14],[111,176,11],[113,86,10],[115,129,10],[116,130,10],[128,13,5],[128,144,14],[129,16,4],[130,17,4],[134,58,0],[135,60,0],[136,61,0],[136,168,14],[137,7,0],[137,10,0],[138,36,0],[138,141,14],[138,143,14],[139,36,0],[139,141,14],[139,143,14],[152,99,8],[152,106,8],[152,108,8],[152,165,14],[152,167,14],[152,169,14],[153,146,14],[153,166,14],[154,171,14],[155,146,14],[155,166,14],[155,170,14],[156,107,8],[156,146,14],[156,167,14],[156,168,14],[156,170,14],[156,173,10],[157,165,14],[157,167,14],[157,168,14],[158,86,8],[158,91,8],[158,96,8],[158,100,8],[158,101,8],[158,102,8],[158,111,8],[158,164,14],[158,170,14],[159,103,8],[159,166,14],[159,172,14],[160,89,8],[160,94,8],[160,167,14],[160,169,14],[160,170,14],[161,92,8],[161,97,8],[161,166,14],[161,170,14],[162,34,8],[162,43,8],[162,44,8],[162,45,8],[162,46,8],[162,47,8],[162,109,8],[162,166,14],[162,167,14],[163,5,8],[163,40,8],[163,41,8],[163,42,8],[163,88,8],[163,104,8],[163,105,8],[163,110,8],[163,165,14],[163,167,14],[163,169,14]]};
@@ -1890,9 +1886,8 @@ document.documentElement.setAttribute("data-theme", "day");
      related company, ecosystem and practice area, into a shared database; the
      line splits there and two publisher agents filter the same records into
      two bulletins (the flow on the firm's own slide). The five watched
-     companies are the ones on that slide; their stories here are
-     illustrative. MZ, the Official Gazette part, is one real day
-     (make_mzdata.py) with the model's scores and summaries as produced. */
+     companies are the ones on that slide; the records here are
+     illustrative. */
   var MZ_AREA = { competition:["Rekabet","Competition"], corporate:["Şirketler ve M&A","Corporate and M&A"], dataprotection:["Kişisel Veri","Data Protection"],
     fintech:["FinTech","FinTech"], ip:["Fikri Mülkiyet","IP"], ittelecom:["BT ve Telekom","IT and Telecoms"], employment:["İş Hukuku","Employment"] };
   var MZ_COS = ["Microsoft","Apple","Google","LinkedIn","Snapchat"];
@@ -1907,59 +1902,67 @@ document.documentElement.setAttribute("data-theme", "day");
     { drop:1, sc:0,
       tr:["Bir kurumun sözleşmeli personel alımı duyurusu","Düzenleyici nitelik taşımıyor: etkinlik, personel alımı, ihale ve kutlama kalemleri alınmıyor."],
       en:["An agency's recruitment notice for contract staff","Not regulatory in nature: events, recruitment, tenders and celebrations are never taken."] },
+    { mev:1, src:"KVKK", area:["dataprotection"], sc:.88,
+      tr:["KVKK, kaza mağdurlarının kişisel verilerinin yetkisiz elde edilmesine ilişkin ilke kararı aldı","Kişisel Verileri Koruma Kurulu, kaza mağdurlarına ait kişisel verilerin hasar danışmanlık şirketleri ve aracılar tarafından yetkisiz biçimde elde edildiğine ilişkin şikâyetler üzerine ilke kararı almıştır. Veri sorumlularının erişim kontrolü ve eğitim tedbirlerini alması istenmiştir."],
+      en:["KVKK adopts a principle decision on unauthorised access to accident victims' personal data","The Personal Data Protection Board has adopted a principle decision following complaints that accident victims' personal data was obtained without authorisation by claims consultancies and intermediaries. Controllers are required to put access controls and training in place."] },
     { co:"Apple", area:["competition","ittelecom"], sc:.71,
       tr:["Apple, AB'de alternatif uygulama mağazalarına ilişkin koşullarını güncelledi","Apple, Avrupa Birliği'nde alternatif uygulama mağazalarına ve uygulama dışı ödeme yönlendirmelerine ilişkin koşullarında değişiklik yaptığını açıklamıştır."],
       en:["Apple updates its terms for alternative app marketplaces in the EU","Apple has announced changes to its terms for alternative app marketplaces and for steering users to payments outside the app in the European Union."] },
     { co:"Google", area:["competition"], sc:.68,
       tr:["Google, Dijital Piyasalar Yasası uyum raporunu yayımladı","Google, Dijital Piyasalar Yasası kapsamındaki yükümlülüklerine ilişkin yıllık uyum raporunu yayımlamıştır. Raporda arama sonuçlarının gösterimine ilişkin değişikliklere yer verilmiştir."],
       en:["Google publishes its Digital Markets Act compliance report","Google has published its annual compliance report on its obligations under the Digital Markets Act. The report sets out changes to how search results are displayed."] },
+    { mev:1, src:"BTK", area:["ittelecom"], sc:.66,
+      tr:["BTK, elektronik haberleşme sektöründe tüketici haklarına ilişkin yönetmelik taslağını görüşe açtı","Bilgi Teknolojileri ve İletişim Kurumu, elektronik haberleşme sektöründe tüketici haklarına ilişkin yönetmelikte değişiklik taslağını kamuoyu görüşüne açmıştır. Görüşler otuz gün içinde iletilebilecektir."],
+      en:["BTK opens a draft regulation on consumer rights in electronic communications for comment","The Information and Communication Technologies Authority has opened a draft amendment to the regulation on consumer rights in electronic communications for public comment. Comments can be submitted within thirty days."] },
     { co:"LinkedIn", area:["dataprotection"], sc:.77,
       tr:["LinkedIn, yapay zekâ eğitiminde kullanıcı verisi kullanımına ilişkin gizlilik politikasını güncelledi","LinkedIn, kullanıcı verilerinin üretken yapay zekâ modellerinin eğitiminde kullanılmasına ilişkin gizlilik politikasını güncellemiş ve kullanıcılara ret seçeneği sunmuştur."],
       en:["LinkedIn updates its privacy policy on using member data to train AI","LinkedIn has updated its privacy policy on using member data to train generative AI models and has given members a way to opt out."] },
     { co:"Snapchat", area:["ittelecom"], sc:.18,
       tr:["Snapchat yeni artırılmış gerçeklik filtrelerini tanıttı","Snapchat, uygulamaya yeni artırılmış gerçeklik filtreleri eklendiğini duyurmuştur."],
       en:["Snapchat introduces new augmented reality lenses","Snapchat has announced new augmented reality lenses in the app."] },
+    { mev:1, src:"TCMB", area:["fintech"], sc:.45,
+      tr:["TCMB, yabancı para yükümlülükleri için zorunlu karşılık oranlarını güncelledi","Türkiye Cumhuriyet Merkez Bankası, yabancı para yükümlülüklerine ilişkin zorunlu karşılık oranlarını vade dilimlerine göre yeniden belirlemiştir. Değişiklik yayımı tarihinde yürürlüğe girmiştir."],
+      en:["TCMB updates reserve requirement ratios for foreign currency liabilities","The Central Bank of the Republic of Türkiye has reset reserve requirement ratios for foreign currency liabilities by maturity band. The change took effect on publication."] },
     { eco:1, area:["competition"], sc:.58,
       tr:["Rekabet Kurumu, çevrim içi reklamcılık sektör incelemesinin sonuçlarını açıkladı","Rekabet Kurumu, çevrim içi reklamcılık alanında yürüttüğü sektör incelemesinin nihai raporunu yayımlamış ve dijital platformlara yönelik tespitlerini paylaşmıştır."],
       en:["The Turkish Competition Authority publishes its online advertising sector inquiry","The Turkish Competition Authority has published the final report of its sector inquiry into online advertising, setting out its findings on digital platforms."] }
   ];
-  var MZ_DET = { news0:1, news1:1, news2:1, rg14:1 };   /* shown at full length; the rest run fast */
+  var MZ_DET = { news0:1, news1:1, news2:1 };   /* shown at full length; the rest run fast */
   var MZ_T = {
     tr:{ run:"Tur", bul:"Bülten", style:"Üslup", rules:"Kurallar", items:"kayıt",
-      stat:function(){ return "Şirket haberleri + "+MZ.date_tr+" Resmî Gazete"; },
+      stat:function(){ return "İzlenen beş şirket + düzenleyici kaynaklar"; },
       nodes:[["Kaynaklar",""],["Toplayıcı ajan",""],["Ortak veritabanı",""],["Newsletter yayıncısı",""],["Mevzuat yayıncısı",""],["BTS ekibi",""]],
       fl:{ src:"107 KAYNAK", srcS:"resmî kurum · düzenleyici · sektör basını", col:"Toplayıcı ajan", colS:"saatte bir",
         db:"Ortak veritabanı", dbS:"17 alan · ilgili şirket etiketli", dbS2:"hattın ayrım noktası",
-        pm:"Yayıncı ajan · Mevzuat", pmS:"TR düzenleyici alan süzgeci · iki saatte bir",
-        pn:"Yayıncı ajan · Newsletter", pnS:"5 şirket + ekosistem süzgeci · iki saatte bir",
+        pm:"Yayıncı ajan · Mevzuat", pmS:"TR düzenleyici alan · 2 saatte bir",
+        pn:"Yayıncı ajan · Newsletter", pnS:"5 şirket + ekosistem · 2 saatte bir",
         team:"BTS ekibi", tm:"Mevzuat bülteni", tn:"Teknoloji bülteni", m365:"Microsoft 365" },
       ph:[["git","Git"],["oku","Oku"],["ozet","Özetle"],["etiket","Etiketle"],["deger","Değerlendir"],["yaz","Yaz"]],
-      ch:["Kaynaklar","Şirket haberleri","Resmî Gazete","Veritabanı","Yayıncılar","E-posta"],
+      ch:["Kaynaklar","Topla ve yaz","Veritabanı","Yayıncılar","E-posta"],
       screen:"Ajanın ekranı", db:"Ortak veritabanı", rows:"kayıt", empty:"Henüz kayıt yok. Ajan yazdıkça burası dolacak.",
       flt:[["all","Tümü"],["co","Şirketler + ekosistem"],["mev","Mevzuat"]],
       rep:"temsili", input:"Girdi", sumH:"Özet", tagH:"Etiketler", evalH:"Değerlendirme",
       pause:"Duraklat", play:"Devam", next:"Sonraki", again:"Baştan",
-      srcN:"Haber", srcR:"Resmî Gazete", company:"ilgili şirket", eco:"ekosistem", ecoV:"dijital platformlar",
+      srcN:"Haber", company:"ilgili şirket", eco:"ekosistem", ecoV:"dijital platformlar",
       route:{ co:"TEKNOLOJİ", mev:"MEVZUAT" }, dropped:"ALINMADI",
       cap:{ src:function(n){ return "Toplayıcı ajan saatte bir kaynakları geziyor: <b>"+n+"</b>. Yalnız bugüne ait bölüm alınıyor."; },
-        news:"Şirket haberleri: her haber gövdesinden özetleniyor, izlenen beş şirketten hangisine ya da ekosisteme ait olduğu etiketleniyor.",
+        news:"Her içerik gövdesinden özetleniyor; ilgili şirket, ekosistem ya da düzenleyici alanla etiketleniyor.",
         read:"Haber okunuyor.", sum:"Özet kurum üslubunda yazılıyor.", tag:"Etiketler sözlükten seçiliyor: şirket, sektör, çalışma alanı.",
         ev:"Alaka puanı veriliyor: 0.40 ve üstü ilgili.", wr:"Kayıt ortak veritabanına yazıldı.", drop:"Düzenleyici nitelik yok, kayıt alınmadı.",
-        fast:"Kalan haberler aynı adımlardan geçiyor.",
-        rg:"Resmî Gazete: 1 Temmuz 2026 fihristi okunuyor, 19 madde çıkarılıyor.", rgFast:"Kalan maddeler aynı adımlardan geçiyor.",
+        fast:"Kalan içerikler aynı adımlardan geçiyor.",
         db:"Hat burada ikiye ayrılıyor: aynı kayıtlar etiketlerine göre iki yayıncıya gidiyor.",
         pubCo:"Newsletter yayıncısı iki saatte bir süzüyor: izlenen beş şirketin haberleri ve ekosistem gelişmeleri.",
         pubMev:"Mevzuat yayıncısı Türkiye'deki düzenleyici gelişmeleri süzüp bülteni derliyor.",
         mail:"İki bülten de ekibe gitti. Kimse bir şeye dokunmadı." },
       why:{ codeS:"Kanun: kod her zaman özetletir", codeT:"İlân ve döviz: kod hiç özetletmez", modelS:"Model: özetlenmeli", modelT:"Model: başlık yeter", rel:"ilgili", low:"düşük alaka, bültene girmez" },
       chips:{ verbs:"-mIştIr çatısı", close:"kalıp kapanış", words:"kelime", noc:"yorum yok" },
-      coB:"Teknoloji ve Platform Gündemi", mevB:"Resmî Gazete Bülteni", coBn:"temsili", mevBn:"gerçek çıktı",
+      coB:"Teknoloji ve Platform Gündemi", mevB:"Mevzuat Bülteni", coBn:"temsili", mevBn:"temsili",
       ecoH:"EKOSİSTEM", sentOk:"Gönderildi", open:"Aç",
       from:"Kimden", to:"Kime", toV:"Ekip dağıtım listesi", subj:"Konu",
       fromCo:"Newsletter ajanı", fromMev:"Mevzuat İzleme ajanı",
-      subjCo:"Teknoloji ve Platform Gündemi", subjMev:function(){ return "Resmî Gazete Bülteni: "+MZ.date_tr; },
+      subjCo:"Teknoloji ve Platform Gündemi", subjMev:function(){ return "Mevzuat Bülteni"; },
       noteCo:"Temsili: izlenen beş şirket, etiketler ve süzgeç sistemdeki gibi; haberler akışı göstermek için yazıldı.",
-      noteMev:"Ajanın o gün derleyip gönderdiği hâliyle. Başlıklar Resmî Gazete fihristinden, italik özetler modelin yazdığı gibi.",
+      noteMev:"Temsili: kalemler faaliyet alanına göre gruplanıyor, her kalemde tarafsız bir özet ve resmî kaynak var.",
       rec:{ items:"items", tags:"item_tags", source:"source", date:"published_at", rel:"relevance", sum:"summary", nul:"null (başlık yeter)" },
       sLede:"Özetler, ekibin elle yazdığı 76 gerçek bülten özetinin incelenmesinden çıkan bir yazım kılavuzuyla yazılıyor. Amaç, özetlerin ekibin elle yazdıklarıyla aynı sesle okunması.",
       sRules:[
@@ -1969,52 +1972,51 @@ document.documentElement.setAttribute("data-theme", "day");
         ["Kalıp kapanışlar","Uygun olduğunda ekibin kendi kapanışları: \"... yayımı tarihinde yürürlüğe girer\", \"... sorumlu kılınmıştır\", \"... iptaline karar verilmiştir\"."],
         ["Önem cümlesi nadir","\"... bakımından önem taşımaktadır\" yalnız vergi, KVKK, rekabet, e-ticaret ve telekom gibi yüksek etkili maddelerde ve metinden çıkıyorsa."]],
       sLen:"Türe göre uzunluk", len:[["Anayasa Mahkemesi kararı","~90 ile 110 kelime"],["Yönetmelik","~80 ile 110 kelime"],["Tebliğ, Cumhurbaşkanı Kararı","~30 ile 55 kelime"],["İlân, atama, döviz","tek cümle"]],
-      sEx:"O günden bir örnek", sLeg:[["","-mIştIr çatısı"],["k","kalıp kapanış"],["n","somut sayı ve tarih"]],
+      sEx:"Bir örnek", sLeg:[["","-mIştIr çatısı"],["k","kalıp kapanış"],["n","somut sayı ve tarih"]],
       rl:[
         ["Kaynak metni veri, talimat değil","Taranan sayfa modele <code>&lt;&lt;&lt;KAYNAK_VERISI</code> ile <code>KAYNAK_VERISI&gt;&gt;&gt;</code> arasında gidiyor. Arasındaki hiçbir cümle, \"önceki talimatları yok say\" dahil, komut sayılmıyor.","Prompt"],
         ["Etiketler yalnız sözlükten","Şirket, sektör ve çalışma alanı etiketleri veritabanındaki sözlük tablolarından seçiliyor; sözlükte olmayan bir ad ya da kod yazılırsa kod onu atıyor. Bir haber ancak sözlükteki bir şirket adı geçiyorsa o şirketle etiketleniyor.","Prompt + kod"],
         ["Yalnız bugünün kaydı","Bugünün tarihi dört ayrı biçimde prompta yazılıyor. Tarihi bugün olmayan ya da tarihi görünmeyen gelişme alınmıyor; kod da metinde bugünün tarihini ayrıca arıyor.","Prompt + kod"],
         ["Alaka puanı","0.0 ile 1.0 arası, firmanın alanlarına yakınlık: veri koruma, rekabet, fintech, telekom, yapay zekâ, e-ticaret, fikri mülkiyet. Tarım, atama, ihale ve döviz 0.0 ile 0.2; doğrudan ilgili düzenleme 0.6 ile 0.9. <code>0.40</code> ve üstü ilgili sayılıyor.","Prompt"],
         ["Neyin alınmadığı da kural","Etkinlik, personel alımı, ihale ve kutlama gibi düzenleyici nitelik taşımayan kalemler hiç yazılmıyor. En spesifik alan seçiliyor, her şey \"uyum\" altına yığılmıyor.","Prompt"],
-        ["Özet mi, başlık mı","Resmî Gazete'de beş aylık gerçek bültenin 1127 maddesinden çıkan oranlarla ayarlı: Anayasa Mahkemesi %96, Kanun %38, Kurul Kararı %18, Tebliğ %11, Yönetmelik %3. Kanun ve yüksek mahkeme kararlarını kod her zaman özetletiyor, ilan ve dövizi asla.","Prompt + kod"],
+        ["Özet mi, başlık mı","Mevzuat kolunda beş aylık gerçek bültenin 1127 maddesinden çıkan oranlarla ayarlı: Anayasa Mahkemesi %96, Kanun %38, Kurul Kararı %18, Tebliğ %11, Yönetmelik %3. Kanun ve yüksek mahkeme kararlarını kod her zaman özetletiyor, ilan ve dövizi asla.","Prompt + kod"],
         ["Yorum yok, uydurma yok","Özet yalnız metinde olanı söylüyor. Haber kolunda \"önem taşımaktadır\", \"takip edilmelidir\" gibi kalıplar tamamen yasak.","Prompt"],
         ["Link ve taşma freni","Link yalnız kaynağın kendi alan adından, izinli alan adı listesine karşı kontrol ediliyor. Aynı gelişme iki kez girmiyor, bir kaynaktan bir turda en fazla 15 kayıt geliyor.","Kod"]]
     },
     en:{ run:"Run", bul:"Bulletins", style:"Style", rules:"Rules", items:"records",
-      stat:function(){ return "Company news + Official Gazette, 1 July 2026"; },
+      stat:function(){ return "Five watched companies + regulatory sources"; },
       nodes:[["Sources",""],["Collector agent",""],["Shared database",""],["Newsletter publisher",""],["Legislation publisher",""],["BTS team",""]],
       fl:{ src:"107 SOURCES", srcS:"agencies · regulators · trade press", col:"Collector agent", colS:"hourly",
         db:"Shared database", dbS:"17 fields · company tagged", dbS2:"where the line splits",
-        pm:"Publisher agent · Legislation", pmS:"TR regulator domain filter · every two hours",
-        pn:"Publisher agent · Newsletter", pnS:"5 companies + ecosystem filter · every two hours",
+        pm:"Publisher agent · Legislation", pmS:"TR regulator domain · every 2 hours",
+        pn:"Publisher agent · Newsletter", pnS:"5 companies + ecosystem · every 2 hours",
         team:"BTS team", tm:"Legislation bulletin", tn:"Technology bulletin", m365:"Microsoft 365" },
       ph:[["git","Visit"],["oku","Read"],["ozet","Summarise"],["etiket","Tag"],["deger","Score"],["yaz","Write"]],
-      ch:["Sources","Company news","Official Gazette","Database","Publishers","Email"],
+      ch:["Sources","Collect and write","Database","Publishers","Email"],
       screen:"Agent's screen", db:"Shared database", rows:"records", empty:"No records yet. They land here as the agent writes.",
       flt:[["all","All"],["co","Companies + ecosystem"],["mev","Legislation"]],
       rep:"illustrative", input:"Input", sumH:"Summary", tagH:"Tags", evalH:"Evaluation",
       pause:"Pause", play:"Resume", next:"Next", again:"Restart",
-      srcN:"News", srcR:"Official Gazette", company:"company", eco:"ecosystem", ecoV:"digital platforms",
+      srcN:"News", company:"company", eco:"ecosystem", ecoV:"digital platforms",
       route:{ co:"TECHNOLOGY", mev:"LEGISLATION" }, dropped:"NOT TAKEN",
       cap:{ src:function(n){ return "Every hour the collector visits the sources: <b>"+n+"</b>. Only the part dated today is kept."; },
-        news:"Company news: each story is summarised from its body and tagged with the watched company or the ecosystem it belongs to.",
+        news:"Each item is summarised from its body and tagged with the related company, the ecosystem or the regulatory area.",
         read:"Reading the story.", sum:"Writing the summary in the house style.", tag:"Tags come from the vocabulary: company, sector, practice area.",
         ev:"Relevance score: 0.40 and above counts.", wr:"Record written to the shared database.", drop:"Not regulatory, so it is not taken.",
-        fast:"The remaining stories go through the same steps.",
-        rg:"Official Gazette: reading the 1 July 2026 index and pulling out 19 items.", rgFast:"The remaining items go through the same steps.",
+        fast:"The remaining items go through the same steps.",
         db:"This is where the line splits: the same records go to two publishers according to their tags.",
         pubCo:"Every two hours the newsletter publisher filters for the five watched companies' news and ecosystem developments.",
         pubMev:"The legislation publisher filters for Turkish regulatory developments and compiles its bulletin.",
         mail:"Both bulletins reached the team. Nobody touched a thing." },
       why:{ codeS:"Law: code always summarises", codeT:"Notices and FX: code never summarises", modelS:"Model: summarise", modelT:"Model: the title is enough", rel:"relevant", low:"low relevance, stays out of the bulletin" },
       chips:{ verbs:"-mIştIr voice", close:"set closing", words:"words", noc:"no commentary" },
-      coB:"Technology and Platform Agenda", mevB:"Official Gazette Bulletin", coBn:"illustrative", mevBn:"real output",
+      coB:"Technology and Platform Agenda", mevB:"Legislation Bulletin", coBn:"illustrative", mevBn:"illustrative",
       ecoH:"ECOSYSTEM", sentOk:"Sent", open:"Open",
       from:"From", to:"To", toV:"Team distribution list", subj:"Subject",
       fromCo:"Newsletter agent", fromMev:"Regulatory monitoring agent",
-      subjCo:"Technology and Platform Agenda", subjMev:function(){ return "Resmî Gazete Bülteni: "+MZ.date_tr; },
+      subjCo:"Technology and Platform Agenda", subjMev:function(){ return "Legislation Bulletin"; },
       noteCo:"Illustrative: the five watched companies, the tags and the filter are the system's; the stories are written to show the flow.",
-      noteMev:"As the agent compiled and sent it that day, in Turkish. Titles come from the Official Gazette index, the italic summaries are the model's.",
+      noteMev:"Illustrative: items are grouped by practice area, each with a neutral summary and its official source.",
       rec:{ items:"items", tags:"item_tags", source:"source", date:"published_at", rel:"relevance", sum:"summary", nul:"null (title only)" },
       sLede:"Summaries follow a style guide drawn from 76 real summaries the team had written by hand. The aim is for them to read in the same voice as the team's own. They are in Turkish, so the markers below are Turkish grammar.",
       sRules:[
@@ -2024,19 +2026,18 @@ document.documentElement.setAttribute("data-theme", "day");
         ["Set closings","Where they fit, the team's own closing phrases: \"enters into force on publication\", \"has been made responsible\", \"has been annulled\"."],
         ["Significance, rarely","A \"this is significant for ...\" sentence only for high impact items (tax, data protection, competition, e-commerce, telecoms), and only when the text supports it."]],
       sLen:"Length by type", len:[["Constitutional Court decision","~90 to 110 words"],["Regulation","~80 to 110 words"],["Communiqué, presidential decision","~30 to 55 words"],["Notice, appointment, FX","one sentence"]],
-      sEx:"An example from that day", sLeg:[["","-mIştIr voice"],["k","set closing"],["n","concrete figures and dates"]],
+      sEx:"An example", sLeg:[["","-mIştIr voice"],["k","set closing"],["n","concrete figures and dates"]],
       rl:[
         ["Source text is data, not instructions","The scraped page reaches the model between <code>&lt;&lt;&lt;KAYNAK_VERISI</code> and <code>KAYNAK_VERISI&gt;&gt;&gt;</code>. No sentence in between, \"ignore previous instructions\" included, counts as a command.","Prompt"],
         ["Tags only from the vocabulary","Company, sector and practice area tags are picked from vocabulary tables in the database; a name or code that is not there is dropped by the code. A story is tagged with a company only when a company name from the vocabulary appears in it.","Prompt + code"],
         ["Today's items only","Today's date goes into the prompt in four formats. Anything not dated today, or with no visible date, is dropped; the code separately checks the text for today's date.","Prompt + code"],
         ["Relevance score","0.0 to 1.0, closeness to the firm's practice areas: data protection, competition, fintech, telecoms, AI, e-commerce, IP. Agriculture, appointments, tenders and exchange rates 0.0 to 0.2; directly relevant regulation 0.6 to 0.9. <code>0.40</code> and above counts as relevant.","Prompt"],
         ["What is not taken is a rule too","Events, recruitment, tenders, celebrations and anything else with no regulatory content is never written. The most specific practice area wins; nothing is piled under \"compliance\".","Prompt"],
-        ["Summarise or just list","In the Gazette branch, calibrated on 1,127 items from five months of real bulletins: Constitutional Court 96%, laws 38%, board decisions 18%, communiqués 11%, regulations 3%. Code always summarises laws and high court decisions, never notices and FX.","Prompt + code"],
+        ["Summarise or just list","In the legislation branch, calibrated on 1,127 items from five months of real bulletins: Constitutional Court 96%, laws 38%, board decisions 18%, communiqués 11%, regulations 3%. Code always summarises laws and high court decisions, never notices and FX.","Prompt + code"],
         ["No commentary, nothing invented","A summary says only what the text says. In the news branch phrases such as \"this is significant\" or \"should be monitored\" are banned outright.","Prompt"],
         ["Links and flood limits","Links only from the source's own domain, checked against an allow list. The same item never goes in twice, and one source yields at most 15 items per run.","Code"]]
     }
   };
-  function mzFixed(it){ var t = it[2].toLocaleLowerCase("tr"); return it[1][0]==="Kanun" || it[0]==="ILAN" || /anayasa mahkemes|yargıtay|danıştay|merkez bankas/.test(t); }
   /* the style markers the guide asks for, underlined in the summary */
   var MZ_VERB = /[A-Za-zÇĞİÖŞÜçğıöşüâîû']+(?:mıştır|miştir|muştur|müştür)(?=[\s.,;:]|$)/g;
   var MZ_CLOSE = /(yayımı tarihinde yürürlüğe gir[a-zçğıöşü]*|sorumlu kılınmıştır|iptaline karar verilmiştir)/g;
@@ -2053,25 +2054,18 @@ document.documentElement.setAttribute("data-theme", "day");
       var x = n[L];
       out.push({ key:"news"+i, src:"news", title:x[0], summary:x[1], sc:n.sc, sum:true, drop:!!n.drop,
         company:n.co || "", sector:n.eco ? T.ecoV : "", eco:!!n.eco,
-        area:(n.area || []).map(function(a){ return MZ_AREA[a][L==="tr"?0:1]; }), route:n.drop ? "" : "co" });
-    });
-    MZ.items.forEach(function(it, i){
-      out.push({ key:"rg"+i, src:"rg", it:it, title:it[2], summary:it[3], sc:it[4], sum:it[5], type:it[1][L==="tr"?0:1], route:"mev", fixed:mzFixed(it) });
+        area:(n.area || []).map(function(a){ return MZ_AREA[a][L==="tr"?0:1]; }), route:n.drop ? "" : n.mev ? "mev" : "co", srcName:n.src || T.srcN });
     });
     return out;
   }
-  function mzBulletin(){
-    var SEC = { IDARE:"YÜRÜTME VE İDARE BÖLÜMÜ", YARGI:"YARGI BÖLÜMÜ", ILAN:"İLÂN BÖLÜMÜ" };
-    var PL = { "Kanun":"KANUNLAR", "Cumhurbaşkanı Kararı":"CUMHURBAŞKANI KARARLARI", "Yönetmelik":"YÖNETMELİKLER", "Tebliğ":"TEBLİĞLER", "Kurul Kararı":"KURUL KARARLARI" };
-    var h = '<h4>'+MZ.date_tr+' Tarihli ve '+MZ.no+' Sayılı Resmî Gazete</h4>', sec = "", grp = "";
-    MZ.items.forEach(function(it){
-      if(it[0] !== sec){ sec = it[0]; grp = ""; h += '<h5>'+SEC[sec]+'</h5>'; }
-      if(sec !== "ILAN" && it[1][0] !== grp){
-        grp = it[1][0];
-        var many = MZ.items.filter(function(x){ return x[0]===sec && x[1][0]===grp; }).length > 1;
-        h += '<h6>'+(many && PL[grp] ? PL[grp] : grp.toLocaleUpperCase("tr"))+'</h6>';
-      }
-      h += '<p>&bull; <span>'+pkEsc(it[2])+'</span>'+(it[5] && it[3] ? '<i>'+pkEsc(it[3])+'</i>' : '')+'</p>';
+  /* the legislation bulletin: relevant regulatory records grouped by practice area */
+  function mzMevBulletin(L, recs){
+    var T = MZ_T[L], rel = recs.filter(function(r){ return r.route==="mev" && r.sc >= .4; }), seen = [];
+    var h = '<h4>'+T.mevB+'</h4>';
+    rel.forEach(function(r){ if(seen.indexOf(r.area[0]) < 0) seen.push(r.area[0]); });
+    seen.forEach(function(a){
+      h += '<h6>'+a.toLocaleUpperCase(L==="tr"?"tr":"en")+'</h6>';
+      rel.filter(function(r){ return r.area[0] === a; }).forEach(function(r){ h += '<p>&bull; <span>'+pkEsc(r.title)+'</span><i>'+pkEsc(r.summary)+' ('+r.srcName+')</i></p>'; });
     });
     return h;
   }
@@ -2098,7 +2092,7 @@ document.documentElement.setAttribute("data-theme", "day");
     function pkts(d, n, dur){
       if(reduce) return '';
       var o = '';
-      for(var i = 0; i < n; i++) o += '<circle class="p" r="3.2"><animateMotion dur="'+dur+'s" begin="'+(-i*dur/n).toFixed(2)+'s" repeatCount="indefinite" path="'+d+'"/></circle>';
+      for(var i = 0; i < n; i++) o += '<circle class="p" r="2.6"><animateMotion dur="'+dur+'s" begin="'+(-i*dur/n).toFixed(2)+'s" repeatCount="indefinite" path="'+d+'"/></circle>';
       return o;
     }
     function seg(name, d, n, dur, stations){
@@ -2113,10 +2107,10 @@ document.documentElement.setAttribute("data-theme", "day");
       dots += '<circle class="fd'+(i % 3 ? '' : ' a')+'" cx="'+x+'" cy="'+y+'" r="'+(i % 4 ? 2.4 : 3)+'"/>';
     }
     s += '<g class="nd" data-n="0">'+fan+dots+'</g>';
-    s += '<g data-s="src">'+[3, 11, 19, 27, 35, 41].map(function(k, j){ return reduce ? '' : '<circle class="p" r="2.8"><animateMotion dur="1.4s" begin="'+(-j*.23).toFixed(2)+'s" repeatCount="indefinite" path="'+lines[k]+'"/></circle>'; }).join('')+'</g>';
+    s += '<g data-s="src">'+[3, 11, 19, 27, 35, 41].map(function(k, j){ return reduce ? '' : '<circle class="p" r="2.3"><animateMotion dur="3.4s" begin="'+(-j*.57).toFixed(2)+'s" repeatCount="indefinite" path="'+lines[k]+'"/></circle>'; }).join('')+'</g>';
     s += '<text class="k" x="4" y="22">'+F.src+'</text><text class="s" x="4" y="228">'+F.srcS+'</text>';
     /* collector */
-    s += seg("cd", "M186,"+CY+" L317,"+CY, 3, 1.1, [[230,CY],[274,CY]]);
+    s += seg("cd", "M186,"+CY+" L317,"+CY, 2, 2.8, [[230,CY],[274,CY]]);
     s += '<g class="nd" data-n="1"><circle class="pl" cx="170" cy="'+CY+'" r="15"/><circle class="r" cx="170" cy="'+CY+'" r="15"/><circle class="c" cx="170" cy="'+CY+'" r="5"/></g>';
     s += '<text class="t" x="172" y="92" text-anchor="middle">'+F.col+'</text><text class="s" x="172" y="150" text-anchor="middle">'+F.colS+'</text>';
     [ph.slice(0, 2), ph.slice(2, 4), ph.slice(4)].forEach(function(row, r){
@@ -2124,14 +2118,14 @@ document.documentElement.setAttribute("data-theme", "day");
     });
     /* the shared database and the split */
     var up = "M382,"+CY+" C432,"+CY+" 436,"+TY+" 486,"+TY, dn = "M382,"+CY+" C432,"+CY+" 436,"+BY+" 486,"+BY;
-    s += seg("dm", up, 3, 1.1, [[434,88]]) + seg("dn", dn, 3, 1.1, [[434,148]]);
+    s += seg("dm", up, 2, 2.8, [[434,88]]) + seg("dn", dn, 2, 2.8, [[434,148]]);
     s += '<g class="nd db" data-n="2"><circle class="pl" cx="350" cy="'+CY+'" r="32"/><circle class="r" cx="350" cy="'+CY+'" r="32"/></g>';
-    s += '<text class="t" x="350" y="74" text-anchor="middle">'+F.db+'</text><text class="s" x="350" y="166" text-anchor="middle">'+F.dbS+'</text><text class="s i" x="350" y="179" text-anchor="middle">'+F.dbS2+'</text>';
+    s += '<text class="t" x="350" y="74" text-anchor="middle">'+F.db+'</text><text class="s" x="350" y="174" text-anchor="middle">'+F.dbS+'</text><text class="s i" x="350" y="187" text-anchor="middle">'+F.dbS2+'</text>';
     /* publishers and the team */
-    s += seg("mt", "M514,"+TY+" L598,"+TY, 3, 1, [[540,TY],[572,TY]]) + seg("nt", "M514,"+BY+" L598,"+BY, 3, 1, [[540,BY],[572,BY]]);
+    s += seg("mt", "M514,"+TY+" L598,"+TY, 2, 2.4, [[540,TY],[572,TY]]) + seg("nt", "M514,"+BY+" L598,"+BY, 2, 2.4, [[540,BY],[572,BY]]);
     s += '<g class="nd" data-n="4"><circle class="pl" cx="500" cy="'+TY+'" r="14"/><circle class="r" cx="500" cy="'+TY+'" r="14"/></g>';
     s += '<g class="nd" data-n="3"><circle class="pl" cx="500" cy="'+BY+'" r="14"/><circle class="r" cx="500" cy="'+BY+'" r="14"/></g>';
-    s += '<text class="t" x="500" y="24" text-anchor="middle">'+F.pm+'</text><text class="s" x="500" y="36" text-anchor="middle">'+F.pmS+'</text>';
+    s += '<text class="t" x="500" y="20" text-anchor="middle">'+F.pm+'</text><text class="s" x="500" y="33" text-anchor="middle">'+F.pmS+'</text>';
     s += '<text class="t" x="500" y="211" text-anchor="middle">'+F.pn+'</text><text class="s" x="500" y="223" text-anchor="middle">'+F.pnS+'</text>';
     s += '<g class="nd pill" data-n="5"><rect class="r" x="598" y="'+(TY-18)+'" width="116" height="36" rx="18"/><rect class="r" x="598" y="'+(BY-18)+'" width="116" height="36" rx="18"/></g>';
     s += '<text class="t" x="656" y="'+(TY-2)+'" text-anchor="middle">'+F.team+'</text><text class="s" x="656" y="'+(TY+11)+'" text-anchor="middle">'+F.tm+'</text>';
@@ -2142,7 +2136,7 @@ document.documentElement.setAttribute("data-theme", "day");
 
   function mzHtml(L){
     var T = MZ_T[L];
-    var ex = MZ.items[1];
+    var ex = MZ_NEWS[0].tr[1];
     return '<div class="pk" data-demo="mz">'
       + '<div class="pk-top"><span class="pk-dots"><i></i><i></i><i></i></span>'
       + '<span class="pk-tabs"><button data-t="run" class="on">'+T.run+'</button><button data-t="bul">'+T.bul+'</button><button data-t="style">'+T.style+'</button><button data-t="rules">'+T.rules+'</button></span>'
@@ -2160,8 +2154,8 @@ document.documentElement.setAttribute("data-theme", "day");
       + '</div></div>'
       + '<div class="pk-view" data-v="bul"><div class="mz-mail"><div class="mz-bsw"><button data-b="co" class="on">'+T.coB+' <em>'+T.coBn+'</em></button><button data-b="mev">'+T.mevB+' <em>'+T.mevBn+'</em></button></div><div class="mz-bdoc"></div></div></div>'
       + '<div class="pk-view" data-v="style"><div class="mz-rules"><p class="mz-lede">'+T.sLede+'</p>'
-      +   '<div class="mz-ex"><div class="mz-ph2" style="padding:0 0 6px;border:0"><span>'+T.sEx+' &middot; '+ex[1][L==="tr"?0:1]+'</span><span>'+ex[3].split(/\s+/).length+' '+T.chips.words+'</span></div>'
-      +     '<p class="mz-sum">'+mzStyle(ex[3])+'</p><div class="mz-chips">'+T.sLeg.map(function(g){ return '<span>'+(g[0]==="n"?'<b style="color:var(--pk-code);font-weight:400">12</b> ':'<i class="'+g[0]+'"></i>')+g[1]+'</span>'; }).join('')+'</div></div>'
+      +   '<div class="mz-ex"><div class="mz-ph2" style="padding:0 0 6px;border:0"><span>'+T.sEx+'</span><span>'+ex.split(/\s+/).length+' '+T.chips.words+'</span></div>'
+      +     '<p class="mz-sum">'+mzStyle(ex)+'</p><div class="mz-chips">'+T.sLeg.map(function(g){ return '<span>'+(g[0]==="n"?'<b style="color:var(--pk-code);font-weight:400">12</b> ':'<i class="'+g[0]+'"></i>')+g[1]+'</span>'; }).join('')+'</div></div>'
       +   T.sRules.map(function(r, i){ return '<div class="mz-rule"><span>0'+(i+1)+'</span><div><b>'+r[0]+'</b>'+r[1]+'</div></div>'; }).join('')
       +   '<div class="mz-rule"><span>0'+(T.sRules.length+1)+'</span><div><b>'+T.sLen+'</b><div class="mz-len">'+T.len.map(function(x){ return '<span>'+x[0]+'</span><span>'+x[1]+'</span>'; }).join('')+'</div></div></div>'
       + '</div></div>'
@@ -2173,7 +2167,7 @@ document.documentElement.setAttribute("data-theme", "day");
   function mzMount(root, L){
     if(root._mz) return; root._mz = 1;
     var T = MZ_T[L], TR = L === "tr", R = mzRecords(L);
-    var NEWS = R.filter(function(r){ return r.src==="news"; }), RG = R.filter(function(r){ return r.src==="rg"; });
+    var NEWS = R, MEV = R.filter(function(r){ return r.route==="mev"; }), nMev = MEV.filter(function(r){ return r.sc >= .4; }).length;
     var q = function(s){ return root.querySelector(s); }, qa = function(s){ return Array.prototype.slice.call(root.querySelectorAll(s)); };
     var scr = q(".mz-scr"), where = q(".mz-where"), cap = q(".mz-say"), rowsEl = q(".mz-dbrows"), dbn = q(".mz-dbn"), dbBox = q(".mz-db");
     var nodes = qa(".mzf .nd"), wires = qa(".mzf [data-s]"), phs = qa(".mzf tspan[data-ph]"), chBtns = qa(".mz-chs button"), flts = qa(".mz-flt button");
@@ -2228,8 +2222,7 @@ document.documentElement.setAttribute("data-theme", "day");
 
     /* ---- the shared database ---- */
     function tagsHtml(r){
-      if(r.src === "rg") return '<em class="s">'+T.srcR+'</em><em>'+pkEsc(r.type)+'</em>';
-      return '<em class="s">'+T.srcN+'</em>'
+      return '<em class="s">'+r.srcName+'</em>'
         + (r.company ? '<em class="c">'+T.company+': '+r.company+'</em>' : '')
         + (r.eco ? '<em class="e">'+T.eco+': '+r.sector+'</em>' : '')
         + r.area.map(function(a){ return '<em>'+a+'</em>'; }).join('');
@@ -2237,15 +2230,13 @@ document.documentElement.setAttribute("data-theme", "day");
     function recHtml(r, id){
       var pad = function(s){ return (s+"            ").slice(0, 13); }, lines = [];
       lines.push('<b>'+T.rec.items+' #'+id+'</b>');
-      lines.push(pad(T.rec.source)+(r.src==="rg" ? "Resmî Gazete" : T.srcN));
-      lines.push(pad(T.rec.date)+(r.src==="rg" ? MZ.date : MZ.date));
+      lines.push(pad(T.rec.source)+r.srcName);
       lines.push(pad(T.rec.rel)+r.sc.toFixed(2)+' · is_relevant '+(r.sc >= .4));
       lines.push(pad(T.rec.sum)+(r.sum ? '"'+pkEsc(r.summary.slice(0, 90))+(r.summary.length > 90 ? '…' : '')+'"' : T.rec.nul));
       lines.push('<b>'+T.rec.tags+'</b>');
       if(r.company) lines.push(pad("company")+r.company);
       if(r.sector) lines.push(pad("sector")+r.sector);
       if(r.area && r.area.length) lines.push(pad("alan")+r.area.join(", "));
-      if(r.src === "rg") lines.push(pad("tur")+r.type+(r.fixed ? (TR ? "  · özet kararı kodda" : "  · summary decision in code") : ""));
       return lines.join("\n");
     }
     var nRows = 0;
@@ -2282,14 +2273,13 @@ document.documentElement.setAttribute("data-theme", "day");
     }
     /* one record through the collector: read, summarise, tag, score, write */
     function collect(r){
-      var det = !!MZ_DET[r.key], rg = r.src === "rg", d = function(a, b){ return wait(det ? a : b); };
+      var det = !!MZ_DET[r.key], d = function(a, b){ return wait(det ? a : b); };
       phase("oku"); lit([1], [0]); flow(-1);
-      if(det) say(r.drop ? T.cap.read : rg ? T.cap.read : T.cap.read);
-      var input = rg ? '{ "tur": "'+r.it[1][0]+'", "baslik": "'+pkEsc(r.title)+'",\n  "metin": "'+(TR ? "tam metin" : "full text")+'" }'
-                     : '{ "kaynak": "'+(TR ? "haber sitesi" : "news site")+'", "baslik": "'+pkEsc(r.title)+'",\n  "govde": "'+(TR ? "haberin tam metni" : "full body of the story")+'" }';
-      scr.innerHTML = '<div class="mz-ai"><div class="mz-in"><small>'+T.input+(rg ? '' : ' &middot; '+T.rep)+'</small><code>'+input+'</code></div>'
+      if(det) say(T.cap.read);
+      var input = '{ "kaynak": "'+(r.srcName !== T.srcN ? r.srcName : TR ? "haber sitesi" : "news site")+'", "baslik": "'+pkEsc(r.title)+'",\n  "govde": "'+(TR ? "tam metin" : "full text")+'" }';
+      scr.innerHTML = '<div class="mz-ai"><div class="mz-in"><small>'+T.input+' &middot; '+T.rep+'</small><code>'+input+'</code></div>'
         + '<div class="mz-o"><small>'+T.sumH+'</small><p class="mz-sum"></p><div class="mz-chips"></div></div>'
-        + (rg ? '' : '<div class="mz-o"><small>'+T.tagH+'</small><div class="mz-tags"></div></div>')
+        + '<div class="mz-o"><small>'+T.tagH+'</small><div class="mz-tags"></div></div>'
         + '<div class="mz-o"><small>'+T.evalH+'</small><div class="mz-gauge'+(r.sc>=.4?' hi':'')+'"><u></u><b></b></div><div class="mz-verd"><span class="mz-pill"></span><span></span></div></div></div>';
       var sum = scr.querySelector(".mz-sum"), chips = scr.querySelector(".mz-chips"), tags = scr.querySelector(".mz-tags"),
           g = scr.querySelector(".mz-gauge"), v = scr.querySelector(".mz-verd"), pill = v.querySelector(".mz-pill"), why = v.querySelector("span:last-child");
@@ -2310,7 +2300,6 @@ document.documentElement.setAttribute("data-theme", "day");
         var words = r.summary.split(/\s+/).length, verbs = (r.summary.match(MZ_VERB) || []).length, cl = (r.summary.match(MZ_CLOSE) || []).length;
         chips.innerHTML = (verbs && TR ? '<span><i></i>'+verbs+' &times; '+T.chips.verbs+'</span>' : '')
           + (cl ? '<span><i class="k"></i>'+T.chips.close+'</span>' : '') + '<span>'+words+' '+T.chips.words+'</span><span>&check; '+T.chips.noc+'</span>';
-        if(rg) return d(700, 40);
         phase("etiket"); if(det){ say(T.cap.tag); ai.scrollTop = ai.scrollHeight; }
         var list = tagsHtml(r).split("</em>").filter(Boolean).map(function(s){ return s+"</em>"; }).slice(1), p = d(300, 0);
         list.forEach(function(t){ p = p.then(function(){ tags.insertAdjacentHTML("beforeend", t); return d(380, 0); }); });
@@ -2318,10 +2307,8 @@ document.documentElement.setAttribute("data-theme", "day");
       }).then(function(){
         phase("deger"); if(det){ say(T.cap.ev); ai.scrollTop = ai.scrollHeight; }
         g.querySelector("u").style.width = Math.max(2, r.sc*100)+"%"; g.querySelector("b").textContent = r.sc.toFixed(2);
-        if(rg){ pill.textContent = r.sum ? (TR?'ÖZET':'SUMMARISE') : (TR?'BAŞLIK':'TITLE ONLY'); pill.className = "mz-pill"+(r.sum?" s":"");
-                why.textContent = r.fixed ? (r.sum ? T.why.codeS : T.why.codeT) : (r.sum ? T.why.modelS : T.why.modelT); }
-        else { pill.textContent = r.sc >= .4 ? T.why.rel.toLocaleUpperCase(TR?"tr":"en") : "< 0.40"; pill.className = "mz-pill"+(r.sc>=.4?" s":"");
-               why.textContent = r.sc >= .4 ? "" : T.why.low; }
+        pill.textContent = r.sc >= .4 ? T.why.rel.toLocaleUpperCase(TR?"tr":"en") : "< 0.40"; pill.className = "mz-pill"+(r.sc>=.4?" s":"");
+        why.textContent = r.sc >= .4 ? "" : T.why.low;
         return d(700, 60);
       }).then(function(){
         v.classList.add("on");
@@ -2349,7 +2336,7 @@ document.documentElement.setAttribute("data-theme", "day");
             });
           }).then(function(){ flow(0, false); });
         }, instant:function(){} },
-      { /* company news */
+      { /* collect and write */
         play:function(){
           say(T.cap.news); where.textContent = T.srcN;
           var said = false;
@@ -2359,33 +2346,12 @@ document.documentElement.setAttribute("data-theme", "day");
             return collect(r);
           });
         }, instant:function(){ NEWS.forEach(function(r){ if(!r.drop) addRow(r); }); } },
-      { /* the Official Gazette */
-        play:function(){
-          say(T.cap.rg); phase("oku"); lit([0,1], []); flow(0, true); where.textContent = "Resmî Gazete";
-          var b = browser(""), sec = "", SEC = { IDARE:"YÜRÜTME VE İDARE BÖLÜMÜ", YARGI:"YARGI BÖLÜMÜ", ILAN:"İLÂN BÖLÜMÜ" };
-          var h = '<div class="mz-rg"><h4>'+MZ.date_tr+' Tarihli ve '+MZ.no+' Sayılı Resmî Gazete</h4>';
-          MZ.items.forEach(function(it){ if(it[0] !== sec){ sec = it[0]; h += '<h5>'+SEC[sec]+'</h5>'; } h += '<div class="mz-fl">'+pkEsc(it[2])+'</div>'; });
-          return typeOut(b.url, "https://www.resmigazete.gov.tr/eskiler/"+MZ.date.slice(0,4)+"/"+MZ.date.slice(5,7)+"/"+MZ.date.replace(/-/g,"")+".htm", 500).then(function(){
-            b.pg.innerHTML = h + '</div>';
-            return seq(Array.prototype.slice.call(b.pg.querySelectorAll(".mz-fl")), function(l){
-              l.classList.add("got"); var top = l.offsetTop - b.pg.clientHeight*.6; if(top > b.pg.scrollTop) b.pg.scrollTop = top;
-              return wait(45);
-            });
-          }).then(function(){ flow(0, false); return wait(400); }).then(function(){
-            var said = false, order = [RG[14]].concat(RG.filter(function(r, i){ return i !== 14; }));
-            return seq(order, function(r, i){
-              where.textContent = "Resmî Gazete · "+(i+1)+" / "+RG.length;
-              if(!MZ_DET[r.key] && !said){ said = true; say(T.cap.rgFast); }
-              return collect(r);
-            });
-          });
-        }, instant:function(){ RG.forEach(addRow); } },
       { /* the split */
         play:function(){
           phase(null); lit([2], [0,1]); say(T.cap.db); where.textContent = "";
           scr.innerHTML = '<div class="mz-split"><div class="mz-sp-db">'+T.nodes[2][0]+'<small>'+nRows+' '+T.rows+'</small></div>'
             + '<div class="mz-sp-a co"><b>'+T.nodes[3][0]+'</b><small>company &cup; sector &middot; is_relevant</small><em>'+R.filter(function(r){ return r.route==="co" && r.sc>=.4; }).length+'</em></div>'
-            + '<div class="mz-sp-a mev"><b>'+T.nodes[4][0]+'</b><small>'+(TR?"TR düzenleyici alan süzgeci":"TR regulator domain filter")+'</small><em>'+RG.length+'</em></div></div>';
+            + '<div class="mz-sp-a mev"><b>'+T.nodes[4][0]+'</b><small>'+(TR?"TR düzenleyici alan süzgeci":"TR regulator domain filter")+'</small><em>'+nMev+'</em></div></div>';
           dbBox.classList.add("split");
           return wait(700).then(function(){ filter("co"); rowsEl.scrollTop = 0; return wait(1300); }).then(function(){ filter("mev"); return wait(1300); }).then(function(){ filter("all"); return wait(500); });
         }, instant:function(){ dbBox.classList.add("split"); } },
@@ -2394,7 +2360,7 @@ document.documentElement.setAttribute("data-theme", "day");
           lit([3], [0,1,2]); flow("dn", true); filter("co"); rowsEl.scrollTop = 0; say(T.cap.pubCo); where.textContent = T.coB;
           return build(mzCoBulletin(L, R), 260).then(function(){
             lit([4], [0,1,2,3]); flow("dm", true); filter("mev"); say(T.cap.pubMev); where.textContent = T.mevB;
-            return build(mzBulletin(), 45);
+            return build(mzMevBulletin(L, R), 260);
           }).then(function(){ flow(3, true); filter("all"); lit([5], [0,1,2,3,4]); return wait(900); });
         }, instant:function(){} },
       { /* email */
@@ -2414,7 +2380,7 @@ document.documentElement.setAttribute("data-theme", "day");
       var nCo = R.filter(function(r){ return r.route==="co" && r.sc>=.4; }).length;
       function env(from, subj, n, b){ return '<div class="mz-env"><div class="mz-hdr"><b>'+T.from+'</b> '+from+'<br><b>'+T.to+'</b> '+T.toV+'<br><b>'+T.subj+'</b> '+subj
         + '</div><div class="mz-envf"><span class="mz-ok">&check; '+T.sentOk+' &middot; '+n+'</span><button class="mz-open" data-b="'+b+'">'+T.open+'</button></div></div>'; }
-      scr.innerHTML = '<div class="mz-sent">'+env(T.fromCo, T.subjCo, nCo+' '+T.rows, "co")+env(T.fromMev, T.subjMev(), RG.length+' '+(TR?'madde':'items'), "mev")+'</div>';
+      scr.innerHTML = '<div class="mz-sent">'+env(T.fromCo, T.subjCo, nCo+' '+T.rows, "co")+env(T.fromMev, T.subjMev(), nMev+' '+T.rows, "mev")+'</div>';
       qa(".mz-open").forEach(function(b){ b.addEventListener("click", function(){ showBul(b.getAttribute("data-b")); showTab("bul"); }); });
     }
     function run(from){
@@ -2441,13 +2407,13 @@ document.documentElement.setAttribute("data-theme", "day");
       }
     });
 
-    /* the bulletins tab: both mails, the newsletter illustrative, the Gazette one real */
+    /* the bulletins tab: both mails, built from the same records */
     var bdoc = q(".mz-bdoc");
     function showBul(b){
       qa(".mz-bsw button").forEach(function(x){ x.classList.toggle("on", x.getAttribute("data-b") === b); });
       var co = b === "co";
       bdoc.innerHTML = '<div class="mz-env"><div class="mz-hdr"><b>'+T.from+'</b> '+(co ? T.fromCo : T.fromMev)+'<br><b>'+T.to+'</b> '+T.toV
-        + '<br><b>'+T.subj+'</b> '+(co ? T.subjCo : T.subjMev())+'</div><div class="mz-paper">'+(co ? mzCoBulletin(L, R) : mzBulletin())+'</div></div><p class="mz-note">'+(co ? T.noteCo : T.noteMev)+'</p>';
+        + '<br><b>'+T.subj+'</b> '+(co ? T.subjCo : T.subjMev())+'</div><div class="mz-paper">'+(co ? mzCoBulletin(L, R) : mzMevBulletin(L, R))+'</div></div><p class="mz-note">'+(co ? T.noteCo : T.noteMev)+'</p>';
     }
     q(".mz-bsw").addEventListener("click", function(ev){ var b = ev.target.closest("button[data-b]"); if(b) showBul(b.getAttribute("data-b")); });
     showBul("co");
