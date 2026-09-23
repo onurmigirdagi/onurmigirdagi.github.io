@@ -370,49 +370,109 @@ html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparen
 .pk-next{justify-self:start; padding:8px 14px; border-radius:7px; background:var(--pk-acc); color:#fff; font-size:12px; font-weight:600;}
 .pk-gfoot{margin-top:auto; display:flex; flex-direction:column; gap:4px; font-size:11.5px; color:var(--faint); line-height:1.5; padding-top:8px;}
 .pk-gfoot span:first-child{font-family:var(--mono); color:var(--dim);}
-/* Mevzuat İzleme demo: one real day of the Resmî Gazete branch, replayed */
-.mz-run{display:grid; grid-template-columns:190px minmax(0,1fr); grid-template-rows:minmax(0,1fr); height:470px; background:var(--panel);}
-.mz-steps{border-right:1px solid var(--line); background:var(--panel2); padding:10px 8px; display:flex; flex-direction:column; gap:0; overflow:auto;}
-.mz-step{display:grid; grid-template-columns:18px 1fr; gap:7px; padding:5px 6px; border-radius:7px; opacity:.45; transition:opacity .2s ease, background .2s ease;}
-.mz-step.go,.mz-step.ok{opacity:1;} .mz-step.go{background:var(--panel);}
-.mz-step i{width:14px; height:14px; margin-top:1px; border-radius:50%; border:1.5px solid var(--line3); position:relative;}
-.mz-step.go i{border-color:var(--pk-acc); border-right-color:transparent; animation:mzspin .7s linear infinite;}
-.mz-step.ok i{border-color:#1F9D55; background:#1F9D55;}
-.mz-step.ok i:after{content:""; position:absolute; left:4px; top:1px; width:3px; height:7px; border:solid #fff; border-width:0 1.6px 1.6px 0; transform:rotate(45deg);}
-.mz-step b{display:block; font-size:12.5px; font-weight:600; color:var(--txt);}
-.mz-step small{display:block; font-size:10.5px; line-height:1.35; color:var(--faint); margin-top:1px;}
-@keyframes mzspin{to{transform:rotate(360deg);}}
-.mz-count{margin-top:auto; display:grid; grid-template-columns:repeat(3,1fr); gap:4px; padding-top:8px;}
-.mz-count div{background:var(--panel); border:1px solid var(--line2); border-radius:7px; padding:6px 4px; text-align:center;}
-.mz-count b{display:block; font-family:var(--mono); font-size:16px; color:var(--txt);}
-.mz-count small{font-size:9.5px; color:var(--faint); letter-spacing:.02em;}
-.mz-replay{margin-top:8px; padding:7px; border-radius:7px; background:var(--pk-acc); color:#fff; font-size:12px; font-weight:600;}
-.mz-replay:hover{filter:brightness(1.08);}
-.mz-main{display:flex; flex-direction:column; min-width:0; min-height:0;}
-.mz-head{display:flex; align-items:center; gap:8px; padding:8px 12px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:10px; color:var(--faint); letter-spacing:.04em;}
-.mz-head span:first-child{flex:1;}
-.mz-list{flex:1; min-height:0; overflow:auto; user-select:text;}
-.mz-row{border-bottom:1px solid var(--line); opacity:0; transform:translateY(4px); transition:opacity .25s ease, transform .25s ease;}
-.mz-row.in{opacity:1; transform:none;}
-.mz-rh{display:grid; grid-template-columns:minmax(0,1fr) 92px 58px; gap:10px; align-items:center; padding:7px 12px; cursor:pointer;}
-.mz-rh>span:first-child{min-width:0;}
-.mz-rh:hover{background:var(--panel2);}
-.mz-ty{display:block; font-family:var(--mono); font-size:9.5px; color:var(--faint); letter-spacing:.05em; text-transform:uppercase;}
-.mz-ti{display:block; font-size:12.5px; line-height:1.35; color:var(--txt); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-.mz-row.open .mz-ti{white-space:normal;}
-.mz-bar{position:relative; height:6px; border-radius:3px; background:var(--line);}
-.mz-bar u{position:absolute; left:0; top:0; bottom:0; width:0; border-radius:3px; background:var(--line3); transition:width .45s cubic-bezier(.2,.8,.2,1);}
-.mz-bar.hi u{background:var(--pk-acc);}
-.mz-bar:after{content:""; position:absolute; left:40%; top:-3px; bottom:-3px; width:1px; background:var(--dim); opacity:.55;}
-.mz-bar em{position:absolute; right:0; top:-15px; font-style:normal; font-family:var(--mono); font-size:9.5px; color:var(--dim);}
-.mz-dec{justify-self:end; font-family:var(--mono); font-size:9.5px; letter-spacing:.05em; padding:3px 7px; border-radius:10px; border:1px solid var(--line2); color:var(--faint); opacity:0; transition:opacity .2s ease;}
-.mz-dec.on{opacity:1;} .mz-dec.s{color:#fff; background:#1F9D55; border-color:#1F9D55;}
-.mz-dec sup{font-size:8px; margin-left:3px; vertical-align:1px;}
-.mz-det{display:none; padding:0 12px 11px;}
-.mz-row.open .mz-det{display:block;}
-.mz-det p{margin:0 0 7px; font-size:12.5px; line-height:1.55; color:var(--dim); font-style:italic;}
-.mz-det code{display:block; font-family:var(--mono); font-size:10.5px; line-height:1.6; color:var(--pk-code); white-space:pre-wrap; word-break:break-word;}
-.mz-hint{padding:7px 12px; border-top:1px solid var(--line); font-family:var(--mono); font-size:10px; color:var(--faint);}
+/* Mevzuat İzleme demo: one real day of the Resmî Gazete branch, replayed end to end */
+.mz-run{display:flex; flex-direction:column; background:var(--panel);}
+.mz-flow{position:relative; display:flex; align-items:stretch; gap:0; padding:12px 12px 10px; border-bottom:1px solid var(--line); background:var(--panel2);}
+.mz-n{flex:1 1 0; min-width:0; border:1px solid var(--line2); border-radius:9px; background:var(--panel); padding:7px 8px; position:relative;
+  transition:border-color .25s ease, box-shadow .25s ease, opacity .25s ease; opacity:.55;}
+.mz-n b{display:block; font-size:11.5px; font-weight:600; color:var(--txt); line-height:1.25;}
+.mz-n small{display:block; font-size:9.5px; color:var(--faint); line-height:1.3; margin-top:2px;}
+.mz-n.on{opacity:1; border-color:var(--pk-acc); box-shadow:0 0 0 3px color-mix(in srgb, var(--pk-acc) 18%, transparent);}
+.mz-n.done{opacity:1;}
+.mz-n.done:after{content:""; position:absolute; right:6px; top:7px; width:7px; height:7px; border-radius:50%; background:#1F9D55;}
+.mz-n.big{flex-grow:1.7;}
+.mz-ph{display:flex; flex-wrap:wrap; gap:3px; margin-top:5px;}
+.mz-ph span{font-family:var(--mono); font-size:9px; padding:1px 5px; border-radius:8px; color:var(--faint); border:1px solid var(--line2);}
+.mz-ph span.on{color:#fff; background:var(--pk-acc); border-color:var(--pk-acc);}
+.mz-pub{flex:1.15 1 0; min-width:0; display:flex; flex-direction:column; gap:5px;}
+.mz-pub .mz-n{padding:5px 8px; flex:1 1 auto;}
+.mz-w{flex:none; width:16px; position:relative; align-self:center; height:2px; background:var(--line2); margin:0 3px;}
+.mz-w:after{content:""; position:absolute; right:-2px; top:-3px; border:4px solid transparent; border-left:5px solid var(--line3); border-right:0;}
+.mz-w i{position:absolute; top:-3px; left:0; width:8px; height:8px; border-radius:50%; background:var(--pk-acc); opacity:0;}
+.mz-w.go{background:color-mix(in srgb, var(--pk-acc) 45%, var(--line2));}
+.mz-w.go i{opacity:1; animation:mzpkt .7s linear infinite;}
+@keyframes mzpkt{from{left:0;} to{left:calc(100% - 8px);}}
+.mz-body{display:grid; grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); height:330px;}
+.mz-live{display:flex; flex-direction:column; min-height:0; border-right:1px solid var(--line);}
+.mz-ph2{display:flex; justify-content:space-between; gap:8px; padding:7px 12px; border-bottom:1px solid var(--line);
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; color:var(--faint); text-transform:uppercase;}
+.mz-scr{flex:1; min-height:0; overflow:hidden; position:relative; user-select:text;}
+.mz-br{position:absolute; inset:10px; border:1px solid var(--line2); border-radius:8px; overflow:hidden; display:flex; flex-direction:column; background:var(--panel);}
+.mz-url{display:flex; align-items:center; gap:7px; padding:6px 9px; background:var(--panel2); border-bottom:1px solid var(--line2); font-family:var(--mono); font-size:10.5px; color:var(--dim);}
+.mz-url i{width:8px; height:8px; border-radius:50%; background:#1F9D55; flex:none;}
+.mz-url span{flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.mz-url em{font-style:normal; font-size:9px; color:var(--faint); border:1px solid var(--line2); border-radius:8px; padding:1px 6px; flex:none;}
+.mz-pg{flex:1; overflow:hidden; padding:10px 12px; position:relative;}
+.mz-sk{height:7px; border-radius:4px; background:var(--line); margin:0 0 9px;}
+.mz-sk.h{height:10px; background:var(--line2); width:45%; margin-bottom:12px;}
+.mz-band{position:relative; margin:4px -6px 10px; padding:6px 6px 1px; border-radius:6px; border:1px dashed transparent; transition:all .3s ease;}
+.mz-band.on{border-color:var(--pk-acc); background:color-mix(in srgb, var(--pk-acc) 9%, transparent);}
+.mz-band.on .mz-sk{background:color-mix(in srgb, var(--pk-acc) 35%, var(--line));}
+.mz-band em{position:absolute; right:6px; top:-8px; font-style:normal; font-family:var(--mono); font-size:9px; color:#fff; background:var(--pk-acc);
+  padding:1px 6px; border-radius:7px; opacity:0; transition:opacity .3s ease;}
+.mz-band.on em{opacity:1;}
+.mz-rg h4{margin:0 0 6px; font-size:11.5px; color:#C00000;}
+.mz-rg h5{margin:8px 0 3px; font-size:10px; letter-spacing:.04em; color:var(--txt);}
+.mz-fl{font-size:11px; line-height:1.4; color:var(--dim); padding:2px 4px 2px 16px; border-radius:4px; position:relative; transition:background .2s ease;}
+.mz-fl:before{content:""; position:absolute; left:4px; top:7px; width:6px; height:6px; border-radius:50%; border:1px solid var(--line3);}
+.mz-fl.got{background:color-mix(in srgb, var(--pk-acc) 10%, transparent); color:var(--txt);}
+.mz-fl.got:before{background:var(--pk-acc); border-color:var(--pk-acc);}
+.mz-chip{position:absolute; right:10px; bottom:10px; font-family:var(--mono); font-size:10px; color:#fff; background:var(--pk-acc); padding:3px 8px; border-radius:9px;}
+.mz-ai{position:absolute; inset:0; overflow:auto; padding:10px 12px; display:flex; flex-direction:column; gap:9px;}
+.mz-ai small{display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); margin-bottom:3px;}
+.mz-in code{display:block; font-family:var(--mono); font-size:10.5px; line-height:1.55; color:var(--pk-code); white-space:pre-wrap; word-break:break-word;
+  background:var(--panel2); border:1px solid var(--line2); border-radius:7px; padding:7px 9px;}
+.mz-sum{margin:0; font-size:12.5px; line-height:1.6; color:var(--txt); min-height:20px;}
+.mz-sum.typing:after{content:""; display:inline-block; width:6px; height:13px; margin-left:1px; vertical-align:-2px; background:var(--pk-acc); animation:mzblink .8s steps(1) infinite;}
+@keyframes mzblink{50%{opacity:0;}}
+.mz-sum mark{background:none; color:inherit; border-bottom:2px solid color-mix(in srgb, var(--pk-acc) 70%, transparent);}
+.mz-sum mark.k{border-bottom-color:#1F9D55;} .mz-sum mark.n{border-bottom:0; color:var(--pk-code); font-family:var(--mono); font-size:11.5px;}
+.mz-chips{display:flex; flex-wrap:wrap; gap:4px; margin-top:6px;}
+.mz-chips span{font-family:var(--mono); font-size:9.5px; color:var(--dim); border:1px solid var(--line2); border-radius:9px; padding:2px 7px; background:var(--panel2);}
+.mz-chips span i{display:inline-block; width:10px; height:2px; vertical-align:3px; margin-right:4px; background:var(--pk-acc);}
+.mz-chips span i.k{background:#1F9D55;}
+.mz-gauge{position:relative; height:8px; border-radius:4px; background:var(--line); margin:12px 0 6px;}
+.mz-gauge u{position:absolute; left:0; top:0; bottom:0; width:0; border-radius:4px; background:var(--line3); transition:width .6s cubic-bezier(.2,.8,.2,1);}
+.mz-gauge.hi u{background:var(--pk-acc);}
+.mz-gauge:after{content:"0.40"; position:absolute; left:40%; top:-12px; font-family:var(--mono); font-size:8.5px; color:var(--faint); transform:translateX(-50%);}
+.mz-gauge:before{content:""; position:absolute; left:40%; top:-3px; bottom:-3px; width:1px; background:var(--dim); z-index:1;}
+.mz-gauge b{position:absolute; right:0; top:-14px; font-family:var(--mono); font-size:10.5px; color:var(--txt);}
+.mz-verd{display:flex; align-items:center; gap:8px; font-size:11.5px; color:var(--dim); line-height:1.4; opacity:0; transition:opacity .25s ease;}
+.mz-verd.on{opacity:1;}
+.mz-pill{flex:none; font-family:var(--mono); font-size:9.5px; letter-spacing:.05em; padding:3px 8px; border-radius:10px; border:1px solid var(--line2); color:var(--faint);}
+.mz-pill.s{color:#fff; background:#1F9D55; border-color:#1F9D55;}
+.mz-mini{position:absolute; inset:10px; overflow:hidden; border-radius:8px; border:1px solid var(--line2);}
+.mz-mini .mz-paper{padding:10px 12px; font-size:11px; height:100%; overflow:hidden;}
+.mz-mini .mz-paper h4{font-size:11.5px; margin-bottom:6px;} .mz-mini .mz-paper h5,.mz-mini .mz-paper h6{font-size:10.5px; margin:6px 0 2px;}
+.mz-mini .mz-paper p{margin:1px 0; line-height:1.35;} .mz-mini .mz-paper p i{margin:1px 0 3px 10px;}
+.mz-mini .mz-paper>*{opacity:0; transition:opacity .2s ease;} .mz-mini .mz-paper>.in{opacity:1;}
+.mz-sent{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; padding:16px;}
+.mz-sent .mz-env{width:100%; max-width:360px; text-align:left;}
+.mz-sent .mz-hdr{font-size:11.5px;}
+.mz-ok{font-family:var(--mono); font-size:11px; color:#1F9D55;}
+.mz-open{padding:6px 12px; border-radius:7px; border:1px solid var(--line2); background:var(--panel2); color:var(--txt); font-size:11.5px;}
+.mz-open:hover{border-color:var(--pk-acc);}
+.mz-db{display:flex; flex-direction:column; min-height:0;}
+.mz-dbrows{flex:1; overflow:auto; user-select:text;}
+.mz-dr{border-bottom:1px solid var(--line); animation:mzin .35s ease;}
+@keyframes mzin{from{background:color-mix(in srgb, var(--pk-acc) 16%, transparent); transform:translateY(-3px);} to{background:transparent; transform:none;}}
+.mz-drh{display:grid; grid-template-columns:18px minmax(0,1fr) 30px 44px; gap:6px; align-items:center; padding:5px 10px; cursor:pointer;}
+.mz-drh:hover{background:var(--panel2);}
+.mz-drh span{font-family:var(--mono); font-size:9.5px; color:var(--faint);}
+.mz-drh span.t{font-family:var(--ui); font-size:11.5px; color:var(--txt); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.mz-drh span.hi{color:var(--pk-acc);}
+.mz-drh .mz-pill{justify-self:end; padding:2px 5px; font-size:8.5px;}
+.mz-drd{display:none; padding:0 10px 9px 34px;}
+.mz-dr.open .mz-drd{display:block;} .mz-dr.open span.t{white-space:normal;}
+.mz-drd p{margin:0 0 5px; font-size:11.5px; line-height:1.5; color:var(--dim); font-style:italic;}
+.mz-drd code{display:block; font-family:var(--mono); font-size:9.5px; line-height:1.55; color:var(--pk-code); white-space:pre-wrap; word-break:break-word;}
+.mz-empty{padding:18px 12px; font-size:11.5px; color:var(--faint); text-align:center;}
+.mz-foot{display:flex; align-items:center; gap:10px; padding:8px 12px; border-top:1px solid var(--line); background:var(--panel2);}
+.mz-cap{flex:1; min-width:0; font-size:12px; color:var(--txt); line-height:1.4;}
+.mz-ctl{display:flex; gap:4px; flex:none;}
+.mz-ctl button{font-family:var(--mono); font-size:10.5px; padding:5px 9px; border-radius:6px; border:1px solid var(--line2); background:var(--panel); color:var(--dim);}
+.mz-ctl button:hover{color:var(--txt); border-color:var(--pk-acc);}
+.mz-ctl button.pr{background:var(--pk-acc); border-color:var(--pk-acc); color:#fff;}
 .mz-mail{height:470px; overflow:auto; background:var(--panel2); padding:14px; user-select:text;}
 .mz-env{max-width:640px; margin:0 auto; border-radius:9px; overflow:hidden; border:1px solid var(--line2); box-shadow:0 8px 22px rgba(26,30,38,.12);}
 .mz-hdr{background:var(--panel); padding:10px 14px; font-size:12px; color:var(--dim); line-height:1.7; border-bottom:1px solid var(--line2);}
@@ -432,15 +492,21 @@ html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparen
 .mz-rule div{font-size:12.5px; line-height:1.55; color:var(--dim);}
 .mz-rule code{font-family:var(--mono); font-size:11px; color:var(--pk-code);}
 .mz-rule small{display:inline-block; margin-top:5px; font-family:var(--mono); font-size:9.5px; color:var(--faint); letter-spacing:.05em; text-transform:uppercase;}
-body.mob .mz-run,body.phone .mz-run{grid-template-columns:minmax(0,1fr); grid-template-rows:auto minmax(0,1fr); height:520px;}
-body.mob .mz-steps,body.phone .mz-steps{flex-direction:row; flex-wrap:wrap; border-right:0; border-bottom:1px solid var(--line); padding:8px;}
-body.mob .mz-step,body.phone .mz-step{grid-template-columns:14px auto; gap:5px; padding:4px 6px;}
-body.mob .mz-step small,body.phone .mz-step small{display:none;}
-body.mob .mz-step i,body.phone .mz-step i{width:11px; height:11px;}
-body.mob .mz-step.ok i:after,body.phone .mz-step.ok i:after{left:3px; top:0; height:6px;}
-body.mob .mz-count,body.phone .mz-count{width:100%; margin-top:6px; padding-top:0; grid-template-columns:repeat(3,1fr) auto;}
-body.mob .mz-replay,body.phone .mz-replay{margin-top:0; padding:6px 10px;}
-body.mob .mz-rh,body.phone .mz-rh{grid-template-columns:minmax(0,1fr) 60px 50px; gap:8px;}
+.mz-lede{font-size:12.5px; line-height:1.55; color:var(--dim); margin:0 0 2px;}
+.mz-ex{padding:12px 14px; border-radius:9px; border:1px solid var(--line2); background:var(--panel);}
+.mz-ex .mz-sum{font-size:13px;}
+.mz-len{display:grid; grid-template-columns:1fr auto; gap:3px 14px; margin-top:4px; font-size:12px;}
+.mz-len span:nth-child(even){font-family:var(--mono); font-size:11px; color:var(--pk-code); text-align:right;}
+body.mob .mz-flow,body.phone .mz-flow{padding:8px 6px; overflow-x:auto;}
+body.mob .mz-n,body.phone .mz-n{padding:5px 14px 5px 7px; min-width:78px;} body.mob .mz-n.big,body.phone .mz-n.big{min-width:136px;}
+body.mob .mz-pub,body.phone .mz-pub{min-width:92px;} body.mob .mz-flow::-webkit-scrollbar,body.phone .mz-flow::-webkit-scrollbar{display:none;}
+body.mob .mz-n small,body.phone .mz-n small{display:none;}
+body.mob .mz-n b,body.phone .mz-n b{font-size:10px;}
+body.mob .mz-w,body.phone .mz-w{width:10px; margin:0 2px;}
+body.mob .mz-body,body.phone .mz-body{grid-template-columns:minmax(0,1fr); grid-template-rows:300px 190px; height:auto;}
+body.mob .mz-live,body.phone .mz-live{border-right:0; border-bottom:1px solid var(--line);}
+body.mob .mz-foot,body.phone .mz-foot{flex-direction:column; align-items:stretch; gap:7px;}
+body.mob .mz-ctl,body.phone .mz-ctl{justify-content:flex-end;}
 body.mob .mz-mail,body.phone .mz-mail,body.mob .mz-rules,body.phone .mz-rules{height:480px;}
 body.mob .mz-paper,body.phone .mz-paper{padding:14px;}
 body.mob .pk-stage,body.phone .pk-stage{height:380px;}
@@ -1040,7 +1106,7 @@ document.documentElement.setAttribute("data-theme", "day");
       en:{ t:"Pipeline", name:"Regulatory Monitoring Pipeline", meta:"2026 &middot; BTS &amp; Partners",
         lede:"An autonomous agent pipeline watching 107 public and regulatory sources, running unattended in production.",
         paras:["A collector agent retrieves every item, produces a summary with a relevance score and a topic tag, and writes it to a central database. Two publisher agents distribute the legislation and news bulletins by corporate email. Nobody touches it day to day.",
-               "The run above is the Official Gazette branch on 1 July 2026, replayed from its real output: 19 index entries, with the scores and summaries the model actually produced. The Gazette is public, so none of the text has been changed.",
+               "The run above is the Official Gazette branch on 1 July 2026, replayed from its real output: 19 index entries, with the scores and summaries the model actually produced. The Gazette is public, so none of the text has been changed. The agency pages at the start are drawn only to show the flow.",
                "I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.",
                "Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison."],
         rt:"Built with", rail:["Python, scheduled <b>agents</b>","<b>Supabase</b> central store","Streamlit for inspection","<b>Microsoft Graph</b> for delivery","Benchmarked against <b>Power Automate</b>","Relevance scoring and tagging"],
@@ -1048,7 +1114,7 @@ document.documentElement.setAttribute("data-theme", "day");
       tr:{ t:"Mevzuat İzleme", name:"Mevzuat İzleme Sistemi", meta:"2026 &middot; BTS &amp; Partners",
         lede:"107 kamu ve düzenleyici kaynağı izleyen, canlı ortamda kendi başına çalışan otonom bir ajan pipeline'ı.",
         paras:["Toplayıcı ajan her içeriği çekiyor, alaka puanı ve konu etiketiyle bir özet çıkarıyor ve merkezi veritabanına yazıyor. İki yayıncı ajan mevzuat ve haber bültenlerini kurumsal e-postayla dağıtıyor. Günlük işleyişte kimsenin dokunmasına gerek yok.",
-               "Yukarıdaki tur, Resmî Gazete kolunun 1 Temmuz 2026 günkü gerçek çıktısından yeniden oynatılıyor: fihristteki 19 madde, modelin o gün verdiği puanlar ve yazdığı özetlerle. Resmî Gazete kamuya açık olduğu için metinlerin hiçbirine dokunmadım.",
+               "Yukarıdaki tur, Resmî Gazete kolunun 1 Temmuz 2026 günkü gerçek çıktısından yeniden oynatılıyor: fihristteki 19 madde, modelin o gün verdiği puanlar ve yazdığı özetlerle. Resmî Gazete kamuya açık olduğu için metinlerin hiçbirine dokunmadım. Başlangıçtaki kurum sayfaları yalnız akışı göstermek için temsili çizildi.",
                "Aynı iş akışını, ikisi düzgünce karşılaştırılabilsin diye Microsoft Power Automate üzerinde ikinci kez kurdum. Bu kadar kaynağı sorgulayıp sonuçlar üzerinde yapay zekâ analizi çalıştırmak şirketin lisans kapsamının dışında kalıyordu. Ajan versiyonu bu yüzden kazandı: mevcut abonelik kapasitesi içinde, ek altyapı maliyeti olmadan çalışıyor.",
                "Ayrıca orada yapay zekâ çıktıları için kullanılan değerlendirme yöntemini tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk benchmark'ı ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması."],
         rt:"Yapı taşları", rail:["Python, zamanlanmış <b>ajanlar</b>","Merkezi depo olarak <b>Supabase</b>","İnceleme için Streamlit","Dağıtım için <b>Microsoft Graph</b>","<b>Power Automate</b> ile karşılaştırıldı","Alaka puanlama ve etiketleme"],
@@ -1758,149 +1824,122 @@ document.documentElement.setAttribute("data-theme", "day");
   /* Mevzuat İzleme demo. MZ is one real day of the Resmî Gazete branch
      (make_mzdata.py): every index entry with the model's score, summary and
      the summarise decision, exactly as the run produced them. The run tab
-     replays that day step by step; the bulletin tab is the mail it compiled;
-     the rules tab is what the prompts and the code enforce. */
+     replays that day through the whole chain: the collector visits the
+     pages, reads, summarises, scores and writes each item, then the
+     publisher agents take over. The institution pages in the opening tour
+     are drawn as placeholders; everything from the Gazette on is real. */
+  var MZ_SRC = [["KVKK","kvkk.gov.tr/Icerik/2015/Duyurular","HTTP"],["BTK","btk.gov.tr/duyurular","HTTP"],
+    ["Rekabet Kurumu","rekabet.gov.tr","HTTP"],["TCMB","tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Duyurular/Basin","Jina reader"],
+    ["SPK","spk.gov.tr/duyurular/basin-duyurulari/2026","HTTP"],["BDDK","bddk.org.tr/Duyuru","Jina reader"]];
+  var MZ_DET = { 0:1, 1:1, 8:1, 13:1, 14:1 };   /* items shown at full length, the rest run fast */
   var MZ_T = {
-    tr:{ run:"Tur", bul:"Bülten", rules:"Kurallar", items:"madde", no:"sayı",
+    tr:{ run:"Tur", bul:"Bülten", style:"Üslup", rules:"Kurallar", items:"madde", no:"sayı",
       date:function(){ return MZ.date_tr; },
-      steps:[["Topla","resmigazete.gov.tr günlük fihristi"],["Zenginleştir","Claude: özet, alaka puanı, özet mi başlık mı"],
-             ["Kontrol","Deterministik kurallar, JSON doğrulama"],["Onay","İnceleme ekranında Onayla ve Yükle"],
-             ["Veritabanı","Merkezi depoya yazma"],["Bülten","Bölüm ve tür sırasıyla derleme"],["E-posta","Kurumsal e-postayla dağıtım"]],
-      seen:"İncelenen", rel:"İlgili", sum:"Özetlenen", replay:"Yeniden çalıştır",
-      cols:["Madde","Alaka","Karar"], sumP:"ÖZET", titP:"BAŞLIK",
-      hint:"Bir maddeye tıkla, modelin çıktısını gör &middot; * kodla sabitlenen karar", orig:"",
+      nodes:[["Kaynak sayfaları","Resmî Gazete ve kurum duyuruları"],["Toplayıcı ajan",""],["Veritabanı","items tablosu"],
+             ["Mevzuat yayıncısı","bu tur"],["Haber yayıncısı","kendi turunda"],["E-posta","ekip listesi"]],
+      ph:[["git","Git"],["oku","Oku"],["ozet","Özetle"],["deger","Değerlendir"],["yaz","Yaz"]],
+      screen:"Ajanın ekranı", db:"Veritabanı · items", rows:"satır", empty:"Henüz satır yok. Ajan yazdıkça burası dolacak.",
+      rep:"temsili", input:"Girdi", sumH:"Özet", evalH:"Değerlendirme", of:"madde",
+      pause:"Duraklat", play:"Devam", skip:"Sona atla", again:"Baştan",
+      cap:{ idle:"Tur ekrana gelince başlıyor.",
+        tour:function(n){ return "Toplayıcı ajan kaynak sayfalarını geziyor: <b>"+n+"</b>. Sayfanın yalnız bugüne ait bölümü alınıyor."; },
+        rg:"Resmî Gazete'nin 1 Temmuz 2026 fihristi okunuyor, maddeler tek tek çıkarılıyor.",
+        read:function(i){ return "Madde "+(i+1)+"/"+MZ.items.length+": tam metin okunuyor."; },
+        sum:function(i){ return "Madde "+(i+1)+": Claude özeti kurum üslubunda yazıyor."; },
+        ev:function(i){ return "Madde "+(i+1)+": alaka puanı ve özet mi başlık mı kararı."; },
+        wr:function(i){ return "Madde "+(i+1)+" veritabanına yazıldı."; },
+        fast:"Kalan maddeler aynı beş adımdan geçiyor.",
+        hand:"Toplayıcının işi bitti. Yayıncı ajanlar veritabanından devralıyor.",
+        bul:"Mevzuat yayıncısı bülteni bölüm ve tür sırasıyla derliyor: özetliler özetiyle, gerisi başlıkla.",
+        mail:"Bülten ekibe gönderildi. Kimse bir şeye dokunmadı." },
+      why:{ codeS:"Kanun: kod her zaman özetletir", codeT:"İlân ve döviz: kod hiç özetletmez", modelS:"Model: rubriğe göre özetlenmeli", modelT:"Model: başlık yeter" },
+      chips:{ verbs:"-mIştIr çatısı", close:"kalıp kapanış", words:"kelime", target:"hedef", noc:"yorum yok" },
       done:function(s,t){ return "Bülten gönderildi · "+s+" özet, "+t+" başlık"; },
+      sentOk:"Gönderildi", openB:"Bülteni aç",
       from:"Kimden", fromV:"Mevzuat İzleme ajanı", to:"Kime", toV:"Ekip dağıtım listesi", subj:"Konu",
       subjV:function(){ return "Resmî Gazete Bülteni: "+MZ.date_tr; },
       mnote:"Bülten, ajanın o gün derleyip gönderdiği hâliyle. Başlıklar Resmî Gazete fihristinden, italik özetler modelin yazdığı gibi.",
+      sLede:"Özetler, ekibin elle yazdığı 76 gerçek bülten özetinin incelenmesinden çıkan bir yazım kılavuzuyla yazılıyor. Amaç, özetlerin ekibin elle yazdıklarıyla aynı sesle okunması.",
+      sRules:[
+        ["Kaynağa sadakat","Özet yalnız verilen metne dayanıyor. Metin boşsa ya da yetersizse (taranmış PDF gibi) gerekçe, sayı veya tarih uydurulmuyor; başlığa dayanan tek cümlelik nesnel bir not yazılıyor. \"Muhtemelen\" gibi kelimeler yok."],
+        ["Kurumsal, edilgen, nesnel","Üçüncü tekil kurumsal anlatım ve \"-mIştIr\" çatısı: \"Kurul ... ilke kararı almıştır\", \"... yürürlükten kaldırılmıştır\". Yorum ve değerlendirme eklenmiyor."],
+        ["Türe göre yapı","Yönetmelikte düzenleyen makam, ne değişti, somut oran, eşik veya tarih, sonra yürürlük. Tebliğ ve Cumhurbaşkanı Kararında kısa ve teknik: ne değişti ve sayısal detay."],
+        ["Kalıp kapanışlar","Uygun olduğunda ekibin kendi kapanışları: \"... yayımı tarihinde yürürlüğe girer\", \"... sorumlu kılınmıştır\", \"... iptaline karar verilmiştir\"."],
+        ["Önem cümlesi nadir","\"... bakımından önem taşımaktadır\" yalnız vergi, KVKK, rekabet, e-ticaret ve telekom gibi yüksek etkili maddelerde ve metinden çıkıyorsa."]],
+      sLen:"Türe göre uzunluk", len:[["Anayasa Mahkemesi kararı","~90 ile 110 kelime"],["Yönetmelik","~80 ile 110 kelime"],["Tebliğ, Cumhurbaşkanı Kararı","~30 ile 55 kelime"],["İlân, atama, döviz","tek cümle"]],
+      sEx:"O günden bir örnek", sLeg:[["","-mIştIr çatısı"],["k","kalıp kapanış"],["n","somut sayı ve tarih"]],
       rl:[
         ["Kaynak metni veri, talimat değil","Taranan sayfa modele <code>&lt;&lt;&lt;KAYNAK_VERISI</code> ile <code>KAYNAK_VERISI&gt;&gt;&gt;</code> arasında gidiyor. Arasındaki hiçbir cümle, \"önceki talimatları yok say\" dahil, komut sayılmıyor.","Prompt"],
         ["Yalnız bugünün kaydı","Bugünün tarihi dört ayrı biçimde prompta yazılıyor. Tarihi bugün olmayan ya da tarihi görünmeyen gelişme alınmıyor; kod da metinde bugünün tarihini ayrıca arıyor.","Prompt + kod"],
         ["Alaka puanı","0.0 ile 1.0 arası, firmanın alanlarına yakınlık: veri koruma, rekabet, fintech, telekom, yapay zekâ, e-ticaret, fikri mülkiyet. Tarım, atama, ihale ve döviz 0.0 ile 0.2; doğrudan ilgili düzenleme 0.6 ile 0.9. <code>0.40</code> ve üstü ilgili sayılıyor.","Prompt"],
         ["Özet mi, başlık mı","Beş aylık gerçek bültenin 1127 maddesinden çıkan oranlarla ayarlı: Anayasa Mahkemesi %96, Kanun %38, Kurul Kararı %18, Tebliğ %11, Yönetmelik %3. Emin değilse başlıkla bırakıyor.","Prompt"],
-        ["Kesin türler kodda","Kanun ve yüksek mahkeme kararları her zaman özetleniyor, ilan ve döviz kuru asla. Aradaki gri alan modelin kararı. Listede * ile işaretli olanlar.","Kod"],
-        ["Yorum yok, uydurma yok","Özet yalnız metinde olanı söylüyor. \"Önem taşımaktadır\", \"takip edilmelidir\" gibi değerlendirme kalıpları yasak.","Prompt"],
+        ["Kesin türler kodda","Kanun ve yüksek mahkeme kararları her zaman özetleniyor, ilan ve döviz kuru asla. Aradaki gri alan modelin kararı.","Kod"],
+        ["Yorum yok, uydurma yok","Özet yalnız metinde olanı söylüyor. Haber kolunda \"önem taşımaktadır\", \"takip edilmelidir\" gibi kalıplar tamamen yasak; Resmî Gazete kolunda önem cümlesi yalnız yüksek etkili maddede ve metinden çıkıyorsa.","Prompt"],
         ["Link ve taşma freni","Link yalnız kaynağın kendi alan adından, izinli alan adı listesine karşı kontrol ediliyor. Aynı gelişme iki kez girmiyor, bir kaynaktan bir turda en fazla 15 kayıt geliyor.","Kod"],
         ["Onay kapısı","Veritabanına yazma inceleme ekranındaki Onayla ve Yükle ile. Onaysız otomatik yayın ayrı ve bilerek seçilen bir yol.","Akış"]]
     },
-    en:{ run:"Run", bul:"Bulletin", rules:"Rules", items:"items", no:"issue",
+    en:{ run:"Run", bul:"Bulletin", style:"Style", rules:"Rules", items:"items", no:"issue",
       date:function(){ var m=["January","February","March","April","May","June","July","August","September","October","November","December"], p=MZ.date.split("-"); return (+p[2])+" "+m[p[1]-1]+" "+p[0]; },
-      steps:[["Collect","resmigazete.gov.tr daily index"],["Enrich","Claude: summary, relevance, summarise or list"],
-             ["Check","Deterministic rules, JSON validation"],["Approve","Approve and upload in the review screen"],
-             ["Database","Written to the central store"],["Bulletin","Compiled by section and type"],["Email","Sent by corporate email"]],
-      seen:"Read", rel:"Relevant", sum:"Summarised", replay:"Run again",
-      cols:["Item","Relevance","Decision"], sumP:"SUMMARY", titP:"TITLE",
-      hint:"Click an item to see the model's output &middot; * decision fixed in code", orig:" &middot; titles and summaries in the original Turkish",
+      nodes:[["Source pages","Official Gazette and agency notices"],["Collector agent",""],["Database","items table"],
+             ["Legislation publisher","this run"],["News publisher","its own run"],["Email","team list"]],
+      ph:[["git","Visit"],["oku","Read"],["ozet","Summarise"],["deger","Score"],["yaz","Write"]],
+      screen:"Agent's screen", db:"Database · items", rows:"rows", empty:"No rows yet. They land here as the agent writes.",
+      rep:"illustrative", input:"Input", sumH:"Summary", evalH:"Evaluation", of:"items",
+      pause:"Pause", play:"Resume", skip:"Skip to end", again:"Restart",
+      cap:{ idle:"The run starts when it comes into view.",
+        tour:function(n){ return "The collector visits the source pages: <b>"+n+"</b>. Only the part dated today is kept."; },
+        rg:"Reading the Official Gazette index for 1 July 2026 and pulling out each item.",
+        read:function(i){ return "Item "+(i+1)+"/"+MZ.items.length+": reading the full text."; },
+        sum:function(i){ return "Item "+(i+1)+": Claude writes the summary in the house style (in Turkish)."; },
+        ev:function(i){ return "Item "+(i+1)+": relevance score, and summarise or just list."; },
+        wr:function(i){ return "Item "+(i+1)+" written to the database."; },
+        fast:"The remaining items go through the same five steps.",
+        hand:"The collector is done. The publisher agents take over from the database.",
+        bul:"The legislation publisher compiles the bulletin by section and type: summaries where chosen, titles for the rest.",
+        mail:"Bulletin sent to the team. Nobody touched a thing." },
+      why:{ codeS:"Law: code always summarises", codeT:"Notices and FX: code never summarises", modelS:"Model: rubric says summarise", modelT:"Model: the title is enough" },
+      chips:{ verbs:"-mIştIr voice", close:"set closing", words:"words", target:"target", noc:"no commentary" },
       done:function(s,t){ return "Bulletin sent · "+s+" summarised, "+t+" listed"; },
+      sentOk:"Sent", openB:"Open the bulletin",
       from:"From", fromV:"Regulatory monitoring agent", to:"To", toV:"Team distribution list", subj:"Subject",
       subjV:function(){ return "Resmî Gazete Bülteni: "+MZ.date_tr; },
       mnote:"The bulletin as the agent compiled and sent it that day, in Turkish. Titles come from the Official Gazette index, the italic summaries are the model's.",
+      sLede:"Summaries follow a style guide drawn from 76 real summaries the team had written by hand. The aim is for them to read in the same voice as the team's own. They are in Turkish, so the markers below are Turkish grammar.",
+      sRules:[
+        ["Faithful to the source","A summary rests only on the text it was given. If the text is empty or thin (a scanned PDF, say), no reasoning, figures or dates are invented; it writes one neutral sentence based on the title instead. No \"probably\"."],
+        ["Institutional, passive, neutral","Third person institutional voice and the Turkish \"-mIştIr\" perfect: \"the Board has adopted a principle decision\", \"the line has been repealed\". No commentary or evaluation."],
+        ["Structure by type","A regulation gives the issuing body, what changed, the concrete rate, threshold or date, then entry into force. A communiqué or presidential decision stays short and technical: what changed plus the figures."],
+        ["Set closings","Where they fit, the team's own closing phrases: \"enters into force on publication\", \"has been made responsible\", \"has been annulled\"."],
+        ["Significance, rarely","A \"this is significant for ...\" sentence only for high impact items (tax, data protection, competition, e-commerce, telecoms), and only when the text supports it."]],
+      sLen:"Length by type", len:[["Constitutional Court decision","~90 to 110 words"],["Regulation","~80 to 110 words"],["Communiqué, presidential decision","~30 to 55 words"],["Notice, appointment, FX","one sentence"]],
+      sEx:"An example from that day", sLeg:[["","-mIştIr voice"],["k","set closing"],["n","concrete figures and dates"]],
       rl:[
         ["Source text is data, not instructions","The scraped page reaches the model between <code>&lt;&lt;&lt;KAYNAK_VERISI</code> and <code>KAYNAK_VERISI&gt;&gt;&gt;</code>. No sentence in between, \"ignore previous instructions\" included, counts as a command.","Prompt"],
         ["Today's items only","Today's date goes into the prompt in four formats. Anything not dated today, or with no visible date, is dropped; the code separately checks the text for today's date.","Prompt + code"],
         ["Relevance score","0.0 to 1.0, closeness to the firm's practice areas: data protection, competition, fintech, telecoms, AI, e-commerce, IP. Agriculture, appointments, tenders and exchange rates 0.0 to 0.2; directly relevant regulation 0.6 to 0.9. <code>0.40</code> and above counts as relevant.","Prompt"],
         ["Summarise or just list","Calibrated on 1,127 items from five months of real bulletins: Constitutional Court 96%, laws 38%, board decisions 18%, communiqués 11%, regulations 3%. When unsure, it lists the title only.","Prompt"],
-        ["Fixed types live in code","Laws and high court decisions are always summarised, notices and exchange rates never. The grey area in between is the model's call. These are the ones marked * in the list.","Code"],
-        ["No commentary, nothing invented","A summary says only what the text says. Evaluative phrases such as \"this is significant\" or \"should be monitored\" are banned.","Prompt"],
+        ["Fixed types live in code","Laws and high court decisions are always summarised, notices and exchange rates never. The grey area in between is the model's call.","Code"],
+        ["No commentary, nothing invented","A summary says only what the text says. In the news branch phrases such as \"this is significant\" or \"should be monitored\" are banned outright; in the Gazette branch a significance sentence is allowed only for high impact items and only when the text supports it.","Prompt"],
         ["Links and flood limits","Links only from the source's own domain, checked against an allow list. The same item never goes in twice, and one source yields at most 15 items per run.","Code"],
         ["Approval gate","Writing to the database happens through Approve and upload in the review screen. Publishing without approval is a separate path you choose on purpose.","Flow"]]
     }
   };
   function mzFixed(it){ var t = it[2].toLocaleLowerCase("tr"); return it[1][0]==="Kanun" || it[0]==="ILAN" || /anayasa mahkemes|yargıtay|danıştay|merkez bankas/.test(t); }
-
-  function mzHtml(L){
-    var T = MZ_T[L];
-    return '<div class="pk" data-demo="mz">'
-      + '<div class="pk-top"><span class="pk-dots"><i></i><i></i><i></i></span>'
-      + '<span class="pk-tabs"><button data-t="run" class="on">'+T.run+'</button><button data-t="bul">'+T.bul+'</button><button data-t="rules">'+T.rules+'</button></span>'
-      + '<span class="pk-stat">'+T.date()+' &middot; '+MZ.no+' '+T.no+' &middot; '+MZ.items.length+' '+T.items+'</span></div>'
-      + '<div class="pk-view on" data-v="run"><div class="mz-run"><div class="mz-steps">'
-      +   T.steps.map(function(s){ return '<div class="mz-step"><i></i><span><b>'+s[0]+'</b><small>'+s[1]+'</small></span></div>'; }).join('')
-      +   '<div class="mz-count"><div><b data-c="seen">0</b><small>'+T.seen+'</small></div><div><b data-c="rel">0</b><small>'+T.rel+'</small></div><div><b data-c="sum">0</b><small>'+T.sum+'</small></div></div>'
-      +   '<button class="mz-replay">&#8635; '+T.replay+'</button></div>'
-      +   '<div class="mz-main"><div class="mz-head"><span>'+T.cols[0]+T.orig+'</span><span style="width:92px">'+T.cols[1]+' &ge; 0.40</span><span style="width:58px;text-align:right">'+T.cols[2]+'</span></div>'
-      +   '<div class="mz-list"></div><div class="mz-hint">'+T.hint+'</div></div></div></div>'
-      + '<div class="pk-view" data-v="bul"><div class="mz-mail"></div></div>'
-      + '<div class="pk-view" data-v="rules"><div class="mz-rules">'
-      +   T.rl.map(function(r, i){ return '<div class="mz-rule"><span>'+(i<9?'0':'')+(i+1)+'</span><div><b>'+r[0]+'</b>'+r[1]+'<br><small>'+r[2]+'</small></div></div>'; }).join('')
-      + '</div></div></div>';
+  /* the style markers the guide asks for, underlined in the summary */
+  var MZ_VERB = /[A-Za-zÇĞİÖŞÜçğıöşüâîû']+(?:mıştır|miştir|muştur|müştür)(?=[\s.,;:]|$)/g;
+  var MZ_CLOSE = /(yayımı tarihinde yürürlüğe gir[a-zçğıöşü]*|sorumlu kılınmıştır|iptaline karar verilmiştir)/g;
+  function mzStyle(s){
+    var h = pkEsc(s).replace(MZ_CLOSE, "\u0001$1\u0002");
+    h = h.replace(/(\d[\d.,/]*\d|\d)/g, '<mark class="n">$1</mark>');
+    h = h.replace(MZ_VERB, function(w){ return '<mark>'+w+'</mark>'; });
+    return h.replace(/\u0001/g, '<mark class="k">').replace(/\u0002/g, '</mark>');
   }
-
-  function mzMount(root, L){
-    if(root._mz) return; root._mz = 1;
-    var T = MZ_T[L], list = root.querySelector(".mz-list"), steps = root.querySelectorAll(".mz-step");
-    var stat = root.querySelector(".pk-stat"), stat0 = stat.innerHTML;
-    var cnt = {}; Array.prototype.forEach.call(root.querySelectorAll("[data-c]"), function(b){ cnt[b.getAttribute("data-c")] = b; });
-
-    list.innerHTML = MZ.items.map(function(it, i){
-      var js = '{ "relevance_score": '+it[4].toFixed(2)+', "is_relevant": '+(it[4]>=.4)+', "summarize": '+it[5]+(mzFixed(it)?(L==="tr"?'  // kodla sabit':'  // fixed in code'):'')+' }';
-      return '<div class="mz-row" data-i="'+i+'"><div class="mz-rh"><span><span class="mz-ty">'+it[1][L==="tr"?0:1]+'</span><span class="mz-ti">'+pkEsc(it[2])+'</span></span>'
-        + '<span class="mz-bar'+(it[4]>=.4?' hi':'')+'"><u></u><em></em></span>'
-        + '<span class="mz-dec'+(it[5]?' s':'')+'">'+(it[5]?T.sumP:T.titP)+(mzFixed(it)?'<sup>*</sup>':'')+'</span></div>'
-        + '<div class="mz-det">'+(it[3]?'<p>'+pkEsc(it[3])+'</p>':'')+'<code>'+js+'</code></div></div>';
-    }).join('');
-    var rows = list.querySelectorAll(".mz-row");
-    list.addEventListener("click", function(ev){ var h = ev.target.closest(".mz-rh"); if(h) h.parentNode.classList.toggle("open"); });
-
-    function score(i){
-      var r = rows[i], it = MZ.items[i];
-      r.querySelector(".mz-bar u").style.width = Math.max(2, it[4]*100)+"%";
-      r.querySelector(".mz-bar em").textContent = it[4].toFixed(2);
-      r.querySelector(".mz-dec").classList.add("on");
-    }
-    function counts(n){
-      var rel = 0, sum = 0;
-      for(var i = 0; i < n; i++){ if(MZ.items[i][4] >= .4) rel++; if(MZ.items[i][5]) sum++; }
-      cnt.seen.textContent = n; cnt.rel.textContent = rel; cnt.sum.textContent = sum;
-      return sum;
-    }
-    function step(k, st){ steps[k].className = "mz-step" + (st ? " "+st : ""); }
-
-    var timers = [], started = false;
-    function at(ms, f){ timers.push(setTimeout(f, ms)); }
-    function finish(){
-      var n = MZ.items.length, s = counts(n);
-      for(var k = 0; k < steps.length; k++) step(k, "ok");
-      for(var i = 0; i < n; i++){ rows[i].classList.add("in"); score(i); }
-      stat.textContent = T.done(s, n - s);
-    }
-    function run(){
-      started = true;
-      timers.forEach(clearTimeout); timers = [];
-      stat.innerHTML = stat0;
-      for(var k = 0; k < steps.length; k++) step(k, "");
-      Array.prototype.forEach.call(rows, function(r){
-        r.className = "mz-row"; r.querySelector(".mz-bar u").style.width = "0";
-        r.querySelector(".mz-bar em").textContent = ""; r.querySelector(".mz-dec").classList.remove("on");
-      });
-      counts(0); list.scrollTop = 0;
-      if(reduce){ finish(); return; }
-      var n = MZ.items.length, t = 200;
-      step(0, "go");
-      for(var i = 0; i < n; i++) (function(i){ at(t + i*55, function(){ rows[i].classList.add("in"); }); })(i);
-      t += n*55 + 350;
-      at(t, function(){ step(0, "ok"); step(1, "go"); });
-      for(var j = 0; j < n; j++) (function(j){
-        at(t + 250 + j*300, function(){
-          score(j); counts(j+1);
-          var r = rows[j], top = r.offsetTop - list.offsetTop;
-          if(top + r.offsetHeight > list.scrollTop + list.clientHeight || top < list.scrollTop) list.scrollTop = top - list.clientHeight/2;
-        });
-      })(j);
-      t += 250 + n*300 + 300;
-      at(t, function(){ step(1, "ok"); step(2, "go"); list.scrollTop = 0; }); t += 900;
-      [3, 4, 5, 6].forEach(function(k){
-        at(t, function(){ step(k-1, "ok"); step(k, "go"); }); t += k === 3 ? 1000 : 700;
-      });
-      at(t, finish);
-    }
-    root.querySelector(".mz-replay").addEventListener("click", run);
-
-    /* the bulletin, grouped the way the real render groups it */
+  function mzTarget(it){ return { "Yönetmelik":[80,110], "Tebliğ":[30,55], "Cumhurbaşkanı Kararı":[30,55], "İlân":[1,25] }[it[1][0]]; }
+  function mzBulletin(){
     var SEC = { IDARE:"YÜRÜTME VE İDARE BÖLÜMÜ", YARGI:"YARGI BÖLÜMÜ", ILAN:"İLÂN BÖLÜMÜ" };
     var PL = { "Kanun":"KANUNLAR", "Cumhurbaşkanı Kararı":"CUMHURBAŞKANI KARARLARI", "Yönetmelik":"YÖNETMELİKLER", "Tebliğ":"TEBLİĞLER", "Kurul Kararı":"KURUL KARARLARI" };
     var h = '<h4>'+MZ.date_tr+' Tarihli ve '+MZ.no+' Sayılı Resmî Gazete</h4>', sec = "", grp = "";
-    MZ.items.forEach(function(it, i){
+    MZ.items.forEach(function(it){
       if(it[0] !== sec){ sec = it[0]; grp = ""; h += '<h5>'+SEC[sec]+'</h5>'; }
       if(sec !== "ILAN" && it[1][0] !== grp){
         grp = it[1][0];
@@ -1909,15 +1948,255 @@ document.documentElement.setAttribute("data-theme", "day");
       }
       h += '<p>&bull; <span>'+pkEsc(it[2])+'</span>'+(it[5] && it[3] ? '<i>'+pkEsc(it[3])+'</i>' : '')+'</p>';
     });
-    root.querySelector(".mz-mail").innerHTML = '<div class="mz-env"><div class="mz-hdr"><b>'+T.from+'</b> '+T.fromV+'<br><b>'+T.to+'</b> '+T.toV
-      + '<br><b>'+T.subj+'</b> '+T.subjV()+'</div><div class="mz-paper">'+h+'</div></div><p class="mz-note">'+T.mnote+'</p>';
+    return h;
+  }
 
-    root.querySelector(".pk-tabs").addEventListener("click", function(ev){
-      var b = ev.target.closest("button[data-t]"); if(!b) return;
-      var t = b.getAttribute("data-t");
-      Array.prototype.forEach.call(root.querySelectorAll(".pk-tabs button"), function(x){ x.classList.toggle("on", x === b); });
-      Array.prototype.forEach.call(root.querySelectorAll(".pk-view"), function(v){ v.classList.toggle("on", v.getAttribute("data-v")===t); });
+  function mzHtml(L){
+    var T = MZ_T[L], N = T.nodes;
+    function nd(k, cls, extra){ return '<div class="mz-n'+(cls?' '+cls:'')+'" data-n="'+k+'"><b>'+N[k][0]+'</b>'+(N[k][1]?'<small>'+N[k][1]+'</small>':'')+(extra||'')+'</div>'; }
+    var ex = MZ.items[1];
+    return '<div class="pk" data-demo="mz">'
+      + '<div class="pk-top"><span class="pk-dots"><i></i><i></i><i></i></span>'
+      + '<span class="pk-tabs"><button data-t="run" class="on">'+T.run+'</button><button data-t="bul">'+T.bul+'</button><button data-t="style">'+T.style+'</button><button data-t="rules">'+T.rules+'</button></span>'
+      + '<span class="pk-stat">'+T.date()+' &middot; '+MZ.no+' '+T.no+' &middot; '+MZ.items.length+' '+T.items+'</span></div>'
+      + '<div class="pk-view on" data-v="run"><div class="mz-run">'
+      +   '<div class="mz-flow">'+nd(0)+'<div class="mz-w"><i></i></div>'
+      +     nd(1, "big", '<div class="mz-ph">'+T.ph.map(function(p){ return '<span data-ph="'+p[0]+'">'+p[1]+'</span>'; }).join('')+'</div>')
+      +     '<div class="mz-w"><i></i></div>'+nd(2)+'<div class="mz-w"><i></i></div>'
+      +     '<div class="mz-pub">'+nd(3)+nd(4)+'</div><div class="mz-w"><i></i></div>'+nd(5)+'</div>'
+      +   '<div class="mz-body"><div class="mz-live"><div class="mz-ph2"><span>'+T.screen+'</span><span class="mz-where"></span></div><div class="mz-scr"></div></div>'
+      +     '<div class="mz-db"><div class="mz-ph2"><span>'+T.db+'</span><span class="mz-dbn">0 '+T.rows+'</span></div><div class="mz-dbrows"><div class="mz-empty">'+T.empty+'</div></div></div></div>'
+      +   '<div class="mz-foot"><div class="mz-cap">'+T.cap.idle+'</div><div class="mz-ctl"><button data-c="pause">'+T.pause+'</button><button data-c="speed">1&times;</button>'
+      +     '<button data-c="skip">'+T.skip+'</button><button data-c="again" class="pr">&#8635; '+T.again+'</button></div></div>'
+      + '</div></div>'
+      + '<div class="pk-view" data-v="bul"><div class="mz-mail"></div></div>'
+      + '<div class="pk-view" data-v="style"><div class="mz-rules"><p class="mz-lede">'+T.sLede+'</p>'
+      +   '<div class="mz-ex"><div class="mz-ph2" style="padding:0 0 6px;border:0"><span>'+T.sEx+' &middot; '+ex[1][L==="tr"?0:1]+'</span><span>'+ex[3].split(/\s+/).length+' '+T.chips.words+'</span></div>'
+      +     '<p class="mz-sum">'+mzStyle(ex[3])+'</p><div class="mz-chips">'+T.sLeg.map(function(g){ return '<span>'+(g[0]==="n"?'<b style="color:var(--pk-code);font-weight:400">12</b> ':'<i class="'+g[0]+'"></i>')+g[1]+'</span>'; }).join('')+'</div></div>'
+      +   T.sRules.map(function(r, i){ return '<div class="mz-rule"><span>0'+(i+1)+'</span><div><b>'+r[0]+'</b>'+r[1]+'</div></div>'; }).join('')
+      +   '<div class="mz-rule"><span>0'+(T.sRules.length+1)+'</span><div><b>'+T.sLen+'</b><div class="mz-len">'+T.len.map(function(x){ return '<span>'+x[0]+'</span><span>'+x[1]+'</span>'; }).join('')+'</div></div></div>'
+      + '</div></div>'
+      + '<div class="pk-view" data-v="rules"><div class="mz-rules">'
+      +   T.rl.map(function(r, i){ return '<div class="mz-rule"><span>0'+(i+1)+'</span><div><b>'+r[0]+'</b>'+r[1]+'<br><small>'+r[2]+'</small></div></div>'; }).join('')
+      + '</div></div></div>';
+  }
+
+  function mzMount(root, L){
+    if(root._mz) return; root._mz = 1;
+    var T = MZ_T[L], TR = L === "tr", ITEMS = MZ.items, NI = ITEMS.length;
+    var q = function(s){ return root.querySelector(s); }, qa = function(s){ return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var scr = q(".mz-scr"), where = q(".mz-where"), cap = q(".mz-cap"), rowsEl = q(".mz-dbrows"), dbn = q(".mz-dbn");
+    var stat = q(".pk-stat"), stat0 = stat.innerHTML, nodes = qa(".mz-n"), wires = qa(".mz-w"), phs = qa(".mz-ph span");
+    var bPause = q('[data-c="pause"]'), bSpeed = q('[data-c="speed"]');
+    var token = 0, paused = false, speed = 1, started = false, STOP = {};
+    var nSum = ITEMS.filter(function(it){ return it[5]; }).length;
+
+    /* timing: every pause in the run goes through wait(), so pause, speed and restart all work */
+    function wait(ms){
+      var my = token;
+      return new Promise(function(res, rej){
+        var left = ms, last = performance.now();
+        (function tick(){
+          if(my !== token) return rej(STOP);
+          var now = performance.now(); if(!paused) left -= (now - last)*speed; last = now;
+          if(left <= 0) res(); else setTimeout(tick, Math.max(4, Math.min(50, left/speed)));
+        })();
+      });
+    }
+    function typeOut(el, s, cps){
+      var i = 0, box = el.closest(".mz-ai"); el.classList.add("typing");
+      function step(){
+        if(i >= s.length){ el.classList.remove("typing"); return Promise.resolve(); }
+        i = Math.min(s.length, i + 3); el.textContent = s.slice(0, i);
+        if(box && el.offsetTop + el.offsetHeight > box.scrollTop + box.clientHeight - 16) box.scrollTop = el.offsetTop + el.offsetHeight - box.clientHeight + 40;
+        return wait(3000/cps).then(step);
+      }
+      return step();
+    }
+    function lit(on, done){
+      nodes.forEach(function(n){
+        var k = +n.getAttribute("data-n");
+        n.className = "mz-n" + (k===1 ? " big" : "") + (on.indexOf(k) >= 0 ? " on" : done.indexOf(k) >= 0 ? " done" : "");
+      });
+      if(on.length) follow(on[on.length-1]);
+    }
+    var flowEl = q(".mz-flow");
+    function follow(k){
+      var n = nodes[k]; if(!n || flowEl.scrollWidth <= flowEl.clientWidth) return;
+      flowEl.scrollTo({ left:n.offsetLeft - (flowEl.clientWidth - n.offsetWidth)/2, behavior:reduce ? "auto" : "smooth" });
+    }
+    function flow(k, on){ wires.forEach(function(w, i){ w.classList.toggle("go", i === k && on); }); }
+    function phase(p){ phs.forEach(function(s){ s.classList.toggle("on", s.getAttribute("data-ph") === p); }); }
+    function say(s){ cap.innerHTML = s; }
+
+    function rowHtml(i){
+      var it = ITEMS[i];
+      var js = '{ "relevance_score": '+it[4].toFixed(2)+', "is_relevant": '+(it[4]>=.4)+', "summarize": '+it[5]+' }'+(mzFixed(it)?(TR?'  // kodla sabit':'  // fixed in code'):'');
+      return '<div class="mz-dr"><div class="mz-drh"><span>'+(i<9?'0':'')+(i+1)+'</span><span class="t">'+pkEsc(it[2])+'</span>'
+        + '<span class="'+(it[4]>=.4?'hi':'')+'">'+it[4].toFixed(2)+'</span><span class="mz-pill'+(it[5]?' s':'')+'">'+(it[5]?(TR?'ÖZET':'SUMM.'):(TR?'BAŞLIK':'TITLE'))+'</span></div>'
+        + '<div class="mz-drd">'+(it[3]?'<p>'+pkEsc(it[3])+'</p>':'')+'<code>'+js+'</code></div></div>';
+    }
+    var nRows = 0;
+    function addRow(i){
+      if(!nRows) rowsEl.innerHTML = '';
+      rowsEl.insertAdjacentHTML("beforeend", rowHtml(i)); nRows++;
+      dbn.textContent = nRows+' '+T.rows; rowsEl.scrollTop = rowsEl.scrollHeight;
+    }
+    rowsEl.addEventListener("click", function(ev){ var h = ev.target.closest(".mz-drh"); if(h) h.parentNode.classList.toggle("open"); });
+
+    /* ---- screens ---- */
+    function browser(tag){
+      scr.innerHTML = '<div class="mz-br"><div class="mz-url"><i></i><span></span>'+(tag?'<em>'+tag+'</em>':'')+'</div><div class="mz-pg"></div></div>';
+      return { url:scr.querySelector(".mz-url span"), pg:scr.querySelector(".mz-pg") };
+    }
+    function skeleton(k){
+      var w = [88,72,94,60,81,67,90,55,76], s = '<div class="mz-sk h"></div>';
+      for(var i = 0; i < 3; i++) s += '<div class="mz-sk" style="width:'+w[(i+k)%9]+'%"></div>';
+      s += '<div class="mz-band"><em></em>';
+      for(var j = 0; j < 3; j++) s += '<div class="mz-sk" style="width:'+w[(j+k+3)%9]+'%"></div>';
+      s += '</div>';
+      for(var m = 0; m < 4; m++) s += '<div class="mz-sk" style="width:'+w[(m+k+5)%9]+'%"></div>';
+      return s;
+    }
+    function tour(){
+      phase("git"); lit([0,1], []); flow(0, true);
+      var p = Promise.resolve();
+      MZ_SRC.forEach(function(src, k){
+        p = p.then(function(){
+          say(T.cap.tour(src[0])); where.textContent = src[2];
+          var b = browser(T.rep);
+          return typeOut(b.url, "https://"+src[1], 260).then(function(){
+            b.pg.innerHTML = skeleton(k); return wait(260);
+          }).then(function(){
+            var band = b.pg.querySelector(".mz-band"); band.querySelector("em").textContent = TR ? "bugüne ait bölüm" : "dated today"; band.classList.add("on");
+            return wait(620);
+          });
+        });
+      });
+      return p;
+    }
+    function gazette(){
+      say(T.cap.rg); phase("oku"); where.textContent = "HTTP";
+      var b = browser(""), sec = "", SEC = { IDARE:"YÜRÜTME VE İDARE BÖLÜMÜ", YARGI:"YARGI BÖLÜMÜ", ILAN:"İLÂN BÖLÜMÜ" };
+      var h = '<div class="mz-rg"><h4>'+MZ.date_tr+' Tarihli ve '+MZ.no+' Sayılı Resmî Gazete</h4>';
+      ITEMS.forEach(function(it, i){
+        if(it[0] !== sec){ sec = it[0]; h += '<h5>'+SEC[sec]+'</h5>'; }
+        h += '<div class="mz-fl" data-i="'+i+'">'+pkEsc(it[2])+'</div>';
+      });
+      return typeOut(b.url, "https://www.resmigazete.gov.tr/eskiler/"+MZ.date.slice(0,4)+"/"+MZ.date.slice(5,7)+"/"+MZ.date.replace(/-/g,"")+".htm", 300).then(function(){
+        b.pg.innerHTML = h + '</div>'; scr.insertAdjacentHTML("beforeend", '<span class="mz-chip">0 '+T.of+'</span>');
+        var chip = scr.querySelector(".mz-chip"), lines = b.pg.querySelectorAll(".mz-fl"), p = wait(300);
+        Array.prototype.forEach.call(lines, function(l, i){
+          p = p.then(function(){
+            l.classList.add("got"); chip.textContent = (i+1)+' '+T.of;
+            var top = l.offsetTop - b.pg.clientHeight*.6; if(top > b.pg.scrollTop) b.pg.scrollTop = top;
+            return wait(110);
+          });
+        });
+        return p.then(function(){ return wait(600); });
+      });
+    }
+    function item(i){
+      var it = ITEMS[i], det = !!MZ_DET[i], lim = { "Kanun":"tam metin", "Yönetmelik":5000, "Tebliğ":3000, "Cumhurbaşkanı Kararı":3000, "İlân":800 }[it[1][0]] || 4000;
+      phase("oku"); lit([1], [0]); flow(-1); where.textContent = (i+1)+" / "+NI;
+      if(det) say(T.cap.read(i));
+      scr.innerHTML = '<div class="mz-ai"><div class="mz-in"><small>'+T.input+'</small><code>{ "i": '+i+', "tur": "'+it[1][0]+'", "baslik": "'+pkEsc(it[2])+'",\n  "metin": "'+(typeof lim === "number" ? (TR ? "tam metnin ilk "+lim+" karakteri" : "first "+lim+" characters of the full text") : (TR ? "tam metin" : "full text"))+'" }</code></div>'
+        + '<div><small>'+T.sumH+'</small><p class="mz-sum"></p><div class="mz-chips"></div></div>'
+        + '<div><small>'+T.evalH+'</small><div class="mz-gauge'+(it[4]>=.4?' hi':'')+'"><u></u><b></b></div><div class="mz-verd"><span class="mz-pill'+(it[5]?' s':'')+'">'+(it[5]?(TR?'ÖZET':'SUMMARISE'):(TR?'BAŞLIK':'TITLE ONLY'))+'</span><span></span></div></div></div>';
+      var sum = scr.querySelector(".mz-sum"), chips = scr.querySelector(".mz-chips"), g = scr.querySelector(".mz-gauge"), v = scr.querySelector(".mz-verd"), ai = scr.querySelector(".mz-ai");
+      return wait(det ? 800 : 90).then(function(){
+        phase("ozet"); if(det) say(T.cap.sum(i));
+        return det ? typeOut(sum, it[3], 110) : (sum.textContent = it[3], null);
+      }).then(function(){
+        sum.innerHTML = mzStyle(it[3]);
+        var words = it[3].split(/\s+/).length, verbs = (it[3].match(MZ_VERB) || []).length, tg = mzTarget(it), cl = (it[3].match(MZ_CLOSE) || []).length;
+        chips.innerHTML = (verbs ? '<span><i></i>'+verbs+' &times; '+T.chips.verbs+'</span>' : '')
+          + (cl ? '<span><i class="k"></i>'+T.chips.close+'</span>' : '')
+          + '<span>'+words+' '+T.chips.words+(tg && tg[0] > 1 ? ' &middot; '+T.chips.target+' '+tg[0]+' ile '+tg[1] : '')+'</span>'
+          + '<span>&check; '+T.chips.noc+'</span>';
+        if(!TR) chips.innerHTML = chips.innerHTML.replace(' ile ', ' to ');
+        return wait(det ? 1100 : 90);
+      }).then(function(){
+        phase("deger"); if(det){ say(T.cap.ev(i)); ai.scrollTop = ai.scrollHeight; }
+        g.querySelector("u").style.width = Math.max(2, it[4]*100)+"%"; g.querySelector("b").textContent = it[4].toFixed(2);
+        return wait(det ? 800 : 160);
+      }).then(function(){
+        var fx = mzFixed(it);
+        v.querySelector("span:last-child").textContent = fx ? (it[5] ? T.why.codeS : T.why.codeT) : (it[5] ? T.why.modelS : T.why.modelT);
+        v.classList.add("on");
+        return wait(det ? 1300 : 200);
+      }).then(function(){
+        phase("yaz"); lit([1,2], [0]); flow(1, true); if(det) say(T.cap.wr(i));
+        addRow(i);
+        return wait(det ? 700 : 160);
+      }).then(function(){ flow(1, false); });
+    }
+    function sentScreen(){
+      scr.innerHTML = '<div class="mz-sent"><div class="mz-env"><div class="mz-hdr"><b>'+T.from+'</b> '+T.fromV+'<br><b>'+T.to+'</b> '+T.toV
+        + '<br><b>'+T.subj+'</b> '+T.subjV()+'</div></div><span class="mz-ok">&check; '+T.sentOk+' &middot; '+T.done(nSum, NI-nSum).split(" · ")[1]+'</span>'
+        + '<button class="mz-open">'+T.openB+'</button></div>';
+      scr.querySelector(".mz-open").addEventListener("click", function(){ showTab("bul"); });
+    }
+    function publish(){
+      phase(null); lit([2], [0,1]); flow(2, true); say(T.cap.hand); where.textContent = "";
+      return wait(1200).then(function(){
+        lit([3], [0,1,2]); say(T.cap.bul);
+        scr.innerHTML = '<div class="mz-mini"><div class="mz-paper">'+mzBulletin()+'</div></div>';
+        var paper = scr.querySelector(".mz-paper"), parts = Array.prototype.slice.call(paper.children), p = wait(200);
+        parts.forEach(function(el){
+          p = p.then(function(){
+            el.classList.add("in");
+            var top = el.offsetTop + el.offsetHeight - paper.clientHeight; if(top > paper.scrollTop) paper.scrollTop = top;
+            return wait(el.querySelector("i") ? 500 : 110);
+          });
+        });
+        return p;
+      }).then(function(){
+        flow(2, false); flow(3, true); lit([5], [0,1,2,3]); say(T.cap.mail);
+        return wait(900);
+      }).then(finish);
+    }
+    function finish(){
+      token++; phase(null); flow(-1); lit([], [0,1,2,3,5]); where.textContent = "";
+      if(nRows < NI){ for(var i = nRows; i < NI; i++) addRow(i); }
+      sentScreen(); say(T.cap.mail); stat.textContent = T.done(nSum, NI - nSum);
+      paused = false; bPause.textContent = T.pause;
+    }
+    function run(){
+      token++; started = true; paused = false; bPause.textContent = T.pause;
+      nRows = 0; rowsEl.innerHTML = '<div class="mz-empty">'+T.empty+'</div>'; dbn.textContent = '0 '+T.rows; stat.innerHTML = stat0;
+      if(reduce){ finish(); return; }
+      var p = tour().then(gazette), fastSaid = false;
+      ITEMS.forEach(function(it, i){
+        p = p.then(function(){
+          if(!MZ_DET[i] && !fastSaid && i > 1){ fastSaid = true; say(T.cap.fast); }
+          if(MZ_DET[i]) fastSaid = false;
+          return item(i);
+        });
+      });
+      p.then(publish).catch(function(e){ if(e !== STOP) throw e; });
+    }
+
+    q(".mz-ctl").addEventListener("click", function(ev){
+      var b = ev.target.closest("button[data-c]"); if(!b) return;
+      var c = b.getAttribute("data-c");
+      if(c === "again") run();
+      else if(c === "skip") finish();
+      else if(c === "speed"){ speed = speed >= 4 ? 1 : speed*2; b.innerHTML = speed+"&times;"; }
+      else if(c === "pause"){
+        if(!started){ run(); return; }
+        paused = !paused; b.textContent = paused ? T.play : T.pause;
+      }
     });
+
+    q(".mz-mail").innerHTML = '<div class="mz-env"><div class="mz-hdr"><b>'+T.from+'</b> '+T.fromV+'<br><b>'+T.to+'</b> '+T.toV
+      + '<br><b>'+T.subj+'</b> '+T.subjV()+'</div><div class="mz-paper">'+mzBulletin()+'</div></div><p class="mz-note">'+T.mnote+'</p>';
+
+    function showTab(t){
+      qa(".pk-tabs button").forEach(function(x){ x.classList.toggle("on", x.getAttribute("data-t") === t); });
+      qa(".pk-view").forEach(function(v){ v.classList.toggle("on", v.getAttribute("data-v") === t); });
+    }
+    q(".pk-tabs").addEventListener("click", function(ev){ var b = ev.target.closest("button[data-t]"); if(b) showTab(b.getAttribute("data-t")); });
 
     /* start the run once the demo is actually on screen */
     if(window.IntersectionObserver){
