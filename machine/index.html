@@ -574,34 +574,41 @@ body.mob .mz-foot,body.phone .mz-foot{flex-direction:column; align-items:stretch
 body.mob .mz-ctl,body.phone .mz-ctl{justify-content:flex-end;}
 body.mob .mz-mail,body.phone .mz-mail,body.mob .mz-rules,body.phone .mz-rules{height:480px;}
 body.mob .mz-paper,body.phone .mz-paper{padding:14px;}
-/* SMS Aktarıcı demo: the phone in the drawer, the relay and the shared sheet */
+/* SMS Aktarıcı demo: the employees' phones, the relay and the shared sheet */
 .sm-run{display:flex; flex-direction:column; background:var(--panel);}
-.sm-body{display:grid; grid-template-columns:minmax(0,1fr) 46px minmax(0,1.35fr); height:290px; border-bottom:1px solid var(--line);}
+.sm-body{display:grid; grid-template-columns:minmax(0,1fr) 40px minmax(0,1.3fr); height:300px; border-bottom:1px solid var(--line);}
 .sm-col{display:flex; flex-direction:column; min-height:0; min-width:0;}
-.sm-st{color:#1F9D55;}
-.sm-phwrap{flex:1; min-height:0; display:grid; place-items:center; padding:10px; background:var(--panel2);}
-.sm-phone{position:relative; width:168px; height:236px; border-radius:24px; border:6px solid #23232A; background:var(--panel);
-  box-shadow:0 10px 24px rgba(20,20,26,.16); overflow:hidden; display:flex; flex-direction:column;}
-.sm-phone.buzz{animation:smbuzz .12s linear 4;}
-@keyframes smbuzz{25%{transform:translateX(-2px) rotate(-.6deg);} 75%{transform:translateX(2px) rotate(.6deg);}}
-.sm-sb{display:flex; justify-content:space-between; align-items:center; padding:7px 10px 5px; font-family:var(--mono); font-size:9px; color:var(--dim);}
-.sm-app{display:flex; align-items:center; gap:4px; padding:1px 6px; border-radius:8px; border:1px solid var(--line2);}
+.sm-clock{font-family:var(--mono); color:var(--txt);}
+.sm-phs{flex:1; min-height:0; display:flex; flex-direction:column; gap:7px; padding:9px 10px; background:var(--panel2); overflow:hidden;}
+.sm-ph{position:relative; flex:1 1 0; min-height:0; border:1px solid var(--line2); border-radius:10px; background:var(--panel); padding:6px 9px 6px 9px;
+  display:flex; flex-direction:column; gap:2px; overflow:hidden; transition:border-color .3s ease, box-shadow .3s ease;}
+.sm-ph.on{border-color:var(--pk-acc); box-shadow:0 0 0 3px color-mix(in srgb, var(--pk-acc) 15%, transparent);}
+.sm-ph.buzz{animation:smbuzz .12s linear 4;}
+@keyframes smbuzz{25%{transform:translateX(-2px);} 75%{transform:translateX(2px);}}
+.sm-phh{display:flex; align-items:center; gap:6px; font-size:11.5px; color:var(--txt);}
+.sm-phh b{font-weight:600;}
+.sm-ico{flex:none; width:9px; height:14px; border:1.5px solid var(--dim); border-radius:2.5px;}
+.sm-who{font-size:10px; color:var(--faint);}
+.sm-app{margin-left:auto; display:flex; align-items:center; gap:4px; font-family:var(--mono); font-size:8.5px; color:var(--dim); padding:1px 6px; border-radius:8px; border:1px solid var(--line2);}
 .sm-app i{width:6px; height:6px; border-radius:50%; background:#1F9D55; animation:mzfade 1.6s ease infinite;}
-.sm-msgs{flex:1; min-height:0; overflow:hidden; padding:2px 7px 7px; display:flex; flex-direction:column; gap:5px;}
-.sm-m{flex:none; background:var(--panel2); border:1px solid var(--line2); border-radius:10px; padding:5px 7px; font-size:10px; line-height:1.4; color:var(--txt);
-  animation:smin .45s cubic-bezier(.2,.8,.2,1);}
-.sm-m b{display:flex; justify-content:space-between; font-family:var(--mono); font-size:8.5px; letter-spacing:.05em; color:var(--faint); font-weight:600; margin-bottom:1px;}
-.sm-m b em{font-style:normal; font-weight:400;}
+.sm-reg{font-family:var(--mono); font-size:9px; color:var(--faint);}
+.sm-m{font-size:10.5px; line-height:1.35; color:var(--txt); min-height:14px;}
+.sm-m:not(:empty){animation:smin .45s cubic-bezier(.2,.8,.2,1);}
+.sm-m b{font-family:var(--mono); font-size:8.5px; letter-spacing:.05em; color:var(--faint); font-weight:600; margin-right:5px;}
+.sm-m b em{font-style:normal; font-weight:400; margin-left:4px;}
 .sm-m mark{background:none; color:var(--pk-code); font-family:var(--mono); font-weight:600; padding:0 2px; border-radius:3px; transition:all .5s ease;}
 .sm-m mark.on{background:color-mix(in srgb, var(--pk-acc) 16%, transparent); box-shadow:0 0 0 1px var(--pk-acc);}
-@keyframes smin{from{opacity:0; transform:translateY(-8px);}}
-.sm-boot{position:absolute; inset:0; background:#0E0E12; color:#E8E8EE; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
-  padding:14px; text-align:center; font-size:10.5px; opacity:0; pointer-events:none; transition:opacity .6s ease;}
+@keyframes smin{from{opacity:0; transform:translateY(-4px);}}
+.sm-boot{position:absolute; inset:0; background:#0E0E12; color:#E8E8EE; display:flex; align-items:center; justify-content:center; gap:9px;
+  font-size:10.5px; opacity:0; pointer-events:none; transition:opacity .6s ease;}
 .sm-boot b{font-weight:500;}
-.sm-boot i{width:18px; height:18px; border-radius:50%; border:2px solid #444; border-top-color:#E8E8EE; animation:smspin 1s linear infinite;}
-.sm-phone.off .sm-boot{opacity:1;}
-.sm-phone.up .sm-boot i{animation:none; border-color:#1F9D55; background:#1F9D55;}
+.sm-boot i{width:14px; height:14px; border-radius:50%; border:2px solid #444; border-top-color:#E8E8EE; animation:smspin 1s linear infinite;}
+.sm-ph.off .sm-boot{opacity:1;}
+.sm-ph.up .sm-boot i{animation:none; border-color:#1F9D55; background:#1F9D55;}
 @keyframes smspin{to{transform:rotate(360deg);}}
+.sm-run.night .sm-phs{background:color-mix(in srgb, #1B2240 14%, var(--panel2));}
+.sm-run.night .sm-who{color:#5B6BB5;}
+.sm-run.night .sm-clock{color:#5B6BB5;}
 .sm-mid{display:grid; place-items:center; background:var(--panel2); border-right:1px solid var(--line);}
 .sm-wire{position:relative; width:30px; height:2px; background:var(--line2);}
 .sm-wire:after{content:""; position:absolute; right:-2px; top:-3px; border:4px solid transparent; border-left:5px solid var(--line3); border-right:0;}
@@ -611,11 +618,13 @@ body.mob .mz-paper,body.phone .mz-paper{padding:14px;}
 .sm-sh .mz-ph2 span:first-child:before{content:""; display:inline-block; width:8px; height:10px; margin-right:6px; vertical-align:-1px; border-radius:2px; background:#1F9D55;}
 .sm-grid{flex:1; min-height:0; display:flex; flex-direction:column;}
 .sm-rows{flex:1; min-height:0; overflow:auto;}
-.sm-r{display:grid; grid-template-columns:22px 44px minmax(0,1fr) 58px 86px; border-bottom:1px solid var(--line); font-size:11px; color:var(--txt);}
-.sm-r span{padding:6px 7px; border-right:1px solid var(--line); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.sm-r{display:grid; grid-template-columns:18px 42px minmax(0,1fr) 24px 54px 80px; border-bottom:1px solid var(--line); font-size:11px; color:var(--txt);}
+.sm-r span{padding:6px 5px; border-right:1px solid var(--line); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 .sm-r span:first-child{font-family:var(--mono); font-size:9px; color:var(--faint); text-align:center; background:var(--panel2);}
 .sm-r span:last-child{border-right:0;}
 .sm-gh span{font-family:var(--mono); font-size:9.5px; letter-spacing:.04em; color:var(--faint); background:var(--panel2);}
+.sm-r .p{font-family:var(--mono); color:var(--dim); text-align:center; padding:6px 0;}
+.sm-gh span{text-overflow:clip;}
 .sm-r .c{font-family:var(--mono); color:var(--pk-code); font-weight:600; letter-spacing:.04em;}
 .sm-r .st{font-family:var(--mono); font-size:9.5px; color:#1F9D55;}
 .sm-r.new{animation:smrow 1.6s ease;}
@@ -627,9 +636,11 @@ body.mob .mz-paper,body.phone .mz-paper{padding:14px;}
 .sm-team{display:flex; align-items:center; flex-wrap:wrap; gap:6px 8px; padding:8px 12px; background:var(--panel2); border-bottom:1px solid var(--line);}
 .sm-tl{font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint);}
 .sm-mk{display:flex; flex-wrap:wrap; gap:4px;}
-.sm-mk button,.sm-rb{font-size:11.5px; padding:5px 10px; border-radius:7px; border:1px solid var(--line2); background:var(--panel); color:var(--txt);}
-.sm-mk button:hover:not([disabled]),.sm-rb:hover:not([disabled]){border-color:var(--pk-acc);}
-.sm-rb{margin-left:auto; font-family:var(--mono); font-size:10.5px; color:var(--dim);}
+.sm-mk button{font-size:11.5px; padding:5px 10px; border-radius:7px; border:1px solid var(--line2); background:var(--panel); color:var(--txt);}
+.sm-mk button:hover:not([disabled]){border-color:var(--pk-acc);}
+.sm-tools{margin-left:auto; display:flex; gap:4px;}
+.sm-tools button{font-family:var(--mono); font-size:10.5px; color:var(--dim); padding:5px 9px; border-radius:7px; border:1px solid var(--line2); background:var(--panel);}
+.sm-tools button:hover:not([disabled]){border-color:var(--pk-acc); color:var(--txt);}
 .sm-run button[disabled]{opacity:.45; cursor:default;}
 .sm-login{display:flex; align-items:center; gap:12px; padding:9px 12px; min-height:44px; border-bottom:1px solid var(--line); opacity:.35; transition:opacity .4s ease;}
 .sm-login.on{opacity:1;}
@@ -656,12 +667,11 @@ body.mob .mz-paper,body.phone .mz-paper{padding:14px;}
 .sm-steps.a li:before{background:#1F9D55; color:#fff;}
 .sm-card p{margin:0; font-size:11.5px; line-height:1.45; color:var(--dim);}
 .sm-banote{grid-column:1 / -1; margin:0; font-size:11.5px; line-height:1.5; color:var(--dim);}
-body.mob .sm-body,body.phone .sm-body{grid-template-columns:minmax(0,1fr); grid-template-rows:250px 190px; height:auto;}
+body.mob .sm-body,body.phone .sm-body{grid-template-columns:minmax(0,1fr); grid-template-rows:260px 220px; height:auto;}
 body.mob .sm-mid,body.phone .sm-mid{display:none;}
 body.mob .sm-col:first-child,body.phone .sm-col:first-child{border-bottom:1px solid var(--line);}
-body.mob .sm-phone,body.phone .sm-phone{height:200px;}
-body.mob .sm-r,body.phone .sm-r{grid-template-columns:20px 40px minmax(0,1fr) 56px 78px;}
-body.mob .sm-rb,body.phone .sm-rb{margin-left:0;}
+body.mob .sm-r,body.phone .sm-r{grid-template-columns:18px 38px minmax(0,1fr) 24px 54px 70px;}
+body.mob .sm-tools,body.phone .sm-tools{margin-left:0; flex-wrap:wrap;}
 body.mob .sm-login,body.phone .sm-login{flex-wrap:wrap; gap:6px 10px;}
 body.mob .sm-lt,body.phone .sm-lt{flex-basis:100%;}
 body.mob .sm-ls,body.phone .sm-ls{min-width:0; margin-left:auto;}
@@ -1294,14 +1304,14 @@ document.documentElement.setAttribute("data-theme", "day");
     sms:{ w:660, h:580, badges:[1,1,1],
       en:{ t:"SMS Relay", name:"SMS Verification Relay", meta:"2025 &middot; Tradist Distribution",
         lede:"Marketplace verification codes pulled from SMS automatically, so the whole team reads them from one sheet instead of asking for them.",
-        paras:["Amazon, n11, Trendyol and Hepsiburada send a verification code by SMS every time somebody signs in to the seller panel. The phones sat in a drawer. Whoever needed to log in had to find the right handset, unlock it, read the code out loud, and hope it had not expired by the time they typed it.",
+        paras:["Amazon, n11, Trendyol and Hepsiburada send a verification code by SMS every time somebody signs in to the seller panel. Some marketplaces allow only a limited number of phones per account, so the codes went to different employees' own phones, and which marketplace was registered to which phone got confusing fast. If that person could not be reached the moment the code arrived, the sign in simply waited; working at night meant calling the phone's owner. None of that was workable or professional.",
                "I wrote an Android app that pulls those codes out of incoming SMS automatically and sends them to a shared Google Sheet the moment they land. It runs in the background and survives a device restart. Anyone who needs a code opens the sheet and takes it, without asking anybody: the code stopped being something one person physically possessed.",
                "It saved each person around twenty minutes a day. I found the need myself and built it on my own initiative; it was still running after I left."],
         rt:"How it works", rail:["Codes from <b>four marketplaces</b>","Pulled from SMS <b>automatically</b>","Sent to a shared <b>Google Sheet</b>","Runs in the background, survives restart","Nobody asks anybody for a code"],
         tags:["Android","Kotlin","Google Sheets"] },
       tr:{ t:"SMS Aktarıcı", name:"SMS Doğrulama Kodu Aktarıcısı", meta:"2025 &middot; Tradist Distribution",
         lede:"Pazaryeri doğrulama kodları SMS'ten otomatik olarak alınıyor; ekip, kimseye sormadan kodu tek bir tablodan okuyor.",
-        paras:["Amazon, n11, Trendyol ve Hepsiburada, satıcı paneline her girişte SMS ile doğrulama kodu gönderiyor. Telefonlar bir çekmecede duruyordu. Giriş yapması gereken kişi doğru cihazı bulmak, kilidini açmak, kodu yüksek sesle okumak ve kod yazılana kadar süresinin dolmamasını ummak zorundaydı.",
+        paras:["Amazon, n11, Trendyol ve Hepsiburada, satıcı paneline her girişte SMS ile doğrulama kodu gönderiyor. Bazı pazaryerleri bir hesaba yalnızca sınırlı sayıda telefon eklenmesine izin verdiği için kodlar farklı çalışanların kendi telefonlarına gidiyordu ve hangi pazaryerinin hangi telefona kayıtlı olduğu kolayca karışıyordu. Kod geldiği anda o kişiye ulaşılamazsa giriş bekliyordu; gece çalışmak gerektiğinde ise telefon sahibine ulaşmak gerekiyordu. Bu ne sürdürülebilir ne de profesyonel bir yöntemdi.",
                "Gelen SMS'lerdeki bu kodları otomatik olarak ayıklayan ve geldiği anda ortak bir Google Sheets tablosuna gönderen bir Android uygulaması yazdım. Uygulama arka planda çalışıyor ve cihaz yeniden başlasa da çalışmayı sürdürüyor. Koda ihtiyacı olan tabloyu açıp alıyor, kimse kimseye kod sormuyor; kod artık tek bir kişinin elindeki bir şey olmaktan çıktı.",
                "Kişi başına günde yaklaşık yirmi dakika kazandırdı. İhtiyacı kendim fark ettim ve kendi inisiyatifimle geliştirdim. Ben ayrıldıktan sonra da kullanılmaya devam ediyordu."],
         rt:"Nasıl çalışıyor", rail:["<b>Dört pazaryerinden</b> gelen kodlar","SMS'ten <b>otomatik</b> olarak alınıyor","Ortak <b>Google Sheets</b> tablosuna aktarılıyor","Arka planda çalışıyor, yeniden başlatmadan etkilenmiyor","Kimse kimseye kod sormuyor"],
@@ -2474,77 +2484,91 @@ document.documentElement.setAttribute("data-theme", "day");
       io.observe(root);
     } else run(0);
   }
-  /* SMS Aktarıcı demo. A seller panel asks for a code, the marketplace texts
-     the phone in the drawer, the relay app lifts the code out of the message
-     and writes it to the shared sheet, and whoever is logging in reads it from
-     there. The visitor drives it: pick a marketplace, or restart the phone.
-     Codes and message texts are illustrative. */
+  /* SMS Aktarıcı demo. Marketplaces allow only a few phones per account, so
+     the codes land on different employees' own phones, and who holds which
+     marketplace gets confusing. Here a sign in asks for a code, it lands on
+     whichever phone that marketplace is registered to, the relay app lifts the
+     code out and writes it to the shared sheet, and whoever is signing in reads
+     it there, even when the owner is in a meeting, on leave or asleep. The
+     visitor drives it. Codes, times and message texts are illustrative. */
   var SM_MK = [["amazon","Amazon"],["n11","n11"],["trendyol","Trendyol"],["hb","Hepsiburada"]];
+  var SM_PH = [{ id:"A", mk:["amazon","trendyol"] }, { id:"B", mk:["hb","n11"] }, { id:"C", mk:["trendyol","hb"] }];
   var SM_T = {
     tr:{ run:"Canlı", ba:"Önce ve sonra",
-      stat:function(n){ return "4 pazaryeri · "+n+" kod aktarıldı"; },
-      drawer:"Çekmecedeki telefon", bg:"arka planda", app:"Aktarıcı", sheet:"Ortak tablo · Google Sheets", codes:"kod",
-      cols:["Saat","Pazaryeri","Kod","Durum"], empty:"Henüz kod yok; ilk SMS geldiğinde burada görünecek.",
+      stat:function(n){ return "4 pazaryeri · 3 telefon · "+n+" kod"; },
+      phones:"Çalışanların telefonları", reg:"kayıtlı", app:"Aktarıcı", sheet:"Ortak tablo · Google Sheets", codes:"kod",
+      emp:"Çalışan", away:["sahada","toplantıda","izinde"], sleep:"uyuyor",
+      cols:["Saat","Pazaryeri","Tel.","Kod","Durum"],
       team:"Ekip", login:function(m){ return m+" satıcı paneline giriş"; }, codeL:"Doğrulama kodu", waiting:"SMS bekleniyor",
-      fromSheet:"tablodan alındı", ok:"Giriş yapıldı", reboot:"Telefonu yeniden başlat",
+      fromSheet:"tablodan alındı", ok:"Giriş yapıldı", reboot:"A'nın telefonunu yeniden başlat", night:"Gece mesaisi", day:"Gündüze dön",
       msg:function(m, c){ return m+" satıcı paneli doğrulama kodunuz: "+c; },
       valid:"geçerli", expired:"süresi doldu", taken:"alındı",
-      s0:"Ekipten biri satıcı paneline girmek istiyor. Pazaryeri, doğrulama kodunu çekmecedeki telefona SMS ile gönderiyor.",
-      s1:"Aktarıcı mesajı arka planda yakalıyor ve kodu metnin içinden ayıklıyor.",
+      s0:function(m, p, st){ return m+" hesabı "+p+" telefonuna kayıtlı ve kod oraya gidiyor; telefonun sahibi şu an "+st+"."; },
+      s1:"Aktarıcı mesajı o telefonda arka planda yakalıyor ve kodu metnin içinden ayıklıyor.",
       s2:"Kod, geldiği anda ortak tabloya yazılıyor.",
-      s3:"Giriş yapan kişi kodu tablodan alıyor; kimse telefonu aramıyor, kimse kimseye kod sormuyor.",
-      idle:"Sıra sizde: Aşağıdan bir pazaryerine giriş yapın ya da telefonu yeniden başlatın.",
-      r0:"Telefon yeniden başlatılıyor.", r1:"Aktarıcı açılışta kendiliğinden başladı; kodlar aynı şekilde gelmeye devam ediyor.",
+      s3:"Giriş yapan kişi kodu tablodan alıyor; kimse telefon sahibini aramıyor, kimseden kod istenmiyor.",
+      idle:"Sıra sizde: Bir pazaryerine giriş yapın, gece mesaisini deneyin ya da bir telefonu yeniden başlatın.",
+      nightOn:"Saat 23:40. Bütün telefon sahipleri uyuyor; yine de giriş yapabilirsiniz.",
+      r0:"A'nın telefonu yeniden başlatılıyor.", r1:"Aktarıcı açılışta kendiliğinden başladı; kodlar aynı şekilde gelmeye devam ediyor.",
       booting:"Yeniden başlatılıyor", booted:"Aktarıcı yeniden çalışıyor",
-      note:"Temsilîdir: Kodlar ve mesaj metinleri örnektir; pazaryerleri ve akış gerçektir.",
+      note:"Temsilîdir: Kodlar, saatler ve mesaj metinleri örnektir; pazaryerleri ve akış gerçektir.",
       bef:"Önce", aft:"Sonra",
-      befS:["Çekmeceden doğru telefonu bul","Kilidini aç, mesajı bul","Kodu yüksek sesle oku","Süresi dolmadan yaz"],
+      befS:["Kodun hangi çalışanın telefonuna gittiğini bul","O kişiye o anda ulaşmaya çalış","Kodu mesajla ya da telefonla iste","Süresi dolmadan yaz"],
       aftS:["Ortak tabloyu aç","Kodu al"],
-      befF:"Kod, telefonu elinde tutan kişiye bağlıydı.", aftF:"Kişi başına günde yaklaşık 20 dakika kazanç sağlandı.",
+      befF:"Pazaryerleri hesaba ancak sınırlı sayıda telefon eklenmesine izin verdiği için kodlar farklı çalışanlara gidiyordu. Kişiye ulaşılamazsa giriş bekliyordu; gece çalışmak için telefon sahibini aramak gerekiyordu.",
+      aftF:"Kod, telefon kimde olursa olsun ve saat kaç olursa olsun tablodadır. Kişi başına günde yaklaşık 20 dakika kazanç sağlandı.",
       baNote:"İhtiyacı kendim fark ettim ve kendi inisiyatifimle geliştirdim. Ben ayrıldıktan sonra da kullanılmaya devam ediyordu." },
     en:{ run:"Live", ba:"Before and after",
-      stat:function(n){ return "4 marketplaces · "+n+" codes relayed"; },
-      drawer:"Phone in the drawer", bg:"in the background", app:"Relay", sheet:"Shared sheet · Google Sheets", codes:"codes",
-      cols:["Time","Marketplace","Code","Status"], empty:"No codes yet; the first SMS will show up here.",
+      stat:function(n){ return "4 marketplaces · 3 phones · "+n+" codes"; },
+      phones:"Employees' phones", reg:"registered", app:"Relay", sheet:"Shared sheet · Google Sheets", codes:"codes",
+      emp:"Employee", away:["out in the field","in a meeting","on leave"], sleep:"asleep",
+      cols:["Time","Marketplace","Ph.","Code","Status"],
       team:"Team", login:function(m){ return "Signing in to "+m+" seller panel"; }, codeL:"Verification code", waiting:"waiting for SMS",
-      fromSheet:"taken from the sheet", ok:"Signed in", reboot:"Restart the phone",
+      fromSheet:"taken from the sheet", ok:"Signed in", reboot:"Restart A's phone", night:"Night shift", day:"Back to daytime",
       msg:function(m, c){ return "Your "+m+" seller panel verification code: "+c; },
       valid:"valid", expired:"expired", taken:"taken",
-      s0:"Someone on the team wants to sign in to the seller panel. The marketplace texts the code to the phone in the drawer.",
-      s1:"The relay catches the message in the background and lifts the code out of the text.",
+      s0:function(m, p, st){ return "The "+m+" account is registered to "+p+"'s phone, so the code goes there; the owner is "+st+" right now."; },
+      s1:"The relay on that phone catches the message in the background and lifts the code out of the text.",
       s2:"The code lands in the shared sheet the moment it arrives.",
-      s3:"Whoever is signing in takes the code from the sheet; nobody hunts for the phone, nobody asks anybody.",
-      idle:"Your turn: sign in to a marketplace below, or restart the phone.",
-      r0:"The phone is restarting.", r1:"The relay started again on its own at boot; codes keep arriving the same way.",
+      s3:"Whoever is signing in takes the code from the sheet; nobody calls the phone's owner, nobody asks for a code.",
+      idle:"Your turn: sign in to a marketplace, try the night shift, or restart a phone.",
+      nightOn:"It is 23:40. Every phone owner is asleep; you can still sign in.",
+      r0:"A's phone is restarting.", r1:"The relay started again on its own at boot; codes keep arriving the same way.",
       booting:"Restarting", booted:"Relay running again",
-      note:"Illustrative: codes and message texts are examples; the marketplaces and the flow are real.",
+      note:"Illustrative: codes, times and message texts are examples; the marketplaces and the flow are real.",
       bef:"Before", aft:"After",
-      befS:["Find the right phone in the drawer","Unlock it, find the message","Read the code out loud","Type it before it expires"],
+      befS:["Work out whose phone the code went to","Try to reach that person right then","Ask for the code by message or call","Type it before it expires"],
       aftS:["Open the shared sheet","Take the code"],
-      befF:"The code belonged to whoever held the phone.", aftF:"About 20 minutes saved per person, per day.",
+      befF:"Marketplaces allow only a few phones per account, so codes went to different employees. If that person could not be reached, the sign in waited; working at night meant calling the phone's owner.",
+      aftF:"The code is in the sheet whoever holds the phone and whatever the hour. About 20 minutes saved per person, per day.",
       baNote:"I spotted the need and built it on my own initiative. It was still in use after I left." }
   };
   function smHtml(L){
-    var T = SM_T[L];
+    var T = SM_T[L], name = function(k){ return SM_MK.filter(function(m){ return m[0] === k; })[0][1]; };
     var steps = function(a, cls){ return '<ol class="sm-steps '+cls+'">'+a.map(function(s){ return '<li>'+s+'</li>'; }).join('')+'</ol>'; };
     return '<div class="pk" data-demo="sm">'
       + '<div class="pk-top"><span class="pk-dots"><i></i><i></i><i></i></span>'
       + '<span class="pk-tabs"><button data-t="run" class="on">'+T.run+'</button><button data-t="ba">'+T.ba+'</button></span>'
-      + '<span class="pk-stat">'+T.stat(0)+'</span></div>'
+      + '<span class="pk-stat"></span></div>'
       + '<div class="pk-view on" data-v="run"><div class="sm-run">'
       +   '<div class="mz-say sm-say"></div>'
       +   '<div class="sm-body">'
-      +     '<div class="sm-col"><div class="mz-ph2"><span>'+T.drawer+'</span><span class="sm-st">'+T.bg+'</span></div>'
-      +       '<div class="sm-phwrap"><div class="sm-phone"><div class="sm-sb"><span class="sm-clock"></span><span class="sm-app"><i></i>'+T.app+'</span></div>'
-      +       '<div class="sm-msgs"></div><div class="sm-boot"><i></i><b></b></div></div></div></div>'
+      +     '<div class="sm-col"><div class="mz-ph2"><span>'+T.phones+'</span><span class="sm-clock"></span></div><div class="sm-phs">'
+      +       SM_PH.map(function(p, i){
+                return '<div class="sm-ph" data-p="'+p.id+'"><div class="sm-phh"><i class="sm-ico"></i><b>'+T.emp+' '+p.id+'</b>'
+                  + '<span class="sm-who">'+T.away[i]+'</span><span class="sm-app"><i></i>'+T.app+'</span></div>'
+                  + '<div class="sm-reg">'+T.reg+': '+p.mk.map(name).join(', ')+'</div><div class="sm-m"></div>'
+                  + '<div class="sm-boot"><i></i><b></b></div></div>';
+              }).join('')
+      +     '</div></div>'
       +     '<div class="sm-mid"><div class="sm-wire"><i></i></div></div>'
-      +     '<div class="sm-col sm-sh"><div class="mz-ph2"><span>'+T.sheet+'</span><span class="sm-n">0 '+T.codes+'</span></div>'
+      +     '<div class="sm-col sm-sh"><div class="mz-ph2"><span>'+T.sheet+'</span><span class="sm-n"></span></div>'
       +       '<div class="sm-grid"><div class="sm-r sm-gh"><span></span>'+T.cols.map(function(c){ return '<span>'+c+'</span>'; }).join('')+'</div>'
-      +       '<div class="sm-rows"><div class="mz-empty">'+T.empty+'</div></div></div></div>'
+      +       '<div class="sm-rows"></div></div></div>'
       +   '</div>'
       +   '<div class="sm-team"><span class="sm-tl">'+T.team+'</span><span class="sm-mk">'
       +     SM_MK.map(function(m){ return '<button data-m="'+m[0]+'">'+m[1]+'</button>'; }).join('')+'</span>'
-      +     '<button class="sm-rb" data-c="reboot">&#8635; '+T.reboot+'</button></div>'
+      +     '<span class="sm-tools"><button class="sm-nt" data-c="night">&#9790; '+T.night+'</button><button class="sm-rb" data-c="reboot">&#8635; '+T.reboot+'</button></span></div>'
       +   '<div class="sm-login"><span class="sm-lt"></span><span class="sm-lf"><small>'+T.codeL+'</small><code></code></span><span class="sm-ls"></span></div>'
       +   '<div class="sm-note">'+T.note+'</div>'
       + '</div></div>'
@@ -2558,22 +2582,40 @@ document.documentElement.setAttribute("data-theme", "day");
     if(root._sm) return; root._sm = 1;
     var T = SM_T[L], TR = L === "tr";
     var q = function(s){ return root.querySelector(s); }, qa = function(s){ return Array.prototype.slice.call(root.querySelectorAll(s)); };
-    var say = q(".sm-say"), msgs = q(".sm-msgs"), phone = q(".sm-phone"), wire = q(".sm-wire"), rows = q(".sm-rows"), nEl = q(".sm-n"),
-        stat = q(".pk-stat"), login = q(".sm-login"), lt = q(".sm-lt"), lf = q(".sm-lf code"), ls = q(".sm-ls"), bootB = q(".sm-boot b"),
-        mkBtns = qa(".sm-mk button"), rb = q(".sm-rb"), clock = q(".sm-clock");
-    var busy = false, count = 0, live = [];
-    var hm = function(d){ return ("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2); };
+    var say = q(".sm-say"), wire = q(".sm-wire"), rows = q(".sm-rows"), nEl = q(".sm-n"), stat = q(".pk-stat"), run = q(".sm-run"),
+        login = q(".sm-login"), lt = q(".sm-lt"), lf = q(".sm-lf code"), ls = q(".sm-ls"), clock = q(".sm-clock"),
+        mkBtns = qa(".sm-mk button"), tools = qa(".sm-tools button"), nt = q(".sm-nt");
+    var busy = false, count = 0, live = [], night = false, shift = 0;
+    var pad = function(n){ return ("0"+n).slice(-2); };
+    var at = function(ms){ return new Date(Date.now() + shift + (ms || 0)); };
+    var hm = function(d){ return pad(d.getHours())+":"+pad(d.getMinutes()); };
     var sleep = function(ms){ return new Promise(function(r){ setTimeout(r, reduce ? Math.min(ms, 120) : ms); }); };
-    function lock(on){ busy = on; mkBtns.concat(rb).forEach(function(b){ b.disabled = on; }); root.classList.toggle("sm-busy", on); }
+    var mkName = function(k){ return SM_MK.filter(function(m){ return m[0] === k; })[0][1]; };
+    var phoneEl = function(id){ return q('.sm-ph[data-p="'+id+'"]'); };
+    var code6 = function(){ return String(100000 + Math.floor(Math.random()*900000)); };
+    function lock(on){ busy = on; mkBtns.concat(tools).forEach(function(b){ b.disabled = on; }); }
+    function counts(){ nEl.textContent = count+" "+T.codes; stat.textContent = T.stat(count); }
+    function addRow(t, mk, ph, code, until, state){
+      count++;
+      rows.insertAdjacentHTML("afterbegin", '<div class="sm-r'+(state ? '' : ' new')+'"><span>'+count+'</span><span>'+hm(t)+'</span><span>'+mkName(mk)+'</span>'
+        + '<span class="p">'+ph+'</span><span class="c">'+code+'</span><span class="st"></span></div>');
+      var r = { el:rows.firstChild, until:until }; r.st = r.el.querySelector(".st");
+      if(state === "taken"){ r.taken = r.done = true; r.el.classList.add("taken"); r.st.textContent = T.taken; }
+      else if(state === "old"){ r.done = true; r.el.classList.add("old"); r.st.textContent = T.expired; }
+      live.push(r); counts(); return r;
+    }
+    /* the sheet already has the morning in it */
+    [[-176, "hb", "B", "taken"], [-131, "amazon", "A", "taken"], [-87, "n11", "B", "old"], [-52, "trendyol", "C", "taken"], [-19, "hb", "C", "taken"]]
+      .forEach(function(x){ addRow(at(x[0]*60000), x[1], x[2], code6(), 0, x[3]); });
     function tick(){
       if(!root.isConnected) return clearInterval(timer);
-      clock.textContent = hm(new Date());
+      clock.textContent = hm(at());
       var now = Date.now();
       live.forEach(function(r){
         if(r.done) return;
         var left = Math.max(0, Math.round((r.until - now)/1000));
         if(!left){ r.done = true; r.el.classList.add("old"); r.st.textContent = T.expired; return; }
-        if(!r.taken) r.st.textContent = T.valid+" "+Math.floor(left/60)+":"+("0"+left%60).slice(-2);
+        if(!r.taken) r.st.textContent = T.valid+" "+Math.floor(left/60)+":"+pad(left%60);
       });
     }
     var timer = setInterval(tick, 1000); tick();
@@ -2581,25 +2623,34 @@ document.documentElement.setAttribute("data-theme", "day");
       var t = ev.target.closest(".pk-tabs button");
       if(t){ qa(".pk-tabs button").forEach(function(b){ b.classList.toggle("on", b === t); });
         qa(".pk-view").forEach(function(v){ v.classList.toggle("on", v.getAttribute("data-v") === t.getAttribute("data-t")); }); return; }
+      if(busy) return;
       var m = ev.target.closest(".sm-mk button");
-      if(m && !busy) return relay(SM_MK.filter(function(x){ return x[0] === m.getAttribute("data-m"); })[0]);
-      if(ev.target.closest(".sm-rb") && !busy) reboot();
+      if(m) return relay(m.getAttribute("data-m"));
+      if(ev.target.closest(".sm-rb")) return reboot();
+      if(ev.target.closest(".sm-nt")) return toggleNight();
     });
-
+    function toggleNight(){
+      night = !night;
+      if(night){ var d = new Date(); d.setHours(23, 40, 0, 0); shift = d - Date.now(); } else shift = 0;
+      run.classList.toggle("night", night);
+      nt.innerHTML = night ? "&#9788; "+T.day : "&#9790; "+T.night;
+      qa(".sm-who").forEach(function(w, i){ w.textContent = night ? "☾ "+T.sleep : T.away[i]; });
+      tick(); say.textContent = night ? T.nightOn : T.idle;
+    }
     function relay(mk){
       lock(true);
-      var code = String(100000 + Math.floor(Math.random()*900000));
-      login.className = "sm-login on"; lt.textContent = T.login(mk[1]); lf.textContent = ""; lf.className = "";
+      var code = code6(), opts = SM_PH.filter(function(p){ return p.mk.indexOf(mk) >= 0; }),
+          p = opts[Math.floor(Math.random()*opts.length)], el = phoneEl(p.id), idx = SM_PH.indexOf(p);
+      qa(".sm-ph").forEach(function(x){ x.classList.remove("on"); });
+      login.className = "sm-login on"; lt.textContent = T.login(mkName(mk)); lf.textContent = ""; lf.className = "";
       ls.textContent = T.waiting; ls.className = "sm-ls w";
-      say.textContent = T.s0;
-      var el;
-      return sleep(1500).then(function(){
-        msgs.insertAdjacentHTML("afterbegin", '<div class="sm-m"><b>'+mk[1].toLocaleUpperCase(TR?"tr":"en")+'<em>'+(TR?"şimdi":"now")+'</em></b>'
-          + T.msg(mk[1], '<mark>'+code+'</mark>')+'</div>');
-        el = msgs.firstChild;
-        var old = msgs.querySelectorAll(".sm-m"); if(old.length > 4) old[old.length-1].remove();
-        phone.classList.remove("buzz"); void phone.offsetWidth; phone.classList.add("buzz");
-        return sleep(1600);
+      say.textContent = T.s0(mkName(mk), T.emp+" "+p.id+(TR ? { A:"'nın", B:"'nin", C:"'nin" }[p.id] : ""), night ? T.sleep : T.away[idx]);
+      var r;
+      return sleep(1800).then(function(){
+        el.classList.add("on");
+        el.querySelector(".sm-m").innerHTML = '<b>'+mkName(mk).toLocaleUpperCase(TR?"tr":"en")+'<em>'+hm(at())+'</em></b>'+T.msg(mkName(mk), '<mark>'+code+'</mark>');
+        el.classList.remove("buzz"); void el.offsetWidth; el.classList.add("buzz");
+        return sleep(1700);
       }).then(function(){
         say.textContent = T.s1; el.querySelector("mark").classList.add("on");
         return sleep(1900);
@@ -2608,46 +2659,47 @@ document.documentElement.setAttribute("data-theme", "day");
         return sleep(1100);
       }).then(function(){
         wire.classList.remove("go");
-        if(!count) rows.innerHTML = "";
-        count++;
-        rows.insertAdjacentHTML("afterbegin", '<div class="sm-r new"><span>'+count+'</span><span>'+hm(new Date())+'</span><span>'+mk[1]+'</span><span class="c">'+code+'</span><span class="st"></span></div>');
-        var r = { el:rows.firstChild, until:Date.now() + 180000 }; r.st = r.el.querySelector(".st"); live.push(r); tick();
-        nEl.textContent = count+" "+T.codes; stat.textContent = T.stat(count);
-        return sleep(2000).then(function(){ return r; });
-      }).then(function(r){
+        r = addRow(at(), mk, p.id, code, Date.now() + 180000); tick();
+        return sleep(2000);
+      }).then(function(){
         say.textContent = T.s3; r.el.classList.add("pick");
         var i = 0;
         return (function type(){
           if(i >= code.length) return Promise.resolve();
           lf.textContent = code.slice(0, ++i); return sleep(110).then(type);
-        })().then(function(){
-          lf.className = "got"; ls.textContent = T.fromSheet; r.taken = true; r.st.textContent = T.taken; r.el.classList.add("taken");
-          return sleep(1300);
-        });
+        })();
+      }).then(function(){
+        lf.className = "got"; ls.textContent = T.fromSheet; r.taken = r.done = true; r.st.textContent = T.taken; r.el.classList.add("taken");
+        return sleep(1300);
       }).then(function(){
         ls.textContent = "✓ "+T.ok; ls.className = "sm-ls ok";
         return sleep(1600);
-      }).then(function(){ lock(false); say.textContent = T.idle; });
+      }).then(function(){ el.classList.remove("on"); el.querySelector("mark").classList.remove("on"); lock(false); say.textContent = night ? T.nightOn : T.idle; });
     }
     function reboot(){
+      var el = phoneEl("A"), b = el.querySelector(".sm-boot b");
       lock(true); say.textContent = T.r0;
-      bootB.textContent = T.booting; phone.classList.add("off");
+      b.textContent = T.booting; el.classList.add("off");
       return sleep(2400).then(function(){
-        bootB.textContent = T.booted; phone.classList.add("up");
+        b.textContent = T.booted; el.classList.add("up");
         return sleep(1700);
       }).then(function(){
-        phone.classList.remove("off", "up"); say.textContent = T.r1;
+        el.classList.remove("off", "up"); say.textContent = T.r1;
         return sleep(2600);
-      }).then(function(){ lock(false); say.textContent = T.idle; });
+      }).then(function(){ lock(false); say.textContent = night ? T.nightOn : T.idle; });
     }
 
     say.textContent = T.idle;
     if(window.IntersectionObserver){
       var io = new IntersectionObserver(function(es){
-        if(es[0].isIntersecting){ io.disconnect(); setTimeout(function(){ if(!busy && !count) relay(SM_MK[2]); }, 600); }
+        if(es[0].isIntersecting){ io.disconnect(); auto(); }
       }, { threshold:.35 });
       io.observe(root);
     }
+    /* the window may still be growing when the observer first looks, so check once more */
+    var autoDone = false;
+    function auto(){ if(autoDone) return; autoDone = true; setTimeout(function(){ if(!busy) relay("hb"); }, 600); }
+    setTimeout(function(){ var r = root.getBoundingClientRect(); if(root.isConnected && r.top < innerHeight - 120 && r.bottom > 120) auto(); }, 2500);
   }
 
   function mountDemos(el){
