@@ -900,6 +900,141 @@ body.mob .tbar .ctl button.mn,body.mob .tbar .ctl button.mx{display:none;}
 body.mob #tasks{display:none;}
 body.mob .doc{padding:18px 16px 26px;}
 
+/* the Karınca demo: the study screen drawn in the app's own palette (ui/theme/Color.kt:
+   Aqua #00ADB5, InkDark #222831, BorderGray #D3D7DC), light by day and dark at night,
+   the way the app itself follows the system theme */
+.kr{ --kr-aq:#00ADB5; --kr-ink:#222831; --kr-mid:#393E46; --kr-bd:#D3D7DC; --kr-card:#FFFFFF; --kr-q:#EEE6F3; --kr-ok:#2E9E5B; --kr-okbg:#E6F4EA; --kr-no:#C62828; --kr-nobg:#FDECEC;
+  --kr-bg:linear-gradient(170deg, #D9EFF0 0%, #EEF2F3 45%, #F6E3E3 100%); --kr-sol:#EFE6F3; }
+html[data-theme=night] .kr-phone{border-color:#3B3B46;}
+html[data-theme=night] .kr{ --kr-ink:#EEEEEE; --kr-mid:#C9CDD2; --kr-bd:#4A5058; --kr-card:#343A42; --kr-q:#3D3A48; --kr-okbg:#23402F; --kr-nobg:#4A2A2C; --kr-ok:#5FD08A; --kr-no:#FF8A80;
+  --kr-bg:linear-gradient(170deg, #2A3238 0%, #252A31 55%, #2E282C 100%); --kr-sol:#3D3A48; }
+.kr-run{display:grid; grid-template-columns:238px minmax(0,1fr); gap:14px; padding:12px 14px; background:var(--panel2); border-bottom:1px solid var(--line);}
+.kr-pw{display:flex; justify-content:center;}
+.kr-phone{position:relative; width:238px; height:468px; border-radius:30px; border:7px solid #1C1C22; background:var(--kr-bg); overflow:hidden; display:flex; flex-direction:column;
+  box-shadow:0 10px 26px rgba(20,20,26,.16); color:var(--kr-ink); font-family:Roboto, system-ui, sans-serif;}
+.kr-phone:before{content:""; position:absolute; top:6px; left:50%; width:9px; height:9px; margin-left:-4.5px; border-radius:50%; background:#1C1C22; z-index:3;}
+.kr-sb{display:flex; justify-content:space-between; padding:5px 14px 2px; font-size:9px; font-weight:600; color:var(--kr-ink);}
+.kr-sb i{font-style:normal; letter-spacing:1px; font-size:8px;}
+.kr-hd{display:flex; justify-content:space-between; align-items:baseline; padding:6px 12px 5px; font-size:11px; font-weight:700;}
+.kr-hd span{font-size:9.5px; font-weight:600; color:var(--kr-mid);}
+.kr-pg{height:3px; margin:0 12px 7px; border-radius:2px; background:color-mix(in srgb, var(--kr-aq) 22%, transparent);}
+.kr-pg u{display:block; height:100%; width:0; border-radius:2px; background:var(--kr-aq); transition:width .5s ease;}
+.kr-sc{flex:1; min-height:0; overflow-y:auto; padding:0 10px 10px; scrollbar-width:none; scroll-behavior:smooth;}
+.kr-sc::-webkit-scrollbar{display:none;}
+.kr-body{transition:opacity .25s ease, transform .25s ease;}
+.kr-body.out{opacity:0; transform:translateX(-14px);}
+.kr-qc{background:var(--kr-q); border-radius:13px; padding:8px 10px 10px; margin-bottom:7px;}
+.kr-qc small{display:block; font-size:8.5px; font-weight:600; color:var(--kr-aq); margin-bottom:3px;}
+.kr-qc p{margin:0; font-size:10.5px; line-height:1.4; color:var(--kr-ink);}
+.kr-op{display:block; width:100%; text-align:left; margin:0 0 5px; padding:7px 9px; border-radius:10px; border:1px solid var(--kr-bd); background:var(--kr-card);
+  font:inherit; font-size:9.5px; line-height:1.35; color:var(--kr-ink); cursor:pointer; transition:border-color .2s, background .2s, transform .12s;}
+.kr-op:hover{border-color:color-mix(in srgb, var(--kr-aq) 60%, var(--kr-bd));}
+.kr-op.sel{border:1.5px solid var(--kr-aq); background:color-mix(in srgb, var(--kr-aq) 9%, var(--kr-card));}
+.kr-op.ok{border:1.5px solid var(--kr-ok); background:var(--kr-okbg);}
+.kr-op.no{border:1.5px solid var(--kr-no); background:var(--kr-nobg);}
+.kr-op.press{transform:scale(.97);}
+.kr-body.done .kr-op{cursor:default;}
+.kr-btn{display:block; width:100%; margin-top:4px; padding:8px; border-radius:18px; background:var(--kr-aq); color:#fff; font:inherit; font-size:10px; font-weight:600; text-align:center; transition:transform .12s, opacity .2s;}
+.kr-btn.press{transform:scale(.96);}
+.kr-btn[disabled]{opacity:.45; cursor:default;}
+.kr-sol{display:none; margin:3px 0 4px; padding:8px 10px; border-radius:12px; background:var(--kr-sol); font-size:9.5px; line-height:1.4; color:var(--kr-ink);}
+.kr-sol b{font-weight:700;} .kr-sol .h{display:block; font-size:10px; margin-bottom:3px;} .kr-sol .h:before{content:"\1F4A1"; margin-right:4px;}
+.kr-body.done .kr-sol{display:block; animation:krin .35s ease;}
+.kr-phone.shake{animation:krshake .36s ease;}
+@keyframes krshake{20%{transform:translateX(-5px);} 45%{transform:translateX(5px);} 70%{transform:translateX(-3px);} 90%{transform:translateX(2px);}}
+@keyframes krin{from{opacity:0; transform:translateY(4px);}}
+.kr-flash{position:absolute; inset:0; border-radius:23px; pointer-events:none; box-shadow:inset 0 0 0 0 transparent; transition:box-shadow .5s ease; z-index:2;}
+.kr-flash.ok{box-shadow:inset 0 0 0 4px var(--kr-ok);} .kr-flash.no{box-shadow:inset 0 0 0 4px var(--kr-no);}
+.kr-xp{position:absolute; right:12px; top:44px; z-index:3; font-size:10px; font-weight:700; color:#fff; background:var(--kr-aq); padding:3px 8px; border-radius:10px; opacity:0; transform:translateY(6px); transition:all .35s ease;}
+.kr-xp.on{opacity:1; transform:none;}
+.kr-end{text-align:center; padding:30px 8px;} .kr-end b{display:block; font-size:13px; margin:8px 0 4px;} .kr-end span{font-size:10px; color:var(--kr-mid);}
+
+/* the right hand side: what happens behind the card */
+.kr-side{display:flex; flex-direction:column; gap:9px; min-width:0;}
+.kr-box{border:1px solid var(--line2); border-radius:10px; background:var(--panel); padding:9px 11px;}
+.kr-box h5{margin:0 0 6px; font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); font-weight:500; display:flex; justify-content:space-between; gap:8px;}
+.kr-box h5 em{font-style:normal; letter-spacing:.02em; text-transform:none; color:var(--pk-code);}
+.kr-id{font-family:var(--mono); font-size:11.5px; color:var(--txt); font-weight:600; word-break:break-all;}
+.kr-id.flip{animation:krin .4s ease;}
+.kr-p{margin:4px 0 7px; font-size:11px; line-height:1.45; color:var(--dim);}
+.kr-modes{display:flex; flex-wrap:wrap; gap:4px; margin-bottom:7px;}
+.kr-modes span{font-size:10px; padding:2px 7px; border-radius:9px; border:1px solid var(--line2); color:var(--faint); transition:all .3s ease;}
+.kr-modes span.on{color:#fff; background:var(--pk-acc); border-color:var(--pk-acc);}
+.kr-modes span.na{opacity:.35;}
+.kr-gen{display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+.kr-regen{padding:5px 10px; border-radius:7px; border:1px solid var(--pk-acc); color:var(--pk-acc); font-size:11px; font-weight:600;}
+.kr-regen:hover{background:color-mix(in srgb, var(--pk-acc) 10%, transparent);}
+.kr-regen.press{transform:scale(.96);}
+.kr-gen small{font-family:var(--mono); font-size:9.5px; color:var(--faint);}
+.kr-srs{display:grid; grid-template-columns:auto minmax(0,1fr); gap:3px 10px; font-size:11px; align-items:baseline;}
+.kr-srs dt{font-family:var(--mono); font-size:9.5px; color:var(--faint);}
+.kr-srs dd{margin:0; color:var(--txt);}
+.kr-srs dd b{font-weight:600;}
+.kr-srs dd.ok{color:#1F9D55;} .kr-srs dd.no{color:#B42318;}
+.kr-rt{display:flex; gap:4px; margin:7px 0 2px;}
+.kr-rt span{flex:1; text-align:center; font-size:10px; padding:3px 0; border-radius:6px; border:1px solid var(--line2); color:var(--faint); transition:all .3s ease;}
+.kr-rt span.on{color:#fff; border-color:transparent;}
+.kr-rt span.on[data-r="h"]{background:#B42318;} .kr-rt span.on[data-r="o"]{background:var(--pk-acc);} .kr-rt span.on[data-r="e"]{background:#1F9D55;}
+.kr-rule{font-size:10px; line-height:1.4; color:var(--faint); margin:4px 0 0;}
+.kr-hist{display:flex; gap:3px; flex-wrap:wrap; margin-top:6px; min-height:17px;}
+.kr-hist i{font-style:normal; font-family:var(--mono); font-size:9px; padding:1px 5px; border-radius:5px; background:var(--panel2); border:1px solid var(--line); color:var(--dim);}
+.kr-hist i.h{color:#B42318;} .kr-hist i.e{color:#1F9D55;}
+.kr-eco{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:6px;}
+.kr-eco div{border:1px solid var(--line); border-radius:7px; padding:4px 7px;}
+.kr-eco small{display:block; font-size:9px; color:var(--faint);}
+.kr-eco b{font-family:var(--mono); font-size:12px; color:var(--txt); font-weight:600;}
+.kr-eco b.bump{animation:krbump .5s ease;}
+@keyframes krbump{40%{color:var(--pk-acc); transform:scale(1.12);}}
+.kr-lv{grid-column:1 / -1; height:5px; border-radius:3px; background:var(--line); overflow:hidden; padding:0 !important; border:0 !important;}
+.kr-lv u{display:block; height:100%; background:var(--pk-acc); transition:width .6s ease;}
+
+/* the quality gate */
+.kq{padding:12px 14px; background:var(--panel2); display:flex; flex-direction:column; gap:10px;}
+.kq-flow{display:flex; gap:4px; flex-wrap:wrap;}
+.kq-flow span{font-size:10.5px; padding:3px 8px; border-radius:10px; border:1px solid var(--line2); color:var(--faint); background:var(--panel); transition:all .3s ease;}
+.kq-flow span.on{color:#fff; background:var(--pk-acc); border-color:var(--pk-acc);}
+.kq-flow span.done{color:var(--txt); border-color:var(--pk-acc);}
+.kq-flow span.stop{color:#fff; background:#B42318; border-color:#B42318;}
+.kq-ctl{display:flex; align-items:center; gap:6px; flex-wrap:wrap;}
+.kq-ctl small{font-size:10.5px; color:var(--faint); margin-right:2px;}
+.kq-ctl button{font-size:11px; padding:4px 9px; border-radius:7px; border:1px solid var(--line2); background:var(--panel); color:var(--dim);}
+.kq-ctl button.on{color:var(--txt); border-color:var(--pk-acc); box-shadow:inset 0 0 0 1px var(--pk-acc);}
+.kq-ctl button.press{transform:scale(.96);}
+.kq-grid{display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:10px;}
+.kq-smp{border:1px solid var(--line2); border-radius:10px; background:var(--panel); padding:9px 11px; min-width:0;}
+.kq-cnt{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px;}
+.kq-cnt b{font-family:var(--mono); font-size:16px; color:var(--txt);} .kq-cnt small{font-size:10px; color:var(--faint);}
+.kq-list{height:196px; overflow:hidden; display:flex; flex-direction:column; gap:4px;}
+.kq-it{flex:none; font-size:9.5px; line-height:1.35; color:var(--dim); border-left:2px solid var(--line2); padding:1px 0 1px 6px;}
+.kq-it b{display:block; color:var(--txt); font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.kq-it span{display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.kq-it em{font-style:normal; color:#1F9D55;}
+.kq-it.new{animation:krin .25s ease;}
+.kq-rules{border:1px solid var(--line2); border-radius:10px; background:var(--panel); padding:4px 0; min-width:0;}
+.kq-r{display:grid; grid-template-columns:minmax(0,1fr) 52px 62px; gap:4px 8px; align-items:center; padding:6px 11px; border-bottom:1px solid var(--line);}
+.kq-r:last-child{border-bottom:0;}
+.kq-r b{font-family:var(--mono); font-size:10px; letter-spacing:.06em; color:var(--txt); font-weight:600;}
+.kq-r p{grid-column:1 / 2; margin:1px 0 0; font-size:10px; line-height:1.35; color:var(--faint);}
+.kq-r > span{grid-row:1 / 3; grid-column:2; font-family:var(--mono); font-size:11.5px; color:var(--txt); text-align:right;}
+.kq-r > em{grid-row:1 / 3; grid-column:3; font-style:normal; font-family:var(--mono); font-size:9.5px; text-align:center; padding:2px 0; border-radius:5px; color:var(--faint); border:1px solid var(--line2);}
+.kq-r > em.ok{color:#fff; background:#1F9D55; border-color:#1F9D55;}
+.kq-r > em.warn{color:#fff; background:#C27C0E; border-color:#C27C0E;}
+.kq-r > em.err{color:#fff; background:#B42318; border-color:#B42318;}
+.kq-bar{grid-column:1 / 2; height:4px; border-radius:2px; background:var(--line); position:relative; margin-top:3px;}
+.kq-bar u{position:absolute; left:0; top:0; bottom:0; width:0; border-radius:2px; background:var(--pk-acc); transition:width .25s linear;}
+.kq-bar i{position:absolute; top:-2px; bottom:-2px; width:2px; background:#B42318; opacity:.7;}
+.kq-bar i.w{background:#C27C0E;}
+.kq-res{border:1px solid var(--line2); border-radius:10px; background:var(--panel); padding:9px 11px; font-size:11.5px; line-height:1.5; color:var(--txt); min-height:40px;}
+.kq-res b.ok{color:#1F9D55;} .kq-res b.err{color:#B42318;}
+.kq-ai{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:6px;}
+.kq-ai div{border:1px solid var(--line2); border-radius:8px; background:var(--panel); padding:6px 8px; opacity:.45; transition:opacity .4s ease, border-color .4s ease;}
+.kq-ai div.on{opacity:1; border-color:var(--pk-acc);}
+.kq-ai small{display:block; font-family:var(--mono); font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint);}
+.kq-ai span{display:block; font-size:10.5px; line-height:1.35; color:var(--txt); margin-top:2px;}
+body.mob .kr-run,body.phone .kr-run{grid-template-columns:minmax(0,1fr);}
+body.mob .kq-grid,body.phone .kq-grid{grid-template-columns:minmax(0,1fr);}
+body.mob .kq-ai,body.phone .kq-ai{grid-template-columns:repeat(2, minmax(0,1fr));}
+body.mob .kq-list,body.phone .kq-list{height:120px;}
 /* =====================================================================
    NIGHT SKY
    The whole scene lives in #space, one layer stack under the desk:
@@ -1278,6 +1413,10 @@ document.documentElement.setAttribute("data-theme", "day");
 <li>Aralıklı tekrar motoru</li>
 <li>Kendi isteğimle yaptırdığım <b>denetim</b>, 6,8/10</li>
 </ul>
+<h4>Sayfadaki etkileşimli demo</h4>
+<p>İki sekmesi vardır. Ders sekmesinde solda uygulamanın soru ekranı, uygulamanın kendi renkleriyle bir telefonun içinde durur: Çalışma Oturumu başlığı, kalan kart sayısı, soru kartı, beş şık ve Cevabı Göster düğmesi. Sorular sayfada, uygulamadaki bio_9121_b generator'ının içeriği ve kurallarıyla üretilir; kartta hazır bir soru yoktur, yalnızca bir tarifin kimliği vardır. Sağda kartın kimliği, sorunun hangi yönden kurulduğu (mineralden göreve, görevden minerale, ayrıntı, hangisi değildir) ve aynı karttan yeni bir soru üreten bir düğme bulunur. Cevap verilince doğru şık yeşile, yanlış seçilen kırmızıya döner ve çözüm açılır; aralıklı tekrar kutusu cevabı, süreyi, Tekrar, İyi ya da Kolay değerlendirmesini ve kartın ne zaman yeniden geleceğini gösterir. Puanı öğrenci değil, cevap ve süre verir. Ekonomi kutusu XP, seviye ve jetonu gösterir. Ziyaretçi soruları kendisi çözebilir; dokunmazsa demo kendi kendine oynar. Kalite kapısı sekmesinde aynı kart 120 kez üretilir ve her örnek uygulamanın kalite kurallarından geçer: doğru cevabın belirgin biçimde en uzun ya da en kısa şık olup olmadığı, mutlak sözcüklere bakarak tahmin edilip edilemediği, kaç farklı soru çıktığı ve yapı. Bozuk bir tarif (kısa ya da mutlak sözcüklü çeldiriciler) seçilince kapı kapanır. Ardından yapay zekâ incelemesi, editör kararı ve kayıt adımları anlatılır. XP, jeton ve seviye değerleri temsilîdir.</p>
+<p><a href="shots/karinca-ders.jpg">Ekran görüntüsü</a>: Karınca, Ders sekmesi: Telefonda uygulamanın soru ekranı; demir kartında görevden minerale kurulmuş bir soru yanlış cevaplanmış, seçilen şık kırmızı, doğru şık yeşil, altında çözüm. Sağda kartın kimliği bio_9121_b_demir, soru yönü, aralıklı tekrarda Tekrar değerlendirmesi ve 1 dakika sonra yeniden gelme, altta XP, seviye ve jeton.</p>
+<p><a href="shots/karinca-kalite.jpg">Ekran görüntüsü</a>: Karınca, Kalite kapısı sekmesi: Potasyum kartı 120 kez üretilmiş; UZUNLUK, KISALIK, MUTLAK, ÇEŞİTLİLİK ve YAPI kurallarının ölçümleri ve eşikleri, hepsi geçti; üstte generatordan kayda uzanan adımlar.</p>
 <p><small>Etiketler: Kotlin, Jetpack Compose, Supabase, Etkileşim döngüsü</small></p>
 </article>
 <article id="tr-istakip">
@@ -1413,6 +1552,10 @@ document.documentElement.setAttribute("data-theme", "day");
 <li>Spaced repetition engine</li>
 <li>Self commissioned <b>audit</b>, 6.8/10</li>
 </ul>
+<h4>The interactive demo on the page</h4>
+<p>It has two tabs. On the Study tab the app's question screen sits inside a phone, in the app's own colours: the Çalışma Oturumu (study session) header, the cards left, the question card, five options and the Cevabı Göster (show answer) button. The questions are built on the page from the content and rules of the app's bio_9121_b generator; the card holds no written question, only the id of a recipe. On the right are the card id, the direction the question was built from (mineral to role, role to mineral, detail, which is not) and a button that builds a new question from the same card. After an answer the right option turns green, a wrong pick red, and the explanation opens; the spaced repetition box shows the answer, the time, the rating (Again, Good or Easy) and when the card comes back. The rating comes from the answer and the time, not from the student. The economy box shows XP, level and coins. Visitors can answer the questions themselves; left alone, the demo plays by itself. On the Quality gate tab the same card is generated 120 times and every sample goes through the app's quality rules: whether the right answer is noticeably the longest or the shortest option, whether it can be guessed from absolute words, how many distinct questions come out, and structure. Choosing a broken recipe (short distractors, or distractors with absolute words) closes the gate. Then the AI review, the editor's decision and the registration steps are described. XP, coin and level values are illustrative.</p>
+<p><a href="shots/karinca-ders.jpg">Screenshot</a>: Karınca, the Study tab: the app's question screen in a phone; a role to mineral question on the iron card answered wrong, the pick in red, the right option in green, the explanation below. On the right the card id bio_9121_b_demir, the question direction, the Again rating with the card coming back in a minute, and XP, level and coins.</p>
+<p><a href="shots/karinca-kalite.jpg">Screenshot</a>: Karınca, the Quality gate tab: the potassium card generated 120 times; the measurements and thresholds for the length, shortness, absolute word, diversity and structure rules, all passing; above, the steps from generator to registration.</p>
 <p><small>Tags: Kotlin, Jetpack Compose, Supabase, Retention loop</small></p>
 </article>
 <article id="en-istakip">
@@ -1684,7 +1827,7 @@ document.documentElement.setAttribute("data-theme", "day");
   };
 
   var PROJ = {
-    karinca:{ w:640, h:600, badges:[0,1,1],
+    karinca:{ w:720, h:660, badges:[0,1,1],
       en:{ t:"Karinca", name:"Karınca", meta:"2025 to 2026 &middot; Android, ~140 Kotlin files",
         lede:"A spaced repetition study app with a full virtual economy underneath it.",
         paras:["Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. It runs an Anki style repetition engine with dynamic question generation, but the part I care about is the economy layered on top: XP, coins, levels, streaks, a theme shop and a paywall.",
@@ -3462,6 +3605,392 @@ document.documentElement.setAttribute("data-theme", "day");
     setTimeout(function(){ var r = root.getBoundingClientRect(); if(root.isConnected && r.top < innerHeight - 120 && r.bottom > 120) start(); }, 2500);
   }
 
+  /* KARINCA start: the study screen and the quality gate. The questions are built in the
+     browser from the content and the rules of the app's bio_9121_b generator
+     (core/generator/bio_9121_b_generator.kt): eleven minerals plus one "which is not"
+     card, three question modes, distractors picked by GeneratorUtils.pickBalancedDistractors.
+     The review step is SrsEngine.update, the rating comes from StudySessionViewModel
+     (a wrong answer is HARD, a right one under 10 seconds EASY, otherwise OK), and the
+     gate thresholds are the ones in qc/qc_rules.json. */
+  var KR_GEN = {"p":["Kemik ve dişlerin yapısına katılır; kas kasılması, sinir iletimi ve kanın pıhtılaşmasında görev alır.","Hücre içi sıvının temel katyonudur; sinir iletiminde ve kasların kasılıp gevşemesinde görev alır.","Alyuvarlardaki hemoglobinin yapısına katılarak dokulara oksijen taşınmasını sağlayan mineraldir.","Tiroit bezi hormonlarının (tiroksin) yapısına katılır.","Diş minesini güçlendirerek diş çürümelerinin önlenmesine yardımcı olur.","Bitkilerde klorofilin yapısına katılır ve birçok enzimi etkinleştiren kofaktör olarak görev alır.","Hücre dışı sıvının temel katyonudur; sinir iletiminde ve vücudun su-tuz dengesinin korunmasında görev alır.","ATP, DNA, RNA ve fosfolipitlerin yapısına katılır; ayrıca kemik ve dişlerin sert yapısında da bol miktarda bulunan bir mineraldir.","Mide öz suyundaki hidroklorik asidin (HCl) yapısına katılır; hücre dışı sıvıda başlıca negatif iyon (anyon) olarak bulunur.","Bazı amino asitlerin ve proteinlerin yapısına katılır.","Birçok enzimin yapısal bileşeni olarak bulunur; bağışıklık sisteminin çalışmasında, büyüme ve gelişmenin düzenlenmesinde görev alır.","Hücrede sentezlenen, enerji verici görev gören organik bir bileşiktir.","Amino asitlerden oluşan, biyolojik tepkimeleri hızlandıran ve tepkime sonunda değişmeden kalan, her tepkimeye özgü organik bir moleküldür.","Karbon iskeletine sahip olan, hücrenin en hızlı ve en kolay kullandığı temel enerji kaynağı olarak görev yapan organik bir bileşiktir.","Nükleotit adı verilen birimlerden oluşan, kalıtsal bilgiyi taşıyan ve bu bilgiyi yavru hücrelere aktaran organik bir moleküldür.","Kemik ve dişlerin yapısına katılarak iskelet yapısını güçlendirir; kas kasılması, sinir iletimi ve kanın pıhtılaşmasında görev alır.","Suda çözündüğünde ortama hidrojen iyonu vererek pH değerini düşüren, tadı ekşi ve aşındırıcı özellik gösteren inorganik bileşik grubudur."],"c":[["kalsiyum","Kalsiyum",["Kalsiyumun canlılar için önemi ile ilgili aşağıdakilerden hangisi doğrudur?","Kalsiyum minerali ile ilgili aşağıdakilerden hangisi doğrudur?","Kalsiyumun görevi ile ilgili aşağıdakilerden hangisi söylenebilir?"],["Kemik ve dişlerin yapısına katılan, kanın pıhtılaşmasında da görevli mineral hangisidir?","Süt ürünleriyle alınan, eksikliğinde kemik erimesi (osteoporoz) görülen mineral hangisidir?"],0,["Kalsiyum eksikliğinde kemikler zayıflar ve kanın pıhtılaşması güçleşir.","Süt ve süt ürünleri kalsiyum bakımından zengindir.","Kandaki kalsiyum düzeyi hormonlarla dengede tutulur."],[1,2,3,4,5,6,7,8,9,10,11,12,13,14],"Kalsiyum kemik-diş yapısının yanı sıra kas kasılması, sinir iletimi ve kanın pıhtılaşması için gereklidir; eksikliğinde kemikler zayıflar."],["potasyum","Potasyum",["Potasyumun canlılar için önemi ile ilgili aşağıdakilerden hangisi doğrudur?","Potasyum minerali ile ilgili aşağıdakilerden hangisi doğrudur?","Potasyumun görevi ile ilgili aşağıdakilerden hangisi söylenebilir?"],["Hücre içi sıvının temel katyonu olan, sinir iletimi ve kas çalışmasında görevli mineral hangisidir?","Muz ve sebzelerde bol bulunan, hücre içinde en çok bulunan pozitif iyon olan mineral hangisidir?"],1,["Potasyum, hücre içi sıvıda en bol bulunan pozitif iyondur.","Muz ve sebzeler potasyum bakımından zengindir.","Sodyum ve potasyum birlikte sinir hücrelerinde uyartı iletimini sağlar."],[0,2,3,4,5,6,7,8,9,10,11,12,13,14],"Potasyum hücre içinde en bol bulunan katyondur; sodyumla birlikte sinir hücrelerinde uyartı iletimini sağlar."],["demir","Demir",["Demirin canlılar için önemi ile ilgili aşağıdakilerden hangisi doğrudur?","Demir minerali ile ilgili aşağıdakilerden hangisi doğrudur?","Demirin görevi ile ilgili aşağıdakilerden hangisi söylenebilir?"],["Hemoglobinin yapısına katılarak oksijen taşınmasını sağlayan mineral hangisidir?","Eksikliğinde kansızlık (anemi) görülen, kırmızı ette bol bulunan mineral hangisidir?"],2,["Demir eksikliğinde kansızlık (demir eksikliği anemisi) görülür.","Kırmızı et, kuru baklagil ve koyu yeşil sebzeler demir kaynağıdır.","Demir, hemoglobinde oksijene bağlanan kısımda yer alır."],[0,1,3,4,5,6,7,8,9,10,11,12,13,14],"Demir hemoglobinde oksijene bağlandığı için kanın oksijen taşımasını sağlar; eksikliğinde kansızlık (anemi) görülür."],["iyot","İyot",["İyodun canlılar için önemi ile ilgili aşağıdakilerden hangisi doğrudur?","İyot minerali ile ilgili aşağıdakilerden hangisi doğrudur?","İyodun görevi ile ilgili aşağıdakilerden hangisi söylenebilir?"],["Tiroit bezi hormonlarının yapısına katılan mineral hangisidir?","Eksikliğinde guatr hastalığı görülen, sofra tuzuna eklenen mineral hangisidir?"],3,["İyot eksikliğinde tiroit bezi büyür ve guatr hastalığı görülür.","İyotlu sofra tuzu kullanımı iyot eksikliğini önlemeye yardımcı olur.","Tiroit hormonları metabolizma hızının düzenlenmesinde görev alır."],[0,1,2,4,5,6,7,8,9,10,11,12,13,14],"İyot tiroit hormonlarının yapısına katıldığından metabolizma hızının ayarlanmasında rol oynar; eksikliğinde guatr gelişir."],["flor","Flor",["Florun canlılar için önemi ile ilgili aşağıdakilerden hangisi doğrudur?","Flor minerali ile ilgili aşağıdakilerden hangisi doğrudur?","Florun görevi ile ilgili aşağıdakilerden hangisi söylenebilir?"],["Diş minesini güçlendirerek diş çürümelerini önlemeye yardımcı olan mineral hangisidir?","Diş macunlarına eklenen, eksikliğinde diş çürüğü artan mineral hangisidir?"],4,["Flor eksikliğinde diş çürükleri daha sık görülebilir.","Diş macunlarına bu nedenle flor bileşikleri eklenir.","Aşırı flor alımı diş ve kemiklerde lekelenmeye yol açabilir."],[0,1,2,3,5,6,7,8,9,10,11,12,13,14],"Flor diş minesini güçlendirerek dişleri asit ve çürüğe karşı korur; bu yüzden diş macunlarına eklenir."],["magnezyum","Magnezyum",["Magnezyumun canlılar için önemi ile ilgili aşağıdakilerden hangisi doğrudur?","Magnezyum minerali ile ilgili aşağıdakilerden hangisi doğrudur?","Magnezyumun görevi ile ilgili aşağıdakilerden hangisi söylenebilir?"],["Bitkilerde klorofilin yapısına katılan mineral hangisidir?","Klorofil molekülünün merkezinde yer alan, birçok enzimi etkinleştiren mineral hangisidir?"],5,["Magnezyum, bitkilerde klorofil molekülünün merkezinde bulunur.","Birçok enzimin etkinlik gösterebilmesi için magnezyum gereklidir.","Yeşil yapraklı sebzeler magnezyum bakımından zengindir."],[0,1,2,3,4,6,7,8,9,10,11,12,13,14],"Magnezyum bitkilerde klorofilin merkez atomudur ve birçok enzimi etkinleştiren kofaktördür; bu yüzden fotosentez ve metabolizma için gereklidir."],["sodyum","Sodyum",["Sodyumun canlılar için önemi ile ilgili aşağıdakilerden hangisi doğrudur?","Sodyum minerali ile ilgili aşağıdakilerden hangisi doğrudur?","Sodyumun görevi ile ilgili aşağıdakilerden hangisi söylenebilir?"],["Hücre dışı sıvının temel katyonu olan, sinir iletiminde görevli mineral hangisidir?","Aşırı alımı tansiyonu yükselten, vücudun su dengesini ayarlayan hücre dışı katyon mineral hangisidir?"],6,["Sodyum, hücre dışı sıvıda en bol bulunan pozitif iyondur.","Aşırı sodyum (tuz) alımı kan basıncını (tansiyonu) yükseltebilir.","Sodyum, vücudun su dengesinin ayarlanmasında görev alır."],[0,1,2,3,4,5,7,8,9,10,11,12,13,14],"Sodyum hücre dışı sıvının temel katyonudur; su dengesi ve sinir iletiminde görev alır, aşırısı tansiyonu yükseltir."],["fosfor","Fosfor",["Fosforun canlılar için önemi ile ilgili aşağıdakilerden hangisi doğrudur?","Fosfor minerali ile ilgili aşağıdakilerden hangisi doğrudur?","Fosforun görevi ile ilgili aşağıdakilerden hangisi söylenebilir?"],["ATP, DNA ve fosfolipitlerin yapısına katılan mineral hangisidir?","Nükleik asitlerin (DNA, RNA) ve ATP'nin yapısına katılan, kemik yapısında da bulunan mineral hangisidir?"],7,["Fosfor, ATP'nin ve nükleik asitlerin (DNA, RNA) yapısında bulunur.","Kalsiyumla birlikte kemik ve dişlerin yapısına katılır.","Hücre zarındaki fosfolipitlerin yapısında yer alır."],[0,1,2,3,4,5,6,8,9,10,11,12,13,14],"Fosfor ATP, DNA ve fosfolipitlerin yapısına katıldığından enerji aktarımı, kalıtım ve hücre zarı yapısı fosfora dayanır."],["klor","Klor",["Klorun canlılar için önemi ile ilgili aşağıdakilerden hangisi doğrudur?","Klor minerali ile ilgili aşağıdakilerden hangisi doğrudur?","Klorun görevi ile ilgili aşağıdakilerden hangisi söylenebilir?"],["Midedeki hidroklorik asidin (HCl) yapısına katılan mineral hangisidir?","Hücre dışı sıvıda başlıca negatif iyon (anyon) olarak bulunan, mide asidinin yapısındaki mineral hangisidir?"],8,["Klor, midedeki hidroklorik asidin yapısına katılarak sindirime yardımcı olur.","Vücut sıvılarında ozmotik dengenin korunmasında görev alır.","Sofra tuzu (sodyum klorür) önemli bir klor kaynağıdır."],[15,1,2,3,4,5,6,7,9,10,11,12,13,14],"Klor mide asidinin (HCl) yapısına katılır ve hücre dışı sıvının başlıca negatif iyonudur; sindirim ve iyon dengesinde görev alır."],["kukurt","Kükürt",["Kükürdün canlılar için önemi ile ilgili aşağıdakilerden hangisi doğrudur?","Kükürt minerali ile ilgili aşağıdakilerden hangisi doğrudur?","Kükürdün görevi ile ilgili aşağıdakilerden hangisi söylenebilir?"],["Bazı amino asitlerin ve proteinlerin yapısına katılan mineral hangisidir?","Saç ve tırnak proteinlerinin yapısında bağlar oluşturan mineral hangisidir?"],9,["Kükürt, sistein gibi bazı amino asitlerin yapısında bulunur.","Proteinlerin üç boyutlu yapısının kararlılığına katkı sağlar.","Saç ve tırnak proteinlerinde kükürt bağları bulunur."],[0,1,2,3,4,5,6,7,8,10,11,12,13,14],"Kükürt bazı amino asitlerin yapısına katıldığından proteinlerin üç boyutlu yapısının kararlılığına katkı sağlar."],["cinko","Çinko",["Çinkonun canlılar için önemi ile ilgili aşağıdakilerden hangisi doğrudur?","Çinko minerali ile ilgili aşağıdakilerden hangisi doğrudur?","Çinkonun görevi ile ilgili aşağıdakilerden hangisi söylenebilir?"],["Birçok enzimin yapısında bulunan, bağışıklık ve büyümede görevli mineral hangisidir?","Eksikliğinde bağışıklığın zayıfladığı ve büyümenin geri kaldığı mineral hangisidir?"],10,["Çinko, çok sayıda enzimin yapısal bileşeni olarak görev alır.","Çinko eksikliği bağışıklığın zayıflamasına ve büyüme geriliğine yol açabilir.","Et, deniz ürünleri ve kuru baklagiller çinko kaynağıdır."],[0,1,2,3,4,5,6,7,8,9,11,12,13,14,16],"Çinko çok sayıda enzimin yapısal bileşenidir; bu yüzden bağışıklık ve büyüme süreçlerinde rol oynar, eksikliğinde büyüme gerileyebilir."]],"xt":["Alüminyum","Manganez","Selenyum"],"non":[["Vitamin","Karbon içeren organik düzenleyici bileşiklerdir; mineral (inorganik element) değildir."],["Protein","Amino asitlerden oluşan organik bir bileşiktir, mineral değildir."],["Nişasta","Karbon, hidrojen ve oksijenden oluşan organik bir karbonhidrattır."],["Glikoz","Bir karbonhidrat çeşidi olup organik bir bileşiktir."],["Enzim","Çoğunlukla protein yapılı organik biyolojik katalizörlerdir."],["Yağ","Gliserol ve yağ asitlerinden oluşan organik bir bileşiktir."]]};
+  var KR_X = { stems:["Aşağıdakilerden hangisi bir mineral değildir?","Aşağıdakilerden hangisi canlılar için gerekli minerallerden biri değildir?","Aşağıdakilerden hangisi mineral değil, organik bir bileşiktir?"],
+               tail:"Kalsiyum, demir, iyot gibi mineraller ise inorganik elementlerdir." };
+  var KR_ABS = ["hiçbir zaman","her zaman","kesinlikle","yalnızca","tamamen","mutlaka","hiçbir","sadece","daima","asla","hiç"];
+  var KR_T = {
+    tr:{ run:"Ders", qc:"Kalite kapısı", stat:"bio_9121_b · 12 kart · 1 generator",
+      sess:"Çalışma Oturumu", left:"Kalan", q:"Soru", show:"Cevabı Göster", next:"Sonraki Soru", sol:"Çözüm",
+      endT:"Deste tamamlandı", endS:"+50 XP deste bonusu",
+      card:"Kart", cardP:"Kartın üzerinde hazır bir soru yazmıyor, yalnızca bir tarifin kimliği duruyor. Kart her açıldığında generator bu tariften yeni bir soru kuruyor.",
+      modes:[["t","Mineralden göreve"],["r","Görevden minerale"],["d","Ayrıntı"],["x","Hangisi değildir"]],
+      regen:"↻ Aynı karttan yeni soru", regenS:"kök, çeldiriciler ve sıra her seferinde değişir",
+      srs:"Aralıklı tekrar", ans:"Cevap", time:"Süre", nextR:"Sonraki tekrar", right:"doğru", wrong:"yanlış", sec:" sn",
+      rates:[["h","Tekrar"],["o","İyi"],["e","Kolay"]],
+      rule:"Öğrenci kendini puanlamıyor; puanı cevap ve süre veriyor. Yanlış cevap Tekrar sayılıyor. Doğru cevap 10 saniyenin altındaysa Kolay, üstündeyse İyi sayılıyor; doğru bir cevap kartı hiçbir zaman sıfırlamıyor.",
+      eco:"Ekonomi", xp:"XP", lvl:"Seviye", coin:"Jeton", lvlTo:function(n, x){ return (n+1)+". seviyeye "+x+" XP"; },
+      min1:"1 dakika sonra", min10:"10 dakika sonra", days:function(n){ return n+" gün sonra"; }, dShort:function(n){ return n+" g"; },
+      s0:"Öğrenci bir biyoloji destesine devam ediyor. Soruyu siz de çözebilirsiniz; dokunmazsanız demo kendisi cevaplıyor.",
+      sQ:function(id){ return "Generator, "+id+" kartı için soruyu şimdi kuruyor."; },
+      sA:function(ok, s, r, w){ return (ok ? "Doğru" : "Yanlış")+" cevap, "+s+" saniyede. Değerlendirme "+r+" oldu; kart "+w+" yeniden geliyor."; },
+      sW:"Yanlış cevap da ilk seferinde XP kazandırıyor, böylece öğrenci denemekten çekinmiyor. Aynı kartta ikinci yanlış XP getirmiyor.",
+      sSame:"Aynı kart birkaç gün sonra yeniden geliyor. Kart aynıdır, ama generator soruyu bu kez başka bir yönden kuruyor; öğrenci cevabı ezberleyemiyor.",
+      sRegen:"Aynı karttan yeni bir soru üretildi: Kök, çeldiriciler ve şıkların sırası yeniden seçildi.",
+      sUser:"Bir şık seçip Cevabı Göster'e basın. Süre gerçek, puan da ona göre hesaplanıyor.",
+      sEnd:"Deste bitti. Deste sonu ödülü, öğrencinin ertesi gün geri gelmesi için verilen sözün bir parçasıdır.",
+      note:"Sorular, uygulamadaki bio_9121_b generator'ının içeriği ve kurallarıyla bu sayfada üretiliyor. XP, jeton ve seviye değerleri temsilîdir.",
+      flow:["Generator","Kural denetimi · 120 örnek","Yapay zekâ incelemesi","Editör kararı","Kayıt"],
+      recipe:"Tarif", vars:[["ok","Uygulamadaki tarif"],["short","Kısa çeldiriciler"],["abs","Mutlak sözcüklü çeldiriciler"]], cardL:"Kart",
+      smp:"üretilen örnek",
+      rules:[["UZUNLUK","Doğru cevap belirgin biçimde en uzun şık mı?"],["KISALIK","Doğru cevap belirgin biçimde en kısa şık mı?"],
+             ["MUTLAK","“Yalnızca, hiçbir, daima” gibi sözcüklere bakan öğrenci ne kadar tutturuyor? Şans %20'dir."],
+             ["ÇEŞİTLİLİK","Kaç farklı (kök, cevap) çifti çıkıyor? En az 3 olmalıdır."],["YAPI","Her soruda beş şık olmalı; tekrar eden şık, boş kök ya da boş çözüm olmamalıdır."]],
+      err:"hata", warn:"uyarı", ok:"geçti", pairs:"çift", errs:"sorun",
+      rOk:"<b class=\"ok\">Kapı açıktır.</b> Biçim kuralları temiz; kart şimdi anlam incelemesine gidiyor.",
+      rErr:function(c){ return "<b class=\"err\">Kapı kapalıdır.</b> "+c+" hatası kaydı durduruyor, bu yüzden öğrenci bu kartı görmüyor."; },
+      rRun:"Kart 120 kez üretiliyor ve her örnek kurallardan geçiyor.",
+      rShort:"Çeldiriciler kısaltıldı. Doğru cevap artık çoğu soruda en uzun şıktır ve öğrenci okumadan tahmin edebilir.",
+      rAbs:"Çeldiricilerin başına mutlak sözcük eklendi. Bu sözcükleri eleyen öğrenci, konuyu bilmeden doğruyu buluyor.",
+      ai:[["Yapay zekâ incelemesi","Kurallar biçimi ölçer, anlamı ölçemez. Claude, yks-kalite skill'iyle ikinci doğruyu, bilgi hatasını ve anlamsız çeldiriciyi arıyor."],
+          ["Editör kararı","Bulgular Pano'da kabul ya da yoksay kararı bekliyor. Yüksek önemli açık bir bulgu kaydı durduruyor."],
+          ["Kayıt","Temiz kart registry'ye ve seed sürümüne işleniyor. Kartın kimliği bundan sonra değişmiyor, çünkü öğrencinin ilerlemesi ona bağlıdır."],
+          ["Bugün","2.006 kart kayıtlıdır. Son kimya dalgasında bağımsız inceleme 107 dosyada 428 bulgu çıkardı."]],
+      qnote:"Eşikler qc/qc_rules.json dosyasındaki gerçek değerlerdir; denetim bu sayfada aynı formüllerle yeniden hesaplanıyor." },
+    en:{ run:"Study", qc:"Quality gate", stat:"bio_9121_b · 12 cards · 1 generator",
+      sess:"Çalışma Oturumu", left:"Kalan", q:"Soru", show:"Cevabı Göster", next:"Sonraki Soru", sol:"Çözüm",
+      endT:"Deste tamamlandı", endS:"+50 XP deste bonusu",
+      card:"Card", cardP:"The card holds no written question, only the id of a recipe. Every time the card comes up, the generator builds a new question from that recipe.",
+      modes:[["t","Mineral to role"],["r","Role to mineral"],["d","Detail"],["x","Which is not"]],
+      regen:"↻ New question, same card", regenS:"stem, distractors and order change every time",
+      srs:"Spaced repetition", ans:"Answer", time:"Time", nextR:"Next review", right:"right", wrong:"wrong", sec:" s",
+      rates:[["h","Again"],["o","Good"],["e","Easy"]],
+      rule:"Students do not grade themselves; the answer and the time do. A wrong answer counts as Again. A right answer under 10 seconds is Easy, otherwise Good, and a right answer never resets the card.",
+      eco:"Economy", xp:"XP", lvl:"Level", coin:"Coins", lvlTo:function(n, x){ return x+" XP to level "+(n+1); },
+      min1:"in 1 minute", min10:"in 10 minutes", days:function(n){ return "in "+n+(n === 1 ? " day" : " days"); }, dShort:function(n){ return n+" d"; },
+      s0:"A student is working through a biology deck. The app is in Turkish, as the exam is. Answer it yourself if you like; left alone, the demo answers on its own.",
+      sQ:function(id){ return "Next card: "+id+". The generator builds the question now, for this card."; },
+      sA:function(ok, s, r, w){ return (ok ? "Right" : "Wrong")+" answer in "+s+" seconds. Rated "+r+"; the card comes back "+w+"."; },
+      sW:"A wrong answer still earns XP the first time, so trying is never punished. A second wrong answer on the same card earns nothing.",
+      sSame:"The same card comes back a few days later. Same card, but this time the generator asks from another direction, so the answer cannot be memorised by its position.",
+      sRegen:"A new question from the same card: the stem, the distractors and the order were picked again.",
+      sUser:"Pick an option and press Cevabı Göster (show answer). The time is real and so is the rating.",
+      sEnd:"End of the deck. The reward at the end is part of the reason to come back tomorrow.",
+      note:"The questions are built on this page from the content and rules of the app's bio_9121_b generator. XP, coin and level values are illustrative.",
+      flow:["Generator","Rule check · 120 samples","AI review","Editor's decision","Registered"],
+      recipe:"Recipe", vars:[["ok","The recipe in the app"],["short","Short distractors"],["abs","Absolute words in distractors"]], cardL:"Card",
+      smp:"samples generated",
+      rules:[["UZUNLUK","Is the right answer noticeably the longest option?"],["KISALIK","Is the right answer noticeably the shortest option?"],
+             ["MUTLAK","How often does a student who only looks for words like “only, never, always” get it right? Chance is 20%."],
+             ["ÇEŞİTLİLİK","How many distinct (stem, answer) pairs come out? At least 3."],["YAPI","Five options every time; no repeated option, empty stem or empty explanation."]],
+      err:"error", warn:"warning", ok:"pass", pairs:"pairs", errs:"issues",
+      rOk:"<b class=\"ok\">Gate open.</b> The form rules are clean; the card goes on to the meaning review.",
+      rErr:function(c){ return "<b class=\"err\">Gate closed.</b> The "+c+" error stops the registration, so no student sees this card."; },
+      rRun:"The card is generated 120 times and every sample goes through the rules.",
+      rShort:"The distractors were shortened. Now the right answer is the longest option in most questions, and it can be guessed without reading.",
+      rAbs:"An absolute word was put in front of the distractors. A student who strikes those out finds the answer without knowing the topic.",
+      ai:[["AI review","Rules measure form, not meaning. Claude, with the yks-kalite skill, looks for a second right answer, factual errors and meaningless distractors."],
+          ["Editor's decision","Findings wait in the dashboard for accept or ignore. An open high severity finding stops the registration."],
+          ["Registered","A clean card goes into the registry and the seed version. From then on its id never changes, because the student's progress hangs on it."],
+          ["Today","2,006 cards are registered. In the last chemistry wave an independent review raised 428 findings across 107 files."]],
+      qnote:"The thresholds are the real values in qc/qc_rules.json; the check is recomputed on this page with the same formulas." }
+  };
+  function krHtml(L){
+    var T = KR_T[L];
+    return '<div class="pk kr" data-demo="kr">'
+      + '<div class="pk-top"><span class="pk-dots"><i></i><i></i><i></i></span>'
+      + '<span class="pk-tabs"><button data-t="run" class="on">'+T.run+'</button><button data-t="qc">'+T.qc+'</button></span>'
+      + '<span class="pk-stat">'+T.stat+'</span></div>'
+      + '<div class="pk-view on" data-v="run">'
+      +   '<div class="mz-say kr-say"></div>'
+      +   '<div class="kr-run"><div class="kr-pw"><div class="kr-phone"><div class="kr-flash"></div><span class="kr-xp"></span>'
+      +     '<div class="kr-sb"><span class="kr-clk"></span><i>&#9679;&#9679;&#9679; &#9646;</i></div>'
+      +     '<div class="kr-hd">'+T.sess+'<span>'+T.left+': <b class="kr-left"></b></span></div><div class="kr-pg"><u></u></div>'
+      +     '<div class="kr-sc"><div class="kr-body"></div></div></div></div>'
+      +   '<div class="kr-side">'
+      +     '<div class="kr-box"><h5>'+T.card+'<em class="kr-kz">01.9.1.2.1</em></h5><div class="kr-id"></div><p class="kr-p">'+T.cardP+'</p>'
+      +       '<div class="kr-modes">'+T.modes.map(function(m){ return '<span data-m="'+m[0]+'">'+m[1]+'</span>'; }).join('')+'</div>'
+      +       '<div class="kr-gen"><button class="kr-regen">'+T.regen+'</button><small>'+T.regenS+'</small></div></div>'
+      +     '<div class="kr-box"><h5>'+T.srs+'<em>SrsEngine</em></h5><dl class="kr-srs"><dt>'+T.ans+'</dt><dd class="kr-a">&middot;</dd><dt>'+T.time+'</dt><dd class="kr-t">&middot;</dd><dt>'+T.nextR+'</dt><dd class="kr-n">&middot;</dd></dl>'
+      +       '<div class="kr-rt">'+T.rates.map(function(r){ return '<span data-r="'+r[0]+'">'+r[1]+'</span>'; }).join('')+'</div>'
+      +       '<div class="kr-hist"></div><p class="kr-rule">'+T.rule+'</p></div>'
+      +     '<div class="kr-box"><h5>'+T.eco+'</h5><div class="kr-eco"><div><small>'+T.xp+'</small><b class="kr-xpv"></b></div><div><small>'+T.lvl+'</small><b class="kr-lvv"></b></div><div><small>'+T.coin+'</small><b class="kr-cnv"></b></div>'
+      +       '<div class="kr-lv"><u></u></div></div><p class="kr-rule kr-lvt"></p></div>'
+      +   '</div></div>'
+      +   '<div class="sm-note">'+T.note+'</div>'
+      + '</div>'
+      + '<div class="pk-view" data-v="qc"><div class="kq">'
+      +   '<div class="kq-flow">'+T.flow.map(function(f, i){ return '<span data-f="'+i+'">'+f+'</span>'; }).join('')+'</div>'
+      +   '<div class="kq-ctl"><small>'+T.recipe+'</small>'+T.vars.map(function(v){ return '<button data-v="'+v[0]+'">'+v[1]+'</button>'; }).join('')+'</div>'
+      +   '<div class="kq-grid"><div class="kq-smp"><div class="kq-cnt"><b><span class="kq-n">0</span> / 120</b><small class="kq-id"></small></div><div class="kq-list"></div></div>'
+      +   '<div class="kq-rules">'+T.rules.map(function(r){ return '<div class="kq-r" data-r="'+r[0]+'"><b>'+r[0]+'</b><p>'+r[1]+'</p><div class="kq-bar"><u></u></div><span>&middot;</span><em>&middot;</em></div>'; }).join('')+'</div></div>'
+      +   '<div class="kq-res"></div>'
+      +   '<div class="kq-ai">'+T.ai.map(function(a){ return '<div><small>'+a[0]+'</small><span>'+a[1]+'</span></div>'; }).join('')+'</div>'
+      +   '<div class="sm-note" style="padding:0">'+T.qnote+'</div>'
+      + '</div></div></div>';
+  }
+  function krMount(root, L){
+    if(root._kr) return; root._kr = 1;
+    var T = KR_T[L], TR = L === "tr";
+    var q = function(s){ return root.querySelector(s); }, qa = function(s){ return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var say = q(".kr-say"), body = q(".kr-body"), sc = q(".kr-sc"), phone = q(".kr-phone"), flash = q(".kr-flash"), xpT = q(".kr-xp"), leftEl = q(".kr-left"), pg = q(".kr-pg u"),
+        idEl = q(".kr-id"), aEl = q(".kr-a"), tEl = q(".kr-t"), nEl = q(".kr-n"), hist = q(".kr-hist");
+    var P = KR_GEN.p, CS = KR_GEN.c.map(function(c){ return { id:c[0], term:c[1], st:c[2], rs:c[3], c:P[c[4]], d:c[5], x:c[6].map(function(i){ return P[i]; }), ex:c[7] }; });
+    CS.push({ id:"exclusion" });
+    var byId = function(id){ return CS.filter(function(c){ return c.id === id; })[0]; };
+    var rnd = function(n){ return Math.floor(Math.random()*n); }, pick = function(a){ return a[rnd(a.length)]; };
+    var shuffle = function(a){ a = a.slice(); for(var i = a.length - 1; i > 0; i--){ var j = rnd(i+1), t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+    var lower = function(s){ return s.toLocaleLowerCase("tr-TR"); };
+
+    /* GeneratorUtils.pickBalancedDistractors: one option at least as long as the answer, one just
+       under it, the rest at random, so the answer is neither the longest nor the shortest */
+    function balanced(correct, pool){
+      if(pool.length <= 4) return shuffle(pool);
+      var c = correct.length, idx = pool.map(function(_, i){ return i; }), chosen = [];
+      var a = idx.filter(function(i){ return pool[i].length >= c; }); if(a.length) chosen.push(pick(a));
+      var b = idx.filter(function(i){ return chosen.indexOf(i) < 0 && pool[i].length <= c && pool[i].length*1.15 > c; }); if(b.length) chosen.push(pick(b));
+      var rest = shuffle(idx.filter(function(i){ return chosen.indexOf(i) < 0; })).slice(0, 4 - chosen.length);
+      return shuffle(chosen.concat(rest)).map(function(i){ return pool[i]; });
+    }
+    /* createQuestion(): 40% mineral to role, 40% role to mineral, 20% a detail; the exclusion card has its own */
+    function make(card, mode){
+      var c = byId(card), raw;
+      if(c.id === "exclusion"){
+        var w = pick(KR_GEN.non);
+        raw = { m:"x", stem:pick(KR_X.stems), c:w[0], x:balanced(w[0], CS.filter(function(k){ return k.term; }).map(function(k){ return k.term; })), ex:"<b>"+w[0]+"</b>: "+w[1]+" "+KR_X.tail };
+      } else {
+        if(!mode){ var r = rnd(100); mode = r < 40 ? "t" : r < 80 ? "r" : "d"; }
+        var ex = "<b>"+c.term+"</b>: "+c.ex;
+        if(mode === "t") raw = { m:"t", stem:pick(c.st), c:c.c, x:balanced(c.c, c.x), ex:ex };
+        else if(mode === "r") raw = { m:"r", stem:pick(c.rs), c:c.term, x:balanced(c.term, CS.filter(function(k){ return k.term && k.id !== c.id; }).map(function(k){ return k.term; }).concat(KR_GEN.xt)), ex:ex };
+        else { var d = pick(c.d); raw = { m:"d", stem:"Aşağıdakilerden hangisi "+lower(c.term)+" ile ilgili doğru bir bilgidir?", c:d, x:balanced(d, c.x), ex:ex }; }
+      }
+      /* AbstractQuestionGenerator.generateInstance: the answer is shuffled in among the distractors */
+      var ch = shuffle([raw.c].concat(raw.x));
+      return { card:card, m:raw.m, stem:raw.stem, ch:ch, idx:ch.indexOf(raw.c), ex:raw.ex };
+    }
+
+    /* SrsEngine.update, in days; a null state is a new card */
+    function srs(p, r){
+      if(!p){ var i0 = r === "h" ? 0 : r === "o" ? 1 : 4; return { iv:i0, ease:2.5, n:1, rl:false, pre:0, soon:i0 === 0 ? "m1" : "" }; }
+      if(p.rl){
+        if(r === "h") return { iv:p.iv, ease:p.ease, n:p.n+1, rl:true, pre:p.pre, soon:"m10" };
+        var rec = Math.max(1, Math.round(p.pre*.5)); return { iv:rec, ease:p.ease, n:p.n+1, rl:false, pre:0, soon:"" };
+      }
+      var qv = r === "h" ? 2 : r === "o" ? 3.5 : 5, ease = Math.max(1.3, p.ease + (.1 - (5 - qv)*(.08 + (5 - qv)*.02)));
+      if(r === "h"){
+        if(p.iv === 0) return { iv:0, ease:ease, n:p.n+1, rl:false, pre:0, soon:"m1" };
+        return { iv:0, ease:Math.max(1.3, p.ease - .2), n:p.n+1, rl:true, pre:p.iv, soon:"m10" };
+      }
+      var iv = p.iv === 0 ? 1 : p.n === 1 ? (r === "o" ? 3 : 6) : Math.round(p.iv*ease*(r === "e" ? 1.3 : 1));
+      return { iv:iv, ease:ease, n:p.n+1, rl:false, pre:0, soon:"" };
+    }
+    var when = function(s){ return s.soon === "m1" ? T.min1 : s.soon === "m10" ? T.min10 : T.days(s.iv); };
+    var rateName = function(r){ return T.rates.filter(function(x){ return x[0] === r; })[0][1]; };
+
+    /* the study session */
+    var state = {}, wrongOnce = {}, hists = {}, xp = 1180, coins = 240, left = 6, cur = null, sel = -1, phase = "q", shownAt = 0;
+    var lastTouch = 0, nextAt = 0, auto = null, step = 0, started = false;
+    var SCRIPT = [{ c:"potasyum", m:"t", ok:1, s:6 }, { c:"demir", m:"r", ok:0, s:12 }, { c:"potasyum", m:"r", ok:1, s:7, same:1 }, { c:"exclusion", ok:1, s:8 }, { c:"demir", m:"t", ok:1, s:18 }];
+    var lvl = function(x){ return Math.max(1, Math.floor(Math.sqrt(x/100))); };
+    function eco(bump){
+      var l = lvl(xp), lo = l*l*100, hi = (l+1)*(l+1)*100;
+      q(".kr-xpv").textContent = xp.toLocaleString(TR ? "tr-TR" : "en-GB"); q(".kr-lvv").textContent = l; q(".kr-cnv").textContent = coins;
+      q(".kr-lv u").style.width = ((xp - lo)/(hi - lo)*100).toFixed(1)+"%"; q(".kr-lvt").textContent = T.lvlTo(l, hi - xp);
+      if(bump) bump.forEach(function(s){ var b = q(s); b.classList.remove("bump"); void b.offsetWidth; b.classList.add("bump"); });
+    }
+    function tap(el){ if(!el) return; el.classList.add("press"); setTimeout(function(){ el.classList.remove("press"); }, 260); }
+    function side(inst, flip){
+      idEl.textContent = "bio_9121_b_"+inst.card; if(flip){ idEl.classList.remove("flip"); void idEl.offsetWidth; idEl.classList.add("flip"); }
+      qa(".kr-modes span").forEach(function(s){ var m = s.getAttribute("data-m"); s.className = m === inst.m ? "on" : (inst.card === "exclusion") !== (m === "x") ? "na" : ""; });
+      aEl.innerHTML = tEl.innerHTML = nEl.innerHTML = "&middot;"; aEl.className = "kr-a";
+      qa(".kr-rt span").forEach(function(s){ s.classList.remove("on"); });
+      hist.innerHTML = (hists[inst.card] || []).map(function(h){ return '<i class="'+h[0]+'">'+rateName(h[0])+' · '+h[1]+'</i>'; }).join('');
+    }
+    function show(inst, flip){
+      cur = inst; sel = -1; phase = "q"; shownAt = Date.now();
+      body.classList.remove("done");
+      body.innerHTML = '<div class="kr-qc"><small>'+T.q+'</small><p>'+inst.stem+'</p></div>'
+        + inst.ch.map(function(c, i){ return '<button class="kr-op" data-i="'+i+'">'+c+'</button>'; }).join('')
+        + '<div class="kr-sol"><b class="h">'+T.sol+'</b>'+inst.ex+'</div>'
+        + '<button class="kr-btn" disabled>'+T.show+'</button>';
+      sc.scrollTop = 0; flash.className = "kr-flash"; leftEl.textContent = left; pg.style.width = ((6 - left)/6*100)+"%";
+      side(inst, flip);
+    }
+    function next(inst, flip){
+      body.classList.add("out");
+      setTimeout(function(){ show(inst, flip); body.classList.remove("out"); }, 260);
+    }
+    function choose(i){
+      if(phase !== "q") return; sel = i;
+      qa(".kr-op").forEach(function(b, k){ b.classList.toggle("sel", k === i); });
+      tap(qa(".kr-op")[i]); q(".kr-btn").disabled = false;
+      sc.scrollTop = sc.scrollHeight;
+    }
+    function submit(secs){
+      if(phase !== "q" || sel < 0) return; phase = "a";
+      var ok = sel === cur.idx, r = !ok ? "h" : secs < 10 ? "e" : "o", ops = qa(".kr-op"), btn = q(".kr-btn");
+      tap(btn); body.classList.add("done");
+      ops[cur.idx].classList.add("ok"); if(!ok) ops[sel].classList.add("no");
+      ops.forEach(function(b){ b.classList.remove("sel"); });
+      flash.className = "kr-flash "+(ok ? "ok" : "no"); setTimeout(function(){ flash.className = "kr-flash"; }, 900);
+      if(!ok){ phone.classList.remove("shake"); void phone.offsetWidth; phone.classList.add("shake"); }
+      btn.textContent = T.next; btn.disabled = false;
+      var s = srs(state[cur.card], r); state[cur.card] = s;
+      (hists[cur.card] = hists[cur.card] || []).push([r, s.soon ? (s.soon === "m1" ? "1 dk" : "10 dk") : T.dShort(s.iv)]);
+      hist.innerHTML = hists[cur.card].map(function(h){ return '<i class="'+h[0]+'">'+rateName(h[0])+' · '+h[1]+'</i>'; }).join('');
+      aEl.textContent = ok ? T.right : T.wrong; aEl.className = "kr-a "+(ok ? "ok" : "no");
+      tEl.textContent = secs+T.sec; nEl.innerHTML = '<b>'+when(s)+'</b>';
+      qa(".kr-rt span").forEach(function(x){ x.classList.toggle("on", x.getAttribute("data-r") === r); });
+      /* XpManager: 10 XP a card; a wrong answer only the first time on that card */
+      var gain = ok || !wrongOnce[cur.card] ? 10 : 0; if(!ok) wrongOnce[cur.card] = 1;
+      var l0 = lvl(xp); xp += gain; if(lvl(xp) > l0) coins += 50;
+      if(gain){ xpT.textContent = "+"+gain+" XP"; xpT.classList.add("on"); setTimeout(function(){ xpT.classList.remove("on"); }, 1400); }
+      eco(gain ? [".kr-xpv"] : null);
+      left--; leftEl.textContent = left; pg.style.width = ((6 - left)/6*100)+"%";
+      say.textContent = T.sA(ok, secs, rateName(r), when(s)) + (!ok && gain ? " "+T.sW : "");
+      setTimeout(function(){ sc.scrollTop = sc.scrollHeight; }, 380); setTimeout(function(){ sc.scrollTop = sc.scrollHeight; }, 900);
+    }
+    function deckEnd(){
+      phase = "end"; xp += 50; eco([".kr-xpv"]);
+      body.innerHTML = '<div class="kr-end"><div style="font-size:30px">&#127881;</div><b>'+T.endT+'</b><span>'+T.endS+'</span></div>';
+      xpT.textContent = "+50 XP"; xpT.classList.add("on"); setTimeout(function(){ xpT.classList.remove("on"); }, 1600);
+      say.textContent = T.sEnd; pg.style.width = "100%";
+      setTimeout(function(){ if(phase === "end" && root.isConnected){ nextCard(); nextAt = Date.now() + 3200; } }, 3800);
+    }
+    function nextCard(){
+      if(left <= 0 && phase !== "end"){ deckEnd(); return 99999; }
+      if(phase === "end") left = 6;
+      var sc0 = SCRIPT[step], inst;
+      if(auto && sc0){ inst = make(sc0.c, sc0.m); say.textContent = sc0.same ? T.sSame : T.sQ("bio_9121_b_"+sc0.c); }
+      else { var c = pick(CS).id; inst = make(c); say.textContent = T.sQ("bio_9121_b_"+c); }
+      next(inst, true); return 0;
+    }
+    /* the visitor can answer; the demo only plays while nobody is touching it */
+    root.addEventListener("click", function(ev){
+      var t = ev.target.closest(".pk-tabs button");
+      if(t){
+        qa(".pk-tabs button").forEach(function(b){ b.classList.toggle("on", b === t); });
+        qa(".pk-view").forEach(function(v){ v.classList.toggle("on", v.getAttribute("data-v") === t.getAttribute("data-t")); });
+        if(t.getAttribute("data-t") === "qc") gateStart();
+        return;
+      }
+      var o = ev.target.closest(".kr-op"), b = ev.target.closest(".kr-btn"), g = ev.target.closest(".kr-regen");
+      if(!o && !b && !g) return;
+      if(!started) start();
+      lastTouch = Date.now(); auto = null;
+      if(o && phase === "q"){ if(sel < 0) say.textContent = T.sUser; choose(+o.getAttribute("data-i")); }
+      else if(b && phase === "q" && sel >= 0) submit(Math.max(1, Math.round((Date.now() - shownAt)/1000)));
+      else if(b && phase === "a") nextCard();
+      else if(g && cur && phase !== "end"){ tap(g); next(make(cur.card), true); say.textContent = T.sRegen; }
+    });
+    function tick(){
+      if(!root.isConnected) return;
+      setTimeout(tick, 300);
+      if(!started || phase === "end" || Date.now() - lastTouch < 12000 || Date.now() < nextAt) return;
+      if(!auto){ auto = { ok:Math.random() < .75, s:5 + rnd(16) }; }
+      var sc0 = SCRIPT[step] || auto;
+      if(phase === "q" && sel < 0){
+        var wrong = cur.ch.map(function(_, i){ return i; }).filter(function(i){ return i !== cur.idx; });
+        choose(sc0.ok ? cur.idx : pick(wrong)); nextAt = Date.now() + 1500;
+      } else if(phase === "q"){
+        submit(sc0.s); nextAt = Date.now() + (sc0.ok ? 5200 : 7600);
+      } else {
+        if(phase === "a") step++;
+        auto = SCRIPT[step] ? auto : { ok:Math.random() < .75, s:5 + rnd(16) };
+        var hold = nextCard(); nextAt = Date.now() + 3200 + hold;
+      }
+    }
+    function start(){
+      if(started) return; started = true;
+      auto = {}; show(make(SCRIPT[0].c, SCRIPT[0].m), false); say.textContent = T.s0; nextAt = Date.now() + 3600;
+    }
+    (function clk(){ if(!root.isConnected) return; var d = new Date(); q(".kr-clk").textContent = ("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2); setTimeout(clk, 20000); })();
+    eco(); leftEl.textContent = left; say.textContent = TR ? "Ders birazdan başlıyor." : "The session starts in a moment.";
+    tick();
+    if(window.IntersectionObserver){
+      var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); setTimeout(start, 500); } }, { threshold:.3 });
+      io.observe(root);
+    }
+    setTimeout(function(){ var r = root.getBoundingClientRect(); if(root.isConnected && r.top < innerHeight - 120 && r.bottom > 120) start(); }, 2500);
+
+    /* the quality gate: the same card built 120 times and measured the way quality.py measures it */
+    var gRun = 0, gTouch = 0, gStarted = false, gVar = "ok", gCard = "potasyum";
+    var flowEls = qa(".kq-flow span"), res = q(".kq-res"), nCnt = q(".kq-n"), list = q(".kq-list"), aiEls = qa(".kq-ai div");
+    q(".kq-id").textContent = "bio_9121_b_"+gCard;
+    function hasAbs(s){ var t = lower(s); return KR_ABS.some(function(w){ return new RegExp("(^|[^\\p{L}])"+w+"(?![\\p{L}])", "u").test(t); }); }
+    function variant(inst, v){
+      if(v === "ok") return inst;
+      var ch = inst.ch.map(function(c, i){
+        if(i === inst.idx || c.length < 20) return c;
+        if(v === "short"){ var s = c.split(/[;,(]/)[0].trim(); if(s.length > 38) s = s.slice(0, 38).replace(/\s+\S*$/, ""); return s+"."; }
+        return "Yalnızca " + lower(c.charAt(0)) + c.slice(1);
+      });
+      return { card:inst.card, m:inst.m, stem:inst.stem, ch:ch, idx:inst.idx, ex:inst.ex };
+    }
+    function measure(rows){
+      var big = 0, small = 0, abs = 0, pairs = {}, np = 0, bad = 0;
+      rows.forEach(function(x){
+        var c = x.ch[x.idx], o = x.ch.filter(function(_, i){ return i !== x.idx; });
+        var lc = c.length, mx = Math.max.apply(null, o.map(function(s){ return s.length; })), mn = Math.min.apply(null, o.map(function(s){ return s.length; }));
+        if(lc >= mx*1.15 && lc - mx >= 8) big++;
+        if(lc*1.15 <= mn && mn - lc >= 8) small++;
+        var fl = x.ch.map(hasAbs), keep = [], pk = [];
+        fl.forEach(function(f, i){ (f ? pk : keep).push(i); });
+        abs += !pk.length || !keep.length ? 1/x.ch.length : Math.max(keep.indexOf(x.idx) >= 0 ? 1/keep.length : 0, pk.indexOf(x.idx) >= 0 ? 1/pk.length : 0);
+        var k = x.stem+"\u0000"+c; if(!pairs[k]){ pairs[k] = 1; np++; }
+        if(x.ch.length !== 5 || new Set(x.ch).size !== 5 || !x.stem || !x.ex) bad++;
+      });
+      var n = rows.length || 1;
+      return { UZUNLUK:big/n, "KISALIK":small/n, MUTLAK:abs/n, "ÇEŞİTLİLİK":np, YAPI:bad, n:rows.length };
+    }
+    var pct = function(v){ return TR ? "%"+Math.round(v*100) : Math.round(v*100)+"%"; };
+    var wid = function(v){ return Math.round(v*100)+"%"; };
+    function paint(m, final){
+      var codes = [];
+      qa(".kq-r").forEach(function(r){
+        var k = r.getAttribute("data-r"), v = m[k], u = r.querySelector("u"), sp = r.querySelector("span"), em = r.querySelector("em"), bar = r.querySelector(".kq-bar"), lv = "ok";
+        if(k === "UZUNLUK" || k === "KISALIK"){ u.style.width = wid(v); sp.textContent = pct(v); lv = v > .40 ? "err" : v > .25 ? "warn" : "ok"; }
+        else if(k === "MUTLAK"){ u.style.width = wid(v); sp.textContent = pct(v); lv = v > .60 ? "err" : v > .30 ? "warn" : "ok"; }
+        else if(k === "ÇEŞİTLİLİK"){ u.style.width = Math.min(100, v/30*100)+"%"; sp.textContent = v; lv = m.n >= 20 && v < 3 ? "warn" : "ok"; }
+        else { u.style.width = v ? "100%" : "0"; sp.textContent = v; lv = v ? "err" : "ok"; }
+        if(!bar.querySelector("i")){
+          var th = k === "MUTLAK" ? [.30, .60] : k === "UZUNLUK" || k === "KISALIK" ? [.25, .40] : k === "ÇEŞİTLİLİK" ? [3/30] : [];
+          bar.innerHTML += th.map(function(t, i){ return '<i class="'+(i === 0 && th.length > 1 ? "w" : "")+'" style="left:'+(t*100)+'%"></i>'; }).join('');
+        }
+        em.className = final ? lv : ""; em.textContent = final ? T[lv] : "·";
+        if(final && lv === "err") codes.push(k);
+      });
+      return codes;
+    }
+    function flow(i, stop){ flowEls.forEach(function(f, k){ f.className = k < i ? "done" : k === i ? (stop ? "stop" : "on") : ""; }); aiEls.forEach(function(a, k){ a.classList.toggle("on", !stop && i >= 2 && (k < i - 1 || k === 3)); }); }
+    function gate(v){
+      var id = ++gRun, rows = [], k = 0; gVar = v;
+      qa(".kq-ctl button").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-v") === v); });
+      list.innerHTML = ""; flow(1); res.innerHTML = v === "short" ? T.rShort : v === "abs" ? T.rAbs : T.rRun;
+      qa(".kq-r em").forEach(function(e){ e.className = ""; e.textContent = "·"; });
+      (function batch(){
+        if(id !== gRun || !root.isConnected) return;
+        for(var j = 0; j < 4 && k < 120; j++, k++){
+          var x = variant(make(gCard), v); rows.push(x);
+          if(k % 2 === 0){
+            var it = document.createElement("div"); it.className = "kq-it new";
+            it.innerHTML = '<b>'+x.stem+'</b><span><em>'+"ABCDE"[x.idx]+')</em> '+x.ch[x.idx]+'</span>';
+            list.insertBefore(it, list.firstChild); while(list.children.length > 9) list.removeChild(list.lastChild);
+          }
+        }
+        nCnt.textContent = k; paint(measure(rows), false);
+        if(k < 120) return setTimeout(batch, reduce ? 0 : 70);
+        var codes = paint(measure(rows), true);
+        if(codes.length){ flow(1, true); res.innerHTML = T.rErr(codes.join(", ")) + ' ' + (v === "short" ? T.rShort : v === "abs" ? T.rAbs : ""); }
+        else { res.innerHTML = T.rOk; setTimeout(function(){ if(id === gRun) flow(2); }, 900); setTimeout(function(){ if(id === gRun) flow(3); }, 2200); setTimeout(function(){ if(id === gRun) flow(5); }, 3500); }
+        /* left alone, it shows how a bad recipe is caught, then the real one again */
+        var order = ["ok", "short", "abs"], nx = order[(order.indexOf(v) + 1) % 3];
+        setTimeout(function(){ if(id === gRun && Date.now() - gTouch > 10000 && q('.pk-view[data-v="qc"]').classList.contains("on")){ tap(q('.kq-ctl button[data-v="'+nx+'"]')); gate(nx); } }, 7000);
+      })();
+    }
+    q(".kq-ctl").addEventListener("click", function(ev){ var b = ev.target.closest("button"); if(!b) return; gTouch = Date.now(); tap(b); gate(b.getAttribute("data-v")); });
+    function gateStart(){ if(gStarted) return; gStarted = true; gate("ok"); }
+  }
+  /* KARINCA end */
+
   function mountDemos(el){
     var r = el.querySelector('[data-demo="pk"]');
     if(r) pkMount(r, LANG);
@@ -3471,6 +4000,8 @@ document.documentElement.setAttribute("data-theme", "day");
     if(s) smMount(s, LANG);
     var rp = el.querySelector('[data-demo="rp"]');
     if(rp) rpMount(rp, LANG);
+    var kr = el.querySelector('[data-demo="kr"]');
+    if(kr) krMount(kr, LANG);
   }
 
   /* how information moves through İş Takip Modülü, and the tables it lands in */
@@ -3541,7 +4072,7 @@ document.documentElement.setAttribute("data-theme", "day");
     return '<div class="doc"><h1>'+d.name+'</h1><p class="meta">'+d.meta+'</p>'
       + '<div class="badges">'+badges.map(function(on, i){ return '<span class="'+(on?'on':'')+'">'+BADGE[L][i]+'</span>'; }).join('')+'</div>'
       + '<p class="lede">'+d.lede+'</p>'
-      + (id === "istakip" ? pkHtml(L) : id === "pipeline" ? mzHtml(L) : id === "sms" ? smHtml(L) : id === "reporting" ? rpHtml(L) : '')
+      + (id === "istakip" ? pkHtml(L) : id === "pipeline" ? mzHtml(L) : id === "sms" ? smHtml(L) : id === "reporting" ? rpHtml(L) : id === "karinca" ? krHtml(L) : '')
       + d.paras.map(function(p, i){
           var b = d.blocks && d.blocks[i];
           return (b === "flow" ? dia(PK_FLOW, L) : b === "erd" ? erd(PK_ERD, L) : '') + '<p>'+p+'</p>';
