@@ -1078,14 +1078,14 @@ document.documentElement.setAttribute("data-theme", "day");
          dayB:"DAY", nightB:"NIGHT", dayT:"Back to day (N)", nightT:"Night sky (N)",
          scopeDay:"Back to day", scopeNight:"Look through the telescope: switch to the night sky" },
     tr:{ projects:"Projeler", about:"Hakkımda", readme:"benioku", openReadme:"Benioku dosyasını aç",
-         search:"ARA", find:"Bir proje, belge ya da araç aç...",
+         search:"ARA", find:"Proje, belge ya da araç arayın...",
          open:"Açık", win:"Pencere", none:"Sonuç yok",
          mn:"Küçült", mx:"Büyüt", x:"Kapat",
          m_refresh:"Yenile", m_realign:"Sistemi hizala", m_readme:"BENİOKU.txt dosyasını aç",
          m_search:"Ara", m_lang:"English", m_closeall:"Tüm pencereleri kapat", m_night:"Gece gökyüzü",
          m_reset:"Masaüstünü sıfırla", m_open:"Aç", m_orbit:"Yörüngeye geri gönder",
          dayB:"GÜNDÜZ", nightB:"GECE", dayT:"Gündüze dön (N)", nightT:"Gece gökyüzü (N)",
-         scopeDay:"Gündüze dön", scopeNight:"Teleskoptan bak: gece gökyüzüne geç" }
+         scopeDay:"Gündüze dön", scopeNight:"Teleskopla gece gökyüzüne geçin" }
   };
   function ui(k){ return UI[LANG][k]; }
 
@@ -1093,15 +1093,15 @@ document.documentElement.setAttribute("data-theme", "day");
   var MAIL = '<a href="mailto:onurmigirdagi@gmail.com">onurmigirdagi@gmail.com</a>';
   var ROLE = { en:"AI &amp; Automation", tr:"Yapay Zekâ ve Otomasyon" };
   var CITY = { en:"Istanbul, Türkiye", tr:"İstanbul, Türkiye" };
-  var BADGE = { en:["shipped","measured","running"], tr:["yayında","ölçüldü","çalışıyor"] };
+  var BADGE = { en:["shipped","measured","running"], tr:["yayında","etkisi ölçüldü","kullanımda"] };
 
   var INTRO = {
     en:["I build AI agents and automation that take repetitive work off a team's hands.",
         "Every project here started from a real problem and ended with something measurable.",
         "The pipeline behind the output is usually the part I am prouder of."],
-    tr:["Ekiplerin tekrar eden işini üstlenen yapay zekâ ajanları ve otomasyonlar kuruyorum.",
-        "Buradaki her proje gerçek bir problemden çıktı ve ölçülebilir bir sonuçla bitti.",
-        "Çıktının arkasındaki sistem, genelde en çok gurur duyduğum kısım."]
+    tr:["Ekiplerin tekrar eden işlerini üstlenen yapay zekâ ajanları ve otomasyonlar geliştiriyorum.",
+        "Buradaki her proje gerçek bir ihtiyaçtan doğdu ve ölçülebilir bir sonuç verdi.",
+        "Beni en çok gururlandıran çoğu zaman çıktının kendisi değil, arkasındaki sistem oluyor."]
   };
   var HOW = {
     en:{ h:"How to use",
@@ -1114,14 +1114,14 @@ document.documentElement.setAttribute("data-theme", "day");
           "Tap anything to open it, or drag it out of orbit and let go",
           "Close a window to go back to the desk"] },
     tr:{ h:"Nasıl kullanılır",
-      dk:["Beş proje gezegenin etrafında dönüyor, benim dosyalarım yedi yıldızda",
-          "Açmak için tıkla ya da yörüngeden çekip bırak",
-          "Sistem menüsü için masaüstüne sağ tıkla",
-          "Yaslamak için pencereyi ekranın kenarına sürükle",
+      dk:["Beş proje gezegenin çevresinde dönüyor, kişisel dosyalarım yedi yıldızda",
+          "Açmak için tıklayın ya da yörüngeden çekip bırakın",
+          "Sistem menüsü için masaüstüne sağ tıklayın",
+          "Pencereyi yerleştirmek için ekranın kenarına sürükleyin",
           "Her şeyi aramak için <b>⌘K</b>"],
-      mb:["Beş proje gezegenin etrafında dönüyor, benim dosyalarım yedi yıldızda",
-          "Açmak için herhangi birine dokun ya da yörüngeden çekip bırak",
-          "Masaya dönmek için pencereyi kapat"] }
+      mb:["Beş proje gezegenin çevresinde dönüyor, kişisel dosyalarım yedi yıldızda",
+          "Açmak için birine dokunun ya da yörüngeden çekip bırakın",
+          "Masaüstüne dönmek için pencereyi kapatın"] }
   };
 
   var PROJ = {
@@ -1133,13 +1133,13 @@ document.documentElement.setAttribute("data-theme", "day");
                "I wrote a UI specification targeting 60fps and WCAG 2.1 AA, then commissioned a full technical audit of my own codebase and worked from its findings rather than from my own opinion of the code. It scored 6.8 out of 10 and was blunt about weak test coverage, which is exactly what made it useful."],
         rt:"Stack", rail:["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM and Clean Architecture","Hilt dependency injection","Room local, <b>Supabase</b> sync","Spaced repetition engine","Self commissioned <b>audit</b>, 6.8/10"],
         tags:["Kotlin","Jetpack Compose","Supabase","Retention loop"] },
-      tr:{ t:"Karınca", name:"Karınca", meta:"2025'ten 2026'ya &middot; Android, ~140 Kotlin dosyası",
-        lede:"Altında eksiksiz bir sanal ekonomi dönen, aralıklı tekrar yöntemli bir ders çalışma uygulaması.",
-        paras:["Jetpack Compose üzerinde MVVM ve Clean Architecture ile yazıldı. Bağımlılıklar için Hilt, yerelde Room, senkronizasyon için Supabase kullanıyor. Dinamik soru üreten Anki tarzı bir tekrar motoru var, ama benim asıl önemsediğim kısım üstüne kurulan ekonomi: XP, coin, seviyeler, seriler, tema mağazası ve paywall.",
-               "Kartlar işin kolay kısmı. Birinin uygulamayı yarın yeniden açıp açmayacağını etrafındaki döngü belirliyor: bugünkü oturum geri gelmek için bir sebep bıraktı mı?",
-               "60fps ve WCAG 2.1 AA hedefleyen bir arayüz spesifikasyonu yazdım, ardından kendi kod tabanım için kapsamlı bir teknik denetim yaptırdım ve kod hakkındaki kendi fikrimle değil, denetimin bulgularıyla ilerledim. 10 üzerinden 6.8 aldı ve zayıf test kapsamı konusunda açık sözlüydü. Onu faydalı yapan da tam olarak buydu."],
-        rt:"Teknoloji", rail:["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM ve Clean Architecture","Hilt ile bağımlılık yönetimi","Yerelde Room, <b>Supabase</b> senkronizasyonu","Aralıklı tekrar motoru","Kendi yaptırdığım <b>denetim</b>, 6.8/10"],
-        tags:["Kotlin","Jetpack Compose","Supabase","Kullanıcı döngüsü"] } },
+      tr:{ t:"Karınca", name:"Karınca", meta:"2025 ve 2026 &middot; Android, yaklaşık 140 Kotlin dosyası",
+        lede:"Arkasında eksiksiz bir sanal ekonomi işleyen, aralıklı tekrara dayalı bir ders çalışma uygulaması.",
+        paras:["Jetpack Compose üzerinde MVVM ve Clean Architecture ile geliştirdim. Bağımlılık yönetiminde Hilt, yerel veride Room, eşitlemede Supabase kullanıyor. Soruları dinamik olarak üreten, Anki benzeri bir tekrar motoru var; ama benim için asıl önemli olan, bunun üzerine kurduğum ekonomi: XP, jeton, seviyeler, seriler, tema mağazası ve ücretli üyelik.",
+               "Kartlar işin kolay kısmı. Birinin uygulamayı ertesi gün yeniden açıp açmayacağını, kartların çevresindeki döngü belirliyor: Bugünkü oturum, geri dönmek için bir sebep bıraktı mı?",
+               "60 fps ve WCAG 2.1 AA hedefleyen bir arayüz şartnamesi yazdım. Ardından kod tabanım için kapsamlı bir teknik denetim yaptırdım ve kendi kanaatimle değil, denetimin bulgularıyla ilerledim. Denetim 10 üzerinden 6,8 puan verdi ve test kapsamının zayıf olduğunu açıkça belirtti. Onu faydalı kılan da tam olarak bu dürüstlüktü."],
+        rt:"Teknoloji", rail:["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM ve Clean Architecture","Hilt ile bağımlılık yönetimi","Yerelde Room, <b>Supabase</b> ile eşitleme","Aralıklı tekrar motoru","Kendi isteğimle yaptırdığım <b>denetim</b>, 6,8/10"],
+        tags:["Kotlin","Jetpack Compose","Supabase","Etkileşim döngüsü"] } },
 
     istakip:{ w:900, h:720, badges:[0,0,1],
       en:{ t:"İş Takip", name:"İş Takip Modülü", meta:"2026 &middot; personal project &middot; BTS &amp; Partners",
@@ -1155,17 +1155,17 @@ document.documentElement.setAttribute("data-theme", "day");
         rt:"Built with", rail:["Flutter, ~14,400 lines of Dart","<b>Database</b> with row level security","177 notes, 415 typed links","Force directed graph, written from scratch","Prompt building, <b>approved</b> AI writes","FSRS memory on every link"],
         tags:["Zettelkasten","Flutter","Knowledge graph","AI agent"] },
       tr:{ t:"İş Takip", name:"İş Takip Modülü", meta:"2026 &middot; kişisel proje &middot; BTS &amp; Partners",
-        lede:"Dijital bir Zettelkasten: çalıştığım sürece yaptığım her iş ve öğrendiğim her bilgi tek bir veritabanında tutuluyor, sonra o bilgiye bağlantıları üzerinden geri dönüyorum. Aşağıdaki pencere, uygulamanın graf ekranının gerçek veriyle çalışan hali.",
-        paras:["Zettelkasten, sosyolog Niklas Luhmann'ın çalıştığı not kutusu yöntemi. Her fikir kendi başına anlamlı küçük bir nota yazılır, her notun kalıcı bir kimliği vardır ve notlar klasörlerde değil, birbirlerine verdikleri referanslarla düzenlenir. Bilgi zamanla büyüyen bir ağa dönüşür; aradığını bir kategoriden değil, bir bağlantıdan bulursun. İş Takip Modülü bu yöntemin bir veritabanına taşınmış hali.",
-               "Çalıştığım sürece iki şey birlikte birikiyor: iş takibim ve öğrendiklerim. Bir görev açılıyor; üzerinde çalışırken çıkan bulgular, karşılaştığım kavramlar ve okuduğum kaynaklar ayrı notlar olarak ekleniyor ve göreve bağlanıyor. Görev kapanınca bilgi onunla birlikte gitmiyor: bir sonraki iş aynı kavrama dokunduğunda önceki bulgular zaten orada. Her not tek bir tabloda bir düğüm, aralarındaki her ilişkinin bir türü var. Bir araç bir protokolü uyguluyor, bir ürün bir regülasyona tabi, bir bulgu bir kaynağa dayanıyor.",
-               "Bilgi iki yoldan giriyor. Birincisi hızlı ekleme: tek satır düz Türkçe yazıyorum, \"yarın 14:00 sözleşme incelemesi #kvkk @proje +kişi P1\" gibi. Uygulama etiketi, projeyi, kişiyi, tarihi ve önceliği ayrıştırıp notu ve bağlarını kendisi kuruyor. İkincisi Claude ile yürüttüğüm işlerin kapanışı: bir görev bitince Claude kapanış notunu, yeni bulguları, kavramları, kaynakları ve aralarındaki bağları şemaya uygun bir YAML olarak öneriyor, ben onaylarsam yazılıyor. Her kaynağın nereden geldiği (web, kitap, makale, sohbet, meslektaş) ve kimin ürettiği, ben mi yapay zekâ mı, kayıtlı.",
-               "O bilgiye dört yoldan geri dönüyorum. Grafta bir kavrama tıklayıp iki adımlık komşuluğunu görüyorum: o konuda hangi işleri yaptığımı, neler bulduğumu, hangi kaynaklara dayandığımı. Aramada \"kvkk #research status:shipped\" gibi bir sorguyla tür, durum, etiket ve projeye göre süzüyorum. Yeni bir işe başladığımda Claude, uygulamanın yazdığı promptla aynı veritabanını okuyup önceki notları bağlam olarak kullanıyor; Prompt sekmesinde o metnin aynısı duruyor. Oyun sekmesi de bağlantıları kendi hafızamda canlı tutuyor: aralıklı tekrar kartlara değil bağlara uygulanıyor, her bağın kendi hafıza eğrisi var.",
-               "Bir Zettelkasten ancak bağları kadar değerli. Bu yüzden bir notun hangi türle, bir bağın hangi ilişkiyle açılacağı yazılı kurallara bağlı: etiket bir durumu işaretliyor, asla bir konuyu değil; bir mevzuat etiket olarak değil kavram olarak açılıyor. Yanlış kurulmuş 88 bağı 15 migrasyonda, her birinin öncesinde ve sonrasında yedek alarak düzelttim; belirsiz tek bir relates_to bağı kalmadı.",
-               "Her şey tek bir nodes tablosunda, türü kind sütununda. Her tür için ayrı tablo, her graf sorgusunda bir JOIN demekti; tek tabloyla graf sorguları türe bakmadan çalışıyor. Bağlar kendi tablosunda, aynı üçlü iki kez girilemiyor ve bir not kendine bağlanamıyor. Yorumlar, tekrarlanan test koşumları ve ağırlıklı kriterler nota bağlı ayrı tablolarda, oyunun hafızası ise bağa bağlı. Her satır RLS ile sahibine kilitli, her yazma audit_log'a düşüyor.",
-               "Kişi, görev, bulgu ve proje adları burada numaralı, çünkü müşteri ve şirket içi işleri anlatıyorlar. Türleri, durumları ve bütün bağlantıları gerçek."],
+        lede:"Dijital bir Zettelkasten: Çalışırken yaptığım her işi ve öğrendiğim her bilgiyi tek bir veritabanında topluyor, sonra bu bilgiye bağlantıları üzerinden geri dönüyorum. Aşağıdaki pencere, uygulamanın graf ekranının gerçek veriyle çalışan hâli.",
+        paras:["Zettelkasten, sosyolog Niklas Luhmann'ın kullandığı not kutusu yöntemi. Her fikir, tek başına anlam taşıyan küçük bir nota yazılır; her notun kalıcı bir kimliği vardır ve notlar klasörlerle değil, birbirlerine yaptıkları atıflarla düzenlenir. Zamanla bilgi büyüyen bir ağa dönüşür ve aranan şey bir kategoride değil, bir bağlantının ucunda bulunur. İş Takip Modülü, bu yöntemin bir veritabanına taşınmış hâli.",
+               "Çalıştıkça iki şey birlikte birikiyor: iş takibim ve öğrendiklerim. Bir görev açıldığında, üzerinde çalışırken ortaya çıkan bulgular, karşılaştığım kavramlar ve okuduğum kaynaklar ayrı notlar olarak ekleniyor ve göreve bağlanıyor. Görev kapandığında bilgi onunla birlikte kaybolmuyor; sonraki iş aynı kavrama dokunduğunda önceki bulgular zaten orada oluyor. Her not, tek bir tabloda bir düğüm olarak duruyor ve aralarındaki her ilişkinin bir türü var: Bir araç bir protokolü uygular, bir ürün bir düzenlemeye tabidir, bir bulgu bir kaynağa dayanır.",
+               "Bilgi iki yoldan giriyor. Birincisi hızlı ekleme: \"yarın 14:00 sözleşme incelemesi #kvkk @proje +kişi P1\" gibi tek satırlık düz bir cümle yazıyorum; uygulama etiketi, projeyi, kişiyi, tarihi ve önceliği ayırıp notu ve bağlantılarını kendisi oluşturuyor. İkincisi, Claude ile yürüttüğüm işlerin kapanışı: Bir görev bittiğinde Claude kapanış notunu, yeni bulguları, kavramları, kaynakları ve bunlar arasındaki bağlantıları şemaya uygun bir YAML olarak öneriyor; onaylarsam kaydediliyor. Her kaynağın nereden geldiği (web, kitap, makale, sohbet, meslektaş) ve kimin ürettiği, benim mi yapay zekânın mı olduğu da kayıt altında.",
+               "Bu bilgiye dört yoldan geri dönüyorum. Grafta bir kavrama tıklayıp iki adımlık çevresini görüyorum: O konuda hangi işleri yaptığımı, neler bulduğumu, hangi kaynaklara dayandığımı. Aramada \"kvkk #research status:shipped\" gibi bir sorguyla türe, duruma, etikete ve projeye göre süzüyorum. Yeni bir işe başladığımda Claude, uygulamanın hazırladığı prompt ile aynı veritabanını okuyor ve önceki notları bağlam olarak kullanıyor; Prompt sekmesindeki metin birebir bu. Oyun sekmesi ise bağlantıları hafızamda canlı tutuyor: Aralıklı tekrar kartlara değil bağlantılara uygulanıyor ve her bağlantının kendi hafıza eğrisi var.",
+               "Bir Zettelkasten ancak bağlantıları kadar değerlidir. Bu yüzden bir notun hangi türle, bir bağlantının hangi ilişkiyle kurulacağı yazılı kurallara bağlı: Etiket bir konuyu değil, yalnızca bir durumu işaretler; bir mevzuat etiket olarak değil, kavram olarak açılır. Yanlış kurulmuş 88 bağlantıyı 15 aşamada, her aşamanın öncesinde ve sonrasında yedek alarak düzelttim; anlamı belirsiz tek bir relates_to bağlantısı kalmadı.",
+               "Her şey tek bir nodes tablosunda duruyor, tür bilgisi kind sütununda. Her tür için ayrı tablo açmak, her graf sorgusunda bir JOIN demekti; tek tabloyla graf sorguları türden bağımsız çalışıyor. Bağlantılar ayrı bir tabloda tutuluyor: Aynı üçlü iki kez girilemiyor, bir not kendisine bağlanamıyor. Yorumlar, tekrarlanan test çalıştırmaları ve ağırlıklı ölçütler nota bağlı ayrı tablolarda; oyunun hafızası ise bağlantıya bağlı. Her satır RLS ile sahibine kilitli ve her yazma işlemi audit_log'a kaydediliyor.",
+               "Kişi, görev, bulgu ve proje adları burada numaralandırıldı, çünkü müşteri ve şirket içi işlere ait. Türleri, durumları ve bütün bağlantıları ise gerçek."],
         blocks:{ 2:"flow", 5:"erd" },
-        rt:"Yapı taşları", rail:["Flutter, ~14.400 satır Dart","Satır düzeyinde kilitli <b>veritabanı</b>","177 not, 415 tiplenmiş bağ","Sıfırdan yazılmış force directed graf","Prompt üretimi, <b>onaylı</b> AI yazma","Her bağda FSRS hafızası"],
-        tags:["Zettelkasten","Flutter","Bilgi grafı","AI ajanı"] } },
+        rt:"Yapı taşları", rail:["Flutter, yaklaşık 14.400 satır Dart","Satır düzeyinde erişim kilitli <b>veritabanı</b>","177 not, türü belirli 415 bağlantı","Sıfırdan yazılmış kuvvet yönelimli graf","Prompt üretimi, <b>onaylı</b> yapay zekâ kaydı","Her bağlantıda FSRS hafızası"],
+        tags:["Zettelkasten","Flutter","Bilgi grafı","Yapay zekâ ajanı"] } },
 
     pipeline:{ w:660, h:580, badges:[1,1,1],
       en:{ t:"Pipeline", name:"Regulatory Monitoring Pipeline", meta:"2026 &middot; BTS &amp; Partners",
@@ -1177,12 +1177,12 @@ document.documentElement.setAttribute("data-theme", "day");
         rt:"Built with", rail:["Python, scheduled <b>agents</b>","<b>Supabase</b> central store","Streamlit for inspection","<b>Microsoft Graph</b> for delivery","Benchmarked against <b>Power Automate</b>","Company, ecosystem and practice area tagging"],
         tags:["Python","AI agents","Supabase","Microsoft Graph"] },
       tr:{ t:"Mevzuat İzleme", name:"Mevzuat İzleme Sistemi", meta:"2026 &middot; BTS &amp; Partners",
-        lede:"Beş teknoloji şirketini ve resmî kurum, düzenleyici ve sektör basınından 107 kaynağı izleyen, canlı ortamda kendi başına çalışan otonom bir ajan hattı.",
-        paras:["Toplayıcı ajan kaynakları saatte bir tarıyor. Her içeriği gövdesinden özetliyor, alaka puanı veriyor, ilgili şirketi, ekosistemi ve çalışma alanını etiketleyip 17 alanlık bir kayıt olarak ortak veritabanına yazıyor. Hat tam o kayıtta ikiye ayrılıyor: bir yayıncı ajan iki saatte bir izlenen beş şirketin (Microsoft, Apple, Google, LinkedIn, Snapchat) haberlerini ve ekosistem gelişmelerini süzüp teknoloji bültenini, diğeri Türkiye'deki düzenleyici gelişmeleri süzüp mevzuat bültenini kurumsal e-postayla gönderiyor. Günlük işleyişte kimsenin dokunmasına gerek yok.",
-               "Yukarıdaki turdaki kayıtlar temsili, akışı göstermek için yazıldı; izlenen beş şirket, etiketler ve süzgeçler sistemdeki gibi.",
-               "Aynı iş akışını, ikisi düzgünce karşılaştırılabilsin diye Microsoft Power Automate üzerinde ikinci kez kurdum. Bu kadar kaynağı sorgulayıp sonuçlar üzerinde yapay zekâ analizi çalıştırmak şirketin lisans kapsamının dışında kalıyordu. Ajan versiyonu bu yüzden kazandı: mevcut abonelik kapasitesi içinde, ek altyapı maliyeti olmadan çalışıyor.",
-               "Ayrıca orada yapay zekâ çıktıları için kullanılan değerlendirme yöntemini tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk benchmark'ı ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması."],
-        rt:"Yapı taşları", rail:["Python, zamanlanmış <b>ajanlar</b>","Merkezi depo olarak <b>Supabase</b>","İnceleme için Streamlit","Dağıtım için <b>Microsoft Graph</b>","<b>Power Automate</b> ile karşılaştırıldı","İlgili şirket, ekosistem ve alan etiketleme"],
+        lede:"Beş teknoloji şirketini ve resmî kurum, düzenleyici ve sektör basınından 107 kaynağı izleyen; canlı ortamda insan müdahalesi olmadan çalışan bir yapay zekâ ajanı hattı.",
+        paras:["Toplayıcı ajan kaynakları saatte bir tarıyor. Her içeriği tam metninden özetliyor, alaka puanı veriyor; ilgili şirketi, ekosistemi ve çalışma alanını etiketleyip 17 alanlı bir kayıt olarak ortak veritabanına yazıyor. Hat tam bu kayıtta ikiye ayrılıyor: Yayıncı ajanlardan biri iki saatte bir izlenen beş şirketin (Microsoft, Apple, Google, LinkedIn, Snapchat) haberlerini ve ekosistemdeki gelişmeleri süzerek teknoloji bültenini, diğeri Türkiye'deki düzenleyici gelişmeleri süzerek mevzuat bültenini kurumsal e-postayla gönderiyor. Günlük işleyişte kimsenin müdahalesine gerek kalmıyor.",
+               "Yukarıdaki turda gösterilen kayıtlar temsilîdir ve akışı anlatmak için hazırlandı; izlenen beş şirket, etiketler ve süzgeçler ise sistemdekiyle aynı.",
+               "İki yaklaşımı sağlıklı biçimde karşılaştırabilmek için aynı iş akışını Microsoft Power Automate üzerinde de kurdum. Bu kadar çok kaynağı sorgulayıp sonuçları yapay zekâyla analiz etmek, şirketin lisans kapsamının dışında kalıyordu. Ajan sürümünün tercih edilmesinin nedeni de buydu: Mevcut abonelik kapasitesiyle, ek altyapı maliyeti olmadan çalışıyor.",
+               "Bunun yanında, şirkette yapay zekâ çıktılarını değerlendirmek için kullanılan yöntemi tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk testi ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması."],
+        rt:"Yapı taşları", rail:["Python ile zamanlanmış <b>ajanlar</b>","Merkezî depo olarak <b>Supabase</b>","İnceleme ekranı için Streamlit","Dağıtım için <b>Microsoft Graph</b>","<b>Power Automate</b> ile karşılaştırma","Şirket, ekosistem ve çalışma alanı etiketleme"],
         tags:["Python","Yapay zekâ ajanları","Supabase","Microsoft Graph"] } },
 
     reporting:{ w:660, h:580, badges:[1,1,1],
@@ -1193,10 +1193,10 @@ document.documentElement.setAttribute("data-theme", "day");
         rt:"What it does", rail:["Four <b>marketplace APIs</b>, pulled on schedule","Field mapping to <b>one schema</b>","Currency, date and return normalization","Company specific layout, not vendor layout","One monthly report, <b>5+ hours saved</b>"],
         tags:["Python","Apps Script","API integration"] },
       tr:{ t:"Raporlama", name:"Pazaryeri Raporlama", meta:"2025 &middot; Tradist Distribution",
-        lede:"Dört pazaryeri API'si, dört farklı yanıt yapısı, şirketin gerçekten okuduğu tek bir rapor.",
-        paras:["Satışlar dört ayrı pazaryeri panelinde duruyordu: Amazon, n11, Trendyol ve Hepsiburada. Her ay biri hepsini tek tek açıyor, her birinin sunduğu veriyi sunduğu formatta dışa aktarıyor ve parçaları elle birleştiriyordu. Formatlar birbirini tutmuyordu: farklı alan adları, farklı tarih biçimleri, neyin iade sayıldığına dair farklı kurallar.",
-               "Her kanalı kendi API'si üzerinden çektim, yanıtları tek bir şemada normalize ettim ve herhangi bir pazaryerinin dışa aktardığı şekilde değil, şirketin okuduğu şekilde düzenlenmiş tek bir aylık rapor ürettim. Ayda beş saatten fazla elle veri toplamayı ortadan kaldırdı ve daha da önemlisi, onunla gelen kopyala yapıştır hatalarını da."],
-        rt:"Ne yapıyor", rail:["Dört <b>pazaryeri API'si</b>, zamanlanmış çekim","Alanların <b>tek şemaya</b> eşlenmesi","Para birimi, tarih ve iade normalizasyonu","Pazaryerinin değil, şirketin düzeni","Tek aylık rapor, <b>ayda 5+ saat</b> kazanç"],
+        lede:"Dört pazaryeri API'si, dört farklı veri yapısı ve şirketin gerçekten okuduğu tek bir rapor.",
+        paras:["Satış verileri dört ayrı pazaryeri panelinde duruyordu: Amazon, n11, Trendyol ve Hepsiburada. Her ay biri bu panelleri tek tek açıyor, her birinden veriyi kendi biçiminde dışa aktarıyor ve parçaları elle birleştiriyordu. Biçimler birbirini tutmuyordu: Alan adları, tarih biçimleri ve neyin iade sayılacağına dair kurallar farklıydı.",
+               "Her kanalın verisini kendi API'si üzerinden çektim, yanıtları tek bir şemada birleştirdim ve pazaryerlerinin dışa aktardığı düzende değil, şirketin okumaya alıştığı düzende hazırlanmış tek bir aylık rapor oluşturdum. Bu, ayda beş saati aşan elle veri toplama işini ortadan kaldırdı; daha da önemlisi, beraberinde gelen kopyala yapıştır hatalarını da bitirdi."],
+        rt:"Ne yapıyor", rail:["Dört <b>pazaryeri API'sinden</b> zamanlanmış veri çekme","Alanların <b>tek şemada</b> eşlenmesi","Para birimi, tarih ve iade verilerinin standartlaştırılması","Pazaryerinin değil, şirketin kullandığı düzen","Tek aylık rapor, <b>ayda 5 saatten fazla</b> kazanç"],
         tags:["Python","Apps Script","API entegrasyonu"] } },
 
     sms:{ w:660, h:580, badges:[1,1,1],
@@ -1207,12 +1207,12 @@ document.documentElement.setAttribute("data-theme", "day");
                "It saved each person around twenty minutes a day. I found the need myself and built it on my own initiative; it was still running after I left."],
         rt:"How it works", rail:["Codes from <b>four marketplaces</b>","Pulled from SMS <b>automatically</b>","Sent to a shared <b>Google Sheet</b>","Runs in the background, survives restart","Nobody asks anybody for a code"],
         tags:["Android","Kotlin","Google Sheets"] },
-      tr:{ t:"SMS Aktarıcı", name:"SMS Doğrulama Aktarıcı", meta:"2025 &middot; Tradist Distribution",
-        lede:"Pazaryeri doğrulama kodları SMS'ten otomatik çekiliyor, ekip kodu kimseye sormadan tek bir tablodan okuyor.",
-        paras:["Amazon, n11, Trendyol ve Hepsiburada satıcı paneline her girişte SMS ile doğrulama kodu gönderiyor. Telefonlar bir çekmecede duruyordu. Giriş yapması gereken kişi doğru cihazı bulmak, kilidini açmak, kodu yüksek sesle okumak ve yazana kadar süresinin dolmamasını ummak zorundaydı.",
-               "Bu kodları gelen SMS'lerden otomatik olarak çeken ve geldiği anda ortak bir Google Sheets tablosuna yollayan bir Android uygulaması yazdım. Arka planda çalışıyor ve cihaz yeniden başlasa da devam ediyor. Kod lazım olan tabloyu açıp alıyor, kimse kimseye kod sormuyor: kod, tek bir kişinin elinde tuttuğu bir şey olmaktan çıktı.",
-               "Kişi başı günde yaklaşık yirmi dakika kazandırdı. İhtiyacı kendim fark ettim ve kendi inisiyatifimle kurdum. Ben ayrıldıktan sonra da çalışıyordu."],
-        rt:"Nasıl çalışıyor", rail:["<b>Dört pazaryerinden</b> gelen kodlar","SMS'ten <b>otomatik</b> çekiliyor","Ortak <b>Google Sheets</b> tablosuna gidiyor","Arka planda, yeniden başlatmaya dayanıklı","Kimse kimseye kod sormuyor"],
+      tr:{ t:"SMS Aktarıcı", name:"SMS Doğrulama Kodu Aktarıcısı", meta:"2025 &middot; Tradist Distribution",
+        lede:"Pazaryeri doğrulama kodları SMS'ten otomatik olarak alınıyor; ekip, kimseye sormadan kodu tek bir tablodan okuyor.",
+        paras:["Amazon, n11, Trendyol ve Hepsiburada, satıcı paneline her girişte SMS ile doğrulama kodu gönderiyor. Telefonlar bir çekmecede duruyordu. Giriş yapması gereken kişi doğru cihazı bulmak, kilidini açmak, kodu yüksek sesle okumak ve kod yazılana kadar süresinin dolmamasını ummak zorundaydı.",
+               "Gelen SMS'lerdeki bu kodları otomatik olarak ayıklayan ve geldiği anda ortak bir Google Sheets tablosuna gönderen bir Android uygulaması yazdım. Uygulama arka planda çalışıyor ve cihaz yeniden başlasa da çalışmayı sürdürüyor. Koda ihtiyacı olan tabloyu açıp alıyor, kimse kimseye kod sormuyor; kod artık tek bir kişinin elindeki bir şey olmaktan çıktı.",
+               "Kişi başına günde yaklaşık yirmi dakika kazandırdı. İhtiyacı kendim fark ettim ve kendi inisiyatifimle geliştirdim. Ben ayrıldıktan sonra da kullanılmaya devam ediyordu."],
+        rt:"Nasıl çalışıyor", rail:["<b>Dört pazaryerinden</b> gelen kodlar","SMS'ten <b>otomatik</b> olarak alınıyor","Ortak <b>Google Sheets</b> tablosuna aktarılıyor","Arka planda çalışıyor, yeniden başlatmadan etkilenmiyor","Kimse kimseye kod sormuyor"],
         tags:["Android","Kotlin","Google Sheets"] } }
   };
   var PORDER = ["karinca","istakip","pipeline","reporting","sms"];
@@ -1223,15 +1223,15 @@ document.documentElement.setAttribute("data-theme", "day");
       ["Automation","Python, n8n, Power Automate, Google Apps Script, Microsoft Graph, scheduled agents"],
       ["Data and integration","API integration, Supabase, SQL, Google Sheets API, Streamlit"],
       ["Apps","Kotlin, Jetpack Compose, Android background services, PyQt"]] },
-    tr:{ t:"Araçlar", h:"Araçlar", meta:"Gerçekten kullandıklarım", g:[
-      ["Yapay zekâ","Prompt mühendisliği, ajan pipeline'ları, LLM değerlendirme ve benchmark, çıktı kalite kontrolü, araç karşılaştırma"],
+    tr:{ t:"Araçlar", h:"Araçlar", meta:"Fiilen kullandığım araçlar", g:[
+      ["Yapay zekâ","Prompt mühendisliği, ajan hatları, LLM değerlendirme ve kıyaslama testleri, çıktı kalite kontrolü, araç karşılaştırması"],
       ["Otomasyon","Python, n8n, Power Automate, Google Apps Script, Microsoft Graph, zamanlanmış ajanlar"],
       ["Veri ve entegrasyon","API entegrasyonu, Supabase, SQL, Google Sheets API, Streamlit"],
-      ["Uygulama","Kotlin, Jetpack Compose, Android arka plan servisleri, PyQt"]] }
+      ["Uygulama geliştirme","Kotlin, Jetpack Compose, Android arka plan servisleri, PyQt"]] }
   };
   var PLAIN = {
     en:{ t:"One Page.txt", h:"Every project on one page, with nothing around it, for anyone who would rather just read." },
-    tr:{ t:"Tek Sayfa.txt", h:"Tüm projeler tek sayfada, etrafında hiçbir arayüz olmadan, sadece okumak isteyenler için." }
+    tr:{ t:"Tek Sayfa.txt", h:"Bütün projeler tek sayfada; arayüz olmadan, yalnızca okumak isteyenler için." }
   };
 
   /* PKGRAPH start */
@@ -1288,12 +1288,12 @@ document.documentElement.setAttribute("data-theme", "day");
     karinca:{ w:600, h:136,
       nodes:[
         { id:"a", x:0,   y:14, w:126, h:48, hi:1, t:{ en:["Study","session"], tr:["Çalışma","oturumu"] } },
-        { id:"b", x:158, y:14, w:126, h:48, t:{ en:["XP and","coins"], tr:["XP ve","coin"] } },
+        { id:"b", x:158, y:14, w:126, h:48, t:{ en:["XP and","coins"], tr:["XP ve","jeton"] } },
         { id:"c", x:316, y:14, w:126, h:48, t:{ en:["Levels and","streaks"], tr:["Seviye ve","seri"] } },
-        { id:"d", x:474, y:14, w:126, h:48, t:{ en:["Theme shop,","paywall"], tr:["Tema mağazası,","paywall"] } }],
+        { id:"d", x:474, y:14, w:126, h:48, t:{ en:["Theme shop,","paywall"], tr:["Tema mağazası,","ücretli üyelik"] } }],
       edges:[ { f:"a", t:"b" }, { f:"b", t:"c" }, { f:"c", t:"d" },
         { f:"d", fs:"b", t:"a", ts:"b", k:70, lx:300, ly:128,
-          lbl:{ en:"A reason to come back tomorrow", tr:"Yarın geri gelmek için bir sebep" } }] },
+          lbl:{ en:"A reason to come back tomorrow", tr:"Ertesi gün geri dönmek için bir sebep" } }] },
 
     pipeline:{ w:640, h:214,
       nodes:[
@@ -1325,13 +1325,13 @@ document.documentElement.setAttribute("data-theme", "day");
         { id:"m2", x:0, y:33, w:108, h:26, t:{ en:["n11"], tr:["n11"] } },
         { id:"m3", x:0, y:66, w:108, h:26, t:{ en:["Trendyol"], tr:["Trendyol"] } },
         { id:"m4", x:0, y:99, w:108, h:26, t:{ en:["Hepsiburada"], tr:["Hepsiburada"] } },
-        { id:"a",  x:170, y:32, w:156, h:60, t:{ en:["Android app","pulls code from SMS"], tr:["Android uygulaması","SMS'ten kodu çeker"] } },
+        { id:"a",  x:170, y:32, w:156, h:60, t:{ en:["Android app","pulls code from SMS"], tr:["Android uygulaması","kodu SMS'ten alır"] } },
         { id:"sh", x:366, y:32, w:120, h:60, hi:1, t:{ en:["Google Sheets","shared sheet"], tr:["Google Sheets","ortak tablo"] } },
-        { id:"tm", x:524, y:32, w:116, h:60, t:{ en:["Whole team","nobody asks"], tr:["Tüm ekip","kimse sormaz"] } }],
+        { id:"tm", x:524, y:32, w:116, h:60, t:{ en:["Whole team","nobody asks"], tr:["Tüm ekip","kimseye sormadan"] } }],
       edges:[ { f:"m1", t:"a" }, { f:"m2", t:"a" }, { f:"m3", t:"a" }, { f:"m4", t:"a" },
               { f:"a", t:"sh" }, { f:"sh", t:"tm" } ],
       notes:[ { x:139, y:6, t:{ en:"SMS", tr:"SMS" } },
-              { x:248, y:114, t:{ en:"Survives a restart", tr:"Yeniden başlatmaya dayanıklı" } } ] }
+              { x:248, y:114, t:{ en:"Survives a restart", tr:"Yeniden başlatmadan etkilenmez" } } ] }
   };
 
   /* ---------- İş Takip demo ----------
@@ -1365,18 +1365,18 @@ document.documentElement.setAttribute("data-theme", "day");
          governed_by:"A operates under B's rules", composed_of:"A is the whole, B one of its parts",
          produces:"A produced B", developed_by:"A was developed by B" } };
   var PK_T = {
-    tr:{ graph:"Graf", prompt:"Prompt", game:"Oyun", nodes:"düğüm", edges:"bağ", rels:"ilişki türü",
-         hint:"Sürükle · kaydır · tekerlekle yakınlaş · bir düğüme tıkla", thint:"Sürükle · + ile yakınlaş · bir düğüme dokun", links:"bağlantı",
-         hood:"iki adımlık komşuluk", more:"daha", mkprompt:"Bu düğüm için prompt üret",
+    tr:{ graph:"Graf", prompt:"Prompt", game:"Oyun", nodes:"düğüm", edges:"bağlantı", rels:"ilişki türü",
+         hint:"Sürükleyin · kaydırın · tekerlekle yakınlaşın · bir düğüme tıklayın", thint:"Sürükleyin · + ile yakınlaşın · bir düğüme dokunun", links:"bağlantı",
+         hood:"iki adımlık çevre", more:"daha", mkprompt:"Bu düğüm için prompt hazırla",
          kinds:{ concept:"Kavram", task:"Görev", source:"Kaynak", finding:"Bulgu", tag:"Etiket",
                  project:"Proje", discipline:"Disiplin", person:"Kişi" },
-         pnote:"Uygulamadaki Kopyala düğmesi bu metni panoya koyar. Claude onunla grafı okur, adım adım çalışır ve onay almadan yazmaz.",
+         pnote:"Uygulamadaki Kopyala düğmesi bu metni panoya kopyalar. Claude grafı bununla okur, adım adım ilerler ve onay almadan hiçbir şey kaydetmez.",
          copy:"Kopyala", copied:"Kopyalandı",
-         gq1:"Bu kavram grafta hangisine bağlı?", gq2:"Peki nasıl bağlı?", gsrc:"Kaynak düğüm",
-         right:"doğru", wrong:"yanlış", next:"Sonraki bağ", again:"Tekrar (1)", hard:"Zor (2)", good:"İyi (3)",
+         gq1:"Bu kavram, bunlardan hangisine bağlı?", gq2:"Peki, hangi ilişkiyle?", gsrc:"Kaynak düğüm",
+         right:"doğru", wrong:"yanlış", next:"Sonraki bağlantı", again:"Tekrar (1)", hard:"Zor (2)", good:"İyi (3)",
          stab:"Kararlılık", day:"gün", nextrev:"sonraki tekrar", hours:"saat", days:"gün",
          played:"Oynanan", score:"ikisi de doğru",
-         gnote:"Uygulamadaki Zettelkasten oyunu: aralıklı tekrar kartlara değil bağlara uygulanır, her bağın kendi hafıza eğrisi var. Hesap uygulamanın FSRS formülüyle yapılıyor." },
+         gnote:"Uygulamadaki Zettelkasten oyunu: Aralıklı tekrar kartlara değil bağlantılara uygulanır ve her bağlantının kendi hafıza eğrisi vardır. Hesaplama, uygulamadaki FSRS formülüyle yapılıyor." },
     en:{ graph:"Graph", prompt:"Prompt", game:"Game", nodes:"nodes", edges:"edges", rels:"relation types",
          hint:"Drag · pan · scroll to zoom · click a node", thint:"Drag · zoom with + · tap a node", links:"connections",
          hood:"two hop neighbourhood", more:"more", mkprompt:"Build the prompt for this node",
@@ -1931,57 +1931,57 @@ document.documentElement.setAttribute("data-theme", "day");
   var MZ_T = {
     tr:{ run:"Tur", bul:"Bülten", style:"Üslup", rules:"Kurallar", items:"kayıt",
       stat:function(){ return "İzlenen beş şirket + düzenleyici kaynaklar"; },
-      nodes:[["Kaynaklar",""],["Toplayıcı ajan",""],["Ortak veritabanı",""],["Newsletter yayıncısı",""],["Mevzuat yayıncısı",""],["BTS ekibi",""]],
+      nodes:[["Kaynaklar",""],["Toplayıcı ajan",""],["Ortak veritabanı",""],["Teknoloji bülteni yayıncısı",""],["Mevzuat bülteni yayıncısı",""],["BTS ekibi",""]],
       fl:{ src:"107 KAYNAK", srcS:"resmî kurum · düzenleyici · sektör basını", col:"Toplayıcı ajan", colS:"saatte bir",
-        db:"Ortak veritabanı", dbS:"17 alan · ilgili şirket etiketli", dbS2:"hattın ayrım noktası",
+        db:"Ortak veritabanı", dbS:"17 alan · şirket etiketli", dbS2:"hattın ayrıldığı nokta",
         pm:"Yayıncı ajan · Mevzuat", pmS:"TR düzenleyici alan · 2 saatte bir",
-        pn:"Yayıncı ajan · Newsletter", pnS:"5 şirket + ekosistem · 2 saatte bir",
+        pn:"Yayıncı ajan · Teknoloji", pnS:"5 şirket + ekosistem · 2 saatte bir",
         team:"BTS ekibi", tm:"Mevzuat bülteni", tn:"Teknoloji bülteni", m365:"Microsoft 365" },
       ph:[["git","Git"],["oku","Oku"],["ozet","Özetle"],["etiket","Etiketle"],["deger","Değerlendir"],["yaz","Yaz"]],
       ch:["Kaynaklar","Topla ve yaz","Veritabanı","Yayıncılar","E-posta"],
-      screen:"Ajanın ekranı", db:"Ortak veritabanı", rows:"kayıt", empty:"Henüz kayıt yok. Ajan yazdıkça burası dolacak.",
+      screen:"Ajanın ekranı", db:"Ortak veritabanı", rows:"kayıt", empty:"Henüz kayıt yok; ajan yazdıkça burada görünecek.",
       flt:[["all","Tümü"],["co","Şirketler + ekosistem"],["mev","Mevzuat"]],
       rep:"temsili", input:"Girdi", sumH:"Özet", tagH:"Etiketler", evalH:"Değerlendirme",
       pause:"Duraklat", play:"Devam", next:"Sonraki", again:"Baştan",
       srcN:"Haber", company:"ilgili şirket", eco:"ekosistem", ecoV:"dijital platformlar",
       route:{ co:"TEKNOLOJİ", mev:"MEVZUAT" }, dropped:"ALINMADI",
-      cap:{ src:function(n){ return "Toplayıcı ajan saatte bir kaynakları geziyor: <b>"+n+"</b>. Yalnız bugüne ait bölüm alınıyor."; },
-        news:"Her içerik gövdesinden özetleniyor; ilgili şirket, ekosistem ya da düzenleyici alanla etiketleniyor.",
-        read:"Haber okunuyor.", sum:"Özet kurum üslubunda yazılıyor.", tag:"Etiketler sözlükten seçiliyor: şirket, sektör, çalışma alanı.",
-        ev:"Alaka puanı veriliyor: 0.40 ve üstü ilgili.", wr:"Kayıt ortak veritabanına yazıldı.", drop:"Düzenleyici nitelik yok, kayıt alınmadı.",
+      cap:{ src:function(n){ return "Toplayıcı ajan saatte bir kaynakları dolaşıyor: <b>"+n+"</b>. Sayfadan yalnızca güne ait bölüm alınıyor."; },
+        news:"Her içerik tam metninden özetleniyor ve ilgili şirket, ekosistem ya da düzenleyici alanla etiketleniyor.",
+        read:"İçerik okunuyor.", sum:"Özet, kurumun yazım üslubuyla hazırlanıyor.", tag:"Etiketler sözlükten seçiliyor: şirket, ekosistem, çalışma alanı.",
+        ev:"Alaka puanı hesaplanıyor: 0,40 ve üzeri ilgili sayılıyor.", wr:"Kayıt ortak veritabanına yazıldı.", drop:"Düzenleyici bir niteliği olmadığı için kayda alınmadı.",
         fast:"Kalan içerikler aynı adımlardan geçiyor.",
-        db:"Hat burada ikiye ayrılıyor: aynı kayıtlar etiketlerine göre iki yayıncıya gidiyor.",
-        pubCo:"Newsletter yayıncısı iki saatte bir süzüyor: izlenen beş şirketin haberleri ve ekosistem gelişmeleri.",
-        pubMev:"Mevzuat yayıncısı Türkiye'deki düzenleyici gelişmeleri süzüp bülteni derliyor.",
-        mail:"İki bülten de ekibe gitti. Kimse bir şeye dokunmadı." },
-      why:{ codeS:"Kanun: kod her zaman özetletir", codeT:"İlân ve döviz: kod hiç özetletmez", modelS:"Model: özetlenmeli", modelT:"Model: başlık yeter", rel:"ilgili", low:"düşük alaka, bültene girmez" },
-      chips:{ verbs:"-mIştIr çatısı", close:"kalıp kapanış", words:"kelime", noc:"yorum yok" },
+        db:"Hat burada ikiye ayrılıyor: Aynı kayıtlar, etiketlerine göre iki yayıncı ajana dağılıyor.",
+        pubCo:"Teknoloji bülteni yayıncısı iki saatte bir, izlenen beş şirketin haberlerini ve ekosistemdeki gelişmeleri süzüyor.",
+        pubMev:"Mevzuat bülteni yayıncısı, Türkiye'deki düzenleyici gelişmeleri süzüp bülteni hazırlıyor.",
+        mail:"İki bülten de ekibe ulaştı; süreç boyunca kimsenin müdahalesi gerekmedi." },
+      why:{ codeS:"Kanun: kod her zaman özetletir", codeT:"İlân ve döviz: kod hiç özetletmez", modelS:"Model: özetlenmeli", modelT:"Model: başlık yeterli", rel:"ilgili", low:"alaka düşük, bültene alınmaz" },
+      chips:{ verbs:"-mIştIr kipi", close:"kalıp kapanış", words:"kelime", noc:"yorum yok" },
       coB:"Teknoloji ve Platform Gündemi", mevB:"Mevzuat Bülteni", coBn:"temsili", mevBn:"temsili",
       ecoH:"EKOSİSTEM", sentOk:"Gönderildi", open:"Aç",
       from:"Kimden", to:"Kime", toV:"Ekip dağıtım listesi", subj:"Konu",
-      fromCo:"Newsletter ajanı", fromMev:"Mevzuat İzleme ajanı",
+      fromCo:"Teknoloji bülteni ajanı", fromMev:"Mevzuat bülteni ajanı",
       subjCo:"Teknoloji ve Platform Gündemi", subjMev:function(){ return "Mevzuat Bülteni"; },
-      noteCo:"Temsili: izlenen beş şirket, etiketler ve süzgeç sistemdeki gibi; haberler akışı göstermek için yazıldı.",
-      noteMev:"Temsili: kalemler faaliyet alanına göre gruplanıyor, her kalemde tarafsız bir özet ve resmî kaynak var.",
-      rec:{ items:"items", tags:"item_tags", source:"source", date:"published_at", rel:"relevance", sum:"summary", nul:"null (başlık yeter)" },
-      sLede:"Özetler, ekibin elle yazdığı 76 gerçek bülten özetinin incelenmesinden çıkan bir yazım kılavuzuyla yazılıyor. Amaç, özetlerin ekibin elle yazdıklarıyla aynı sesle okunması.",
+      noteCo:"Temsilîdir: İzlenen beş şirket, etiketler ve süzgeç sistemdekiyle aynı; haberler akışı göstermek için yazıldı.",
+      noteMev:"Temsilîdir: Kalemler faaliyet alanına göre gruplanıyor; her kalemde tarafsız bir özet ve resmî kaynağı yer alıyor.",
+      rec:{ items:"items", tags:"item_tags", source:"source", date:"published_at", rel:"relevance", sum:"summary", nul:"null (başlık yeterli)" },
+      sLede:"Özetler, ekibin elle yazdığı 76 gerçek bülten özeti incelenerek hazırlanan bir yazım kılavuzuna göre yazılıyor. Amaç, özetlerin ekibin kendi yazdıklarıyla aynı üslupta okunması.",
       sRules:[
-        ["Kaynağa sadakat","Özet yalnız verilen metne dayanıyor. Metin boşsa ya da yetersizse (taranmış PDF gibi) gerekçe, sayı veya tarih uydurulmuyor; başlığa dayanan tek cümlelik nesnel bir not yazılıyor. \"Muhtemelen\" gibi kelimeler yok."],
-        ["Kurumsal, edilgen, nesnel","Üçüncü tekil kurumsal anlatım ve \"-mIştIr\" çatısı: \"Kurul ... ilke kararı almıştır\", \"... yürürlükten kaldırılmıştır\". Yorum ve değerlendirme eklenmiyor."],
-        ["Türe göre yapı","Yönetmelikte düzenleyen makam, ne değişti, somut oran, eşik veya tarih, sonra yürürlük. Tebliğ ve Cumhurbaşkanı Kararında kısa ve teknik: ne değişti ve sayısal detay."],
-        ["Kalıp kapanışlar","Uygun olduğunda ekibin kendi kapanışları: \"... yayımı tarihinde yürürlüğe girer\", \"... sorumlu kılınmıştır\", \"... iptaline karar verilmiştir\"."],
-        ["Önem cümlesi nadir","\"... bakımından önem taşımaktadır\" yalnız vergi, KVKK, rekabet, e-ticaret ve telekom gibi yüksek etkili maddelerde ve metinden çıkıyorsa."]],
+        ["Kaynağa sadakat","Özet yalnızca verilen metne dayanıyor. Metin boş ya da yetersizse (örneğin taranmış bir PDF) gerekçe, sayı veya tarih uydurulmuyor; başlığa dayanan tek cümlelik nesnel bir not yazılıyor. \"Muhtemelen\" gibi ifadeler kullanılmıyor."],
+        ["Kurumsal, edilgen ve nesnel","Üçüncü tekil kişiyle kurumsal anlatım ve \"-mIştIr\" kipi: \"Kurul ... ilke kararı almıştır\", \"... yürürlükten kaldırılmıştır\". Yorum ve değerlendirme eklenmiyor."],
+        ["Türe göre yapı","Yönetmelikte sıra şöyle: düzenleyen makam, değişen husus, somut oran, eşik ya da tarih, ardından yürürlük. Tebliğ ve Cumhurbaşkanı Kararlarında özet kısa ve teknik: neyin değiştiği ve sayısal ayrıntılar."],
+        ["Kalıp kapanışlar","Uygun düştüğünde ekibin kullandığı kapanışlar: \"... yayımı tarihinde yürürlüğe girer\", \"... sorumlu kılınmıştır\", \"... iptaline karar verilmiştir\"."],
+        ["Önem cümlesi istisnai","\"... bakımından önem taşımaktadır\" cümlesi yalnızca vergi, KVKK, rekabet, e-ticaret ve telekom gibi yüksek etkili konularda ve metinden çıkarılabiliyorsa kullanılıyor."]],
       sLen:"Türe göre uzunluk", len:[["Anayasa Mahkemesi kararı","~90 ile 110 kelime"],["Yönetmelik","~80 ile 110 kelime"],["Tebliğ, Cumhurbaşkanı Kararı","~30 ile 55 kelime"],["İlân, atama, döviz","tek cümle"]],
-      sEx:"Bir örnek", sLeg:[["","-mIştIr çatısı"],["k","kalıp kapanış"],["n","somut sayı ve tarih"]],
+      sEx:"Bir örnek", sLeg:[["","-mIştIr kipi"],["k","kalıp kapanış"],["n","somut sayı ve tarih"]],
       rl:[
-        ["Kaynak metni veri, talimat değil","Taranan sayfa modele <code>&lt;&lt;&lt;KAYNAK_VERISI</code> ile <code>KAYNAK_VERISI&gt;&gt;&gt;</code> arasında gidiyor. Arasındaki hiçbir cümle, \"önceki talimatları yok say\" dahil, komut sayılmıyor.","Prompt"],
-        ["Etiketler yalnız sözlükten","Şirket, sektör ve çalışma alanı etiketleri veritabanındaki sözlük tablolarından seçiliyor; sözlükte olmayan bir ad ya da kod yazılırsa kod onu atıyor. Bir haber ancak sözlükteki bir şirket adı geçiyorsa o şirketle etiketleniyor.","Prompt + kod"],
-        ["Yalnız bugünün kaydı","Bugünün tarihi dört ayrı biçimde prompta yazılıyor. Tarihi bugün olmayan ya da tarihi görünmeyen gelişme alınmıyor; kod da metinde bugünün tarihini ayrıca arıyor.","Prompt + kod"],
-        ["Alaka puanı","0.0 ile 1.0 arası, firmanın alanlarına yakınlık: veri koruma, rekabet, fintech, telekom, yapay zekâ, e-ticaret, fikri mülkiyet. Tarım, atama, ihale ve döviz 0.0 ile 0.2; doğrudan ilgili düzenleme 0.6 ile 0.9. <code>0.40</code> ve üstü ilgili sayılıyor.","Prompt"],
-        ["Neyin alınmadığı da kural","Etkinlik, personel alımı, ihale ve kutlama gibi düzenleyici nitelik taşımayan kalemler hiç yazılmıyor. En spesifik alan seçiliyor, her şey \"uyum\" altına yığılmıyor.","Prompt"],
-        ["Özet mi, başlık mı","Mevzuat kolunda beş aylık gerçek bültenin 1127 maddesinden çıkan oranlarla ayarlı: Anayasa Mahkemesi %96, Kanun %38, Kurul Kararı %18, Tebliğ %11, Yönetmelik %3. Kanun ve yüksek mahkeme kararlarını kod her zaman özetletiyor, ilan ve dövizi asla.","Prompt + kod"],
-        ["Yorum yok, uydurma yok","Özet yalnız metinde olanı söylüyor. Haber kolunda \"önem taşımaktadır\", \"takip edilmelidir\" gibi kalıplar tamamen yasak.","Prompt"],
-        ["Link ve taşma freni","Link yalnız kaynağın kendi alan adından, izinli alan adı listesine karşı kontrol ediliyor. Aynı gelişme iki kez girmiyor, bir kaynaktan bir turda en fazla 15 kayıt geliyor.","Kod"]]
+        ["Kaynak metin veridir, talimat değil","Taranan sayfa modele <code>&lt;&lt;&lt;KAYNAK_VERISI</code> ile <code>KAYNAK_VERISI&gt;&gt;&gt;</code> işaretleri arasında iletiliyor. Bu aralıktaki hiçbir cümle, \"önceki talimatları yok say\" gibi ifadeler dahil, komut olarak değerlendirilmiyor.","Prompt"],
+        ["Etiketler yalnızca sözlükten","Şirket, sektör ve çalışma alanı etiketleri veritabanındaki sözlük tablolarından seçiliyor; sözlükte bulunmayan bir ad ya da kod yazılırsa kod tarafından ayıklanıyor. Bir haber, ancak sözlükteki bir şirketin adı geçiyorsa o şirketle etiketleniyor.","Prompt + kod"],
+        ["Yalnızca günün kayıtları","Günün tarihi prompta dört farklı biçimde yazılıyor. Tarihi bugün olmayan ya da tarihi görünmeyen gelişmeler alınmıyor; kod da metinde günün tarihini ayrıca denetliyor.","Prompt + kod"],
+        ["Alaka puanı","0,0 ile 1,0 arasında, firmanın çalışma alanlarına yakınlığı ölçüyor: veri koruma, rekabet, fintech, telekom, yapay zekâ, e-ticaret, fikri mülkiyet. Tarım, atama, ihale ve döviz 0,0 ile 0,2; doğrudan ilgili düzenlemeler 0,6 ile 0,9 arasında puanlanıyor. <code>0.40</code> ve üzeri ilgili sayılıyor.","Prompt"],
+        ["Neyin alınmayacağı da belli","Etkinlik, personel alımı, ihale, kutlama gibi düzenleyici niteliği olmayan kalemler hiç kaydedilmiyor. Her kayda en uygun çalışma alanı atanıyor; her şey \"uyum\" başlığı altında toplanmıyor.","Prompt"],
+        ["Özet mi, yalnızca başlık mı","Mevzuat kolunda, beş aylık gerçek bültendeki 1127 maddeden çıkarılan oranlara göre ayarlandı: Anayasa Mahkemesi %96, Kanun %38, Kurul Kararı %18, Tebliğ %11, Yönetmelik %3. Kanunlar ve yüksek mahkeme kararları kod gereği her zaman özetleniyor; ilanlar ve döviz kurları hiçbir zaman.","Prompt + kod"],
+        ["Yorum ve uydurma yok","Özet yalnızca metinde yazanı aktarıyor. Haber kolunda \"önem taşımaktadır\", \"takip edilmelidir\" gibi kalıplar kesinlikle kullanılmıyor.","Prompt"],
+        ["Bağlantı ve hacim sınırı","Bağlantılar yalnızca kaynağın kendi alan adından alınıyor ve izinli alan adları listesiyle denetleniyor. Aynı gelişme iki kez kaydedilmiyor; bir kaynaktan tek turda en fazla 15 kayıt alınıyor.","Kod"]]
     },
     en:{ run:"Run", bul:"Bulletins", style:"Style", rules:"Rules", items:"records",
       stat:function(){ return "Five watched companies + regulatory sources"; },
