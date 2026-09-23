@@ -272,6 +272,91 @@ body.phone #sky text.ct{opacity:1;}
   animation:flow 1.4s linear infinite;}
 .dia .ah{fill:var(--sig-dim);}
 @keyframes flow{to{stroke-dashoffset:-16;}}
+/* the İş Takip demo keeps the app's own dark palette in both themes, the way
+   a screenshot would, so it reads as the program rather than as the page */
+.pk{margin:0 0 24px; border-radius:12px; overflow:hidden; background:#0B0B0F; border:1px solid #2A2A36;
+  color:#E8E8EE; font-family:var(--ui); box-shadow:0 14px 34px rgba(10,10,22,.28); user-select:none;}
+.pk-top{display:flex; align-items:center; gap:10px; padding:7px 10px; background:#15151B; border-bottom:1px solid #2A2A36;}
+.pk-dots{display:flex; gap:6px;} .pk-dots i{width:9px; height:9px; border-radius:50%; background:#2A2A36;}
+.pk-tabs{display:flex; gap:3px; margin-left:4px;}
+.pk-tabs button{font-family:var(--mono); font-size:11px; letter-spacing:.05em; color:#8A8A99; padding:5px 11px; border-radius:6px;}
+.pk-tabs button:hover{color:#E8E8EE;}
+.pk-tabs button.on{color:#E8E8EE; background:#1E1E26; box-shadow:inset 0 0 0 1px #2A2A36;}
+.pk-stat{margin-left:auto; font-family:var(--mono); font-size:10.5px; color:#8A8A99; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.pk-view{display:none;} .pk-view.on{display:block;}
+.pk-stage{position:relative; height:460px; overflow:hidden;}
+.pk-stage canvas{display:block; width:100%; height:100%; touch-action:none; cursor:grab;}
+.pk-stage canvas.grab{cursor:grabbing;}
+.pk-ctl{position:absolute; left:10px; top:10px; display:flex; flex-direction:column; gap:4px;}
+.pk-ctl button{width:27px; height:27px; border-radius:7px; background:rgba(21,21,27,.9); border:1px solid #2A2A36;
+  color:#A9A9B8; font-family:var(--mono); font-size:13px; line-height:1;}
+.pk-ctl button:hover{color:#fff; border-color:#7C5CFF;}
+.pk-side.on ~ .pk-hint{display:none;}
+.pk-hint{position:absolute; left:12px; bottom:9px; font-family:var(--mono); font-size:10px; color:#5E5E6C; pointer-events:none;}
+.pk-tip{position:absolute; pointer-events:none; background:rgba(21,21,27,.96); border:1px solid #2A2A36; border-radius:7px;
+  padding:6px 9px; font-size:12px; max-width:240px; opacity:0; transition:opacity .12s ease; color:#E8E8EE;}
+.pk-tip small{display:block; font-family:var(--mono); font-size:10px; color:#8A8A99; margin-top:2px;}
+.pk-side{position:absolute; top:10px; right:10px; bottom:10px; width:272px; background:rgba(17,17,23,.95);
+  border:1px solid #2A2A36; border-radius:10px; padding:14px 14px 12px; overflow:auto; opacity:0; transform:translateX(14px);
+  pointer-events:none; transition:opacity .2s ease, transform .2s ease; user-select:text;}
+.pk-side.on{opacity:1; transform:none; pointer-events:auto;}
+.pk-x{position:absolute; right:8px; top:6px; color:#8A8A99; font-size:17px; width:24px; height:24px;}
+.pk-x:hover{color:#fff;}
+.pk-kind{display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:10.5px; color:#A9A9B8; text-transform:uppercase; letter-spacing:.1em;}
+.pk-kind i{width:8px; height:8px; border-radius:50%;}
+.pk-st{margin-left:6px; text-transform:none; letter-spacing:.02em;}
+.pk-title{font-size:16px; font-weight:600; margin:7px 0 4px; line-height:1.3; color:#fff; padding-right:14px;}
+.pk-meta{font-family:var(--mono); font-size:10.5px; color:#8A8A99; margin:0 0 10px;}
+.pk-side ul{list-style:none; margin:0 0 10px; padding:0;}
+.pk-side li{padding:6px 7px; border-radius:6px; cursor:pointer; font-size:12.5px; line-height:1.35;}
+.pk-side li:hover{background:#1E1E26;}
+.pk-side li em{display:block; font-style:normal; font-family:var(--mono); font-size:9.5px; letter-spacing:.04em; margin-bottom:2px;}
+.pk-side li span{display:flex; align-items:center; gap:7px; color:#D6D6DF;}
+.pk-side li span i{width:6px; height:6px; border-radius:50%; flex:none;}
+.pk-mk{width:100%; padding:8px; border-radius:7px; background:#7C5CFF; color:#fff; font-size:12px; font-weight:600;}
+.pk-mk:hover{background:#6D4FE8;}
+.pk-leg{display:flex; flex-wrap:wrap; gap:6px; padding:9px 10px; border-top:1px solid #2A2A36; background:#101015;}
+.pk-leg button{display:flex; align-items:center; gap:6px; font-family:var(--mono); font-size:10.5px; color:#C9C9D3;
+  padding:4px 9px; border-radius:20px; border:1px solid #2A2A36;}
+.pk-leg button:hover{border-color:#4A4A5A;}
+.pk-leg button i{width:8px; height:8px; border-radius:50%;}
+.pk-leg button em{font-style:normal; color:#6E6E7C;}
+.pk-leg button.off{opacity:.35;}
+.pk-pbar{display:flex; align-items:center; gap:14px; padding:12px 14px; border-bottom:1px solid #2A2A36; background:#101015;
+  font-size:12.5px; color:#A9A9B8; line-height:1.5;}
+.pk-copy{flex:none; padding:7px 13px; border-radius:7px; background:#7C5CFF; color:#fff; font-size:12px; font-weight:600;}
+.pk-pre{margin:0; padding:16px 18px; height:460px; overflow:auto; font-family:var(--mono); font-size:11.5px; line-height:1.7;
+  color:#B9B9C6; white-space:pre-wrap; word-break:break-word; user-select:text;}
+.pk-pre b{color:#F2F2F7; font-weight:600;} .pk-pre b.h{color:#A78BFA;}
+.pk-pre code{font-family:inherit; color:#22D3EE;}
+.pk-game{padding:18px 18px 14px; min-height:460px; display:flex; flex-direction:column;}
+.pk-gsrc{padding:14px 16px; border-radius:10px; background:#15151B; border:1px solid #2A2A36; margin-bottom:14px;}
+.pk-gsrc small{display:block; font-family:var(--mono); font-size:10px; color:#8A8A99; letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px;}
+.pk-gsrc b{font-size:18px; font-weight:600; color:#22D3EE;}
+.pk-q{font-size:13px; color:#A9A9B8; margin:4px 0 8px;}
+.pk-opts{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:7px; margin-bottom:12px;}
+.pk-opts button{text-align:left; padding:10px 12px; border-radius:8px; background:#15151B; border:1px solid #2A2A36;
+  color:#E8E8EE; font-size:13px; line-height:1.35; display:flex; gap:9px; align-items:flex-start;}
+.pk-opts button:hover:not([disabled]){border-color:#7C5CFF;}
+.pk-opts button i{width:8px; height:8px; border-radius:50%; flex:none; margin-top:5px;}
+.pk-opts button small{display:block; font-size:11px; color:#8A8A99; margin-top:2px;}
+.pk-opts.rel button span{font-family:var(--mono); font-size:12px;}
+.pk-opts.rel button small{font-family:var(--ui);}
+.pk-opts button.ok{border-color:#4ADE80; background:rgba(74,222,128,.10);}
+.pk-opts button.no{border-color:#F87171; background:rgba(248,113,113,.10);}
+.pk-opts button.dim{opacity:.4;}
+.pk-res{padding:13px 15px; border-radius:10px; background:#15151B; border:1px solid #2A2A36; display:grid; gap:8px; margin-bottom:10px;}
+.pk-edge{font-size:14px;} .pk-edge em{font-style:normal; font-family:var(--mono); font-size:12px; margin:0 6px;}
+.pk-rate{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;}
+.pk-rate.r1{color:#F87171;} .pk-rate.r2{color:#FBBF24;} .pk-rate.r3{color:#4ADE80;}
+.pk-fsrs{font-family:var(--mono); font-size:11.5px; color:#A9A9B8;}
+.pk-next{justify-self:start; padding:8px 14px; border-radius:7px; background:#7C5CFF; color:#fff; font-size:12px; font-weight:600;}
+.pk-gfoot{margin-top:auto; display:flex; flex-direction:column; gap:4px; font-size:11.5px; color:#6E6E7C; line-height:1.5; padding-top:8px;}
+.pk-gfoot span:first-child{font-family:var(--mono); color:#8A8A99;}
+body.mob .pk-stage,body.phone .pk-stage{height:380px;}
+body.mob .pk-side,body.phone .pk-side{left:10px; width:auto; top:auto; max-height:56%;}
+body.mob .pk-stat,body.phone .pk-stat{display:none;}
+body.mob .pk-pbar,body.phone .pk-pbar{flex-direction:column; align-items:flex-start;}
 .grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:18px;}
 .grid2 h4{font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
   color:var(--faint); margin:0 0 7px; font-weight:500;}
@@ -835,20 +920,22 @@ document.documentElement.setAttribute("data-theme", "day");
         rt:"Teknoloji", rail:["Kotlin, <b>Jetpack Compose</b>, Material3","MVVM ve Clean Architecture","Hilt ile bağımlılık yönetimi","Yerelde Room, <b>Supabase</b> senkronizasyonu","Aralıklı tekrar motoru","Kendi yaptırdığım <b>denetim</b>, 6.8/10"],
         tags:["Kotlin","Jetpack Compose","Supabase","Kullanıcı döngüsü"] } },
 
-    istakip:{ w:660, h:600, badges:[0,0,1],
+    istakip:{ w:900, h:720, badges:[0,0,1],
       en:{ t:"İş Takip", name:"İş Takip Modülü", meta:"2026 &middot; personal project &middot; BTS &amp; Partners",
-        lede:"A personal knowledge graph that holds tasks, notes, findings, concepts and sources in one place, designed to be read by an AI agent.",
-        paras:["It is not a to do app. Eleven kinds of thing (task, note, finding, concept, source, project, person, discipline, tag, quote, conversation) live in one nodes table, and the relations between them are built from close to twenty typed edges. My research and work knowledge from BTS goes in there, and so do my own notes: the point is that they sit in the same graph and can be connected.",
-               "The design decision I care about: instead of embedding AI inside the app, I made the data something an agent can walk. The app builds a structured prompt for a task, Claude reads the database over REST and works through it with me, and nothing is written until I approve the proposed output. Every write lands in an audit table.",
-               "Which kind and which edge to use is written down as rules, with anti patterns, because a graph built out of vague links is worthless. Fifteen migrations that repaired wrongly built edges were applied with a backup snapshot taken before and after each one. On top of it there is a game for rehearsing my own connections: spaced repetition applied to the edges rather than to cards."],
-        rt:"Built with", rail:["Flutter, ~14,400 lines of Dart","<b>Supabase</b> Postgres with RLS","11 node kinds, ~20 typed edges","Force directed graph, no package","Prompt building, <b>approved</b> AI writes","Migrations with backups either side"],
+        lede:"My second brain as a knowledge graph: 177 nodes and 415 typed edges, built so that an AI agent can walk it. The window below is the graph screen of the app running on the real data.",
+        paras:["My research at BTS and what I learn on my own go into one notebook: tasks, findings, concepts, sources, people. Every one of them is a node in the same table, and every relation between them has a type. A tool implements a protocol, a product operates under a regulation, a finding asserts something a source said. In the graph these are not lines, they are meanings.",
+               "I did not build AI into the app. For whichever node you pick, the app writes a structured prompt; Claude reads the database with it, works through the task with me step by step, and not a single row is written until I approve the output it proposes. The Prompt tab shows the exact text the app produces.",
+               "A graph is only as good as its edges, so which kind and which relation to use is written down as rules. I repaired 88 wrongly built edges in 15 migrations, taking a backup before and after each one, until no vague relates_to link was left. The Game tab is the Zettelkasten game from the app: spaced repetition applied to the edges instead of cards, each edge with its own memory curve.",
+               "People, tasks, findings and projects are numbered here because they describe client and internal work. Their kind, status and every connection are real."],
+        rt:"Built with", rail:["Flutter, ~14,400 lines of Dart","<b>Supabase</b> Postgres with RLS","177 nodes, 415 typed edges","Force directed graph, written from scratch","Prompt building, <b>approved</b> AI writes","FSRS memory on every edge"],
         tags:["Flutter","Supabase","Knowledge graph","AI agent"] },
       tr:{ t:"İş Takip", name:"İş Takip Modülü", meta:"2026 &middot; kişisel proje &middot; BTS &amp; Partners",
-        lede:"Görev, not, bulgu, kavram ve kaynakları tek yerde tutan, yapay zekânın gezebilmesi için tasarlanmış kişisel bir bilgi grafı.",
-        paras:["Yapılacaklar uygulaması değil. On bir tür (görev, not, bulgu, kavram, kaynak, proje, kişi, disiplin, etiket, alıntı, sohbet özeti) tek bir nodes tablosunda duruyor, aralarındaki ilişkiler yirmiye yakın tiplenmiş kenarla kuruluyor. BTS'deki araştırma ve iş bilgim de kendi notlarım da buraya giriyor. Mesele ikisinin aynı grafta durup birbirine bağlanabilmesi.",
-               "Asıl önemsediğim tasarım kararı şu: yapay zekâyı uygulamanın içine gömmek yerine veriyi bir ajanın gezebileceği hale getirdim. Uygulama görev için yapılandırılmış bir prompt üretiyor, Claude veritabanını REST üzerinden okuyup benimle birlikte çalışıyor ve önerdiği çıktıyı ben onaylamadan hiçbir şey yazılmıyor. Her yazma audit tablosuna düşüyor.",
-               "Hangi durumda hangi türün ve hangi kenarın kullanılacağı, anti kalıplarıyla birlikte yazılı kurallara bağlı; çünkü gelişigüzel bağlarla kurulmuş bir graf işe yaramıyor. Yanlış kurulmuş kenarları düzelten on beş migrasyonu, her birinin öncesinde ve sonrasında yedek alarak uyguladım. Üstünde de kendi bağlantılarımı tekrar eden bir oyun var: aralıklı tekrar kartlara değil, kenarlara uygulanıyor."],
-        rt:"Yapı taşları", rail:["Flutter, ~14.400 satır Dart","RLS'li <b>Supabase</b> Postgres","11 node türü, ~20 tiplenmiş kenar","Force directed graf, paketsiz","Prompt üretimi, <b>onaylı</b> AI yazma","Öncesi ve sonrası yedekli göçler"],
+        lede:"Bilgi grafı olarak ikinci beynim: 177 düğüm ve 415 tiplenmiş bağ, bir yapay zekâ ajanının gezebileceği şekilde kuruldu. Aşağıdaki pencere, uygulamanın graf ekranının gerçek veriyle çalışan hali.",
+        paras:["BTS'deki araştırmalarım da kendi öğrendiklerim de tek bir deftere giriyor: görevler, bulgular, kavramlar, kaynaklar, kişiler. Her biri aynı tabloda bir düğüm, aralarındaki her ilişkinin bir türü var. Bir araç bir protokolü uyguluyor, bir ürün bir regülasyona tabi, bir bulgu bir kaynağın söylediğini ileri sürüyor. Grafta bunlar çizgi değil, anlam.",
+               "Yapay zekâyı uygulamanın içine gömmedim. Hangi düğümü seçersen uygulama onun için yapılandırılmış bir prompt yazıyor. Claude bu promptla veritabanını okuyup görevi benimle adım adım yürütüyor ve önerdiği çıktıyı ben onaylamadan tek satır yazılmıyor. Prompt sekmesinde uygulamanın ürettiği metnin aynısı duruyor.",
+               "Bir graf ancak bağları kadar iyi. Bu yüzden hangi türün ve hangi ilişkinin kullanılacağı yazılı kurallara bağlı. Yanlış kurulmuş 88 bağı 15 migrasyonda, her birinin öncesinde ve sonrasında yedek alarak düzelttim; belirsiz tek bir relates_to bağı kalmadı. Oyun sekmesi uygulamadaki Zettelkasten oyunu: aralıklı tekrar kartlara değil bağlara uygulanıyor, her bağın kendi hafıza eğrisi var.",
+               "Kişi, görev, bulgu ve proje adları burada numaralı, çünkü müşteri ve şirket içi işleri anlatıyorlar. Türleri, durumları ve bütün bağlantıları gerçek."],
+        rt:"Yapı taşları", rail:["Flutter, ~14.400 satır Dart","RLS'li <b>Supabase</b> Postgres","177 düğüm, 415 tiplenmiş bağ","Sıfırdan yazılmış force directed graf","Prompt üretimi, <b>onaylı</b> AI yazma","Her bağda FSRS hafızası"],
         tags:["Flutter","Supabase","Bilgi grafı","AI ajanı"] } },
 
     pipeline:{ w:680, h:600, badges:[1,1,1],
@@ -916,6 +1003,10 @@ document.documentElement.setAttribute("data-theme", "day");
     tr:{ t:"Tek Sayfa.txt", h:"tüm projeler tek sayfada, etrafında hiçbir arayüz olmadan, sadece okumak isteyenler için." }
   };
 
+  /* PKGRAPH start */
+  var PKG = {"kinds":["concept","task","source","finding","tag","project","discipline","person"],"rels":["asserts","compares","composed_of","developed_by","example_of","extends","governed_by","implements","parent_of","produces","references","requested_by","sourced_from","supersedes","tagged_with","uses"],"n":[[0,["Test katılımcısı","Test participant"],""],[0,"ISO 42001",""],[0,"EU AI Act",""],[0,"NIST AI RMF",""],[0,"LLM Evals",""],[0,"VerifyWise",""],[0,"BlueWave Labs",""],[0,"Alibaba Wukong: Kurumsal AI Ajan Platformu",""],[0,"AB-100 Agentic AI Business Solutions Architect",""],[0,"n8n: Açık Kaynak Otomasyon Platformu",""],[0,"Microsoft Agent Framework",""],[0,"Ollama",""],[0,"Gemma 3",""],[0,"Tailscale",""],[0,"Caddy reverse proxy + Let's Encrypt",""],[0,"Hetzner EX130-S GPU sunucu (RTX 4000 Ada)",""],[0,"Dell PowerEdge R770 (17G)",""],[0,"Supermicro SYS-212GB-FNR",""],[0,"Qwen",""],[0,"DingTalk: Alibaba kurumsal işbirliği platformu",""],[0,"Azure AI Foundry Agent Service",""],[0,"Microsoft Copilot Studio",""],[0,"Microsoft 365 Copilot agents",""],[0,"CrewAI",""],[0,"Semantic Kernel",""],[0,"AutoGen",""],[0,"Agent-to-Agent Protocol (A2A)",""],[0,"LangGraph (LangChain)",""],[0,"OpenAI Agents SDK",""],[0,"Google Agent Development Kit (ADK)",""],[0,"Claude Agent SDK",""],[0,"Microsoft 365 Copilot agents",""],[0,"Microsoft Entra ID",""],[0,"OpenTelemetry",""],[0,"Model Context Protocol (MCP)",""],[0,"Microsoft Power Automate",""],[0,"Process Mining",""],[0,"faker-js/faker: JS sahte veri kütüphanesi",""],[0,"Marak Squires faker.js / colors.js sabotaj olayı (Ocak 2022)",""],[0,"npm tedarik zinciri güvenliği",""],[0,"DraftWise",""],[0,"Mikeoss",""],[0,"Legora",""],[0,"Claude Skill",""],[0,"mevzuat (MCP)",""],[0,"yargi (MCP)",""],[0,"adeu (MCP)",""],[0,"legal-tech-rapor (Skill)",""],[0,"Veritabanı Normalizasyonu",""],[0,"Foreign Key",""],[0,"Junction Table (Köprü Tablo)",""],[0,"Lookup Table (Referans Tablo)",""],[0,"Surrogate Key vs Natural Key",""],[0,"Composite UNIQUE Constraint",""],[0,"Forward-Compatible Schema Design",""],[0,"Rule Engine NULL = Wildcard Pattern",""],[0,"MIT AI Risk Repository",""],[0,"CSET AI Harm Framework",""],[0,"Claude for Legal Turkish",""],[0,"Claude Code Plugin",""],[0,"Lawve.ai: Legal AI Skills & MCP Marketplace",""],[0,"PII Shield (MCP): Yerel Anonimleştirici",""],[0,"İletişim Başkanlığı Dezenformasyon Bültenleri Dataset (HuggingFace)",""],[0,"T.C. Cumhurbaşkanlığı İletişim Başkanlığı",""],[0,"DMM: Dezenformasyonla Mücadele Merkezi",""],[0,"HuggingFace",""],[0,"Schema.org ClaimReview",""],[0,"TCK 217/A: Halkı Yanıltıcı Bilgi Yayma Suçu",""],[0,"Teyit.org",""],[0,"IFCN: International Fact-Checking Network",""],[0,"Fact-checking / Doğrulama gazeteciliği",""],[0,"Hukuki veri seti kullanım katmanları (manuel → API/RAG)",""],[0,"AB Veri Sınırı (EU Data Boundary)",""],[0,"Microsoft Agent Library",""],[0,"Pargesoft",""],[0,"Microsoft Graph",""],[0,"Alibaba Token Hub",""],[0,"Tongyi Lab",""],[0,"PIPL: Çin Kişisel Bilgi Koruma Kanunu",""],[0,"Microsoft Purview",""],[0,"OCPM (Object-Centric Process Mining)",""],[0,"OCEL 2.0",""],[0,"Task Mining",""],[0,"Microsoft Power Automate Process Mining",""],[0,"DSAR (Veri Sahibi Erişim Talebi)",""],[1,["Görev 01","Task 01"],"inbox"],[1,["Görev 02","Task 02"],"shipped"],[1,["Görev 03","Task 03"],"shipped"],[1,["Görev 04","Task 04"],"planned"],[1,["Görev 05","Task 05"],"shipped"],[1,["Görev 06","Task 06"],"shipped"],[1,["Görev 07","Task 07"],"shipped"],[1,["Görev 08","Task 08"],"shipped"],[1,["Görev 09","Task 09"],"shipped"],[1,["Görev 10","Task 10"],"shipped"],[1,["Görev 11","Task 11"],"planned"],[1,["Görev 12","Task 12"],"shipped"],[1,["Görev 13","Task 13"],"shipped"],[1,["Görev 14","Task 14"],"shipped"],[1,["Görev 15","Task 15"],"shipped"],[1,["Görev 16","Task 16"],"inbox"],[1,["Görev 17","Task 17"],"inbox"],[1,["Görev 18","Task 18"],"inbox"],[1,["Görev 19","Task 19"],"shipped"],[1,["Görev 20","Task 20"],"inbox"],[1,["Görev 21","Task 21"],"inbox"],[1,["Görev 22","Task 22"],"shipped"],[1,["Görev 23","Task 23"],"in_progress"],[1,["Görev 24","Task 24"],"shipped"],[1,["Görev 25","Task 25"],"shipped"],[1,["Görev 26","Task 26"],"shipped"],[1,["Görev 27","Task 27"],"inbox"],[2,"VerifyWise resmi web sitesi",""],[2,"Microsoft Learn: Power Automate ürün sayfası",""],[2,"Alibaba Group: Wukong duyurusu",""],[2,"PowerEdge Server GPU Matrix Data Sheet: Dell Technologies (Mart 2026)",""],[2,"GPU SuperServer SYS-212GB-FNR: Supermicro",""],[2,"Microsoft Learn: Agent Framework dokümantasyonu",""],[2,"GitHub: microsoft/agent-framework",""],[2,"mevzuat.gov.tr",""],[2,"DergiPark: Suriyeli Sığınmacılara Karşı Dezenformasyon, DMM Deprem Bültenleri",""],[2,"DergiPark: Dezenformasyon ve Yapay Zekâ",""],[2,"DergiPark: Algı Yönetimi X Platformu DMM Örneği",""],[2,"OMÜ AVESİS: Türkiye'de Bilgi Düzensizliği ile Mücadele",""],[2,"Microsoft Copilot Studio: Agent Library overview",""],[2,"Microsoft announces AI agents and templates for retail scenarios",""],[3,["Bulgu 01","Finding 01"],""],[3,["Bulgu 02","Finding 02"],""],[3,["Bulgu 03","Finding 03"],""],[3,["Bulgu 04","Finding 04"],""],[3,["Bulgu 05","Finding 05"],""],[3,["Bulgu 06","Finding 06"],""],[3,["Bulgu 07","Finding 07"],""],[3,["Bulgu 08","Finding 08"],""],[3,["Bulgu 09","Finding 09"],""],[3,["Bulgu 10","Finding 10"],""],[3,["Bulgu 11","Finding 11"],""],[3,["Bulgu 12","Finding 12"],""],[3,["Bulgu 13","Finding 13"],""],[3,["Bulgu 14","Finding 14"],""],[4,"urgent",""],[4,"research",""],[4,"comparison",""],[4,"learning",""],[4,"infra",""],[4,"content",""],[4,"self-initiated",""],[4,"open-source",""],[4,"risk-management",""],[4,"demo-pending",""],[4,"saas",""],[4,"self-hosted",""],[5,["Proje 01","Project 01"],"shipped"],[5,["Proje 02","Project 02"],"in_progress"],[5,["Proje 03","Project 03"],"planned"],[5,["Proje 04","Project 04"],"planned"],[5,["Proje 05","Project 05"],"in_progress"],[5,["Proje 06","Project 06"],"shipped"],[5,["Proje 07","Project 07"],"inbox"],[5,["Proje 08","Project 08"],"inbox"],[5,["Proje 09","Project 09"],"inbox"],[5,["Proje 10","Project 10"],"inbox"],[5,["Proje 11","Project 11"],"in_progress"],[5,["Proje 12","Project 12"],"in_progress"],[6,"Microsoft Stack",""],[6,"Metodoloji",""],[6,"Yazılım Mühendisliği",""],[6,"Legal Tech",""],[6,"KVKK / Veri Koruma",""],[6,"AI Governance",""],[6,"Makine Öğrenmesi",""],[6,"Change Management",""],[6,"Açık Kaynak / OSS",""],[7,["Kişi A","Person A"],""],[7,["Kişi B","Person B"],""],[7,["Kişi C","Person C"],""],[7,"Onur Can Mığırdağı",""]],"e":[[5,1,10],[5,2,10],[5,3,10],[5,4,10],[5,6,3],[5,112,12],[5,147,14],[5,148,14],[5,150,14],[5,151,14],[7,10,1],[7,18,10],[7,19,5],[7,78,6],[7,114,12],[8,10,10],[8,164,14],[9,86,1],[9,141,14],[10,24,13],[10,25,13],[10,26,7],[10,32,7],[10,33,7],[10,34,7],[10,35,5],[10,72,6],[10,75,15],[10,79,6],[10,117,12],[10,118,12],[10,164,14],[10,169,14],[11,12,5],[11,144,14],[12,144,14],[13,144,14],[14,144,14],[15,144,14],[16,15,1],[16,17,1],[16,167,14],[17,15,1],[17,167,14],[20,10,5],[20,32,7],[20,33,10],[20,79,6],[21,10,5],[21,73,10],[22,21,5],[22,75,15],[22,79,6],[23,10,1],[23,141,14],[24,141,14],[24,164,14],[25,141,14],[25,164,14],[26,141,14],[26,169,14],[27,10,1],[27,141,14],[28,10,1],[28,141,14],[29,10,1],[29,141,14],[30,10,1],[30,141,14],[31,10,5],[31,141,14],[31,164,14],[32,72,6],[32,164,14],[32,169,14],[33,169,14],[34,141,14],[34,169,14],[35,10,1],[35,75,15],[35,164,14],[36,35,10],[36,164,14],[36,165,14],[37,38,5],[38,39,4],[41,42,1],[41,167,14],[42,167,14],[44,34,4],[44,119,12],[45,34,4],[46,34,4],[47,43,4],[48,49,2],[48,143,14],[49,143,14],[50,48,4],[50,49,2],[50,143,14],[51,48,4],[51,49,5],[51,143,14],[52,49,10],[52,143,14],[53,50,5],[53,143,14],[54,48,5],[54,143,14],[55,48,10],[55,143,14],[56,141,14],[56,143,14],[57,141,14],[57,143,14],[58,34,15],[58,43,10],[58,44,15],[58,45,15],[58,59,10],[58,147,14],[58,167,14],[58,172,14],[59,34,7],[59,43,2],[59,166,14],[60,43,4],[60,167,14],[61,43,10],[61,60,4],[61,167,14],[61,168,14],[62,64,3],[62,65,4],[62,66,10],[64,63,5],[64,66,10],[64,67,10],[64,68,1],[64,70,4],[64,120,12],[64,121,12],[64,122,12],[64,123,12],[66,70,10],[67,167,14],[68,69,10],[68,70,4],[69,70,10],[71,165,14],[71,167,14],[72,168,14],[73,21,5],[73,124,12],[73,125,12],[74,21,10],[74,164,14],[74,167,14],[75,164,14],[76,7,2],[76,18,9],[76,77,9],[76,170,14],[77,18,10],[77,170,14],[78,72,1],[78,168,14],[79,168,14],[79,169,14],[80,36,5],[80,81,10],[80,96,10],[80,111,10],[80,141,14],[80,165,14],[81,80,4],[81,141,14],[81,165,14],[82,36,1],[82,141,14],[82,164,14],[82,168,14],[83,36,5],[83,96,10],[83,141,14],[83,164,14],[84,141,14],[84,167,14],[84,168,14],[85,0,10],[85,143,14],[85,166,14],[85,174,11],[86,35,10],[86,126,9],[86,127,9],[86,141,14],[86,169,14],[86,174,11],[87,3,15],[87,48,15],[87,49,15],[87,50,15],[87,56,15],[87,57,15],[87,93,10],[87,143,14],[87,144,14],[87,166,14],[87,169,14],[87,175,11],[88,5,10],[88,112,10],[88,141,14],[88,142,14],[88,149,14],[88,169,14],[88,171,14],[88,174,11],[89,7,10],[89,141,14],[89,174,11],[90,140,14],[90,169,14],[90,174,11],[91,10,10],[91,141,14],[91,169,14],[91,175,11],[92,11,15],[92,12,15],[92,13,15],[92,14,15],[92,15,15],[92,128,9],[92,144,14],[92,175,11],[93,48,15],[93,49,15],[93,50,15],[93,51,15],[93,52,15],[93,53,15],[93,54,15],[93,55,15],[93,143,14],[93,166,14],[93,175,11],[94,7,10],[94,10,10],[94,72,10],[94,73,10],[94,76,10],[94,78,10],[94,79,10],[94,137,9],[94,141,14],[94,142,14],[94,164,14],[94,170,14],[94,174,11],[95,143,14],[95,171,14],[95,174,11],[96,36,10],[96,138,9],[96,139,9],[96,141,14],[97,16,15],[97,17,15],[97,141,14],[97,144,14],[97,175,11],[98,62,10],[98,67,10],[98,71,10],[98,141,14],[98,167,14],[98,169,14],[98,170,14],[98,176,11],[99,169,14],[99,174,11],[100,20,10],[100,141,14],[100,142,14],[101,21,10],[101,141,14],[101,142,14],[102,22,10],[102,141,14],[102,142,14],[103,37,10],[103,131,9],[103,132,9],[103,133,9],[103,141,14],[103,172,14],[103,173,11],[104,40,10],[104,141,14],[104,174,11],[105,41,10],[105,42,10],[105,141,14],[105,142,14],[105,167,14],[105,174,11],[106,99,13],[106,169,14],[106,174,11],[107,141,14],[107,176,11],[108,174,11],[109,58,10],[109,59,10],[109,134,9],[109,141,14],[109,143,14],[109,147,14],[109,167,14],[109,172,14],[109,174,11],[110,60,10],[110,61,10],[110,135,9],[110,136,9],[110,141,14],[110,142,14],[110,167,14],[110,174,11],[111,96,10],[111,141,14],[111,176,11],[113,86,10],[115,129,10],[116,130,10],[128,13,5],[128,144,14],[129,16,4],[130,17,4],[134,58,0],[135,60,0],[136,61,0],[136,168,14],[137,7,0],[137,10,0],[138,36,0],[138,141,14],[138,143,14],[139,36,0],[139,141,14],[139,143,14],[152,99,8],[152,106,8],[152,108,8],[152,165,14],[152,167,14],[152,169,14],[153,146,14],[153,166,14],[154,171,14],[155,146,14],[155,166,14],[155,170,14],[156,107,8],[156,146,14],[156,167,14],[156,168,14],[156,170,14],[156,173,10],[157,165,14],[157,167,14],[157,168,14],[158,86,8],[158,91,8],[158,96,8],[158,100,8],[158,101,8],[158,102,8],[158,111,8],[158,164,14],[158,170,14],[159,103,8],[159,166,14],[159,172,14],[160,89,8],[160,94,8],[160,167,14],[160,169,14],[160,170,14],[161,92,8],[161,97,8],[161,166,14],[161,170,14],[162,34,8],[162,43,8],[162,44,8],[162,45,8],[162,46,8],[162,47,8],[162,109,8],[162,166,14],[162,167,14],[163,5,8],[163,40,8],[163,41,8],[163,42,8],[163,88,8],[163,104,8],[163,105,8],[163,110,8],[163,165,14],[163,167,14],[163,169,14]]};
+  /* PKGRAPH end */
+
   /* ---------- project diagrams ----------
      Each diagram is boxes and arrows in a fixed coordinate space. Arrows
      leave from a side of one box (r, l, t, b) and enter a side of another,
@@ -972,17 +1063,6 @@ document.documentElement.setAttribute("data-theme", "day");
         { f:"d", fs:"b", t:"a", ts:"b", k:70, lx:300, ly:128,
           lbl:{ en:"a reason to come back tomorrow", tr:"yarın geri gelmek için bir sebep" } }] },
 
-    istakip:{ w:640, h:148,
-      nodes:[
-        { id:"db", x:0,   y:22, w:130, h:64, t:{ en:["Supabase","Postgres + RLS"], tr:["Supabase","Postgres + RLS"] } },
-        { id:"ap", x:186, y:22, w:152, h:64, hi:1, t:{ en:["Flutter app","list, map, graph"], tr:["Flutter uygulaması","defter, harita, graf"] } },
-        { id:"pr", x:390, y:22, w:106, h:64, t:{ en:["prompt","task context"], tr:["prompt","görev bağlamı"] } },
-        { id:"cl", x:540, y:22, w:100, h:64, t:{ en:["Claude","walks the graph"], tr:["Claude","grafı gezer"] } }],
-      edges:[ { f:"db", t:"ap" }, { f:"ap", t:"pr" }, { f:"pr", t:"cl" },
-        { f:"cl", fs:"b", t:"db", ts:"b", k:56, lx:320, ly:140,
-          lbl:{ en:"approved writes, every one audited", tr:"onaylı yazma, hepsi audit'e düşer" } }],
-      notes:[ { x:158, y:48, t:{ en:"REST", tr:"REST" } } ] },
-
     pipeline:{ w:640, h:214,
       nodes:[
         { id:"src", x:0,   y:70,  w:92,  h:50, stack:1, t:{ en:["107","sources"], tr:["107","kaynak"] } },
@@ -1022,11 +1102,549 @@ document.documentElement.setAttribute("data-theme", "day");
               { x:248, y:114, t:{ en:"survives a restart", tr:"yeniden başlatmaya dayanıklı" } } ] }
   };
 
+  /* ---------- İş Takip demo ----------
+     The graph screen of the app, rebuilt for the page with the real graph:
+     colour is the kind, size is the degree, edges carry the relation colour,
+     a click focuses the two hop neighbourhood, a drag moves a node. The same
+     Fruchterman-Reingold idea as force_layout.dart, then two more tabs: the
+     prompt the app hands to Claude, and the Zettelkasten game with the app's
+     own simplified FSRS update. Names of people, tasks, findings and projects
+     are numbered; everything else is the real label. */
+  var PK_COL = { concept:"#22D3EE", task:"#7C5CFF", source:"#34D399", finding:"#F87171",
+    tag:"#94A3B8", project:"#E879F9", discipline:"#FB923C", person:"#F472B6" };
+  var PK_REL = { parent_of:"#F59E0B", composed_of:"#A855F7", produces:"#84CC16", developed_by:"#DB2777",
+    sourced_from:"#6366F1", references:"#60A5FA", asserts:"#F97316", extends:"#7C5CFF",
+    example_of:"#14B8A6", implements:"#10B981", compares:"#EC4899", supersedes:"#EAB308",
+    contradicts:"#B91C1C", governed_by:"#EF4444", uses:"#06B6D4", requested_by:"#F472B6",
+    tagged_with:"#9CA3AF", relates_to:"#9CA3AF" };
+  var PK_PLAY = ["extends","references","compares","example_of","contradicts","supersedes",
+    "implements","uses","governed_by","composed_of","produces","developed_by"];
+  var PK_DESC = {
+    tr:{ extends:"A, B'yi kapsar ya da üzerine inşa eder", references:"A, B'ye değinir ya da kaynak gösterir",
+         compares:"A, B ile yan yana değerlendirilir", example_of:"A, B kategorisinin somut örneği",
+         contradicts:"A, B ile ters düşer", supersedes:"A, B'nin güncel versiyonu",
+         implements:"A, B protokolünü uygular", uses:"A, B'yi çalışırken kullanır",
+         governed_by:"A, B'nin kuralları altında çalışır", composed_of:"A bütün, B onun parçası",
+         produces:"A, B'yi üretti", developed_by:"A, B tarafından geliştirildi" },
+    en:{ extends:"A covers or builds on B", references:"A mentions or cites B",
+         compares:"A is weighed side by side with B", example_of:"A is a concrete example of B",
+         contradicts:"A contradicts B", supersedes:"A is the current version of B",
+         implements:"A implements the B protocol", uses:"A uses B at runtime",
+         governed_by:"A operates under B's rules", composed_of:"A is the whole, B one of its parts",
+         produces:"A produced B", developed_by:"A was developed by B" } };
+  var PK_T = {
+    tr:{ graph:"Graf", prompt:"Prompt", game:"Oyun", nodes:"düğüm", edges:"bağ", rels:"ilişki türü",
+         hint:"sürükle · kaydır · tekerlekle yakınlaş · bir düğüme tıkla", thint:"sürükle · + ile yakınlaş · bir düğüme dokun", links:"bağlantı",
+         hood:"iki adımlık komşuluk", more:"daha", mkprompt:"Bu düğüm için prompt üret",
+         kinds:{ concept:"kavram", task:"görev", source:"kaynak", finding:"bulgu", tag:"etiket",
+                 project:"proje", discipline:"disiplin", person:"kişi" },
+         pnote:"Uygulamadaki Kopyala düğmesi bu metni panoya koyar. Claude onunla grafı okur, adım adım çalışır ve onay almadan yazmaz.",
+         copy:"Kopyala", copied:"Kopyalandı",
+         gq1:"Bu kavram grafta hangisine bağlı?", gq2:"Peki nasıl bağlı?", gsrc:"kaynak düğüm",
+         right:"doğru", wrong:"yanlış", next:"Sonraki bağ", again:"Tekrar (1)", hard:"Zor (2)", good:"İyi (3)",
+         stab:"kararlılık", day:"gün", nextrev:"sonraki tekrar", hours:"saat", days:"gün",
+         played:"oynanan", score:"ikisi de doğru",
+         gnote:"Uygulamadaki Zettelkasten oyunu: aralıklı tekrar kartlara değil bağlara uygulanır, her bağın kendi hafıza eğrisi var. Hesap uygulamanın FSRS formülüyle yapılıyor." },
+    en:{ graph:"Graph", prompt:"Prompt", game:"Game", nodes:"nodes", edges:"edges", rels:"relation types",
+         hint:"drag · pan · scroll to zoom · click a node", thint:"drag · zoom with + · tap a node", links:"connections",
+         hood:"two hop neighbourhood", more:"more", mkprompt:"Build the prompt for this node",
+         kinds:{ concept:"concept", task:"task", source:"source", finding:"finding", tag:"tag",
+                 project:"project", discipline:"discipline", person:"person" },
+         pnote:"The Copy button in the app puts this text on the clipboard. Claude reads the graph with it, works step by step and writes nothing without approval.",
+         copy:"Copy", copied:"Copied",
+         gq1:"Which of these is this concept linked to?", gq2:"And how is it linked?", gsrc:"source node",
+         right:"right", wrong:"wrong", next:"Next edge", again:"Again (1)", hard:"Hard (2)", good:"Good (3)",
+         stab:"stability", day:"days", nextrev:"next review", hours:"hours", days:"days",
+         played:"played", score:"both right",
+         gnote:"The Zettelkasten game from the app: spaced repetition applied to the edges instead of cards, each edge with its own memory curve. The update is the app's FSRS formula." }
+  };
+  function pkEsc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+  function pkHtml(L){
+    var T = PK_T[L];
+    return '<div class="pk" data-demo="pk">'
+      + '<div class="pk-top"><span class="pk-dots"><i></i><i></i><i></i></span>'
+      + '<span class="pk-tabs"><button data-t="graph" class="on">'+T.graph+'</button>'
+      + '<button data-t="prompt">'+T.prompt+'</button><button data-t="game">'+T.game+'</button></span>'
+      + '<span class="pk-stat">'+PKG.n.length+' '+T.nodes+' &middot; '+PKG.e.length+' '+T.edges+' &middot; '+PKG.rels.length+' '+T.rels+'</span></div>'
+      + '<div class="pk-view on" data-v="graph"><div class="pk-stage"><canvas></canvas>'
+      +   '<div class="pk-ctl"><button data-z="in" aria-label="zoom in">+</button><button data-z="out" aria-label="zoom out">&minus;</button><button data-z="fit" aria-label="fit">&#9678;</button></div>'
+      +   '<div class="pk-tip"></div><div class="pk-side"></div><div class="pk-hint">'+(matchMedia("(pointer: coarse)").matches ? T.thint : T.hint)+'</div></div>'
+      +   '<div class="pk-leg"></div></div>'
+      + '<div class="pk-view" data-v="prompt"><div class="pk-pbar"><span>'+T.pnote+'</span><button class="pk-copy">'+T.copy+'</button></div><pre class="pk-pre"></pre></div>'
+      + '<div class="pk-view" data-v="game"><div class="pk-game"></div></div>'
+      + '</div>';
+  }
+
+  function pkMount(root, L){
+    if(root._pk) return; root._pk = 1;
+    var T = PK_T[L], KINDS = PKG.kinds, RELS = PKG.rels;
+    var cv = root.querySelector("canvas"), ctx = cv.getContext("2d");
+    var stage = root.querySelector(".pk-stage"), tip = root.querySelector(".pk-tip");
+    var side = root.querySelector(".pk-side"), leg = root.querySelector(".pk-leg");
+    function lab(n){ return typeof n.lab === "string" ? n.lab : n.lab[L==="tr" ? 0 : 1]; }
+
+    /* ---- the graph ---- */
+    var seed = 7; function rnd(){ seed = (seed*16807) % 2147483647; return (seed-1)/2147483646; }
+    var N = PKG.n.map(function(r, i){
+      var a = rnd()*Math.PI*2, d = 60 + rnd()*220;
+      return { i:i, k:KINDS[r[0]], lab:r[1], st:r[2], deg:0, nb:[], x:Math.cos(a)*d, y:Math.sin(a)*d, vx:0, vy:0, fx:null };
+    });
+    var E = PKG.e.map(function(r){
+      var e = { a:N[r[0]], b:N[r[1]], rel:RELS[r[2]] };
+      /* tags and disciplines touch everything; loose springs keep them from
+         pulling the whole graph into one ball */
+      e.len = e.rel === "tagged_with" ? 70 : 42;
+      e.a.deg++; e.b.deg++;
+      e.a.nb.push({ n:e.b, rel:e.rel, out:true }); e.b.nb.push({ n:e.a, rel:e.rel, out:false });
+      return e;
+    });
+    N.forEach(function(n){ n.r = Math.min(17, 3.2 + Math.sqrt(n.deg)*1.75); });
+    E.forEach(function(e){ e.k = 1/Math.min(e.a.deg, e.b.deg); });
+    N.slice().sort(function(a, b){ return b.deg - a.deg; }).forEach(function(n, i){ n.rank = i; });
+    var hidden = {}, alpha = 1, focus = null, hood = null, hover = null;
+
+    /* forces in the d3 manner: a 1/d charge, links whose strength is
+       1/min(degree) so hubs do not swallow the graph, a weak pull to the
+       centre and a collision pass so the dots never sit on each other */
+    function tick(){
+      var i, j, a, b, dx, dy, d2, d, f, l, n = N.length;
+      for(i=0; i<n; i++){ a = N[i];
+        for(j=i+1; j<n; j++){ b = N[j];
+          dx = b.x-a.x; dy = b.y-a.y; d2 = dx*dx+dy*dy;
+          if(d2 > 160000) continue;
+          if(d2 < 1){ dx = rnd()-.5; dy = rnd()-.5; d2 = 1; }
+          f = -70*alpha/d2;
+          b.vx -= dx*f; b.vy -= dy*f; a.vx += dx*f; a.vy += dy*f;
+          d = Math.sqrt(d2); l = a.r + b.r + 4;
+          if(d < l){ f = (l-d)/d*.35; b.vx += dx*f; b.vy += dy*f; a.vx -= dx*f; a.vy -= dy*f; }
+        }
+      }
+      for(i=0; i<E.length; i++){ a = E[i].a; b = E[i].b;
+        dx = (b.x+b.vx)-(a.x+a.vx); dy = (b.y+b.vy)-(a.y+a.vy); d = Math.sqrt(dx*dx+dy*dy) || 1;
+        l = (d - E[i].len)/d*alpha*E[i].k;
+        dx *= l; dy *= l;
+        var w = b.deg/(a.deg+b.deg);
+        b.vx -= dx*w; b.vy -= dy*w; a.vx += dx*(1-w); a.vy += dy*(1-w);
+      }
+      for(i=0; i<n; i++){ a = N[i];
+        a.vx -= a.x*.02*alpha; a.vy -= a.y*.02*alpha;
+        a.vx *= .6; a.vy *= .6;
+        if(a.fx != null){ a.x = a.fx; a.y = a.fy; a.vx = a.vy = 0; }
+        else { a.x += a.vx; a.y += a.vy; }
+      }
+      alpha += (0 - alpha)*.018;
+    }
+    for(var s0=0; s0<(reduce ? 400 : 140); s0++) tick();
+    if(reduce) alpha = 0;
+
+    /* ---- camera ---- */
+    var W = 0, H = 0, DPR = 1, cam = { x:0, y:0, s:1 }, camTo = null, userCam = false;
+    function size(){
+      var r = stage.getBoundingClientRect();
+      if(!r.width) return;
+      W = r.width; H = r.height; DPR = Math.min(2, devicePixelRatio || 1);
+      cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
+      cv.style.width = W+"px"; cv.style.height = H+"px";
+    }
+    function fitCam(anim){
+      var x0=1e9, y0=1e9, x1=-1e9, y1=-1e9;
+      N.forEach(function(n){ if(hidden[n.k]) return;
+        x0 = Math.min(x0, n.x); y0 = Math.min(y0, n.y); x1 = Math.max(x1, n.x); y1 = Math.max(y1, n.y); });
+      if(x0 > x1) return;
+      var s = Math.max(.2, Math.min(2.4, Math.min(W/(x1-x0+90), H/(y1-y0+90))));
+      var t = { x:(x0+x1)/2, y:(y0+y1)/2, s:s };
+      if(anim && !reduce) camTo = t; else cam = t;
+    }
+    function toScr(n){ return { x:(n.x-cam.x)*cam.s + W/2, y:(n.y-cam.y)*cam.s + H/2 }; }
+    function toWorld(px, py){ return { x:(px-W/2)/cam.s + cam.x, y:(py-H/2)/cam.s + cam.y }; }
+
+    /* ---- drawing ---- */
+    function rgba(hex, a){
+      var v = parseInt(hex.slice(1), 16);
+      return "rgba("+(v>>16)+","+((v>>8)&255)+","+(v&255)+","+a+")";
+    }
+    function stCol(st){
+      if(st==="shipped" || st==="archived" || st==="cancelled") return "#4ADE80";
+      if(st==="in_progress" || st==="review" || st==="drafting") return "#60A5FA";
+      return "#F87171";
+    }
+    function lit(n){
+      if(hood) return !!hood[n.i];
+      if(hover) return n === hover || hover.nb.some(function(q){ return q.n === n; });
+      return true;
+    }
+    function draw(){
+      if(!W) return;
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+      ctx.fillStyle = "#0B0B0F"; ctx.fillRect(0,0,W,H);
+      var g = ctx.createRadialGradient(W*.5, H*.45, 0, W*.5, H*.45, Math.max(W,H)*.7);
+      g.addColorStop(0, "rgba(124,92,255,.07)"); g.addColorStop(1, "rgba(124,92,255,0)");
+      ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+      var sel = !!(hood || hover), i, e, p, q, n;
+      ctx.lineCap = "round";
+      for(i=0; i<E.length; i++){ e = E[i];
+        if(hidden[e.a.k] || hidden[e.b.k]) continue;
+        var on = hood ? (hood[e.a.i] && hood[e.b.i] && (e.a===focus || e.b===focus || hood[e.a.i]===1 && hood[e.b.i]===1))
+                      : hover ? (e.a===hover || e.b===hover) : false;
+        p = toScr(e.a); q = toScr(e.b);
+        ctx.strokeStyle = rgba(PK_REL[e.rel] || "#9CA3AF", sel ? (on ? .9 : .045) : .26);
+        ctx.lineWidth = on ? 1.5 : .8;
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+      }
+      var zs = Math.sqrt(cam.s);
+      for(i=0; i<N.length; i++){ n = N[i];
+        if(hidden[n.k]) continue;
+        p = toScr(n); var r = Math.max(2, n.r*zs), L1 = lit(n), c = PK_COL[n.k];
+        if(p.x < -30 || p.y < -30 || p.x > W+30 || p.y > H+30) continue;
+        ctx.globalAlpha = sel && !L1 ? .13 : 1;
+        if(!sel || L1){ ctx.shadowColor = c; ctx.shadowBlur = (n===focus || n===hover) ? 22 : 9; }
+        ctx.fillStyle = c; ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, 7); ctx.fill();
+        ctx.shadowBlur = 0;
+        if(n.st){ ctx.fillStyle = stCol(n.st); ctx.beginPath(); ctx.arc(p.x, p.y, r*.42, 0, 7); ctx.fill(); }
+        if(n === focus){ ctx.strokeStyle = "#E8E8EE"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(p.x, p.y, r+4, 0, 7); ctx.stroke(); }
+      }
+      ctx.globalAlpha = 1;
+      ctx.font = "500 10.5px Archivo, Inter, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "top";
+      /* labels go down in order of importance and skip any spot already
+         taken, so the dense middle stays readable */
+      var cand = [];
+      for(i=0; i<N.length; i++){ n = N[i];
+        if(hidden[n.k]) continue;
+        var show = sel ? lit(n) && (n===focus || n===hover || n.deg*cam.s > 5 || (hood && hood[n.i]===1) || (hover && cam.s > .7))
+                       : n.rank < Math.max(8, 8 + 34*(cam.s - 1));
+        if(show) cand.push(n);
+      }
+      cand.sort(function(a, b){
+        var pa = (a===focus || a===hover) ? -1 : a.rank, pb = (b===focus || b===hover) ? -1 : b.rank;
+        return pa - pb;
+      });
+      var boxes = [];
+      cand.forEach(function(n){
+        var p = toScr(n), t = lab(n); if(t.length > 28) t = t.slice(0, 27) + "…";
+        var tw = ctx.measureText(t).width, ty = p.y + Math.max(2, n.r*zs) + 4;
+        var bx = { x0:p.x - tw/2 - 3, x1:p.x + tw/2 + 3, y0:ty - 1, y1:ty + 13 };
+        if(n !== focus && n !== hover && boxes.some(function(o){ return bx.x0 < o.x1 && bx.x1 > o.x0 && bx.y0 < o.y1 && bx.y1 > o.y0; })) return;
+        boxes.push(bx);
+        ctx.lineWidth = 3; ctx.strokeStyle = "rgba(11,11,15,.85)"; ctx.strokeText(t, p.x, ty);
+        ctx.fillStyle = (n===focus || n===hover) ? "#FFFFFF" : "rgba(232,232,238,.82)";
+        ctx.fillText(t, p.x, ty);
+      });
+    }
+
+    /* ---- loop: runs only while something moves ---- */
+    var raf = 0;
+    function kick(){ if(!raf) raf = requestAnimationFrame(loop); }
+    function loop(){
+      raf = 0;
+      if(!root.isConnected) return;
+      var busy = false;
+      if(alpha > .01){ tick(); busy = true; if(!userCam && !camTo) fitCam(false); }
+      if(camTo){
+        cam.x += (camTo.x-cam.x)*.16; cam.y += (camTo.y-cam.y)*.16; cam.s += (camTo.s-cam.s)*.16;
+        if(Math.abs(camTo.x-cam.x) + Math.abs(camTo.y-cam.y) < .5 && Math.abs(camTo.s-cam.s) < .004){ cam = camTo; camTo = null; }
+        busy = true;
+      }
+      draw();
+      if(busy) kick();
+    }
+
+    /* ---- focus and the side panel ---- */
+    function setFocus(n, centre){
+      focus = n; hood = null;
+      if(n){
+        hood = {}; hood[n.i] = 0;
+        n.nb.forEach(function(q){ if(!hidden[q.n.k] && hood[q.n.i]==null) hood[q.n.i] = 1; });
+        n.nb.forEach(function(q){ if(hood[q.n.i]!==1) return;
+          q.n.nb.forEach(function(w){ if(!hidden[w.n.k] && hood[w.n.i]==null) hood[w.n.i] = 2; }); });
+        if(centre){
+          /* the side panel covers the right, so the node sits left of centre */
+          var s1 = Math.max(cam.s, 1.25), wide = W > 620;
+          camTo = { x:n.x + (wide ? 140/s1 : 0), y:n.y + (wide ? 0 : H*.33/s1), s:s1 }; userCam = true;
+        }
+      }
+      paintSide(); kick();
+      if(activeTab === "prompt") paintPrompt();
+    }
+    function paintSide(){
+      if(!focus){ side.classList.remove("on"); return; }
+      var n = focus, cnt = Object.keys(hood).length - 1;
+      var rows = n.nb.slice().sort(function(a, b){ return b.n.deg - a.n.deg; });
+      var shown = rows.slice(0, 16);
+      side.innerHTML = '<button class="pk-x" aria-label="close">&times;</button>'
+        + '<div class="pk-kind"><i style="background:'+PK_COL[n.k]+'"></i>'+T.kinds[n.k]
+        + (n.st ? '<span class="pk-st" style="color:'+stCol(n.st)+'">'+n.st+'</span>' : '')+'</div>'
+        + '<div class="pk-title">'+pkEsc(lab(n))+'</div>'
+        + '<div class="pk-meta">'+n.deg+' '+T.links+' &middot; '+T.hood+': '+cnt+'</div>'
+        + '<ul>'+shown.map(function(q){
+            return '<li data-n="'+q.n.i+'"><em style="color:'+(PK_REL[q.rel]||"#9CA3AF")+'">'+(q.out ? '' : '&larr; ')+q.rel.replace(/_/g," ")+(q.out ? ' &rarr;' : '')+'</em>'
+              + '<span><i style="background:'+PK_COL[q.n.k]+'"></i>'+pkEsc(lab(q.n))+'</span></li>';
+          }).join('')+'</ul>'
+        + (rows.length > shown.length ? '<div class="pk-meta">+'+(rows.length-shown.length)+' '+T.more+'</div>' : '')
+        + '<button class="pk-mk">'+T.mkprompt+'</button>';
+      side.classList.add("on");
+    }
+    side.addEventListener("click", function(ev){
+      if(ev.target.closest(".pk-x")){ setFocus(null); return; }
+      if(ev.target.closest(".pk-mk")){ showTab("prompt"); return; }
+      var li = ev.target.closest("li[data-n]");
+      if(li) setFocus(N[+li.getAttribute("data-n")], true);
+    });
+
+    /* ---- legend doubles as the kind filter, as in the app ---- */
+    function paintLeg(){
+      leg.innerHTML = KINDS.map(function(k){
+        var c = N.filter(function(n){ return n.k===k; }).length;
+        return '<button data-k="'+k+'" class="'+(hidden[k] ? 'off' : '')+'"><i style="background:'+PK_COL[k]+'"></i>'+T.kinds[k]+' <em>'+c+'</em></button>';
+      }).join('');
+    }
+    leg.addEventListener("click", function(ev){
+      var b = ev.target.closest("button[data-k]"); if(!b) return;
+      var k = b.getAttribute("data-k"); hidden[k] = !hidden[k];
+      if(focus && hidden[focus.k]) setFocus(null); else if(focus) setFocus(focus);
+      paintLeg(); kick();
+    });
+    paintLeg();
+
+    /* ---- pointer: hover, click, drag a node, pan the canvas, zoom ---- */
+    function hit(px, py){
+      var best = null, bd = 1e9;
+      N.forEach(function(n){ if(hidden[n.k]) return;
+        var p = toScr(n), d = Math.hypot(p.x-px, p.y-py), r = Math.max(2, n.r*Math.sqrt(cam.s)) + 5;
+        if(d < r && d < bd){ bd = d; best = n; } });
+      return best;
+    }
+    var drag = null;
+    function local(ev){ var r = cv.getBoundingClientRect(); return { x:ev.clientX-r.left, y:ev.clientY-r.top }; }
+    cv.addEventListener("pointerdown", function(ev){
+      var p = local(ev), n = hit(p.x, p.y);
+      drag = { n:n, sx:p.x, sy:p.y, lx:p.x, ly:p.y, moved:0, id:ev.pointerId };
+      try{ cv.setPointerCapture(ev.pointerId); }catch(_){}
+      cv.classList.add("grab");
+      ev.preventDefault(); ev.stopPropagation();
+    });
+    cv.addEventListener("pointermove", function(ev){
+      var p = local(ev);
+      if(drag && drag.id === ev.pointerId){
+        drag.moved += Math.abs(p.x-drag.lx) + Math.abs(p.y-drag.ly);
+        if(drag.moved > 4){
+          if(drag.n){ var w = toWorld(p.x, p.y); drag.n.fx = w.x; drag.n.fy = w.y; alpha = Math.max(alpha, .28); }
+          else { cam.x -= (p.x-drag.lx)/cam.s; cam.y -= (p.y-drag.ly)/cam.s; camTo = null; userCam = true; }
+          tip.style.opacity = 0; kick();
+        }
+        drag.lx = p.x; drag.ly = p.y;
+        return;
+      }
+      if(ev.pointerType !== "mouse") return;
+      var n = hit(p.x, p.y);
+      if(n !== hover){ hover = n; kick(); }
+      cv.style.cursor = n ? "pointer" : "";
+      if(n){
+        tip.innerHTML = pkEsc(lab(n)) + '<small>'+T.kinds[n.k]+' &middot; '+n.deg+' '+T.links+'</small>';
+        tip.style.left = Math.min(W-200, p.x+14)+"px"; tip.style.top = (p.y+12)+"px"; tip.style.opacity = 1;
+      } else tip.style.opacity = 0;
+    });
+    function end(ev){
+      if(!drag || (ev && ev.pointerId !== drag.id)) return;
+      var d = drag; drag = null; cv.classList.remove("grab");
+      if(d.n){ d.n.fx = d.n.fy = null; }
+      if(d.moved <= 4) setFocus(d.n && d.n === focus ? null : d.n, !!d.n);
+    }
+    cv.addEventListener("pointerup", end);
+    cv.addEventListener("pointercancel", end);
+    cv.addEventListener("pointerleave", function(){ if(hover){ hover = null; kick(); } tip.style.opacity = 0; });
+    cv.addEventListener("wheel", function(ev){
+      ev.preventDefault();
+      var p = local(ev), w = toWorld(p.x, p.y), base = camTo || cam;
+      var s = Math.max(.25, Math.min(4, base.s * Math.exp(-ev.deltaY*0.0016)));
+      cam = { x:w.x - (p.x-W/2)/s, y:w.y - (p.y-H/2)/s, s:s }; camTo = null; userCam = true; kick();
+    }, { passive:false });
+    root.querySelector(".pk-ctl").addEventListener("click", function(ev){
+      var b = ev.target.closest("button"); if(!b) return;
+      var z = b.getAttribute("data-z"), base = camTo || cam;
+      userCam = true;
+      if(z === "fit"){ setFocus(null); fitCam(true); }
+      else camTo = { x:base.x, y:base.y, s:Math.max(.25, Math.min(4, base.s*(z==="in" ? 1.35 : 1/1.35))) };
+      kick();
+    });
+
+    /* ---- tabs ---- */
+    var activeTab = "graph";
+    function showTab(t){
+      activeTab = t;
+      Array.prototype.forEach.call(root.querySelectorAll(".pk-tabs button"), function(b){ b.classList.toggle("on", b.getAttribute("data-t")===t); });
+      Array.prototype.forEach.call(root.querySelectorAll(".pk-view"), function(v){ v.classList.toggle("on", v.getAttribute("data-v")===t); });
+      if(t === "graph"){ size(); kick(); }
+      if(t === "prompt") paintPrompt();
+      if(t === "game" && !game.cur) newRound();
+    }
+    root.querySelector(".pk-tabs").addEventListener("click", function(ev){
+      var b = ev.target.closest("button[data-t]"); if(b) showTab(b.getAttribute("data-t"));
+    });
+
+    /* ---- the prompt tab: the structure PromptBuilder writes ---- */
+    var pre = root.querySelector(".pk-pre"), promptText = "";
+    function defaultNode(){
+      var best = null;
+      N.forEach(function(n){ if(n.k==="task" && (!best || n.deg > best.deg)) best = n; });
+      return best;
+    }
+    function paintPrompt(){
+      var n = focus || defaultNode(), tr = L === "tr";
+      var by = function(k, out){ return n.nb.filter(function(q){ return q.n.k===k && (out==null || q.out===out); }); };
+      var proj = n.nb.filter(function(q){ return q.n.k==="project" && q.rel==="parent_of" && !q.out; })[0];
+      var tags = by("tag").map(function(q){ return "#"+lab(q.n); });
+      var disc = by("discipline").map(function(q){ return "`"+lab(q.n)+"`"; });
+      var ppl  = by("person").map(function(q){ return lab(q.n); });
+      var rest = n.nb.filter(function(q){ return ["tag","discipline","person","project"].indexOf(q.n.k) < 0; })
+                     .slice(0, 8).map(function(q){ return "  - "+lab(q.n)+" ("+q.rel+")"; });
+      var head = T.kinds[n.k].charAt(0).toLocaleUpperCase(L) + T.kinds[n.k].slice(1);
+      var id = "3f9c…"+(1000+n.i*37).toString(16);
+      var t = [];
+      t.push("# "+head+": "+lab(n), "");
+      t.push("- **ID** (Supabase nodes): `"+id+"`");
+      if(n.st) t.push(tr ? "- **Status:** `"+n.st+"` · **Kategori:** `work`" : "- **Status:** `"+n.st+"` · **Category:** `work`");
+      if(proj) t.push((tr ? "- **Proje:** **" : "- **Project:** **")+lab(proj.n)+"**");
+      if(tags.length) t.push((tr ? "- **Etiketler:** " : "- **Tags:** ")+tags.join(" "));
+      if(disc.length) t.push((tr ? "- **Disiplinler:** " : "- **Disciplines:** ")+disc.join(", "));
+      if(ppl.length) t.push((tr ? "- **Kişiler:** " : "- **People:** ")+ppl.join(", "));
+      if(rest.length){ t.push(tr ? "- **Bağlı düğümler:**" : "- **Linked nodes:**"); t = t.concat(rest); }
+      t.push("", "---", "");
+      if(tr){
+        t.push("## KESİN KURALLAR", "",
+          "1. **DB'YE YAZMA YOK.** Ben açıkça söylemeden hiçbir şey yazma:",
+          "   - `tamamla` / `kapat` / `kaydet` → final çıktıyı üret, **onayımı bekle**, sonra yaz",
+          "   - `şimdilik dur` → defter dosyasını güncelle, **DB'ye yazma**",
+          "2. **ADIM ADIM BİRLİKTE ÇALIŞ.** Bir adım at, dur, sonucu paylaş, yönlendirmemi bekle.",
+          "3. **Okuma serbest.** DB'den `SELECT` / GET serbest: defteri gez, bağlamı anla.",
+          "4. **Final çıktıyı şablona uy.** Şema ve Zettelkasten kurallarıyla uyumlu.", "",
+          "## Defterime bağlan (ilk iş)", "", "```", "@CLAUDE.md", "```", "", "```bash",
+          "node scripts/q.mjs \"nodes?id=eq."+id+"&select=*\"",
+          "node scripts/q.mjs \"edges?or=(from_id.eq."+id+",to_id.eq."+id+")\"",
+          "node scripts/q.mjs \"node_notes?node_id=eq."+id+"&order=created_at\"", "```", "",
+          "## Final çıktı şablonu", "", "```yaml",
+          "kapanis_notu: |", "  ...", "yeni_nodelar:", "  - kind: finding | concept | source", "    title: ...",
+          "yeni_edgeler:", "  - from: ...", "    relation: extends | example_of | uses | ...", "    to: ...",
+          "status: shipped", "```");
+      } else {
+        t.push("## HARD RULES", "",
+          "1. **NO WRITES TO THE DB.** Nothing is written until I say so:",
+          "   - `done` / `close` / `save` → produce the final output, **wait for my approval**, then write",
+          "   - `pause` → update the notebook file, **do not write to the DB**",
+          "2. **WORK STEP BY STEP, TOGETHER.** One step, stop, share the result, wait for direction.",
+          "3. **Reading is free.** `SELECT` / GET on the DB is always fine: walk the graph, get the context.",
+          "4. **Follow the final template.** It matches the schema and the Zettelkasten rules.", "",
+          "## Connect to my notebook (first)", "", "```", "@CLAUDE.md", "```", "", "```bash",
+          "node scripts/q.mjs \"nodes?id=eq."+id+"&select=*\"",
+          "node scripts/q.mjs \"edges?or=(from_id.eq."+id+",to_id.eq."+id+")\"",
+          "node scripts/q.mjs \"node_notes?node_id=eq."+id+"&order=created_at\"", "```", "",
+          "## Final output template", "", "```yaml",
+          "closing_note: |", "  ...", "new_nodes:", "  - kind: finding | concept | source", "    title: ...",
+          "new_edges:", "  - from: ...", "    relation: extends | example_of | uses | ...", "    to: ...",
+          "status: shipped", "```");
+      }
+      promptText = t.join("\n");
+      pre.innerHTML = t.map(function(line){
+        var s = pkEsc(line);
+        if(/^#/.test(line)) return '<b class="h">'+s+'</b>';
+        return s.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`([^`]+)`/g, '<code>$1</code>');
+      }).join("\n");
+    }
+    root.querySelector(".pk-copy").addEventListener("click", function(ev){
+      var b = ev.currentTarget;
+      try{ navigator.clipboard.writeText(promptText).then(function(){ b.textContent = T.copied; setTimeout(function(){ b.textContent = T.copy; }, 1400); }); }catch(_){}
+    });
+
+    /* ---- the game: two phases, then the app's FSRS update ---- */
+    var gameEl = root.querySelector(".pk-game");
+    var pool = E.filter(function(e){ return e.a.k==="concept" && e.b.k==="concept" && PK_PLAY.indexOf(e.rel) >= 0; });
+    var concepts = N.filter(function(n){ return n.k==="concept"; });
+    var game = { cur:null, played:0, good:0, mem:{} };
+    function pick(arr, k, not){
+      var out = [], guard = 0;
+      while(out.length < k && guard++ < 500){
+        var x = arr[Math.floor(Math.random()*arr.length)];
+        if(out.indexOf(x) < 0 && not.indexOf(x) < 0) out.push(x);
+      }
+      return out;
+    }
+    function shuffle(a){ for(var i=a.length-1; i>0; i--){ var j = Math.floor(Math.random()*(i+1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+    function newRound(){
+      var e = pool[Math.floor(Math.random()*pool.length)];
+      var linked = e.a.nb.map(function(q){ return q.n; }).concat([e.a]);
+      game.cur = { e:e, phase:1, p1:null, p2:null,
+        targets: shuffle([e.b].concat(pick(concepts, 3, linked))),
+        rels: shuffle([e.rel].concat(pick(PK_PLAY, 3, [e.rel]))) };
+      paintGame();
+    }
+    function fsrs(key, rating){
+      var m = game.mem[key] || { S:1, D:.3, last:null }, now = Date.now();
+      var R = m.last ? Math.exp(-((now-m.last)/86400000)/m.S) : 0, S0 = m.S, S, D;
+      if(rating === 1){ S = Math.max(1, m.S*.5); D = Math.min(1, m.D+.15); }
+      else { S = Math.max(m.S, m.S*(1 + (rating===3 ? 1.5 : .5)*(1-R)*(1-m.D))); D = Math.max(0, m.D-.05); }
+      game.mem[key] = { S:S, D:D, last:now };
+      return { S0:S0, S:S, R:R, next:S*Math.log(1/0.9) };
+    }
+    function fmt(x){ return x.toFixed(2).replace(".", L==="tr" ? "," : "."); }
+    function paintGame(){
+      var g = game.cur, e = g.e;
+      var h = '<div class="pk-gsrc"><small>'+T.gsrc+'</small><b>'+pkEsc(lab(e.a))+'</b></div>';
+      h += '<div class="pk-q">'+T.gq1+'</div><div class="pk-opts">'
+        + g.targets.map(function(n, i){
+            var cls = g.p1==null ? "" : (n===e.b ? "ok" : (g.p1===i ? "no" : "dim"));
+            return '<button data-a="'+i+'" class="'+cls+'"'+(g.p1!=null ? ' disabled' : '')+'>'+pkEsc(lab(n))+'</button>';
+          }).join('')+'</div>';
+      if(g.phase >= 2){
+        h += '<div class="pk-q">'+T.gq2+'</div><div class="pk-opts rel">'
+          + g.rels.map(function(r, i){
+              var cls = g.p2==null ? "" : (r===e.rel ? "ok" : (g.p2===i ? "no" : "dim"));
+              return '<button data-r="'+i+'" class="'+cls+'"'+(g.p2!=null ? ' disabled' : '')+'><i style="background:'+PK_REL[r]+'"></i><span>'+r.replace(/_/g," ")+'<small>'+PK_DESC[L][r]+'</small></span></button>';
+            }).join('')+'</div>';
+      }
+      if(g.phase === 3){
+        var ok1 = g.targets[g.p1]===e.b, ok2 = g.rels[g.p2]===e.rel;
+        var rating = !ok1 ? 1 : (!ok2 ? 2 : 3), f = g.f;
+        var hrs = f.next*24;
+        h += '<div class="pk-res"><div class="pk-edge"><b>'+pkEsc(lab(e.a))+'</b> <em style="color:'+PK_REL[e.rel]+'">'+e.rel.replace(/_/g," ")+' &rarr;</em> <b>'+pkEsc(lab(e.b))+'</b></div>'
+          + '<div class="pk-rate r'+rating+'">'+[T.again,T.hard,T.good][rating-1]+'</div>'
+          + '<div class="pk-fsrs">'+T.stab+' '+fmt(f.S0)+' &rarr; '+fmt(f.S)+' '+T.day+' &middot; '+T.nextrev+' &asymp; '
+          + (hrs < 48 ? Math.max(1, Math.round(hrs))+' '+T.hours : fmt(f.next)+' '+T.days)+'</div>'
+          + '<button class="pk-next">'+T.next+'</button></div>';
+      }
+      h += '<div class="pk-gfoot"><span>'+T.played+': '+game.played+' &middot; '+T.score+': '+game.good+'</span><span>'+T.gnote+'</span></div>';
+      gameEl.innerHTML = h;
+    }
+    gameEl.addEventListener("click", function(ev){
+      var g = game.cur; if(!g) return;
+      var b = ev.target.closest("button"); if(!b) return;
+      if(b.classList.contains("pk-next")){ newRound(); return; }
+      if(b.hasAttribute("data-a") && g.p1==null){ g.p1 = +b.getAttribute("data-a"); g.phase = 2; paintGame(); return; }
+      if(b.hasAttribute("data-r") && g.p2==null){
+        g.p2 = +b.getAttribute("data-r"); g.phase = 3;
+        var ok1 = g.targets[g.p1]===g.e.b, ok2 = g.rels[g.p2]===g.e.rel;
+        var rating = !ok1 ? 1 : (!ok2 ? 2 : 3);
+        g.f = fsrs(g.e.a.i+">"+g.e.b.i, rating);
+        game.played++; if(rating === 3) game.good++;
+        paintGame();
+      }
+    });
+
+    /* ---- start ---- */
+    size(); fitCam(false); draw(); kick();
+    if(window.ResizeObserver){
+      new ResizeObserver(function(){ if(activeTab==="graph"){ var had = W; size(); if(!had) fitCam(false); kick(); } }).observe(stage);
+    }
+  }
+  function mountDemos(el){
+    var r = el.querySelector('[data-demo="pk"]');
+    if(r) pkMount(r, LANG);
+  }
+
   function proj(d, badges, L, id){
     return '<div class="doc"><h1>'+d.name+'</h1><p class="meta">'+d.meta+'</p>'
       + '<div class="badges">'+badges.map(function(on, i){ return '<span class="'+(on?'on':'')+'">'+BADGE[L][i]+'</span>'; }).join('')+'</div>'
       + '<p class="lede">'+d.lede+'</p>'
-      + (DIA[id] ? dia(DIA[id], L) : '')
+      + (id === "istakip" ? pkHtml(L) : DIA[id] ? dia(DIA[id], L) : '')
       + d.paras.map(function(p){ return '<p>'+p+'</p>'; }).join('')
       + '<div class="rail"><h3>'+d.rt+'</h3><ol>'+d.rail.map(function(r){ return '<li>'+r+'</li>'; }).join('')+'</ol></div>'
       + '<div class="tags">'+d.tags.map(function(t){ return '<span>'+t+'</span>'; }).join('')+'</div></div>';
@@ -1191,6 +1809,7 @@ document.documentElement.setAttribute("data-theme", "day");
       + '<div class="body">'+a.html+'</div>'
       + '<div class="rz e"></div><div class="rz s"></div><div class="rz se"></div>';
     winsEl.appendChild(el);
+    mountDemos(el);
 
     var ww = Math.min(a.w, b.w-40), wh = Math.min(a.h, b.h-40);
     var r = rect || { x: Math.max(16, Math.round((b.w-ww)/2) + cascade*26 - 52),
@@ -2755,7 +3374,7 @@ document.documentElement.setAttribute("data-theme", "day");
     Object.keys(open).forEach(function(id){
       var el = open[id].el, bd = el.querySelector(".body"), top = bd.scrollTop;
       el.querySelector(".nm").textContent = APPS[id].t;
-      bd.innerHTML = APPS[id].html; bd.scrollTop = top;
+      bd.innerHTML = APPS[id].html; bd.scrollTop = top; mountDemos(el);
       el.querySelector(".mn").title = ui("mn");
       el.querySelector(".mx").title = ui("mx");
       el.querySelector(".x").title = ui("x");
