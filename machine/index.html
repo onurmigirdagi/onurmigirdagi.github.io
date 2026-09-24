@@ -1089,28 +1089,37 @@ body.mob .st-side,body.phone .st-side{border-radius:11px 0 0 0;}
 .ms-bar{display:flex; gap:4px; flex-wrap:wrap; justify-content:center;}
 .ms-bar button{font-size:10.5px; padding:4px 9px; border-radius:6px; border:1px solid var(--line2); color:var(--dim); background:var(--panel); letter-spacing:.04em;}
 .ms-bar button.on{color:var(--sig-ink); border-color:rgba(255,154,60,.6); background:var(--sig-soft);}
-.ms-box{padding:7px; border-radius:8px; background:var(--panel); border:1px solid var(--line2); box-shadow:0 2px 8px rgba(26,30,38,.08); max-width:100%; overflow:auto;}
-.ms-hd{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:7px;}
-.ms-led{min-width:48px; padding:3px 6px; border-radius:4px; background:#15161A; color:#FF5A36; font-size:17px; font-weight:700; letter-spacing:.08em; text-align:center; font-variant-numeric:tabular-nums;
-  text-shadow:0 0 6px rgba(255,90,54,.55);}
-.ms-face{width:32px; height:32px; border-radius:7px; border:1px solid var(--line2); background:var(--panel2); font-size:18px; line-height:1; display:grid; place-items:center;}
-.ms-face:active{transform:scale(.93);}
-.ms-grid{display:grid; gap:0; width:max-content; touch-action:manipulation;}
-.ms-c{width:var(--c); height:var(--c); display:grid; place-items:center; font-size:calc(var(--c)*.56); font-weight:700; line-height:1; cursor:pointer;
-  background:linear-gradient(145deg, color-mix(in srgb, var(--panel) 70%, #fff) 0%, var(--panel2) 100%); border:1px solid var(--line2); border-top-color:rgba(255,255,255,.9); border-left-color:rgba(255,255,255,.9);
-  box-shadow:inset -1px -1px 0 rgba(24,26,32,.12);}
-.ms-c:hover:not(.o){background:var(--sig-soft);}
-.ms-c.o{background:var(--panel2); border:1px solid var(--line); box-shadow:none; cursor:default;}
-.ms-c.f::after{content:"\1F6A9"; font-size:calc(var(--c)*.55);}
-.ms-c.m::after{content:"\1F4A3"; font-size:calc(var(--c)*.58);}
-.ms-c.boom{background:#E5484D !important;}
-.ms-c.bad::after{content:"\274C"; font-size:calc(var(--c)*.5);}
-.ms-c.n1{color:#1D4ED8;} .ms-c.n2{color:#15803D;} .ms-c.n3{color:#DC2626;} .ms-c.n4{color:#1E3A8A;}
-.ms-c.n5{color:#7F1D1D;} .ms-c.n6{color:#0F766E;} .ms-c.n7{color:var(--txt);} .ms-c.n8{color:var(--faint);}
-html[data-theme=night] .ms-c:not(.o){border-top-color:rgba(255,255,255,.14); border-left-color:rgba(255,255,255,.14); background:linear-gradient(145deg, #262C3B 0%, #1A1F2C 100%);}
-html[data-theme=night] .ms-c.o{background:#10131C;}
-html[data-theme=night] .ms-c.n1{color:#60A5FA;} html[data-theme=night] .ms-c.n2{color:#4ADE80;} html[data-theme=night] .ms-c.n3{color:#F87171;}
-html[data-theme=night] .ms-c.n4{color:#A5B4FC;} html[data-theme=night] .ms-c.n5{color:#FDBA74;} html[data-theme=night] .ms-c.n6{color:#5EEAD4;}
+.ms-box{padding:8px; border-radius:10px; background:var(--panel); border:1px solid var(--line2); box-shadow:0 2px 10px rgba(26,30,38,.08); max-width:100%; overflow:auto;}
+.ms-hd{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px;}
+.ms-led{display:flex; align-items:center; gap:6px; min-width:58px; padding:4px 8px; border-radius:6px; background:var(--panel2); border:1px solid var(--line); color:var(--sig-ink);
+  font-size:14px; font-weight:500; letter-spacing:.06em; font-variant-numeric:tabular-nums;}
+.ms-led b{font-weight:500;}
+.ms-led i{font-style:normal; font-size:12px; color:#FF9A3C;}
+.ms-time{justify-content:flex-end;}
+.ms-face{width:32px; height:32px; border-radius:50%; background:var(--st-ico, #F0800C) center / cover no-repeat; border:1px solid rgba(185,100,10,.45);
+  box-shadow:0 1px 5px rgba(185,100,10,.3); transition:transform .25s ease, box-shadow .3s ease;}
+.ms-face:hover{box-shadow:0 0 0 3px rgba(255,154,60,.25), 0 1px 5px rgba(185,100,10,.3);}
+.ms-face.press{transform:rotate(-40deg) scale(.94);}
+.ms-face.lost{background:radial-gradient(circle, #000 0 36%, #FFD9A6 41%, #FF9A3C 49%, rgba(240,128,12,.35) 60%, #1B2240 70%); border-color:#1B2240;}
+.ms-face.won{box-shadow:0 0 0 4px rgba(255,194,122,.45), 0 0 18px rgba(255,154,60,.8); animation:mswon 2.4s linear infinite;}
+@keyframes mswon{to{transform:rotate(-360deg);}}
+.ms-grid{display:grid; gap:0; width:max-content; touch-action:manipulation; border-radius:6px; overflow:hidden; background:#1B2240 0 0 / 100% 100% no-repeat;}
+.ms-c{width:var(--c); height:var(--c); display:grid; place-items:center; font-size:calc(var(--c)*.5); font-weight:600; line-height:1; cursor:pointer;
+  background:transparent; box-shadow:inset 0 0 0 .5px rgba(255,236,210,.16); transition:background .15s ease;}
+.ms-c:hover:not(.o){background:rgba(255,226,176,.18);}
+.ms-c.o{background:var(--panel); box-shadow:inset 0 0 0 .5px var(--line); cursor:default; animation:msopen .25s ease;}
+@keyframes msopen{from{background:rgba(255,226,176,.75);}}
+.ms-c.f::after{content:"\2726"; color:#FFE2B0; font-size:calc(var(--c)*.62); text-shadow:0 0 4px #FF9A3C, 0 0 9px rgba(255,154,60,.8);}
+.ms-c.m::after,.ms-c.boom::after{content:""; width:62%; height:62%; border-radius:50%;
+  background:radial-gradient(circle, #000 0 40%, #FFD9A6 45%, #FF9A3C 55%, rgba(240,128,12,.3) 70%, transparent 72%);}
+.ms-c.m{background:#141A3A;}
+.ms-c.boom{background:#1B2240 !important;}
+.ms-c.boom::after{width:92%; height:92%; animation:msboom 1.2s ease-in-out infinite;}
+@keyframes msboom{50%{transform:scale(.8) rotate(90deg);}}
+.ms-c.bad::after{content:"\2715"; color:var(--sig-ink); font-size:calc(var(--c)*.5);}
+.ms-c.n1{color:#4A5FAE;} .ms-c.n2{color:#3E8E7E;} .ms-c.n3{color:#E0700A;} .ms-c.n4{color:#1B2240;}
+.ms-c.n5{color:#B9640A;} .ms-c.n6{color:#0F766E;} .ms-c.n7{color:var(--txt);} .ms-c.n8{color:var(--faint);}
+html[data-theme=night] .ms-c.n1{color:#8FA3F0;} html[data-theme=night] .ms-c.n2{color:#6CCAB4;} html[data-theme=night] .ms-c.n4{color:#C9D2FF;} html[data-theme=night] .ms-c.n5{color:#FFC27A;}
 .ms-msg{font-size:11px; color:var(--dim); text-align:center; min-height:16px; font-family:var(--ui);}
 .ms-msg b{color:var(--sig-ink);}
 
@@ -1138,8 +1147,8 @@ html[data-theme=night] .ms-c.n4{color:#A5B4FC;} html[data-theme=night] .ms-c.n5{
 .so-card i.fc{font-size:calc(var(--cw)*.4); font-weight:500; opacity:1;}
 .so-card i.fc span{display:block;}
 .so-card.dn{background:var(--panel2); border:1px solid rgba(255,154,60,.55);}
-.so-card.dn::after{content:""; position:absolute; inset:18% 14%; background:center / contain no-repeat
-  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -16 32 32'%3E%3Ccircle r='5.6' fill='%23FF9A3C'/%3E%3Cellipse rx='13.5' ry='5.2' transform='rotate(-17)' fill='none' stroke='%23FF9A3C' stroke-width='1.5'/%3E%3C/svg%3E");}
+.so-card.dn::after{content:""; position:absolute; left:50%; top:50%; width:44%; aspect-ratio:1; transform:translate(-50%,-50%); border-radius:50%;
+  background:var(--st-ico) center / cover no-repeat; box-shadow:0 0 0 1px rgba(185,100,10,.35), 0 1px 5px rgba(185,100,10,.3);}
 .so-card.dn > *{display:none;}
 .so-card.nope{animation:sonope .3s ease;}
 @keyframes sonope{25%{margin-left:-4px;} 75%{margin-left:4px;}}
@@ -1505,11 +1514,11 @@ document.documentElement.setAttribute("data-theme", "day");
 <p>Portföy, tarayıcıda çalışan bir masaüstü işletim sistemi gibi tasarlandı. Kısa bir açılış ekranından sonra açık gri, ince ızgaralı bir masaüstü gelir; vurgu rengi turuncudur, yazılarda Archivo ve JetBrains Mono yazı tipleri kullanılır.</p>
 <p>Masaüstünün ortasında üzerinde "Projeler" yazan, halkalı bir gezegen durur. Beş proje simgesi (Karınca, İş Takip, Mevzuat İzleme, Raporlama, SMS Aktarıcı) bu gezegenin çevresindeki yörüngede yavaşça döner. Sağda yedi yıldızdan oluşan bir takımyıldız vardır; yıldızların bir kısmı kişisel dosyaları açar: Araçlar, Tek Sayfa.txt ve İletişim. Gezegene tıklamak BENİOKU dosyasını açar.</p>
 <p>Bir simgeye tıklanınca içerik bir pencerede açılır. Pencereler sürüklenir, ekran kenarına yaslanır, küçültülür ve kapatılır; simgeler yörüngeden çekilip bırakılabilir. Masaüstüne sağ tıklamak bir sistem menüsü açar, ⌘K bütün içerikte arama yapar. Sağ üstte Türkçe ve İngilizce arasında geçiş ile bir gece modu düğmesi vardır. Gece modunda masaüstü, Yale Parlak Yıldız Kataloğu ve Hipparcos verileriyle çizilmiş gerçek takımyıldızların olduğu lacivert bir gökyüzüne dönüşür; ortadaki gezegen Güneş, proje simgeleri de onun çevresinde dönen gezegenler olur. Alt çubukta açık pencereler ve LinkedIn bağlantısı durur.</p>
-<p>Alt çubuğun solundaki, turuncu fırça darbeleriyle girdap gibi boyanmış yuvarlak Başlat düğmesi, eski Windows'u andıran bir Başlat menüsü açar. Menünün solunda, Van Gogh'un Yıldızlı Gece'sini andıran, lacivert üzerine turuncu fırça darbeleriyle boyanmış dar bir şerit vardır; listede Projeler, Belgeler ve Oyunlar alt menüleri, Araçlar, İletişim, gece modu ve dil seçimi bulunur. En altta bir arama kutusu ve Kapat düğmesi vardır. Oyunlar menüsünde sayfa için sıfırdan yazılmış Mayın Tarlası (üç zorluk, bayrak, en iyi süre) ve Solitaire (Klondike; bir ya da üç kart çekiş, sürükle bırak, geri alma ve kazanınca zıplayan kartlar) açılır. Kapat düğmesine basılınca ya da sayfa yenilenince, Projeler gezegeninin yerinde bir kara delik açılır: Parlayan bir birikim diski dönerken pencereler, simgeler ve çubuklar kıvrılarak içine çekilir, ekran kararır, kara delik bir ışık halkasıyla kapanır ve açılış ekranı yeniden gelir.</p>
+<p>Alt çubuğun solundaki, turuncu fırça darbeleriyle girdap gibi boyanmış yuvarlak Başlat düğmesi, eski Windows'u andıran bir Başlat menüsü açar. Menünün solunda, Van Gogh'un Yıldızlı Gece'sini andıran, lacivert üzerine turuncu fırça darbeleriyle boyanmış dar bir şerit vardır; listede Projeler, Belgeler ve Oyunlar alt menüleri, Araçlar, İletişim, gece modu ve dil seçimi bulunur. En altta bir arama kutusu ve Kapat düğmesi vardır. Oyunlar menüsünde sayfa için sıfırdan yazılmış Mayın Tarlası (kapalı kareler Van Gogh tarzı boyanmış bir tabloyu gösterir ve açıldıkça tablo sade karelere döner; mayınlar küçük kara delikler, bayraklar turuncu yıldızlardır; üç zorluk ve en iyi süre) ve Solitaire (Klondike; bir ya da üç kart çekiş, sürükle bırak, geri alma ve kazanınca zıplayan kartlar) açılır. Kapat düğmesine basılınca Projeler gezegeninin yerinde bir kara delik açılır: Parlayan bir birikim diski dönerken pencereler, simgeler ve çubuklar kıvrılarak içine çekilir, ekran kararır, kara delik bir ışık halkasıyla kapanır ve açılış ekranı yeniden gelir.</p>
 <p>Proje pencerelerinin çoğunda, projenin nasıl çalıştığını canlı gösteren etkileşimli bir demo vardır. Demolar aşağıda her projenin altında anlatılmıştır.</p>
 <p><a href="shots/masaustu.jpg">Ekran görüntüsü</a>: Gündüz masaüstü: açık gri ızgaralı zemin, ortada Projeler yazan turuncu halkalı beyaz gezegen, çevresindeki kesik çizgili yörüngede beş proje simgesi; sağda Tek Sayfa.txt, Araçlar ve İletişim simgelerini birleştiren takımyıldız; üstte ad, TR/EN, ⌘K ve GECE düğmesi, altta yuvarlak Başlat düğmesi ve LinkedIn.</p>
 <p><a href="shots/gece.jpg">Ekran görüntüsü</a>: Gece modu: lacivert gökyüzü ve bulutsular, ince çizgilerle bağlanmış gerçek takımyıldızlar, ortada parlayan Güneş ve yörüngesinde gezegenlere dönüşmüş proje simgeleri; sol altta YALE BSC5 · HIPPARCOS yazısı.</p>
-<p><a href="shots/baslat.jpg">Ekran görüntüsü</a>: Başlat menüsü: Sol altta açık menü, solunda Yıldızlı Gece'yi andıran boyalı şerit; Projeler, Belgeler ve Oyunlar alt menüleri (Oyunlar açık: Mayın Tarlası ve Solitaire), Araçlar, İletişim, Gece gökyüzü, English; en altta arama kutusu ve Kapat düğmesi. Arkada Solitaire penceresi: masaüstündeki gibi ince ızgaralı açık zemin, beyaz ve sade kartlar, turuncu ve siyah takımlar, kapalı kartların arkasında turuncu halkalı gezegen simgesi.</p>
+<p><a href="shots/baslat.jpg">Ekran görüntüsü</a>: Başlat menüsü: Sol altta açık menü, solunda Yıldızlı Gece'yi andıran boyalı şerit; Projeler, Belgeler ve Oyunlar alt menüleri (Oyunlar açık: Mayın Tarlası ve Solitaire), Araçlar, İletişim, Gece gökyüzü, English; en altta arama kutusu ve Kapat düğmesi. Arkada Solitaire penceresi: masaüstündeki gibi ince ızgaralı açık zemin, beyaz ve sade kartlar, turuncu ve siyah takımlar, kapalı kartların arkasında Başlat düğmesindeki turuncu girdap.</p>
 <p><a href="shots/telefon.jpg">Ekran görüntüsü</a>: Telefon görünümü: aynı gezegen ve yörünge dikey ekrana sığdırılmış, altında takımyıldız ve Hakkımda yazısı; üstte ad ve dil seçimi, altta yuvarlak Başlat düğmesi ve LinkedIn.</p>
 <h2>Projeler</h2>
 <article id="tr-karinca">
@@ -1648,11 +1657,11 @@ document.documentElement.setAttribute("data-theme", "day");
 <p>The portfolio is designed as a desktop operating system that runs in the browser. After a short boot screen comes a light grey desktop with a fine grid; the accent colour is orange, and the type is set in Archivo and JetBrains Mono.</p>
 <p>In the middle of the desktop sits a ringed planet labelled "Projects". Five project icons (Karınca, İş Takip, Mevzuat İzleme, Reporting, SMS Relay) circle it slowly in orbit. On the right is a constellation of seven stars; some of the stars open personal files: Tools, One Page.txt and Contact. Clicking the planet opens the README.</p>
 <p>Clicking an icon opens its content in a window. Windows can be dragged, snapped to the screen edge, minimised and closed; icons can be pulled out of orbit and let go. Right clicking the desktop opens a system menu, and ⌘K searches everything. At the top right there is a Turkish and English switch and a night mode button. In night mode the desktop becomes a deep blue sky with real constellations drawn from the Yale Bright Star Catalogue and Hipparcos data; the planet in the middle becomes the Sun and the project icons become planets circling it. The bottom bar holds the open windows and a LinkedIn link.</p>
-<p>The round start button at the left of the bottom bar, painted as a small orange whirl of brush strokes, opens a start menu in the spirit of old Windows. Down its left side runs a narrow band painted in orange brush strokes on night blue, after Van Gogh's The Starry Night; the list has Projects, Documents and Games submenus, Tools, Contact, night mode and language, with a search box and a Shut down button at the bottom. The Games menu opens Minesweeper (three levels, flags, best time) and Solitaire (Klondike; turn one or three, drag and drop, undo, and bouncing cards when you win), both written from scratch for the page. On Shut down, or whenever the page is refreshed, a black hole opens where the Projects planet is: a glowing accretion disk spins while the windows, icons and bars curl into it, the screen goes dark, the hole closes with a ring of light, and the boot screen comes back.</p>
+<p>The round start button at the left of the bottom bar, painted as a small orange whirl of brush strokes, opens a start menu in the spirit of old Windows. Down its left side runs a narrow band painted in orange brush strokes on night blue, after Van Gogh's The Starry Night; the list has Projects, Documents and Games submenus, Tools, Contact, night mode and language, with a search box and a Shut down button at the bottom. The Games menu opens Minesweeper (the closed squares show a painting in Van Gogh's manner that turns into plain squares as it is cleared; the mines are little black holes and the flags orange stars; three levels and a best time) and Solitaire (Klondike; turn one or three, drag and drop, undo, and bouncing cards when you win), both written from scratch for the page. On Shut down a black hole opens where the Projects planet is: a glowing accretion disk spins while the windows, icons and bars curl into it, the screen goes dark, the hole closes with a ring of light, and the boot screen comes back.</p>
 <p>Most project windows include an interactive demo that shows the project working. The demos are described below, under each project.</p>
 <p><a href="shots/masaustu.jpg">Screenshot</a>: The desktop by day: light grey grid, a white planet with an orange ring labelled Projeler in the middle, five project icons on the dotted orbit around it; on the right a constellation joining One Page, Tools and Contact; name, TR/EN, ⌘K and the night button at the top, the round start button and LinkedIn at the bottom.</p>
 <p><a href="shots/gece.jpg">Screenshot</a>: Night mode: a deep blue sky with nebulae, real constellations joined by thin lines, a glowing Sun in the middle and the project icons turned into planets on its orbit; YALE BSC5 · HIPPARCOS in the lower left.</p>
-<p><a href="shots/baslat.jpg">Screenshot</a>: The start menu: open at the lower left, a band painted after The Starry Night down its left side; Projects, Documents and Games submenus (Games open: Minesweeper and Solitaire), Tools, Contact, Night sky, Türkçe; a search box and a Shut down button at the bottom. Behind it the Solitaire window: a light fine grid like the desktop, plain white cards with orange and black suits, and the orange ringed planet on the card backs.</p>
+<p><a href="shots/baslat.jpg">Screenshot</a>: The start menu: open at the lower left, a band painted after The Starry Night down its left side; Projects, Documents and Games submenus (Games open: Minesweeper and Solitaire), Tools, Contact, Night sky, Türkçe; a search box and a Shut down button at the bottom. Behind it the Solitaire window: a light fine grid like the desktop, plain white cards with orange and black suits, and the orange whirl from the start button on the card backs.</p>
 <p><a href="shots/telefon.jpg">Screenshot</a>: On a phone: the same planet and orbit fitted to a tall screen, the constellation and an About label below it; name and language switch at the top, the round start button and LinkedIn at the bottom.</p>
 <h2>Projects</h2>
 <article id="en-karinca">
@@ -4095,25 +4104,62 @@ document.documentElement.setAttribute("data-theme", "day");
   /* GAMES start: Minesweeper and Klondike Solitaire, written for this page and
      opened from the start menu. Nothing loads until a game window opens. */
   var MS_T = {
-    tr:{ lv:[["b","Kolay"],["i","Orta"],["e","Zor"]], flag:"🚩 Bayrak modu", best:"En iyi süre", sec:" sn",
-         hint:"Sol tık kareyi açar, sağ tık bayrak koyar. Telefonda uzun basın ya da bayrak modunu açın.",
-         win:function(s){ return "Kazandınız: <b>"+s+" sn</b>."; }, rec:" Yeni rekor!", lose:"Mayına bastınız. Yüzüne tıklayıp yeniden başlayabilirsiniz." },
-    en:{ lv:[["b","Beginner"],["i","Intermediate"],["e","Expert"]], flag:"🚩 Flag mode", best:"Best time", sec:" s",
-         hint:"Left click opens a square, right click plants a flag. On a phone, press and hold or turn on flag mode.",
-         win:function(s){ return "You won in <b>"+s+" s</b>."; }, rec:" New record!", lose:"You hit a mine. Click the face to play again." }
+    tr:{ lv:[["b","Kolay"],["i","Orta"],["e","Zor"]], flag:"\u2726 Yıldız modu", best:"En iyi süre", sec:" sn",
+         hint:"Tablonun altında kara delikler saklı. Sol tık kareyi açar, sağ tık yıldızla işaretler; telefonda uzun basın ya da yıldız modunu açın.",
+         win:function(s){ return "Kazandınız: <b>"+s+" sn</b>."; }, rec:" Yeni rekor!", lose:"Bir kara deliğe düştünüz. Yeniden başlamak için ortadaki simgeye tıklayın." },
+    en:{ lv:[["b","Beginner"],["i","Intermediate"],["e","Expert"]], flag:"\u2726 Star mode", best:"Best time", sec:" s",
+         hint:"Black holes hide under the painting. Left click opens a square, right click marks it with a star; on a phone, press and hold or turn on star mode.",
+         win:function(s){ return "You won in <b>"+s+" s</b>."; }, rec:" New record!", lose:"You fell into a black hole. Click the whirl in the middle to play again." }
   };
   var MS_LV = { b:[9, 9, 10, 26], i:[16, 16, 40, 24], e:[30, 16, 99, 22] };
+  /* the board is a painting in the start menu's brush strokes: every closed square shows
+     a piece of it, and it is uncovered into plain squares as the field is cleared */
+  var msPainted = {};
+  function msPaint(w, h){
+    var key = w+"x"+h; if(msPainted[key]) return msPainted[key];
+    var dpr = Math.min(2, devicePixelRatio || 1), c = document.createElement("canvas"); c.width = w*dpr; c.height = h*dpr;
+    var x = c.getContext("2d"); x.scale(dpr, dpr); x.lineCap = "round";
+    var seed = 3 + w + h; function rnd(){ seed = (seed*16807) % 2147483647; return (seed - 1)/2147483646; }
+    var g = x.createLinearGradient(0, 0, 0, h); g.addColorStop(0, "#141A3A"); g.addColorStop(.7, "#1D2754"); g.addColorStop(1, "#2B2A4A");
+    x.fillStyle = g; x.fillRect(0, 0, w, h);
+    var n = Math.max(2, Math.round(w*h/26000)), m = Math.min(w, h), V = [];
+    for(var i = 0; i < n; i++) V.push({ x:w*(.12 + .76*(i + .5)/n) + (rnd() - .5)*w*.1, y:h*(.25 + .5*rnd()), s:i % 2 ? -1 : 1, r:m*(.28 + rnd()*.15), sr:m*(.05 + rnd()*.035) });
+    function ang(px, py){
+      var vx = 1, vy = .12;
+      V.forEach(function(v){ var dx = px - v.x, dy = py - v.y, d2 = dx*dx + dy*dy, f = v.r*v.r/(d2 + v.r*v.r); vx += -dy*v.s*f*3/Math.sqrt(d2 + 1); vy += dx*v.s*f*3/Math.sqrt(d2 + 1); });
+      return Math.atan2(vy, vx);
+    }
+    var BLUE = ["#26336E","#2E3E86","#3A4E9C","#22306A","#4A5FAE"], WARM = ["#FF9A3C","#F0800C","#FFC27A","#B9640A","#FBE3C0"];
+    for(var k = 0; k < w*h*.07; k++){
+      var px = rnd()*w, py = rnd()*h, near = 0;
+      V.forEach(function(v){ near = Math.max(near, 1 - Math.hypot(px - v.x, py - v.y)/(v.sr*3.2)); });
+      var warm = rnd() < .1 + near*.85;
+      x.strokeStyle = warm ? WARM[Math.floor(rnd()*5)] : BLUE[Math.floor(rnd()*5)]; x.globalAlpha = .75 + rnd()*.25; x.lineWidth = 1.4 + rnd()*1.8;
+      x.beginPath(); x.moveTo(px, py);
+      for(var j = 0, st = 3 + Math.floor(rnd()*4); j < st; j++){ var a = ang(px, py); px += Math.cos(a)*2.6; py += Math.sin(a)*2.6; x.lineTo(px, py); }
+      x.stroke();
+    }
+    V.forEach(function(v){
+      for(var ring = 3; ring >= 1; ring--) for(var j = 0; j < 20*ring; j++){
+        var a = rnd()*Math.PI*2; x.strokeStyle = WARM[ring === 1 ? 2 + Math.floor(rnd()*3) : Math.floor(rnd()*3)]; x.globalAlpha = .9; x.lineWidth = 1.3 + rnd();
+        x.beginPath(); x.arc(v.x, v.y, v.sr*ring*.9*(.9 + rnd()*.2), a, a + .25 + rnd()*.2); x.stroke();
+      }
+      x.globalAlpha = 1; x.fillStyle = "#FFE2B0"; x.beginPath(); x.arc(v.x, v.y, v.sr*.55, 0, Math.PI*2); x.fill();
+    });
+    return (msPainted[key] = c.toDataURL("image/png"));
+  }
   function msHtml(L){
     var T = MS_T[L];
     return '<div class="ms" data-demo="ms"><div class="ms-bar">'+T.lv.map(function(l){ return '<button data-lv="'+l[0]+'">'+l[1]+'</button>'; }).join('')
       + '<button class="ms-fm">'+T.flag+'</button></div>'
-      + '<div class="ms-box"><div class="ms-hd"><span class="ms-led ms-left">000</span><button class="ms-face" aria-label="new game">🙂</button><span class="ms-led ms-time">000</span></div>'
+      + '<div class="ms-box"><div class="ms-hd"><span class="ms-led"><i>\u2726</i><b class="ms-left">000</b></span><button class="ms-face" aria-label="new game"></button><span class="ms-led ms-time"><b>000</b></span></div>'
       + '<div class="ms-grid"></div></div><div class="ms-msg"></div></div>';
   }
   function msMount(root, L){
     if(root._ms) return; root._ms = 1;
     var T = MS_T[L], q = function(s){ return root.querySelector(s); };
-    var grid = q(".ms-grid"), face = q(".ms-face"), leftEl = q(".ms-left"), timeEl = q(".ms-time"), msg = q(".ms-msg"), fm = q(".ms-fm");
+    var grid = q(".ms-grid"), face = q(".ms-face"), leftEl = q(".ms-left"), timeEl = q(".ms-time b"), msg = q(".ms-msg"), fm = q(".ms-fm");
+    var setFace = function(k){ face.className = "ms-face" + (k ? " "+k : ""); };
     var lv = "b", C, R, M, mine, opn, flg, cells, first, over, t0, timer = null, flagMode = false, openCount;
     try{ lv = localStorage.getItem("ms_lv") || "b"; if(!MS_LV[lv]) lv = "b"; }catch(_){}
     var pad = function(n){ n = Math.max(-99, Math.min(999, n)); return n < 0 ? "-"+("0"+(-n)).slice(-2) : ("00"+n).slice(-3); };
@@ -4138,7 +4184,8 @@ document.documentElement.setAttribute("data-theme", "day");
       grid.style.setProperty("--c", d[3]+"px"); grid.style.gridTemplateColumns = "repeat("+C+", var(--c))";
       var h = ""; for(var i = 0; i < C*R; i++) h += '<div class="ms-c" data-i="'+i+'"></div>';
       grid.innerHTML = h; cells = grid.children;
-      face.textContent = "🙂"; leftEl.textContent = pad(M); timeEl.textContent = "000"; hintMsg();
+      setFace(""); leftEl.textContent = pad(M); timeEl.textContent = "000"; hintMsg();
+      grid.style.backgroundImage = "url("+msPaint(C*d[3], R*d[3])+")";
       requestAnimationFrame(fit);
     }
     /* the first click is always safe: the mines are laid after it, away from it */
@@ -4171,7 +4218,7 @@ document.documentElement.setAttribute("data-theme", "day");
       leftEl.textContent = pad(M - flg.filter(Boolean).length);
     }
     function lose(i){
-      over = true; stopT(); face.textContent = "😵";
+      over = true; stopT(); setFace("lost");
       for(var j = 0; j < C*R; j++){
         if(mine[j] && !flg[j]) cells[j].className = "ms-c o m";
         else if(!mine[j] && flg[j]) cells[j].className = "ms-c o bad";
@@ -4179,7 +4226,7 @@ document.documentElement.setAttribute("data-theme", "day");
       cells[i].classList.add("boom"); msg.innerHTML = T.lose;
     }
     function win(){
-      over = true; stopT(); face.textContent = "😎";
+      over = true; stopT(); setFace("won");
       for(var j = 0; j < C*R; j++) if(mine[j]) cells[j].className = "ms-c f";
       leftEl.textContent = "000";
       var s = Math.max(1, Math.round((Date.now() - t0)/1000)), b = best(), rec = !b[lv] || s < b[lv];
@@ -4194,12 +4241,12 @@ document.documentElement.setAttribute("data-theme", "day");
       var c = e.target.closest(".ms-c"); if(!c || over) return;
       var i = +c.getAttribute("data-i");
       if(e.button === 2){ flag(i); return; }
-      face.textContent = "😮";
+      setFace("press");
       press = { i:i, long:false, tm:setTimeout(function(){ if(press){ press.long = true; flag(i); if(navigator.vibrate) navigator.vibrate(18); } }, e.pointerType === "mouse" ? 1e9 : 420) };
     });
     function lift(e){
       if(!press) return; clearTimeout(press.tm); var p = press; press = null;
-      if(!over) face.textContent = "🙂";
+      if(!over) setFace("");
       if(p.long || e.type !== "pointerup") return;
       var c = e.target.closest && e.target.closest(".ms-c"); if(!c || +c.getAttribute("data-i") !== p.i) return;
       if(opn[p.i] || e.button === 1) chord(p.i); else if(flagMode) flag(p.i); else reveal(p.i);
@@ -6157,7 +6204,7 @@ document.documentElement.setAttribute("data-theme", "day");
     var b = e.target.closest("button"); if(!b) return;
     var a = b.getAttribute("data-a"), id = menuFor;
     hideMenu();
-    if(a==="refresh"){ location.reload(); }
+    if(a==="refresh"){ measureSky(); bloom(); }
     else if(a==="realign"){ glide(function(){ tNow = 0; }, 820, 34); }
     else if(a==="readme"){ launch("readme"); }
     else if(a==="search"){ palOpen(); }
@@ -6315,7 +6362,8 @@ document.documentElement.setAttribute("data-theme", "day");
       x.beginPath(); x.arc(m, m, 3.4*ring + rnd(), b, b + .5); x.stroke();
     }
     x.globalAlpha = 1; x.fillStyle = "#FFF4E0"; x.beginPath(); x.arc(m, m, 2.6, 0, Math.PI*2); x.fill(); x.restore();
-    startBtn.style.backgroundImage = "url("+c.toDataURL("image/png")+")";
+    var ico = "url("+c.toDataURL("image/png")+")";
+    startBtn.style.backgroundImage = ico; document.documentElement.style.setProperty("--st-ico", ico);
   })();
   function stOpen(){
     stPaint(); startEl.classList.add("on"); startBtn.classList.add("on"); hideMenu();
@@ -6346,7 +6394,7 @@ document.documentElement.setAttribute("data-theme", "day");
     var r = e.target.closest("button"); if(!r) return;
     if(r.hasAttribute("data-sub")){ stSub(r); return; }
     var id = r.getAttribute("data-app"), a = r.getAttribute("data-act");
-    if(r.classList.contains("st-pw")){ stClose(); blackHole(function(){ try{ localStorage.removeItem("desk_session"); sessionStorage.setItem("bh_skip", "1"); }catch(_){} location.reload(); }); return; }
+    if(r.classList.contains("st-pw")){ stClose(); blackHole(function(){ try{ localStorage.removeItem("desk_session"); }catch(_){} location.reload(); }); return; }
     stClose();
     if(id) launch(id);
     else if(a === "night" || a === "day"){ var t = $("thbtn"); if(t) t.click(); }
@@ -6366,12 +6414,9 @@ document.documentElement.setAttribute("data-theme", "day");
   }, true);
 
   /* ---------- the black hole ----------
-     Shut down, and every refresh however it is made, end the same way: a black
-     hole opens where the Projects planet is, pulls the windows, the icons, the
-     bars and the sky into itself, closes, and the boot screen comes back. A
-     browser gives a page no time to animate before a reload, so on a refresh the
-     hole plays just after it: the desktop comes back as it was for a moment,
-     then falls in. */
+     Shut down: a black hole opens where the Projects planet is, pulls the
+     windows, the icons, the bars and the sky into itself, closes, and the page
+     starts again from the boot screen. */
   var collapsing = false, bhAnims = [];
   function blackHole(then){
     if(collapsing) return; collapsing = true;
@@ -6542,22 +6587,8 @@ document.documentElement.setAttribute("data-theme", "day");
     addEventListener("keydown", end);
     bootEl.addEventListener("pointerdown", end);
   }
-  /* after the hole: the boot screen is back over the desktop, which is put
-     together again behind it and shown when the boot lines have run */
-  function reboot(){
-    bootEl.style.display = ""; bootEl.classList.remove("gone");
-    ["b1","b2","b3","b4"].forEach(function(id){ var el=$(id); if(el) el.classList.remove("on"); });
-    bhAnims.forEach(function(a){ try{ a.cancel(); }catch(_){} }); bhAnims = [];
-    ["grid","sky","space"].forEach(function(id){ var el=$(id); if(el) el.style.transformOrigin = ""; });
-    var ov = $("bh"); if(ov) ov.remove();
-    collapsing = false;
-    bootLines(function(){ bootEl.classList.add("gone"); setTimeout(function(){ bootEl.style.display = "none"; }, 380); if(!MOB && !reduce) bloom(); });
-  }
   requestAnimationFrame(frame);
-  var nav = performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null, skipHole = false;
-  try{ skipHole = !!sessionStorage.getItem("bh_skip"); sessionStorage.removeItem("bh_skip"); }catch(_){}
   if(reduce){ start(); }
-  else if(nav && nav.type === "reload" && !skipHole){ start(); setTimeout(function(){ blackHole(reboot); }, 900); }
   else bootLines(start);
 })();
 </script>
