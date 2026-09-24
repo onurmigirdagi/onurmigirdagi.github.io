@@ -1040,6 +1040,112 @@ body.mob .kr-run,body.phone .kr-run{grid-template-columns:minmax(0,1fr);}
 body.mob .kq-grid,body.phone .kq-grid{grid-template-columns:minmax(0,1fr);}
 body.mob .kq-ai,body.phone .kq-ai{grid-template-columns:repeat(2, minmax(0,1fr));}
 body.mob .kq-list,body.phone .kq-list{height:120px;}
+/* ============ start menu ============ */
+#startbtn{color:var(--txt); font-weight:700; letter-spacing:.14em; border-color:var(--line2); background:var(--panel);}
+#startbtn svg{width:15px; height:15px; display:block; flex:none;}
+#startbtn .r{fill:none; stroke:var(--sig); stroke-width:1.6;} #startbtn .p{fill:var(--sig);}
+#startbtn:hover,#startbtn.on{color:var(--sig-ink); background:var(--sig-soft); border-color:rgba(255,154,60,.55);}
+#start{position:fixed; z-index:74; left:6px; bottom:40px; width:316px; display:none; background:var(--panel);
+  border:1px solid var(--line2); border-radius:10px; box-shadow:0 24px 60px rgba(26,30,38,.30); font-family:var(--mono); font-size:11.5px;}
+#start.on{display:flex; animation:stup .16s cubic-bezier(.2,1,.3,1) both;}
+@keyframes stup{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
+.st-side{flex:none; width:34px; border-radius:9px 0 0 9px; background:linear-gradient(0deg, var(--sig) 0%, #F0800C 55%, #B9640A 100%);
+  display:flex; align-items:flex-end; justify-content:center; padding:12px 0;}
+.st-side span{writing-mode:vertical-rl; transform:rotate(180deg); color:#fff; font-size:12.5px; letter-spacing:.22em; white-space:nowrap; font-weight:500;}
+.st-side b{font-weight:700;}
+.st-main{flex:1; min-width:0; display:flex; flex-direction:column; padding:6px;}
+.st-list{display:flex; flex-direction:column;}
+.st-r{display:flex; width:100%; align-items:center; gap:10px; padding:6px 8px; border-radius:6px; color:var(--dim); letter-spacing:.05em; text-align:left;}
+.st-r:hover,.st-r.on{background:var(--sig-soft); color:var(--sig-ink);}
+.st-r s{margin-left:auto; text-decoration:none; color:var(--faint); font-size:10px;}
+.st-r:hover s,.st-r.on s{color:var(--sig-ink);}
+.st-i{flex:none; width:26px; height:26px; border-radius:7px; background:var(--deck); border:1px solid var(--line); display:grid; place-items:center;}
+.st-i svg{width:17px; height:17px; display:block;}
+.st-i .g{fill:none; stroke:#F0800C; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round;}
+.st-i .gf{fill:#F0800C; stroke:none;}
+.st-main hr,.st-fly hr{border:none; border-top:1px solid var(--line); margin:5px 8px;}
+.st-foot{display:flex; gap:6px; align-items:center; margin-top:6px; padding-top:6px; border-top:1px solid var(--line);}
+.st-foot input{flex:1; min-width:0; padding:7px 9px; border-radius:6px; border:1px solid var(--line2); background:var(--panel2); color:var(--txt); font:inherit; outline:none;}
+.st-foot input:focus{border-color:var(--sig);}
+.st-pw{display:flex; align-items:center; gap:6px; padding:7px 10px; border-radius:6px; color:var(--dim); border:1px solid var(--line2); letter-spacing:.05em; white-space:nowrap;}
+.st-pw svg{width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round;}
+.st-pw:hover{color:#fff; background:#C62828; border-color:#C62828;}
+.st-fly{position:absolute; left:100%; margin-left:4px; min-width:214px; padding:5px; background:var(--panel); border:1px solid var(--line2); border-radius:8px;
+  box-shadow:0 20px 48px rgba(26,30,38,.26); display:none;}
+.st-fly.on{display:block; animation:mpop .12s cubic-bezier(.2,1,.3,1) both;}
+.st-fly.in{position:static; margin:2px 0 4px 36px; box-shadow:none; min-width:0;}
+body.mob #start,body.phone #start{left:0; right:0; width:auto; bottom:34px; border-radius:12px 12px 0 0; max-height:calc(100% - 80px); overflow:auto;}
+body.mob .st-side,body.phone .st-side{border-radius:11px 0 0 0;}
+
+/* ============ the black hole: shut down and refresh ============ */
+#bh{position:fixed; inset:0; z-index:95; pointer-events:auto; background:transparent; transition:background .5s ease;}
+#bh canvas{position:absolute; inset:0; width:100%; height:100%;}
+#bh.dark{background:#000;}
+#bh.fade{background:var(--deck); transition:background .45s ease;}
+/* ============ games ============ */
+.win .body:has(.ms),.win .body:has(.so){user-select:none;}
+.ms{display:flex; flex-direction:column; align-items:center; gap:8px; padding:10px 10px 12px; min-height:100%; background:var(--panel2); font-family:var(--mono);}
+.ms-bar{display:flex; gap:4px; flex-wrap:wrap; justify-content:center;}
+.ms-bar button{font-size:10.5px; padding:4px 9px; border-radius:6px; border:1px solid var(--line2); color:var(--dim); background:var(--panel); letter-spacing:.04em;}
+.ms-bar button.on{color:var(--sig-ink); border-color:rgba(255,154,60,.6); background:var(--sig-soft);}
+.ms-box{padding:7px; border-radius:8px; background:var(--panel); border:1px solid var(--line2); box-shadow:0 2px 8px rgba(26,30,38,.08); max-width:100%; overflow:auto;}
+.ms-hd{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:7px;}
+.ms-led{min-width:48px; padding:3px 6px; border-radius:4px; background:#15161A; color:#FF5A36; font-size:17px; font-weight:700; letter-spacing:.08em; text-align:center; font-variant-numeric:tabular-nums;
+  text-shadow:0 0 6px rgba(255,90,54,.55);}
+.ms-face{width:32px; height:32px; border-radius:7px; border:1px solid var(--line2); background:var(--panel2); font-size:18px; line-height:1; display:grid; place-items:center;}
+.ms-face:active{transform:scale(.93);}
+.ms-grid{display:grid; gap:0; width:max-content; touch-action:manipulation;}
+.ms-c{width:var(--c); height:var(--c); display:grid; place-items:center; font-size:calc(var(--c)*.56); font-weight:700; line-height:1; cursor:pointer;
+  background:linear-gradient(145deg, color-mix(in srgb, var(--panel) 70%, #fff) 0%, var(--panel2) 100%); border:1px solid var(--line2); border-top-color:rgba(255,255,255,.9); border-left-color:rgba(255,255,255,.9);
+  box-shadow:inset -1px -1px 0 rgba(24,26,32,.12);}
+.ms-c:hover:not(.o){background:var(--sig-soft);}
+.ms-c.o{background:var(--panel2); border:1px solid var(--line); box-shadow:none; cursor:default;}
+.ms-c.f::after{content:"\1F6A9"; font-size:calc(var(--c)*.55);}
+.ms-c.m::after{content:"\1F4A3"; font-size:calc(var(--c)*.58);}
+.ms-c.boom{background:#E5484D !important;}
+.ms-c.bad::after{content:"\274C"; font-size:calc(var(--c)*.5);}
+.ms-c.n1{color:#1D4ED8;} .ms-c.n2{color:#15803D;} .ms-c.n3{color:#DC2626;} .ms-c.n4{color:#1E3A8A;}
+.ms-c.n5{color:#7F1D1D;} .ms-c.n6{color:#0F766E;} .ms-c.n7{color:var(--txt);} .ms-c.n8{color:var(--faint);}
+html[data-theme=night] .ms-c:not(.o){border-top-color:rgba(255,255,255,.14); border-left-color:rgba(255,255,255,.14); background:linear-gradient(145deg, #262C3B 0%, #1A1F2C 100%);}
+html[data-theme=night] .ms-c.o{background:#10131C;}
+html[data-theme=night] .ms-c.n1{color:#60A5FA;} html[data-theme=night] .ms-c.n2{color:#4ADE80;} html[data-theme=night] .ms-c.n3{color:#F87171;}
+html[data-theme=night] .ms-c.n4{color:#A5B4FC;} html[data-theme=night] .ms-c.n5{color:#FDBA74;} html[data-theme=night] .ms-c.n6{color:#5EEAD4;}
+.ms-msg{font-size:11px; color:var(--dim); text-align:center; min-height:16px; font-family:var(--ui);}
+.ms-msg b{color:var(--sig-ink);}
+
+.so{display:flex; flex-direction:column; height:100%; min-height:420px;}
+.so-bar{flex:none; display:flex; align-items:center; gap:6px; padding:6px 10px; background:var(--panel2); border-bottom:1px solid var(--line); font-family:var(--mono); font-size:10.5px; color:var(--dim); flex-wrap:wrap;}
+.so-bar button{padding:4px 9px; border-radius:6px; border:1px solid var(--line2); background:var(--panel); color:var(--dim); letter-spacing:.04em;}
+.so-bar button:hover{color:var(--txt);}
+.so-bar button.on{color:var(--sig-ink); border-color:rgba(255,154,60,.6); background:var(--sig-soft);}
+.so-bar button[disabled]{opacity:.4; cursor:default;}
+.so-dr{display:flex; align-items:center; gap:4px; margin-left:6px;}
+.so-st{margin-left:auto; font-variant-numeric:tabular-nums; white-space:nowrap;}
+.so-board{position:relative; flex:1; min-height:360px; overflow:hidden; touch-action:none;
+  background:radial-gradient(120% 90% at 50% 20%, #1C8A4F 0%, #127040 55%, #0B5530 100%);}
+html[data-theme=night] .so-board{background:radial-gradient(120% 90% at 50% 20%, #145C39 0%, #0D452B 60%, #08301E 100%);}
+.so-slot{position:absolute; left:0; top:0; width:var(--cw); height:var(--ch); border-radius:calc(var(--cw)*.08); border:1.5px solid rgba(255,255,255,.28);
+  display:grid; place-items:center; color:rgba(255,255,255,.35); font-size:calc(var(--cw)*.36);}
+.so-slot.stk{cursor:pointer;}
+.so-card{position:absolute; left:0; top:0; width:var(--cw); height:var(--ch); border-radius:calc(var(--cw)*.08); background:#FFFFFF; color:#1E2026;
+  border:1px solid rgba(0,0,0,.22); box-shadow:0 1px 2px rgba(0,0,0,.25); cursor:pointer; will-change:transform;
+  transition:transform .2s cubic-bezier(.2,.8,.2,1); font-family:var(--ui);}
+.so-card.drag{transition:none; box-shadow:0 12px 24px rgba(0,0,0,.35);}
+.so-card.red{color:#C62828;}
+.so-card b{position:absolute; font-weight:700; font-size:calc(var(--cw)*.2); line-height:.95; text-align:center; letter-spacing:-.02em;}
+.so-card b.tl{left:6%; top:5%;} .so-card b.br{right:6%; bottom:5%; transform:rotate(180deg);}
+.so-card i{position:absolute; inset:0; display:grid; place-items:center; font-style:normal; font-size:calc(var(--cw)*.5);}
+.so-card i.fc{font-size:calc(var(--cw)*.36); font-weight:700;}
+.so-card i.fc span{display:grid; place-items:center; width:58%; height:52%; border:1.5px solid currentColor; border-radius:5px; opacity:.9;}
+.so-card.dn{background:repeating-linear-gradient(45deg, #F0800C 0 5px, #FF9A3C 5px 10px); border:2px solid #fff; box-shadow:0 1px 2px rgba(0,0,0,.3), inset 0 0 0 1px rgba(185,100,10,.6);}
+.so-card.dn > *{display:none;}
+.so-card.nope{animation:sonope .3s ease;}
+@keyframes sonope{25%{margin-left:-4px;} 75%{margin-left:4px;}}
+.so-cv{position:absolute; inset:0; width:100%; height:100%; display:none; z-index:2000; cursor:pointer;}
+.so-win{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2001; display:none; background:var(--panel); color:var(--txt); border-radius:10px; padding:14px 18px;
+  text-align:center; box-shadow:0 20px 50px rgba(0,0,0,.4); font-size:13px;}
+.so-win b{display:block; font-size:15px; margin-bottom:4px;} .so-win span{display:block; font-family:var(--mono); font-size:11px; color:var(--dim); margin-bottom:10px;}
+.so-win button{padding:6px 14px; border-radius:7px; background:var(--sig); color:#1A1206; font-weight:600;}
 /* =====================================================================
    NIGHT SKY
    The whole scene lives in #space, one layer stack under the desk:
@@ -1397,10 +1503,12 @@ document.documentElement.setAttribute("data-theme", "day");
 <p>Portföy, tarayıcıda çalışan bir masaüstü işletim sistemi gibi tasarlandı. Kısa bir açılış ekranından sonra açık gri, ince ızgaralı bir masaüstü gelir; vurgu rengi turuncudur, yazılarda Archivo ve JetBrains Mono yazı tipleri kullanılır.</p>
 <p>Masaüstünün ortasında üzerinde "Projeler" yazan, halkalı bir gezegen durur. Beş proje simgesi (Karınca, İş Takip, Mevzuat İzleme, Raporlama, SMS Aktarıcı) bu gezegenin çevresindeki yörüngede yavaşça döner. Sağda yedi yıldızdan oluşan bir takımyıldız vardır; yıldızların bir kısmı kişisel dosyaları açar: Araçlar, Tek Sayfa.txt ve İletişim. Gezegene tıklamak BENİOKU dosyasını açar.</p>
 <p>Bir simgeye tıklanınca içerik bir pencerede açılır. Pencereler sürüklenir, ekran kenarına yaslanır, küçültülür ve kapatılır; simgeler yörüngeden çekilip bırakılabilir. Masaüstüne sağ tıklamak bir sistem menüsü açar, ⌘K bütün içerikte arama yapar. Sağ üstte Türkçe ve İngilizce arasında geçiş ile bir gece modu düğmesi vardır. Gece modunda masaüstü, Yale Parlak Yıldız Kataloğu ve Hipparcos verileriyle çizilmiş gerçek takımyıldızların olduğu lacivert bir gökyüzüne dönüşür; ortadaki gezegen Güneş, proje simgeleri de onun çevresinde dönen gezegenler olur. Alt çubukta açık pencereler ve LinkedIn bağlantısı durur.</p>
+<p>Alt çubuğun solundaki BAŞLAT düğmesi, eski Windows'u andıran bir Başlat menüsü açar. Menünün solunda turuncu bir şerit üzerinde dikey olarak ad yazar; listede Projeler, Belgeler ve Oyunlar alt menüleri, Araçlar, İletişim, gece modu, dil ve tüm pencereleri kapatma bulunur. En altta bir arama kutusu ve Kapat düğmesi vardır. Oyunlar menüsünde sayfa için sıfırdan yazılmış Mayın Tarlası (üç zorluk, bayrak, en iyi süre) ve Solitaire (Klondike; bir ya da üç kart çekiş, sürükle bırak, geri alma ve kazanınca zıplayan kartlar) açılır. Kapat düğmesine basılınca, ya da sayfa menüden veya klavyeden yenilenince, Projeler gezegeninin yerinde bir kara delik açılır: Parlayan bir birikim diski dönerken pencereler, simgeler ve çubuklar kıvrılarak içine çekilir, ekran kararır, kara delik bir ışık halkasıyla kapanır ve açılış ekranı yeniden gelir.</p>
 <p>Proje pencerelerinin çoğunda, projenin nasıl çalıştığını canlı gösteren etkileşimli bir demo vardır. Demolar aşağıda her projenin altında anlatılmıştır.</p>
-<p><a href="shots/masaustu.jpg">Ekran görüntüsü</a>: Gündüz masaüstü: açık gri ızgaralı zemin, ortada Projeler yazan turuncu halkalı beyaz gezegen, çevresindeki kesik çizgili yörüngede beş proje simgesi; sağda Tek Sayfa.txt, Araçlar ve İletişim simgelerini birleştiren takımyıldız; üstte ad, TR/EN, ⌘K ve GECE düğmesi, altta ARA ve LinkedIn.</p>
+<p><a href="shots/masaustu.jpg">Ekran görüntüsü</a>: Gündüz masaüstü: açık gri ızgaralı zemin, ortada Projeler yazan turuncu halkalı beyaz gezegen, çevresindeki kesik çizgili yörüngede beş proje simgesi; sağda Tek Sayfa.txt, Araçlar ve İletişim simgelerini birleştiren takımyıldız; üstte ad, TR/EN, ⌘K ve GECE düğmesi, altta BAŞLAT ve LinkedIn.</p>
 <p><a href="shots/gece.jpg">Ekran görüntüsü</a>: Gece modu: lacivert gökyüzü ve bulutsular, ince çizgilerle bağlanmış gerçek takımyıldızlar, ortada parlayan Güneş ve yörüngesinde gezegenlere dönüşmüş proje simgeleri; sol altta YALE BSC5 · HIPPARCOS yazısı.</p>
-<p><a href="shots/telefon.jpg">Ekran görüntüsü</a>: Telefon görünümü: aynı gezegen ve yörünge dikey ekrana sığdırılmış, altında takımyıldız ve Hakkımda yazısı; üstte ad ve dil seçimi, altta ARA ve LinkedIn.</p>
+<p><a href="shots/baslat.jpg">Ekran görüntüsü</a>: Başlat menüsü: Sol altta açık menü, solunda turuncu şerit üzerinde dikey ONUR CAN MIĞIRDAĞI yazısı; Projeler, Belgeler ve Oyunlar alt menüleri (Oyunlar açık: Mayın Tarlası ve Solitaire), Araçlar, İletişim, Gece gökyüzü, English, Tüm pencereleri kapat; en altta arama kutusu ve Kapat düğmesi. Arkada Solitaire penceresi, yeşil çuha üzerinde dağıtılmış kartlarla.</p>
+<p><a href="shots/telefon.jpg">Ekran görüntüsü</a>: Telefon görünümü: aynı gezegen ve yörünge dikey ekrana sığdırılmış, altında takımyıldız ve Hakkımda yazısı; üstte ad ve dil seçimi, altta BAŞLAT ve LinkedIn.</p>
 <h2>Projeler</h2>
 <article id="tr-karinca">
 <h3>Karınca</h3>
@@ -1538,10 +1646,12 @@ document.documentElement.setAttribute("data-theme", "day");
 <p>The portfolio is designed as a desktop operating system that runs in the browser. After a short boot screen comes a light grey desktop with a fine grid; the accent colour is orange, and the type is set in Archivo and JetBrains Mono.</p>
 <p>In the middle of the desktop sits a ringed planet labelled "Projects". Five project icons (Karınca, İş Takip, Mevzuat İzleme, Reporting, SMS Relay) circle it slowly in orbit. On the right is a constellation of seven stars; some of the stars open personal files: Tools, One Page.txt and Contact. Clicking the planet opens the README.</p>
 <p>Clicking an icon opens its content in a window. Windows can be dragged, snapped to the screen edge, minimised and closed; icons can be pulled out of orbit and let go. Right clicking the desktop opens a system menu, and ⌘K searches everything. At the top right there is a Turkish and English switch and a night mode button. In night mode the desktop becomes a deep blue sky with real constellations drawn from the Yale Bright Star Catalogue and Hipparcos data; the planet in the middle becomes the Sun and the project icons become planets circling it. The bottom bar holds the open windows and a LinkedIn link.</p>
+<p>The START button at the left of the bottom bar opens a start menu in the spirit of old Windows. Down its left side the name runs vertically on an orange band; the list has Projects, Documents and Games submenus, Tools, Contact, night mode, language and close all windows, with a search box and a Shut down button at the bottom. The Games menu opens Minesweeper (three levels, flags, best time) and Solitaire (Klondike; turn one or three, drag and drop, undo, and bouncing cards when you win), both written from scratch for the page. On Shut down, or when the page is refreshed from its menu or the keyboard, a black hole opens where the Projects planet is: a glowing accretion disk spins while the windows, icons and bars curl into it, the screen goes dark, the hole closes with a ring of light, and the boot screen comes back.</p>
 <p>Most project windows include an interactive demo that shows the project working. The demos are described below, under each project.</p>
-<p><a href="shots/masaustu.jpg">Screenshot</a>: The desktop by day: light grey grid, a white planet with an orange ring labelled Projeler in the middle, five project icons on the dotted orbit around it; on the right a constellation joining One Page, Tools and Contact; name, TR/EN, ⌘K and the night button at the top, search and LinkedIn at the bottom.</p>
+<p><a href="shots/masaustu.jpg">Screenshot</a>: The desktop by day: light grey grid, a white planet with an orange ring labelled Projeler in the middle, five project icons on the dotted orbit around it; on the right a constellation joining One Page, Tools and Contact; name, TR/EN, ⌘K and the night button at the top, START and LinkedIn at the bottom.</p>
 <p><a href="shots/gece.jpg">Screenshot</a>: Night mode: a deep blue sky with nebulae, real constellations joined by thin lines, a glowing Sun in the middle and the project icons turned into planets on its orbit; YALE BSC5 · HIPPARCOS in the lower left.</p>
-<p><a href="shots/telefon.jpg">Screenshot</a>: On a phone: the same planet and orbit fitted to a tall screen, the constellation and an About label below it; name and language switch at the top, search and LinkedIn at the bottom.</p>
+<p><a href="shots/baslat.jpg">Screenshot</a>: The start menu: open at the lower left, the name ONUR CAN MIĞIRDAĞI running vertically on an orange band; Projects, Documents and Games submenus (Games open: Minesweeper and Solitaire), Tools, Contact, Night sky, Türkçe, Close all windows; a search box and a Shut down button at the bottom. Behind it the Solitaire window, with the cards dealt on green felt.</p>
+<p><a href="shots/telefon.jpg">Screenshot</a>: On a phone: the same planet and orbit fitted to a tall screen, the constellation and an About label below it; name and language switch at the top, START and LinkedIn at the bottom.</p>
 <h2>Projects</h2>
 <article id="en-karinca">
 <h3>Karınca</h3>
@@ -1734,7 +1844,7 @@ document.documentElement.setAttribute("data-theme", "day");
   </div>
 
   <div id="bar">
-    <button class="k" id="barpal"></button>
+    <button class="k" id="startbtn" aria-haspopup="menu"><svg viewBox="-16 -16 32 32" aria-hidden="true"><circle class="p" r="5.8"/><ellipse class="r" rx="13.5" ry="5.4" transform="rotate(-17)"/></svg><span id="startlbl"></span></button>
     <a class="k lnk" href="https://www.linkedin.com/in/onurmigirdagi" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
       LinkedIn</a>
@@ -1744,6 +1854,7 @@ document.documentElement.setAttribute("data-theme", "day");
 </div>
 
 <div id="menu"></div>
+<div id="start" role="menu"></div>
 
 <div id="pal">
   <div id="palbox">
@@ -1768,7 +1879,9 @@ document.documentElement.setAttribute("data-theme", "day");
     sms:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-10.5" y="-9" width="21" height="14.5" rx="3.5"/><path class="gf" d="M-5 5 L1.5 5 L-3.5 11 Z"/><circle class="gf" cx="-4.6" cy="-1.8" r="1.5"/><circle class="gf" cx="0" cy="-1.8" r="1.5"/><circle class="gf" cx="4.6" cy="-1.8" r="1.5"/></svg>',
     tools:'<svg viewBox="-16 -16 32 32"><path class="g" d="M-10 -4 H10 M-10 4 H10"/><circle class="gf" cx="-4" cy="-4" r="2.6"/><circle class="gf" cx="5" cy="4" r="2.6"/></svg>',
     plain:'<svg viewBox="-16 -16 32 32"><path class="g" d="M-9 -12 H4 L9 -7 V12 H-9 Z M4 -12 V-7 H9"/><path class="g" d="M-5 -1 H5 M-5 4 H5"/></svg>',
-    contact:'<svg viewBox="-16 -16 32 32"><circle class="g" cx="0" cy="-4" r="4.6"/><path class="g" d="M-8.5 11 C-8.5 4.8, 8.5 4.8, 8.5 11"/></svg>'
+    contact:'<svg viewBox="-16 -16 32 32"><circle class="g" cx="0" cy="-4" r="4.6"/><path class="g" d="M-8.5 11 C-8.5 4.8, 8.5 4.8, 8.5 11"/></svg>',
+    mines:'<svg viewBox="-16 -16 32 32"><path class="g" d="M0 -12 V12 M-12 0 H12 M-8.5 -8.5 L8.5 8.5 M-8.5 8.5 L8.5 -8.5"/><circle class="gf" r="6.8"/><circle cx="-2.3" cy="-2.3" r="1.7" fill="#fff"/></svg>',
+    solitaire:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-11" y="-10" width="13" height="18" rx="2" transform="rotate(-12)"/><rect class="g" x="-1" y="-9" width="13" height="18" rx="2" transform="rotate(10)" fill="#fff"/><path class="gf" d="M5.5 3.5 C1.5 0.5 2 -3.5 4.6 -3.3 C5.4 -3.2 5.6 -2.6 5.8 -2.1 C6.2 -2.8 6.8 -3.2 7.6 -3 C10 -2.4 9.5 0.9 5.5 3.5 Z"/></svg>'
   };
 
   /* ---------- language ----------
@@ -1785,7 +1898,7 @@ document.documentElement.setAttribute("data-theme", "day");
          mn:"Minimize", mx:"Maximize", x:"Close",
          m_refresh:"Refresh", m_realign:"Realign the system", m_readme:"Open README.txt",
          m_search:"Search", m_lang:"Türkçe", m_closeall:"Close all windows", m_night:"Night sky",
-         m_reset:"Reset desktop", m_open:"Open", m_orbit:"Send back to orbit",
+         m_reset:"Reset desktop", start:"START", st_projects:"Projects", st_docs:"Documents", st_games:"Games", st_search:"Search...", st_power:"Shut down", st_night:"Night sky", st_day:"Back to day", m_open:"Open", m_orbit:"Send back to orbit",
          dayB:"DAY", nightB:"NIGHT", dayT:"Back to day (N)", nightT:"Night sky (N)",
          scopeDay:"Back to day", scopeNight:"Look through the telescope: switch to the night sky" },
     tr:{ projects:"Projeler", about:"Hakkımda", readme:"benioku", openReadme:"Benioku dosyasını aç",
@@ -1794,7 +1907,7 @@ document.documentElement.setAttribute("data-theme", "day");
          mn:"Küçült", mx:"Büyüt", x:"Kapat",
          m_refresh:"Yenile", m_realign:"Sistemi hizala", m_readme:"BENİOKU.txt dosyasını aç",
          m_search:"Ara", m_lang:"English", m_closeall:"Tüm pencereleri kapat", m_night:"Gece gökyüzü",
-         m_reset:"Masaüstünü sıfırla", m_open:"Aç", m_orbit:"Yörüngeye geri gönder",
+         m_reset:"Masaüstünü sıfırla", start:"BAŞLAT", st_projects:"Projeler", st_docs:"Belgeler", st_games:"Oyunlar", st_search:"Ara...", st_power:"Kapat", st_night:"Gece gökyüzü", st_day:"Gündüze dön", m_open:"Aç", m_orbit:"Yörüngeye geri gönder",
          dayB:"GÜNDÜZ", nightB:"GECE", dayT:"Gündüze dön (N)", nightT:"Gece gökyüzü (N)",
          scopeDay:"Gündüze dön", scopeNight:"Teleskopla gece gökyüzüne geçin" }
   };
@@ -3977,6 +4090,340 @@ document.documentElement.setAttribute("data-theme", "day");
   }
   /* KARINCA end */
 
+  /* GAMES start: Minesweeper and Klondike Solitaire, written for this page and
+     opened from the start menu. Nothing loads until a game window opens. */
+  var MS_T = {
+    tr:{ lv:[["b","Kolay"],["i","Orta"],["e","Zor"]], flag:"🚩 Bayrak modu", best:"En iyi süre", sec:" sn",
+         hint:"Sol tık kareyi açar, sağ tık bayrak koyar. Telefonda uzun basın ya da bayrak modunu açın.",
+         win:function(s){ return "Kazandınız: <b>"+s+" sn</b>."; }, rec:" Yeni rekor!", lose:"Mayına bastınız. Yüzüne tıklayıp yeniden başlayabilirsiniz." },
+    en:{ lv:[["b","Beginner"],["i","Intermediate"],["e","Expert"]], flag:"🚩 Flag mode", best:"Best time", sec:" s",
+         hint:"Left click opens a square, right click plants a flag. On a phone, press and hold or turn on flag mode.",
+         win:function(s){ return "You won in <b>"+s+" s</b>."; }, rec:" New record!", lose:"You hit a mine. Click the face to play again." }
+  };
+  var MS_LV = { b:[9, 9, 10, 26], i:[16, 16, 40, 24], e:[30, 16, 99, 22] };
+  function msHtml(L){
+    var T = MS_T[L];
+    return '<div class="ms" data-demo="ms"><div class="ms-bar">'+T.lv.map(function(l){ return '<button data-lv="'+l[0]+'">'+l[1]+'</button>'; }).join('')
+      + '<button class="ms-fm">'+T.flag+'</button></div>'
+      + '<div class="ms-box"><div class="ms-hd"><span class="ms-led ms-left">000</span><button class="ms-face" aria-label="new game">🙂</button><span class="ms-led ms-time">000</span></div>'
+      + '<div class="ms-grid"></div></div><div class="ms-msg"></div></div>';
+  }
+  function msMount(root, L){
+    if(root._ms) return; root._ms = 1;
+    var T = MS_T[L], q = function(s){ return root.querySelector(s); };
+    var grid = q(".ms-grid"), face = q(".ms-face"), leftEl = q(".ms-left"), timeEl = q(".ms-time"), msg = q(".ms-msg"), fm = q(".ms-fm");
+    var lv = "b", C, R, M, mine, opn, flg, cells, first, over, t0, timer = null, flagMode = false, openCount;
+    try{ lv = localStorage.getItem("ms_lv") || "b"; if(!MS_LV[lv]) lv = "b"; }catch(_){}
+    var pad = function(n){ n = Math.max(-99, Math.min(999, n)); return n < 0 ? "-"+("0"+(-n)).slice(-2) : ("00"+n).slice(-3); };
+    function best(){ try{ return JSON.parse(localStorage.getItem("ms_best") || "{}"); }catch(_){ return {}; } }
+    function hintMsg(){ var b = best()[lv]; msg.innerHTML = T.hint + (b ? " "+T.best+": <b>"+b+T.sec+"</b>" : ""); }
+    function nb(i){ var x = i % C, y = (i - x)/C, o = []; for(var dy = -1; dy <= 1; dy++) for(var dx = -1; dx <= 1; dx++){ if(!dx && !dy) continue; var nx = x + dx, ny = y + dy; if(nx >= 0 && ny >= 0 && nx < C && ny < R) o.push(ny*C + nx); } return o; }
+    function count(i){ return nb(i).filter(function(j){ return mine[j]; }).length; }
+    function stopT(){ if(timer){ clearInterval(timer); timer = null; } }
+    function fit(){
+      var w = root.closest(".win"); if(!w || MOB) return;
+      Object.keys(open).forEach(function(k){
+        var o = open[k]; if(o.el !== w || o.maxed) return;
+        root.style.minHeight = "0"; var need = root.scrollHeight; root.style.minHeight = "";
+        var bw = Math.min(bounds().w - 20, grid.offsetWidth + 60), bh = Math.min(bounds().h - 20, need + 36);
+        set(o, { x:Math.min(o.x, Math.max(0, bounds().w - bw)), y:Math.min(o.y, Math.max(0, bounds().h - bh)), w:Math.max(300, bw), h:bh }); save();
+      });
+    }
+    function reset(){
+      stopT(); var d = MS_LV[lv]; C = d[0]; R = d[1]; M = d[2];
+      mine = []; opn = []; flg = []; first = true; over = false; openCount = 0;
+      root.querySelectorAll(".ms-bar [data-lv]").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-lv") === lv); });
+      grid.style.setProperty("--c", d[3]+"px"); grid.style.gridTemplateColumns = "repeat("+C+", var(--c))";
+      var h = ""; for(var i = 0; i < C*R; i++) h += '<div class="ms-c" data-i="'+i+'"></div>';
+      grid.innerHTML = h; cells = grid.children;
+      face.textContent = "🙂"; leftEl.textContent = pad(M); timeEl.textContent = "000"; hintMsg();
+      requestAnimationFrame(fit);
+    }
+    /* the first click is always safe: the mines are laid after it, away from it */
+    function lay(safe){
+      var ban = {}; ban[safe] = 1; nb(safe).forEach(function(j){ ban[j] = 1; });
+      var free = []; for(var i = 0; i < C*R; i++) if(!ban[i]) free.push(i);
+      for(var k = 0; k < M; k++){ var p = k + Math.floor(Math.random()*(free.length - k)), t = free[k]; free[k] = free[p]; free[p] = t; mine[free[k]] = 1; }
+      t0 = Date.now(); timer = setInterval(function(){ if(!root.isConnected) return stopT(); timeEl.textContent = pad(Math.floor((Date.now() - t0)/1000)); }, 250);
+    }
+    function reveal(i){
+      if(over || opn[i] || flg[i]) return;
+      if(first){ first = false; lay(i); }
+      if(mine[i]){ lose(i); return; }
+      var st = [i];
+      while(st.length){
+        var j = st.pop(); if(opn[j] || flg[j]) continue;
+        opn[j] = 1; openCount++; var n = count(j), c = cells[j];
+        c.className = "ms-c o" + (n ? " n"+n : ""); c.textContent = n || "";
+        if(!n) nb(j).forEach(function(k){ if(!opn[k] && !mine[k]) st.push(k); });
+      }
+      if(openCount === C*R - M) win();
+    }
+    function chord(i){
+      if(!opn[i]) return; var n = count(i), ns = nb(i);
+      if(n && ns.filter(function(j){ return flg[j]; }).length === n) ns.forEach(reveal);
+    }
+    function flag(i){
+      if(over || opn[i]) return; flg[i] = !flg[i];
+      cells[i].classList.toggle("f", !!flg[i]);
+      leftEl.textContent = pad(M - flg.filter(Boolean).length);
+    }
+    function lose(i){
+      over = true; stopT(); face.textContent = "😵";
+      for(var j = 0; j < C*R; j++){
+        if(mine[j] && !flg[j]) cells[j].className = "ms-c o m";
+        else if(!mine[j] && flg[j]) cells[j].className = "ms-c o bad";
+      }
+      cells[i].classList.add("boom"); msg.innerHTML = T.lose;
+    }
+    function win(){
+      over = true; stopT(); face.textContent = "😎";
+      for(var j = 0; j < C*R; j++) if(mine[j]) cells[j].className = "ms-c f";
+      leftEl.textContent = "000";
+      var s = Math.max(1, Math.round((Date.now() - t0)/1000)), b = best(), rec = !b[lv] || s < b[lv];
+      if(rec){ b[lv] = s; try{ localStorage.setItem("ms_best", JSON.stringify(b)); }catch(_){} }
+      msg.innerHTML = T.win(s) + (rec ? T.rec : "");
+    }
+    /* mouse: left opens, right flags, a click on a number opens its neighbours once the flags add up;
+       touch: press and hold flags */
+    var press = null;
+    grid.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+    grid.addEventListener("pointerdown", function(e){
+      var c = e.target.closest(".ms-c"); if(!c || over) return;
+      var i = +c.getAttribute("data-i");
+      if(e.button === 2){ flag(i); return; }
+      face.textContent = "😮";
+      press = { i:i, long:false, tm:setTimeout(function(){ if(press){ press.long = true; flag(i); if(navigator.vibrate) navigator.vibrate(18); } }, e.pointerType === "mouse" ? 1e9 : 420) };
+    });
+    function lift(e){
+      if(!press) return; clearTimeout(press.tm); var p = press; press = null;
+      if(!over) face.textContent = "🙂";
+      if(p.long || e.type !== "pointerup") return;
+      var c = e.target.closest && e.target.closest(".ms-c"); if(!c || +c.getAttribute("data-i") !== p.i) return;
+      if(opn[p.i] || e.button === 1) chord(p.i); else if(flagMode) flag(p.i); else reveal(p.i);
+    }
+    grid.addEventListener("pointerup", lift); grid.addEventListener("pointercancel", lift); grid.addEventListener("pointerleave", lift);
+    face.addEventListener("click", reset);
+    fm.addEventListener("click", function(){ flagMode = !flagMode; fm.classList.toggle("on", flagMode); });
+    root.querySelector(".ms-bar").addEventListener("click", function(e){
+      var b = e.target.closest("[data-lv]"); if(!b) return; lv = b.getAttribute("data-lv");
+      try{ localStorage.setItem("ms_lv", lv); }catch(_){} reset();
+    });
+    reset();
+  }
+
+  /* Klondike: turn one or three, drag or click to move, undo, and the bouncing cards at the end */
+  var SO_T = {
+    tr:{ nw:"Yeni oyun", undo:"Geri al", draw:"Çekiş", moves:"Hamle", time:"Süre", win:"Tebrikler, kazandınız!", again:"Yeni oyun",
+         sum:function(m, t){ return m+" hamle, "+t; } },
+    en:{ nw:"New game", undo:"Undo", draw:"Draw", moves:"Moves", time:"Time", win:"Well done, you won!", again:"New game",
+         sum:function(m, t){ return m+" moves, "+t; } }
+  };
+  var SO_SUIT = ["♠","♥","♦","♣"], SO_RANK = ["","A","2","3","4","5","6","7","8","9","10","J","Q","K"];
+  function soHtml(L){
+    var T = SO_T[L];
+    return '<div class="so" data-demo="so"><div class="so-bar"><button class="so-new">'+T.nw+'</button><button class="so-undo">'+T.undo+'</button>'
+      + '<span class="so-dr">'+T.draw+': <button data-d="1">1</button><button data-d="3">3</button></span><span class="so-st"></span></div>'
+      + '<div class="so-board"><canvas class="so-cv"></canvas><div class="so-win"><b>'+T.win+'</b><span></span><button>'+T.again+'</button></div></div></div>';
+  }
+  function soMount(root, L){
+    if(root._so) return; root._so = 1;
+    var T = SO_T[L], q = function(s){ return root.querySelector(s); };
+    var board = q(".so-board"), st = q(".so-st"), undoB = q(".so-undo"), cv = q(".so-cv"), winBox = q(".so-win");
+    var drawN = 1; try{ drawN = +localStorage.getItem("so_draw") || 1; }catch(_){}
+    var cards = [], piles, hist, moves, t0, timer = null, G = {}, busy = false, done = false;
+    var PN = ["stock","waste","f0","f1","f2","f3","t0","t1","t2","t3","t4","t5","t6"];
+    for(var s = 0; s < 4; s++) for(var r = 1; r <= 13; r++){
+      var el = document.createElement("div"), red = s === 1 || s === 2, fc = r > 10;
+      el.className = "so-card" + (red ? " red" : "");
+      el.innerHTML = '<b class="tl">'+SO_RANK[r]+'<br>'+SO_SUIT[s]+'</b>'
+        + (fc ? '<i class="fc"><span>'+SO_RANK[r]+SO_SUIT[s]+'</span></i>' : '<i>'+SO_SUIT[s]+'</i>')
+        + '<b class="br">'+SO_RANK[r]+'<br>'+SO_SUIT[s]+'</b>';
+      var c = { s:s, r:r, red:red, up:false, el:el, id:cards.length }; el._c = c; cards.push(c); board.appendChild(el);
+    }
+    var slots = {};
+    PN.forEach(function(p){
+      if(p === "waste") return;
+      var d = document.createElement("div"); d.className = "so-slot" + (p === "stock" ? " stk" : "");
+      d.textContent = p === "stock" ? "↻" : p.charAt(0) === "f" ? "A" : ""; board.insertBefore(d, board.firstChild); slots[p] = d;
+    });
+    function fmt(ms){ var s = Math.floor(ms/1000); return Math.floor(s/60)+":"+("0"+s%60).slice(-2); }
+    function stat(){ st.textContent = T.moves+" "+moves+" · "+T.time+" "+(t0 ? fmt(Date.now() - t0) : "0:00"); undoB.disabled = !hist.length; }
+    function tickT(){ if(!t0 && moves){ t0 = Date.now(); timer = setInterval(function(){ if(!root.isConnected){ clearInterval(timer); return; } if(!done) stat(); }, 1000); } }
+    function deal(){
+      if(timer){ clearInterval(timer); timer = null; }
+      var d = cards.slice(); for(var i = d.length - 1; i > 0; i--){ var j = Math.floor(Math.random()*(i + 1)), t = d[i]; d[i] = d[j]; d[j] = t; }
+      piles = {}; PN.forEach(function(p){ piles[p] = []; });
+      for(var c = 0; c < 7; c++) for(var k = 0; k <= c; k++){ var x = d.pop(); x.up = k === c; piles["t"+c].push(x); }
+      d.forEach(function(x){ x.up = false; }); piles.stock = d;
+      hist = []; moves = 0; t0 = 0; done = false; busy = false; cv.style.display = "none"; winBox.style.display = "none";
+      cards.forEach(function(c){ c.el.style.visibility = ""; });
+      root.querySelectorAll(".so-dr button").forEach(function(b){ b.classList.toggle("on", +b.getAttribute("data-d") === drawN); });
+      lay(); stat();
+    }
+    /* geometry follows the window: seven columns, cards 1.42 times as tall as wide */
+    function geo(){
+      var W = board.clientWidth, H = board.clientHeight, gap = Math.max(5, Math.round(W*.014));
+      var cw = Math.floor(Math.min(92, (W - gap*8)/7)), ch = Math.round(cw*1.42);
+      G = { W:W, H:H, gap:gap, cw:cw, ch:ch, y0:gap*2 + ch };
+      board.style.setProperty("--cw", cw+"px"); board.style.setProperty("--ch", ch+"px");
+    }
+    function colX(i){ return G.gap + i*(G.cw + G.gap); }
+    function where(p){ return p === "stock" ? [colX(0), G.gap] : p === "waste" ? [colX(1), G.gap] : p.charAt(0) === "f" ? [colX(3 + +p.charAt(1)), G.gap] : [colX(+p.charAt(1)), G.y0]; }
+    function place(c, x, y, z){ c.el.style.transform = "translate("+x+"px,"+y+"px)"; c.el.style.zIndex = z; c.el.classList.toggle("dn", !c.up); }
+    function lay(){
+      geo();
+      Object.keys(slots).forEach(function(p){ var w = where(p); slots[p].style.transform = "translate("+w[0]+"px,"+w[1]+"px)"; });
+      piles.stock.forEach(function(c, i){ place(c, colX(0), G.gap, 10 + i); });
+      var wl = piles.waste.length, fan = drawN === 3 ? Math.round(G.cw*.24) : 0;
+      piles.waste.forEach(function(c, i){ var k = Math.max(0, i - (wl - 3)); place(c, colX(1) + (drawN === 3 ? Math.min(k, 2)*fan : 0), G.gap, 10 + i); });
+      for(var f = 0; f < 4; f++) piles["f"+f].forEach(function(c, i){ place(c, colX(3 + f), G.gap, 10 + i); });
+      for(var t = 0; t < 7; t++){
+        var p = piles["t"+t], dn = Math.round(G.ch*.11), up = Math.round(G.ch*.27), nd = 0, nu = 0;
+        p.forEach(function(c){ if(c.up) nu++; else nd++; });
+        var room = G.H - G.y0 - G.ch - G.gap; if(nu > 1 && nd*dn + (nu - 1)*up > room) up = Math.max(10, Math.floor((room - nd*dn)/(nu - 1)));
+        var y = G.y0; p.forEach(function(c, i){ place(c, colX(t), y, 10 + i); y += c.up ? up : dn; });
+      }
+    }
+    function snap(){ return PN.map(function(p){ return piles[p].map(function(c){ return c.id*2 + (c.up ? 1 : 0); }); }); }
+    function push(){ hist.push(snap()); if(hist.length > 200) hist.shift(); }
+    function undo(){
+      if(!hist.length || busy) return; var h = hist.pop();
+      PN.forEach(function(p, i){ piles[p] = h[i].map(function(v){ var c = cards[v >> 1]; c.up = !!(v & 1); return c; }); });
+      moves++; lay(); stat();
+    }
+    var top = function(p){ var a = piles[p]; return a[a.length - 1]; };
+    function canF(c, f){ var t = top(f); return t ? t.s === c.s && c.r === t.r + 1 : c.r === 1; }
+    function canT(c, p){ var t = top(p); return t ? t.up && t.red !== c.red && c.r === t.r - 1 : c.r === 13; }
+    function move(from, idx, to){
+      push(); var mv = piles[from].splice(idx); piles[to] = piles[to].concat(mv);
+      var t = top(from); if(from.charAt(0) === "t" && t && !t.up) t.up = true;
+      moves++; tickT(); lay(); stat(); check();
+    }
+    function draw(){
+      if(busy) return;
+      if(!piles.stock.length){
+        if(!piles.waste.length) return; push();
+        piles.stock = piles.waste.reverse(); piles.waste = []; piles.stock.forEach(function(c){ c.up = false; });
+      } else {
+        push(); for(var k = 0; k < drawN && piles.stock.length; k++){ var c = piles.stock.pop(); c.up = true; piles.waste.push(c); }
+      }
+      moves++; tickT(); lay(); stat();
+    }
+    function find(c){ for(var i = 0; i < PN.length; i++){ var k = piles[PN[i]].indexOf(c); if(k >= 0) return [PN[i], k]; } return null; }
+    /* a click sends the card where it can go: home first, then the best column */
+    function auto(c, p, idx){
+      var last = idx === piles[p].length - 1;
+      if(last) for(var f = 0; f < 4; f++) if(p !== "f"+f && canF(c, "f"+f)){ move(p, idx, "f"+f); return true; }
+      var empty = null;
+      for(var t = 0; t < 7; t++){
+        var d = "t"+t; if(d === p || !canT(c, d)) continue;
+        if(piles[d].length){ move(p, idx, d); return true; }
+        if(empty === null && !(p.charAt(0) === "t" && idx === 0)) empty = d;
+      }
+      if(empty){ move(p, idx, empty); return true; }
+      c.el.classList.remove("nope"); void c.el.offsetWidth; c.el.classList.add("nope"); return false;
+    }
+    function check(){
+      if(PN.slice(2, 6).every(function(f){ return piles[f].length === 13; })){ finish(); return; }
+      /* once everything is face up and the stock is empty, the rest goes home by itself */
+      if(!piles.stock.length && !piles.waste.length && PN.slice(6).every(function(p){ return piles[p].every(function(c){ return c.up; }); }) && !busy){
+        busy = true;
+        (function step(){
+          if(!root.isConnected) return;
+          for(var t = 0; t < 7; t++){ var p = "t"+t, c = top(p); if(!c) continue;
+            for(var f = 0; f < 4; f++) if(canF(c, "f"+f)){ var m = piles[p].splice(-1); piles["f"+f] = piles["f"+f].concat(m); moves++; lay(); stat(); return setTimeout(step, 110); } }
+          busy = false; finish();
+        })();
+      }
+    }
+    /* the cards bounce off the bottom of the board one after another and leave their trail behind */
+    function finish(){
+      if(done || !PN.slice(2, 6).every(function(f){ return piles[f].length === 13; })) return;
+      done = true; if(timer) clearInterval(timer); stat();
+      winBox.querySelector("span").textContent = T.sum(moves, fmt(Date.now() - (t0 || Date.now())));
+      if(reduce){ winBox.style.display = "block"; return; }
+      var dpr = Math.min(2, devicePixelRatio || 1); cv.width = G.W*dpr; cv.height = G.H*dpr; cv.style.display = "block";
+      var ctx = cv.getContext("2d"); ctx.scale(dpr, dpr);
+      function img(c){
+        var o = document.createElement("canvas"); o.width = G.cw*dpr; o.height = G.ch*dpr; var x = o.getContext("2d"); x.scale(dpr, dpr);
+        x.fillStyle = "#fff"; x.strokeStyle = "rgba(0,0,0,.35)"; x.lineWidth = 1;
+        x.beginPath(); x.roundRect ? x.roundRect(.5, .5, G.cw - 1, G.ch - 1, G.cw*.08) : x.rect(.5, .5, G.cw - 1, G.ch - 1); x.fill(); x.stroke();
+        x.fillStyle = c.red ? "#C62828" : "#1E2026"; x.font = "700 "+Math.round(G.cw*.2)+"px Archivo, sans-serif"; x.textBaseline = "top";
+        x.fillText(SO_RANK[c.r], G.cw*.07, G.ch*.05); x.fillText(SO_SUIT[c.s], G.cw*.07, G.ch*.05 + G.cw*.2);
+        x.font = Math.round(G.cw*.46)+"px sans-serif"; x.textAlign = "center"; x.textBaseline = "middle"; x.fillText(SO_SUIT[c.s], G.cw/2, G.ch/2);
+        return o;
+      }
+      var order = []; for(var r = 13; r >= 1; r--) for(var f = 0; f < 4; f++) order.push(piles["f"+f][r - 1]);
+      var k = 0, cur = null, stop = false;
+      function launch(){
+        if(k >= order.length){ winBox.style.display = "block"; return; }
+        var c = order[k++], f = PN.indexOf(find(c)[0]) - 2; c.el.style.visibility = "hidden";
+        cur = { im:img(c), x:colX(3 + f), y:G.gap, vx:(Math.random() < .5 ? -1 : 1)*(2 + Math.random()*4), vy:-Math.random()*6 };
+      }
+      launch();
+      (function frame(){
+        if(stop || !root.isConnected || !cur) return;
+        for(var n = 0; n < 2; n++){
+          cur.vy += .45; cur.x += cur.vx; cur.y += cur.vy;
+          if(cur.y > G.H - G.ch){ cur.y = G.H - G.ch; cur.vy *= -.72; }
+          ctx.drawImage(cur.im, cur.x, cur.y, G.cw, G.ch);
+          if(cur.x < -G.cw || cur.x > G.W){ launch(); if(k > order.length) return; }
+        }
+        if(winBox.style.display !== "block") requestAnimationFrame(frame);
+      })();
+      cv.onclick = function(){ stop = true; winBox.style.display = "block"; };
+    }
+    /* dragging: a face-up card takes everything on top of it; a click without a drag is an automatic move */
+    var drag = null;
+    board.addEventListener("pointerdown", function(e){
+      if(busy || done) return;
+      if(e.target.closest(".so-slot.stk")){ draw(); return; }
+      var el = e.target.closest(".so-card"); if(!el) return;
+      var c = el._c, w = find(c); if(!w) return;
+      var p = w[0], idx = w[1];
+      if(p === "stock"){ draw(); return; }
+      if(!c.up) return;
+      if((p === "waste" || p.charAt(0) === "f") && idx !== piles[p].length - 1) return;
+      var stack = piles[p].slice(idx), br = board.getBoundingClientRect();
+      drag = { p:p, idx:idx, stack:stack, x0:e.clientX, y0:e.clientY, moved:false, br:br,
+        pos:stack.map(function(s){ var m = /translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(s.el.style.transform); return [+m[1], +m[2]]; }) };
+      board.setPointerCapture(e.pointerId);
+    });
+    board.addEventListener("pointermove", function(e){
+      if(!drag) return; var dx = e.clientX - drag.x0, dy = e.clientY - drag.y0;
+      if(!drag.moved && Math.abs(dx) + Math.abs(dy) < 5) return;
+      drag.moved = true;
+      drag.stack.forEach(function(s, i){ s.el.classList.add("drag"); s.el.style.zIndex = 1000 + i; s.el.style.transform = "translate("+(drag.pos[i][0] + dx)+"px,"+(drag.pos[i][1] + dy)+"px)"; });
+    });
+    function drop(e){
+      if(!drag) return; var d = drag; drag = null;
+      d.stack.forEach(function(s){ s.el.classList.remove("drag"); });
+      if(!d.moved){ auto(d.stack[0], d.p, d.idx); return; }
+      var c = d.stack[0], x = d.pos[0][0] + e.clientX - d.x0, y = d.pos[0][1] + e.clientY - d.y0, bestP = null, bestA = 0;
+      var tgt = d.stack.length === 1 ? ["f0","f1","f2","f3"] : [];
+      tgt = tgt.concat(["t0","t1","t2","t3","t4","t5","t6"]);
+      tgt.forEach(function(p){
+        if(p === d.p) return;
+        var w = where(p), top0 = p.charAt(0) === "t" ? (piles[p].length ? +/translate\([-\d.]+px,\s*([-\d.]+)px\)/.exec(top(p).el.style.transform)[1] : w[1]) : w[1];
+        var ox = Math.max(0, Math.min(x + G.cw, w[0] + G.cw) - Math.max(x, w[0])), oy = Math.max(0, Math.min(y + G.ch, top0 + G.ch) - Math.max(y, top0));
+        var a = ox*oy; if(a > bestA && (p.charAt(0) === "f" ? canF(c, p) : canT(c, p))){ bestA = a; bestP = p; }
+      });
+      if(bestP) move(d.p, d.idx, bestP); else lay();
+    }
+    board.addEventListener("pointerup", drop); board.addEventListener("pointercancel", function(){ if(drag){ drag = null; lay(); } });
+    q(".so-new").addEventListener("click", deal);
+    undoB.addEventListener("click", undo);
+    q(".so-dr").addEventListener("click", function(e){
+      var b = e.target.closest("button"); if(!b) return; drawN = +b.getAttribute("data-d");
+      try{ localStorage.setItem("so_draw", drawN); }catch(_){} deal();
+    });
+    winBox.querySelector("button").addEventListener("click", function(){ cards.forEach(function(c){ c.el.style.visibility = ""; }); deal(); });
+    if(window.ResizeObserver) new ResizeObserver(function(){ if(piles && !done) lay(); }).observe(board);
+    requestAnimationFrame(deal);
+  }
+  /* GAMES end */
+
   function mountDemos(el){
     var r = el.querySelector('[data-demo="pk"]');
     if(r) pkMount(r, LANG);
@@ -3988,6 +4435,10 @@ document.documentElement.setAttribute("data-theme", "day");
     if(rp) rpMount(rp, LANG);
     var kr = el.querySelector('[data-demo="kr"]');
     if(kr) krMount(kr, LANG);
+    var ms = el.querySelector('[data-demo="ms"]');
+    if(ms) msMount(ms, LANG);
+    var so = el.querySelector('[data-demo="so"]');
+    if(so) soMount(so, LANG);
   }
 
   /* how information moves through İş Takip Modülü, and the tables it lands in */
@@ -4120,12 +4571,14 @@ document.documentElement.setAttribute("data-theme", "day");
     o.tools   = { t:TOOLS[L].t, w:560, h:360, html:tools(L) };
     o.plain   = { t:PLAIN[L].t, w:640, h:540, html:plain(L) };
     o.contact = { t:(L==="tr" ? "İletişim" : "Contact"), w:420, h:260, html:contact(L) };
+    o.mines = { t:(L==="tr" ? "Mayın Tarlası" : "Minesweeper"), w:320, h:430, html:msHtml(L) };
+    o.solitaire = { t:"Solitaire", w:700, h:560, html:soHtml(L) };
     return o;
   }
   var APPS_BY = { en:buildApps("en"), tr:buildApps("tr") };
   var APPS = APPS_BY[LANG];
 
-  var DESK = ["readme","karinca","istakip","pipeline","reporting","sms","tools","plain","contact"];
+  var DESK = ["readme","karinca","istakip","pipeline","reporting","sms","tools","plain","contact","mines","solitaire"];
   var ORB  = ["karinca","istakip","pipeline","reporting","sms","tools","plain","contact"];
   var RING = { karinca:0, istakip:0, pipeline:0, reporting:0, sms:0, tools:1, plain:1, contact:1 };
 
@@ -5701,7 +6154,7 @@ document.documentElement.setAttribute("data-theme", "day");
     var b = e.target.closest("button"); if(!b) return;
     var a = b.getAttribute("data-a"), id = menuFor;
     hideMenu();
-    if(a==="refresh"){ measureSky(); bloom(); }
+    if(a==="refresh"){ blackHole(function(){ location.reload(); }); }
     else if(a==="realign"){ glide(function(){ tNow = 0; }, 820, 34); }
     else if(a==="readme"){ launch("readme"); }
     else if(a==="search"){ palOpen(); }
@@ -5755,13 +6208,199 @@ document.documentElement.setAttribute("data-theme", "day");
   });
   pal.addEventListener("pointerdown", function(e){ if(e.target===pal) palClose(); });
   $("palbtn").addEventListener("click", palOpen);
-  $("barpal").addEventListener("click", palOpen);
 
   addEventListener("keydown", function(e){
     if((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==="k"){ e.preventDefault(); palOpen(); return; }
     if(e.key==="Escape" && !pal.classList.contains("on") && focused){ close(focused); return; }
     if(e.altKey && /^[1-9]$/.test(e.key)){
       var id = DESK[+e.key-1]; if(id){ e.preventDefault(); launch(id); }
+    }
+  });
+
+  /* ---------- start menu ----------
+     it takes the place of the old search button: the projects, the documents,
+     the games and the settings, a search box that hands over to the palette,
+     and Shut down, which ends in the black hole */
+  var startEl = $("start"), startBtn = $("startbtn");
+  var ST_SUB = { projects:PORDER, docs:["readme","plain"], games:["mines","solitaire"] };
+  var ST_LOGO = '<svg viewBox="-16 -16 32 32"><circle class="gf" r="5.6"/><ellipse class="g" rx="13.5" ry="5.2" transform="rotate(-17)"/></svg>';
+  var ST_ICO = {
+    projects:ST_LOGO,
+    docs:'<svg viewBox="-16 -16 32 32"><path class="g" d="M-11 -8 H-3 L-1 -5 H11 V10 H-11 Z"/></svg>',
+    games:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-12" y="-7" width="24" height="14" rx="5"/><path class="g" d="M-7 0 H-2 M-4.5 -2.5 V2.5"/><circle class="gf" cx="5" cy="-1.5" r="1.6"/><circle class="gf" cx="8" cy="1.8" r="1.6"/></svg>',
+    night:'<svg viewBox="-16 -16 32 32"><path class="g" d="M4 -10 A10 10 0 1 0 10 5 A8 8 0 0 1 4 -10 Z"/></svg>',
+    day:'<svg viewBox="-16 -16 32 32"><circle class="g" r="5"/><path class="g" d="M0 -12 V-9 M0 9 V12 M-12 0 H-9 M9 0 H12 M-8.5 -8.5 L-6.4 -6.4 M6.4 6.4 L8.5 8.5 M-8.5 8.5 L-6.4 6.4 M6.4 -6.4 L8.5 -8.5"/></svg>',
+    lang:'<svg viewBox="-16 -16 32 32"><circle class="g" r="10.5"/><path class="g" d="M-10.5 0 H10.5 M0 -10.5 C-5 -5 -5 5 0 10.5 C5 5 5 -5 0 -10.5"/></svg>',
+    closeall:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-10" y="-8" width="20" height="16" rx="2.5"/><path class="g" d="M-3.5 -2.5 L3.5 4.5 M3.5 -2.5 L-3.5 4.5"/></svg>'
+  };
+  var PW_SVG = '<svg viewBox="0 0 16 16"><path d="M8 1.8 V7.5"/><path d="M4.4 4.1 A5.4 5.4 0 1 0 11.6 4.1"/></svg>';
+  function isNight(){ return document.documentElement.getAttribute("data-theme") === "night"; }
+  function stRow(id){ return '<button class="st-r" data-app="'+id+'"><span class="st-i">'+ART[id]+'</span><span>'+APPS[id].t+'</span></button>'; }
+  function stAct(a, label){ return '<button class="st-r" data-act="'+a+'"><span class="st-i">'+ST_ICO[a]+'</span><span>'+label+'</span></button>'; }
+  function stPaint(){
+    startEl.innerHTML = '<div class="st-side"><span>ONUR CAN <b>MIĞIRDAĞI</b></span></div>'
+      + '<div class="st-main"><div class="st-list">'
+      +   ["projects","docs","games"].map(function(k){ return '<button class="st-r" data-sub="'+k+'"><span class="st-i">'+ST_ICO[k]+'</span><span>'+ui("st_"+k)+'</span><s>&#9656;</s></button>'; }).join('')
+      +   stRow("tools") + stRow("contact") + '<hr>'
+      +   ($("thbtn") ? (isNight() ? stAct("day", ui("st_day")) : stAct("night", ui("st_night"))) : '')
+      +   stAct("lang", ui("m_lang")) + stAct("closeall", ui("m_closeall"))
+      + '</div><div class="st-foot"><input type="search" placeholder="'+ui("st_search")+'" aria-label="'+ui("st_search")+'"><button class="st-pw">'+PW_SVG+ui("st_power")+'</button></div></div>'
+      + '<div class="st-fly"></div>';
+  }
+  function stOpen(){ stPaint(); startEl.classList.add("on"); startBtn.classList.add("on"); hideMenu(); }
+  function stClose(){ startEl.classList.remove("on"); startBtn.classList.remove("on"); }
+  function stSub(row){
+    var fly = startEl.querySelector(".st-fly"), k = row.getAttribute("data-sub");
+    if(row.classList.contains("on") && MOB){ row.classList.remove("on"); fly.className = "st-fly"; return; }
+    Array.prototype.forEach.call(startEl.querySelectorAll(".st-r.on"), function(r){ r.classList.remove("on"); });
+    row.classList.add("on");
+    fly.innerHTML = ST_SUB[k].map(stRow).join('');
+    if(MOB){ row.parentNode.insertBefore(fly, row.nextSibling); fly.className = "st-fly on in"; }
+    else {
+      startEl.appendChild(fly); fly.className = "st-fly on";
+      var top = row.getBoundingClientRect().top - startEl.getBoundingClientRect().top - 5;
+      fly.style.top = Math.max(0, Math.min(top, startEl.offsetHeight - fly.offsetHeight))+"px";
+    }
+  }
+  startBtn.addEventListener("click", function(){ startEl.classList.contains("on") ? stClose() : stOpen(); });
+  startEl.addEventListener("mouseover", function(e){
+    if(MOB) return;
+    var r = e.target.closest(".st-list > .st-r"); if(!r) return;
+    if(r.hasAttribute("data-sub")){ if(!r.classList.contains("on")) stSub(r); }
+    else { var f = startEl.querySelector(".st-fly"); if(f) f.className = "st-fly"; Array.prototype.forEach.call(startEl.querySelectorAll(".st-r.on"), function(x){ x.classList.remove("on"); }); }
+  });
+  startEl.addEventListener("click", function(e){
+    var r = e.target.closest("button"); if(!r) return;
+    if(r.hasAttribute("data-sub")){ stSub(r); return; }
+    var id = r.getAttribute("data-app"), a = r.getAttribute("data-act");
+    if(r.classList.contains("st-pw")){ stClose(); blackHole(function(){ try{ localStorage.removeItem("desk_session"); }catch(_){} location.reload(); }); return; }
+    stClose();
+    if(id) launch(id);
+    else if(a === "night" || a === "day"){ var t = $("thbtn"); if(t) t.click(); }
+    else if(a === "lang") setLang(LANG === "tr" ? "en" : "tr");
+    else if(a === "closeall") Object.keys(open).forEach(close);
+  });
+  function stSearch(inp){ var v = inp.value; stClose(); palOpen(); palin.value = v; palPaint(); }
+  startEl.addEventListener("input", function(e){ if(e.target.tagName === "INPUT" && e.target.value) stSearch(e.target); });
+  startEl.addEventListener("keydown", function(e){ if(e.key === "Enter" && e.target.tagName === "INPUT"){ e.preventDefault(); stSearch(e.target); } });
+  addEventListener("pointerdown", function(e){
+    if(startEl.classList.contains("on") && !e.target.closest("#start") && !e.target.closest("#startbtn")) stClose();
+  }, true);
+  addEventListener("keydown", function(e){
+    if(e.key === "Escape" && startEl.classList.contains("on")){ e.stopImmediatePropagation(); stClose(); return; }
+    /* Ctrl+Esc opens the start menu, as it always has */
+    if(e.ctrlKey && e.key === "Escape"){ e.preventDefault(); startEl.classList.contains("on") ? stClose() : stOpen(); }
+  }, true);
+
+  /* ---------- the black hole ----------
+     Shut down, the Refresh item and a refresh from the keyboard all end the
+     same way: a black hole opens where the Projects planet is, pulls the windows,
+     the icons, the bars and the sky into itself, closes, and the boot screen comes
+     back. The browser's own reload button cannot be held back for an animation;
+     that one goes straight to the boot screen. */
+  var collapsing = false;
+  function blackHole(then){
+    if(collapsing) return; collapsing = true;
+    stClose(); hideMenu(); if(pal.classList.contains("on")) palClose();
+    if(reduce){ then(); return; }
+    var W = innerWidth, H = innerHeight, hx = W/2, hy = H/2;
+    var pr = $("coreA").getBoundingClientRect();
+    if(!MOB && pr.width > 0 && pr.top >= 0 && pr.bottom <= H){ hx = pr.left + pr.width/2; hy = pr.top + pr.height/2; }
+    var ov = document.createElement("div"); ov.id = "bh";
+    var cv = document.createElement("canvas"), dpr = Math.min(2, devicePixelRatio || 1);
+    cv.width = W*dpr; cv.height = H*dpr; ov.appendChild(cv); document.body.appendChild(ov);
+    var ctx = cv.getContext("2d"); ctx.scale(dpr, dpr);
+    var RM = Math.max(26, Math.min(W, H)*.075), TILT = -17*Math.PI/180;
+    var P = [];
+    for(var i = 0; i < 700; i++){
+      var rr = RM*(1.35 + Math.pow(Math.random(), 1.6)*6.5);
+      P.push({ r:rr, a:Math.random()*Math.PI*2, w:.9 + Math.random()*.5, h:Math.random() });
+    }
+    /* everything falls in along a curve: halfway, it has already swung 60 degrees round the hole */
+    var maxD = Math.hypot(Math.max(hx, W - hx), Math.max(hy, H - hy));
+    function swallow(el, delay, dur){
+      var r = el.getBoundingClientRect(); if(!r.width || !r.height) return;
+      var cx = r.left + r.width/2, cy = r.top + r.height/2, vx = cx - hx, vy = cy - hy;
+      var an = 1.05, mx = hx + (vx*Math.cos(an) - vy*Math.sin(an))*.5, my = hy + (vx*Math.sin(an) + vy*Math.cos(an))*.5;
+      var cur = getComputedStyle(el).transform; cur = cur === "none" ? "" : cur;
+      var rot = (vx > 0 ? 1 : -1)*(240 + Math.random()*200);
+      el.animate([
+        { transform:cur, opacity:1 },
+        { offset:.55, transform:"translate("+(mx - cx)+"px,"+(my - cy)+"px) "+cur+" rotate("+rot*.45+"deg) scale(.6,.35)", opacity:.95 },
+        { transform:"translate("+(hx - cx)+"px,"+(hy - cy)+"px) "+cur+" rotate("+rot+"deg) scale(0)", opacity:0 }
+      ], { duration:dur, delay:delay, easing:"cubic-bezier(.5,0,.85,.45)", fill:"forwards" });
+    }
+    function layer(el, delay){
+      if(!el) return; var r = el.getBoundingClientRect(); if(!r.width) return;
+      el.style.transformOrigin = (hx - r.left)+"px "+(hy - r.top)+"px";
+      el.animate([{ transform:"rotate(0) scale(1)", opacity:1, filter:"blur(0)" }, { transform:"rotate(220deg) scale(0)", opacity:0, filter:"blur(3px)" }],
+        { duration:1500, delay:delay, easing:"cubic-bezier(.55,0,.9,.4)", fill:"forwards" });
+    }
+    var items = [].slice.call(document.querySelectorAll("#wins .win, #icons .ico, #top, #bar, #credit"));
+    items.forEach(function(el){
+      var r = el.getBoundingClientRect(), d = Math.hypot(r.left + r.width/2 - hx, r.top + r.height/2 - hy);
+      swallow(el, 250 + d/maxD*1100, 950 + Math.random()*350);
+    });
+    swallow($("coreA"), 150, 900);
+    ["grid","sky","space"].forEach(function(id){ layer($(id), 700); });
+
+    var t0 = performance.now(), last = t0;
+    function R(t){ return t < 700 ? RM*(1 - Math.pow(1 - t/700, 3)) : t < 2650 ? RM*(1 + .08*Math.sin(t/160)) : t < 2900 ? RM*(1 - (t - 2650)/250) : 0; }
+    function draw(now){
+      var t = now - t0, dt = Math.min(40, now - last); last = now;
+      ctx.clearRect(0, 0, W, H);
+      var rad = R(t), fade = Math.min(1, t/500)*(t > 2650 ? Math.max(0, 1 - (t - 2650)/300) : 1);
+      ctx.save(); ctx.translate(hx, hy);
+      /* the glow the hole throws on everything around it */
+      if(rad > 1){
+        var g = ctx.createRadialGradient(0, 0, rad*.8, 0, 0, rad*7);
+        g.addColorStop(0, "rgba(255,160,70,"+(.35*fade)+")"); g.addColorStop(.35, "rgba(240,110,20,"+(.12*fade)+")"); g.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, rad*7, 0, Math.PI*2); ctx.fill();
+      }
+      ctx.rotate(TILT);
+      /* the accretion disk, seen from a little above: particles spiral in, faster the closer they get */
+      var pull = t < 700 ? 0 : (t - 700)/1000;
+      function disk(front){
+        for(var k = 0; k < P.length; k++){
+          var p = P[k];
+          if(!front){ p.a += dt*.0021*p.w*Math.pow(RM*1.35/p.r, 1.5)*6; p.r = Math.max(rad*1.02, p.r - dt*.012*pull*pull*RM*.1*(1 + p.h)); }
+          var x = Math.cos(p.a)*p.r, y = Math.sin(p.a)*p.r*.3;
+          if((y > 0) !== front || p.r <= rad*1.05 || (front && x*x + y*y < rad*rad*1.15)) continue;
+          var heat = Math.min(1, RM*2.2/p.r), al = fade*(.25 + .75*heat)*(t < 2650 ? 1 : .6);
+          ctx.strokeStyle = "rgba(255,"+Math.round(120 + 120*heat)+","+Math.round(40 + 180*heat*heat)+","+al+")";
+          ctx.lineWidth = .8 + heat*1.6;
+          var len = .06 + .18*heat;
+          ctx.beginPath(); ctx.ellipse(0, 0, p.r, p.r*.3, 0, p.a - len, p.a); ctx.stroke();
+        }
+      }
+      disk(false);
+      if(rad > .5){
+        /* the photon ring: light bent round the back of the hole */
+        ctx.shadowColor = "rgba(255,190,110,.9)"; ctx.shadowBlur = rad*.5;
+        ctx.strokeStyle = "rgba(255,220,170,"+(.9*fade + .1)+")"; ctx.lineWidth = Math.max(1.2, rad*.07);
+        ctx.beginPath(); ctx.arc(0, 0, rad*1.12, 0, Math.PI*2); ctx.stroke();
+        ctx.shadowBlur = 0; ctx.fillStyle = "#000";
+        ctx.beginPath(); ctx.arc(0, 0, rad, 0, Math.PI*2); ctx.fill();
+      }
+      disk(true);
+      ctx.restore();
+      /* it closes with a flash */
+      if(t > 2880 && t < 3300){
+        var f = (t - 2880)/420, fr = 8 + f*Math.max(W, H)*.9;
+        ctx.strokeStyle = "rgba(255,210,150,"+(1 - f)+")"; ctx.lineWidth = 3*(1 - f) + .5;
+        ctx.beginPath(); ctx.arc(hx, hy, fr, 0, Math.PI*2); ctx.stroke();
+        ctx.fillStyle = "rgba(255,240,220,"+(.8*(1 - f)*(1 - f))+")"; ctx.beginPath(); ctx.arc(hx, hy, 6 + 30*(1 - f), 0, Math.PI*2); ctx.fill();
+      }
+      if(t < 3400) requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+    setTimeout(function(){ ov.classList.add("dark"); }, 2250);
+    setTimeout(function(){ ov.classList.add("fade"); }, 3350);
+    setTimeout(then, 3850);
+  }
+  addEventListener("keydown", function(e){
+    if(e.key === "F5" || ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === "r")){
+      e.preventDefault(); blackHole(function(){ location.reload(); });
     }
   });
 
@@ -5776,7 +6415,7 @@ document.documentElement.setAttribute("data-theme", "day");
     $("capA").textContent = ui("projects");
     $("lblA").textContent = APPS.readme.t;
     $("coreA").setAttribute("aria-label", ui("openReadme"));
-    $("barpal").textContent = ui("search");
+    $("startlbl").textContent = ui("start");
     palin.setAttribute("placeholder", ui("find"));
     conLbl.textContent = ui("about");
     Array.prototype.forEach.call(iconsEl.children, function(el){
