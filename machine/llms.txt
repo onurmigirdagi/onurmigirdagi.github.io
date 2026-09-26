@@ -14,7 +14,7 @@ Yapay Zekâ ve Otomasyon · İstanbul, Türkiye
 
 Ekiplerin tekrar eden işlerini üstlenen yapay zekâ ajanları ve otomasyonlar geliştiriyorum.
 Buradaki her proje gerçek bir ihtiyaçtan doğdu ve ölçülebilir bir sonuç verdi.
-Beni en çok gururlandıran çoğu zaman çıktının kendisi değil, arkasındaki sistem oluyor.
+Çoğu zaman asıl emeği çıktının kendisine değil, onu üreten sisteme veriyorum.
 
 ## Arayüz ve tasarım
 
