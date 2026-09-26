@@ -61,6 +61,8 @@ button{font:inherit; color:inherit; background:none; border:none; cursor:pointer
 #top .tlinks{display:flex; align-items:center; gap:4px; padding-left:14px; border-left:1px solid var(--line);}
 #top .tl{display:flex; align-items:center; gap:6px; padding:3px 8px; border-radius:4px; color:var(--dim); text-decoration:none; letter-spacing:.07em;}
 #top .tl[hidden]{display:none;}
+#top .tl + .tl{margin-left:14px; position:relative;}
+#top .tl + .tl::before{content:""; position:absolute; left:-9px; top:0; bottom:0; border-left:1px solid var(--line);}
 #top .tl:hover{color:var(--sig-ink); background:var(--sig-soft);}
 #top .tl svg{width:12px; height:12px; fill:currentColor; display:block;}
 #top .tl svg .o{fill:none; stroke:currentColor; stroke-width:2; stroke-linejoin:round; stroke-linecap:round;}
@@ -1141,40 +1143,78 @@ html[data-theme=night] .ms-c.n1{color:#8FA3F0;} html[data-theme=night] .ms-c.n2{
 .ms-msg{font-size:11px; color:var(--dim); text-align:center; min-height:16px; font-family:var(--ui);}
 .ms-msg b{color:var(--sig-ink);}
 
-.wd{display:flex; flex-direction:column; align-items:center; gap:10px; padding:10px 12px 14px; min-height:100%; background:var(--panel2); font-family:var(--mono); --t:52px;}
-.wd-bar{align-self:stretch; display:flex; align-items:center; gap:8px; font-size:10.5px; color:var(--dim);}
-.wd-bar button{font-size:10.5px; padding:4px 9px; border-radius:6px; border:1px solid var(--line2); color:var(--dim); background:var(--panel); letter-spacing:.04em;}
+.wd{position:relative; display:flex; flex-direction:column; align-items:center; gap:10px; padding:10px 12px 14px; min-height:100%; background:var(--panel2); font-family:var(--mono); --t:52px;}
+.wd-bar{align-self:stretch; display:flex; align-items:center; gap:6px; font-size:10.5px; color:var(--dim);}
+.wd-bar button{display:flex; align-items:center; gap:5px; font-size:10.5px; padding:4px 9px; border-radius:6px; border:1px solid var(--line2); color:var(--dim); background:var(--panel); letter-spacing:.04em;}
 .wd-bar button:hover{color:var(--txt);}
-.wd-st{margin-left:auto; font-variant-numeric:tabular-nums; white-space:nowrap;}
-.wd-msg{min-height:30px; max-width:420px; font-size:11px; line-height:1.45; color:var(--dim); text-align:center; font-family:var(--ui);}
-.wd-msg b{color:var(--sig-ink);}
-.wd-msg.pop{animation:wdpop .3s ease;}
-@keyframes wdpop{from{transform:scale(.92); opacity:.3;}}
-.wd-grid{display:grid; gap:6px;}
+.wd-bar button.on{color:var(--sig-ink); border-color:rgba(255,154,60,.6); background:var(--sig-soft);}
+.wd-bar svg{width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round;}
+.wd-sbtn{margin-left:auto;}
+.wd-msg{max-width:430px; font-size:11px; line-height:1.5; color:var(--dim); text-align:center; font-family:var(--ui);}
+.wd-msg b.g{color:#E0700A;} .wd-msg b.y{color:#3A4E9C;}
+html[data-theme=night] .wd-msg b.y{color:#8FA3F0;}
+.wd-stage{position:relative;}
+.wd-grid{display:grid; gap:6px; perspective:600px;}
 .wd-row{display:grid; grid-template-columns:repeat(5, var(--t)); gap:6px;}
-.wd-row.shake{animation:wdshake .4s ease;}
-@keyframes wdshake{20%,60%{transform:translateX(-5px);} 40%,80%{transform:translateX(5px);}}
-.wd-t{width:var(--t); height:var(--t); display:grid; place-items:center; border-radius:6px; border:1.5px solid var(--line2); background:var(--panel);
-  font-size:calc(var(--t)*.5); font-weight:600; color:var(--txt); text-transform:none; transition:border-color .15s ease;}
-.wd-t.in{border-color:var(--dim); animation:wdin .12s ease;}
-@keyframes wdin{50%{transform:scale(1.08);}}
-.wd-t.flip{animation:wdflip .52s ease both;}
-@keyframes wdflip{0%{transform:rotateX(0);} 50%{transform:rotateX(90deg); background:var(--panel); color:var(--txt); border-color:var(--dim);} 100%{transform:rotateX(0);}}
-.wd-t.g{background:#F0800C; border-color:#F0800C; color:#fff;}
-.wd-t.y{background:#1B2240 var(--wd-art) no-repeat; background-size:420% 420%; border-color:#2E3E86; color:#FFE9C6; text-shadow:0 1px 3px rgba(8,10,30,.9);}
-.wd-t.x{background:var(--line2); border-color:var(--line2); color:var(--dim);}
-.wd-t.hop{animation:wdhop .5s ease both;}
-@keyframes wdhop{40%{transform:translateY(-12px);} 70%{transform:translateY(2px);}}
+.wd-row.shake{animation:wdshake .42s ease;}
+@keyframes wdshake{15%,55%{transform:translateX(-6px);} 35%,75%{transform:translateX(6px);}}
+.wd-t{position:relative; width:var(--t); height:var(--t); display:grid; place-items:center; border-radius:7px; border:1.5px solid var(--line2); background:var(--panel);
+  font-size:calc(var(--t)*.48); font-weight:600; color:var(--txt); box-shadow:0 1px 0 rgba(26,30,38,.04);}
+.wd-t i{font-style:normal; position:relative; z-index:1;}
+.wd-t.in{border-color:color-mix(in srgb, var(--txt) 45%, transparent);}
+.wd-t.pop{animation:wdin .1s ease;}
+@keyframes wdin{50%{transform:scale(1.1);}}
+.wd-t.flip{animation:wdflip .3s ease-in-out;}
+@keyframes wdflip{50%{transform:rotateX(90deg);}}
+.wd-t.g{background:#F0800C; border-color:#E0700A; color:#fff; box-shadow:inset 0 -2px 0 rgba(185,100,10,.35);}
+.wd-t.y{background:#1B2240 var(--wd-art) no-repeat; background-size:520% 520%; background-position:var(--pp, 30% 40%); border-color:#2E3E86; color:#FFE9C6;}
+.wd-t.y i{text-shadow:0 1px 3px rgba(8,10,30,.95), 0 0 8px rgba(8,10,30,.8);}
+.wd-t.x{background:color-mix(in srgb, var(--dim) 55%, var(--panel)); border-color:transparent; color:#fff;}
+html[data-theme=night] .wd-t.x{background:#2A3040; color:#AEB6CC;}
+/* the winning row becomes one strip of the painting */
+.wd-t.won{border-color:#FFC27A; color:#FFF3E0; background:#1B2240 var(--wd-art) no-repeat;
+  background-size:calc(var(--t)*5 + 24px) calc(var(--t)*1.6); background-position:calc(var(--wi)*(var(--t) + 6px)*-1) 40%;
+  animation:wdhop .55s cubic-bezier(.3,1.6,.5,1) both; animation-delay:calc(var(--wi)*90ms);}
+.wd-t.won i{text-shadow:0 1px 3px rgba(8,10,30,.95), 0 0 10px rgba(255,154,60,.7);}
+.wd-row.won{filter:drop-shadow(0 0 12px rgba(255,154,60,.45));}
+@keyframes wdhop{0%{transform:none;} 35%{transform:translateY(-14px);} 60%{transform:translateY(3px);} 100%{transform:none;}}
+.wd-toast{position:absolute; left:50%; bottom:100%; margin-bottom:8px; transform:translate(-50%,4px); z-index:3; padding:7px 13px; border-radius:7px; background:var(--txt); color:var(--panel);
+  font-family:var(--ui); font-size:12.5px; font-weight:600; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; box-shadow:0 6px 18px rgba(26,30,38,.25);}
+.wd-toast.on{opacity:1; transform:translate(-50%,0);}
 .wd-kb{display:flex; flex-direction:column; gap:6px; align-items:center; margin-top:auto; width:100%; max-width:560px;}
 .wd-kr{display:flex; gap:5px; justify-content:center; width:100%;}
-.wd-k{flex:1 1 0; max-width:42px; height:44px; border-radius:6px; background:var(--panel); border:1px solid var(--line2); color:var(--txt); font-family:var(--mono); font-size:13px; font-weight:600;
-  transition:background .2s ease, color .2s ease;}
+.wd-k{flex:1 1 0; max-width:42px; height:46px; display:grid; place-items:center; border-radius:6px; background:var(--panel); border:1px solid var(--line2); color:var(--txt);
+  font-family:var(--mono); font-size:13px; font-weight:600; box-shadow:0 1px 0 var(--line2); transition:background .25s ease, color .25s ease, border-color .25s ease;}
 .wd-k.wide{max-width:66px; flex:1.5 1 0; font-size:10.5px; letter-spacing:.04em;}
+.wd-k svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linejoin:round; stroke-linecap:round;}
 .wd-k:hover{border-color:rgba(255,154,60,.6);}
-.wd-k:active{transform:scale(.95);}
-.wd-k.g{background:#F0800C; border-color:#F0800C; color:#fff;}
-.wd-k.y{background:#2E3E86; border-color:#2E3E86; color:#FFE9C6;}
-.wd-k.x{background:var(--line); color:var(--faint);}
+.wd-k:active,.wd-k.hit{animation:wdhit .16s ease;}
+@keyframes wdhit{50%{transform:translateY(1px) scale(.94);}}
+.wd-k[data-s=g]{background:#F0800C; border-color:#E0700A; color:#fff;}
+.wd-k[data-s=y]{background:#2E3E86; border-color:#26336E; color:#FFE9C6;}
+.wd-k[data-s=x]{background:color-mix(in srgb, var(--dim) 35%, var(--panel2)); border-color:transparent; color:var(--panel);}
+html[data-theme=night] .wd-k[data-s=x]{background:#1A1F2C; color:#5A6278;}
+.wd-ov{position:absolute; inset:0; z-index:5; display:grid; place-items:center; padding:16px; background:color-mix(in srgb, var(--panel2) 70%, transparent); backdrop-filter:blur(3px);
+  opacity:0; pointer-events:none; transition:opacity .25s ease;}
+.wd-ov.on{opacity:1; pointer-events:auto;}
+.wd-card{width:min(340px, 100%); padding:16px 18px 18px; border-radius:12px; background:var(--panel); border:1px solid var(--line2); box-shadow:0 18px 48px rgba(26,30,38,.22);
+  transform:translateY(10px) scale(.97); transition:transform .3s cubic-bezier(.2,.9,.3,1.2);}
+.wd-ov.on .wd-card{transform:none;}
+.wd-ct{display:block; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); margin-bottom:10px; font-weight:500;}
+.wd-nums{display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; margin-bottom:16px;}
+.wd-nums span{display:flex; flex-direction:column; align-items:center; gap:3px; font-size:9.5px; line-height:1.25; color:var(--dim); text-align:center; font-family:var(--ui);}
+.wd-nums b{font-family:var(--mono); font-size:24px; font-weight:500; color:var(--txt); font-variant-numeric:tabular-nums;}
+.wd-dist{display:flex; flex-direction:column; gap:4px; margin-bottom:16px;}
+.wd-dr{display:flex; align-items:center; gap:7px; font-size:11px; color:var(--dim);}
+.wd-dr span{width:10px; text-align:right;}
+.wd-dr i{display:flex; justify-content:flex-end; width:var(--w); min-width:22px; padding:2px 6px; border-radius:3px; background:color-mix(in srgb, var(--dim) 40%, var(--panel)); font-style:normal;
+  animation:wdbar .6s cubic-bezier(.2,.9,.3,1) both;}
+.wd-dr i b{color:#fff; font-weight:600;}
+.wd-dr.on i{background:#F0800C;}
+@keyframes wdbar{from{width:22px;}}
+.wd-cbtn{display:flex; gap:8px; justify-content:flex-end;}
+.wd-cbtn button{padding:6px 14px; border-radius:7px; font-size:12px; border:1px solid var(--line2); color:var(--dim); background:var(--panel);}
+.wd-cbtn .wd-again{background:var(--sig); border-color:var(--sig); color:#1A1206; font-weight:600;}
 .so{display:flex; flex-direction:column; height:100%; min-height:420px;}
 .so-bar{flex:none; display:flex; align-items:center; gap:6px; padding:6px 10px; background:var(--panel2); border-bottom:1px solid var(--line); font-family:var(--mono); font-size:10.5px; color:var(--dim); flex-wrap:wrap;}
 .so-bar button{padding:4px 9px; border-radius:6px; border:1px solid var(--line2); background:var(--panel); color:var(--dim); letter-spacing:.04em;}
@@ -1565,7 +1605,7 @@ document.documentElement.setAttribute("data-theme", "day");
 <p>Portföy, tarayıcıda çalışan bir masaüstü işletim sistemi gibi tasarlandı. Kısa bir açılış ekranından sonra açık gri, ince ızgaralı bir masaüstü gelir; vurgu rengi turuncudur, yazılarda Archivo ve JetBrains Mono yazı tipleri kullanılır.</p>
 <p>Masaüstünün ortasında üzerinde "Projeler" yazan, halkalı bir gezegen durur. Beş proje simgesi (Karınca, İş Takip, Mevzuat İzleme, Raporlama, SMS Aktarıcı) bu gezegenin çevresindeki yörüngede yavaşça döner. Sağda yedi yıldızdan oluşan bir takımyıldız vardır; yıldızların bir kısmı kişisel dosyaları açar: Araçlar, Tek Sayfa.txt ve İletişim. Gezegene tıklamak BENİOKU dosyasını açar.</p>
 <p>Bir simgeye tıklanınca içerik bir pencerede açılır. Pencereler sürüklenir, ekran kenarına yaslanır, küçültülür ve kapatılır; simgeler yörüngeden çekilip bırakılabilir. Masaüstüne sağ tıklamak bir sistem menüsü açar, ⌘K bütün içerikte arama yapar. Sağ üstte Türkçe ve İngilizce arasında geçiş ile bir gece modu düğmesi vardır. Gece modunda masaüstü, Yale Parlak Yıldız Kataloğu ve Hipparcos verileriyle çizilmiş gerçek takımyıldızların olduğu lacivert bir gökyüzüne dönüşür; ortadaki gezegen Güneş, proje simgeleri de onun çevresinde dönen gezegenler olur. Üstte adın hemen yanında LinkedIn bağlantısı ve PDF özgeçmiş durur; alt çubukta açık pencereler yer alır.</p>
-<p>Alt çubuğun solundaki, turuncu fırça darbeleriyle girdap gibi boyanmış yuvarlak Başlat düğmesi, eski Windows'u andıran bir Başlat menüsü açar. Menünün solunda, Van Gogh'un Yıldızlı Gece'sini andıran, lacivert üzerine turuncu fırça darbeleriyle boyanmış dar bir şerit vardır; listede Projeler, Belgeler ve Oyunlar alt menüleri, Araçlar, İletişim, gece modu ve dil seçimi bulunur. En altta bir arama kutusu ve Kapat düğmesi vardır. Oyunlar menüsünde sayfa için sıfırdan yazılmış Mayın Tarlası (kapalı kareler, Van Gogh tarzı boyanmış bir tablonun parçalarından oluşan karolardır; açılan kare küçük bir dönüşle yarı saydam bir zemine döner ve tablo altından hafifçe görünür, açılış tıklanan yerden dışa doğru yayılır; mayınlar küçük kara delikler, bayraklar turuncu yıldızlardır; üç zorluk ve en iyi süre) ve Solitaire (Klondike; kartların önü sade, arkasının tamamı mayın tarlasındaki gibi Van Gogh tarzı boyanmış bir tabloyla kaplı; bir ya da üç kart çekiş, sürükle bırak, geri alma ve kazanınca zıplayan kartlar) ve Wordle (beş harfli kelimeyi altı denemede bulma; Türkçe sürümde Türkçe kelimeler ve Ğ, Ü, Ş, İ, Ö, Ç tuşlu klavye, İngilizce sürümde İngilizce kelimeler; doğru yerdeki harf turuncu, kelimede olup başka yerdeki harf boyalı bir kareyle gösterilir) açılır. Kapat düğmesine basılınca Projeler gezegeninin yerinde bir kara delik açılır: Parlayan bir birikim diski dönerken pencereler, simgeler ve çubuklar kıvrılarak içine çekilir, ekran kararır, kara delik bir ışık halkasıyla kapanır ve açılış ekranı yeniden gelir.</p>
+<p>Alt çubuğun solundaki, turuncu fırça darbeleriyle girdap gibi boyanmış yuvarlak Başlat düğmesi, eski Windows'u andıran bir Başlat menüsü açar. Menünün solunda, Van Gogh'un Yıldızlı Gece'sini andıran, lacivert üzerine turuncu fırça darbeleriyle boyanmış dar bir şerit vardır; listede Projeler, Belgeler ve Oyunlar alt menüleri, Araçlar, İletişim, gece modu ve dil seçimi bulunur. En altta bir arama kutusu ve Kapat düğmesi vardır. Oyunlar menüsünde sayfa için sıfırdan yazılmış Mayın Tarlası (kapalı kareler, Van Gogh tarzı boyanmış bir tablonun parçalarından oluşan karolardır; açılan kare küçük bir dönüşle yarı saydam bir zemine döner ve tablo altından hafifçe görünür, açılış tıklanan yerden dışa doğru yayılır; mayınlar küçük kara delikler, bayraklar turuncu yıldızlardır; üç zorluk ve en iyi süre) ve Solitaire (Klondike; kartların önü sade, arkasının tamamı mayın tarlasındaki gibi Van Gogh tarzı boyanmış bir tabloyla kaplı; bir ya da üç kart çekiş, sürükle bırak, geri alma ve kazanınca zıplayan kartlar) ve Wordle (beş harfli kelimeyi altı denemede bulma; Türkçe sürümde Türkçe kelimeler ve Ğ, Ü, Ş, İ, Ö, Ç tuşlu klavye, İngilizce sürümde İngilizce kelimeler; doğru yerdeki harf turuncu, kelimede olup başka yerdeki harf boyalı bir kareyle gösterilir; kareler tek tek döner, bulunan kelime tablodan tek bir şeride dönüşür, oyun sonunda tahmin dağılımıyla istatistik paneli açılır; zor mod ve yarım kalan oyunu saklama da vardır) açılır. Kapat düğmesine basılınca Projeler gezegeninin yerinde bir kara delik açılır: Parlayan bir birikim diski dönerken pencereler, simgeler ve çubuklar kıvrılarak içine çekilir, ekran kararır, kara delik bir ışık halkasıyla kapanır ve açılış ekranı yeniden gelir.</p>
 <p>Proje pencerelerinin çoğunda, projenin nasıl çalıştığını canlı gösteren etkileşimli bir demo vardır. Demolar aşağıda her projenin altında anlatılmıştır.</p>
 <p><a href="shots/masaustu.jpg">Ekran görüntüsü</a>: Gündüz masaüstü: açık gri ızgaralı zemin, ortada Projeler yazan turuncu halkalı beyaz gezegen, çevresindeki kesik çizgili yörüngede beş proje simgesi; sağda Tek Sayfa.txt, Araçlar ve İletişim simgelerini birleştiren takımyıldız; üstte ad, TR/EN, ⌘K ve GECE düğmesi, üstte adın yanında LinkedIn, altta yuvarlak Başlat düğmesi.</p>
 <p><a href="shots/gece.jpg">Ekran görüntüsü</a>: Gece modu: lacivert gökyüzü ve bulutsular, ince çizgilerle bağlanmış gerçek takımyıldızlar, ortada parlayan Güneş ve yörüngesinde gezegenlere dönüşmüş proje simgeleri; sol altta YALE BSC5 · HIPPARCOS yazısı.</p>
@@ -1708,7 +1748,7 @@ document.documentElement.setAttribute("data-theme", "day");
 <p>The portfolio is designed as a desktop operating system that runs in the browser. After a short boot screen comes a light grey desktop with a fine grid; the accent colour is orange, and the type is set in Archivo and JetBrains Mono.</p>
 <p>In the middle of the desktop sits a ringed planet labelled "Projects". Five project icons (Karınca, İş Takip, Mevzuat İzleme, Reporting, SMS Relay) circle it slowly in orbit. On the right is a constellation of seven stars; some of the stars open personal files: Tools, One Page.txt and Contact. Clicking the planet opens the README.</p>
 <p>Clicking an icon opens its content in a window. Windows can be dragged, snapped to the screen edge, minimised and closed; icons can be pulled out of orbit and let go. Right clicking the desktop opens a system menu, and ⌘K searches everything. At the top right there is a Turkish and English switch and a night mode button. In night mode the desktop becomes a deep blue sky with real constellations drawn from the Yale Bright Star Catalogue and Hipparcos data; the planet in the middle becomes the Sun and the project icons become planets circling it. Right next to the name at the top are a LinkedIn link and a PDF CV; the bottom bar holds the open windows.</p>
-<p>The round start button at the left of the bottom bar, painted as a small orange whirl of brush strokes, opens a start menu in the spirit of old Windows. Down its left side runs a narrow band painted in orange brush strokes on night blue, after Van Gogh's The Starry Night; the list has Projects, Documents and Games submenus, Tools, Contact, night mode and language, with a search box and a Shut down button at the bottom. The Games menu opens Minesweeper (the closed squares are tiles cut from one painting in Van Gogh's manner; an opened square turns with a small spin into a translucent one that lets the painting show faintly through, and the opening spreads outward from the click; the mines are little black holes and the flags orange stars; three levels and a best time) and Solitaire (Klondike; plain card faces, and the whole back of each card is covered by a painting in Van Gogh's manner like the minesweeper board; turn one or three, drag and drop, undo, and bouncing cards when you win) and Wordle (find the five-letter word in six tries; Turkish words and a Turkish keyboard in the Turkish edition, English words in the English one; a letter in the right place turns orange, one that is elsewhere in the word turns into a painted square), all three written from scratch for the page. On Shut down a black hole opens where the Projects planet is: a glowing accretion disk spins while the windows, icons and bars curl into it, the screen goes dark, the hole closes with a ring of light, and the boot screen comes back.</p>
+<p>The round start button at the left of the bottom bar, painted as a small orange whirl of brush strokes, opens a start menu in the spirit of old Windows. Down its left side runs a narrow band painted in orange brush strokes on night blue, after Van Gogh's The Starry Night; the list has Projects, Documents and Games submenus, Tools, Contact, night mode and language, with a search box and a Shut down button at the bottom. The Games menu opens Minesweeper (the closed squares are tiles cut from one painting in Van Gogh's manner; an opened square turns with a small spin into a translucent one that lets the painting show faintly through, and the opening spreads outward from the click; the mines are little black holes and the flags orange stars; three levels and a best time) and Solitaire (Klondike; plain card faces, and the whole back of each card is covered by a painting in Van Gogh's manner like the minesweeper board; turn one or three, drag and drop, undo, and bouncing cards when you win) and Wordle (find the five-letter word in six tries; Turkish words and a Turkish keyboard in the Turkish edition, English words in the English one; a letter in the right place turns orange, one that is elsewhere in the word turns into a painted square; the tiles turn over one by one, a solved word becomes one strip of the painting, and a statistics panel with the guess distribution opens at the end; there is a hard mode, and an unfinished game is kept), all three written from scratch for the page. On Shut down a black hole opens where the Projects planet is: a glowing accretion disk spins while the windows, icons and bars curl into it, the screen goes dark, the hole closes with a ring of light, and the boot screen comes back.</p>
 <p>Most project windows include an interactive demo that shows the project working. The demos are described below, under each project.</p>
 <p><a href="shots/masaustu.jpg">Screenshot</a>: The desktop by day: light grey grid, a white planet with an orange ring labelled Projeler in the middle, five project icons on the dotted orbit around it; on the right a constellation joining One Page, Tools and Contact; name, TR/EN, ⌘K and the night button at the top, LinkedIn next to the name, the round start button at the bottom.</p>
 <p><a href="shots/gece.jpg">Screenshot</a>: Night mode: a deep blue sky with nebulae, real constellations joined by thin lines, a glowing Sun in the middle and the project icons turned into planets on its orbit; YALE BSC5 · HIPPARCOS in the lower left.</p>
@@ -4335,51 +4375,55 @@ document.documentElement.setAttribute("data-theme", "day");
     reset();
   }
 
-  /* Wordle: five letters, six tries; the Turkish window plays Turkish words with the Turkish keyboard */
+  /* Wordle: five letters, six tries; the Turkish window plays Turkish words with the Turkish keyboard.
+     The tiles turn over one by one and show their colour at the half turn, the game in progress is kept
+     when the window closes, and a won row becomes one strip of the painting */
   var WD_T = {
-    tr:{ nw:"Yeni kelime", keys:["ERTYUIOPĞÜ","ASDFGHJKLŞİ","+ZCVBNMÖÇ-"], enter:"GİR", played:"Oynanan", won:"Kazanılan", streak:"Seri",
-         hint:"Beş harfli kelimeyi altı denemede bulun. Turuncu: harf doğru yerde. Boyalı: harf kelimede var ama başka yerde.",
-         short:"Kelime beş harfli olmalı.", win:["Dahice!","Harika!","Çok iyi!","Güzel!","İyi!","Son anda!"], lose:function(w){ return "Kelime <b>"+w+"</b> idi."; } },
-    en:{ nw:"New word", keys:["QWERTYUIOP","ASDFGHJKL","+ZXCVBNM-"], enter:"ENTER", played:"Played", won:"Won", streak:"Streak",
-         hint:"Find the five-letter word in six tries. Orange: the letter is in the right place. Painted: it is in the word, somewhere else.",
-         short:"The word needs five letters.", win:["Genius!","Magnificent!","Impressive!","Splendid!","Great!","Phew!"], lose:function(w){ return "The word was <b>"+w+"</b>."; } }
+    tr:{ nw:"Yeni kelime", stats:"İstatistik", hard:"Zor mod", keys:["ERTYUIOPĞÜ","ASDFGHJKLŞİ","+ZCVBNMÖÇ-"], enter:"GİR", del:"sil",
+         hint:"Beş harfli kelimeyi altı denemede bulun. <b class=\"g\">Turuncu</b> kare harfin doğru yerde olduğunu, <b class=\"y\">boyalı</b> kare harfin kelimede başka bir yerde olduğunu gösterir.",
+         short:"Kelime beş harfli olmalı", hardG:function(c, i){ return (i + 1)+". harf "+c+" olmalı"; }, hardY:function(c){ return "Tahminde "+c+" olmalı"; },
+         win:["Dahice!","Harika!","Çok iyi!","Güzel!","İyi!","Son anda!"], lose:function(w){ return "Kelime "+w+" idi"; },
+         played:"Oynanan", pct:"Kazanma %", cur:"Seri", max:"En uzun seri", dist:"Tahmin dağılımı", close:"Kapat", hardLock:"Zor mod oyun başında seçilir" },
+    en:{ nw:"New word", stats:"Statistics", hard:"Hard mode", keys:["QWERTYUIOP","ASDFGHJKL","+ZXCVBNM-"], enter:"ENTER", del:"delete",
+         hint:"Find the five-letter word in six tries. An <b class=\"g\">orange</b> square means the letter is in the right place, a <b class=\"y\">painted</b> one that it is elsewhere in the word.",
+         short:"Not enough letters", hardG:function(c, i){ return "Letter "+(i + 1)+" must be "+c; }, hardY:function(c){ return "Guess must contain "+c; },
+         win:["Genius!","Magnificent!","Impressive!","Splendid!","Great!","Phew!"], lose:function(w){ return "The word was "+w; },
+         played:"Played", pct:"Win %", cur:"Current streak", max:"Max streak", dist:"Guess distribution", close:"Close", hardLock:"Hard mode is chosen before the first guess" }
   };
   var WD_W = { tr:"kalem kitap deniz bulut güneş armut kiraz çiçek bahçe orman nehir ırmak sabah akşam yemek ekmek çorba limon kavun ceviz badem şeker kahve tabak kaşık çatal duvar tavan zemin şehir köprü sokak cadde kayık dümen gölge beyaz siyah yeşil altın gümüş bakır demir çelik kumaş pamuk düğme ceket çanta kemer yüzük kolye hafta silgi sayfa satır roman masal şarkı müzik davul gitar keman resim tablo fırça sahne perde balık köpek aslan horoz tavuk koyun tilki ördek yılan serçe martı yunus doğan fikir hayal sevgi huzur barış sabır cesur güzel büyük küçük hızlı yavaş sıcak soğuk tatlı temiz yaşlı mutlu üzgün sakin hafif kolay derin geniş alçak aydın bilgi bilim sanat tarih dünya evren kutup yolcu keşif kilit şifre ekran kablo robot motor lamba duman kömür fırın kazan tepsi sepet paket düğün davet komşu teyze kuzen torun bebek çocuk sınıf sınav karne tatil dalga burun yamaç çayır tarla hasat tohum fidan gövde çınar kavak söğüt yatak kilim dolap banyo sabun havlu salon saray sergi pazar çarşı ödeme kredi banka bozuk kuruş fiyat satış rapor sütun hücre rakam yüzde kesir üçgen daire çizgi nokta sıfır birim metre litre hacim kütle kemik beyin damar sinir nefes şurup hasta kulak dudak boyun bilek topuk göğüs karın yüzey".split(" "), en:"apple beach brain bread brick cable candy chair chart chess cloud coral crane dance delta dream eagle earth flame frost fruit ghost glass globe grape heart honey horse house image jelly juice knife lemon light magic maple metal money music night ocean olive orbit paint paper peach pearl piano pilot pixel plane plant point quilt radio river robot salad scale shell shore smile snake solar space spark spoon storm sugar table tiger toast tower train tulip vivid voice water whale wheel world yacht zebra stone stars swirl comet lunar north south field grass cedar birch flora fable story novel verse rhyme sound drums flute cello chord tempo color amber ivory azure cream lilac scarf jewel crown medal badge queen cards joker spade clubs solve logic graph query model agent token input index array stack queue cache debug patch merge build linux mouse click laser radar sonar nerve blood bones sleep awake happy brave quiet swift rapid sunny rainy windy snowy misty daily early later today".split(" ") };
   function wdUp(s, L){ return L === "tr" ? s.toLocaleUpperCase("tr-TR") : s.toUpperCase(); }
   function wdHtml(L){
     var T = WD_T[L], rows = "", kb = "";
-    for(var r = 0; r < 6; r++){ rows += '<div class="wd-row">'; for(var c = 0; c < 5; c++) rows += '<span class="wd-t"></span>'; rows += '</div>'; }
+    for(var r = 0; r < 6; r++){ rows += '<div class="wd-row">'; for(var c = 0; c < 5; c++) rows += '<span class="wd-t"><i></i></span>'; rows += '</div>'; }
     T.keys.forEach(function(row){
       kb += '<div class="wd-kr">' + row.split("").map(function(k){
-        return k === "+" ? '<button class="wd-k wide" data-k="Enter">'+T.enter+'</button>' : k === "-" ? '<button class="wd-k wide" data-k="Backspace" aria-label="sil">⌫</button>' : '<button class="wd-k" data-k="'+k+'">'+k+'</button>';
+        return k === "+" ? '<button class="wd-k wide" data-k="Enter">'+T.enter+'</button>'
+          : k === "-" ? '<button class="wd-k wide" data-k="Backspace" aria-label="'+T.del+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5h11v14H9l-6-7z M12.5 9.5l5 5 M17.5 9.5l-5 5"/></svg></button>'
+          : '<button class="wd-k" data-k="'+k+'">'+k+'</button>';
       }).join("") + '</div>';
     });
-    return '<div class="wd" data-demo="wd"><div class="wd-bar"><button class="wd-new">'+T.nw+'</button><span class="wd-st"></span></div>'
-      + '<div class="wd-msg"></div><div class="wd-grid">'+rows+'</div><div class="wd-kb">'+kb+'</div></div>';
+    return '<div class="wd" data-demo="wd"><div class="wd-bar"><button class="wd-new">'+T.nw+'</button><button class="wd-hard" aria-pressed="false">'+T.hard+'</button>'
+      + '<button class="wd-sbtn" aria-label="'+T.stats+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11 M12 20V4 M19 20v-6"/></svg>'+T.stats+'</button></div>'
+      + '<div class="wd-msg">'+T.hint+'</div><div class="wd-stage"><div class="wd-grid">'+rows+'</div><div class="wd-toast" aria-live="polite"></div></div>'
+      + '<div class="wd-kb">'+kb+'</div>'
+      + '<div class="wd-ov"><div class="wd-card"><b class="wd-ct">'+T.stats+'</b><div class="wd-nums"></div><b class="wd-ct">'+T.dist+'</b><div class="wd-dist"></div>'
+      + '<div class="wd-cbtn"><button class="wd-again">'+T.nw+'</button><button class="wd-x">'+T.close+'</button></div></div></div></div>';
   }
   function wdMount(root, L){
     if(root._wd) return; root._wd = 1;
     var T = WD_T[L], q = function(s){ return root.querySelector(s); };
-    var rowsEl = root.querySelectorAll(".wd-row"), msg = q(".wd-msg"), stEl = q(".wd-st"), keysEl = root.querySelectorAll(".wd-k");
-    var word, row, cur, over, busy, art = msPaint(260, 160);
-    root.style.setProperty("--wd-art", "url("+art+")");
-    function stats(){ try{ return JSON.parse(localStorage.getItem("wd_st_"+L) || "{}"); }catch(_){ return {}; } }
-    function paintStats(){ var s = stats(); stEl.textContent = T.played+" "+(s.p || 0)+" · "+T.won+" "+(s.w || 0)+" · "+T.streak+" "+(s.s || 0); }
-    function note(h, keep){ msg.innerHTML = h; msg.classList.remove("pop"); void msg.offsetWidth; msg.classList.add("pop"); }
-    function reset(){
-      var list = WD_W[L], last = ""; try{ last = localStorage.getItem("wd_last_"+L) || ""; }catch(_){}
-      do word = wdUp(list[Math.floor(Math.random()*list.length)], L); while(word === last && list.length > 1);
-      try{ localStorage.setItem("wd_last_"+L, word); }catch(_){}
-      row = 0; cur = ""; over = false; busy = false;
-      Array.prototype.forEach.call(root.querySelectorAll(".wd-t"), function(t){ t.className = "wd-t"; t.textContent = ""; t.style.animationDelay = ""; t.style.backgroundPosition = ""; });
-      Array.prototype.forEach.call(keysEl, function(k){ k.classList.remove("g","y","x"); });
-      msg.innerHTML = T.hint; msg.classList.remove("pop"); paintStats();
+    var rowsEl = root.querySelectorAll(".wd-row"), toastEl = q(".wd-toast"), keysEl = root.querySelectorAll(".wd-k"), hardB = q(".wd-hard"), ov = q(".wd-ov");
+    var G, cur = "", busy = false, toastT = null, FLIP = 300, HALF = 150;
+    root.style.setProperty("--wd-art", "url("+msPaint(260, 160)+")");
+    var K = { st:"wd_stats_"+L, g:"wd_game_"+L, hard:"wd_hard" };
+    function get(k, d){ try{ var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(_){ return d; } }
+    function put(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(_){} }
+    function stats(){ var s = get(K.st, null) || {}; s.p = s.p || 0; s.w = s.w || 0; s.cur = s.cur || 0; s.max = s.max || 0; s.d = s.d || [0,0,0,0,0,0]; return s; }
+    function toast(t, ms){
+      toastEl.textContent = t; toastEl.classList.remove("on"); void toastEl.offsetWidth; toastEl.classList.add("on");
+      clearTimeout(toastT); if(ms !== 0) toastT = setTimeout(function(){ toastEl.classList.remove("on"); }, ms || 1400);
     }
-    function draw(){
-      var ts = rowsEl[row].children;
-      for(var i = 0; i < 5; i++){ ts[i].textContent = cur[i] || ""; ts[i].classList.toggle("in", !!cur[i]); }
-    }
-    function score(g){
+    function score(g, word){
       var res = ["x","x","x","x","x"], left = {};
       for(var i = 0; i < 5; i++){ if(g[i] === word[i]) res[i] = "g"; else left[word[i]] = (left[word[i]] || 0) + 1; }
       for(i = 0; i < 5; i++) if(res[i] !== "g" && left[g[i]]){ res[i] = "y"; left[g[i]]--; }
@@ -4389,47 +4433,124 @@ document.documentElement.setAttribute("data-theme", "day");
     function keyMark(ch, r){
       Array.prototype.forEach.call(keysEl, function(k){
         if(k.getAttribute("data-k") !== ch) return;
-        var now = k.classList.contains("g") ? "g" : k.classList.contains("y") ? "y" : k.classList.contains("x") ? "x" : "";
-        if(!now || RANK[r] > RANK[now]){ k.classList.remove("g","y","x"); k.classList.add(r); }
+        var now = k.getAttribute("data-s");
+        if(!now || RANK[r] > RANK[now]) k.setAttribute("data-s", r);
       });
     }
-    function submit(){
-      var rEl = rowsEl[row];
-      if(cur.length < 5){ note(T.short); rEl.classList.remove("shake"); void rEl.offsetWidth; rEl.classList.add("shake"); return; }
-      var g = cur, res = score(g), ts = rEl.children; busy = true;
+    function tiles(r){ return rowsEl[r].children; }
+    function setTile(t, ch, cls){ t.firstChild.textContent = ch || ""; t.className = "wd-t" + (cls ? " "+cls : ""); }
+    /* a finished row, drawn without animation (for a game picked up again) */
+    function paintRow(r, g, res, anim){
+      var ts = tiles(r);
       for(var i = 0; i < 5; i++){
-        ts[i].style.animationDelay = (i*260)+"ms";
-        ts[i].style.backgroundPosition = Math.round(Math.random()*100)+"% "+Math.round(Math.random()*100)+"%";
-        ts[i].classList.add("flip", res[i]);
+        (function(t, i){
+          t.firstChild.textContent = g[i];
+          t.style.setProperty("--pp", Math.round(Math.random()*100)+"% "+Math.round(Math.random()*100)+"%");
+          if(!anim){ t.className = "wd-t "+res[i]; return; }
+          t.className = "wd-t in"; t.style.animationDelay = "";
+          setTimeout(function(){ t.classList.add("flip"); }, i*FLIP);
+          setTimeout(function(){ t.classList.remove("in"); t.classList.add(res[i]); }, i*FLIP + HALF);
+        })(ts[i], i);
       }
+    }
+    function winRow(r){
+      var ts = tiles(r);
+      for(var i = 0; i < 5; i++){ ts[i].style.setProperty("--wi", i); ts[i].classList.add("won"); }
+      rowsEl[r].classList.add("won");
+    }
+    function start(fresh){
+      var saved = !fresh && get(K.g, null);
+      if(saved && saved.w && saved.gs){ G = saved; }
+      else {
+        var list = WD_W[L], last = get(K.g, {}).w, w;
+        do w = wdUp(list[Math.floor(Math.random()*list.length)], L); while(w === last && list.length > 1);
+        G = { w:w, gs:[], done:false, hard:!!get(K.hard, false) }; put(K.g, G);
+      }
+      cur = ""; busy = false; ov.classList.remove("on"); toastEl.classList.remove("on");
+      Array.prototype.forEach.call(rowsEl, function(r){ r.className = "wd-row"; });
+      Array.prototype.forEach.call(root.querySelectorAll(".wd-t"), function(t){ setTile(t, "", ""); t.style.animationDelay = ""; });
+      Array.prototype.forEach.call(keysEl, function(k){ k.removeAttribute("data-s"); });
+      G.gs.forEach(function(g, r){ var res = score(g, G.w); paintRow(r, g, res, false); for(var i = 0; i < 5; i++) keyMark(g[i], res[i]); });
+      if(G.done && G.gs[G.gs.length - 1] === G.w) winRow(G.gs.length - 1);
+      hardB.setAttribute("aria-pressed", G.hard ? "true" : "false"); hardB.classList.toggle("on", !!G.hard);
+      if(G.done) toast(G.gs[G.gs.length - 1] === G.w ? T.win[G.gs.length - 1] : T.lose(G.w), 0);
+    }
+    function draw(pop){
+      if(G.done || G.gs.length > 5) return;
+      var ts = tiles(G.gs.length);
+      for(var i = 0; i < 5; i++){ setTile(ts[i], cur[i], cur[i] ? "in" : ""); }
+      if(pop != null) ts[pop].classList.add("pop");
+    }
+    function shake(){ var r = rowsEl[G.gs.length]; r.classList.remove("shake"); void r.offsetWidth; r.classList.add("shake"); }
+    /* hard mode: what the earlier rows revealed has to be used */
+    function hardFault(g){
+      for(var r = 0; r < G.gs.length; r++){
+        var p = G.gs[r], res = score(p, G.w), need = {};
+        for(var i = 0; i < 5; i++){ if(res[i] === "g" && g[i] !== p[i]) return T.hardG(p[i], i); if(res[i] !== "x") need[p[i]] = (need[p[i]] || 0) + 1; }
+        for(var c in need) if(g.split(c).length - 1 < need[c]) return T.hardY(c);
+      }
+      return "";
+    }
+    function submit(){
+      if(cur.length < 5){ shake(); return toast(T.short); }
+      if(G.hard){ var f = hardFault(cur); if(f){ shake(); return toast(f); } }
+      var g = cur, r = G.gs.length, res = score(g, G.w); busy = true;
+      G.gs.push(g); cur = "";
+      var won = g === G.w, lost = !won && G.gs.length === 6;
+      if(won || lost){
+        G.done = true; var s = stats(); s.p++;
+        if(won){ s.w++; s.cur++; s.max = Math.max(s.max, s.cur); s.d[r]++; } else s.cur = 0;
+        put(K.st, s);
+      }
+      put(K.g, G);
+      paintRow(r, g, res, true);
       setTimeout(function(){
         for(var i = 0; i < 5; i++) keyMark(g[i], res[i]);
-        busy = false; var s = stats();
-        if(g === word){
-          over = true; s.p = (s.p || 0) + 1; s.w = (s.w || 0) + 1; s.s = (s.s || 0) + 1;
-          for(var j = 0; j < 5; j++){ ts[j].style.animationDelay = (j*90)+"ms"; ts[j].classList.add("hop"); }
-          note("<b>"+T.win[row]+"</b>");
-        } else if(row === 5){
-          over = true; s.p = (s.p || 0) + 1; s.s = 0; note(T.lose(word));
-        } else { row++; cur = ""; }
-        if(over){ try{ localStorage.setItem("wd_st_"+L, JSON.stringify(s)); }catch(_){} paintStats(); }
-      }, 4*260 + 520);
+        busy = false;
+        if(won){ winRow(r); toast(T.win[r], 0); setTimeout(function(){ showStats(r); }, 1700); }
+        else if(lost){ toast(T.lose(G.w), 0); setTimeout(function(){ showStats(-1); }, 1600); }
+      }, 4*FLIP + 2*HALF + 60);
+    }
+    function showStats(hl){
+      var s = stats(), top = Math.max.apply(null, s.d.concat([1]));
+      q(".wd-nums").innerHTML = [[s.p, T.played], [s.p ? Math.round(s.w*100/s.p) : 0, T.pct], [s.cur, T.cur], [s.max, T.max]]
+        .map(function(n){ return '<span><b>'+n[0]+'</b>'+n[1]+'</span>'; }).join("");
+      q(".wd-dist").innerHTML = s.d.map(function(n, i){
+        return '<div class="wd-dr'+(i === hl ? " on" : "")+'"><span>'+(i + 1)+'</span><i style="--w:'+Math.max(7, Math.round(n*100/top))+'%"><b>'+n+'</b></i></div>';
+      }).join("");
+      ov.classList.add("on");
     }
     function key(k){
-      if(over || busy) return;
+      if(busy || !G) return;
+      if(ov.classList.contains("on")){ if(k === "Enter") start(true); return; }
+      if(G.done){ if(k === "Enter") start(true); return; }
       if(k === "Enter") return submit();
-      if(k === "Backspace"){ cur = cur.slice(0, -1); return draw(); }
-      if(cur.length < 5){ cur += k; draw(); }
+      if(k === "Backspace"){ if(cur){ cur = cur.slice(0, -1); draw(); } return; }
+      if(cur.length < 5){ cur += k; draw(cur.length - 1); }
+    }
+    function flash(k){
+      Array.prototype.forEach.call(keysEl, function(b){ if(b.getAttribute("data-k") === k){ b.classList.remove("hit"); void b.offsetWidth; b.classList.add("hit"); } });
     }
     q(".wd-kb").addEventListener("click", function(e){ var b = e.target.closest(".wd-k"); if(b){ key(b.getAttribute("data-k")); b.blur(); } });
-    q(".wd-new").addEventListener("click", function(e){ e.currentTarget.blur(); reset(); });
+    q(".wd-new").addEventListener("click", function(e){ e.currentTarget.blur(); start(true); });
+    q(".wd-sbtn").addEventListener("click", function(e){ e.currentTarget.blur(); showStats(-1); });
+    q(".wd-again").addEventListener("click", function(){ start(true); });
+    q(".wd-x").addEventListener("click", function(){ ov.classList.remove("on"); });
+    ov.addEventListener("click", function(e){ if(e.target === ov) ov.classList.remove("on"); });
+    hardB.addEventListener("click", function(e){
+      e.currentTarget.blur();
+      if(G.gs.length && !G.done) return toast(T.hardLock);
+      G.hard = !G.hard; put(K.hard, G.hard); put(K.g, G);
+      hardB.setAttribute("aria-pressed", G.hard ? "true" : "false"); hardB.classList.toggle("on", G.hard);
+    });
     var OK = {}; T.keys.join("").split("").forEach(function(c){ if(c !== "+" && c !== "-") OK[c] = 1; });
     addEventListener("keydown", function(e){
       if(!root.isConnected || focused !== "wordle" || e.metaKey || e.ctrlKey || e.altKey) return;
       var tg = e.target && e.target.tagName; if(tg === "INPUT" || tg === "TEXTAREA") return;
-      if(e.key === "Enter" || e.key === "Backspace"){ e.preventDefault(); return key(e.key); }
-      var ch = e.key.length === 1 ? wdUp(e.key, L) : ""; if(OK[ch]){ e.preventDefault(); key(ch); }
-    });
+      if(e.key === "Escape" && ov.classList.contains("on")){ e.stopImmediatePropagation(); ov.classList.remove("on"); return; }
+      if(e.key === "Enter" || e.key === "Backspace"){ e.preventDefault(); flash(e.key); return key(e.key); }
+      var ch = e.key.length === 1 ? wdUp(e.key, L) : ""; if(OK[ch]){ e.preventDefault(); flash(ch); key(ch); }
+    }, true);
     var body = root.closest(".body") || root.parentNode, gridEl = q(".wd-grid");
     function size(){
       root.style.minHeight = "0"; var other = root.offsetHeight - gridEl.offsetHeight; root.style.minHeight = "";
@@ -4437,7 +4558,7 @@ document.documentElement.setAttribute("data-theme", "day");
       root.style.setProperty("--t", Math.max(34, Math.min(76, t))+"px");
     }
     if(window.ResizeObserver) new ResizeObserver(function(){ requestAnimationFrame(size); }).observe(body);
-    reset(); size();
+    start(false); size();
   }
 
   /* Klondike: turn one or three, drag or click to move, undo, and the bouncing cards at the end */
@@ -6705,7 +6826,7 @@ document.documentElement.setAttribute("data-theme", "day");
      everything with words in it is repainted in place: open windows keep
      their position, size and scroll, only the text changes */
   function paintLang(){
-    var cvl = document.getElementById("cvlink"); if(cvl) cvl.title = LANG === "tr" ? "Özgeçmiş (PDF)" : "CV (PDF, in Turkish)";
+    var cvl = document.getElementById("cvlink"); if(cvl){ cvl.title = LANG === "tr" ? "Özgeçmiş (PDF)" : "CV (PDF)"; cvl.href = "cv/Onur_Can_Migirdagi_CV_"+(LANG === "tr" ? "TR" : "EN")+".pdf"; }
     document.documentElement.lang = LANG;
     Array.prototype.forEach.call($("lgbtn").children, function(i){
       i.classList.toggle("on", i.getAttribute("data-l") === LANG);
