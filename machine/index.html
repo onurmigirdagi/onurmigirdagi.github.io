@@ -260,6 +260,16 @@ body.phone #sky text.ct{opacity:1;}
 .doc p{margin:0 0 13px; max-width:66ch; line-height:1.68; color:var(--dim);}
 .doc .rail{margin:20px 0 0; border:1px solid var(--line); border-radius:8px; padding:15px 16px;
   background:rgba(24,26,32,.032);}
+.doc table.cmp{width:100%; border-collapse:separate; border-spacing:0; margin:4px 0 18px; font-size:12.5px; line-height:1.45; border:1px solid var(--line2); border-radius:10px; overflow:hidden;}
+.doc table.cmp th,.doc table.cmp td{padding:8px 11px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line);}
+.doc table.cmp tr:last-child th,.doc table.cmp tr:last-child td{border-bottom:0;}
+.doc table.cmp thead th{font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--dim); background:var(--panel2);}
+.doc table.cmp tbody th{font-weight:500; color:var(--txt); width:34%;}
+.doc table.cmp td{color:var(--dim);}
+.doc table.cmp td:last-child,.doc table.cmp thead th:last-child{background:var(--sig-soft); color:var(--sig-ink);}
+.doc table.cmp tbody td:last-child{font-weight:500;}
+.doc table.cmp .na{color:var(--faint);}
+.doc h3.also{margin:26px 0 8px; padding-top:16px; border-top:1px solid var(--line); font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--dim);}
 .doc .rail h3{font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
   color:var(--faint); margin:0 0 11px; font-weight:500;}
 .doc .rail ol{margin:0; padding:0; list-style:none; counter-reset:s;}
@@ -395,20 +405,49 @@ html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparen
 /* Mevzuat İzleme demo: the collector, the shared database and the two publishers, replayed end to end */
 .mz-run{display:flex; flex-direction:column; background:var(--panel);}
 .mz-flow{position:relative; padding:4px 10px 2px; border-bottom:1px solid var(--line); background:var(--panel2); overflow-x:auto;}
-.mzf{display:block; width:100%; max-width:540px; margin:0 auto; height:auto; overflow:visible;}
-.mzf .fl{stroke:var(--line2); stroke-width:.7; fill:none;}
-.mzf .fd{fill:var(--line3); opacity:.7;} .mzf .fd.a{fill:var(--pk-acc); opacity:.55;}
-.mzf .nd.on .fl{stroke:color-mix(in srgb, var(--pk-acc) 40%, var(--line2));} .mzf .nd.on .fd,.mzf .nd.done .fd{opacity:1;}
+.mzf{display:block; width:100%; max-width:620px; margin:0 auto; height:auto; overflow:visible;}
+[data-demo="mz"]{--pk-acc:#E0700A; --mz-mev:#E0700A; --mz-co:#3A4E9C;}
+html[data-theme=night] [data-demo="mz"]{--pk-acc:#FF9A3C; --mz-mev:#FF9A3C; --mz-co:#8FA3F0;}
+.mzf .fl{stroke:var(--line2); stroke-width:.7; fill:none; transition:stroke .6s ease;}
+.mzf .fd{fill:var(--line3); opacity:.7; transform-box:fill-box; transform-origin:center;} .mzf .fd.a{fill:var(--pk-acc); opacity:.5;}
+.mzf .fd.hit{animation:mzhit .7s ease;}
+@keyframes mzhit{30%{fill:var(--pk-acc); opacity:1; transform:scale(2);}}
+.mzf .nd.on .fl{stroke:color-mix(in srgb, var(--pk-acc) 30%, var(--line2));} .mzf .nd.on .fd,.mzf .nd.done .fd{opacity:1;}
 .mzf .ln{fill:none; stroke:var(--line3); stroke-width:3.5; stroke-linecap:round; transition:stroke .9s ease;}
-.mzf .st{fill:var(--panel); stroke:var(--line3); stroke-width:1.6;}
+.mzf .lf{fill:none; stroke:#fff; stroke-width:1.4; stroke-linecap:round; stroke-dasharray:1.5 9; opacity:0; transition:opacity .5s ease;}
+.mzf g[data-s].go .lf{opacity:.85; animation:mzdash .6s linear infinite;}
+@keyframes mzdash{to{stroke-dashoffset:-10.5;}}
+.mzf .st{fill:var(--panel); stroke:var(--line3); stroke-width:1.6; transition:stroke .9s ease;}
 .mzf g[data-s].go .ln{stroke:var(--pk-acc);} .mzf g[data-s].go .st{stroke:var(--pk-acc);}
-.mzf .p{fill:var(--pk-acc); opacity:0; transition:opacity .8s ease;} .mzf g[data-s].go .p{opacity:.85;}
-.mzf g[data-s="src"] .p{fill:var(--pk-acc);}
+.mzf g[data-s=dn].go .ln,.mzf g[data-s=nt].go .ln{stroke:var(--mz-co);} .mzf g[data-s=dn].go .st,.mzf g[data-s=nt].go .st{stroke:var(--mz-co);}
 .mzf .nd .r{fill:var(--panel); stroke:var(--line3); stroke-width:3.5; transition:stroke .9s ease, fill .9s ease;}
-.mzf .nd .c{fill:var(--line3);}
+.mzf .nd .c{fill:var(--line3); transition:fill .6s ease;}
 .mzf .nd.on .r,.mzf .nd.done .r{stroke:var(--pk-acc);} .mzf .nd.on .c,.mzf .nd.done .c{fill:var(--pk-acc);}
-.mzf .nd.db .r{fill:var(--line);} .mzf .nd.db.on .r,.mzf .nd.db.done .r{fill:var(--pk-acc); stroke:color-mix(in srgb, var(--pk-acc) 55%, #fff);}
+.mzf .spin{fill:none; stroke:var(--pk-acc); stroke-width:1.6; stroke-dasharray:5 7; opacity:0; transform-box:fill-box; transform-origin:center; transition:opacity .4s ease;}
+.mzf .nd.on .spin{opacity:.9; animation:mzspin 1.6s linear infinite;}
+@keyframes mzspin{to{transform:rotate(360deg);}}
+.mzf .nd.db .r{fill:var(--panel); stroke-width:2.4;}
+.mzf .nd.db .top{fill:var(--panel2);}
+.mzf .nd.db .rim{fill:none; stroke:var(--line2); stroke-width:1;}
+.mzf .nd.db .lv{fill:color-mix(in srgb, var(--pk-acc) 30%, transparent); transition:y .5s ease, height .5s ease;}
+.mzf .cnt{font-family:var(--mono); font-size:13px; font-weight:700; fill:var(--txt); transform-box:fill-box; transform-origin:center;}
+.mzf .cnt.s2{font-size:10.5px; fill:var(--txt);}
+.mzf .bump{animation:mzbump .35s ease;}
+@keyframes mzbump{40%{transform:scale(1.12);}}
+.mzf .nd.db,.mzf .nd.pub,.mzf [data-team]{transform-box:fill-box; transform-origin:center;}
+.mzf .nd.pub.co.on .r,.mzf .nd.pub.co.done .r{stroke:var(--mz-co);}
+.mzf .nd.pub.co .pl{stroke:var(--mz-co);}
 .mzf .nd.pill .r{fill:var(--panel);}
+.mzf [data-team].got{fill:color-mix(in srgb, var(--mz-mev) 12%, var(--panel)); stroke:var(--mz-mev);}
+.mzf [data-team=co].got{fill:color-mix(in srgb, var(--mz-co) 12%, var(--panel)); stroke:var(--mz-co);}
+.mzf .gh{fill:none; stroke:none;}
+.mzf .pk{pointer-events:none;}
+.mzf .pk.dot.raw{fill:var(--dim); opacity:.75;}
+.mzf .pk.doc{stroke:var(--panel); stroke-width:1;}
+.mzf .pk.doc.mev{fill:var(--mz-mev);} .mzf .pk.doc.co{fill:var(--mz-co);}
+.mzf .pk.doc.x{fill:var(--line3); stroke:#D14343; stroke-width:1.2;}
+.mzf .pk.mail rect{fill:var(--panel); stroke:var(--mz-mev); stroke-width:1.6;} .mzf .pk.mail path{fill:none; stroke:var(--mz-mev); stroke-width:1.4; stroke-linejoin:round;}
+.mzf .pk.mail.co rect,.mzf .pk.mail.co path{stroke:var(--mz-co);}
 .mzf .pl{fill:none; stroke:var(--pk-acc); stroke-width:2; opacity:0; transform-box:fill-box; transform-origin:center;}
 .mzf .nd.on .pl{animation:mzpulse 3s ease-in-out infinite;}
 @keyframes mzpulse{0%{opacity:0; transform:scale(1);} 30%{opacity:.35;} 100%{opacity:0; transform:scale(1.45);}}
@@ -509,7 +548,7 @@ html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparen
 .mz-tg em.e,.mz-tags em.e{color:var(--pk-acc); border-color:color-mix(in srgb, var(--pk-acc) 55%, transparent);}
 .mz-tags{display:flex; flex-wrap:wrap; gap:4px; min-height:18px;} .mz-tags em{font-size:10px; padding:2px 7px; animation:mzin .3s ease;}
 .mz-rt{font-family:var(--mono); font-size:8px; letter-spacing:.05em; padding:2px 5px; border-radius:7px; opacity:0; transition:opacity .3s ease; justify-self:end;}
-.mz-rt.co{color:#fff; background:var(--pk-acc);} .mz-rt.mev{color:#fff; background:#B42318;}
+.mz-rt.co{color:#fff; background:var(--mz-co);} .mz-rt.mev{color:#fff; background:var(--mz-mev);}
 .mz-db.split .mz-rt{opacity:1;}
 .mz-dbrows .mz-dr{transition:opacity .25s ease;}
 .mz-dbrows[data-f=co] .mz-dr:not([data-r=co]),.mz-dbrows[data-f=mev] .mz-dr:not([data-r=mev]){opacity:.18;}
@@ -530,10 +569,10 @@ html[data-theme=night]{ --pk-bg1:#06060A; --pk-bg2:#06060A; --pk-grid:transparen
   box-shadow:0 0 0 3px color-mix(in srgb, var(--pk-acc) 18%, transparent);}
 .mz-sp-db small{display:block; font-family:var(--mono); font-size:10px; font-weight:400; color:var(--faint); margin-top:4px;}
 .mz-sp-db:before,.mz-sp-db:after{content:""; position:absolute; right:-26px; width:26px; height:2px; background:var(--pk-acc); animation:mzfade 1.2s ease infinite;}
-.mz-sp-db:before{top:25%;} .mz-sp-db:after{top:75%; background:#B42318;}
+.mz-sp-db:before{top:25%; background:var(--mz-co);} .mz-sp-db:after{top:75%; background:var(--mz-mev);}
 @keyframes mzfade{50%{opacity:.35;}}
 .mz-sp-a{border:1px solid var(--line2); border-radius:10px; padding:10px 12px; position:relative; background:var(--panel2);}
-.mz-sp-a b{display:block; font-size:12px; color:var(--txt);} .mz-sp-a.co b{color:var(--pk-acc);} .mz-sp-a.mev b{color:#B42318;}
+.mz-sp-a b{display:block; font-size:12px; color:var(--txt);} .mz-sp-a.co b{color:var(--mz-co);} .mz-sp-a.mev b{color:var(--mz-mev);}
 .mz-sp-a small{display:block; font-family:var(--mono); font-size:9.5px; color:var(--faint); margin-top:3px;}
 .mz-sp-a em{position:absolute; right:10px; top:9px; font-style:normal; font-family:var(--mono); font-size:15px; color:var(--txt);}
 .mz-bsw{max-width:640px; margin:0 auto 10px; display:flex; gap:6px; flex-wrap:wrap;}
@@ -1667,8 +1706,11 @@ document.documentElement.setAttribute("data-theme", "day");
 <p><strong>Beş teknoloji şirketini ve resmî kurum, düzenleyici ve sektör basınından 107 kaynağı izleyen; canlı ortamda insan müdahalesi olmadan çalışan bir yapay zekâ ajanı hattıdır.</strong></p>
 <p>Toplayıcı ajan kaynakları saatte bir tarıyor. Her içeriği tam metninden özetliyor, alaka puanı veriyor; ilgili şirketi, ekosistemi ve çalışma alanını etiketleyip 17 alanlı bir kayıt olarak ortak veritabanına yazıyor. Hat tam bu kayıtta ikiye ayrılıyor: Yayıncı ajanlardan biri iki saatte bir izlenen beş şirketin (Microsoft, Apple, Google, LinkedIn, Snapchat) haberlerini ve ekosistemdeki gelişmeleri süzerek teknoloji bültenini, diğeri Türkiye'deki düzenleyici gelişmeleri süzerek mevzuat bültenini kurumsal e-postayla gönderiyor. Günlük işleyişte kimsenin müdahalesine gerek kalmıyor.</p>
 <p>Yukarıdaki turda gösterilen kayıtlar temsilîdir ve akışı anlatmak için hazırlandı; izlenen beş şirket, etiketler ve süzgeçler ise sistemdekiyle aynıdır.</p>
-<p>İki yaklaşımı sağlıklı biçimde karşılaştırabilmek için aynı iş akışını Microsoft Power Automate üzerinde de kurdum. Bu kadar çok kaynağı sorgulayıp sonuçları yapay zekâyla analiz etmek, şirketin lisans kapsamının dışında kalıyordu. Ajan sürümünün tercih edilmesinin nedeni de buydu: Mevcut abonelik kapasitesiyle, ek altyapı maliyeti olmadan çalışıyor.</p>
-<p>Bunun yanında, şirkette yapay zekâ çıktılarını değerlendirmek için kullanılan yöntemi tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk testi ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması.</p>
+<p>İki yaklaşımı sağlıklı biçimde karşılaştırabilmek için aynı iş akışını Microsoft Power Automate üzerinde de kurdum.</p>
+<p>107 kaynağı sorgulama: Power Automate: Lisans kapsamı dışında, Ajan hattı: Mevcut abonelik içinde. Sonuçları yapay zekâyla analiz etme: Power Automate: Lisans kapsamı dışında, Ajan hattı: Mevcut abonelik içinde. Ek altyapı maliyeti: Power Automate: -, Ajan hattı: Yok. Sonuç: Power Automate: Karşılaştırma için kuruldu, Ajan hattı: Seçildi, canlıda çalışıyor.
+
+Bu kadar çok kaynağı sorgulayıp sonuçları yapay zekâyla analiz etmek, şirketin lisans kapsamının dışında kalıyordu. Ajan sürümünün tercih edilmesinin nedeni de buydu: Mevcut abonelik kapasitesiyle, ek altyapı maliyeti olmadan çalışıyor.</p>
+<p>Aynı stajda ayrıca: Şirkette yapay zekâ çıktılarını değerlendirmek için kullanılan yöntemi tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk testi ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması.</p>
 <h4>Yapı taşları</h4>
 <ul>
 <li>Python ile zamanlanmış <b>ajanlar</b></li>
@@ -1679,8 +1721,8 @@ document.documentElement.setAttribute("data-theme", "day");
 <li>Şirket, ekosistem ve çalışma alanı etiketleme</li>
 </ul>
 <h4>Sayfadaki etkileşimli demo</h4>
-<p>Pencerenin üstünde, projenin sunumundaki akış şemasından uyarlanmış bir çizim vardır: kaynaklar, toplayıcı ajan, ortak veritabanı ve iki yayıncı ajan. Tur sekmesi hattı baştan sona oynatır: Toplayıcı ajan kaynak sayfaları gezer, içeriği okur, kurum üslubunda özetler, şirket, ekosistem ve çalışma alanı etiketlerini seçer, 0,40 eşiğiyle alaka puanı verir ve kaydı ortak veritabanına yazar. Veritabanı panelinde kayıtlar süzülüp açılabilir. Ardından hat ikiye ayrılır: Teknoloji bülteni yayıncısı izlenen beş şirketin haberlerini, mevzuat bülteni yayıncısı düzenleyici gelişmeleri süzer ve iki bülten e-postayla ekibe gider. Tur duraklatılabilir, hızlandırılabilir ve bölümler arasında atlanabilir. Bülten sekmesi iki bültenin örneğini, Üslup sekmesi yazım kılavuzunu, Kurallar sekmesi ajanın uyduğu kuralları gösterir. Kayıtlar temsilîdir.</p>
-<p><a href="shots/mevzuat.jpg">Ekran görüntüsü</a>: Mevzuat İzleme penceresi: Üstte 107 kaynaktan toplayıcı ajana, ortak veritabanına ve iki yayıncı ajana giden mor akış şeması; altta bölüm düğmeleri (Kaynaklar, Topla ve yaz, Veritabanı, Yayıncılar, E-posta), solda ajanın değerlendirdiği bir haber ve ALINMADI kararı, sağda şirket ve ekosistem etiketli kayıtların durduğu ortak veritabanı.</p>
+<p>Pencerenin üstünde, projenin sunumundaki akış şemasından uyarlanmış bir çizim vardır: kaynaklar, toplayıcı ajan, ortak veritabanı ve iki yayıncı ajan. Çizim canlı bir hat gibi akar: Kaynak noktaları yanıp söner ve ham içerikler toplayıcıya akar, veritabanı yazılan kayıtlarla dolar, elenen içerik düşüp kaybolur; kayıtlar rotalarına göre turuncu (mevzuat) ya da lacivert (teknoloji) renklenip kendi yayıncısına gider ve bültenler zarf olarak ekibe ulaşır. Tur sekmesi hattı baştan sona oynatır: Toplayıcı ajan kaynak sayfaları gezer, içeriği okur, kurum üslubunda özetler, şirket, ekosistem ve çalışma alanı etiketlerini seçer, 0,40 eşiğiyle alaka puanı verir ve kaydı ortak veritabanına yazar. Veritabanı panelinde kayıtlar süzülüp açılabilir. Ardından hat ikiye ayrılır: Teknoloji bülteni yayıncısı izlenen beş şirketin haberlerini, mevzuat bülteni yayıncısı düzenleyici gelişmeleri süzer ve iki bülten e-postayla ekibe gider. Tur duraklatılabilir, hızlandırılabilir ve bölümler arasında atlanabilir. Bülten sekmesi iki bültenin örneğini, Üslup sekmesi yazım kılavuzunu, Kurallar sekmesi ajanın uyduğu kuralları gösterir. Kayıtlar temsilîdir.</p>
+<p><a href="shots/mevzuat.jpg">Ekran görüntüsü</a>: Mevzuat İzleme penceresi: Üstte 107 kaynaktan toplayıcı ajana, ortak veritabanına ve iki yayıncı ajana giden turuncu ve lacivert akış şeması; altta bölüm düğmeleri (Kaynaklar, Topla ve yaz, Veritabanı, Yayıncılar, E-posta), solda ajanın değerlendirdiği bir haber ve ALINMADI kararı, sağda şirket ve ekosistem etiketli kayıtların durduğu ortak veritabanı.</p>
 <p><small>Etiketler: Python, Yapay zekâ ajanları, Supabase, Microsoft Graph</small></p>
 </article>
 <article id="tr-reporting">
@@ -1810,8 +1852,11 @@ document.documentElement.setAttribute("data-theme", "day");
 <p><strong>An autonomous agent pipeline that follows five technology companies and 107 public, regulatory and trade press sources, running unattended in production.</strong></p>
 <p>Every hour a collector agent scans the sources, summarises each item from its body, scores its relevance and tags it with the related company, the ecosystem and the practice area, then writes it to a shared database as a 17 field record. The line splits at that record: every two hours one publisher agent filters for the five watched companies (Microsoft, Apple, Google, LinkedIn, Snapchat) and ecosystem developments and sends the technology bulletin, the other filters for Turkish regulatory developments and sends the legislation bulletin, both by corporate email. Nobody touches it day to day.</p>
 <p>In the run above the records are illustrative, written to show the flow; the five companies, the tags and the filters are the system's.</p>
-<p>I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.</p>
-<p>Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison.</p>
+<p>I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly.</p>
+<p>Querying 107 sources: Power Automate: Outside the license, Agent pipeline: Within the existing subscription. AI analysis of the results: Power Automate: Outside the license, Agent pipeline: Within the existing subscription. Additional infrastructure cost: Power Automate: -, Agent pipeline: None. Outcome: Power Automate: Built for the comparison, Agent pipeline: Chosen, running in production.
+
+Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.</p>
+<p>Also during the internship: I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison.</p>
 <h4>Built with</h4>
 <ul>
 <li>Python, scheduled <b>agents</b></li>
@@ -1822,8 +1867,8 @@ document.documentElement.setAttribute("data-theme", "day");
 <li>Company, ecosystem and practice area tagging</li>
 </ul>
 <h4>The interactive demo on the page</h4>
-<p>The top of the window holds a flow drawing adapted from the project's slide deck: sources, the collector agent, the shared database and two publisher agents. The Run tab replays the pipeline end to end: the collector visits source pages, reads the content, summarises it in the house style, picks company, ecosystem and practice area tags, scores relevance against a 0.40 threshold and writes the record to the shared database. Records in the database panel can be filtered and opened. Then the line splits: the technology bulletin publisher filters news about the five watched companies, the legislation bulletin publisher filters regulatory developments, and both bulletins go to the team by email. The run can be paused, sped up and skipped between chapters. The Bulletins tab shows a sample of each bulletin, the Style tab the writing guide, and the Rules tab the rules the agent follows. The records are illustrative.</p>
-<p><a href="shots/mevzuat.jpg">Screenshot</a>: The Mevzuat İzleme window: a purple flow from 107 sources to the collector agent, the shared database and two publisher agents; chapter buttons below it; on the left a news item the agent has judged and dropped, on the right the shared database with records tagged by company and ecosystem.</p>
+<p>The top of the window holds a flow drawing adapted from the project's slide deck: sources, the collector agent, the shared database and two publisher agents. The drawing runs like a live line: source dots flash as raw items stream into the collector, the database drum fills as records are written, dropped items fall away, records turn orange (legislation) or navy (technology) and run to their publisher, and the bulletins reach the team as envelopes. The Run tab replays the pipeline end to end: the collector visits source pages, reads the content, summarises it in the house style, picks company, ecosystem and practice area tags, scores relevance against a 0.40 threshold and writes the record to the shared database. Records in the database panel can be filtered and opened. Then the line splits: the technology bulletin publisher filters news about the five watched companies, the legislation bulletin publisher filters regulatory developments, and both bulletins go to the team by email. The run can be paused, sped up and skipped between chapters. The Bulletins tab shows a sample of each bulletin, the Style tab the writing guide, and the Rules tab the rules the agent follows. The records are illustrative.</p>
+<p><a href="shots/mevzuat.jpg">Screenshot</a>: The Mevzuat İzleme window: an orange and navy flow from 107 sources to the collector agent, the shared database and two publisher agents; chapter buttons below it; on the left a news item the agent has judged and dropped, on the right the shared database with records tagged by company and ecosystem.</p>
 <p><small>Tags: Python, AI agents, Supabase, Microsoft Graph</small></p>
 </article>
 <article id="en-reporting">
@@ -2101,16 +2146,30 @@ document.documentElement.setAttribute("data-theme", "day");
         lede:"An autonomous agent pipeline that follows five technology companies and 107 public, regulatory and trade press sources, running unattended in production.",
         paras:["Every hour a collector agent scans the sources, summarises each item from its body, scores its relevance and tags it with the related company, the ecosystem and the practice area, then writes it to a shared database as a 17 field record. The line splits at that record: every two hours one publisher agent filters for the five watched companies (Microsoft, Apple, Google, LinkedIn, Snapchat) and ecosystem developments and sends the technology bulletin, the other filters for Turkish regulatory developments and sends the legislation bulletin, both by corporate email. Nobody touches it day to day.",
                "In the run above the records are illustrative, written to show the flow; the five companies, the tags and the filters are the system's.",
-               "I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.",
-               "Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison."],
+               "I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly.",
+               "Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.",
+               "I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison."],
+        blocks:{ 3:"cmp", 4:"also" }, also:"Also during the internship",
+        cmp:[["", "Power Automate", "Agent pipeline"],
+             ["Querying 107 sources", "Outside the license", "Within the existing subscription"],
+             ["AI analysis of the results", "Outside the license", "Within the existing subscription"],
+             ["Additional infrastructure cost", "", "None"],
+             ["Outcome", "Built for the comparison", "Chosen, running in production"]],
         rt:"Built with", rail:["Python, scheduled <b>agents</b>","<b>Supabase</b> central store","Streamlit for inspection","<b>Microsoft Graph</b> for delivery","Benchmarked against <b>Power Automate</b>","Company, ecosystem and practice area tagging"],
         tags:["Python","AI agents","Supabase","Microsoft Graph"] },
       tr:{ t:"Mevzuat İzleme", name:"Mevzuat İzleme Sistemi", meta:"2026 &middot; BTS &amp; Partners",
         lede:"Beş teknoloji şirketini ve resmî kurum, düzenleyici ve sektör basınından 107 kaynağı izleyen; canlı ortamda insan müdahalesi olmadan çalışan bir yapay zekâ ajanı hattıdır.",
         paras:["Toplayıcı ajan kaynakları saatte bir tarıyor. Her içeriği tam metninden özetliyor, alaka puanı veriyor; ilgili şirketi, ekosistemi ve çalışma alanını etiketleyip 17 alanlı bir kayıt olarak ortak veritabanına yazıyor. Hat tam bu kayıtta ikiye ayrılıyor: Yayıncı ajanlardan biri iki saatte bir izlenen beş şirketin (Microsoft, Apple, Google, LinkedIn, Snapchat) haberlerini ve ekosistemdeki gelişmeleri süzerek teknoloji bültenini, diğeri Türkiye'deki düzenleyici gelişmeleri süzerek mevzuat bültenini kurumsal e-postayla gönderiyor. Günlük işleyişte kimsenin müdahalesine gerek kalmıyor.",
                "Yukarıdaki turda gösterilen kayıtlar temsilîdir ve akışı anlatmak için hazırlandı; izlenen beş şirket, etiketler ve süzgeçler ise sistemdekiyle aynıdır.",
-               "İki yaklaşımı sağlıklı biçimde karşılaştırabilmek için aynı iş akışını Microsoft Power Automate üzerinde de kurdum. Bu kadar çok kaynağı sorgulayıp sonuçları yapay zekâyla analiz etmek, şirketin lisans kapsamının dışında kalıyordu. Ajan sürümünün tercih edilmesinin nedeni de buydu: Mevcut abonelik kapasitesiyle, ek altyapı maliyeti olmadan çalışıyor.",
-               "Bunun yanında, şirkette yapay zekâ çıktılarını değerlendirmek için kullanılan yöntemi tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk testi ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması."],
+               "İki yaklaşımı sağlıklı biçimde karşılaştırabilmek için aynı iş akışını Microsoft Power Automate üzerinde de kurdum.",
+               "Bu kadar çok kaynağı sorgulayıp sonuçları yapay zekâyla analiz etmek, şirketin lisans kapsamının dışında kalıyordu. Ajan sürümünün tercih edilmesinin nedeni de buydu: Mevcut abonelik kapasitesiyle, ek altyapı maliyeti olmadan çalışıyor.",
+               "Şirkette yapay zekâ çıktılarını değerlendirmek için kullanılan yöntemi tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk testi ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması."],
+        blocks:{ 3:"cmp", 4:"also" }, also:"Aynı stajda ayrıca",
+        cmp:[["", "Power Automate", "Ajan hattı"],
+             ["107 kaynağı sorgulama", "Lisans kapsamı dışında", "Mevcut abonelik içinde"],
+             ["Sonuçları yapay zekâyla analiz etme", "Lisans kapsamı dışında", "Mevcut abonelik içinde"],
+             ["Ek altyapı maliyeti", "", "Yok"],
+             ["Sonuç", "Karşılaştırma için kuruldu", "Seçildi, canlıda çalışıyor"]],
         rt:"Yapı taşları", rail:["Python ile zamanlanmış <b>ajanlar</b>","Merkezî depo olarak <b>Supabase</b>","İnceleme ekranı için Streamlit","Dağıtım için <b>Microsoft Graph</b>","<b>Power Automate</b> ile karşılaştırma","Şirket, ekosistem ve çalışma alanı etiketleme"],
         tags:["Python","Yapay zekâ ajanları","Supabase","Microsoft Graph"] } },
 
@@ -2808,7 +2867,7 @@ document.documentElement.setAttribute("data-theme", "day");
   var MZ_DET = { news0:1, news1:1, news2:1 };   /* shown at full length; the rest run fast */
   var MZ_T = {
     tr:{ run:"Tur", bul:"Bülten", style:"Üslup", rules:"Kurallar", items:"kayıt",
-      stat:function(){ return "İzlenen beş şirket + düzenleyici kaynaklar"; },
+      stat:function(){ return "107 kaynak · 5 şirket"; },
       nodes:[["Kaynaklar",""],["Toplayıcı ajan",""],["Ortak veritabanı",""],["Teknoloji bülteni yayıncısı",""],["Mevzuat bülteni yayıncısı",""],["BTS ekibi",""]],
       fl:{ src:"107 KAYNAK", srcS:"resmî kurum · düzenleyici · sektör basını", col:"Toplayıcı ajan", colS:"saatte bir",
         db:"Ortak veritabanı", dbS:"17 alan · şirket etiketli", dbS2:"hattın ayrıldığı nokta",
@@ -2862,7 +2921,7 @@ document.documentElement.setAttribute("data-theme", "day");
         ["Bağlantı ve hacim sınırı","Bağlantılar yalnızca kaynağın kendi alan adından alınıyor ve izinli alan adları listesiyle denetleniyor. Aynı gelişme iki kez kaydedilmiyor; bir kaynaktan tek turda en fazla 15 kayıt alınıyor.","Kod"]]
     },
     en:{ run:"Run", bul:"Bulletins", style:"Style", rules:"Rules", items:"records",
-      stat:function(){ return "Five watched companies + regulatory sources"; },
+      stat:function(){ return "107 sources · 5 companies"; },
       nodes:[["Sources",""],["Collector agent",""],["Shared database",""],["Newsletter publisher",""],["Legislation publisher",""],["BTS team",""]],
       fl:{ src:"107 SOURCES", srcS:"agencies · regulators · trade press", col:"Collector agent", colS:"hourly",
         db:"Shared database", dbS:"17 fields · company tagged", dbS2:"where the line splits",
@@ -2964,51 +3023,52 @@ document.documentElement.setAttribute("data-theme", "day");
 
   /* the flow from the firm's slide ("one database, two bulletins"), redrawn
      in the page's own tokens: 107 sources fan into the collector, a line to
-     the shared database, then two curves to the publishers and the team */
+     the shared database, then two curves to the publishers and the team.
+     The lines are only the rails; mzMount sends the actual traffic along them */
+  var MZG = { CY:118, TY:58, BY:178 };
   function mzFlow(L){
-    var F = MZ_T[L].fl, ph = MZ_T[L].ph, CY = 118, TY = 58, BY = 178, s = '';
-    function pkts(d, n, dur){
-      if(reduce) return '';
-      var o = '';
-      for(var i = 0; i < n; i++) o += '<circle class="p" r="2.6"><animateMotion dur="'+dur+'s" begin="'+(-i*dur/n).toFixed(2)+'s" repeatCount="indefinite" path="'+d+'"/></circle>';
-      return o;
-    }
-    function seg(name, d, n, dur, stations){
-      return '<g data-s="'+name+'"><path class="ln" d="'+d+'"/>'+(stations||[]).map(function(p){ return '<circle class="st" cx="'+p[0]+'" cy="'+p[1]+'" r="3.6"/>'; }).join('')+pkts(d, n, dur)+'</g>';
+    var F = MZ_T[L].fl, ph = MZ_T[L].ph, CY = MZG.CY, TY = MZG.TY, BY = MZG.BY, s = '';
+    function seg(name, d, stations){
+      return '<g data-s="'+name+'"><path class="ln" d="'+d+'"/><path class="lf" d="'+d+'"/>'+(stations||[]).map(function(p){ return '<circle class="st" cx="'+p[0]+'" cy="'+p[1]+'" r="3.6"/>'; }).join('')+'</g>';
     }
     /* the fan of sources */
-    var fan = '', dots = '', lines = [];
+    var fan = '', dots = '';
     for(var i = 0; i < 44; i++){
       var x = 8 + (i % 6)*16 + ((i*7) % 9), y = 36 + ((i*53) % 164);
-      lines.push("M"+x+","+y+" L150,"+CY);
       fan += '<path class="fl" d="M'+x+','+y+' L150,'+CY+'"/>';
-      dots += '<circle class="fd'+(i % 3 ? '' : ' a')+'" cx="'+x+'" cy="'+y+'" r="'+(i % 4 ? 2.4 : 3)+'"/>';
+      dots += '<circle class="fd'+(i % 3 ? '' : ' a')+'" data-x="'+x+'" data-y="'+y+'" cx="'+x+'" cy="'+y+'" r="'+(i % 4 ? 2.4 : 3)+'"/>';
     }
     s += '<g class="nd" data-n="0">'+fan+dots+'</g>';
-    s += '<g data-s="src">'+[3, 11, 19, 27, 35, 41].map(function(k, j){ return reduce ? '' : '<circle class="p" r="2.3"><animateMotion dur="3.4s" begin="'+(-j*.57).toFixed(2)+'s" repeatCount="indefinite" path="'+lines[k]+'"/></circle>'; }).join('')+'</g>';
     s += '<text class="k" x="4" y="22">'+F.src+'</text><text class="s" x="4" y="228">'+F.srcS+'</text>';
-    /* collector */
-    s += seg("cd", "M186,"+CY+" L317,"+CY, 2, 2.8, [[230,CY],[274,CY]]);
-    s += '<g class="nd" data-n="1"><circle class="pl" cx="170" cy="'+CY+'" r="15"/><circle class="r" cx="170" cy="'+CY+'" r="15"/><circle class="c" cx="170" cy="'+CY+'" r="5"/></g>';
-    s += '<text class="t" x="172" y="92" text-anchor="middle">'+F.col+'</text><text class="s" x="172" y="150" text-anchor="middle">'+F.colS+'</text>';
+    /* collector: a ring that turns while it works, and a count of what it has read */
+    s += seg("cd", "M186,"+CY+" L317,"+CY, [[230,CY],[274,CY]]);
+    s += '<g class="nd col" data-n="1"><circle class="pl" cx="170" cy="'+CY+'" r="15"/><circle class="spin" cx="170" cy="'+CY+'" r="21"/><circle class="r" cx="170" cy="'+CY+'" r="15"/><circle class="c" cx="170" cy="'+CY+'" r="5"/></g>';
+    s += '<text class="t" x="172" y="86" text-anchor="middle">'+F.col+'</text><text class="s" x="172" y="150" text-anchor="middle">'+F.colS+'</text>';
     [ph.slice(0, 2), ph.slice(2, 4), ph.slice(4)].forEach(function(row, r){
       s += '<text class="ph" x="172" y="'+(166 + r*12)+'" text-anchor="middle">'+row.map(function(p, k){ return (k ? '<tspan class="dt"> · </tspan>' : '')+'<tspan data-ph="'+p[0]+'">'+p[1]+'</tspan>'; }).join('')+'</text>';
     });
-    /* the shared database and the split */
+    /* the shared database, drawn as a drum that fills with records, and the split */
     var up = "M382,"+CY+" C432,"+CY+" 436,"+TY+" 486,"+TY, dn = "M382,"+CY+" C432,"+CY+" 436,"+BY+" 486,"+BY;
-    s += seg("dm", up, 2, 2.8, [[434,88]]) + seg("dn", dn, 2, 2.8, [[434,148]]);
-    s += '<g class="nd db" data-n="2"><circle class="pl" cx="350" cy="'+CY+'" r="32"/><circle class="r" cx="350" cy="'+CY+'" r="32"/></g>';
-    s += '<text class="t" x="350" y="74" text-anchor="middle">'+F.db+'</text><text class="s" x="350" y="174" text-anchor="middle">'+F.dbS+'</text><text class="s i" x="350" y="187" text-anchor="middle">'+F.dbS2+'</text>';
+    s += seg("dm", up, [[434,88]]) + seg("dn", dn, [[434,148]]);
+    s += '<clipPath id="mzdbc"><path d="M322,98 V138 A28,8 0 0 0 378,138 V98 A28,8 0 0 0 322,98 Z"/></clipPath>';
+    s += '<g class="nd db" data-n="2"><circle class="pl" cx="350" cy="'+CY+'" r="34"/>'
+      +  '<path class="r" d="M322,98 V138 A28,8 0 0 0 378,138 V98"/>'
+      +  '<rect class="lv" clip-path="url(#mzdbc)" x="320" y="148" width="60" height="0"/>'
+      +  '<path class="rim" d="M322,114 A28,8 0 0 0 378,114 M322,126 A28,8 0 0 0 378,126"/>'
+      +  '<ellipse class="r top" cx="350" cy="98" rx="28" ry="8"/>'
+      +  '<text class="cnt" x="350" y="125" text-anchor="middle">0</text></g>';
+    s += '<text class="t" x="350" y="80" text-anchor="middle">'+F.db+'</text><text class="s" x="350" y="166" text-anchor="middle">'+F.dbS+'</text><text class="s i" x="350" y="179" text-anchor="middle">'+F.dbS2+'</text>';
     /* publishers and the team */
-    s += seg("mt", "M514,"+TY+" L598,"+TY, 2, 2.4, [[540,TY],[572,TY]]) + seg("nt", "M514,"+BY+" L598,"+BY, 2, 2.4, [[540,BY],[572,BY]]);
-    s += '<g class="nd" data-n="4"><circle class="pl" cx="500" cy="'+TY+'" r="14"/><circle class="r" cx="500" cy="'+TY+'" r="14"/></g>';
-    s += '<g class="nd" data-n="3"><circle class="pl" cx="500" cy="'+BY+'" r="14"/><circle class="r" cx="500" cy="'+BY+'" r="14"/></g>';
+    s += seg("mt", "M514,"+TY+" L598,"+TY, [[540,TY],[572,TY]]) + seg("nt", "M514,"+BY+" L598,"+BY, [[540,BY],[572,BY]]);
+    s += '<g class="nd pub mev" data-n="4"><circle class="pl" cx="500" cy="'+TY+'" r="14"/><circle class="r" cx="500" cy="'+TY+'" r="14"/><text class="cnt s2" x="500" y="'+(TY+4)+'" text-anchor="middle"></text></g>';
+    s += '<g class="nd pub co" data-n="3"><circle class="pl" cx="500" cy="'+BY+'" r="14"/><circle class="r" cx="500" cy="'+BY+'" r="14"/><text class="cnt s2" x="500" y="'+(BY+4)+'" text-anchor="middle"></text></g>';
     s += '<text class="t" x="500" y="20" text-anchor="middle">'+F.pm+'</text><text class="s" x="500" y="33" text-anchor="middle">'+F.pmS+'</text>';
     s += '<text class="t" x="500" y="211" text-anchor="middle">'+F.pn+'</text><text class="s" x="500" y="223" text-anchor="middle">'+F.pnS+'</text>';
-    s += '<g class="nd pill" data-n="5"><rect class="r" x="598" y="'+(TY-18)+'" width="116" height="36" rx="18"/><rect class="r" x="598" y="'+(BY-18)+'" width="116" height="36" rx="18"/></g>';
+    s += '<g class="nd pill" data-n="5"><rect class="r" data-team="mev" x="598" y="'+(TY-18)+'" width="116" height="36" rx="18"/><rect class="r" data-team="co" x="598" y="'+(BY-18)+'" width="116" height="36" rx="18"/></g>';
     s += '<text class="t" x="656" y="'+(TY-2)+'" text-anchor="middle">'+F.team+'</text><text class="s" x="656" y="'+(TY+11)+'" text-anchor="middle">'+F.tm+'</text>';
     s += '<text class="t" x="656" y="'+(BY-2)+'" text-anchor="middle">'+F.team+'</text><text class="s" x="656" y="'+(BY+11)+'" text-anchor="middle">'+F.tn+'</text>';
     s += '<text class="s" x="656" y="'+(CY+4)+'" text-anchor="middle">'+F.m365+'</text>';
+    s += '<g class="pkl"></g>';
     return '<svg class="mzf" viewBox="0 0 720 236" role="img" aria-label="'+F.db+'">'+s+'</svg>';
   }
 
@@ -3051,6 +3111,108 @@ document.documentElement.setAttribute("data-theme", "day");
     var nodes = qa(".mzf .nd"), wires = qa(".mzf [data-s]"), phs = qa(".mzf tspan[data-ph]"), chBtns = qa(".mz-chs button"), flts = qa(".mz-flt button");
     var bPause = q('[data-c="pause"]'), flowEl = q(".mz-flow");
     var token = 0, paused = false, speed = 1, started = false, cur = -1, STOP = {};
+    /* ---- traffic on the flow: raw items from the sources, records coloured by their route,
+       dropped items falling away, envelopes to the team; all of it honours pause and speed ---- */
+    var svg = q(".mzf"), pkl = q(".mzf .pkl"), NS = "http://www.w3.org/2000/svg", live = [], rafOn = false;
+    var srcDots = qa(".mzf .fd"), dbCnt = q(".mzf .db .cnt"), dbLv = q(".mzf .db .lv"), pubCnt = { mev:q(".mzf .pub.mev .cnt"), co:q(".mzf .pub.co .cnt") };
+    var PATH = { cd:"M186,"+MZG.CY+" L318,"+MZG.CY, mev:"M382,"+MZG.CY+" C432,"+MZG.CY+" 436,"+MZG.TY+" 486,"+MZG.TY,
+                 co:"M382,"+MZG.CY+" C432,"+MZG.CY+" 436,"+MZG.BY+" 486,"+MZG.BY, mt:"M514,"+MZG.TY+" L598,"+MZG.TY, nt:"M514,"+MZG.BY+" L598,"+MZG.BY,
+                 drop:"M170,"+(MZG.CY+16)+" C172,"+(MZG.CY+34)+" 196,"+(MZG.CY+44)+" 214,"+(MZG.CY+70) };
+    var pathEls = {};
+    function pathEl(d){
+      if(pathEls[d]) return pathEls[d];
+      var p = document.createElementNS(NS, "path"); p.setAttribute("d", d); p.setAttribute("class", "gh"); pkl.appendChild(p);
+      return (pathEls[d] = p);
+    }
+    function shape(kind, cls){
+      var e;
+      if(kind === "doc"){ e = document.createElementNS(NS, "rect"); e.setAttribute("x", -4.5); e.setAttribute("y", -5.5); e.setAttribute("width", 9); e.setAttribute("height", 11); e.setAttribute("rx", 1.6); }
+      else if(kind === "mail"){ e = document.createElementNS(NS, "g"); e.innerHTML = '<rect x="-8" y="-5.5" width="16" height="11" rx="1.8"/><path d="M-8,-5 L0,1 L8,-5"/>'; }
+      else { e = document.createElementNS(NS, "circle"); e.setAttribute("r", 2.6); }
+      e.setAttribute("class", "pk "+kind+" "+(cls || "")); pkl.appendChild(e); return e;
+    }
+    function tickAll(now){
+      var dt = Math.min(64, now - (tickAll.t || now)); tickAll.t = now;
+      if(!paused) dt *= speed; else dt = 0;
+      live = live.filter(function(m){
+        if(!m.el.isConnected) return false;
+        m.t += dt; var k = Math.min(1, m.t/m.dur), e = k < .5 ? 2*k*k : 1 - Math.pow(-2*k + 2, 2)/2;
+        var pt = m.p.getPointAtLength(e*m.len);
+        m.el.setAttribute("transform", "translate("+pt.x.toFixed(1)+","+pt.y.toFixed(1)+")"+(m.rot ? " rotate("+(k*m.rot).toFixed(0)+")" : ""));
+        if(m.fade) m.el.style.opacity = String(1 - k);
+        if(k >= 1){ m.el.remove(); if(m.done) m.done(); return false; }
+        return true;
+      });
+      if(live.length) requestAnimationFrame(tickAll); else { rafOn = false; tickAll.t = 0; }
+    }
+    function shoot(d, kind, cls, dur, done, opt){
+      if(reduce){ if(done) done(); return; }
+      var p = pathEl(d), m = { p:p, len:p.getTotalLength(), el:shape(kind, cls), t:0, dur:dur, done:done, my:token };
+      if(opt){ m.fade = opt.fade; m.rot = opt.rot; }
+      m.el.setAttribute("transform", "translate(-99,-99)");
+      live.push(m); if(!rafOn){ rafOn = true; requestAnimationFrame(tickAll); }
+    }
+    function clearTraffic(){ live.forEach(function(m){ m.el.remove(); }); live = []; }
+    function bump(el){ if(!el) return; el.classList.remove("bump"); void el.getBoundingClientRect(); el.classList.add("bump"); }
+    var dbN = 0, pubN = { mev:0, co:0 };
+    function setDb(n){ dbN = n; dbCnt.textContent = n; var h = Math.min(46, n*3.4); dbLv.setAttribute("y", 146 - h); dbLv.setAttribute("height", h); }
+    function setPub(k, n){ pubN[k] = n; pubCnt[k].textContent = n ? n : ""; }
+    function resetFlow(){ clearTraffic(); setDb(0); setPub("mev", 0); setPub("co", 0); qa(".mzf [data-team]").forEach(function(r){ r.classList.remove("got"); }); stopSrc(); }
+    /* the collector pulling from the sources: dots flash and raw items run down the fan */
+    var srcT = null;
+    function fromSource(then){
+      var dt = srcDots[Math.floor(Math.random()*srcDots.length)];
+      dt.classList.remove("hit"); void dt.getBoundingClientRect(); dt.classList.add("hit");
+      shoot("M"+dt.getAttribute("data-x")+","+dt.getAttribute("data-y")+" L150,"+MZG.CY, "dot", "raw", 650 + Math.random()*350, then);
+    }
+    function startSrc(every){
+      stopSrc(); var my = token;
+      (function go(){ if(my !== token) return; if(!paused) fromSource(); srcT = setTimeout(go, (every || 140)/speed); })();
+    }
+    function stopSrc(){ clearTimeout(srcT); srcT = null; }
+    /* a record leaves the collector for the drum, or falls away */
+    function toDb(r){
+      shoot(PATH.cd, "doc", r.route, 620, function(){ setDb(dbN + 1); bump(dbCnt.parentNode); });
+    }
+    function dropIt(){ shoot(PATH.drop, "doc", "x", 900, null, { fade:true, rot:70 }); }
+    /* the split: every relevant record runs to its publisher */
+    function route(list, gap){
+      return new Promise(function(res){
+        if(!list.length) return res();
+        var left = list.length;
+        list.forEach(function(r, i){
+          var my = token;
+          setTimeout(function(){
+            if(my !== token) return;
+            shoot(PATH[r.route], "doc", r.route, 760, function(){ setPub(r.route, pubN[r.route] + 1); bump(q(".mzf .pub."+r.route)); if(--left === 0) res(); });
+          }, i*gap/speed);
+        });
+      });
+    }
+    function mailOut(k){
+      return new Promise(function(res){
+        shoot(k === "mev" ? PATH.mt : PATH.nt, "mail", k, 900, function(){ var t = q('.mzf [data-team="'+k+'"]'); t.classList.add("got"); bump(t); res(); });
+      });
+    }
+    /* once the run is over the line keeps going on its own, the way it does in production */
+    var idleT = null;
+    function idle(){
+      clearTimeout(idleT); var my = token;
+      (function cycle(){
+        if(my !== token || !root.isConnected) return;
+        if(!paused && !document.hidden){
+          fromSource(function(){
+            if(Math.random() < .3) return dropIt();
+            var k = Math.random() < .5 ? "mev" : "co";
+            shoot(PATH.cd, "doc", k, 620, function(){
+              bump(dbCnt.parentNode);
+              shoot(PATH[k], "doc", k, 760, function(){ bump(q(".mzf .pub."+k)); });
+            });
+          });
+        }
+        idleT = setTimeout(cycle, 900);
+      })();
+    }
 
     /* timing: every pause in the run goes through wait(), so pause, speed and jumps all work */
     function wait(ms){
@@ -3165,14 +3327,14 @@ document.documentElement.setAttribute("data-theme", "day");
       if(r.drop){
         outs[0].style.display = outs[1].style.display = "none"; g.style.display = "none";
         return d(900, 60).then(function(){
-          phase("deger"); say(T.cap.drop);
+          phase("deger"); say(T.cap.drop); dropIt();
           pill.textContent = T.dropped; pill.className = "mz-pill x"; why.textContent = r.summary; v.classList.add("on");
           return d(2200, 100);
         });
       }
       return d(700, 40).then(function(){
         phase("ozet"); if(det) say(T.cap.sum);
-        return det ? typeOut(sum, r.summary, 170) : (sum.textContent = r.summary, null);
+        return det ? typeOut(sum, r.summary, 240) : (sum.textContent = r.summary, null);
       }).then(function(){
         sum.innerHTML = mzStyle(r.summary);
         var words = r.summary.split(/\s+/).length, verbs = (r.summary.match(MZ_VERB) || []).length, cl = (r.summary.match(MZ_CLOSE) || []).length;
@@ -3193,7 +3355,7 @@ document.documentElement.setAttribute("data-theme", "day");
         return d(900, 60);
       }).then(function(){
         phase("yaz"); lit([1,2], [0]); flow(1, true); if(det) say(T.cap.wr);
-        addRow(r);
+        addRow(r); toDb(r);
         return d(700, 70);
       }).then(function(){ flow(1, false); });
     }
@@ -3204,46 +3366,49 @@ document.documentElement.setAttribute("data-theme", "day");
     var CH = [
       { /* sources */
         play:function(){
-          phase("git"); lit([0,1], []); flow(0, true);
+          phase("git"); lit([0,1], []); flow(0, true); startSrc(90);
           return seq(SRC, function(s, k){
             say(T.cap.src(s[0])); where.textContent = s[2];
             var b = browser(T.rep);
-            return typeOut(b.url, "https://"+s[1], 420).then(function(){ b.pg.innerHTML = skeleton(k); return wait(180); }).then(function(){
+            return typeOut(b.url, "https://"+s[1], 900).then(function(){ b.pg.innerHTML = skeleton(k); return wait(120); }).then(function(){
               var band = b.pg.querySelector(".mz-band"); band.querySelector("em").textContent = TR ? "bugüne ait bölüm" : "dated today"; band.classList.add("on");
-              return wait(420);
+              return wait(300);
             });
           }).then(function(){ flow(0, false); });
         }, instant:function(){} },
       { /* collect and write */
         play:function(){
-          say(T.cap.news); where.textContent = T.srcN;
+          say(T.cap.news); where.textContent = T.srcN; startSrc(320);
           var said = false;
           return seq(NEWS, function(r, i){
             where.textContent = T.srcN+" · "+(i+1)+" / "+NEWS.length;
             if(!MZ_DET[r.key] && !said){ said = true; say(T.cap.fast); }
             return collect(r);
           });
-        }, instant:function(){ NEWS.forEach(function(r){ if(!r.drop) addRow(r); }); } },
+        }, instant:function(){ NEWS.forEach(function(r){ if(!r.drop) addRow(r); }); setDb(NEWS.filter(function(r){ return !r.drop; }).length); } },
       { /* the split */
         play:function(){
-          phase(null); lit([2], [0,1]); say(T.cap.db); where.textContent = "";
+          phase(null); lit([2], [0,1]); say(T.cap.db); where.textContent = ""; stopSrc();
+          var hop = route(R.filter(function(r){ return !r.drop && r.sc >= .4; }), 170);
           scr.innerHTML = '<div class="mz-split"><div class="mz-sp-db">'+T.nodes[2][0]+'<small>'+nRows+' '+T.rows+'</small></div>'
             + '<div class="mz-sp-a co"><b>'+T.nodes[3][0]+'</b><small>company &cup; sector &middot; is_relevant</small><em>'+R.filter(function(r){ return r.route==="co" && r.sc>=.4; }).length+'</em></div>'
             + '<div class="mz-sp-a mev"><b>'+T.nodes[4][0]+'</b><small>'+(TR?"TR düzenleyici alan süzgeci":"TR regulator domain filter")+'</small><em>'+nMev+'</em></div></div>';
           dbBox.classList.add("split");
-          return wait(700).then(function(){ filter("co"); rowsEl.scrollTop = 0; return wait(1300); }).then(function(){ filter("mev"); return wait(1300); }).then(function(){ filter("all"); return wait(500); });
-        }, instant:function(){ dbBox.classList.add("split"); } },
+          return Promise.all([hop, wait(700).then(function(){ filter("co"); rowsEl.scrollTop = 0; return wait(1300); }).then(function(){ filter("mev"); return wait(1300); }).then(function(){ filter("all"); return wait(500); })]);
+        }, instant:function(){ dbBox.classList.add("split"); pubCounts(); } },
       { /* publishers */
         play:function(){
           lit([3], [0,1,2]); flow("dn", true); filter("co"); rowsEl.scrollTop = 0; say(T.cap.pubCo); where.textContent = T.coB;
-          return build(mzCoBulletin(L, R), 260).then(function(){
+          return build(mzCoBulletin(L, R), 220).then(function(){
+            mailOut("co");
             lit([4], [0,1,2,3]); flow("dm", true); filter("mev"); say(T.cap.pubMev); where.textContent = T.mevB;
-            return build(mzMevBulletin(L, R), 260);
-          }).then(function(){ flow(3, true); filter("all"); lit([5], [0,1,2,3,4]); return wait(900); });
+            return build(mzMevBulletin(L, R), 220);
+          }).then(function(){ flow(3, true); filter("all"); lit([5], [0,1,2,3,4]); return mailOut("mev"); }).then(function(){ return wait(500); });
         }, instant:function(){} },
       { /* email */
         play:function(){ finalScreen(); return wait(10); }, instant:function(){} }
     ];
+    function pubCounts(){ var rel = R.filter(function(r){ return !r.drop && r.sc >= .4; }); setPub("mev", rel.filter(function(r){ return r.route === "mev"; }).length); setPub("co", rel.filter(function(r){ return r.route === "co"; }).length); }
     function build(html, step){
       scr.innerHTML = '<div class="mz-mini"><div class="mz-paper">'+html+'</div></div>';
       var paper = scr.querySelector(".mz-paper");
@@ -3255,6 +3420,8 @@ document.documentElement.setAttribute("data-theme", "day");
     }
     function finalScreen(){
       phase(null); flow(3, false); lit([], [0,1,2,3,4,5]); chapter(CH.length); say(T.cap.mail); where.textContent = ""; rowsEl.scrollTop = 0;
+      stopSrc(); setDb(Math.max(dbN, R.filter(function(r){ return !r.drop; }).length)); if(!pubN.mev && !pubN.co) pubCounts();
+      qa(".mzf [data-team]").forEach(function(t){ t.classList.add("got"); }); idle();
       var nCo = R.filter(function(r){ return r.route==="co" && r.sc>=.4; }).length;
       function env(from, subj, n, b){ return '<div class="mz-env"><div class="mz-hdr"><b>'+T.from+'</b> '+from+'<br><b>'+T.to+'</b> '+T.toV+'<br><b>'+T.subj+'</b> '+subj
         + '</div><div class="mz-envf"><span class="mz-ok">&check; '+T.sentOk+' &middot; '+n+'</span><button class="mz-open" data-b="'+b+'">'+T.open+'</button></div></div>'; }
@@ -3263,7 +3430,7 @@ document.documentElement.setAttribute("data-theme", "day");
     }
     function run(from){
       token++; started = true; paused = false; bPause.textContent = T.pause;
-      resetDb(); flow(-1); phase(null);
+      resetDb(); resetFlow(); flow(-1); phase(null);
       from = Math.max(0, Math.min(from || 0, CH.length - 1));
       for(var c = 0; c < from; c++) CH[c].instant();
       if(reduce){ for(var k = from; k < CH.length - 1; k++) CH[k].instant(); finalScreen(); return; }
@@ -4858,6 +5025,12 @@ document.documentElement.setAttribute("data-theme", "day");
     return '<div class="dia"><h3>'+D.title[L]+'</h3><svg viewBox="-4 -6 '+(D.w+8)+' '+(D.h+28)+'" role="img" aria-label="'+D.title[L]+'">'+s+'</svg></div>';
   }
 
+  /* a small side-by-side table; the last column is the one that was chosen */
+  function cmpTable(rows){
+    return '<table class="cmp"><thead><tr>'+rows[0].map(function(c){ return '<th>'+c+'</th>'; }).join('')+'</tr></thead><tbody>'
+      + rows.slice(1).map(function(r){ return '<tr>'+r.map(function(c, i){ return i ? '<td>'+(c || '<span class="na">&middot;</span>')+'</td>' : '<th>'+c+'</th>'; }).join('')+'</tr>'; }).join('')
+      + '</tbody></table>';
+  }
   function proj(d, badges, L, id){
     return '<div class="doc"><h1>'+d.name+'</h1><p class="meta">'+d.meta+'</p>'
       + '<div class="badges">'+badges.map(function(on, i){ return '<span class="'+(on?'on':'')+'">'+BADGE[L][i]+'</span>'; }).join('')+'</div>'
@@ -4865,7 +5038,7 @@ document.documentElement.setAttribute("data-theme", "day");
       + (id === "istakip" ? pkHtml(L) : id === "pipeline" ? mzHtml(L) : id === "sms" ? smHtml(L) : id === "reporting" ? rpHtml(L) : id === "karinca" ? krHtml(L) : '')
       + d.paras.map(function(p, i){
           var b = d.blocks && d.blocks[i];
-          return (b === "flow" ? dia(PK_FLOW, L) : b === "erd" ? erd(PK_ERD, L) : '') + '<p>'+p+'</p>';
+          return (b === "flow" ? dia(PK_FLOW, L) : b === "erd" ? erd(PK_ERD, L) : b === "cmp" ? cmpTable(d.cmp) : b === "also" ? '<h3 class="also">'+d.also+'</h3>' : '') + '<p>'+p+'</p>';
         }).join('')
       + '<div class="rail"><h3>'+d.rt+'</h3><ol>'+d.rail.map(function(r){ return '<li>'+r+'</li>'; }).join('')+'</ol></div>'
       + '<div class="tags">'+d.tags.map(function(t){ return '<span>'+t+'</span>'; }).join('')+'</div></div>';

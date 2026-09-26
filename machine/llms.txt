@@ -116,9 +116,13 @@ Toplayıcı ajan kaynakları saatte bir tarıyor. Her içeriği tam metninden ö
 
 Yukarıdaki turda gösterilen kayıtlar temsilîdir ve akışı anlatmak için hazırlandı; izlenen beş şirket, etiketler ve süzgeçler ise sistemdekiyle aynıdır.
 
-İki yaklaşımı sağlıklı biçimde karşılaştırabilmek için aynı iş akışını Microsoft Power Automate üzerinde de kurdum. Bu kadar çok kaynağı sorgulayıp sonuçları yapay zekâyla analiz etmek, şirketin lisans kapsamının dışında kalıyordu. Ajan sürümünün tercih edilmesinin nedeni de buydu: Mevcut abonelik kapasitesiyle, ek altyapı maliyeti olmadan çalışıyor.
+İki yaklaşımı sağlıklı biçimde karşılaştırabilmek için aynı iş akışını Microsoft Power Automate üzerinde de kurdum.
 
-Bunun yanında, şirkette yapay zekâ çıktılarını değerlendirmek için kullanılan yöntemi tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk testi ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması.
+107 kaynağı sorgulama: Power Automate: Lisans kapsamı dışında, Ajan hattı: Mevcut abonelik içinde. Sonuçları yapay zekâyla analiz etme: Power Automate: Lisans kapsamı dışında, Ajan hattı: Mevcut abonelik içinde. Ek altyapı maliyeti: Power Automate: -, Ajan hattı: Yok. Sonuç: Power Automate: Karşılaştırma için kuruldu, Ajan hattı: Seçildi, canlıda çalışıyor.
+
+Bu kadar çok kaynağı sorgulayıp sonuçları yapay zekâyla analiz etmek, şirketin lisans kapsamının dışında kalıyordu. Ajan sürümünün tercih edilmesinin nedeni de buydu: Mevcut abonelik kapasitesiyle, ek altyapı maliyeti olmadan çalışıyor.
+
+Aynı stajda ayrıca: Şirkette yapay zekâ çıktılarını değerlendirmek için kullanılan yöntemi tasarladım: yapay zekâ destekli sözleşme incelemesi için ağırlıklı bir doğruluk testi ve Türkçeden İngilizceye çeviri kalitesi karşılaştırması.
 
 **Yapı taşları**
 
@@ -129,9 +133,9 @@ Bunun yanında, şirkette yapay zekâ çıktılarını değerlendirmek için kul
 - Power Automate ile karşılaştırma
 - Şirket, ekosistem ve çalışma alanı etiketleme
 
-**Sayfadaki etkileşimli demo:** Pencerenin üstünde, projenin sunumundaki akış şemasından uyarlanmış bir çizim vardır: kaynaklar, toplayıcı ajan, ortak veritabanı ve iki yayıncı ajan. Tur sekmesi hattı baştan sona oynatır: Toplayıcı ajan kaynak sayfaları gezer, içeriği okur, kurum üslubunda özetler, şirket, ekosistem ve çalışma alanı etiketlerini seçer, 0,40 eşiğiyle alaka puanı verir ve kaydı ortak veritabanına yazar. Veritabanı panelinde kayıtlar süzülüp açılabilir. Ardından hat ikiye ayrılır: Teknoloji bülteni yayıncısı izlenen beş şirketin haberlerini, mevzuat bülteni yayıncısı düzenleyici gelişmeleri süzer ve iki bülten e-postayla ekibe gider. Tur duraklatılabilir, hızlandırılabilir ve bölümler arasında atlanabilir. Bülten sekmesi iki bültenin örneğini, Üslup sekmesi yazım kılavuzunu, Kurallar sekmesi ajanın uyduğu kuralları gösterir. Kayıtlar temsilîdir.
+**Sayfadaki etkileşimli demo:** Pencerenin üstünde, projenin sunumundaki akış şemasından uyarlanmış bir çizim vardır: kaynaklar, toplayıcı ajan, ortak veritabanı ve iki yayıncı ajan. Çizim canlı bir hat gibi akar: Kaynak noktaları yanıp söner ve ham içerikler toplayıcıya akar, veritabanı yazılan kayıtlarla dolar, elenen içerik düşüp kaybolur; kayıtlar rotalarına göre turuncu (mevzuat) ya da lacivert (teknoloji) renklenip kendi yayıncısına gider ve bültenler zarf olarak ekibe ulaşır. Tur sekmesi hattı baştan sona oynatır: Toplayıcı ajan kaynak sayfaları gezer, içeriği okur, kurum üslubunda özetler, şirket, ekosistem ve çalışma alanı etiketlerini seçer, 0,40 eşiğiyle alaka puanı verir ve kaydı ortak veritabanına yazar. Veritabanı panelinde kayıtlar süzülüp açılabilir. Ardından hat ikiye ayrılır: Teknoloji bülteni yayıncısı izlenen beş şirketin haberlerini, mevzuat bülteni yayıncısı düzenleyici gelişmeleri süzer ve iki bülten e-postayla ekibe gider. Tur duraklatılabilir, hızlandırılabilir ve bölümler arasında atlanabilir. Bülten sekmesi iki bültenin örneğini, Üslup sekmesi yazım kılavuzunu, Kurallar sekmesi ajanın uyduğu kuralları gösterir. Kayıtlar temsilîdir.
 
-![Mevzuat İzleme penceresi: Üstte 107 kaynaktan toplayıcı ajana, ortak veritabanına ve iki yayıncı ajana giden mor akış şeması; altta bölüm düğmeleri (Kaynaklar, Topla ve yaz, Veritabanı, Yayıncılar, E-posta), solda ajanın değerlendirdiği bir haber ve ALINMADI kararı, sağda şirket ve ekosistem etiketli kayıtların durduğu ortak veritabanı.](https://onurmigirdagi.github.io/machine/shots/mevzuat.jpg)
+![Mevzuat İzleme penceresi: Üstte 107 kaynaktan toplayıcı ajana, ortak veritabanına ve iki yayıncı ajana giden turuncu ve lacivert akış şeması; altta bölüm düğmeleri (Kaynaklar, Topla ve yaz, Veritabanı, Yayıncılar, E-posta), solda ajanın değerlendirdiği bir haber ve ALINMADI kararı, sağda şirket ve ekosistem etiketli kayıtların durduğu ortak veritabanı.](https://onurmigirdagi.github.io/machine/shots/mevzuat.jpg)
 
 Etiketler: Python, Yapay zekâ ajanları, Supabase, Microsoft Graph
 
@@ -313,9 +317,13 @@ Every hour a collector agent scans the sources, summarises each item from its bo
 
 In the run above the records are illustrative, written to show the flow; the five companies, the tags and the filters are the system's.
 
-I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly. Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.
+I built the same workflow a second time on Microsoft Power Automate so the two could be compared properly.
 
-Separately I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison.
+Querying 107 sources: Power Automate: Outside the license, Agent pipeline: Within the existing subscription. AI analysis of the results: Power Automate: Outside the license, Agent pipeline: Within the existing subscription. Additional infrastructure cost: Power Automate: -, Agent pipeline: None. Outcome: Power Automate: Built for the comparison, Agent pipeline: Chosen, running in production.
+
+Querying that many sources and then running AI analysis over the results fell outside what the firm's license covered, so the agent build won: it runs inside existing subscription capacity with no additional infrastructure cost.
+
+Also during the internship: I designed the evaluation methodology used on AI output there: a weighted accuracy benchmark for AI assisted contract review, and a Turkish to English translation quality comparison.
 
 **Built with**
 
@@ -326,9 +334,9 @@ Separately I designed the evaluation methodology used on AI output there: a weig
 - Benchmarked against Power Automate
 - Company, ecosystem and practice area tagging
 
-**The interactive demo on the page:** The top of the window holds a flow drawing adapted from the project's slide deck: sources, the collector agent, the shared database and two publisher agents. The Run tab replays the pipeline end to end: the collector visits source pages, reads the content, summarises it in the house style, picks company, ecosystem and practice area tags, scores relevance against a 0.40 threshold and writes the record to the shared database. Records in the database panel can be filtered and opened. Then the line splits: the technology bulletin publisher filters news about the five watched companies, the legislation bulletin publisher filters regulatory developments, and both bulletins go to the team by email. The run can be paused, sped up and skipped between chapters. The Bulletins tab shows a sample of each bulletin, the Style tab the writing guide, and the Rules tab the rules the agent follows. The records are illustrative.
+**The interactive demo on the page:** The top of the window holds a flow drawing adapted from the project's slide deck: sources, the collector agent, the shared database and two publisher agents. The drawing runs like a live line: source dots flash as raw items stream into the collector, the database drum fills as records are written, dropped items fall away, records turn orange (legislation) or navy (technology) and run to their publisher, and the bulletins reach the team as envelopes. The Run tab replays the pipeline end to end: the collector visits source pages, reads the content, summarises it in the house style, picks company, ecosystem and practice area tags, scores relevance against a 0.40 threshold and writes the record to the shared database. Records in the database panel can be filtered and opened. Then the line splits: the technology bulletin publisher filters news about the five watched companies, the legislation bulletin publisher filters regulatory developments, and both bulletins go to the team by email. The run can be paused, sped up and skipped between chapters. The Bulletins tab shows a sample of each bulletin, the Style tab the writing guide, and the Rules tab the rules the agent follows. The records are illustrative.
 
-![The Mevzuat İzleme window: a purple flow from 107 sources to the collector agent, the shared database and two publisher agents; chapter buttons below it; on the left a news item the agent has judged and dropped, on the right the shared database with records tagged by company and ecosystem.](https://onurmigirdagi.github.io/machine/shots/mevzuat.jpg)
+![The Mevzuat İzleme window: an orange and navy flow from 107 sources to the collector agent, the shared database and two publisher agents; chapter buttons below it; on the left a news item the agent has judged and dropped, on the right the shared database with records tagged by company and ecosystem.](https://onurmigirdagi.github.io/machine/shots/mevzuat.jpg)
 
 Tags: Python, AI agents, Supabase, Microsoft Graph
 
