@@ -1093,7 +1093,7 @@ body.mob .st-side,body.phone .st-side{border-radius:11px 0 0 0;}
 #bh.fade{background:var(--deck); transition:background .45s ease;}
 /* ============ games ============ */
 .win .body:has(.ms),.win .body:has(.so){user-select:none;}
-.ms{display:flex; flex-direction:column; align-items:center; gap:8px; padding:10px 10px 12px; min-height:100%; background:var(--panel2); font-family:var(--mono);}
+.ms{--ms-veil:color-mix(in srgb, var(--panel) 80%, transparent); display:flex; flex-direction:column; align-items:center; gap:8px; padding:10px 10px 12px; min-height:100%; background:var(--panel2); font-family:var(--mono);}
 .ms-bar{display:flex; gap:4px; flex-wrap:wrap; justify-content:center;}
 .ms-bar button{font-size:10.5px; padding:4px 9px; border-radius:6px; border:1px solid var(--line2); color:var(--dim); background:var(--panel); letter-spacing:.04em;}
 .ms-bar button.on{color:var(--sig-ink); border-color:rgba(255,154,60,.6); background:var(--sig-soft);}
@@ -1118,7 +1118,7 @@ body.mob .st-side,body.phone .st-side{border-radius:11px 0 0 0;}
   transition:transform .12s ease, filter .12s ease;}
 .ms-c:hover:not(.o),.ms-c.peek{filter:brightness(1.3) saturate(1.1); transform:translateY(-1px);}
 .ms-c:active:not(.o){transform:scale(.94);}
-.ms-c.o{background:var(--panel); box-shadow:inset 0 0 0 1px var(--line); cursor:default; transform:none; filter:none; animation:msopen .32s cubic-bezier(.2,.9,.3,1.3) backwards;}
+.ms-c.o{background-color:#1B2240; background-image:linear-gradient(var(--ms-veil), var(--ms-veil)), var(--ms-art); background-size:var(--gw) var(--gh); box-shadow:inset 0 0 0 1px var(--line); cursor:default; transform:none; filter:none; animation:msopen .32s cubic-bezier(.2,.9,.3,1.3) backwards;}
 @keyframes msopen{from{transform:scale(.3) rotate(-25deg); opacity:0; background:#FFE2B0;}}
 .ms-c.f::after{content:"\2726"; color:#FFE9C6; font-size:calc(var(--c)*.64); text-shadow:0 0 4px #FF9A3C, 0 0 10px rgba(255,154,60,.9); animation:msstar .35s cubic-bezier(.2,.9,.3,1.5) backwards;}
 @keyframes msstar{from{transform:scale(0) rotate(-90deg);}}
@@ -1141,6 +1141,40 @@ html[data-theme=night] .ms-c.n1{color:#8FA3F0;} html[data-theme=night] .ms-c.n2{
 .ms-msg{font-size:11px; color:var(--dim); text-align:center; min-height:16px; font-family:var(--ui);}
 .ms-msg b{color:var(--sig-ink);}
 
+.wd{display:flex; flex-direction:column; align-items:center; gap:10px; padding:10px 12px 14px; min-height:100%; background:var(--panel2); font-family:var(--mono); --t:52px;}
+.wd-bar{align-self:stretch; display:flex; align-items:center; gap:8px; font-size:10.5px; color:var(--dim);}
+.wd-bar button{font-size:10.5px; padding:4px 9px; border-radius:6px; border:1px solid var(--line2); color:var(--dim); background:var(--panel); letter-spacing:.04em;}
+.wd-bar button:hover{color:var(--txt);}
+.wd-st{margin-left:auto; font-variant-numeric:tabular-nums; white-space:nowrap;}
+.wd-msg{min-height:30px; max-width:420px; font-size:11px; line-height:1.45; color:var(--dim); text-align:center; font-family:var(--ui);}
+.wd-msg b{color:var(--sig-ink);}
+.wd-msg.pop{animation:wdpop .3s ease;}
+@keyframes wdpop{from{transform:scale(.92); opacity:.3;}}
+.wd-grid{display:grid; gap:6px;}
+.wd-row{display:grid; grid-template-columns:repeat(5, var(--t)); gap:6px;}
+.wd-row.shake{animation:wdshake .4s ease;}
+@keyframes wdshake{20%,60%{transform:translateX(-5px);} 40%,80%{transform:translateX(5px);}}
+.wd-t{width:var(--t); height:var(--t); display:grid; place-items:center; border-radius:6px; border:1.5px solid var(--line2); background:var(--panel);
+  font-size:calc(var(--t)*.5); font-weight:600; color:var(--txt); text-transform:none; transition:border-color .15s ease;}
+.wd-t.in{border-color:var(--dim); animation:wdin .12s ease;}
+@keyframes wdin{50%{transform:scale(1.08);}}
+.wd-t.flip{animation:wdflip .52s ease both;}
+@keyframes wdflip{0%{transform:rotateX(0);} 50%{transform:rotateX(90deg); background:var(--panel); color:var(--txt); border-color:var(--dim);} 100%{transform:rotateX(0);}}
+.wd-t.g{background:#F0800C; border-color:#F0800C; color:#fff;}
+.wd-t.y{background:#1B2240 var(--wd-art) no-repeat; background-size:420% 420%; border-color:#2E3E86; color:#FFE9C6; text-shadow:0 1px 3px rgba(8,10,30,.9);}
+.wd-t.x{background:var(--line2); border-color:var(--line2); color:var(--dim);}
+.wd-t.hop{animation:wdhop .5s ease both;}
+@keyframes wdhop{40%{transform:translateY(-12px);} 70%{transform:translateY(2px);}}
+.wd-kb{display:flex; flex-direction:column; gap:6px; align-items:center; margin-top:auto; width:100%; max-width:560px;}
+.wd-kr{display:flex; gap:5px; justify-content:center; width:100%;}
+.wd-k{flex:1 1 0; max-width:42px; height:44px; border-radius:6px; background:var(--panel); border:1px solid var(--line2); color:var(--txt); font-family:var(--mono); font-size:13px; font-weight:600;
+  transition:background .2s ease, color .2s ease;}
+.wd-k.wide{max-width:66px; flex:1.5 1 0; font-size:10.5px; letter-spacing:.04em;}
+.wd-k:hover{border-color:rgba(255,154,60,.6);}
+.wd-k:active{transform:scale(.95);}
+.wd-k.g{background:#F0800C; border-color:#F0800C; color:#fff;}
+.wd-k.y{background:#2E3E86; border-color:#2E3E86; color:#FFE9C6;}
+.wd-k.x{background:var(--line); color:var(--faint);}
 .so{display:flex; flex-direction:column; height:100%; min-height:420px;}
 .so-bar{flex:none; display:flex; align-items:center; gap:6px; padding:6px 10px; background:var(--panel2); border-bottom:1px solid var(--line); font-family:var(--mono); font-size:10.5px; color:var(--dim); flex-wrap:wrap;}
 .so-bar button{padding:4px 9px; border-radius:6px; border:1px solid var(--line2); background:var(--panel); color:var(--dim); letter-spacing:.04em;}
@@ -1531,11 +1565,11 @@ document.documentElement.setAttribute("data-theme", "day");
 <p>Portföy, tarayıcıda çalışan bir masaüstü işletim sistemi gibi tasarlandı. Kısa bir açılış ekranından sonra açık gri, ince ızgaralı bir masaüstü gelir; vurgu rengi turuncudur, yazılarda Archivo ve JetBrains Mono yazı tipleri kullanılır.</p>
 <p>Masaüstünün ortasında üzerinde "Projeler" yazan, halkalı bir gezegen durur. Beş proje simgesi (Karınca, İş Takip, Mevzuat İzleme, Raporlama, SMS Aktarıcı) bu gezegenin çevresindeki yörüngede yavaşça döner. Sağda yedi yıldızdan oluşan bir takımyıldız vardır; yıldızların bir kısmı kişisel dosyaları açar: Araçlar, Tek Sayfa.txt ve İletişim. Gezegene tıklamak BENİOKU dosyasını açar.</p>
 <p>Bir simgeye tıklanınca içerik bir pencerede açılır. Pencereler sürüklenir, ekran kenarına yaslanır, küçültülür ve kapatılır; simgeler yörüngeden çekilip bırakılabilir. Masaüstüne sağ tıklamak bir sistem menüsü açar, ⌘K bütün içerikte arama yapar. Sağ üstte Türkçe ve İngilizce arasında geçiş ile bir gece modu düğmesi vardır. Gece modunda masaüstü, Yale Parlak Yıldız Kataloğu ve Hipparcos verileriyle çizilmiş gerçek takımyıldızların olduğu lacivert bir gökyüzüne dönüşür; ortadaki gezegen Güneş, proje simgeleri de onun çevresinde dönen gezegenler olur. Üstte adın hemen yanında LinkedIn bağlantısı durur; alt çubukta açık pencereler yer alır.</p>
-<p>Alt çubuğun solundaki, turuncu fırça darbeleriyle girdap gibi boyanmış yuvarlak Başlat düğmesi, eski Windows'u andıran bir Başlat menüsü açar. Menünün solunda, Van Gogh'un Yıldızlı Gece'sini andıran, lacivert üzerine turuncu fırça darbeleriyle boyanmış dar bir şerit vardır; listede Projeler, Belgeler ve Oyunlar alt menüleri, Araçlar, İletişim, gece modu ve dil seçimi bulunur. En altta bir arama kutusu ve Kapat düğmesi vardır. Oyunlar menüsünde sayfa için sıfırdan yazılmış Mayın Tarlası (kapalı kareler, Van Gogh tarzı boyanmış bir tablonun parçalarından oluşan karolardır; açılan kare küçük bir dönüşle sade zemine döner ve açılış tıklanan yerden dışa doğru yayılır; mayınlar küçük kara delikler, bayraklar turuncu yıldızlardır; üç zorluk ve en iyi süre) ve Solitaire (Klondike; kartların önü sade, arkasının tamamı mayın tarlasındaki gibi Van Gogh tarzı boyanmış bir tabloyla kaplı; bir ya da üç kart çekiş, sürükle bırak, geri alma ve kazanınca zıplayan kartlar) açılır. Kapat düğmesine basılınca Projeler gezegeninin yerinde bir kara delik açılır: Parlayan bir birikim diski dönerken pencereler, simgeler ve çubuklar kıvrılarak içine çekilir, ekran kararır, kara delik bir ışık halkasıyla kapanır ve açılış ekranı yeniden gelir.</p>
+<p>Alt çubuğun solundaki, turuncu fırça darbeleriyle girdap gibi boyanmış yuvarlak Başlat düğmesi, eski Windows'u andıran bir Başlat menüsü açar. Menünün solunda, Van Gogh'un Yıldızlı Gece'sini andıran, lacivert üzerine turuncu fırça darbeleriyle boyanmış dar bir şerit vardır; listede Projeler, Belgeler ve Oyunlar alt menüleri, Araçlar, İletişim, gece modu ve dil seçimi bulunur. En altta bir arama kutusu ve Kapat düğmesi vardır. Oyunlar menüsünde sayfa için sıfırdan yazılmış Mayın Tarlası (kapalı kareler, Van Gogh tarzı boyanmış bir tablonun parçalarından oluşan karolardır; açılan kare küçük bir dönüşle yarı saydam bir zemine döner ve tablo altından hafifçe görünür, açılış tıklanan yerden dışa doğru yayılır; mayınlar küçük kara delikler, bayraklar turuncu yıldızlardır; üç zorluk ve en iyi süre) ve Solitaire (Klondike; kartların önü sade, arkasının tamamı mayın tarlasındaki gibi Van Gogh tarzı boyanmış bir tabloyla kaplı; bir ya da üç kart çekiş, sürükle bırak, geri alma ve kazanınca zıplayan kartlar) ve Wordle (beş harfli kelimeyi altı denemede bulma; Türkçe sürümde Türkçe kelimeler ve Ğ, Ü, Ş, İ, Ö, Ç tuşlu klavye, İngilizce sürümde İngilizce kelimeler; doğru yerdeki harf turuncu, kelimede olup başka yerdeki harf boyalı bir kareyle gösterilir) açılır. Kapat düğmesine basılınca Projeler gezegeninin yerinde bir kara delik açılır: Parlayan bir birikim diski dönerken pencereler, simgeler ve çubuklar kıvrılarak içine çekilir, ekran kararır, kara delik bir ışık halkasıyla kapanır ve açılış ekranı yeniden gelir.</p>
 <p>Proje pencerelerinin çoğunda, projenin nasıl çalıştığını canlı gösteren etkileşimli bir demo vardır. Demolar aşağıda her projenin altında anlatılmıştır.</p>
 <p><a href="shots/masaustu.jpg">Ekran görüntüsü</a>: Gündüz masaüstü: açık gri ızgaralı zemin, ortada Projeler yazan turuncu halkalı beyaz gezegen, çevresindeki kesik çizgili yörüngede beş proje simgesi; sağda Tek Sayfa.txt, Araçlar ve İletişim simgelerini birleştiren takımyıldız; üstte ad, TR/EN, ⌘K ve GECE düğmesi, üstte adın yanında LinkedIn, altta yuvarlak Başlat düğmesi.</p>
 <p><a href="shots/gece.jpg">Ekran görüntüsü</a>: Gece modu: lacivert gökyüzü ve bulutsular, ince çizgilerle bağlanmış gerçek takımyıldızlar, ortada parlayan Güneş ve yörüngesinde gezegenlere dönüşmüş proje simgeleri; sol altta YALE BSC5 · HIPPARCOS yazısı.</p>
-<p><a href="shots/baslat.jpg">Ekran görüntüsü</a>: Başlat menüsü: Sol altta açık menü, solunda Yıldızlı Gece'yi andıran boyalı şerit; Projeler, Belgeler ve Oyunlar alt menüleri (Oyunlar açık: Mayın Tarlası ve Solitaire), Araçlar, İletişim, Gece gökyüzü, English; en altta arama kutusu ve Kapat düğmesi. Arkada Solitaire penceresi: masaüstündeki gibi ince ızgaralı açık zemin, sade kartlar, turuncu ve siyah takımlar, kapalı kartların arkası baştan sona boyalı bir tabloyla kaplı.</p>
+<p><a href="shots/baslat.jpg">Ekran görüntüsü</a>: Başlat menüsü: Sol altta açık menü, solunda Yıldızlı Gece'yi andıran boyalı şerit; Projeler, Belgeler ve Oyunlar alt menüleri (Oyunlar açık: Mayın Tarlası, Solitaire ve Wordle), Araçlar, İletişim, Gece gökyüzü, English; en altta arama kutusu ve Kapat düğmesi. Arkada Solitaire penceresi: masaüstündeki gibi ince ızgaralı açık zemin, sade kartlar, turuncu ve siyah takımlar, kapalı kartların arkası baştan sona boyalı bir tabloyla kaplı.</p>
 <p><a href="shots/telefon.jpg">Ekran görüntüsü</a>: Telefon görünümü: aynı gezegen ve yörünge dikey ekrana sığdırılmış, altında takımyıldız ve Hakkımda yazısı; üstte ad ve dil seçimi, üstte adın yanında LinkedIn, altta yuvarlak Başlat düğmesi.</p>
 <h2>Projeler</h2>
 <article id="tr-karinca">
@@ -1674,11 +1708,11 @@ document.documentElement.setAttribute("data-theme", "day");
 <p>The portfolio is designed as a desktop operating system that runs in the browser. After a short boot screen comes a light grey desktop with a fine grid; the accent colour is orange, and the type is set in Archivo and JetBrains Mono.</p>
 <p>In the middle of the desktop sits a ringed planet labelled "Projects". Five project icons (Karınca, İş Takip, Mevzuat İzleme, Reporting, SMS Relay) circle it slowly in orbit. On the right is a constellation of seven stars; some of the stars open personal files: Tools, One Page.txt and Contact. Clicking the planet opens the README.</p>
 <p>Clicking an icon opens its content in a window. Windows can be dragged, snapped to the screen edge, minimised and closed; icons can be pulled out of orbit and let go. Right clicking the desktop opens a system menu, and ⌘K searches everything. At the top right there is a Turkish and English switch and a night mode button. In night mode the desktop becomes a deep blue sky with real constellations drawn from the Yale Bright Star Catalogue and Hipparcos data; the planet in the middle becomes the Sun and the project icons become planets circling it. Right next to the name at the top are a LinkedIn link; the bottom bar holds the open windows.</p>
-<p>The round start button at the left of the bottom bar, painted as a small orange whirl of brush strokes, opens a start menu in the spirit of old Windows. Down its left side runs a narrow band painted in orange brush strokes on night blue, after Van Gogh's The Starry Night; the list has Projects, Documents and Games submenus, Tools, Contact, night mode and language, with a search box and a Shut down button at the bottom. The Games menu opens Minesweeper (the closed squares are tiles cut from one painting in Van Gogh's manner; an opened square turns into a plain one with a small spin, and the opening spreads outward from the click; the mines are little black holes and the flags orange stars; three levels and a best time) and Solitaire (Klondike; plain card faces, and the whole back of each card is covered by a painting in Van Gogh's manner like the minesweeper board; turn one or three, drag and drop, undo, and bouncing cards when you win), both written from scratch for the page. On Shut down a black hole opens where the Projects planet is: a glowing accretion disk spins while the windows, icons and bars curl into it, the screen goes dark, the hole closes with a ring of light, and the boot screen comes back.</p>
+<p>The round start button at the left of the bottom bar, painted as a small orange whirl of brush strokes, opens a start menu in the spirit of old Windows. Down its left side runs a narrow band painted in orange brush strokes on night blue, after Van Gogh's The Starry Night; the list has Projects, Documents and Games submenus, Tools, Contact, night mode and language, with a search box and a Shut down button at the bottom. The Games menu opens Minesweeper (the closed squares are tiles cut from one painting in Van Gogh's manner; an opened square turns with a small spin into a translucent one that lets the painting show faintly through, and the opening spreads outward from the click; the mines are little black holes and the flags orange stars; three levels and a best time) and Solitaire (Klondike; plain card faces, and the whole back of each card is covered by a painting in Van Gogh's manner like the minesweeper board; turn one or three, drag and drop, undo, and bouncing cards when you win) and Wordle (find the five-letter word in six tries; Turkish words and a Turkish keyboard in the Turkish edition, English words in the English one; a letter in the right place turns orange, one that is elsewhere in the word turns into a painted square), all three written from scratch for the page. On Shut down a black hole opens where the Projects planet is: a glowing accretion disk spins while the windows, icons and bars curl into it, the screen goes dark, the hole closes with a ring of light, and the boot screen comes back.</p>
 <p>Most project windows include an interactive demo that shows the project working. The demos are described below, under each project.</p>
 <p><a href="shots/masaustu.jpg">Screenshot</a>: The desktop by day: light grey grid, a white planet with an orange ring labelled Projeler in the middle, five project icons on the dotted orbit around it; on the right a constellation joining One Page, Tools and Contact; name, TR/EN, ⌘K and the night button at the top, LinkedIn next to the name, the round start button at the bottom.</p>
 <p><a href="shots/gece.jpg">Screenshot</a>: Night mode: a deep blue sky with nebulae, real constellations joined by thin lines, a glowing Sun in the middle and the project icons turned into planets on its orbit; YALE BSC5 · HIPPARCOS in the lower left.</p>
-<p><a href="shots/baslat.jpg">Screenshot</a>: The start menu: open at the lower left, a band painted after The Starry Night down its left side; Projects, Documents and Games submenus (Games open: Minesweeper and Solitaire), Tools, Contact, Night sky, Türkçe; a search box and a Shut down button at the bottom. Behind it the Solitaire window: a light fine grid like the desktop, plain card faces, orange and black suits, and card backs fully covered by a painting.</p>
+<p><a href="shots/baslat.jpg">Screenshot</a>: The start menu: open at the lower left, a band painted after The Starry Night down its left side; Projects, Documents and Games submenus (Games open: Minesweeper, Solitaire and Wordle), Tools, Contact, Night sky, Türkçe; a search box and a Shut down button at the bottom. Behind it the Solitaire window: a light fine grid like the desktop, plain card faces, orange and black suits, and card backs fully covered by a painting.</p>
 <p><a href="shots/telefon.jpg">Screenshot</a>: On a phone: the same planet and orbit fitted to a tall screen, the constellation and an About label below it; name and language switch at the top, LinkedIn next to the name, the round start button at the bottom.</p>
 <h2>Projects</h2>
 <article id="en-karinca">
@@ -1907,7 +1941,8 @@ document.documentElement.setAttribute("data-theme", "day");
     plain:'<svg viewBox="-16 -16 32 32"><path class="g" d="M-9 -12 H4 L9 -7 V12 H-9 Z M4 -12 V-7 H9"/><path class="g" d="M-5 -1 H5 M-5 4 H5"/></svg>',
     contact:'<svg viewBox="-16 -16 32 32"><circle class="g" cx="0" cy="-4" r="4.6"/><path class="g" d="M-8.5 11 C-8.5 4.8, 8.5 4.8, 8.5 11"/></svg>',
     mines:'<svg viewBox="-16 -16 32 32"><path class="g" d="M0 -12 V12 M-12 0 H12 M-8.5 -8.5 L8.5 8.5 M-8.5 8.5 L8.5 -8.5"/><circle class="gf" r="6.8"/><circle cx="-2.3" cy="-2.3" r="1.7" fill="#fff"/></svg>',
-    solitaire:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-11" y="-10" width="13" height="18" rx="2" transform="rotate(-12)"/><rect class="g" x="-1" y="-9" width="13" height="18" rx="2" transform="rotate(10)" fill="#fff"/><path class="gf" d="M5.5 3.5 C1.5 0.5 2 -3.5 4.6 -3.3 C5.4 -3.2 5.6 -2.6 5.8 -2.1 C6.2 -2.8 6.8 -3.2 7.6 -3 C10 -2.4 9.5 0.9 5.5 3.5 Z"/></svg>'
+    solitaire:'<svg viewBox="-16 -16 32 32"><rect class="g" x="-11" y="-10" width="13" height="18" rx="2" transform="rotate(-12)"/><rect class="g" x="-1" y="-9" width="13" height="18" rx="2" transform="rotate(10)" fill="#fff"/><path class="gf" d="M5.5 3.5 C1.5 0.5 2 -3.5 4.6 -3.3 C5.4 -3.2 5.6 -2.6 5.8 -2.1 C6.2 -2.8 6.8 -3.2 7.6 -3 C10 -2.4 9.5 0.9 5.5 3.5 Z"/></svg>',
+    wordle:'<svg viewBox="-16 -16 32 32"><rect class="gf" x="-12" y="-12" width="7" height="7" rx="1.5"/><rect class="g" x="-3.5" y="-12" width="7" height="7" rx="1.5"/><rect class="g" x="5" y="-12" width="7" height="7" rx="1.5"/><rect class="g" x="-12" y="-3.5" width="7" height="7" rx="1.5"/><rect class="gf" x="-3.5" y="-3.5" width="7" height="7" rx="1.5"/><rect class="g" x="5" y="-3.5" width="7" height="7" rx="1.5"/><rect class="g" x="-12" y="5" width="7" height="7" rx="1.5"/><rect class="g" x="-3.5" y="5" width="7" height="7" rx="1.5"/><rect class="gf" x="5" y="5" width="7" height="7" rx="1.5"/></svg>'
   };
 
   /* ---------- language ----------
@@ -4192,19 +4227,34 @@ document.documentElement.setAttribute("data-theme", "day");
         set(o, { x:Math.min(o.x, Math.max(0, bounds().w - bw)), y:Math.min(o.y, Math.max(0, bounds().h - bh)), w:Math.max(300, bw), h:bh }); save();
       });
     }
+    /* the squares keep their level's size in a snug window and grow with a larger or maximised one;
+       the painting is stretched with them, so every square still shows its own piece of it */
+    var cs = 0, body = root.closest(".body") || root.parentNode;
+    function setCell(c){
+      if(c === cs) return; cs = c; var step = c + MS_GAP;
+      grid.style.setProperty("--c", c+"px"); grid.style.setProperty("--gw", (C*c + (C - 1)*MS_GAP)+"px"); grid.style.setProperty("--gh", (R*c + (R - 1)*MS_GAP)+"px");
+      for(var i = 0; i < cells.length; i++) cells[i].style.backgroundPosition = "-"+(i % C)*step+"px -"+Math.floor(i/C)*step+"px";
+    }
+    function grow(){
+      if(!cells) return;
+      root.style.minHeight = "0"; var other = root.offsetHeight - grid.offsetHeight; root.style.minHeight = "";
+      var aw = body.clientWidth - 20 - 18 - 6 - 4, ah = body.clientHeight - other - 6 - 4;
+      var c = Math.floor(Math.min((aw - (C - 1)*MS_GAP)/C, (ah - (R - 1)*MS_GAP)/R));
+      setCell(Math.max(MS_LV[lv][3], Math.min(64, c)));
+    }
+    if(window.ResizeObserver) new ResizeObserver(function(){ requestAnimationFrame(grow); }).observe(body);
     function reset(){
       stopT(); var d = MS_LV[lv]; C = d[0]; R = d[1]; M = d[2];
       mine = []; opn = []; flg = []; first = true; over = false; openCount = 0;
       root.querySelectorAll(".ms-bar [data-lv]").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-lv") === lv); });
       grid.style.setProperty("--c", d[3]+"px"); grid.style.gridTemplateColumns = "repeat("+C+", var(--c))";
-      var h = "", step = d[3] + MS_GAP;
-      for(var i = 0; i < C*R; i++) h += '<div class="ms-c" data-i="'+i+'" style="background-position:-'+(i % C)*step+'px -'+Math.floor(i/C)*step+'px"></div>';
-      grid.innerHTML = h; cells = grid.children;
+      var h = "";
+      for(var i = 0; i < C*R; i++) h += '<div class="ms-c" data-i="'+i+'"></div>';
+      grid.innerHTML = h; cells = grid.children; cs = 0; setCell(d[3]);
       setFace(""); leftEl.textContent = pad(M); timeEl.textContent = "000"; hintMsg();
-      var gw = C*d[3] + (C - 1)*MS_GAP, gh = R*d[3] + (R - 1)*MS_GAP;
-      grid.style.setProperty("--ms-art", "url("+msPaint(gw, gh)+")"); grid.style.setProperty("--gw", gw+"px"); grid.style.setProperty("--gh", gh+"px");
+      grid.style.setProperty("--ms-art", "url("+msPaint(C*d[3] + (C - 1)*MS_GAP, R*d[3] + (R - 1)*MS_GAP)+")");
       grid.className = "ms-grid";
-      requestAnimationFrame(fit);
+      requestAnimationFrame(function(){ fit(); grow(); });
     }
     /* the first click is always safe: the mines are laid after it, away from it */
     function lay(safe){
@@ -4283,6 +4333,111 @@ document.documentElement.setAttribute("data-theme", "day");
       try{ localStorage.setItem("ms_lv", lv); }catch(_){} reset();
     });
     reset();
+  }
+
+  /* Wordle: five letters, six tries; the Turkish window plays Turkish words with the Turkish keyboard */
+  var WD_T = {
+    tr:{ nw:"Yeni kelime", keys:["ERTYUIOPĞÜ","ASDFGHJKLŞİ","+ZCVBNMÖÇ-"], enter:"GİR", played:"Oynanan", won:"Kazanılan", streak:"Seri",
+         hint:"Beş harfli kelimeyi altı denemede bulun. Turuncu: harf doğru yerde. Boyalı: harf kelimede var ama başka yerde.",
+         short:"Kelime beş harfli olmalı.", win:["Dahice!","Harika!","Çok iyi!","Güzel!","İyi!","Son anda!"], lose:function(w){ return "Kelime <b>"+w+"</b> idi."; } },
+    en:{ nw:"New word", keys:["QWERTYUIOP","ASDFGHJKL","+ZXCVBNM-"], enter:"ENTER", played:"Played", won:"Won", streak:"Streak",
+         hint:"Find the five-letter word in six tries. Orange: the letter is in the right place. Painted: it is in the word, somewhere else.",
+         short:"The word needs five letters.", win:["Genius!","Magnificent!","Impressive!","Splendid!","Great!","Phew!"], lose:function(w){ return "The word was <b>"+w+"</b>."; } }
+  };
+  var WD_W = { tr:"kalem kitap deniz bulut güneş armut kiraz çiçek bahçe orman nehir ırmak sabah akşam yemek ekmek çorba limon kavun ceviz badem şeker kahve tabak kaşık çatal duvar tavan zemin şehir köprü sokak cadde kayık dümen gölge beyaz siyah yeşil altın gümüş bakır demir çelik kumaş pamuk düğme ceket çanta kemer yüzük kolye hafta silgi sayfa satır roman masal şarkı müzik davul gitar keman resim tablo fırça sahne perde balık köpek aslan horoz tavuk koyun tilki ördek yılan serçe martı yunus doğan fikir hayal sevgi huzur barış sabır cesur güzel büyük küçük hızlı yavaş sıcak soğuk tatlı temiz yaşlı mutlu üzgün sakin hafif kolay derin geniş alçak aydın bilgi bilim sanat tarih dünya evren kutup yolcu keşif kilit şifre ekran kablo robot motor lamba duman kömür fırın kazan tepsi sepet paket düğün davet komşu teyze kuzen torun bebek çocuk sınıf sınav karne tatil dalga burun yamaç çayır tarla hasat tohum fidan gövde çınar kavak söğüt yatak kilim dolap banyo sabun havlu salon saray sergi pazar çarşı ödeme kredi banka bozuk kuruş fiyat satış rapor sütun hücre rakam yüzde kesir üçgen daire çizgi nokta sıfır birim metre litre hacim kütle kemik beyin damar sinir nefes şurup hasta kulak dudak boyun bilek topuk göğüs karın yüzey".split(" "), en:"apple beach brain bread brick cable candy chair chart chess cloud coral crane dance delta dream eagle earth flame frost fruit ghost glass globe grape heart honey horse house image jelly juice knife lemon light magic maple metal money music night ocean olive orbit paint paper peach pearl piano pilot pixel plane plant point quilt radio river robot salad scale shell shore smile snake solar space spark spoon storm sugar table tiger toast tower train tulip vivid voice water whale wheel world yacht zebra stone stars swirl comet lunar north south field grass cedar birch flora fable story novel verse rhyme sound drums flute cello chord tempo color amber ivory azure cream lilac scarf jewel crown medal badge queen cards joker spade clubs solve logic graph query model agent token input index array stack queue cache debug patch merge build linux mouse click laser radar sonar nerve blood bones sleep awake happy brave quiet swift rapid sunny rainy windy snowy misty daily early later today".split(" ") };
+  function wdUp(s, L){ return L === "tr" ? s.toLocaleUpperCase("tr-TR") : s.toUpperCase(); }
+  function wdHtml(L){
+    var T = WD_T[L], rows = "", kb = "";
+    for(var r = 0; r < 6; r++){ rows += '<div class="wd-row">'; for(var c = 0; c < 5; c++) rows += '<span class="wd-t"></span>'; rows += '</div>'; }
+    T.keys.forEach(function(row){
+      kb += '<div class="wd-kr">' + row.split("").map(function(k){
+        return k === "+" ? '<button class="wd-k wide" data-k="Enter">'+T.enter+'</button>' : k === "-" ? '<button class="wd-k wide" data-k="Backspace" aria-label="sil">⌫</button>' : '<button class="wd-k" data-k="'+k+'">'+k+'</button>';
+      }).join("") + '</div>';
+    });
+    return '<div class="wd" data-demo="wd"><div class="wd-bar"><button class="wd-new">'+T.nw+'</button><span class="wd-st"></span></div>'
+      + '<div class="wd-msg"></div><div class="wd-grid">'+rows+'</div><div class="wd-kb">'+kb+'</div></div>';
+  }
+  function wdMount(root, L){
+    if(root._wd) return; root._wd = 1;
+    var T = WD_T[L], q = function(s){ return root.querySelector(s); };
+    var rowsEl = root.querySelectorAll(".wd-row"), msg = q(".wd-msg"), stEl = q(".wd-st"), keysEl = root.querySelectorAll(".wd-k");
+    var word, row, cur, over, busy, art = msPaint(260, 160);
+    root.style.setProperty("--wd-art", "url("+art+")");
+    function stats(){ try{ return JSON.parse(localStorage.getItem("wd_st_"+L) || "{}"); }catch(_){ return {}; } }
+    function paintStats(){ var s = stats(); stEl.textContent = T.played+" "+(s.p || 0)+" · "+T.won+" "+(s.w || 0)+" · "+T.streak+" "+(s.s || 0); }
+    function note(h, keep){ msg.innerHTML = h; msg.classList.remove("pop"); void msg.offsetWidth; msg.classList.add("pop"); }
+    function reset(){
+      var list = WD_W[L], last = ""; try{ last = localStorage.getItem("wd_last_"+L) || ""; }catch(_){}
+      do word = wdUp(list[Math.floor(Math.random()*list.length)], L); while(word === last && list.length > 1);
+      try{ localStorage.setItem("wd_last_"+L, word); }catch(_){}
+      row = 0; cur = ""; over = false; busy = false;
+      Array.prototype.forEach.call(root.querySelectorAll(".wd-t"), function(t){ t.className = "wd-t"; t.textContent = ""; t.style.animationDelay = ""; t.style.backgroundPosition = ""; });
+      Array.prototype.forEach.call(keysEl, function(k){ k.classList.remove("g","y","x"); });
+      msg.innerHTML = T.hint; msg.classList.remove("pop"); paintStats();
+    }
+    function draw(){
+      var ts = rowsEl[row].children;
+      for(var i = 0; i < 5; i++){ ts[i].textContent = cur[i] || ""; ts[i].classList.toggle("in", !!cur[i]); }
+    }
+    function score(g){
+      var res = ["x","x","x","x","x"], left = {};
+      for(var i = 0; i < 5; i++){ if(g[i] === word[i]) res[i] = "g"; else left[word[i]] = (left[word[i]] || 0) + 1; }
+      for(i = 0; i < 5; i++) if(res[i] !== "g" && left[g[i]]){ res[i] = "y"; left[g[i]]--; }
+      return res;
+    }
+    var RANK = { x:1, y:2, g:3 };
+    function keyMark(ch, r){
+      Array.prototype.forEach.call(keysEl, function(k){
+        if(k.getAttribute("data-k") !== ch) return;
+        var now = k.classList.contains("g") ? "g" : k.classList.contains("y") ? "y" : k.classList.contains("x") ? "x" : "";
+        if(!now || RANK[r] > RANK[now]){ k.classList.remove("g","y","x"); k.classList.add(r); }
+      });
+    }
+    function submit(){
+      var rEl = rowsEl[row];
+      if(cur.length < 5){ note(T.short); rEl.classList.remove("shake"); void rEl.offsetWidth; rEl.classList.add("shake"); return; }
+      var g = cur, res = score(g), ts = rEl.children; busy = true;
+      for(var i = 0; i < 5; i++){
+        ts[i].style.animationDelay = (i*260)+"ms";
+        ts[i].style.backgroundPosition = Math.round(Math.random()*100)+"% "+Math.round(Math.random()*100)+"%";
+        ts[i].classList.add("flip", res[i]);
+      }
+      setTimeout(function(){
+        for(var i = 0; i < 5; i++) keyMark(g[i], res[i]);
+        busy = false; var s = stats();
+        if(g === word){
+          over = true; s.p = (s.p || 0) + 1; s.w = (s.w || 0) + 1; s.s = (s.s || 0) + 1;
+          for(var j = 0; j < 5; j++){ ts[j].style.animationDelay = (j*90)+"ms"; ts[j].classList.add("hop"); }
+          note("<b>"+T.win[row]+"</b>");
+        } else if(row === 5){
+          over = true; s.p = (s.p || 0) + 1; s.s = 0; note(T.lose(word));
+        } else { row++; cur = ""; }
+        if(over){ try{ localStorage.setItem("wd_st_"+L, JSON.stringify(s)); }catch(_){} paintStats(); }
+      }, 4*260 + 520);
+    }
+    function key(k){
+      if(over || busy) return;
+      if(k === "Enter") return submit();
+      if(k === "Backspace"){ cur = cur.slice(0, -1); return draw(); }
+      if(cur.length < 5){ cur += k; draw(); }
+    }
+    q(".wd-kb").addEventListener("click", function(e){ var b = e.target.closest(".wd-k"); if(b){ key(b.getAttribute("data-k")); b.blur(); } });
+    q(".wd-new").addEventListener("click", function(e){ e.currentTarget.blur(); reset(); });
+    var OK = {}; T.keys.join("").split("").forEach(function(c){ if(c !== "+" && c !== "-") OK[c] = 1; });
+    addEventListener("keydown", function(e){
+      if(!root.isConnected || focused !== "wordle" || e.metaKey || e.ctrlKey || e.altKey) return;
+      var tg = e.target && e.target.tagName; if(tg === "INPUT" || tg === "TEXTAREA") return;
+      if(e.key === "Enter" || e.key === "Backspace"){ e.preventDefault(); return key(e.key); }
+      var ch = e.key.length === 1 ? wdUp(e.key, L) : ""; if(OK[ch]){ e.preventDefault(); key(ch); }
+    });
+    var body = root.closest(".body") || root.parentNode, gridEl = q(".wd-grid");
+    function size(){
+      root.style.minHeight = "0"; var other = root.offsetHeight - gridEl.offsetHeight; root.style.minHeight = "";
+      var t = Math.floor(Math.min((body.clientWidth - 24 - 24)/5, (body.clientHeight - other - 30)/6));
+      root.style.setProperty("--t", Math.max(34, Math.min(76, t))+"px");
+    }
+    if(window.ResizeObserver) new ResizeObserver(function(){ requestAnimationFrame(size); }).observe(body);
+    reset(); size();
   }
 
   /* Klondike: turn one or three, drag or click to move, undo, and the bouncing cards at the end */
@@ -4512,6 +4667,8 @@ document.documentElement.setAttribute("data-theme", "day");
     if(kr) krMount(kr, LANG);
     var ms = el.querySelector('[data-demo="ms"]');
     if(ms) msMount(ms, LANG);
+    var wdm = el.querySelector('[data-demo="wd"]');
+    if(wdm) wdMount(wdm, LANG);
     var so = el.querySelector('[data-demo="so"]');
     if(so) soMount(so, LANG);
   }
@@ -4648,12 +4805,13 @@ document.documentElement.setAttribute("data-theme", "day");
     o.contact = { t:(L==="tr" ? "İletişim" : "Contact"), w:420, h:260, html:contact(L) };
     o.mines = { t:(L==="tr" ? "Mayın Tarlası" : "Minesweeper"), w:320, h:430, html:msHtml(L) };
     o.solitaire = { t:"Solitaire", w:700, h:560, html:soHtml(L) };
+    o.wordle = { t:"Wordle", w:440, h:600, html:wdHtml(L) };
     return o;
   }
   var APPS_BY = { en:buildApps("en"), tr:buildApps("tr") };
   var APPS = APPS_BY[LANG];
 
-  var DESK = ["readme","karinca","istakip","pipeline","reporting","sms","tools","plain","contact","mines","solitaire"];
+  var DESK = ["readme","karinca","istakip","pipeline","reporting","sms","tools","plain","contact","mines","solitaire","wordle"];
   var ORB  = ["karinca","istakip","pipeline","reporting","sms","tools","plain","contact"];
   var RING = { karinca:0, istakip:0, pipeline:0, reporting:0, sms:0, tools:1, plain:1, contact:1 };
 
@@ -6297,7 +6455,7 @@ document.documentElement.setAttribute("data-theme", "day");
      the games and the settings, a search box that hands over to the palette,
      and Shut down, which ends in the black hole */
   var startEl = $("start"), startBtn = $("startbtn");
-  var ST_SUB = { projects:PORDER, docs:["readme","plain"], games:["mines","solitaire"] };
+  var ST_SUB = { projects:PORDER, docs:["readme","plain"], games:["mines","solitaire","wordle"] };
   var ST_LOGO = '<svg viewBox="-16 -16 32 32"><circle class="gf" r="5.6"/><ellipse class="g" rx="13.5" ry="5.2" transform="rotate(-17)"/></svg>';
   var ST_ICO = {
     projects:ST_LOGO,
