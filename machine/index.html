@@ -4715,8 +4715,9 @@ Querying that many sources and then running AI analysis over the results fell ou
       if(!root.isConnected || focused !== "wordle" || e.metaKey || e.ctrlKey || e.altKey) return;
       var tg = e.target && e.target.tagName; if(tg === "INPUT" || tg === "TEXTAREA") return;
       if(e.key === "Escape" && ov.classList.contains("on")){ e.stopImmediatePropagation(); ov.classList.remove("on"); return; }
-      if(e.key === "Enter" || e.key === "Backspace"){ e.preventDefault(); flash(e.key); return key(e.key); }
-      var ch = e.key.length === 1 ? wdUp(e.key, L) : ""; if(OK[ch]){ e.preventDefault(); flash(ch); key(ch); }
+      /* the letters belong to the game while it has focus: N must not switch the sky on */
+      if(e.key === "Enter" || e.key === "Backspace"){ e.preventDefault(); e.stopPropagation(); flash(e.key); return key(e.key); }
+      var ch = e.key.length === 1 ? wdUp(e.key, L) : ""; if(OK[ch]){ e.preventDefault(); e.stopPropagation(); flash(ch); key(ch); }
     }, true);
     var body = root.closest(".body") || root.parentNode, gridEl = q(".wd-grid");
     function size(){
