@@ -1,13 +1,14 @@
-# Arama motorlari: bu sitede hicbir sey dizine eklenmez.
-# Search engines: nothing on this site is to be indexed.
-User-agent: *
-Disallow: /
+# Bu sitede hicbir sey arama sonuclarinda cikmaz. Portfoy sayfasi "noindex"
+# etiketi tasir; arama motoru bu etiketi gorebilmek icin sayfayi cekebilmelidir,
+# bu yuzden /machine/ taramaya acik birakilmistir. Geri kalan her sey kapalidir.
+# Ayni acikilik, bir kisinin istegiyle sayfayi okuyan yapay zeka araclarinin da
+# portfoye erisebilmesini saglar.
+#
+# Nothing here appears in search results. The portfolio page carries a "noindex"
+# tag, and a crawler must be able to fetch the page to see that tag, so /machine/
+# is left open to crawling while everything else stays closed. The same openness
+# lets assistants fetching the page for a person read the portfolio.
 
-# Bir kisinin istegiyle sayfayi acan yapay zeka araclari portfoyu okuyabilir.
-# Assistants fetching a page because a person asked them to may read the portfolio.
-User-agent: ChatGPT-User
-User-agent: Claude-User
-User-agent: Perplexity-User
-User-agent: MistralAI-User
+User-agent: *
 Allow: /machine/
 Disallow: /
