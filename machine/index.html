@@ -7071,7 +7071,15 @@ Querying that many sources and then running AI analysis over the results fell ou
     if(!reduce) bloom();
     placeAll();
     restore();
+    deepLink();
   }
+  /* a link ending in #reporting (or any window id) opens that window, so a CV
+     or an email can point at one project instead of the whole desktop */
+  function deepLink(){
+    var id = decodeURIComponent((location.hash || "").replace(/^#/, "")).toLowerCase();
+    if(id && Object.prototype.hasOwnProperty.call(APPS, id)) launch(id);
+  }
+  addEventListener("hashchange", function(){ if(booted) deepLink(); });
   function bootLines(done){
     var fin = false, end = function(){ if(fin) return; fin = true; removeEventListener("keydown", end); bootEl.removeEventListener("pointerdown", end); done(); };
     ["b1","b2","b3","b4"].forEach(function(id,i){
