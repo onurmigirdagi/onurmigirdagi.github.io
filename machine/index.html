@@ -1666,30 +1666,6 @@ document.documentElement.setAttribute("data-theme", "day");
 <p><a href="shots/baslat.jpg">Ekran görüntüsü</a>: Başlat menüsü: Sol altta açık menü, solunda Yıldızlı Gece'yi andıran boyalı şerit; Projeler, Belgeler ve Oyunlar alt menüleri (Oyunlar açık: Mayın Tarlası, Solitaire ve Wordle), Araçlar, İletişim, Gece gökyüzü, English; en altta arama kutusu ve Kapat düğmesi. Arkada Solitaire penceresi: masaüstündeki gibi ince ızgaralı açık zemin, sade kartlar, turuncu ve siyah takımlar, kapalı kartların arkası baştan sona boyalı bir tabloyla kaplı.</p>
 <p><a href="shots/telefon.jpg">Ekran görüntüsü</a>: Telefon görünümü: aynı gezegen ve yörünge dikey ekrana sığdırılmış, altında takımyıldız ve Hakkımda yazısı; üstte ad ve dil seçimi, üstte adın yanında LinkedIn, altta yuvarlak Başlat düğmesi.</p>
 <h2>Projeler</h2>
-<article id="tr-karinca">
-<h3>Karınca</h3>
-<p><small>2025 ve 2026 · Android, yaklaşık 62.000 satır Kotlin · etkisi ölçüldü, kullanımda</small></p>
-<p><strong>YKS'ye hazırlanan öğrenciler için aralıklı tekrara dayalı bir Android ders çalışma uygulamasıdır. Kartlarda hazır soru yoktur; bir kart her açıldığında soruyu bir generator yeniden kurar. Aşağıdaki pencere, bu soru ekranının ve soruları öğrenciye ulaşmadan önce denetleyen kalite kapısının uygulamanın gerçek kurallarıyla çalışan hâlidir.</strong></p>
-<p>Uygulamayı Jetpack Compose üzerinde MVVM ve Clean Architecture ile geliştirdim. Bağımlılık yönetiminde Hilt, yerel veride Room, eşitlemede Supabase kullanılıyor. Tekrar motoru Anki'ye benziyor ama öğrenci kendini puanlamıyor; puanı cevabın doğruluğu ve süresi veriyor. Yanlış cevaplanan kart birkaç dakika içinde yeniden geliyor, doğru cevap ise bir kartı hiçbir zaman sıfırlamıyor.</p>
-<p>Sorular hiçbir yerde hazır durmuyor. Her kart yalnızca bir tarifin kimliğini taşıyor: Hangi kavramın, hangi soru kökleriyle ve hangi çeldirici havuzundan sorulacağını tarif eden bir Kotlin sınıfı. Aynı kart her gelişinde başka bir kökle, başka çeldiricilerle ve başka bir şık sırasıyla karşıya çıkıyor; öğrenci cevabı yerinden ezberleyemiyor. Bugün 273 generator dosyası var ve 2.006 kart öğrenciye açıktır. Biyolojide müfredattaki 91 kazanımın 85'i kapsanıyor.</p>
-<p>Bu kadar soruyu elle denetlemek mümkün değildi, bu yüzden bir kalite kapısı kurdum. Her kart kayda girmeden önce 120 kez üretiliyor ve her örnek kurallardan geçiyor: Doğru cevap hep en uzun ya da en kısa şık mı, "yalnızca" ya da "hiçbir" gibi sözcüklere bakan öğrenci konuyu bilmeden cevabı bulabiliyor mu, kart yeterince farklı soru çıkarıyor mu? Kurallar biçimi ölçer, anlamı ölçemez. Bu yüzden her dosyayı ayrıca Claude'a, bu iş için yazdığım bir skill ile okutuyorum. İkinci bir doğru cevap, bilgi hatası ya da anlamsız bir çeldirici bulgu olarak açılıyor ve kararı ben veriyorum. Kurallar, bulgular ve kararlar PySide6 ile yazdığım bir masaüstü aracında bir araya geliyor.</p>
-<p>Sorular işin kolay kısmıdır. Birinin uygulamayı ertesi gün yeniden açıp açmayacağını, soruların çevresindeki döngü belirliyor: XP, jeton, seviyeler, seriler, tema mağazası ve ücretli üyelik. Bugünkü oturum, geri dönmek için bir sebep bıraktı mı?</p>
-<p>60 fps ve WCAG 2.1 AA hedefleyen bir arayüz şartnamesi yazdım. Ardından kod tabanım için kapsamlı bir teknik denetim yaptırdım ve kendi kanaatimle değil, denetimin bulgularıyla ilerledim. Denetim 10 üzerinden 6,8 puan verdi ve test kapsamının zayıf olduğunu açıkça belirtti. Onu faydalı kılan da tam olarak bu dürüstlüktü.</p>
-<h4>Teknoloji</h4>
-<ul>
-<li>Kotlin, <b>Jetpack Compose</b>, Material3</li>
-<li>MVVM ve Clean Architecture, Hilt</li>
-<li>Yerelde Room, <b>Supabase</b> ile eşitleme</li>
-<li>273 generator dosyası, <b>2.006 kart</b></li>
-<li>120 örnekli <b>kalite kapısı</b>, yapay zekâ incelemesi</li>
-<li>Kendi isteğimle yaptırdığım <b>denetim</b>, 6,8/10</li>
-</ul>
-<h4>Sayfadaki etkileşimli demo</h4>
-<p>İki sekmesi vardır. Ders sekmesinde solda uygulamanın soru ekranı, uygulamanın kendi renkleriyle bir telefonun içinde durur: Çalışma Oturumu başlığı, kalan kart sayısı, soru kartı, beş şık ve Cevabı Göster düğmesi. Sorular sayfada, uygulamadaki bio_9121_b generator'ının içeriği ve kurallarıyla üretilir; kartta hazır bir soru yoktur, yalnızca bir tarifin kimliği vardır. Sağda kartın kimliği, sorunun hangi yönden kurulduğu (mineralden göreve, görevden minerale, ayrıntı, hangisi değildir) ve aynı karttan yeni bir soru üreten bir düğme bulunur. Cevap verilince doğru şık yeşile, yanlış seçilen kırmızıya döner ve çözüm açılır; aralıklı tekrar kutusu cevabı, süreyi, Tekrar, İyi ya da Kolay değerlendirmesini ve kartın ne zaman yeniden geleceğini gösterir. Puanı öğrenci değil, cevap ve süre verir. Ekonomi kutusu XP, seviye ve jetonu gösterir. Ziyaretçi soruları kendisi çözebilir; dokunmazsa demo kendi kendine oynar. Kalite kapısı sekmesinde aynı kart 120 kez üretilir ve her örnek uygulamanın kalite kurallarından geçer: doğru cevabın belirgin biçimde en uzun ya da en kısa şık olup olmadığı, mutlak sözcüklere bakarak tahmin edilip edilemediği, kaç farklı soru çıktığı ve yapı. Bozuk bir tarif (kısa ya da mutlak sözcüklü çeldiriciler) seçilince kapı kapanır. Ardından yapay zekâ incelemesi, editör kararı ve kayıt adımları anlatılır. XP, jeton ve seviye değerleri temsilîdir.</p>
-<p><a href="shots/karinca-ders.jpg">Ekran görüntüsü</a>: Karınca, Ders sekmesi: Telefonda uygulamanın soru ekranı; demir kartında görevden minerale kurulmuş bir soru yanlış cevaplanmış, seçilen şık kırmızı, doğru şık yeşil, altında çözüm. Sağda kartın kimliği bio_9121_b_demir, soru yönü, aralıklı tekrarda Tekrar değerlendirmesi ve 1 dakika sonra yeniden gelme, altta XP, seviye ve jeton.</p>
-<p><a href="shots/karinca-kalite.jpg">Ekran görüntüsü</a>: Karınca, Kalite kapısı sekmesi: Potasyum kartı 120 kez üretilmiş; UZUNLUK, KISALIK, MUTLAK, ÇEŞİTLİLİK ve YAPI kurallarının ölçümleri ve eşikleri, hepsi geçti; üstte generatordan kayda uzanan adımlar.</p>
-<p><small>Etiketler: Kotlin, Jetpack Compose, Supabase, Soru üretimi, Kalite kontrol</small></p>
-</article>
 <article id="tr-istakip">
 <h3>İş Takip Modülü</h3>
 <p><small>2026 · kişisel proje · BTS &amp; Partners · kullanımda</small></p>
@@ -1812,30 +1788,6 @@ Bu kadar çok kaynağı sorgulayıp sonuçları yapay zekâyla analiz etmek, şi
 <p><a href="shots/baslat.jpg">Screenshot</a>: The start menu: open at the lower left, a band painted after The Starry Night down its left side; Projects, Documents and Games submenus (Games open: Minesweeper, Solitaire and Wordle), Tools, Contact, Night sky, Türkçe; a search box and a Shut down button at the bottom. Behind it the Solitaire window: a light fine grid like the desktop, plain card faces, orange and black suits, and card backs fully covered by a painting.</p>
 <p><a href="shots/telefon.jpg">Screenshot</a>: On a phone: the same planet and orbit fitted to a tall screen, the constellation and an About label below it; name and language switch at the top, LinkedIn next to the name, the round start button at the bottom.</p>
 <h2>Projects</h2>
-<article id="en-karinca">
-<h3>Karınca</h3>
-<p><small>2025 to 2026 · Android, ~62,000 lines of Kotlin · measured, running</small></p>
-<p><strong>A spaced repetition study app for students preparing for YKS, the Turkish university entrance exam. No card holds a written question; every time a card comes up, a generator builds its question anew. The window below is the study screen, and the quality gate that checks the questions before they reach a student, running on the app's real rules.</strong></p>
-<p>Built on Jetpack Compose with MVVM and Clean Architecture, Hilt for injection, Room locally and Supabase for sync. The repetition engine is Anki like, but students do not grade themselves: the rating comes from whether the answer was right and how long it took. A card answered wrong comes back within minutes, and a right answer never resets a card.</p>
-<p>The questions are not stored anywhere. Each card carries only the id of a recipe: a Kotlin class describing which concept to ask, with which question stems and from which pool of distractors. Every time the same card comes back it has a different stem, different distractors and a different order, so the answer cannot be memorised by its position. There are 273 generator files today and 2,006 cards open to students; in biology 85 of the curriculum's 91 learning outcomes are covered.</p>
-<p>Checking that many questions by hand was not possible, so I built a quality gate. Before a card is registered it is generated 120 times and every sample goes through the rules: is the right answer always the longest or the shortest option, can a student who looks for words like "only" or "never" find it without knowing the topic, does the card produce enough different questions. Rules measure form, not meaning, so every file is also read by Claude with a skill I wrote for the job. A second right answer, a factual error or a meaningless distractor opens a finding, and I make the decision. Rules, findings and decisions come together in a desktop tool I wrote with PySide6.</p>
-<p>The questions are the easy part. What decides whether someone opens the app again tomorrow is the loop around them: XP, coins, levels, streaks, a theme shop and a paywall. Did today's session leave a reason to come back?</p>
-<p>I wrote a UI specification targeting 60fps and WCAG 2.1 AA, then commissioned a full technical audit of my own codebase and worked from its findings rather than from my own opinion of the code. It scored 6.8 out of 10 and was blunt about weak test coverage, which is exactly what made it useful.</p>
-<h4>Stack</h4>
-<ul>
-<li>Kotlin, <b>Jetpack Compose</b>, Material3</li>
-<li>MVVM and Clean Architecture, Hilt</li>
-<li>Room local, <b>Supabase</b> sync</li>
-<li>273 generator files, <b>2,006 cards</b></li>
-<li>120 sample <b>quality gate</b>, AI review</li>
-<li>Self commissioned <b>audit</b>, 6.8/10</li>
-</ul>
-<h4>The interactive demo on the page</h4>
-<p>It has two tabs. On the Study tab the app's question screen sits inside a phone, in the app's own colours: the Çalışma Oturumu (study session) header, the cards left, the question card, five options and the Cevabı Göster (show answer) button. The questions are built on the page from the content and rules of the app's bio_9121_b generator; the card holds no written question, only the id of a recipe. On the right are the card id, the direction the question was built from (mineral to role, role to mineral, detail, which is not) and a button that builds a new question from the same card. After an answer the right option turns green, a wrong pick red, and the explanation opens; the spaced repetition box shows the answer, the time, the rating (Again, Good or Easy) and when the card comes back. The rating comes from the answer and the time, not from the student. The economy box shows XP, level and coins. Visitors can answer the questions themselves; left alone, the demo plays by itself. On the Quality gate tab the same card is generated 120 times and every sample goes through the app's quality rules: whether the right answer is noticeably the longest or the shortest option, whether it can be guessed from absolute words, how many distinct questions come out, and structure. Choosing a broken recipe (short distractors, or distractors with absolute words) closes the gate. Then the AI review, the editor's decision and the registration steps are described. XP, coin and level values are illustrative.</p>
-<p><a href="shots/karinca-ders.jpg">Screenshot</a>: Karınca, the Study tab: the app's question screen in a phone; a role to mineral question on the iron card answered wrong, the pick in red, the right option in green, the explanation below. On the right the card id bio_9121_b_demir, the question direction, the Again rating with the card coming back in a minute, and XP, level and coins.</p>
-<p><a href="shots/karinca-kalite.jpg">Screenshot</a>: Karınca, the Quality gate tab: the potassium card generated 120 times; the measurements and thresholds for the length, shortness, absolute word, diversity and structure rules, all passing; above, the steps from generator to registration.</p>
-<p><small>Tags: Kotlin, Jetpack Compose, Supabase, Question generation, Quality control</small></p>
-</article>
 <article id="en-istakip">
 <h3>İş Takip Modülü</h3>
 <p><small>2026 · personal project · BTS &amp; Partners · running</small></p>
@@ -2218,7 +2170,7 @@ Querying that many sources and then running AI analysis over the results fell ou
         rt:"Nasıl çalışıyor", rail:["<b>Dört pazaryerinden</b> gelen kodlar","Her telefona kurulu <b>Aktarıcı</b> uygulaması","Yalnızca <b>pazaryeri</b> SMS'leri, kişisel mesajlar değil","Ortak <b>Google Sheets</b> tablosuna aktarılıyor","Arka planda çalışıyor, yeniden başlatmadan etkilenmiyor","Kimse kimseye kod sormuyor"],
         tags:["Android","Kotlin","Google Sheets"] } }
   };
-  var PORDER = ["karinca","istakip","pipeline","reporting","sms"];
+  var PORDER = ["istakip","pipeline","reporting","sms"];
 
   var TOOLS = {
     en:{ t:"Tools", h:"Tools", meta:"What I actually work in", g:[
@@ -5121,9 +5073,9 @@ Querying that many sources and then running AI analysis over the results fell ou
   var APPS_BY = { en:buildApps("en"), tr:buildApps("tr") };
   var APPS = APPS_BY[LANG];
 
-  var DESK = ["readme","karinca","istakip","pipeline","reporting","sms","tools","plain","contact","mines","solitaire","wordle"];
-  var ORB  = ["karinca","istakip","pipeline","reporting","sms","tools","plain","contact"];
-  var RING = { karinca:0, istakip:0, pipeline:0, reporting:0, sms:0, tools:1, plain:1, contact:1 };
+  var DESK = ["readme","istakip","pipeline","reporting","sms","tools","plain","contact","mines","solitaire","wordle"];
+  var ORB  = ["istakip","pipeline","reporting","sms","tools","plain","contact"];
+  var RING = { istakip:0, pipeline:0, reporting:0, sms:0, tools:1, plain:1, contact:1 };
 
   /* ---------- desktop icons ---------- */
   var iconsEl = $("icons");
